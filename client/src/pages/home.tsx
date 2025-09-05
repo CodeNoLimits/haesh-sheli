@@ -61,22 +61,22 @@ export default function Home() {
                   <nav aria-label="תפריט" className="elementor-nav-menu--main elementor-nav-menu__container elementor-nav-menu--layout-horizontal e--pointer-text e--animation-grow">
                     <ul id="menu-1-ac3cd0c" className="elementor-nav-menu" style={{display: 'flex', gap: '2rem', listStyle: 'none', margin: 0, padding: 0}}>
                       <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-13 current_page_item menu-item-195">
-                        <a href="https://www.haesh-sheli.co.il/" aria-current="page" className="elementor-item elementor-item-active" style={{color: 'white', textDecoration: 'none', fontWeight: 'bold'}}>דף הבית</a>
+                        <a href="/" aria-current="page" className="elementor-item elementor-item-active" style={{color: 'white', textDecoration: 'none', fontWeight: 'bold'}}>דף הבית</a>
                       </li>
                       <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-695">
-                        <a href="https://www.haesh-sheli.co.il/?page_id=8" className="elementor-item" style={{color: 'white', textDecoration: 'none'}}>חנות</a>
+                        <a href="/store" className="elementor-item" style={{color: 'white', textDecoration: 'none'}}>חנות</a>
                       </li>
                       <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-54">
-                        <a href="https://www.haesh-sheli.co.il/?page_id=38" className="elementor-item" style={{color: 'white', textDecoration: 'none'}}>עלינו</a>
+                        <a href="/about" className="elementor-item" style={{color: 'white', textDecoration: 'none'}}>עלינו</a>
                       </li>
                       <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-51">
-                        <a href="https://www.haesh-sheli.co.il/?page_id=48" className="elementor-item" style={{color: 'white', textDecoration: 'none'}}>מגזין</a>
+                        <a href="/magazine" className="elementor-item" style={{color: 'white', textDecoration: 'none'}}>מגזין</a>
                       </li>
                       <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-53">
-                        <a href="https://www.haesh-sheli.co.il/?page_id=39" className="elementor-item" style={{color: 'white', textDecoration: 'none'}}>הצטרפו אלינו</a>
+                        <a href="/join" className="elementor-item" style={{color: 'white', textDecoration: 'none'}}>הצטרפו אלינו</a>
                       </li>
                       <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-52">
-                        <a href="https://www.haesh-sheli.co.il/?page_id=44" className="elementor-item" style={{color: 'white', textDecoration: 'none'}}>צור קשר</a>
+                        <a href="/contact" className="elementor-item" style={{color: 'white', textDecoration: 'none'}}>צור קשר</a>
                       </li>
                     </ul>
                   </nav>
