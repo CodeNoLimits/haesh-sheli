@@ -324,73 +324,73 @@ export default function Join() {
             
             <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
               <h4 style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
-                A frequently asked question surrounding your service
+                איך יכולני להצטרף לפעילויות הקרן?
               </h4>
               <p style={{fontSize: '1rem', color: '#666', lineHeight: '1.6'}}>
-                A detailed answer to provide information about your business, build trust with potential clients, and help convince the visitor that you are a good fit for them.
+                ניתן להצטרף לפעילויות הקרן במגוון דרכים: השתתפות במסיבות, נדבות כספיות, התנדבות להפצת ספרים, או הצטרפות לרשימת התפוצה שלנו. כל תרומה חשובה ומקרבת אותנו למטרה.
               </p>
             </div>
             
             <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
               <h4 style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
-                A frequently asked question surrounding your service
+                האם הספרים מגיעים לכל רחבי העולם?
               </h4>
               <p style={{fontSize: '1rem', color: '#666', lineHeight: '1.6'}}>
-                A detailed answer to provide information about your business, build trust with potential clients, and help convince the visitor that you are a good fit for them.
+                כן! אנחנו שולחים ספרים לכל רחבי העולם. יש לנו נציגים במדינות רבות ואנחנו עובדים ללא הפסקה להביא את תורת רבנו הקדוש לכל יהודי בכל מקום בעולם.
               </p>
             </div>
             
             <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
               <h4 style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
-                A frequently asked question surrounding your service
+                מה עושה הקרן עם הכספים שהיא מקבלת?
               </h4>
               <p style={{fontSize: '1rem', color: '#666', lineHeight: '1.6'}}>
-                A detailed answer to provide information about your business, build trust with potential clients, and help convince the visitor that you are a good fit for them.
+                כל הכספים מיועדים להדפסה והפצה של ספרי רבנו הקדוש, תחזוקת הקבר הקדוש באומן, פעילויות חינוך והסברה, ותמיכה בבני הישיבה. אנחנו פועלים בשקיפות מלאה.
               </p>
             </div>
             
             <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
               <h4 style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
-                A frequently asked question surrounding your service
+                איך יכולני לקבל עדכונים על פעילויות הקרן?
               </h4>
               <p style={{fontSize: '1rem', color: '#666', lineHeight: '1.6'}}>
-                A detailed answer to provide information about your business, build trust with potential clients, and help convince the visitor that you are a good fit for them.
+                ניתן להירשם לרשימת התפוצה באתר, לעקוב אחרינו ברשתות החברתיות, או ליצור איתנו קשר ישיר. אנחנו שולחים עדכונים שוטפים על כל הפעילויות והאירועים החדשים.
               </p>
             </div>
             
             <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
               <h4 style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
-                A frequently asked question surrounding your service
+                מתי התחילה לפעול הקרן?
               </h4>
               <p style={{fontSize: '1rem', color: '#666', lineHeight: '1.6'}}>
-                A detailed answer to provide information about your business, build trust with potential clients, and help convince the visitor that you are a good fit for them.
+                הקרן פועלת כבר יותר מ-30 שנה ברציפות, מאז שנת 1990. במהלך השנים הפצנו מיליוני ספרים ברחבי העולם וזכינו להעמיד דור של אנשים הלומדים תורת רבנו הקדוש.
               </p>
             </div>
             
             <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
               <h4 style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
-                A frequently asked question surrounding your service
+                האם יש מגבלת גיל להצטרפות?
               </h4>
               <p style={{fontSize: '1rem', color: '#666', lineHeight: '1.6'}}>
-                A detailed answer to provide information about your business, build trust with potential clients, and help convince the visitor that you are a good fit for them.
+                אין מגבלת גיל! אנחנו מקבלים בברכה את כולם - צעירים ומבוגרים, משפחות ויחידים. כל אחד יכול לתרום את חלקו להפצת תורת רבנו הקדוש במידה ובדרך שמתאימה לו.
               </p>
             </div>
             
             <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
               <h4 style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
-                A frequently asked question surrounding your service
+                איך יכולני לעזור בהפצת הספרים?
               </h4>
               <p style={{fontSize: '1rem', color: '#666', lineHeight: '1.6'}}>
-                A detailed answer to provide information about your business, build trust with potential clients, and help convince the visitor that you are a good fit for them.
+                יש דרכים רבות: חלוקת ספרים בקהילה שלכם, ארגון הרצאות ושיחות, שיתוף התכנים ברשתות החברתיות, או פשוט המלצה לחברים. כל פעולה קטנה יוצרת גלים גדולים.
               </p>
             </div>
             
             <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
               <h4 style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
-                A frequently asked question surrounding your service
+                מה ההבדל בין הקרן לארגונים אחרים?
               </h4>
               <p style={{fontSize: '1rem', color: '#666', lineHeight: '1.6'}}>
-                A detailed answer to provide information about your business, build trust with potential clients, and help convince the visitor that you are a good fit for them.
+                הקרן שלנו מוקדשת במיוחד להנחלת מורשתו של רבי ישראל דוב אודסר זצ"ל וההפצה של תורת רבי נחמן מברסלב. אנחנו פועלים מתוך אמונה טהורה ומסירות מלאה לדרך.
               </p>
             </div>
           </div>
@@ -401,14 +401,19 @@ export default function Join() {
       <section style={{background: 'linear-gradient(135deg, #dc3545 0%, #c82333 100%)', color: 'white', padding: '5rem 0', textAlign: 'center'}}>
         <div className="elementor-container" style={{maxWidth: '800px', margin: '0 auto', padding: '0 2rem'}}>
           <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '1rem'}}>
-            A Title to Turn the Visitor Into a Lead
+            הצטרפו אלינו היום והיו שותפים במעשה הקדוש
           </h2>
           <p style={{fontSize: '1.3rem', marginBottom: '3rem'}}>
-            This is your chance to emphasize why the visitor should contact you right now.
+            כל תרומה, כל פעולה, כל שיתוף - הכל חשוב ומקרב את האור של תורת רבנו הקדוש לכל פינה בעולם
           </p>
-          <a href="/contact" style={{textDecoration: 'none', fontSize: '1.3rem', padding: '1rem 2rem', background: 'white', color: '#dc3545', border: 'none', borderRadius: '8px', display: 'inline-block', fontWeight: 'bold'}}>
-            Contact us
-          </a>
+          <div style={{display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap'}}>
+            <a href="/contact" style={{textDecoration: 'none', fontSize: '1.3rem', padding: '1rem 2rem', background: 'white', color: '#dc3545', border: 'none', borderRadius: '8px', display: 'inline-block', fontWeight: 'bold'}}>
+              צרו קשר עכשיו
+            </a>
+            <a href="/downloads" style={{textDecoration: 'none', fontSize: '1.3rem', padding: '1rem 2rem', background: 'transparent', color: 'white', border: '2px solid white', borderRadius: '8px', display: 'inline-block', fontWeight: 'bold'}}>
+              הורידו ספרים בחינם
+            </a>
+          </div>
         </div>
       </section>
 

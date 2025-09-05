@@ -490,6 +490,169 @@ export default function Home() {
         </div>
       </section>
 
+      {/* NEWSLETTER SECTION */}
+      <section style={{background: 'linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%)', padding: '4rem 0', textAlign: 'center'}}>
+        <div className="elementor-container" style={{maxWidth: '800px', margin: '0 auto', padding: '0 2rem'}}>
+          <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#2d3436', marginBottom: '1rem'}}>
+            הצטרפו עכשיו לרשימת תפוצה
+          </h2>
+          <p style={{fontSize: '1.3rem', color: '#636e72', marginBottom: '2rem'}}>
+            וקבלו 10% הנחנה ברכישה ראשונה באתר
+          </p>
+          <form style={{display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap', marginBottom: '3rem'}}>
+            <input 
+              type="text" 
+              name="name"
+              placeholder="שם מלא"
+              required
+              style={{
+                padding: '1rem', 
+                fontSize: '1rem', 
+                border: '2px solid #ddd', 
+                borderRadius: '8px', 
+                minWidth: '200px',
+                direction: 'rtl'
+              }}
+            />
+            <input 
+              type="email" 
+              name="email"
+              placeholder="כתובת דואר אלקטרוני"
+              required
+              style={{
+                padding: '1rem', 
+                fontSize: '1rem', 
+                border: '2px solid #ddd', 
+                borderRadius: '8px', 
+                minWidth: '200px',
+                direction: 'rtl'
+              }}
+            />
+            <button 
+              type="submit"
+              style={{
+                background: '#dc3545', 
+                color: 'white', 
+                border: 'none', 
+                padding: '1rem 2rem', 
+                borderRadius: '8px', 
+                fontSize: '1rem', 
+                fontWeight: 'bold', 
+                cursor: 'pointer'
+              }}
+            >
+              הצטרפו עכשיו
+            </button>
+          </form>
+          
+          <div style={{background: 'rgba(255,255,255,0.8)', padding: '2rem', borderRadius: '15px', marginBottom: '2rem'}}>
+            <h3 style={{fontSize: '1.8rem', fontWeight: 'bold', color: '#2d3436', marginBottom: '1rem'}}>
+              הצטרפו לקבוצות הוואטסאפ שלנו
+            </h3>
+            <p style={{fontSize: '1.1rem', color: '#636e72', marginBottom: '2rem'}}>
+              קבלו עדכונים יומיים, חוויות מרגשות וחיזוק רוחני
+            </p>
+            
+            <div style={{display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap'}}>
+              <a 
+                href="https://wa.me/972587308000" 
+                target="_blank"
+                style={{
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: '0.5rem', 
+                  background: '#25d366', 
+                  color: 'white', 
+                  padding: '0.8rem 1.2rem', 
+                  borderRadius: '8px', 
+                  textDecoration: 'none', 
+                  fontWeight: 'bold',
+                  fontSize: '1rem'
+                }}
+              >
+                📱 עברית
+              </a>
+              
+              <a 
+                href="https://wa.me/972587308001" 
+                target="_blank"
+                style={{
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: '0.5rem', 
+                  background: '#25d366', 
+                  color: 'white', 
+                  padding: '0.8rem 1.2rem', 
+                  borderRadius: '8px', 
+                  textDecoration: 'none', 
+                  fontWeight: 'bold',
+                  fontSize: '1rem'
+                }}
+              >
+                🌍 English
+              </a>
+              
+              <a 
+                href="https://wa.me/972587308002" 
+                target="_blank"
+                style={{
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: '0.5rem', 
+                  background: '#25d366', 
+                  color: 'white', 
+                  padding: '0.8rem 1.2rem', 
+                  borderRadius: '8px', 
+                  textDecoration: 'none', 
+                  fontWeight: 'bold',
+                  fontSize: '1rem'
+                }}
+              >
+                🇷🇺 Русский
+              </a>
+              
+              <a 
+                href="https://wa.me/972587308003" 
+                target="_blank"
+                style={{
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: '0.5rem', 
+                  background: '#25d366', 
+                  color: 'white', 
+                  padding: '0.8rem 1.2rem', 
+                  borderRadius: '8px', 
+                  textDecoration: 'none', 
+                  fontWeight: 'bold',
+                  fontSize: '1rem'
+                }}
+              >
+                🇪🇸 Español
+              </a>
+              
+              <a 
+                href="https://wa.me/972587308004" 
+                target="_blank"
+                style={{
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: '0.5rem', 
+                  background: '#25d366', 
+                  color: 'white', 
+                  padding: '0.8rem 1.2rem', 
+                  borderRadius: '8px', 
+                  textDecoration: 'none', 
+                  fontWeight: 'bold',
+                  fontSize: '1rem'
+                }}
+              >
+                🇫🇷 Français
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* DONATION SECTION */}
       <section className="elementor-section elementor-top-section" style={{background: 'linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%)', color: 'white', padding: '4rem 0', textAlign: 'center'}}>
         <div className="elementor-container" style={{maxWidth: '1000px', margin: '0 auto', padding: '0 2rem'}}>
@@ -500,9 +663,14 @@ export default function Home() {
             ההזדמנות שלכם לעזור ולתת יד לפרסום שם הצדיק בעולם
           </h3>
           
-          <a href="#" style={{textDecoration: 'none', fontSize: '1.3rem', padding: '1rem 2rem', background: 'white', color: '#6c5ce7', border: 'none', borderRadius: '8px', display: 'inline-block', fontWeight: 'bold'}}>
-            למעבר לתרומה להדפסה והפצת אור הצדיק לחצו כאן
-          </a>
+          <div style={{display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap'}}>
+            <a href="/join" style={{textDecoration: 'none', fontSize: '1.3rem', padding: '1rem 2rem', background: 'white', color: '#6c5ce7', border: 'none', borderRadius: '8px', display: 'inline-block', fontWeight: 'bold'}}>
+              הצטרפו אלינו
+            </a>
+            <a href="/contact" style={{textDecoration: 'none', fontSize: '1.3rem', padding: '1rem 2rem', background: 'transparent', color: 'white', border: '2px solid white', borderRadius: '8px', display: 'inline-block', fontWeight: 'bold'}}>
+              צרו קשר לתרומה
+            </a>
+          </div>
         </div>
       </section>
 

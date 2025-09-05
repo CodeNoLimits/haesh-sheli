@@ -9,6 +9,8 @@ import About from "@/pages/about";
 import Magazine from "@/pages/magazine";
 import Join from "@/pages/join";
 import Contact from "@/pages/contact";
+import Checkout from "@/pages/checkout";
+import Downloads from "@/pages/downloads";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -20,6 +22,8 @@ function Router() {
       <Route path="/magazine" component={Magazine} />
       <Route path="/join" component={Join} />
       <Route path="/contact" component={Contact} />
+      <Route path="/checkout" component={Checkout} />
+      <Route path="/downloads" component={Downloads} />
       <Route component={NotFound} />
     </Switch>
   );

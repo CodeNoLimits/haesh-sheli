@@ -78,6 +78,9 @@ export default function Magazine() {
                       <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-52">
                         <a href="/contact" className="elementor-item" style={{color: 'white', textDecoration: 'none'}}>צור קשר</a>
                       </li>
+                      <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-52">
+                        <a href="/downloads" className="elementor-item" style={{color: 'white', textDecoration: 'none'}}>הורדות</a>
+                      </li>
                     </ul>
                   </nav>
                 </div>
@@ -123,40 +126,128 @@ export default function Magazine() {
           {/* HERO SECTION */}
           <div style={{marginBottom: '4rem'}}>
             <h1 style={{fontSize: '4rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '2rem', fontFamily: 'Noto Sans Hebrew, sans-serif'}}>
-              מגזין
+              מגזין "האש שלי"
             </h1>
             <div style={{background: 'white', padding: '4rem 2rem', borderRadius: '15px', boxShadow: '0 8px 25px rgba(0,0,0,0.1)'}}>
               <p style={{fontSize: '1.5rem', color: '#666', lineHeight: '1.8'}}>
-                בקרוב יפתח כאן המגזין שלנו עם מאמרים מעמיקים, תוכן עשיר ועדכונים על פעילות הקרן
+                מגזין רוחני ייחודי המוקדש לתורתו ודרכו של רבי נחמן מברסלב ולפעילות הקרן
               </p>
             </div>
           </div>
 
-          {/* COMING SOON SECTION */}
-          <div style={{background: 'linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%)', padding: '4rem', borderRadius: '20px', boxShadow: '0 15px 40px rgba(0,0,0,0.1)'}}>
-            <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2rem'}}>
-              <div style={{width: '150px', height: '150px', borderRadius: '50%', background: '#dc3545', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem'}}>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style={{width: '80px', height: '80px', fill: 'white'}}>
-                  <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V5H19V19ZM17 12H15.5L13.5 17H10.5L8.5 12H7L9.5 7H14.5L17 12Z"/>
-                </svg>
-              </div>
+          {/* LATEST ARTICLES */}
+          <div style={{marginBottom: '5rem'}}>
+            <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#333', marginBottom: '3rem'}}>
+              מאמרים אחרונים
+            </h2>
+            
+            <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '2rem', textAlign: 'right'}}>
               
+              {/* Article 1 */}
+              <div style={{background: 'white', borderRadius: '15px', overflow: 'hidden', boxShadow: '0 8px 25px rgba(0,0,0,0.1)', transition: 'transform 0.3s ease'}}>
+                <img 
+                  src="https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/1-1-300x300.d110a0.webp" 
+                  alt="ליקוטי מוהרן"
+                  style={{width: '100%', height: '200px', objectFit: 'cover'}}
+                />
+                <div style={{padding: '2rem'}}>
+                  <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
+                    עצות לשמחה מליקוטי מוהרן
+                  </h3>
+                  <p style={{color: '#666', lineHeight: '1.6', marginBottom: '1.5rem'}}>
+                    מאמר מעמיק על דברי רבנו הקדוש בענין השמחה והאמונה, ואיך להגיע לשמחה אמיתית בכל מצב...
+                  </p>
+                  <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+                    <span style={{color: '#999', fontSize: '0.9rem'}}>15 ינואר 2025</span>
+                    <a href="#" style={{color: '#dc3545', textDecoration: 'none', fontWeight: 'bold'}}>קרא עוד ←</a>
+                  </div>
+                </div>
+              </div>
+
+              {/* Article 2 */}
+              <div style={{background: 'white', borderRadius: '15px', overflow: 'hidden', boxShadow: '0 8px 25px rgba(0,0,0,0.1)', transition: 'transform 0.3s ease'}}>
+                <img 
+                  src="https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/44-300x300.d110a0.webp" 
+                  alt="בעקבות הבעל שם טוב"
+                  style={{width: '100%', height: '200px', objectFit: 'cover'}}
+                />
+                <div style={{padding: '2rem'}}>
+                  <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
+                    סיפורים מברסלב ברחבי העולם
+                  </h3>
+                  <p style={{color: '#666', lineHeight: '1.6', marginBottom: '1.5rem'}}>
+                    עדויות מרגשות מברסלבים מרחבי העולם על ישועות וחוויות רוחניות באמצעות תורת רבנו...
+                  </p>
+                  <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+                    <span style={{color: '#999', fontSize: '0.9rem'}}>10 ינואר 2025</span>
+                    <a href="#" style={{color: '#dc3545', textDecoration: 'none', fontWeight: 'bold'}}>קרא עוד ←</a>
+                  </div>
+                </div>
+              </div>
+
+              {/* Article 3 */}
+              <div style={{background: 'white', borderRadius: '15px', overflow: 'hidden', boxShadow: '0 8px 25px rgba(0,0,0,0.1)', transition: 'transform 0.3s ease'}}>
+                <img 
+                  src="https://www.haesh-sheli.co.il/wp-content/uploads/2023/08/28-300x300.d110a0.webp" 
+                  alt="חומש ליקוטי הלכות"
+                  style={{width: '100%', height: '200px', objectFit: 'cover'}}
+                />
+                <div style={{padding: '2rem'}}>
+                  <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
+                    מתחדש: פעילות הקרן בארץ הקודש
+                  </h3>
+                  <p style={{color: '#666', lineHeight: '1.6', marginBottom: '1.5rem'}}>
+                    עדכונים על פרויקטים חדשים, הפצת ספרים ופעילויות רוחניות בירושלים, בני ברק ועוד...
+                  </p>
+                  <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+                    <span style={{color: '#999', fontSize: '0.9rem'}}>5 ינואר 2025</span>
+                    <a href="#" style={{color: '#dc3545', textDecoration: 'none', fontWeight: 'bold'}}>קרא עוד ←</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* NEWSLETTER SIGNUP */}
+          <div style={{background: 'linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%)', padding: '4rem', borderRadius: '20px', boxShadow: '0 15px 40px rgba(0,0,0,0.1)', marginBottom: '5rem'}}>
+            <div style={{textAlign: 'center', maxWidth: '600px', margin: '0 auto'}}>
               <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
-                בקרוב...
+                הצטרפו לרשימת התפוצה שלנו
               </h2>
               
-              <p style={{fontSize: '1.3rem', color: '#333', lineHeight: '1.6', maxWidth: '600px', marginBottom: '2rem'}}>
-                אנחנו עובדים קשה להכין עבורכם מגזין מקוון עשיר בתוכן איכותי, מאמרים מעמיקים על רבנו הקדוש, סיפורים מרגשים ועדכונים שוטפים על פעילות הקרן ברחבי העולם.
+              <p style={{fontSize: '1.3rem', color: '#333', lineHeight: '1.6', marginBottom: '2rem'}}>
+                קבלו עדכונים שוטפים על מאמרים חדשים, פעילויות הקרן וחדשות מעולם ברסלב
               </p>
               
-              <div style={{display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center'}}>
-                <a href="/join" className="btn-primary" style={{textDecoration: 'none'}}>
-                  הצטרפו לרשימת התפוצה
-                </a>
-                <a href="/contact" className="btn-secondary" style={{textDecoration: 'none'}}>
-                  צרו קשר לעדכונים
-                </a>
-              </div>
+              <form style={{display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap'}}>
+                <input 
+                  type="email" 
+                  placeholder="הכניסו את כתובת המייל שלכם"
+                  style={{
+                    padding: '1rem 1.5rem', 
+                    fontSize: '1rem', 
+                    border: '2px solid #e9ecef', 
+                    borderRadius: '8px',
+                    minWidth: '300px',
+                    direction: 'rtl'
+                  }}
+                />
+                <button 
+                  type="submit"
+                  style={{
+                    background: '#dc3545', 
+                    color: 'white', 
+                    border: 'none', 
+                    padding: '1rem 2rem', 
+                    borderRadius: '8px', 
+                    fontSize: '1rem',
+                    fontWeight: 'bold',
+                    cursor: 'pointer'
+                  }}
+                >
+                  הצטרפו עכשיו
+                </button>
+              </form>
             </div>
           </div>
 
@@ -169,28 +260,55 @@ export default function Magazine() {
             <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem'}}>
               <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
                 <h4 style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
-                  מאמרים על רבנו הקדוש
+                  📚 תורה ורוחניות
                 </h4>
                 <p style={{color: '#666'}}>
-                  תוכן עמוק ומעשיר על תורתו ודרכו של רבי נחמן מברסלב
+                  מאמרים מעמיקים על תורתו הקדושה של רבי נחמן מברסלב, עצות לחיים ודרכי עבודת השם
                 </p>
               </div>
               
               <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
                 <h4 style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
-                  סיפורים וחוויות
+                  🌍 ברסלב בעולם
                 </h4>
                 <p style={{color: '#666'}}>
-                  סיפורים מרגשים מפעילות ההפצה ברחבי העולם
+                  סיפורים מרגשים ועדויות מברסלבים מכל רחבי העולם על ישועות וחוויות רוחניות
                 </p>
               </div>
               
               <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
                 <h4 style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
-                  עדכונים ופעילויות
+                  📢 עדכוני הקרן
                 </h4>
                 <p style={{color: '#666'}}>
-                  עדכונים שוטפים על פרויקטים וקמפיינים חדשים
+                  חדשות ועדכונים על פעילות הקרן, פרויקטים חדשים והפצת ספרי רבנו הקדוש
+                </p>
+              </div>
+
+              <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
+                <h4 style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
+                  🎭 מועדים וחגים
+                </h4>
+                <p style={{color: '#666'}}>
+                  תכנים מיוחדים לחגים ומועדים, עצות להתעלות רוחנית בזמנים מיוחדים
+                </p>
+              </div>
+
+              <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
+                <h4 style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
+                  💌 מכתבי רבי ישראל
+                </h4>
+                <p style={{color: '#666'}}>
+                  קטעים נבחרים ממכתביו הקדושים של רבי ישראל דוב אודסר זצ"ל עם הסברים והארות
+                </p>
+              </div>
+
+              <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
+                <h4 style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
+                  🎵 זמירות ותפילות
+                </h4>
+                <p style={{color: '#666'}}>
+                  ניגונים קדושים, זמירות ותפילות מיוחדות מעולם ברסלב להאזנה ולהורדה
                 </p>
               </div>
             </div>
