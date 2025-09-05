@@ -1,457 +1,574 @@
-import { useState } from "react";
-import { Search, ShoppingCart } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-
 export default function Home() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-
-  const handleNewsletterSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Newsletter subscription logic would go here
-    console.log("Newsletter subscription:", { name, email });
-    setName("");
-    setEmail("");
-  };
-
   return (
-    <div className="min-h-screen bg-background text-foreground hebrew-text">
-      {/* Top utility bar */}
-      <div className="bg-gray-800 text-white text-sm py-1" data-testid="top-utility-bar">
-        <div className="container mx-auto px-4 flex justify-between items-center">
-          <div className="flex gap-4">
-            <a href="#" className="hover:text-gray-300" data-testid="link-store-entrance">כניסה לחנות</a>
-            <a href="#" className="hover:text-gray-300" data-testid="link-personal-area">אזור אישי</a>
-            <a href="#" className="hover:text-gray-300" data-testid="link-contact">יצירת קשר</a>
-          </div>
-          <div data-testid="text-free-shipping">משלוחים חינם החל מ- 399 ש"ח</div>
-        </div>
-      </div>
-
-      {/* Main navigation */}
-      <nav className="bg-primary text-primary-foreground shadow-lg sticky top-0 z-50" data-testid="main-navigation">
-        <div className="container mx-auto px-4">
-          <div className="flex justify-between items-center h-16">
-            {/* Logo */}
-            <div className="flex items-center">
-              <img 
-                src="https://www.haesh-sheli.co.il/wp-content/uploads/2021/12/cropped-%D7%A7%D7%A8%D7%95-%D7%A8%D7%91%D7%99-%D7%99%D7%A9%D7%A8%D7%90%D7%9C-%D7%91%D7%A8-%D7%90%D7%95%D7%93%D7%A1%D7%A8.d110a0.webp" 
-                alt="האש שלי תקוף - קרן רבי ישראל" 
-                className="h-12 w-auto"
-                data-testid="img-logo"
-              />
-            </div>
-
-            {/* Navigation menu */}
-            <div className="hidden md:flex items-center gap-8">
-              <a href="#" className="hover:text-red-200 font-medium" data-testid="link-home">דף הבית</a>
-              <a href="#" className="hover:text-red-200 font-medium" data-testid="link-shop">חנות</a>
-              <a href="#" className="hover:text-red-200 font-medium" data-testid="link-about">עלינו</a>
-              <a href="#" className="hover:text-red-200 font-medium" data-testid="link-invite">מזמין</a>
-              <a href="#" className="hover:text-red-200 font-medium" data-testid="link-contact-nav">צור קשר</a>
-            </div>
-
-            {/* Cart and search */}
-            <div className="flex items-center gap-4">
-              <div className="relative">
-                <Input
-                  type="search"
-                  placeholder="חיפוש"
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="px-4 py-2 rounded-md text-black w-40"
-                  data-testid="input-search"
-                />
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-500" />
+    <div className="rtl home page-template-default page page-id-13 wp-custom-logo theme-hello-elementor woocommerce-js elementor-default elementor-kit-5 elementor-page elementor-page-13">
+      {/* TOP BAR */}
+      <section className="elementor-section elementor-top-section elementor-element elementor-element-ba655d5 elementor-section-full_width elementor-hidden-tablet elementor-hidden-mobile elementor-section-height-default" style={{background: '#333', color: 'white', padding: '8px 0'}}>
+        <div className="elementor-container elementor-column-gap-default">
+          <div className="elementor-column elementor-col-33 elementor-top-column">
+            <div className="elementor-widget-wrap elementor-element-populated">
+              <div className="elementor-element elementor-icon-list--layout-inline elementor-align-left elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list">
+                <div className="elementor-widget-container">
+                  <ul className="elementor-icon-list-items elementor-inline-items" style={{display: 'flex', gap: '1rem', listStyle: 'none', margin: 0, padding: 0}}>
+                    <li className="elementor-icon-list-item elementor-inline-item" style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
+                      <span className="elementor-icon-list-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" viewBox="0 0 100 100" style={{width: '16px', height: '16px', fill: 'white'}}>
+                          <g>
+                            <path d="m72.341 48.514h17.306l-5.266-10.126h-10.872z"></path>
+                            <path d="m85.059 62.331h3.516l.339-2.891h-3.529z"></path>
+                            <path d="m75.463 62.1c-3.448 0-6.244 2.81-6.244 6.257 0 3.448 2.796 6.244 6.244 6.244s6.257-2.796 6.257-6.244c0-3.447-2.809-6.257-6.257-6.257zm0 9.515c-1.792 0-3.257-1.466-3.257-3.257 0-1.805 1.466-3.258 3.257-3.258 1.805 0 3.258 1.452 3.258 3.258 0 1.791-1.453 3.257-3.258 3.257z"></path>
+                            <path d="m31.161 62.1c-3.448 0-6.257 2.81-6.257 6.257 0 3.448 2.81 6.244 6.257 6.244 3.448 0 6.244-2.796 6.244-6.244-.001-3.447-2.797-6.257-6.244-6.257zm0 9.515c-1.805 0-3.271-1.466-3.271-3.257 0-1.805 1.466-3.258 3.271-3.258 1.792 0 3.257 1.452 3.257 3.258 0 1.791-1.466 3.257-3.257 3.257z"></path>
+                          </g>
+                        </svg>
+                      </span>
+                      <span className="elementor-icon-list-text">משלוחים חינם החל מ- 399 ש"ח</span>
+                    </li>
+                  </ul>
+                </div>
               </div>
-              <Button
-                variant="secondary"
-                className="flex items-center gap-2"
-                data-testid="button-cart"
-              >
-                <span>0.00 ₪</span>
-                <span>0</span>
-                <span>עגלת קניות</span>
-                <ShoppingCart className="h-4 w-4" />
-              </Button>
             </div>
           </div>
         </div>
-      </nav>
+      </section>
 
-      {/* Hero Section 1 */}
-      <section className="bg-gradient-to-l from-yellow-100 to-yellow-200 py-20 relative overflow-hidden" data-testid="hero-section-1">
-        <div className="container mx-auto px-4 text-center">
-          {/* Book image positioned on the left */}
-          <div className="absolute right-10 top-10 hidden lg:block">
+      {/* MAIN HEADER */}
+      <section className="elementor-section elementor-top-section elementor-element elementor-element-ba655d5 elementor-section-full_width elementor-hidden-tablet elementor-hidden-mobile" style={{background: '#dc3545', padding: '1rem 0'}}>
+        <div className="elementor-container elementor-column-gap-default" style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+          {/* LOGO COLUMN */}
+          <div className="elementor-column elementor-col-25 elementor-top-column elementor-element elementor-element-8cf799f">
+            <div className="elementor-widget-wrap elementor-element-populated">
+              <div className="elementor-element elementor-widget elementor-widget-theme-site-logo elementor-widget-image">
+                <div className="elementor-widget-container">
+                  <a href="https://www.haesh-sheli.co.il">
+                    <img 
+                      width="185" 
+                      height="300"
+                      src="https://www.haesh-sheli.co.il/wp-content/uploads/2021/12/cropped-%D7%A7%D7%A8%D7%95-%D7%A8%D7%91%D7%99-%D7%99%D7%A9%D7%A8%D7%90%D7%9C-%D7%91%D7%A8-%D7%90%D7%95%D7%93%D7%A1%D7%A8.d110a0.webp" 
+                      className="attachment-full size-full wp-image-27" 
+                      alt="האש שלי תוקף עד ביאת המשיח"
+                      style={{height: '80px', width: 'auto'}}
+                    />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* NAVIGATION COLUMN */}
+          <div className="elementor-column elementor-col-25 elementor-top-column elementor-element elementor-element-b208748">
+            <div className="elementor-widget-wrap elementor-element-populated">
+              <div className="elementor-element elementor-nav-menu__align-center elementor-nav-menu--stretch elementor-nav-menu--dropdown-tablet elementor-nav-menu__text-align-aside elementor-nav-menu--toggle elementor-nav-menu--burger elementor-widget elementor-widget-nav-menu">
+                <div className="elementor-widget-container">
+                  <nav aria-label="תפריט" className="elementor-nav-menu--main elementor-nav-menu__container elementor-nav-menu--layout-horizontal e--pointer-text e--animation-grow">
+                    <ul id="menu-1-ac3cd0c" className="elementor-nav-menu" style={{display: 'flex', gap: '2rem', listStyle: 'none', margin: 0, padding: 0}}>
+                      <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-13 current_page_item menu-item-195">
+                        <a href="https://www.haesh-sheli.co.il/" aria-current="page" className="elementor-item elementor-item-active" style={{color: 'white', textDecoration: 'none', fontWeight: 'bold'}}>דף הבית</a>
+                      </li>
+                      <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-695">
+                        <a href="https://www.haesh-sheli.co.il/?page_id=8" className="elementor-item" style={{color: 'white', textDecoration: 'none'}}>חנות</a>
+                      </li>
+                      <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-54">
+                        <a href="https://www.haesh-sheli.co.il/?page_id=38" className="elementor-item" style={{color: 'white', textDecoration: 'none'}}>עלינו</a>
+                      </li>
+                      <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-51">
+                        <a href="https://www.haesh-sheli.co.il/?page_id=48" className="elementor-item" style={{color: 'white', textDecoration: 'none'}}>מגזין</a>
+                      </li>
+                      <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-53">
+                        <a href="https://www.haesh-sheli.co.il/?page_id=39" className="elementor-item" style={{color: 'white', textDecoration: 'none'}}>הצטרפו אלינו</a>
+                      </li>
+                      <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-52">
+                        <a href="https://www.haesh-sheli.co.il/?page_id=44" className="elementor-item" style={{color: 'white', textDecoration: 'none'}}>צור קשר</a>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* CART COLUMN */}
+          <div className="elementor-column elementor-col-25 elementor-top-column elementor-element elementor-element-884ebb2">
+            <div className="elementor-widget-wrap elementor-element-populated">
+              <div className="elementor-element toggle-icon--custom elementor-widget__width-auto elementor-menu-cart--empty-indicator-hide remove-item-position--top elementor-menu-cart--items-indicator-bubble elementor-menu-cart--cart-type-side-cart elementor-menu-cart--show-remove-button-yes elementor-widget elementor-widget-woocommerce-menu-cart">
+                <div className="elementor-widget-container">
+                  <div className="elementor-menu-cart__wrapper">
+                    <div className="elementor-menu-cart__toggle_wrapper">
+                      <div className="elementor-menu-cart__toggle elementor-button-wrapper">
+                        <a id="elementor-menu-cart__toggle_button" href="#" className="elementor-menu-cart__toggle_button elementor-button elementor-size-sm" aria-expanded="false" style={{background: 'white', color: '#dc3545', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
+                          <span className="elementor-button-text">
+                            <span className="woocommerce-Price-amount amount">
+                              <span>0.00 <span className="woocommerce-Price-currencySymbol">₪</span></span>
+                            </span>
+                          </span>
+                          <span className="elementor-button-icon">
+                            <span className="elementor-button-icon-qty" data-counter="0">0</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style={{width: '16px', height: '16px', fill: 'currentColor'}}>
+                              <path d="M7 4V2C7 1.45 7.45 1 8 1H16C16.55 1 17 1.45 17 2V4H20C20.55 4 21 4.45 21 5S20.55 6 20 6H19V19C19 20.1 18.1 21 17 21H7C5.9 21 5 20.1 5 19V6H4C3.45 6 3 5.55 3 5S3.45 4 4 4H7ZM9 3V4H15V3H9ZM7 6V19H17V6H7Z"/>
+                            </svg>
+                          </span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* HERO SECTION 1 */}
+      <section className="elementor-section elementor-top-section" style={{background: 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)', padding: '4rem 0', position: 'relative'}}>
+        <div className="elementor-container" style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+          {/* Left side - Logo/Flame */}
+          <div className="elementor-column elementor-col-33" style={{display: 'flex', justifyContent: 'center'}}>
             <img 
-              src="https://www.haesh-sheli.co.il/wp-content/uploads/2024/05/Copy-of-%D7%AA%D7%9E%D7%95%D7%A0%D7%AA-%D7%9E%D7%95%D7%A6%D7%A8-2.webp" 
-              alt="ספר רבי נחמן" 
-              className="w-48 h-auto"
-              data-testid="img-hero-book"
+              src="https://www.haesh-sheli.co.il/wp-content/uploads/2021/12/cropped-%D7%A7%D7%A8%D7%95-%D7%A8%D7%91%D7%99-%D7%99%D7%A9%D7%A8%D7%90%D7%9C-%D7%91%D7%A8-%D7%90%D7%95%D7%93%D7%A1%D7%A8.d110a0.webp" 
+              alt="האש שלי תוקף" 
+              style={{width: '200px', height: 'auto'}}
             />
           </div>
           
-          <div className="max-w-2xl mx-auto">
-            <h1 className="text-5xl font-bold mb-6 text-gray-800" data-testid="text-main-title">ספרי רבינו נחמן מברסלב זצ''ל</h1>
-            <h2 className="text-3xl font-semibold mb-4 text-gray-700" data-testid="text-subtitle">הדרך לאוצר שלך.</h2>
-            <h3 className="text-2xl mb-8 text-gray-600 italic" data-testid="text-quote">''רק תנו לי את ליבכם ואוליך אתכם בדרך חדשה..'' (רבי נחמן)</h3>
-            
-            <div className="flex gap-4 justify-center flex-wrap">
-              <Button 
-                size="lg"
-                className="bg-primary text-primary-foreground px-8 py-3 font-semibold hover:bg-red-600"
-                data-testid="button-enter-store"
-              >
-                כניסה לחנות
-              </Button>
-              <Button 
-                size="lg"
-                variant="secondary"
-                className="px-8 py-3 font-semibold"
-                data-testid="button-discover-activity"
-              >
-                באו לגלות על הפעילות שלנו
-              </Button>
-            </div>
-            
-            <div className="mt-6">
-              <a href="#" className="text-primary underline hover:text-red-600" data-testid="link-chametz-sale">
-                לחצו כאן למעבר למכירת חמץ
+          {/* Center - Main content */}
+          <div className="elementor-column elementor-col-50" style={{textAlign: 'center', padding: '0 2rem'}}>
+            <h1 style={{fontSize: '3rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem', fontFamily: 'Noto Sans Hebrew, sans-serif'}}>
+              לדבר זה תמיד עוב
+            </h1>
+            <p style={{fontSize: '1.2rem', color: '#666', marginBottom: '2rem'}}>
+              אנחנו כאן בשביל לשמוח אתכם.
+            </p>
+            <div style={{display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap'}}>
+              <a href="#" className="btn-secondary" style={{textDecoration: 'none'}}>
+                בואו לראות והאזרץ דף לפעילות שלנו
+              </a>
+              <a href="#" className="btn-primary" style={{textDecoration: 'none'}}>
+                בוא לדבר אתנו בוואצפ
               </a>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Hero Section 2 */}
-      <section className="bg-white py-20" data-testid="hero-section-2">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold mb-4 text-gray-800" data-testid="text-online-title">ספרי רבנו נחמן מברסלב זצ''ל</h2>
-          <h3 className="text-3xl font-semibold mb-8 text-gray-600" data-testid="text-online-subtitle">עכשיו אונליין</h3>
           
-          <div className="max-w-md mx-auto mb-8">
-            <img 
-              src="https://www.haesh-sheli.co.il/wp-content/uploads/2024/05/Copy-of-%D7%AA%D7%9E%D7%95%D7%A0%D7%AA-%D7%9E%D7%95%D7%A6%D7%A8-2.webp" 
-              alt="ספרי רבנו" 
-              className="w-full h-auto rounded-xl shadow-lg"
-              data-testid="img-books-hero"
-            />
-          </div>
-          
-          <div className="flex gap-4 justify-center flex-wrap">
-            <Button 
-              size="lg"
-              className="bg-primary text-primary-foreground px-8 py-3 font-semibold hover:bg-red-600"
-              data-testid="button-enter-store-2"
-            >
-              כניסה לחנות
-            </Button>
-            <Button 
-              size="lg"
-              variant="secondary"
-              className="px-8 py-3 font-semibold"
-              data-testid="button-discover-activity-2"
-            >
-              באו לגלות על הפעילות שלנו
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Lottery Section */}
-      <section className="bg-gradient-to-r from-blue-50 to-purple-50 py-20" data-testid="lottery-section">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4 text-gray-800" data-testid="text-lottery-title">הגרלה כרטיס לאומן מתנה</h2>
-            <h3 className="text-3xl font-semibold mb-6 text-primary" data-testid="text-lottery-subtitle">קח ספר... והטיסה לאומן עלינו!</h3>
-            <p className="text-xl text-gray-600 mb-4" data-testid="text-luggage-question">מזוודה יש? ספר לדרך יש? תכינו את הלב!</p>
-            <p className="text-lg text-gray-700 mb-6" data-testid="text-lottery-description">
-              קרן רבי ישראל מזמינה אתכם להכנס להגרלת ההגרלות, כרטיס טיסה לציונו הקדוש של רבי נחמן באומן, עיר הגעגועים
-            </p>
-            <p className="text-lg text-gray-700 mb-8" data-testid="text-spiritual-experience">חוויה רוחנית בלתי נשכחת של תעצומות וכח!</p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h4 className="text-2xl font-bold mb-6 text-gray-800" data-testid="text-how-to-participate">איך משתתפים?</h4>
-              <ol className="text-lg space-y-4 text-gray-700">
-                <li className="flex items-start gap-3" data-testid="step-1">
-                  <span className="bg-primary text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">1</span>
-                  <span>מבצעים רכישה באתר.</span>
-                </li>
-                <li className="flex items-start gap-3" data-testid="step-2">
-                  <span className="bg-primary text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">2</span>
-                  <span>שולחים את פרטים עם מספר ההזמנה</span>
-                </li>
-                <li className="flex items-start gap-3" data-testid="step-3">
-                  <span className="bg-primary text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">3</span>
-                  <span>ונכנסים להגרלה הגדולה.</span>
-                </li>
-                <li className="flex items-start gap-3" data-testid="step-4">
-                  <span className="bg-primary text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">4</span>
-                  <span>מחכים לזכייה הגדולה, ולחוויות הרוחניות באומן!</span>
-                </li>
-              </ol>
-              
-              <div className="mt-8">
-                <Button
-                  size="lg"
-                  className="bg-primary text-primary-foreground px-8 py-4 font-semibold text-xl hover:bg-red-600"
-                  data-testid="button-join-lottery"
-                >
-                  לחצו כאן להצטרף להגרלה
-                </Button>
-              </div>
-            </div>
-            
-            <div className="text-center">
+          {/* Right side - Circular logo */}
+          <div className="elementor-column elementor-col-33" style={{display: 'flex', justifyContent: 'center'}}>
+            <div style={{width: '150px', height: '150px', borderRadius: '50%', background: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
               <img 
-                src="https://www.haesh-sheli.co.il/wp-content/uploads/2025/02/%D7%94%D7%92%D7%A8%D7%9C%D7%AA-%D7%98%D7%99%D7%A1%D7%94-%D7%9C%D7%A8%D7%91%D7%A0%D7%95-%D7%94%D7%A7%D7%93%D7%95%D7%A9-%D7%A7%D7%A8%D7%9F-%D7%A8%D7%91%D7%99-%D7%99%D7%A9%D7%A8%D7%90%D7%9C.webp" 
-                alt="הגרלת טיסה לרבנו הקדוש" 
-                className="w-full h-auto rounded-xl shadow-lg"
-                data-testid="img-lottery-banner"
+                src="https://www.haesh-sheli.co.il/wp-content/uploads/2021/12/cropped-%D7%A7%D7%A8%D7%95-%D7%A8%D7%91%D7%99-%D7%99%D7%A9%D7%A8%D7%90%D7%9C-%D7%91%D7%A8-%D7%90%D7%95%D7%93%D7%A1%D7%A8.d110a0.webp" 
+                alt="האש שלי תוקף עד ביאת המשיח" 
+                style={{width: '100px', height: 'auto'}}
               />
             </div>
           </div>
         </div>
       </section>
-
-      {/* Books Gallery */}
-      <section className="bg-white py-20" data-testid="books-gallery">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-12 text-gray-800" data-testid="text-featured-books">ספרי רבנו המובילים</h2>
+      
+      {/* HERO SECTION 2 - BOOKS */}
+      <section className="elementor-section" style={{background: 'white', padding: '3rem 0'}}>
+        <div className="elementor-container" style={{textAlign: 'center'}}>
+          <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#333', marginBottom: '1rem', fontFamily: 'Noto Sans Hebrew, sans-serif'}}>
+            עכשיו אונליין
+          </h2>
           
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-            {/* Book 1: ליקוטי מוהרן */}
-            <div className="bg-card rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow transform hover:-translate-y-1" data-testid="book-likutei-moharan">
+          <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '3rem', marginTop: '2rem'}}>
+            <img 
+              src="https://www.haesh-sheli.co.il/wp-content/uploads/2024/05/Copy-of-%D7%AA%D7%9E%D7%95%D7%A0%D7%AA-%D7%9E%D7%95%D7%A6%D7%A8-2.webp" 
+              alt="ספרי רבנו" 
+              style={{width: '400px', height: 'auto', borderRadius: '10px', boxShadow: '0 8px 25px rgba(0,0,0,0.15)'}}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* BOOKS SECTION - Using Real Images */}
+      <section className="elementor-section" style={{background: '#f8f9fa', padding: '4rem 0'}}>
+        <div className="elementor-container">
+          <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#d4a574', textAlign: 'center', marginBottom: '3rem', fontFamily: 'Noto Sans Hebrew, sans-serif'}}>
+            כמה דרכים לפנות אלינו
+          </h2>
+          
+          <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '2rem', marginBottom: '3rem'}}>
+            {/* Book 1 */}
+            <div className="book-card">
               <a href="#">
                 <img 
                   src="https://www.haesh-sheli.co.il/wp-content/uploads/2023/07/6.d110a0.webp" 
                   alt="ליקוטי מוהרן" 
-                  className="w-full h-64 object-cover"
+                  style={{width: '100%', height: '200px', objectFit: 'cover', borderRadius: '8px'}}
                 />
               </a>
             </div>
             
-            {/* Book 2: ליקוטי תפילות */}
-            <div className="bg-card rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow transform hover:-translate-y-1" data-testid="book-likutei-tefilot">
+            {/* Book 2 */}
+            <div className="book-card">
               <a href="#">
                 <img 
                   src="https://www.haesh-sheli.co.il/wp-content/uploads/2023/07/3.d110a0.webp" 
                   alt="ליקוטי תפילות" 
-                  className="w-full h-64 object-cover"
+                  style={{width: '100%', height: '200px', objectFit: 'cover', borderRadius: '8px'}}
                 />
               </a>
             </div>
             
-            {/* Book 3: חומש ליקוטי הלכות */}
-            <div className="bg-card rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow transform hover:-translate-y-1" data-testid="book-chumash-likutei">
+            {/* Book 3 */}
+            <div className="book-card">
               <a href="#">
                 <img 
                   src="https://www.haesh-sheli.co.il/wp-content/uploads/2023/07/5.d110a0.webp" 
                   alt="חומש ליקוטי הלכות" 
-                  className="w-full h-64 object-cover"
+                  style={{width: '100%', height: '200px', objectFit: 'cover', borderRadius: '8px'}}
                 />
               </a>
             </div>
             
-            {/* Book 4: ליקוטי הלכות */}
-            <div className="bg-card rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow transform hover:-translate-y-1" data-testid="book-likutei-halachot">
+            {/* Book 4 */}
+            <div className="book-card">
               <a href="#">
                 <img 
                   src="https://www.haesh-sheli.co.il/wp-content/uploads/2023/07/2.d110a0.webp" 
                   alt="ליקוטי הלכות" 
-                  className="w-full h-64 object-cover"
+                  style={{width: '100%', height: '200px', objectFit: 'cover', borderRadius: '8px'}}
                 />
               </a>
             </div>
             
-            {/* Book 5: סיפורי מעשיות */}
-            <div className="bg-card rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow transform hover:-translate-y-1" data-testid="book-sipurei-maasiyot">
+            {/* Book 5 */}
+            <div className="book-card">
               <a href="#">
                 <img 
                   src="https://www.haesh-sheli.co.il/wp-content/uploads/2025/02/%D7%AA%D7%9E%D7%95%D7%A0%D7%AA-%D7%9E%D7%95%D7%A6%D7%A8-3.d110a0.webp" 
                   alt="סיפורי מעשיות" 
-                  className="w-full h-64 object-cover"
+                  style={{width: '100%', height: '200px', objectFit: 'cover', borderRadius: '8px'}}
                 />
               </a>
             </div>
             
-            {/* Book 6: כל בו לישועות */}
-            <div className="bg-card rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow transform hover:-translate-y-1" data-testid="book-kol-bo">
+            {/* Book 6 */}
+            <div className="book-card">
               <a href="#">
                 <img 
                   src="https://www.haesh-sheli.co.il/wp-content/uploads/2023/07/1.d110a0.webp" 
                   alt="כל בו לישועות" 
-                  className="w-full h-64 object-cover"
+                  style={{width: '100%', height: '200px', objectFit: 'cover', borderRadius: '8px'}}
                 />
               </a>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Quote Section */}
-      <section className="bg-muted py-20" data-testid="quote-section">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="quote-mark mb-4">"</div>
-            <h3 className="text-3xl font-bold mb-6 text-gray-800" data-testid="text-quote-intro">דף אחד מספרי רבנו</h3>
-            <h4 className="text-4xl font-bold mb-8 text-primary" data-testid="text-quote-main">יהיה תיקון על הכל!</h4>
-            <p className="text-2xl font-semibold text-gray-700" data-testid="text-quote-author">רבי נתן מברסלב</p>
-            <div className="quote-mark mt-4 rotate-180">"</div>
-          </div>
-        </div>
-      </section>
-
-      {/* Benefits Section */}
-      <section className="bg-white py-20" data-testid="benefits-section">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-            <div className="p-6">
-              <h4 className="text-xl font-bold mb-4 text-gray-800" data-testid="text-free-shipping-benefit">משלוח מהיר עד הבית חינם</h4>
-              <p className="text-gray-600">ברכישה מעל 299 ₪ מהחנות</p>
-            </div>
-            
-            <div className="p-6">
-              <h4 className="text-xl font-bold mb-4 text-gray-800" data-testid="text-secure-purchase">רכישה מאובטחת</h4>
-              <p className="text-gray-600">באמצעות תעודת SSL ובתקנים המחמירים ביותר</p>
-            </div>
-            
-            <div className="p-6">
-              <h4 className="text-xl font-bold mb-4 text-gray-800" data-testid="text-largest-bookstore">חנות הספרים הגדולה ביותר לספרי רבנו אונליין</h4>
-              <p className="text-gray-600">משלוחים לכל הארץ</p>
-            </div>
-            
-            <div className="p-6">
-              <h4 className="text-xl font-bold mb-4 text-gray-800" data-testid="text-excellent-service">שירות לקוחות מעולה וזמין תמיד לשירותכם</h4>
-              <p className="text-gray-600">עד 12 תשלומים ללא ריבית</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Categories Section */}
-      <section className="bg-secondary py-20" data-testid="categories-section">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-12 text-gray-800" data-testid="text-categories-title">הקטגוריות בחנות</h2>
           
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="bg-white p-8 rounded-lg shadow-lg text-center">
-              <h3 className="text-2xl font-bold mb-4 text-gray-800" data-testid="text-rabbeinu-writings">כל חיבורי רבנו הקדוש</h3>
-              <Button
-                className="bg-primary text-primary-foreground px-6 py-3 font-semibold hover:bg-red-600"
-                data-testid="button-rabbeinu-category"
-              >
-                לחצו כאן
-              </Button>
+          <div style={{display: 'flex', gap: '2rem', justifyContent: 'center'}}>
+            <a href="#" className="btn-primary" style={{textDecoration: 'none'}}>
+              התקשרו אלינו
+            </a>
+            <a href="#" className="btn-secondary" style={{textDecoration: 'none'}}>
+              כתבו לנו ונחזור בהקדם
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* LOTTERY SECTION */}
+      <section className="elementor-section" style={{background: 'white', padding: '4rem 0'}}>
+        <div className="elementor-container">
+          <div style={{textAlign: 'center', marginBottom: '3rem'}}>
+            <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem', fontFamily: 'Noto Sans Hebrew, sans-serif'}}>
+              הגרלה מיוחדת – הזדמנות לזכות
+            </h2>
+            <h3 style={{fontSize: '2rem', fontWeight: 'bold', color: '#d4a574', marginBottom: '2rem'}}>
+              בטיסה חינם לאומן!
+            </h3>
+            
+            <div style={{display: 'flex', justifyContent: 'center', marginBottom: '2rem'}}>
+              <img 
+                src="https://www.haesh-sheli.co.il/wp-content/uploads/2025/02/%D7%94%D7%92%D7%A8%D7%9C%D7%AA-%D7%98%D7%99%D7%A1%D7%94-%D7%9C%D7%A8%D7%91%D7%A0%D7%95-%D7%94%D7%A7%D7%93%D7%95%D7%A9-%D7%A7%D7%A8%D7%9F-%D7%A8%D7%91%D7%99-%D7%99%D7%A9%D7%A8%D7%90%D7%9C.webp" 
+                alt="הגרלת טיסה לרבנו הקדוש" 
+                style={{width: '600px', height: 'auto', borderRadius: '10px', boxShadow: '0 8px 25px rgba(0,0,0,0.15)'}}
+              />
             </div>
             
-            <div className="bg-white p-8 rounded-lg shadow-lg text-center">
-              <h3 className="text-2xl font-bold mb-4 text-gray-800" data-testid="text-rabbi-israel-books">כל ספרי רבי ישראל</h3>
-              <Button
-                className="bg-primary text-primary-foreground px-6 py-3 font-semibold hover:bg-red-600"
-                data-testid="button-rabbi-israel-category"
-              >
-                לחצו כאן
-              </Button>
-            </div>
+            <p style={{fontSize: '1.2rem', color: '#666', maxWidth: '800px', margin: '0 auto 2rem', lineHeight: '1.6'}}>
+              בואו להצטרף להגרלה הבלעדית שלנו ותוכלו לזכות בטיסה מרגשת ובלתי נשכחת לאומן, המקום הקדוש של רבי נחמן מברסלב. כל מה שעליכם לעשות הוא לרכוש באתר בסכום של 35 שקלים ומעלה, והכניסה להגרלה מובטחת!
+            </p>
+            
+            <a href="#" className="btn-primary" style={{textDecoration: 'none', fontSize: '1.2rem'}}>
+              לחצו כאן להצטרף להגרלה
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* SPECIAL BOOKS SECTION */}
+      <section className="elementor-section" style={{background: 'linear-gradient(to bottom, #1a1a2e, #16213e)', padding: '4rem 0', color: 'white'}}>
+        <div className="elementor-container" style={{textAlign: 'center'}}>
+          <div style={{marginBottom: '3rem'}}>
+            <h2 style={{fontSize: '3rem', fontWeight: 'bold', color: 'white', marginBottom: '1rem', fontFamily: 'Noto Sans Hebrew, sans-serif'}}>
+              צארי לדבר כל לו
+            </h2>
+            <h3 style={{fontSize: '2rem', fontWeight: 'bold', color: 'white', marginBottom: '2rem'}}>
+              לכל חדרי וידע
+            </h3>
           </div>
           
-          <div className="text-center mt-8">
-            <a href="#" className="text-primary underline hover:text-red-600 text-lg" data-testid="link-more-categories">
+          <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative'}}>
+            <img 
+              src="https://www.haesh-sheli.co.il/wp-content/uploads/2024/05/Copy-of-%D7%AA%D7%9E%D7%95%D7%A0%D7%AA-%D7%9E%D7%95%D7%A6%D7%A8-2.webp" 
+              alt="ספרי רבנו מיוחדים" 
+              style={{width: '500px', height: 'auto', borderRadius: '15px', boxShadow: '0 15px 40px rgba(0,0,0,0.3)'}}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* QUOTE SECTION */}
+      <section className="quote-section" style={{background: '#f8f9fa', padding: '4rem 0', textAlign: 'center'}}>
+        <div className="elementor-container">
+          <div style={{maxWidth: '800px', margin: '0 auto'}}>
+            <div className="quote-mark" style={{fontSize: '4rem', color: '#dc3545', lineHeight: '1', marginBottom: '1rem'}}>"</div>
+            <h3 style={{fontSize: '2rem', fontWeight: 'bold', marginBottom: '1rem', color: '#333', fontFamily: 'Noto Sans Hebrew, sans-serif'}}>
+              דף אחד מספרי רבנו
+            </h3>
+            <h4 style={{fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '2rem', color: '#dc3545'}}>
+              יהיה תיקון על הכל!
+            </h4>
+            <p style={{fontSize: '1.5rem', fontWeight: '600', color: '#666'}}>
+              רבי נתן מברסלב
+            </p>
+            <div className="quote-mark" style={{fontSize: '4rem', color: '#dc3545', lineHeight: '1', marginTop: '1rem', transform: 'rotate(180deg)'}}>"</div>
+          </div>
+        </div>
+      </section>
+
+      {/* SERVICES SECTION */}
+      <section className="services-section" style={{background: 'white', padding: '4rem 0'}}>
+        <div className="elementor-container">
+          <div className="services-grid" style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem', textAlign: 'center'}}>
+            <div className="service-item">
+              <h4 style={{fontSize: '1.2rem', fontWeight: 'bold', marginBottom: '1rem', color: '#333'}}>
+                משלוח מהיר עד הבית חינם
+              </h4>
+              <p style={{color: '#666'}}>ברכישה מעל 299 ₪ מהחנות</p>
+            </div>
+            
+            <div className="service-item">
+              <h4 style={{fontSize: '1.2rem', fontWeight: 'bold', marginBottom: '1rem', color: '#333'}}>
+                רכישה מאובטחת
+              </h4>
+              <p style={{color: '#666'}}>באמצעות תעודת SSL ובתקנים המחמירים ביותר</p>
+            </div>
+            
+            <div className="service-item">
+              <h4 style={{fontSize: '1.2rem', fontWeight: 'bold', marginBottom: '1rem', color: '#333'}}>
+                חנות הספרים הגדולה ביותר לספרי רבנו אונליין
+              </h4>
+              <p style={{color: '#666'}}>משלוחים לכל הארץ</p>
+            </div>
+            
+            <div className="service-item">
+              <h4 style={{fontSize: '1.2rem', fontWeight: 'bold', marginBottom: '1rem', color: '#333'}}>
+                שירות לקוחות מעולה וזמין תמיד לשירותכם
+              </h4>
+              <p style={{color: '#666'}}>עד 12 תשלומים ללא ריבית</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CATEGORIES SECTION */}
+      <section className="categories-section" style={{background: '#f5f5f5', padding: '4rem 0'}}>
+        <div className="elementor-container">
+          <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', textAlign: 'center', marginBottom: '3rem', color: '#333', fontFamily: 'Noto Sans Hebrew, sans-serif'}}>
+            הקטגוריות בחנות
+          </h2>
+          
+          <div className="categories-grid" style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', marginBottom: '2rem'}}>
+            <div className="category-card" style={{background: 'white', padding: '2rem', borderRadius: '10px', textAlign: 'center', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
+              <h3 style={{fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem', color: '#333'}}>
+                כל חיבורי רבנו הקדוש
+              </h3>
+              <a href="#" className="btn-primary" style={{textDecoration: 'none'}}>
+                לחצו כאן
+              </a>
+            </div>
+            
+            <div className="category-card" style={{background: 'white', padding: '2rem', borderRadius: '10px', textAlign: 'center', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
+              <h3 style={{fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem', color: '#333'}}>
+                כל ספרי רבי ישראל
+              </h3>
+              <a href="#" className="btn-primary" style={{textDecoration: 'none'}}>
+                לחצו כאן
+              </a>
+            </div>
+          </div>
+          
+          <div style={{textAlign: 'center'}}>
+            <a href="#" style={{color: '#dc3545', textDecoration: 'underline', fontSize: '1.1rem'}}>
               לקטגוריות נוספות לחצו כאן
             </a>
           </div>
         </div>
       </section>
 
-      {/* Information Section */}
-      <section className="bg-white py-20" data-testid="information-section">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl font-bold mb-8 text-gray-800" data-testid="text-discover-depth">בוא לגלות לעומק</h2>
-            <p className="text-lg text-gray-700 mb-6">
-              מעבר לרכישה של ספרי רבנו אנחנו מזמינים אתכם גולשים יקרים לקרוא ולעניין במאמרים מאירי עיניים על גודל הלימוד בספרי רבנו
+      {/* INFORMATION SECTION */}
+      <section className="elementor-section" style={{background: 'white', padding: '4rem 0'}}>
+        <div className="elementor-container">
+          <div style={{maxWidth: '800px', margin: '0 auto', textAlign: 'center'}}>
+            <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '2rem', color: '#333', fontFamily: 'Noto Sans Hebrew, sans-serif'}}>
+              בוא לגלות לעומק
+            </h2>
+            <p style={{fontSize: '1.1rem', color: '#666', marginBottom: '1.5rem', lineHeight: '1.6'}}>
+              מעבר לרכישה של ספרי רבנו אנחנו מזמינים אתכם גולשים יקרים לקרוא ולעניין במאמרים מאירי עינים על גודל הלימוד בספרי רבנו
             </p>
-            <p className="text-lg text-gray-700">
+            <p style={{fontSize: '1.1rem', color: '#666', lineHeight: '1.6'}}>
               ולמידה על רבנו הקדוש, ועל חסידות ברסלב ותנועת החסידות מראשית הבעל שם טוב הקדוש ועד לאנשי שלומנו לדורת
             </p>
           </div>
         </div>
       </section>
 
-      {/* Donation Section */}
-      <section className="bg-gradient-to-r from-yellow-100 to-orange-100 py-20" data-testid="donation-section">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold mb-6 text-gray-800" data-testid="text-join-distribution">הצטרפו עכשיו לפרסום והפצת ספרי רבי נחמן בעולם</h2>
-          <h3 className="text-2xl font-semibold mb-8 text-gray-700" data-testid="text-help-opportunity">ההזדמנות שלכם לעזור ולתת יד לפרסום שם הצדיק בעולם</h3>
+      {/* DONATION SECTION */}
+      <section className="elementor-section" style={{background: 'linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%)', padding: '4rem 0'}}>
+        <div className="elementor-container" style={{textAlign: 'center'}}>
+          <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '1.5rem', color: '#333', fontFamily: 'Noto Sans Hebrew, sans-serif'}}>
+            הצטרפו עכשיו לפרסום והפצת ספרי רבי נחמן בעולם
+          </h2>
+          <h3 style={{fontSize: '1.5rem', fontWeight: '600', marginBottom: '2rem', color: '#666'}}>
+            ההזדמנות שלכם לעזור ולתת יד לפרסום שם הצדיק בעולם
+          </h3>
           
-          <Button
-            size="lg"
-            className="bg-primary text-primary-foreground px-8 py-4 font-semibold text-xl hover:bg-red-600"
-            data-testid="button-donation"
-          >
+          <a href="#" className="btn-primary" style={{textDecoration: 'none', fontSize: '1.2rem'}}>
             למעבר לתרומה להדפסה והפצת אור הצדיק לחצו כאן
-          </Button>
+          </a>
         </div>
       </section>
 
-      {/* Newsletter Section */}
-      <section className="bg-gray-800 text-white py-20" data-testid="newsletter-section">
-        <div className="container mx-auto px-4">
-          <div className="max-w-2xl mx-auto text-center">
-            <h3 className="text-2xl font-bold mb-4" data-testid="text-join-newsletter">הצטרפו עכשיו לרשימת תפוצה</h3>
-            <h4 className="text-3xl font-bold mb-8" data-testid="text-discount-offer">וקבלו 10% הנחנה ברכישה ראשונה באתר</h4>
+      {/* NEWSLETTER SECTION */}
+      <section className="elementor-section" style={{background: '#333', color: 'white', padding: '3rem 0'}}>
+        <div className="elementor-container">
+          <div style={{maxWidth: '600px', margin: '0 auto', textAlign: 'center'}}>
+            <h3 style={{fontSize: '1.8rem', fontWeight: 'bold', marginBottom: '1rem'}}>
+              הצטרפו עכשיו לרשימת תפוצה
+            </h3>
+            <h4 style={{fontSize: '2rem', fontWeight: 'bold', marginBottom: '2rem'}}>
+              וקבלו 10% הנחנה ברכישה ראשונה באתר
+            </h4>
             
-            <form onSubmit={handleNewsletterSubmit} className="flex gap-4 max-w-md mx-auto flex-wrap" data-testid="form-newsletter">
-              <Input
+            <form style={{display: 'flex', gap: '1rem', maxWidth: '400px', margin: '0 auto', flexWrap: 'wrap'}}>
+              <input
                 type="text"
                 placeholder="Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="flex-1 px-4 py-3 rounded-lg text-black"
-                data-testid="input-name"
+                style={{flex: '1', padding: '12px', borderRadius: '5px', border: 'none', color: 'black'}}
               />
-              <Input
+              <input
                 type="email"
                 placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 px-4 py-3 rounded-lg text-black"
-                data-testid="input-email"
+                style={{flex: '1', padding: '12px', borderRadius: '5px', border: 'none', color: 'black'}}
               />
-              <Button
+              <button
                 type="submit"
-                className="bg-primary text-primary-foreground px-6 py-3 font-semibold hover:bg-red-600"
-                data-testid="button-join-newsletter"
+                className="btn-primary"
+                style={{border: 'none', cursor: 'pointer'}}
               >
                 צרפו אותי
-              </Button>
+              </button>
             </form>
           </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12" data-testid="footer">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-8">
-            <h4 className="text-xl font-bold mb-4" data-testid="text-whatsapp-groups">לאחת מקבוצות הוווצאפ לחצו על האיקון</h4>
-            <Button
-              className="bg-green-500 text-white px-6 py-3 hover:bg-green-600"
-              data-testid="button-whatsapp"
-            >
-              WhatsApp
-            </Button>
+      {/* MAIN FOOTER */}
+      <footer className="main-footer" style={{background: '#333', color: 'white', padding: '3rem 0 2rem'}}>
+        <div className="elementor-container">
+          <div className="footer-content" style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem', marginBottom: '2rem'}}>
+            
+            {/* של רבי ישראל בר אודסר */}
+            <div className="footer-section">
+              <h4 style={{marginBottom: '1rem', color: '#dc3545', fontSize: '1.5rem', fontWeight: 'bold'}}>
+                של רבי ישראל בר אודסר
+              </h4>
+              <div style={{display: 'flex', alignItems: 'center', marginBottom: '1rem'}}>
+                <img 
+                  src="https://www.haesh-sheli.co.il/wp-content/uploads/2021/12/cropped-%D7%A7%D7%A8%D7%95-%D7%A8%D7%91%D7%99-%D7%99%D7%A9%D7%A8%D7%90%D7%9C-%D7%91%D7%A8-%D7%90%D7%95%D7%93%D7%A1%D7%A8.d110a0.webp" 
+                  alt="האש שלי תוקף" 
+                  style={{width: '100px', height: 'auto', marginLeft: '1rem'}}
+                />
+                <div>
+                  <h5 style={{color: '#dc3545', fontWeight: 'bold', fontSize: '1.2rem'}}>האש שלי תוקף</h5>
+                  <p style={{color: '#dc3545', fontSize: '1rem'}}>עד ביאת המשיח</p>
+                  <p style={{color: '#ccc', fontSize: '0.9rem'}}>קרן רבי ישראל דב אודסר זצ"ל</p>
+                </div>
+              </div>
+            </div>
+            
+            {/* ניווט מהיר באתר */}
+            <div className="footer-section">
+              <h4 style={{marginBottom: '1rem', color: '#dc3545'}}>
+                ניווט מהיר באתר
+              </h4>
+              <ul style={{listStyle: 'none', padding: 0}}>
+                <li style={{marginBottom: '0.5rem'}}>
+                  <a href="#" style={{color: '#ccc', textDecoration: 'none'}}>דף הבית</a>
+                </li>
+                <li style={{marginBottom: '0.5rem'}}>
+                  <a href="#" style={{color: '#ccc', textDecoration: 'none'}}>שירות לקוחות</a>
+                </li>
+                <li style={{marginBottom: '0.5rem'}}>
+                  <a href="#" style={{color: '#ccc', textDecoration: 'none'}}>חנות הספרים</a>
+                </li>
+                <li style={{marginBottom: '0.5rem'}}>
+                  <a href="#" style={{color: '#ccc', textDecoration: 'none'}}>מנות ומחירות</a>
+                </li>
+                <li style={{marginBottom: '0.5rem'}}>
+                  <a href="#" style={{color: '#ccc', textDecoration: 'none'}}>משלוחים והחזרות</a>
+                </li>
+                <li style={{marginBottom: '0.5rem'}}>
+                  <a href="#" style={{color: '#ccc', textDecoration: 'none'}}>תקנון ומדיניות האתר</a>
+                </li>
+              </ul>
+            </div>
+            
+            {/* כתובת ושעות פתיחה */}
+            <div className="footer-section">
+              <h4 style={{marginBottom: '1rem', color: '#dc3545'}}>
+                כתובת ושעות פתיחה
+              </h4>
+              <p style={{color: '#ccc', marginBottom: '0.5rem'}}>ת.ד בית שמש 366</p>
+              <p style={{color: '#ccc', marginBottom: '0.5rem'}}>טלפון: *2320</p>
+              <p style={{color: '#ccc', marginBottom: '1rem'}}>פקס: 077-5150304</p>
+              <a href="#" className="btn-primary" style={{textDecoration: 'none', fontSize: '0.9rem'}}>
+                כל פרטי המתגה
+              </a>
+            </div>
+            
+            {/* לקוחות פעילים וחדשים */}
+            <div className="footer-section">
+              <h4 style={{marginBottom: '1rem', color: '#dc3545'}}>
+                לקוחות פעילים וחדשים
+              </h4>
+              <p style={{color: '#ccc', marginBottom: '1rem'}}>
+                הרשמה לאחדות האו
+              </p>
+              <p style={{color: '#ccc', marginBottom: '1rem'}}>
+                כניסה לאזור האישי
+              </p>
+              <p style={{color: '#ccc', marginBottom: '1rem'}}>
+                פניה לשירות לקוחות
+              </p>
+              <p style={{color: '#ccc', marginBottom: '1rem'}}>
+                החלפת פעילות הבנו הקדוש
+              </p>
+              <p style={{color: '#ccc', marginBottom: '1rem'}}>
+                תקנון ומדיניות האתר
+              </p>
+            </div>
           </div>
           
-          <div className="text-center text-gray-400">
-            <p className="mb-2" data-testid="text-copyright">כל הזכיות שמורות 2025 © קרן רבי ישראל דב אודסר זצ"ל</p>
-            <p data-testid="text-built-by">האתר נבנה ע"י מדיה מאסטר</p>
+          <div style={{textAlign: 'center', paddingTop: '2rem', borderTop: '1px solid #555'}}>
+            <h4 style={{fontSize: '1.2rem', marginBottom: '1rem'}}>
+              לאחת מקבוצות הוווצאפ לחצו על האיקון
+            </h4>
+            <a href="#" style={{background: '#25d366', color: 'white', padding: '10px 20px', borderRadius: '5px', textDecoration: 'none', display: 'inline-block', marginBottom: '2rem'}}>
+              WhatsApp
+            </a>
+            
+            <div style={{color: '#999', fontSize: '0.9rem'}}>
+              <p style={{marginBottom: '0.5rem'}}>כל הזכיות שמורות 2025 © קרן רבי ישראל דב אודסר זצ"ל</p>
+              <p>האתר נבנה ע"י מדיה מאסטר</p>
+            </div>
           </div>
         </div>
       </footer>

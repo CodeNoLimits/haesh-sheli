@@ -1,101 +1,345 @@
-@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@200;300;400;500;600;700;800&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Hebrew:wght@300;400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: hsl(42, 39%, 96%);
-  --foreground: hsl(240, 10%, 3.9%);
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(222.2, 84%, 4.9%);
   --card: hsl(0, 0%, 100%);
-  --card-foreground: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(222.2, 84%, 4.9%);
   --popover: hsl(0, 0%, 100%);
-  --popover-foreground: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(222.2, 84%, 4.9%);
   --primary: hsl(355, 100%, 50%);
   --primary-foreground: hsl(0, 0%, 98%);
-  --secondary: hsl(42, 28%, 89%);
-  --secondary-foreground: hsl(240, 5.9%, 10%);
-  --muted: hsl(42, 28%, 89%);
-  --muted-foreground: hsl(240, 3.8%, 46.1%);
-  --accent: hsl(42, 28%, 89%);
-  --accent-foreground: hsl(240, 5.9%, 10%);
-  --destructive: hsl(356.3033, 90.5579%, 54.3137%);
-  --destructive-foreground: hsl(0, 0%, 100%);
-  --border: hsl(240, 5.9%, 90%);
-  --input: hsl(240, 5.9%, 90%);
+  --secondary: hsl(210, 40%, 98%);
+  --secondary-foreground: hsl(222.2, 84%, 4.9%);
+  --muted: hsl(210, 40%, 96%);
+  --muted-foreground: hsl(215.4, 16.3%, 46.9%);
+  --accent: hsl(210, 40%, 96%);
+  --accent-foreground: hsl(222.2, 84%, 4.9%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(210, 40%, 98%);
+  --border: hsl(214.3, 31.8%, 91.4%);
+  --input: hsl(214.3, 31.8%, 91.4%);
   --ring: hsl(355, 100%, 50%);
-  --chart-1: hsl(203.8863, 88.2845%, 53.1373%);
-  --chart-2: hsl(159.7826, 100%, 36.0784%);
-  --chart-3: hsl(42.0290, 92.8251%, 56.2745%);
-  --chart-4: hsl(147.1429, 78.5047%, 41.9608%);
-  --chart-5: hsl(341.4894, 75.2000%, 50.9804%);
-  --sidebar: hsl(42, 28%, 89%);
-  --sidebar-foreground: hsl(240, 10%, 3.9%);
-  --sidebar-primary: hsl(355, 100%, 50%);
-  --sidebar-primary-foreground: hsl(0, 0%, 98%);
-  --sidebar-accent: hsl(42, 28%, 89%);
-  --sidebar-accent-foreground: hsl(240, 5.9%, 10%);
-  --sidebar-border: hsl(240, 5.9%, 90%);
-  --sidebar-ring: hsl(355, 100%, 50%);
-  --font-sans: 'Assistant', 'Rubik', Arial, sans-serif;
-  --font-serif: Georgia, serif;
-  --font-mono: Menlo, monospace;
   --radius: 0.5rem;
-  --shadow-2xs: 0px 2px 0px 0px hsl(202.8169, 89.1213%, 53.1373%, 0.00);
-  --shadow-xs: 0px 2px 0px 0px hsl(202.8169, 89.1213%, 53.1373%, 0.00);
-  --shadow-sm: 0px 2px 0px 0px hsl(202.8169, 89.1213%, 53.1373%, 0.00), 0px 1px 2px -1px hsl(202.8169, 89.1213%, 53.1373%, 0.00);
-  --shadow: 0px 2px 0px 0px hsl(202.8169, 89.1213%, 53.1373%, 0.00), 0px 1px 2px -1px hsl(202.8169, 89.1213%, 53.1373%, 0.00);
-  --shadow-md: 0px 2px 0px 0px hsl(202.8169, 89.1213%, 53.1373%, 0.00), 0px 2px 4px -1px hsl(202.8169, 89.1213%, 53.1373%, 0.00);
-  --shadow-lg: 0px 2px 0px 0px hsl(202.8169, 89.1213%, 53.1373%, 0.00), 0px 4px 6px -1px hsl(202.8169, 89.1213%, 53.1373%, 0.00);
-  --shadow-xl: 0px 2px 0px 0px hsl(202.8169, 89.1213%, 53.1373%, 0.00), 0px 8px 10px -1px hsl(202.8169, 89.1213%, 53.1373%, 0.00);
-  --shadow-2xl: 0px 2px 0px 0px hsl(202.8169, 89.1213%, 53.1373%, 0.00);
-  --tracking-normal: 0em;
-  --spacing: 0.25rem;
-}
-
-.dark {
-  --background: hsl(0, 0%, 0%);
-  --foreground: hsl(200, 6.6667%, 91.1765%);
-  --card: hsl(228, 9.8039%, 10%);
-  --card-foreground: hsl(0, 0%, 85.0980%);
-  --popover: hsl(0, 0%, 0%);
-  --popover-foreground: hsl(200, 6.6667%, 91.1765%);
-  --primary: hsl(355, 100%, 50%);
-  --primary-foreground: hsl(0, 0%, 100%);
-  --secondary: hsl(195.0000, 15.3846%, 94.9020%);
-  --secondary-foreground: hsl(210, 25%, 7.8431%);
-  --muted: hsl(0, 0%, 9.4118%);
-  --muted-foreground: hsl(210, 3.3898%, 46.2745%);
-  --accent: hsl(205.7143, 70%, 7.8431%);
-  --accent-foreground: hsl(203.7736, 87.6033%, 52.5490%);
-  --destructive: hsl(356.3033, 90.5579%, 54.3137%);
-  --destructive-foreground: hsl(0, 0%, 100%);
-  --border: hsl(210, 5.2632%, 14.9020%);
-  --input: hsl(207.6923, 27.6596%, 18.4314%);
-  --ring: hsl(202.8169, 89.1213%, 53.1373%);
 }
 
 @layer base {
   * {
     @apply border-border;
   }
-
+  
   html {
     direction: rtl;
+    font-family: 'Noto Sans Hebrew', sans-serif;
   }
-
+  
   body {
-    @apply font-sans antialiased bg-background text-foreground;
-    font-family: 'Assistant', 'Rubik', Arial, sans-serif;
+    @apply bg-background text-foreground;
+    font-family: 'Noto Sans Hebrew', sans-serif;
   }
 }
 
-.hebrew-text {
+/* Original Site Styles */
+.rtl {
   direction: rtl;
-  text-align: right;
+}
+
+.elementor-section {
+  position: relative;
+  width: 100%;
+}
+
+.elementor-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.elementor-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.elementor-col-25 {
+  width: 25%;
+}
+
+.elementor-col-33 {
+  width: 33.333%;
+}
+
+.elementor-col-50 {
+  width: 50%;
+}
+
+.elementor-col-100 {
+  width: 100%;
+}
+
+/* Top bar styles */
+.elementor-section.elementor-section-full_width {
+  width: 100%;
+}
+
+.elementor-hidden-tablet {
+  display: block;
+}
+
+.elementor-hidden-mobile {
+  display: block;
+}
+
+/* Header styles */
+.main-header {
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Logo styles */
+.logo {
+  max-height: 80px;
+  width: auto;
+}
+
+/* Navigation styles */
+.elementor-nav-menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 2rem;
+}
+
+.elementor-nav-menu li {
+  position: relative;
+}
+
+.elementor-nav-menu a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  padding: 1rem 0;
+  display: block;
+  transition: color 0.3s ease;
+}
+
+.elementor-nav-menu a:hover {
+  color: hsl(355, 100%, 50%);
+}
+
+/* Cart styles */
+.woocommerce-Price-amount {
+  font-weight: bold;
+}
+
+.woocommerce-Price-currencySymbol {
+  margin-left: 4px;
+}
+
+/* Hero section styles */
+.hero-section {
+  background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Button styles */
+.btn-primary {
+  background: hsl(355, 100%, 50%);
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.3s ease;
+  margin: 5px;
+}
+
+.btn-primary:hover {
+  background: hsl(355, 100%, 45%);
+}
+
+.btn-secondary {
+  background: #f0ad4e;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.3s ease;
+  margin: 5px;
+}
+
+.btn-secondary:hover {
+  background: #ec971f;
+}
+
+/* Book grid styles */
+.books-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+.book-card {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.book-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.book-card img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+/* Quote section */
+.quote-section {
+  background: #f8f9fa;
+  padding: 4rem 0;
+  text-align: center;
 }
 
 .quote-mark {
   font-size: 4rem;
-  line-height: 1;
   color: hsl(355, 100%, 50%);
+  line-height: 1;
+}
+
+/* Services section */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+.service-item {
+  text-align: center;
+  padding: 2rem;
+}
+
+.service-item h4 {
+  color: #333;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+/* Categories section */
+.categories-section {
+  background: #f5f5f5;
+  padding: 4rem 0;
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+.category-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Footer styles */
+.main-footer {
+  background: #333;
+  color: white;
+  padding: 3rem 0 2rem;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.footer-section h4 {
+  margin-bottom: 1rem;
+  color: hsl(355, 100%, 50%);
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-section a {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+  color: hsl(355, 100%, 50%);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .elementor-hidden-tablet {
+    display: none;
+  }
+  
+  .elementor-nav-menu {
+    display: none;
+  }
+  
+  .hero-section {
+    min-height: 60vh;
+    text-align: center;
+  }
+  
+  .books-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+  
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .categories-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .elementor-hidden-mobile {
+    display: none;
+  }
 }
