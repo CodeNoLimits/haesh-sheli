@@ -301,6 +301,9 @@ export default function Home() {
                   style={{width: '100%', height: 'auto', borderRadius: '10px', marginBottom: '1rem', transition: 'transform 0.3s ease'}}
                 />
               </a>
+              <h3 style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#2d3436', marginBottom: '0.5rem'}}>
+                ליקוטי מוהרן
+              </h3>
             </div>
             
             <div style={{textAlign: 'center'}}>
@@ -311,6 +314,9 @@ export default function Home() {
                   style={{width: '100%', height: 'auto', borderRadius: '10px', marginBottom: '1rem', transition: 'transform 0.3s ease'}}
                 />
               </a>
+              <h3 style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#2d3436', marginBottom: '0.5rem'}}>
+                ליקוטי תפילות
+              </h3>
             </div>
             
             <div style={{textAlign: 'center'}}>
@@ -321,6 +327,9 @@ export default function Home() {
                   style={{width: '100%', height: 'auto', borderRadius: '10px', marginBottom: '1rem', transition: 'transform 0.3s ease'}}
                 />
               </a>
+              <h3 style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#2d3436', marginBottom: '0.5rem'}}>
+                חומש ליקוטי הלכות
+              </h3>
             </div>
             
             <div style={{textAlign: 'center'}}>
@@ -331,6 +340,9 @@ export default function Home() {
                   style={{width: '100%', height: 'auto', borderRadius: '10px', marginBottom: '1rem', transition: 'transform 0.3s ease'}}
                 />
               </a>
+              <h3 style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#2d3436', marginBottom: '0.5rem'}}>
+                ליקוטי הלכות
+              </h3>
             </div>
             
             <div style={{textAlign: 'center'}}>
@@ -341,6 +353,9 @@ export default function Home() {
                   style={{width: '100%', height: 'auto', borderRadius: '10px', marginBottom: '1rem', transition: 'transform 0.3s ease'}}
                 />
               </a>
+              <h3 style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#2d3436', marginBottom: '0.5rem'}}>
+                סיפורי מעשיות
+              </h3>
             </div>
             
             <div style={{textAlign: 'center'}}>
@@ -351,6 +366,9 @@ export default function Home() {
                   style={{width: '100%', height: 'auto', borderRadius: '10px', marginBottom: '1rem', transition: 'transform 0.3s ease'}}
                 />
               </a>
+              <h3 style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#2d3436', marginBottom: '0.5rem'}}>
+                כל בו לישועות
+              </h3>
             </div>
           </div>
         </div>
