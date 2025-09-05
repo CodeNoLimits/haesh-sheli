@@ -116,278 +116,179 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* MAIN CONTENT */}
-      <section style={{background: '#f8f9fa', padding: '4rem 0'}}>
-        <div className="elementor-container" style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
+      {/* HERO SECTION */}
+      <section style={{background: 'linear-gradient(135deg, #dc3545 0%, #c82333 100%)', color: 'white', padding: '5rem 0', textAlign: 'center'}}>
+        <div className="elementor-container" style={{maxWidth: '1000px', margin: '0 auto', padding: '0 2rem'}}>
+          <h1 style={{fontSize: '3rem', fontWeight: 'bold', marginBottom: '1rem', lineHeight: '1.2'}}>
+            לדבר זה תמיד טוב
+          </h1>
+          <h2 style={{fontSize: '2rem', fontWeight: 'normal', marginBottom: '3rem', lineHeight: '1.4'}}>
+            אנחנו כאן בשביל לשמוע אתכם.
+          </h2>
           
-          {/* HERO SECTION */}
-          <div style={{textAlign: 'center', marginBottom: '4rem'}}>
-            <h1 style={{fontSize: '3rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem', fontFamily: 'Noto Sans Hebrew, sans-serif'}}>
-              לדבר זה תמיד טוב
-            </h1>
-            <h2 style={{fontSize: '2rem', fontWeight: 'bold', color: '#333', marginBottom: '2rem'}}>
-              אנחנו כאן בשביל לשמוע אתכם.
-            </h2>
-            
-            <div style={{display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '3rem'}}>
-              <a 
-                href="https://wa.me/585561516?text=%D7%94%D7%99%D7%99,+%D7%A6%D7%A8%D7%99%D7%9A+%D7%A2%D7%96%D7%A8%D7%94+%D7%91%D7%90%D7%AA%D7%A8+%D7%90%D7%95+%D7%9C%D7%92%D7%91%D7%99+%D7%91%D7%A8%D7%95%D7%A8+%D7%94%D7%96%D7%9E%D7%A0%D7%94" 
-                className="btn-primary" 
-                style={{textDecoration: 'none', fontSize: '1.2rem'}}
-              >
-                בוא לדבר אתנו בווצאפ
-              </a>
-              <a href="/join" className="btn-secondary" style={{textDecoration: 'none', fontSize: '1.2rem'}}>
-                בואו לראות והצטרפו לפעילות שלנו
-              </a>
-            </div>
-          </div>
-
-          {/* WAYS TO CONTACT */}
-          <div style={{textAlign: 'center', marginBottom: '4rem'}}>
-            <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '3rem'}}>
-              כמה דרכים לפנות אלינו
-            </h2>
-          </div>
-
-          {/* CONTACT FORM AND INFO GRID */}
-          <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'start'}}>
-            
-            {/* CONTACT FORM */}
-            <div style={{background: 'white', padding: '3rem', borderRadius: '15px', boxShadow: '0 8px 25px rgba(0,0,0,0.1)'}}>
-              <h3 style={{fontSize: '2rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '2rem', textAlign: 'center'}}>
-                כתבו לנו ונחזור בהקדם
-              </h3>
-              
-              <form style={{display: 'flex', flexDirection: 'column', gap: '1.5rem'}}>
-                <div>
-                  <input
-                    type="text"
-                    placeholder="Your Name"
-                    style={{width: '100%', padding: '1rem', border: '2px solid #e0e0e0', borderRadius: '8px', fontSize: '1rem'}}
-                  />
-                </div>
-                
-                <div>
-                  <input
-                    type="tel"
-                    placeholder="Your Phone"
-                    style={{width: '100%', padding: '1rem', border: '2px solid #e0e0e0', borderRadius: '8px', fontSize: '1rem'}}
-                  />
-                </div>
-                
-                <div>
-                  <input
-                    type="email"
-                    placeholder="Email"
-                    style={{width: '100%', padding: '1rem', border: '2px solid #e0e0e0', borderRadius: '8px', fontSize: '1rem'}}
-                  />
-                </div>
-                
-                <div>
-                  <textarea
-                    placeholder="Message"
-                    rows={5}
-                    style={{width: '100%', padding: '1rem', border: '2px solid #e0e0e0', borderRadius: '8px', fontSize: '1rem', resize: 'vertical'}}
-                  ></textarea>
-                </div>
-                
-                <button
-                  type="submit"
-                  className="btn-primary"
-                  style={{border: 'none', cursor: 'pointer', fontSize: '1.1rem', padding: '1rem'}}
-                >
-                  לשליחה לחצו כאן
-                </button>
-              </form>
-            </div>
-
-            {/* CONTACT INFO */}
-            <div style={{display: 'flex', flexDirection: 'column', gap: '2rem'}}>
-              
-              {/* PHONE */}
-              <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', textAlign: 'center'}}>
-                <div style={{width: '60px', height: '60px', background: '#dc3545', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem'}}>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style={{width: '30px', height: '30px', fill: 'white'}}>
-                    <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
-                  </svg>
-                </div>
-                <h3 style={{fontSize: '1.5rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
-                  התקשרו אלינו
-                </h3>
-                <p style={{fontSize: '2rem', fontWeight: 'bold', color: '#333'}}>
-                  *2320
-                </p>
-              </div>
-
-              {/* VISIT */}
-              <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', textAlign: 'center'}}>
-                <div style={{width: '60px', height: '60px', background: '#dc3545', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem'}}>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style={{width: '30px', height: '30px', fill: 'white'}}>
-                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                  </svg>
-                </div>
-                <h3 style={{fontSize: '1.5rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
-                  קפצו לביקור
-                </h3>
-                <p style={{fontSize: '1.1rem', color: '#333'}}>
-                  חברת ש"ס 26, ירושלים
-                </p>
-              </div>
-
-              {/* EMAIL */}
-              <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', textAlign: 'center'}}>
-                <div style={{width: '60px', height: '60px', background: '#dc3545', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem'}}>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style={{width: '30px', height: '30px', fill: 'white'}}>
-                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                  </svg>
-                </div>
-                <h3 style={{fontSize: '1.5rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
-                  שלחו לנו מייל
-                </h3>
-                <p style={{fontSize: '1.1rem', color: '#333'}}>
-                  info@haesh-sheli.co.il
-                </p>
-              </div>
-            </div>
+          <div style={{display: 'flex', gap: '2rem', justifyContent: 'center', flexWrap: 'wrap'}}>
+            <a href="https://wa.me/585561516?text=%D7%94%D7%99%D7%99,+%D7%A6%D7%A8%D7%99%D7%9A+%D7%A2%D7%96%D7%A8%D7%94+%D7%91%D7%90%D7%AA%D7%A8+%D7%90%D7%95+%D7%9C%D7%92%D7%91%D7%99+%D7%91%D7%A8%D7%95%D7%A8+%D7%94%D7%96%D7%9E%D7%A0%D7%94" target="_blank" rel="noopener noreferrer" style={{textDecoration: 'none', fontSize: '1.2rem', padding: '1rem 2rem', background: 'white', color: '#dc3545', border: 'none', borderRadius: '8px', display: 'inline-block', fontWeight: 'bold'}}>
+              בוא לדבר אתנו בווצאפ
+            </a>
+            <a href="/join" style={{textDecoration: 'none', fontSize: '1.2rem', padding: '1rem 2rem', background: 'transparent', color: 'white', border: '2px solid white', borderRadius: '8px', display: 'inline-block', fontWeight: 'bold'}}>
+              בואו לראות והצטרפו לפעילות שלנו
+            </a>
           </div>
         </div>
       </section>
 
-      {/* NEWSLETTER SECTION */}
-      <section className="elementor-section" style={{background: '#333', color: 'white', padding: '3rem 0'}}>
-        <div className="elementor-container">
-          <div style={{maxWidth: '600px', margin: '0 auto', textAlign: 'center'}}>
-            <h3 style={{fontSize: '1.8rem', fontWeight: 'bold', marginBottom: '1rem'}}>
-              הצטרפו עכשיו לרשימת תפוצה
+      {/* CONTACT METHODS SECTION */}
+      <section style={{background: '#f8f9fa', padding: '5rem 0'}}>
+        <div className="elementor-container" style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
+          
+          {/* CONTACT FORM */}
+          <div style={{marginBottom: '5rem', background: 'white', padding: '3rem', borderRadius: '15px', boxShadow: '0 8px 25px rgba(0,0,0,0.1)'}}>
+            <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '2rem', textAlign: 'center'}}>
+              כמה דרכים לפנות אלינו
+            </h2>
+            <h3 style={{fontSize: '1.5rem', color: '#333', marginBottom: '3rem', textAlign: 'center'}}>
+              כתבו לנו ונחזור בהקדם
             </h3>
-            <h4 style={{fontSize: '2rem', fontWeight: 'bold', marginBottom: '2rem'}}>
-              וקבלו 10% הנחנה ברכישה ראשונה באתר
-            </h4>
             
-            <form style={{display: 'flex', gap: '1rem', maxWidth: '400px', margin: '0 auto', flexWrap: 'wrap'}}>
-              <input
-                type="text"
-                placeholder="Name"
-                style={{flex: '1', padding: '12px', borderRadius: '5px', border: 'none', color: 'black'}}
-              />
-              <input
-                type="email"
-                placeholder="Email"
-                style={{flex: '1', padding: '12px', borderRadius: '5px', border: 'none', color: 'black'}}
-              />
-              <button
-                type="submit"
-                className="btn-primary"
-                style={{border: 'none', cursor: 'pointer'}}
-              >
-                צרפו אותי
-              </button>
+            <form style={{maxWidth: '600px', margin: '0 auto'}}>
+              <div style={{marginBottom: '1.5rem'}}>
+                <input 
+                  type="text" 
+                  name="name" 
+                  placeholder="Your Name" 
+                  required
+                  style={{
+                    width: '100%', 
+                    padding: '1rem', 
+                    border: '2px solid #e9ecef', 
+                    borderRadius: '8px', 
+                    fontSize: '1rem',
+                    direction: 'rtl'
+                  }}
+                />
+              </div>
+              
+              <div style={{marginBottom: '1.5rem'}}>
+                <input 
+                  type="tel" 
+                  name="phone" 
+                  placeholder="Your Phone" 
+                  required
+                  style={{
+                    width: '100%', 
+                    padding: '1rem', 
+                    border: '2px solid #e9ecef', 
+                    borderRadius: '8px', 
+                    fontSize: '1rem',
+                    direction: 'rtl'
+                  }}
+                />
+              </div>
+              
+              <div style={{marginBottom: '1.5rem'}}>
+                <input 
+                  type="email" 
+                  name="email" 
+                  placeholder="Email" 
+                  required
+                  style={{
+                    width: '100%', 
+                    padding: '1rem', 
+                    border: '2px solid #e9ecef', 
+                    borderRadius: '8px', 
+                    fontSize: '1rem',
+                    direction: 'rtl'
+                  }}
+                />
+              </div>
+              
+              <div style={{marginBottom: '2rem'}}>
+                <textarea 
+                  name="message" 
+                  placeholder="Message" 
+                  rows={5}
+                  required
+                  style={{
+                    width: '100%', 
+                    padding: '1rem', 
+                    border: '2px solid #e9ecef', 
+                    borderRadius: '8px', 
+                    fontSize: '1rem',
+                    direction: 'rtl',
+                    resize: 'vertical'
+                  }}
+                />
+              </div>
+              
+              <div style={{textAlign: 'center'}}>
+                <button 
+                  type="submit"
+                  style={{
+                    background: '#dc3545', 
+                    color: 'white', 
+                    padding: '1rem 3rem', 
+                    border: 'none', 
+                    borderRadius: '8px', 
+                    fontSize: '1.2rem', 
+                    fontWeight: 'bold',
+                    cursor: 'pointer'
+                  }}
+                >
+                  לשליחה לחצו כאן
+                </button>
+              </div>
             </form>
+          </div>
+
+          {/* CONTACT INFO GRID */}
+          <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '3rem'}}>
             
-            <div style={{marginTop: '2rem'}}>
-              <h4 style={{fontSize: '1.2rem', marginBottom: '1rem'}}>
-                לאחת מקבוצות הוווצאפ לחצו על האיקון
-              </h4>
-              <a 
-                href="https://wa.me/585561516?text=%D7%94%D7%99%D7%99,+%D7%A6%D7%A8%D7%99%D7%9A+%D7%A2%D7%96%D7%A8%D7%94+%D7%91%D7%90%D7%AA%D7%A8+%D7%90%D7%95+%D7%9C%D7%92%D7%91%D7%99+%D7%91%D7%A8%D7%95%D7%A8+%D7%94%D7%96%D7%9E%D7%A0%D7%94" 
-                style={{background: '#25d366', color: 'white', padding: '10px 20px', borderRadius: '5px', textDecoration: 'none', display: 'inline-block'}}
-              >
-                WhatsApp
-              </a>
+            {/* PHONE */}
+            <div style={{background: 'white', padding: '3rem', borderRadius: '15px', boxShadow: '0 8px 25px rgba(0,0,0,0.1)', textAlign: 'center'}}>
+              <div style={{fontSize: '3rem', color: '#dc3545', marginBottom: '1rem'}}>
+                📞
+              </div>
+              <h3 style={{fontSize: '1.5rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
+                התקשרו אלינו
+              </h3>
+              <p style={{fontSize: '2rem', fontWeight: 'bold', color: '#333'}}>
+                *2320
+              </p>
+            </div>
+
+            {/* VISIT */}
+            <div style={{background: 'white', padding: '3rem', borderRadius: '15px', boxShadow: '0 8px 25px rgba(0,0,0,0.1)', textAlign: 'center'}}>
+              <div style={{fontSize: '3rem', color: '#dc3545', marginBottom: '1rem'}}>
+                📍
+              </div>
+              <h3 style={{fontSize: '1.5rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
+                קפצו לביקור
+              </h3>
+              <p style={{fontSize: '1.2rem', color: '#333'}}>
+                חברת ש"ס 26, ירושלים
+              </p>
+            </div>
+
+            {/* EMAIL */}
+            <div style={{background: 'white', padding: '3rem', borderRadius: '15px', boxShadow: '0 8px 25px rgba(0,0,0,0.1)', textAlign: 'center'}}>
+              <div style={{fontSize: '3rem', color: '#dc3545', marginBottom: '1rem'}}>
+                ✉️
+              </div>
+              <h3 style={{fontSize: '1.5rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
+                שלחו לנו מייל
+              </h3>
+              <p style={{fontSize: '1.2rem', color: '#333'}}>
+                info@haesh-sheli.co.il
+              </p>
             </div>
           </div>
         </div>
       </section>
 
       {/* FOOTER */}
-      <footer className="main-footer" style={{background: '#333', color: 'white', padding: '3rem 0 2rem'}}>
+      <footer className="main-footer" style={{background: '#2d3436', color: 'white', padding: '3rem 0 2rem'}}>
         <div className="elementor-container">
-          <div className="footer-content" style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem', marginBottom: '2rem'}}>
-            
-            {/* של רבי ישראל בר אודסר */}
-            <div className="footer-section">
-              <h4 style={{marginBottom: '1rem', color: '#dc3545', fontSize: '1.5rem', fontWeight: 'bold'}}>
-                של רבי ישראל בר אודסר
-              </h4>
-              <div style={{display: 'flex', alignItems: 'center', marginBottom: '1rem'}}>
-                <img 
-                  src="https://www.haesh-sheli.co.il/wp-content/uploads/2021/12/cropped-%D7%A7%D7%A8%D7%95-%D7%A8%D7%91%D7%99-%D7%99%D7%A9%D7%A8%D7%90%D7%9C-%D7%91%D7%A8-%D7%90%D7%95%D7%93%D7%A1%D7%A8.d110a0.webp" 
-                  alt="האש שלי תוקף" 
-                  style={{width: '100px', height: 'auto', marginLeft: '1rem'}}
-                />
-                <div>
-                  <h5 style={{color: '#dc3545', fontWeight: 'bold', fontSize: '1.2rem'}}>האש שלי תוקף</h5>
-                  <p style={{color: '#dc3545', fontSize: '1rem'}}>עד ביאת המשיח</p>
-                  <p style={{color: '#ccc', fontSize: '0.9rem'}}>קרן רבי ישראל דב אודסר זצ"ל</p>
-                </div>
-              </div>
-            </div>
-            
-            {/* ניווט מהיר באתר */}
-            <div className="footer-section">
-              <h4 style={{marginBottom: '1rem', color: '#dc3545'}}>
-                ניווט מהיר באתר
-              </h4>
-              <ul style={{listStyle: 'none', padding: 0}}>
-                <li style={{marginBottom: '0.5rem'}}>
-                  <a href="/" style={{color: '#ccc', textDecoration: 'none'}}>דף הבית</a>
-                </li>
-                <li style={{marginBottom: '0.5rem'}}>
-                  <a href="#" style={{color: '#ccc', textDecoration: 'none'}}>שירות לקוחות</a>
-                </li>
-                <li style={{marginBottom: '0.5rem'}}>
-                  <a href="/store" style={{color: '#ccc', textDecoration: 'none'}}>חנות הספרים</a>
-                </li>
-                <li style={{marginBottom: '0.5rem'}}>
-                  <a href="#" style={{color: '#ccc', textDecoration: 'none'}}>מנות ומחירות</a>
-                </li>
-                <li style={{marginBottom: '0.5rem'}}>
-                  <a href="#" style={{color: '#ccc', textDecoration: 'none'}}>משלוחים והחזרות</a>
-                </li>
-                <li style={{marginBottom: '0.5rem'}}>
-                  <a href="#" style={{color: '#ccc', textDecoration: 'none'}}>תקנון ומדיניות האתר</a>
-                </li>
-              </ul>
-            </div>
-            
-            {/* כתובת ושעות פתיחה */}
-            <div className="footer-section">
-              <h4 style={{marginBottom: '1rem', color: '#dc3545'}}>
-                כתובת ושעות פתיחה
-              </h4>
-              <p style={{color: '#ccc', marginBottom: '0.5rem'}}>ת.ד בית שמש 366</p>
-              <p style={{color: '#ccc', marginBottom: '0.5rem'}}>טלפון: *2320</p>
-              <p style={{color: '#ccc', marginBottom: '1rem'}}>פקס: 077-5150304</p>
-              <a href="/contact" className="btn-primary" style={{textDecoration: 'none', fontSize: '0.9rem'}}>
-                כל פרטי המתגה
-              </a>
-            </div>
-            
-            {/* לקוחות פעילים וחדשים */}
-            <div className="footer-section">
-              <h4 style={{marginBottom: '1rem', color: '#dc3545'}}>
-                לקוחות פעילים וחדשים
-              </h4>
-              <p style={{color: '#ccc', marginBottom: '1rem'}}>
-                הרשמה לאחדות האו
-              </p>
-              <p style={{color: '#ccc', marginBottom: '1rem'}}>
-                כניסה לאזור האישי
-              </p>
-              <p style={{color: '#ccc', marginBottom: '1rem'}}>
-                פניה לשירות לקוחות
-              </p>
-              <p style={{color: '#ccc', marginBottom: '1rem'}}>
-                החלפת פעילות הבנו הקדוש
-              </p>
-              <p style={{color: '#ccc', marginBottom: '1rem'}}>
-                תקנון ומדיניות האתר
-              </p>
-            </div>
-          </div>
-          
-          <div style={{textAlign: 'center', paddingTop: '2rem', borderTop: '1px solid #555'}}>
+          <div style={{textAlign: 'center', paddingTop: '2rem'}}>
             <div style={{color: '#999', fontSize: '0.9rem'}}>
               <p style={{marginBottom: '0.5rem'}}>כל הזכיות שמורות 2025 © קרן רבי ישראל דב אודסר זצ"ל</p>
               <p>האתר נבנה ע"י מדיה מאסטר</p>
@@ -395,6 +296,51 @@ export default function Contact() {
           </div>
         </div>
       </footer>
+
+      {/* NEWSLETTER POPUP */}
+      <div style={{position: 'fixed', bottom: '2rem', right: '2rem', background: 'white', padding: '2rem', borderRadius: '15px', boxShadow: '0 8px 25px rgba(0,0,0,0.2)', maxWidth: '300px', zIndex: 1000}}>
+        <h4 style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem', textAlign: 'center'}}>
+          הצטרפו עכשיו לרשימת תפוצה
+        </h4>
+        <p style={{fontSize: '1rem', color: '#333', marginBottom: '1.5rem', textAlign: 'center'}}>
+          וקבלו 10% הנחנה ברכישה ראשונה באתר
+        </p>
+        <form>
+          <input 
+            type="text" 
+            placeholder="Name" 
+            style={{width: '100%', padding: '0.75rem', marginBottom: '1rem', border: '1px solid #ddd', borderRadius: '5px', direction: 'rtl'}}
+          />
+          <input 
+            type="email" 
+            placeholder="Email" 
+            style={{width: '100%', padding: '0.75rem', marginBottom: '1rem', border: '1px solid #ddd', borderRadius: '5px', direction: 'rtl'}}
+          />
+          <button 
+            type="submit"
+            style={{
+              width: '100%', 
+              padding: '0.75rem', 
+              background: '#dc3545', 
+              color: 'white', 
+              border: 'none', 
+              borderRadius: '5px', 
+              fontWeight: 'bold'
+            }}
+          >
+            צרפו אותי
+          </button>
+        </form>
+        
+        <div style={{textAlign: 'center', marginTop: '1rem'}}>
+          <p style={{fontSize: '0.9rem', color: '#666', marginBottom: '0.5rem'}}>
+            לאחת מקבוצות הוווצאפ לחצו על האיקון
+          </p>
+          <div style={{fontSize: '2rem'}}>
+            📱
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

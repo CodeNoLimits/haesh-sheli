@@ -116,320 +116,658 @@ export default function Store() {
         </div>
       </section>
 
-      {/* HERO BANNER */}
-      <section style={{background: 'linear-gradient(to bottom, #f4e4bc, #e6d7a8)', padding: '4rem 0', position: 'relative', backgroundImage: 'url("https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/banner-bg.jpg")', backgroundSize: 'cover', backgroundPosition: 'center'}}>
-        <div style={{background: 'rgba(244, 228, 188, 0.9)', padding: '2rem', textAlign: 'center'}}>
-          <h1 style={{fontSize: '3rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem', fontFamily: 'Noto Sans Hebrew, sans-serif'}}>
-            חנות הספרים
-          </h1>
-        </div>
-      </section>
-
       {/* MAIN CONTENT */}
-      <section style={{background: '#f8f9fa', padding: '3rem 0', minHeight: '600px'}}>
-        <div className="elementor-container">
-          {/* FILTERS SIDEBAR */}
-          <div style={{display: 'grid', gridTemplateColumns: '250px 1fr', gap: '2rem', alignItems: 'start'}}>
+      <section style={{background: '#f8f9fa', padding: '3rem 0', minHeight: '100vh'}}>
+        <div className="elementor-container" style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
+          
+          <div style={{display: 'grid', gridTemplateColumns: '300px 1fr', gap: '3rem', alignItems: 'start'}}>
             
-            {/* SIDEBAR */}
-            <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
-              <h3 style={{fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1.5rem', color: '#333'}}>
+            {/* FILTERS SIDEBAR */}
+            <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', position: 'sticky', top: '2rem'}}>
+              <h2 style={{fontSize: '1.8rem', fontWeight: 'bold', marginBottom: '2rem', color: '#333'}}>
+                חנות הספרים
+              </h2>
+              
+              <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', marginBottom: '1.5rem', color: '#dc3545'}}>
                 סינון לפי..
               </h3>
               
               {/* Search */}
               <div style={{marginBottom: '2rem'}}>
-                <label style={{fontWeight: 'bold', marginBottom: '0.5rem', display: 'block'}}>חיפוש חופשי</label>
+                <label style={{fontWeight: 'bold', marginBottom: '0.8rem', display: 'block', color: '#333'}}>חיפוש חופשי</label>
                 <input 
                   type="text" 
                   placeholder="חיפוש..."
-                  style={{width: '100%', padding: '0.5rem', border: '1px solid #ddd', borderRadius: '5px'}}
+                  style={{width: '100%', padding: '0.8rem', border: '1px solid #ddd', borderRadius: '5px', marginBottom: '0.8rem'}}
                 />
-                <button style={{marginTop: '0.5rem', background: '#dc3545', color: 'white', border: 'none', padding: '0.5rem 1rem', borderRadius: '5px', cursor: 'pointer'}}>
+                <button style={{background: '#dc3545', color: 'white', border: 'none', padding: '0.8rem 1.2rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
                   הצג תוצאות חיפוש
                 </button>
               </div>
 
               {/* Categories */}
               <div style={{marginBottom: '2rem'}}>
-                <h4 style={{fontWeight: 'bold', marginBottom: '1rem'}}>קטגוריות</h4>
+                <h4 style={{fontWeight: 'bold', marginBottom: '1rem', color: '#333'}}>קטגוריות</h4>
+                <select style={{width: '100%', padding: '0.8rem', border: '1px solid #ddd', borderRadius: '5px', marginBottom: '1rem'}}>
+                  <option>קטגוריות</option>
+                  <option>ליקוטים</option>
+                  <option>לנוער וילדים</option>
+                  <option>מועדי השנה</option>
+                  <option>מכתבים</option>
+                  <option>סטים</option>
+                  <option>סיפורים ומעשיות</option>
+                  <option>ספרי יסוד</option>
+                  <option>ספרי רבי ישראל דוב אודסר</option>
+                  <option>ספרי רבי נחמן מברסלב</option>
+                  <option>ספרי רבי נתן</option>
+                  <option>ספרי רבנו כללי וליקוטים</option>
+                  <option>ספרי תלמידים</option>
+                  <option>עצות</option>
+                </select>
+              </div>
+
+              {/* Size and Type */}
+              <div style={{marginBottom: '2rem'}}>
+                <h4 style={{fontWeight: 'bold', marginBottom: '1rem', color: '#333'}}>גודל וסוג כריכה</h4>
                 <div style={{display: 'flex', flexDirection: 'column', gap: '0.5rem'}}>
-                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-                    <input type="checkbox" />
-                    ליקוטים
+                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer'}}>
+                    <input type="checkbox" style={{marginLeft: '0.5rem'}} />
+                    בינוני
                   </label>
-                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-                    <input type="checkbox" />
-                    לנוער וילדים
+                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer'}}>
+                    <input type="checkbox" style={{marginLeft: '0.5rem'}} />
+                    גדול
                   </label>
-                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-                    <input type="checkbox" />
-                    ספרי רבנו כללי וליקוטים
+                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer'}}>
+                    <input type="checkbox" style={{marginLeft: '0.5rem'}} />
+                    ענק
                   </label>
-                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-                    <input type="checkbox" />
-                    ספרי רבי ישראל דוב אודסר
-                  </label>
-                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-                    <input type="checkbox" />
-                    ספרי רבי נחמן מברסלב
+                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer'}}>
+                    <input type="checkbox" style={{marginLeft: '0.5rem'}} />
+                    קטן /כיס
                   </label>
                 </div>
               </div>
 
-              {/* Size */}
+              {/* Topics */}
               <div style={{marginBottom: '2rem'}}>
-                <h4 style={{fontWeight: 'bold', marginBottom: '1rem'}}>גודל וסוג כריכה</h4>
+                <h4 style={{fontWeight: 'bold', marginBottom: '1rem', color: '#333'}}>ערכים/נושאים</h4>
                 <div style={{display: 'flex', flexDirection: 'column', gap: '0.5rem'}}>
-                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-                    <input type="checkbox" />
-                    קטן /כיס
+                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer'}}>
+                    <input type="checkbox" style={{marginLeft: '0.5rem'}} />
+                    אמונה
                   </label>
-                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-                    <input type="checkbox" />
-                    בינוני
+                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer'}}>
+                    <input type="checkbox" style={{marginLeft: '0.5rem'}} />
+                    התבודדות
                   </label>
-                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-                    <input type="checkbox" />
-                    גדול
+                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer'}}>
+                    <input type="checkbox" style={{marginLeft: '0.5rem'}} />
+                    התחזקות
                   </label>
-                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-                    <input type="checkbox" />
-                    ענק
+                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer'}}>
+                    <input type="checkbox" style={{marginLeft: '0.5rem'}} />
+                    ישועות
+                  </label>
+                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer'}}>
+                    <input type="checkbox" style={{marginLeft: '0.5rem'}} />
+                    צדיק
+                  </label>
+                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer'}}>
+                    <input type="checkbox" style={{marginLeft: '0.5rem'}} />
+                    שמחה
+                  </label>
+                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer'}}>
+                    <input type="checkbox" style={{marginLeft: '0.5rem'}} />
+                    שבת חגים ומועדים
+                  </label>
+                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer'}}>
+                    <input type="checkbox" style={{marginLeft: '0.5rem'}} />
+                    שיחות
                   </label>
                 </div>
+              </div>
+
+              {/* Languages */}
+              <div style={{marginBottom: '2rem'}}>
+                <h4 style={{fontWeight: 'bold', marginBottom: '1rem', color: '#333'}}>שפות זרות</h4>
+                <div style={{display: 'flex', flexDirection: 'column', gap: '0.5rem'}}>
+                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer'}}>
+                    <input type="checkbox" style={{marginLeft: '0.5rem'}} />
+                    אנגלית
+                  </label>
+                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer'}}>
+                    <input type="checkbox" style={{marginLeft: '0.5rem'}} />
+                    ספרדית
+                  </label>
+                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer'}}>
+                    <input type="checkbox" style={{marginLeft: '0.5rem'}} />
+                    צרפתית
+                  </label>
+                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer'}}>
+                    <input type="checkbox" style={{marginLeft: '0.5rem'}} />
+                    רוסית
+                  </label>
+                </div>
+              </div>
+
+              {/* Additional Categories */}
+              <div style={{marginBottom: '2rem'}}>
+                <div style={{display: 'flex', flexDirection: 'column', gap: '0.5rem'}}>
+                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer'}}>
+                    <input type="checkbox" style={{marginLeft: '0.5rem'}} />
+                    תיקון הכללי
+                  </label>
+                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer'}}>
+                    <input type="checkbox" style={{marginLeft: '0.5rem'}} />
+                    תפילות
+                  </label>
+                </div>
+                <button style={{marginTop: '1rem', background: '#28a745', color: 'white', border: 'none', padding: '0.8rem 1.2rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
+                  הצג תוצאות
+                </button>
               </div>
 
               {/* Price Range */}
               <div style={{marginBottom: '2rem'}}>
-                <h4 style={{fontWeight: 'bold', marginBottom: '1rem'}}>טווח מחירים</h4>
-                <div style={{display: 'flex', gap: '0.5rem', alignItems: 'center'}}>
-                  <input type="number" placeholder="₪" style={{flex: 1, padding: '0.5rem', border: '1px solid #ddd', borderRadius: '5px'}} />
+                <h4 style={{fontWeight: 'bold', marginBottom: '1rem', color: '#333'}}>טווח מחירים</h4>
+                <div style={{display: 'flex', gap: '1rem', alignItems: 'center', marginBottom: '1rem'}}>
+                  <input 
+                    type="number" 
+                    placeholder="₪" 
+                    style={{flex: 1, padding: '0.5rem', border: '1px solid #ddd', borderRadius: '5px', textAlign: 'center'}}
+                  />
                   <span>-</span>
-                  <input type="number" placeholder="₪" style={{flex: 1, padding: '0.5rem', border: '1px solid #ddd', borderRadius: '5px'}} />
+                  <input 
+                    type="number" 
+                    placeholder="₪" 
+                    style={{flex: 1, padding: '0.5rem', border: '1px solid #ddd', borderRadius: '5px', textAlign: 'center'}}
+                  />
                 </div>
-                <button style={{marginTop: '0.5rem', background: '#dc3545', color: 'white', border: 'none', padding: '0.5rem 1rem', borderRadius: '5px', cursor: 'pointer', width: '100%'}}>
+                <button style={{background: '#17a2b8', color: 'white', border: 'none', padding: '0.8rem 1.2rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
                   הצג תוצאות
                 </button>
               </div>
             </div>
-
+            
             {/* PRODUCTS GRID */}
             <div>
-              <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '2rem'}}>
+              <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '2rem'}}>
                 
-                {/* Product 1 */}
-                <div style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', textAlign: 'center'}}>
-                  <img 
-                    src="https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/1-1-300x300.d110a0.webp" 
-                    alt="אב&quot;י הנחל" 
-                    style={{width: '100%', height: '250px', objectFit: 'cover'}}
-                  />
-                  <div style={{padding: '1rem'}}>
-                    <h4 style={{fontWeight: 'bold', marginBottom: '0.5rem'}}>אב"י הנחל</h4>
-                    <div style={{color: '#ffc107', marginBottom: '0.5rem'}}>⭐⭐⭐⭐⭐</div>
-                    <p style={{color: '#dc3545', fontWeight: 'bold', fontSize: '1.1rem'}}>10.00 ₪ – 35.00 ₪</p>
-                    <button style={{background: '#dc3545', color: 'white', border: 'none', padding: '0.5rem 1rem', borderRadius: '5px', cursor: 'pointer', marginTop: '0.5rem'}}>
-                      בחר אפשרויות
-                    </button>
-                  </div>
-                </div>
-
-                {/* Product 2 */}
-                <div style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', textAlign: 'center'}}>
-                  <img 
-                    src="https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/24-300x300.d110a0.webp" 
-                    alt="אוצר היראה" 
-                    style={{width: '100%', height: '250px', objectFit: 'cover'}}
-                  />
-                  <div style={{padding: '1rem'}}>
-                    <h4 style={{fontWeight: 'bold', marginBottom: '0.5rem'}}>אוצר היראה</h4>
-                    <div style={{color: '#ffc107', marginBottom: '0.5rem'}}>⭐⭐⭐⭐⭐</div>
-                    <p style={{color: '#dc3545', fontWeight: 'bold', fontSize: '1.1rem'}}>200.00 ₪</p>
-                    <button style={{background: '#dc3545', color: 'white', border: 'none', padding: '0.5rem 1rem', borderRadius: '5px', cursor: 'pointer', marginTop: '0.5rem'}}>
-                      הוספה לסל
-                    </button>
-                  </div>
-                </div>
-
-                {/* Product 3 */}
-                <div style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', textAlign: 'center', position: 'relative'}}>
-                  <div style={{position: 'absolute', top: '10px', right: '10px', background: '#dc3545', color: 'white', padding: '0.25rem 0.5rem', borderRadius: '3px', fontSize: '0.8rem'}}>
-                    מבצע!
-                  </div>
-                  <img 
-                    src="https://www.haesh-sheli.co.il/wp-content/uploads/woocommerce-placeholder-300x300.d110a0.webp" 
-                    alt="אמונת חכמים" 
-                    style={{width: '100%', height: '250px', objectFit: 'cover'}}
-                  />
-                  <div style={{padding: '1rem'}}>
-                    <h4 style={{fontWeight: 'bold', marginBottom: '0.5rem'}}>אמונת חכמים</h4>
-                    <div style={{marginBottom: '0.5rem'}}>
-                      <span style={{textDecoration: 'line-through', color: '#999'}}>40.00 ₪</span>
-                      <span style={{color: '#dc3545', fontWeight: 'bold', fontSize: '1.1rem', marginLeft: '0.5rem'}}>35.00 ₪</span>
+                {/* Product 1 - אב"י הנחל */}
+                <div style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', transition: 'transform 0.3s ease'}}>
+                  <a href="#" style={{textDecoration: 'none', color: 'inherit'}}>
+                    <img 
+                      src="https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/1-1-300x300.d110a0.webp" 
+                      alt="אב״י הנחל"
+                      style={{width: '100%', height: '300px', objectFit: 'cover'}}
+                    />
+                    <div style={{padding: '1.5rem'}}>
+                      <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', marginBottom: '0.5rem', color: '#333'}}>
+                        אב"י הנחל
+                      </h3>
+                      <div style={{display: 'flex', alignItems: 'center', marginBottom: '0.8rem'}}>
+                        <div style={{color: '#ffc107', fontSize: '1.1rem'}}>
+                          ★★★★★
+                        </div>
+                        <span style={{marginRight: '0.5rem', color: '#666', fontSize: '0.9rem'}}>דורג 5.00 מתוך 5</span>
+                      </div>
+                      <div style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
+                        10.00 ₪ – 35.00 ₪
+                      </div>
+                      <button style={{background: '#dc3545', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
+                        בחר אפשרויות
+                      </button>
+                      <p style={{fontSize: '0.9rem', color: '#666', marginTop: '0.5rem'}}>
+                        למוצר זה יש מספר סוגים. ניתן לבחור את האפשרויות בעמוד המוצר
+                      </p>
                     </div>
-                    <button style={{background: '#dc3545', color: 'white', border: 'none', padding: '0.5rem 1rem', borderRadius: '5px', cursor: 'pointer', marginTop: '0.5rem'}}>
-                      הוספה לסל
-                    </button>
-                  </div>
+                  </a>
                 </div>
 
-                {/* Product 4 */}
-                <div style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', textAlign: 'center'}}>
-                  <img 
-                    src="https://www.haesh-sheli.co.il/wp-content/uploads/2025/03/%D7%90%D7%9E%D7%95%D7%A0%D7%AA-%D7%A2%D7%99%D7%AA%D7%9A-300x300.b197b0.webp" 
-                    alt="אמונת עתיך" 
-                    style={{width: '100%', height: '250px', objectFit: 'cover'}}
-                  />
-                  <div style={{padding: '1rem'}}>
-                    <h4 style={{fontWeight: 'bold', marginBottom: '0.5rem'}}>אמונת עתיך</h4>
-                    <p style={{color: '#dc3545', fontWeight: 'bold', fontSize: '1.1rem'}}>20.00 ₪</p>
-                    <button style={{background: '#dc3545', color: 'white', border: 'none', padding: '0.5rem 1rem', borderRadius: '5px', cursor: 'pointer', marginTop: '0.5rem'}}>
-                      בחר אפשרויות
-                    </button>
-                  </div>
-                </div>
-
-                {/* Product 5 */}
-                <div style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', textAlign: 'center'}}>
-                  <img 
-                    src="https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/44-300x300.d110a0.webp" 
-                    alt="בעקבות הבעל שם טוב" 
-                    style={{width: '100%', height: '250px', objectFit: 'cover'}}
-                  />
-                  <div style={{padding: '1rem'}}>
-                    <h4 style={{fontWeight: 'bold', marginBottom: '0.5rem'}}>בעקבות הבעל שם טוב</h4>
-                    <div style={{color: '#ffc107', marginBottom: '0.5rem'}}>⭐⭐⭐⭐⭐</div>
-                    <div style={{marginBottom: '0.5rem'}}>
-                      <span style={{textDecoration: 'line-through', color: '#999'}}>150.00 ₪</span>
-                      <span style={{color: '#dc3545', fontWeight: 'bold', fontSize: '1.1rem', marginLeft: '0.5rem'}}>115.00 ₪</span>
+                {/* Product 2 - אוצר היראה */}
+                <div style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', transition: 'transform 0.3s ease'}}>
+                  <a href="#" style={{textDecoration: 'none', color: 'inherit'}}>
+                    <img 
+                      src="https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/24-300x300.d110a0.webp" 
+                      alt="אוצר היראה"
+                      style={{width: '100%', height: '300px', objectFit: 'cover'}}
+                    />
+                    <div style={{padding: '1.5rem'}}>
+                      <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', marginBottom: '0.5rem', color: '#333'}}>
+                        אוצר היראה
+                      </h3>
+                      <div style={{display: 'flex', alignItems: 'center', marginBottom: '0.8rem'}}>
+                        <div style={{color: '#ffc107', fontSize: '1.1rem'}}>
+                          ★★★★★
+                        </div>
+                        <span style={{marginRight: '0.5rem', color: '#666', fontSize: '0.9rem'}}>דורג 5.00 מתוך 5</span>
+                      </div>
+                      <div style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
+                        200.00 ₪
+                      </div>
+                      <button style={{background: '#28a745', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
+                        הוספה לסל
+                      </button>
                     </div>
-                    <button style={{background: '#dc3545', color: 'white', border: 'none', padding: '0.5rem 1rem', borderRadius: '5px', cursor: 'pointer', marginTop: '0.5rem'}}>
-                      הוספה לסל
-                    </button>
-                  </div>
+                  </a>
                 </div>
 
-                {/* Product 6 */}
-                <div style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', textAlign: 'center'}}>
-                  <img 
-                    src="https://www.haesh-sheli.co.il/wp-content/uploads/2023/08/28-300x300.d110a0.webp" 
-                    alt="חומש ליקוטי הלכות" 
-                    style={{width: '100%', height: '250px', objectFit: 'cover'}}
-                  />
-                  <div style={{padding: '1rem'}}>
-                    <h4 style={{fontWeight: 'bold', marginBottom: '0.5rem'}}>חומש ליקוטי הלכות</h4>
-                    <div style={{color: '#ffc107', marginBottom: '0.5rem'}}>⭐⭐⭐⭐⭐</div>
-                    <p style={{color: '#dc3545', fontWeight: 'bold', fontSize: '1.1rem'}}>150.00 ₪ – 175.00 ₪</p>
-                    <button style={{background: '#dc3545', color: 'white', border: 'none', padding: '0.5rem 1rem', borderRadius: '5px', cursor: 'pointer', marginTop: '0.5rem'}}>
-                      בחר אפשרויות
-                    </button>
+                {/* Product 3 - אמונת חכמים - SALE */}
+                <div style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', transition: 'transform 0.3s ease', position: 'relative'}}>
+                  <div style={{position: 'absolute', top: '10px', right: '10px', background: '#dc3545', color: 'white', padding: '0.3rem 0.8rem', borderRadius: '15px', fontSize: '0.9rem', fontWeight: 'bold', zIndex: 2}}>
+                    מבצע!!
                   </div>
+                  <a href="#" style={{textDecoration: 'none', color: 'inherit'}}>
+                    <img 
+                      src="https://www.haesh-sheli.co.il/wp-content/uploads/woocommerce-placeholder-300x300.d110a0.webp" 
+                      alt="אמונת חכמים"
+                      style={{width: '100%', height: '300px', objectFit: 'cover'}}
+                    />
+                    <div style={{padding: '1.5rem'}}>
+                      <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', marginBottom: '0.5rem', color: '#333'}}>
+                        אמונת חכמים
+                      </h3>
+                      <div style={{fontSize: '1.2rem', fontWeight: 'bold', marginBottom: '1rem'}}>
+                        <span style={{textDecoration: 'line-through', color: '#999', fontSize: '1rem'}}>40.00 ₪</span>
+                        <span style={{color: '#dc3545', marginRight: '0.5rem'}}>35.00 ₪</span>
+                      </div>
+                      <p style={{fontSize: '0.9rem', color: '#666', marginBottom: '1rem'}}>
+                        המחיר המקורי היה: 40.00 ₪. המחיר הנוכחי הוא: 35.00 ₪.
+                      </p>
+                      <button style={{background: '#28a745', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
+                        הוספה לסל
+                      </button>
+                    </div>
+                  </a>
                 </div>
-              </div>
 
-              {/* SPECIAL OFFERS SECTION */}
-              <div style={{marginTop: '4rem', textAlign: 'center', background: 'linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%)', padding: '3rem', borderRadius: '15px'}}>
-                <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '1rem', color: '#dc3545'}}>
-                  למבצעים כנסו
-                </h2>
-                <a href="#" className="btn-primary" style={{textDecoration: 'none', fontSize: '1.2rem'}}>
-                  בוא נבדוק את המבצעים
-                </a>
+                {/* Product 4 - אמונת עתיך */}
+                <div style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', transition: 'transform 0.3s ease'}}>
+                  <a href="#" style={{textDecoration: 'none', color: 'inherit'}}>
+                    <img 
+                      src="https://www.haesh-sheli.co.il/wp-content/uploads/2025/03/%D7%90%D7%9E%D7%95%D7%A0%D7%AA-%D7%A2%D7%99%D7%AA%D7%9A-300x300.b197b0.webp" 
+                      alt="אמונת עתיך"
+                      style={{width: '100%', height: '300px', objectFit: 'cover'}}
+                    />
+                    <div style={{padding: '1.5rem'}}>
+                      <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', marginBottom: '0.5rem', color: '#333'}}>
+                        אמונת עתיך
+                      </h3>
+                      <div style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
+                        20.00 ₪
+                      </div>
+                      <button style={{background: '#dc3545', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
+                        בחר אפשרויות
+                      </button>
+                      <p style={{fontSize: '0.9rem', color: '#666', marginTop: '0.5rem'}}>
+                        למוצר זה יש מספר סוגים. ניתן לבחור את האפשרויות בעמוד המוצר
+                      </p>
+                    </div>
+                  </a>
+                </div>
+
+                {/* Product 5 - ביאור הליקוטים */}
+                <div style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', transition: 'transform 0.3s ease'}}>
+                  <a href="#" style={{textDecoration: 'none', color: 'inherit'}}>
+                    <img 
+                      src="https://www.haesh-sheli.co.il/wp-content/uploads/woocommerce-placeholder-300x300.d110a0.webp" 
+                      alt="ביאור הליקוטים"
+                      style={{width: '100%', height: '300px', objectFit: 'cover'}}
+                    />
+                    <div style={{padding: '1.5rem'}}>
+                      <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', marginBottom: '0.5rem', color: '#333'}}>
+                        ביאור הליקוטים
+                      </h3>
+                      <div style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
+                        75.00 ₪
+                      </div>
+                      <button style={{background: '#28a745', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
+                        הוספה לסל
+                      </button>
+                    </div>
+                  </a>
+                </div>
+
+                {/* Product 6 - בעקבות הבעל שם טוב - SALE */}
+                <div style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', transition: 'transform 0.3s ease', position: 'relative'}}>
+                  <div style={{position: 'absolute', top: '10px', right: '10px', background: '#dc3545', color: 'white', padding: '0.3rem 0.8rem', borderRadius: '15px', fontSize: '0.9rem', fontWeight: 'bold', zIndex: 2}}>
+                    מבצע!!
+                  </div>
+                  <a href="#" style={{textDecoration: 'none', color: 'inherit'}}>
+                    <img 
+                      src="https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/44-300x300.d110a0.webp" 
+                      alt="בעקבות הבעל שם טוב"
+                      style={{width: '100%', height: '300px', objectFit: 'cover'}}
+                    />
+                    <div style={{padding: '1.5rem'}}>
+                      <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', marginBottom: '0.5rem', color: '#333'}}>
+                        בעקבות הבעל שם טוב
+                      </h3>
+                      <div style={{display: 'flex', alignItems: 'center', marginBottom: '0.8rem'}}>
+                        <div style={{color: '#ffc107', fontSize: '1.1rem'}}>
+                          ★★★★★
+                        </div>
+                        <span style={{marginRight: '0.5rem', color: '#666', fontSize: '0.9rem'}}>דורג 5.00 מתוך 5</span>
+                      </div>
+                      <div style={{fontSize: '1.2rem', fontWeight: 'bold', marginBottom: '1rem'}}>
+                        <span style={{textDecoration: 'line-through', color: '#999', fontSize: '1rem'}}>150.00 ₪</span>
+                        <span style={{color: '#dc3545', marginRight: '0.5rem'}}>115.00 ₪</span>
+                      </div>
+                      <p style={{fontSize: '0.9rem', color: '#666', marginBottom: '1rem'}}>
+                        המחיר המקורי היה: 150.00 ₪. המחיר הנוכחי הוא: 115.00 ₪.
+                      </p>
+                      <button style={{background: '#28a745', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
+                        הוספה לסל
+                      </button>
+                    </div>
+                  </a>
+                </div>
+
+                {/* Product 7 - הראש השנה שלי */}
+                <div style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', transition: 'transform 0.3s ease'}}>
+                  <a href="#" style={{textDecoration: 'none', color: 'inherit'}}>
+                    <img 
+                      src="https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/27-300x300.d110a0.webp" 
+                      alt="הראש השנה שלי-ראש השנה"
+                      style={{width: '100%', height: '300px', objectFit: 'cover'}}
+                    />
+                    <div style={{padding: '1.5rem'}}>
+                      <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', marginBottom: '0.5rem', color: '#333'}}>
+                        הראש השנה שלי-ראש השנה
+                      </h3>
+                      <div style={{display: 'flex', alignItems: 'center', marginBottom: '0.8rem'}}>
+                        <div style={{color: '#ffc107', fontSize: '1.1rem'}}>
+                          ★★★★★
+                        </div>
+                        <span style={{marginRight: '0.5rem', color: '#666', fontSize: '0.9rem'}}>דורג 5.00 מתוך 5</span>
+                      </div>
+                      <div style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
+                        120.00 ₪
+                      </div>
+                      <button style={{background: '#28a745', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
+                        הוספה לסל
+                      </button>
+                    </div>
+                  </a>
+                </div>
+
+                {/* Product 8 - השתפכות הנפש כיס - SALE */}
+                <div style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', transition: 'transform 0.3s ease', position: 'relative'}}>
+                  <div style={{position: 'absolute', top: '10px', right: '10px', background: '#dc3545', color: 'white', padding: '0.3rem 0.8rem', borderRadius: '15px', fontSize: '0.9rem', fontWeight: 'bold', zIndex: 2}}>
+                    מבצע!!
+                  </div>
+                  <a href="#" style={{textDecoration: 'none', color: 'inherit'}}>
+                    <img 
+                      src="https://www.haesh-sheli.co.il/wp-content/uploads/2025/03/%D7%9E%D7%95%D7%A7%D7%90%D7%A4-%D7%94%D7%93%D7%9E%D7%99%D7%94-%D7%94%D7%A9%D7%AA%D7%A4%D7%9B%D7%95%D7%AA-%D7%94%D7%A0%D7%A4%D7%A9_800x600-300x300.b197b0.webp" 
+                      alt="השתפכות הנפש כיס כריכה רכה"
+                      style={{width: '100%', height: '300px', objectFit: 'cover'}}
+                    />
+                    <div style={{padding: '1.5rem'}}>
+                      <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', marginBottom: '0.5rem', color: '#333'}}>
+                        השתפכות הנפש כיס כריכה רכה
+                      </h3>
+                      <div style={{fontSize: '1.2rem', fontWeight: 'bold', marginBottom: '1rem'}}>
+                        <span style={{textDecoration: 'line-through', color: '#999', fontSize: '1rem'}}>20.00 ₪</span>
+                        <span style={{color: '#dc3545', marginRight: '0.5rem'}}>10.00 ₪</span>
+                      </div>
+                      <p style={{fontSize: '0.9rem', color: '#666', marginBottom: '1rem'}}>
+                        המחיר המקורי היה: 20.00 ₪. המחיר הנוכחי הוא: 10.00 ₪.
+                      </p>
+                      <button style={{background: '#28a745', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
+                        הוספה לסל
+                      </button>
+                    </div>
+                  </a>
+                </div>
+
+                {/* Product 9 - השתפכות ומשיבת נפש */}
+                <div style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', transition: 'transform 0.3s ease'}}>
+                  <a href="#" style={{textDecoration: 'none', color: 'inherit'}}>
+                    <img 
+                      src="https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/41-300x300.d110a0.webp" 
+                      alt="השתפכות ומשיבת נפש"
+                      style={{width: '100%', height: '300px', objectFit: 'cover'}}
+                    />
+                    <div style={{padding: '1.5rem'}}>
+                      <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', marginBottom: '0.5rem', color: '#333'}}>
+                        השתפכות ומשיבת נפש
+                      </h3>
+                      <div style={{display: 'flex', alignItems: 'center', marginBottom: '0.8rem'}}>
+                        <div style={{color: '#ffc107', fontSize: '1.1rem'}}>
+                          ★★★★★
+                        </div>
+                        <span style={{marginRight: '0.5rem', color: '#666', fontSize: '0.9rem'}}>דורג 5.00 מתוך 5</span>
+                      </div>
+                      <div style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
+                        20.00 ₪ – 35.00 ₪
+                      </div>
+                      <button style={{background: '#dc3545', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
+                        בחר אפשרויות
+                      </button>
+                      <p style={{fontSize: '0.9rem', color: '#666', marginTop: '0.5rem'}}>
+                        למוצר זה יש מספר סוגים. ניתן לבחור את האפשרויות בעמוד המוצר
+                      </p>
+                    </div>
+                  </a>
+                </div>
+
+                {/* Product 10 - התגלות הדעת-פסח - SALE */}
+                <div style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', transition: 'transform 0.3s ease', position: 'relative'}}>
+                  <div style={{position: 'absolute', top: '10px', right: '10px', background: '#dc3545', color: 'white', padding: '0.3rem 0.8rem', borderRadius: '15px', fontSize: '0.9rem', fontWeight: 'bold', zIndex: 2}}>
+                    מבצע!!
+                  </div>
+                  <a href="#" style={{textDecoration: 'none', color: 'inherit'}}>
+                    <img 
+                      src="https://www.haesh-sheli.co.il/wp-content/uploads/2023/08/%D7%A9%D7%99%D7%A8-%D7%94%D7%A9%D7%99%D7%A8%D7%99%D7%9D-%D7%97%D7%A0%D7%95%D7%AA-%D7%A7%D7%A8%D7%9F-%D7%AA%D7%9E%D7%95%D7%A0%D7%AA-%D7%9E%D7%95%D7%A6%D7%A8-6-300x300.d110a0.webp" 
+                      alt="התגלות הדעת-פסח"
+                      style={{width: '100%', height: '300px', objectFit: 'cover'}}
+                    />
+                    <div style={{padding: '1.5rem'}}>
+                      <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', marginBottom: '0.5rem', color: '#333'}}>
+                        התגלות הדעת-פסח
+                      </h3>
+                      <div style={{display: 'flex', alignItems: 'center', marginBottom: '0.8rem'}}>
+                        <div style={{color: '#ffc107', fontSize: '1.1rem'}}>
+                          ★★★★★
+                        </div>
+                        <span style={{marginRight: '0.5rem', color: '#666', fontSize: '0.9rem'}}>דורג 5.00 מתוך 5</span>
+                      </div>
+                      <div style={{fontSize: '1.2rem', fontWeight: 'bold', marginBottom: '1rem'}}>
+                        <span style={{textDecoration: 'line-through', color: '#999', fontSize: '1rem'}}>170.00 ₪</span>
+                        <span style={{color: '#dc3545', marginRight: '0.5rem'}}>148.00 ₪</span>
+                      </div>
+                      <p style={{fontSize: '0.9rem', color: '#666', marginBottom: '1rem'}}>
+                        המחיר המקורי היה: 170.00 ₪. המחיר הנוכחי הוא: 148.00 ₪.
+                      </p>
+                      <button style={{background: '#28a745', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
+                        הוספה לסל
+                      </button>
+                    </div>
+                  </a>
+                </div>
+
+                {/* Product 11 - התחלת ההתחלות-פורים */}
+                <div style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', transition: 'transform 0.3s ease'}}>
+                  <a href="#" style={{textDecoration: 'none', color: 'inherit'}}>
+                    <img 
+                      src="https://www.haesh-sheli.co.il/wp-content/uploads/2023/08/%D7%A9%D7%99%D7%A8-%D7%94%D7%A9%D7%99%D7%A8%D7%99%D7%9D-%D7%97%D7%A0%D7%95%D7%AA-%D7%A7%D7%A8%D7%9F-%D7%AA%D7%9E%D7%95%D7%A0%D7%AA-%D7%9E%D7%95%D7%A6%D7%A8-5-300x300.d110a0.webp" 
+                      alt="התחלת ההתחלות-פורים"
+                      style={{width: '100%', height: '300px', objectFit: 'cover'}}
+                    />
+                    <div style={{padding: '1.5rem'}}>
+                      <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', marginBottom: '0.5rem', color: '#333'}}>
+                        התחלת ההתחלות-פורים
+                      </h3>
+                      <div style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
+                        120.00 ₪
+                      </div>
+                      <button style={{background: '#28a745', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
+                        הוספה לסל
+                      </button>
+                    </div>
+                  </a>
+                </div>
+
+                {/* Product 12 - התלמיד הגדול */}
+                <div style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', transition: 'transform 0.3s ease'}}>
+                  <a href="#" style={{textDecoration: 'none', color: 'inherit'}}>
+                    <img 
+                      src="https://www.haesh-sheli.co.il/wp-content/uploads/2025/03/%D7%94%D7%AA%D7%9C%D7%9E%D7%99%D7%93-%D7%94%D7%92%D7%93%D7%95%D7%9C-300x300.b197b0.webp" 
+                      alt="התלמיד הגדול"
+                      style={{width: '100%', height: '300px', objectFit: 'cover'}}
+                    />
+                    <div style={{padding: '1.5rem'}}>
+                      <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', marginBottom: '0.5rem', color: '#333'}}>
+                        התלמיד הגדול
+                      </h3>
+                      <div style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
+                        75.00 ₪
+                      </div>
+                      <button style={{background: '#28a745', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
+                        הוספה לסל
+                      </button>
+                    </div>
+                  </a>
+                </div>
+
+                {/* Product 13 - זמרת הארץ */}
+                <div style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', transition: 'transform 0.3s ease'}}>
+                  <a href="#" style={{textDecoration: 'none', color: 'inherit'}}>
+                    <img 
+                      src="https://www.haesh-sheli.co.il/wp-content/uploads/2023/08/%D7%96%D7%9E%D7%A8%D7%AA-%D7%94%D7%90%D7%A8%D7%A5-%D7%97%D7%A0%D7%95%D7%AA-%D7%A7%D7%A8%D7%9F-%D7%AA%D7%9E%D7%95%D7%A0%D7%AA-%D7%9E%D7%95%D7%A6%D7%A8-300x300.d110a0.webp" 
+                      alt="זמרת הארץ"
+                      style={{width: '100%', height: '300px', objectFit: 'cover'}}
+                    />
+                    <div style={{padding: '1.5rem'}}>
+                      <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', marginBottom: '0.5rem', color: '#333'}}>
+                        זמרת הארץ
+                      </h3>
+                      <div style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
+                        35.00 ₪
+                      </div>
+                      <button style={{background: '#28a745', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
+                        הוספה לסל
+                      </button>
+                    </div>
+                  </a>
+                </div>
+
+                {/* Product 14 - זמירות לשבת ברסלב - SALE */}
+                <div style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', transition: 'transform 0.3s ease', position: 'relative'}}>
+                  <div style={{position: 'absolute', top: '10px', right: '10px', background: '#dc3545', color: 'white', padding: '0.3rem 0.8rem', borderRadius: '15px', fontSize: '0.9rem', fontWeight: 'bold', zIndex: 2}}>
+                    מבצע!!
+                  </div>
+                  <a href="#" style={{textDecoration: 'none', color: 'inherit'}}>
+                    <img 
+                      src="https://www.haesh-sheli.co.il/wp-content/uploads/2025/03/%D7%96%D7%9E%D7%99%D7%A8%D7%95%D7%AA-2-300x300.b197b0.webp" 
+                      alt="חדש! זמירות לשבת ברסלב"
+                      style={{width: '100%', height: '300px', objectFit: 'cover'}}
+                    />
+                    <div style={{padding: '1.5rem'}}>
+                      <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', marginBottom: '0.5rem', color: '#333'}}>
+                        חדש! זמירות לשבת ברסלב
+                      </h3>
+                      <div style={{fontSize: '1.2rem', fontWeight: 'bold', marginBottom: '1rem'}}>
+                        <span style={{textDecoration: 'line-through', color: '#999', fontSize: '1rem'}}>55.00 ₪</span>
+                        <span style={{color: '#dc3545', marginRight: '0.5rem'}}>35.00 ₪</span>
+                      </div>
+                      <p style={{fontSize: '0.9rem', color: '#666', marginBottom: '1rem'}}>
+                        המחיר המקורי היה: 55.00 ₪. המחיר הנוכחי הוא: 35.00 ₪.
+                      </p>
+                      <button style={{background: '#dc3545', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
+                        בחר אפשרויות
+                      </button>
+                      <p style={{fontSize: '0.9rem', color: '#666', marginTop: '0.5rem'}}>
+                        למוצר זה יש מספר סוגים. ניתן לבחור את האפשרויות בעמוד המוצר
+                      </p>
+                    </div>
+                  </a>
+                </div>
+
+                {/* Product 15 - ימי חג השבועות - SALE */}
+                <div style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', transition: 'transform 0.3s ease', position: 'relative'}}>
+                  <div style={{position: 'absolute', top: '10px', right: '10px', background: '#dc3545', color: 'white', padding: '0.3rem 0.8rem', borderRadius: '15px', fontSize: '0.9rem', fontWeight: 'bold', zIndex: 2}}>
+                    מבצע!!
+                  </div>
+                  <a href="#" style={{textDecoration: 'none', color: 'inherit'}}>
+                    <img 
+                      src="https://www.haesh-sheli.co.il/wp-content/uploads/woocommerce-placeholder-300x300.d110a0.webp" 
+                      alt="חדש! ימי חג השבועות"
+                      style={{width: '100%', height: '300px', objectFit: 'cover'}}
+                    />
+                    <div style={{padding: '1.5rem'}}>
+                      <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', marginBottom: '0.5rem', color: '#333'}}>
+                        חדש! ימי חג השבועות
+                      </h3>
+                      <div style={{fontSize: '1.2rem', fontWeight: 'bold', marginBottom: '1rem'}}>
+                        <span style={{textDecoration: 'line-through', color: '#999', fontSize: '1rem'}}>10.00 ₪</span>
+                        <span style={{color: '#dc3545', marginRight: '0.5rem'}}>7.00 ₪</span>
+                      </div>
+                      <p style={{fontSize: '0.9rem', color: '#666', marginBottom: '1rem'}}>
+                        המחיר המקורי היה: 10.00 ₪. המחיר הנוכחי הוא: 7.00 ₪.
+                      </p>
+                      <button style={{background: '#28a745', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
+                        הוספה לסל
+                      </button>
+                    </div>
+                  </a>
+                </div>
+
+                {/* Product 16 - חומש ליקוטי הלכות */}
+                <div style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', transition: 'transform 0.3s ease'}}>
+                  <a href="#" style={{textDecoration: 'none', color: 'inherit'}}>
+                    <img 
+                      src="https://www.haesh-sheli.co.il/wp-content/uploads/2023/08/28-300x300.d110a0.webp" 
+                      alt="חומש ליקוטי הלכות"
+                      style={{width: '100%', height: '300px', objectFit: 'cover'}}
+                    />
+                    <div style={{padding: '1.5rem'}}>
+                      <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', marginBottom: '0.5rem', color: '#333'}}>
+                        חומש ליקוטי הלכות
+                      </h3>
+                      <div style={{display: 'flex', alignItems: 'center', marginBottom: '0.8rem'}}>
+                        <div style={{color: '#ffc107', fontSize: '1.1rem'}}>
+                          ★★★★☆
+                        </div>
+                        <span style={{marginRight: '0.5rem', color: '#666', fontSize: '0.9rem'}}>דורג 4.50 מתוך 5</span>
+                      </div>
+                      <div style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
+                        150.00 ₪ – 175.00 ₪
+                      </div>
+                      <button style={{background: '#dc3545', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
+                        בחר אפשרויות
+                      </button>
+                      <p style={{fontSize: '0.9rem', color: '#666', marginTop: '0.5rem'}}>
+                        למוצר זה יש מספר סוגים. ניתן לבחור את האפשרויות בעמוד המוצר
+                      </p>
+                    </div>
+                  </a>
+                </div>
+
               </div>
             </div>
+
           </div>
         </div>
       </section>
 
+      {/* PROMOTIONS SECTION */}
+      <section style={{background: 'linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%)', padding: '3rem 0', textAlign: 'center'}}>
+        <div className="elementor-container" style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
+          <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#2d3436', marginBottom: '2rem'}}>
+            למבצעים כנסו
+          </h2>
+          <a href="#" style={{textDecoration: 'none', fontSize: '1.5rem', padding: '1.2rem 3rem', background: '#d63031', color: 'white', border: 'none', borderRadius: '10px', display: 'inline-block', fontWeight: 'bold'}}>
+            בוא נבדוק את המבצעים
+          </a>
+        </div>
+      </section>
+
       {/* FOOTER */}
-      <footer className="main-footer" style={{background: '#333', color: 'white', padding: '3rem 0 2rem'}}>
+      <footer className="main-footer" style={{background: '#2d3436', color: 'white', padding: '3rem 0 2rem'}}>
         <div className="elementor-container">
-          <div className="footer-content" style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem', marginBottom: '2rem'}}>
-            
-            {/* של רבי ישראל בר אודסר */}
-            <div className="footer-section">
-              <h4 style={{marginBottom: '1rem', color: '#dc3545', fontSize: '1.5rem', fontWeight: 'bold'}}>
-                של רבי ישראל בר אודסר
-              </h4>
-              <div style={{display: 'flex', alignItems: 'center', marginBottom: '1rem'}}>
-                <img 
-                  src="https://www.haesh-sheli.co.il/wp-content/uploads/2021/12/cropped-%D7%A7%D7%A8%D7%95-%D7%A8%D7%91%D7%99-%D7%99%D7%A9%D7%A8%D7%90%D7%9C-%D7%91%D7%A8-%D7%90%D7%95%D7%93%D7%A1%D7%A8.d110a0.webp" 
-                  alt="האש שלי תוקף" 
-                  style={{width: '100px', height: 'auto', marginLeft: '1rem'}}
-                />
-                <div>
-                  <h5 style={{color: '#dc3545', fontWeight: 'bold', fontSize: '1.2rem'}}>האש שלי תוקף</h5>
-                  <p style={{color: '#dc3545', fontSize: '1rem'}}>עד ביאת המשיח</p>
-                  <p style={{color: '#ccc', fontSize: '0.9rem'}}>קרן רבי ישראל דב אודסר זצ"ל</p>
-                </div>
-              </div>
-            </div>
-            
-            {/* ניווט מהיר באתר */}
-            <div className="footer-section">
-              <h4 style={{marginBottom: '1rem', color: '#dc3545'}}>
-                ניווט מהיר באתר
-              </h4>
-              <ul style={{listStyle: 'none', padding: 0}}>
-                <li style={{marginBottom: '0.5rem'}}>
-                  <a href="/" style={{color: '#ccc', textDecoration: 'none'}}>דף הבית</a>
-                </li>
-                <li style={{marginBottom: '0.5rem'}}>
-                  <a href="#" style={{color: '#ccc', textDecoration: 'none'}}>שירות לקוחות</a>
-                </li>
-                <li style={{marginBottom: '0.5rem'}}>
-                  <a href="/store" style={{color: '#ccc', textDecoration: 'none'}}>חנות הספרים</a>
-                </li>
-                <li style={{marginBottom: '0.5rem'}}>
-                  <a href="#" style={{color: '#ccc', textDecoration: 'none'}}>מנות ומחירות</a>
-                </li>
-                <li style={{marginBottom: '0.5rem'}}>
-                  <a href="#" style={{color: '#ccc', textDecoration: 'none'}}>משלוחים והחזרות</a>
-                </li>
-                <li style={{marginBottom: '0.5rem'}}>
-                  <a href="#" style={{color: '#ccc', textDecoration: 'none'}}>תקנון ומדיניות האתר</a>
-                </li>
-              </ul>
-            </div>
-            
-            {/* כתובת ושעות פתיחה */}
-            <div className="footer-section">
-              <h4 style={{marginBottom: '1rem', color: '#dc3545'}}>
-                כתובת ושעות פתיחה
-              </h4>
-              <p style={{color: '#ccc', marginBottom: '0.5rem'}}>ת.ד בית שמש 366</p>
-              <p style={{color: '#ccc', marginBottom: '0.5rem'}}>טלפון: *2320</p>
-              <p style={{color: '#ccc', marginBottom: '1rem'}}>פקס: 077-5150304</p>
-              <a href="/contact" className="btn-primary" style={{textDecoration: 'none', fontSize: '0.9rem'}}>
-                כל פרטי המתגה
-              </a>
-            </div>
-            
-            {/* לקוחות פעילים וחדשים */}
-            <div className="footer-section">
-              <h4 style={{marginBottom: '1rem', color: '#dc3545'}}>
-                לקוחות פעילים וחדשים
-              </h4>
-              <p style={{color: '#ccc', marginBottom: '1rem'}}>
-                הרשמה לאחדות האו
-              </p>
-              <p style={{color: '#ccc', marginBottom: '1rem'}}>
-                כניסה לאזור האישי
-              </p>
-              <p style={{color: '#ccc', marginBottom: '1rem'}}>
-                פניה לשירות לקוחות
-              </p>
-              <p style={{color: '#ccc', marginBottom: '1rem'}}>
-                החלפת פעילות הבנו הקדוש
-              </p>
-              <p style={{color: '#ccc', marginBottom: '1rem'}}>
-                תקנון ומדיניות האתר
-              </p>
-            </div>
-          </div>
-          
-          <div style={{textAlign: 'center', paddingTop: '2rem', borderTop: '1px solid #555'}}>
+          <div style={{textAlign: 'center', paddingTop: '2rem'}}>
             <div style={{color: '#999', fontSize: '0.9rem'}}>
               <p style={{marginBottom: '0.5rem'}}>כל הזכיות שמורות 2025 © קרן רבי ישראל דב אודסר זצ"ל</p>
               <p>האתר נבנה ע"י מדיה מאסטר</p>
