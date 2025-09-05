@@ -366,7 +366,6 @@ export default function Store() {
                 
                 {/* Product 1 - אב"י הנחל */}
                 <div style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', transition: 'transform 0.3s ease'}}>
-                  <a href="#" style={{textDecoration: 'none', color: 'inherit'}}>
                     <img 
                       src="https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/1-1-300x300.d110a0.webp" 
                       alt="אב״י הנחל"
@@ -385,19 +384,19 @@ export default function Store() {
                       <div style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
                         10.00 ₪ – 35.00 ₪
                       </div>
-                      <button style={{background: '#dc3545', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
-                        בחר אפשרויות
-                      </button>
+                      <a href="/checkout?product=avi-hanachal&price=35" style={{textDecoration: 'none'}}>
+                        <button style={{background: '#dc3545', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
+                          הוספה לסל - 35 ₪
+                        </button>
+                      </a>
                       <p style={{fontSize: '0.9rem', color: '#666', marginTop: '0.5rem'}}>
-                        למוצר זה יש מספר סוגים. ניתן לבחור את האפשרויות בעמוד המוצר
+                        מחיר כולל משלוח לכל הארץ
                       </p>
                     </div>
-                  </a>
                 </div>
 
                 {/* Product 2 - אוצר היראה */}
                 <div style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', transition: 'transform 0.3s ease'}}>
-                  <a href="#" style={{textDecoration: 'none', color: 'inherit'}}>
                     <img 
                       src="https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/24-300x300.d110a0.webp" 
                       alt="אוצר היראה"
@@ -416,11 +415,15 @@ export default function Store() {
                       <div style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
                         200.00 ₪
                       </div>
-                      <button style={{background: '#28a745', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
-                        הוספה לסל
-                      </button>
+                      <a href="/checkout?product=otzer-hayirah&price=200" style={{textDecoration: 'none'}}>
+                        <button style={{background: '#28a745', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
+                          הוספה לסל - 200 ₪
+                        </button>
+                      </a>
+                      <p style={{fontSize: '0.9rem', color: '#666', marginTop: '0.5rem'}}>
+                        כולל משלוח חינם
+                      </p>
                     </div>
-                  </a>
                 </div>
 
                 {/* Product 3 - אמונת חכמים - SALE */}
@@ -428,7 +431,7 @@ export default function Store() {
                   <div style={{position: 'absolute', top: '10px', right: '10px', background: '#dc3545', color: 'white', padding: '0.3rem 0.8rem', borderRadius: '15px', fontSize: '0.9rem', fontWeight: 'bold', zIndex: 2}}>
                     מבצע!!
                   </div>
-                  <a href="#" style={{textDecoration: 'none', color: 'inherit'}}>
+
                     <img 
                       src="https://www.haesh-sheli.co.il/wp-content/uploads/woocommerce-placeholder-300x300.d110a0.webp" 
                       alt="אמונת חכמים"
@@ -445,16 +448,17 @@ export default function Store() {
                       <p style={{fontSize: '0.9rem', color: '#666', marginBottom: '1rem'}}>
                         המחיר המקורי היה: 40.00 ₪. המחיר הנוכחי הוא: 35.00 ₪.
                       </p>
-                      <button style={{background: '#28a745', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
-                        הוספה לסל
-                      </button>
+                      <a href="/checkout?product=emunath-chachamim&price=35" style={{textDecoration: 'none'}}>
+                        <button style={{background: '#28a745', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
+                          הוספה לסל - 35 ₪
+                        </button>
+                      </a>
                     </div>
-                  </a>
                 </div>
 
                 {/* Product 4 - אמונת עתיך */}
                 <div style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', transition: 'transform 0.3s ease'}}>
-                  <a href="#" style={{textDecoration: 'none', color: 'inherit'}}>
+
                     <img 
                       src="https://www.haesh-sheli.co.il/wp-content/uploads/2025/03/%D7%90%D7%9E%D7%95%D7%A0%D7%AA-%D7%A2%D7%99%D7%AA%D7%9A-300x300.b197b0.webp" 
                       alt="אמונת עתיך"
@@ -467,19 +471,21 @@ export default function Store() {
                       <div style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
                         20.00 ₪
                       </div>
-                      <button style={{background: '#dc3545', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
-                        בחר אפשרויות
-                      </button>
+                      <a href="/checkout?product=emunath-itcha&price=20" style={{textDecoration: 'none'}}>
+                        <button style={{background: '#dc3545', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
+                          הוספה לסל - 20 ₪
+                        </button>
+                      </a>
                       <p style={{fontSize: '0.9rem', color: '#666', marginTop: '0.5rem'}}>
-                        למוצר זה יש מספר סוגים. ניתן לבחור את האפשרויות בעמוד המוצר
+                        מחיר כולל משלוח לכל הארץ
                       </p>
                     </div>
-                  </a>
+
                 </div>
 
                 {/* Product 5 - ביאור הליקוטים */}
                 <div style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', transition: 'transform 0.3s ease'}}>
-                  <a href="#" style={{textDecoration: 'none', color: 'inherit'}}>
+
                     <img 
                       src="https://www.haesh-sheli.co.il/wp-content/uploads/woocommerce-placeholder-300x300.d110a0.webp" 
                       alt="ביאור הליקוטים"
@@ -492,11 +498,12 @@ export default function Store() {
                       <div style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
                         75.00 ₪
                       </div>
-                      <button style={{background: '#28a745', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
-                        הוספה לסל
-                      </button>
+                      <a href="/checkout?product=biur-halikutim&price=75" style={{textDecoration: 'none'}}>
+                        <button style={{background: '#28a745', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
+                          הוספה לסל - 75 ₪
+                        </button>
+                      </a>
                     </div>
-                  </a>
                 </div>
 
                 {/* Product 6 - בעקבות הבעל שם טוב - SALE */}
@@ -504,7 +511,7 @@ export default function Store() {
                   <div style={{position: 'absolute', top: '10px', right: '10px', background: '#dc3545', color: 'white', padding: '0.3rem 0.8rem', borderRadius: '15px', fontSize: '0.9rem', fontWeight: 'bold', zIndex: 2}}>
                     מבצע!!
                   </div>
-                  <a href="#" style={{textDecoration: 'none', color: 'inherit'}}>
+
                     <img 
                       src="https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/44-300x300.d110a0.webp" 
                       alt="בעקבות הבעל שם טוב"
@@ -527,16 +534,18 @@ export default function Store() {
                       <p style={{fontSize: '0.9rem', color: '#666', marginBottom: '1rem'}}>
                         המחיר המקורי היה: 150.00 ₪. המחיר הנוכחי הוא: 115.00 ₪.
                       </p>
-                      <button style={{background: '#28a745', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
-                        הוספה לסל
-                      </button>
+                      <a href="/checkout?product=bakvoth-baal-shem-tov&price=115" style={{textDecoration: 'none'}}>
+                        <button style={{background: '#28a745', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
+                          הוספה לסל - 115 ₪
+                        </button>
+                      </a>
                     </div>
-                  </a>
+
                 </div>
 
                 {/* Product 7 - הראש השנה שלי */}
                 <div style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', transition: 'transform 0.3s ease'}}>
-                  <a href="#" style={{textDecoration: 'none', color: 'inherit'}}>
+
                     <img 
                       src="https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/27-300x300.d110a0.webp" 
                       alt="הראש השנה שלי-ראש השנה"
@@ -555,11 +564,13 @@ export default function Store() {
                       <div style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
                         120.00 ₪
                       </div>
-                      <button style={{background: '#28a745', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
-                        הוספה לסל
-                      </button>
+                      <a href="/checkout?product=rosh-hashanah-sheli&price=120" style={{textDecoration: 'none'}}>
+                        <button style={{background: '#28a745', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
+                          הוספה לסל - 120 ₪
+                        </button>
+                      </a>
                     </div>
-                  </a>
+
                 </div>
 
                 {/* Product 8 - השתפכות הנפש כיס - SALE */}
@@ -567,7 +578,7 @@ export default function Store() {
                   <div style={{position: 'absolute', top: '10px', right: '10px', background: '#dc3545', color: 'white', padding: '0.3rem 0.8rem', borderRadius: '15px', fontSize: '0.9rem', fontWeight: 'bold', zIndex: 2}}>
                     מבצע!!
                   </div>
-                  <a href="#" style={{textDecoration: 'none', color: 'inherit'}}>
+
                     <img 
                       src="https://www.haesh-sheli.co.il/wp-content/uploads/2025/03/%D7%9E%D7%95%D7%A7%D7%90%D7%A4-%D7%94%D7%93%D7%9E%D7%99%D7%94-%D7%94%D7%A9%D7%AA%D7%A4%D7%9B%D7%95%D7%AA-%D7%94%D7%A0%D7%A4%D7%A9_800x600-300x300.b197b0.webp" 
                       alt="השתפכות הנפש כיס כריכה רכה"
@@ -584,16 +595,18 @@ export default function Store() {
                       <p style={{fontSize: '0.9rem', color: '#666', marginBottom: '1rem'}}>
                         המחיר המקורי היה: 20.00 ₪. המחיר הנוכחי הוא: 10.00 ₪.
                       </p>
-                      <button style={{background: '#28a745', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
-                        הוספה לסל
-                      </button>
+                      <a href="/checkout?product=hitpakut-hanefesh-kis&price=10" style={{textDecoration: 'none'}}>
+                        <button style={{background: '#28a745', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
+                          הוספה לסל - 10 ₪
+                        </button>
+                      </a>
                     </div>
-                  </a>
+
                 </div>
 
                 {/* Product 9 - השתפכות ומשיבת נפש */}
                 <div style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', transition: 'transform 0.3s ease'}}>
-                  <a href="#" style={{textDecoration: 'none', color: 'inherit'}}>
+
                     <img 
                       src="https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/41-300x300.d110a0.webp" 
                       alt="השתפכות ומשיבת נפש"
@@ -612,14 +625,16 @@ export default function Store() {
                       <div style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
                         20.00 ₪ – 35.00 ₪
                       </div>
-                      <button style={{background: '#dc3545', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
-                        בחר אפשרויות
-                      </button>
+                      <a href="/checkout?product=hitpakut-umeshivat-nefesh&price=35" style={{textDecoration: 'none'}}>
+                        <button style={{background: '#dc3545', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
+                          הוספה לסל - 35 ₪
+                        </button>
+                      </a>
                       <p style={{fontSize: '0.9rem', color: '#666', marginTop: '0.5rem'}}>
-                        למוצר זה יש מספר סוגים. ניתן לבחור את האפשרויות בעמוד המוצר
+                        מחיר כולל משלוח לכל הארץ
                       </p>
                     </div>
-                  </a>
+
                 </div>
 
                 {/* Product 10 - התגלות הדעת-פסח - SALE */}
@@ -627,7 +642,7 @@ export default function Store() {
                   <div style={{position: 'absolute', top: '10px', right: '10px', background: '#dc3545', color: 'white', padding: '0.3rem 0.8rem', borderRadius: '15px', fontSize: '0.9rem', fontWeight: 'bold', zIndex: 2}}>
                     מבצע!!
                   </div>
-                  <a href="#" style={{textDecoration: 'none', color: 'inherit'}}>
+
                     <img 
                       src="https://www.haesh-sheli.co.il/wp-content/uploads/2023/08/%D7%A9%D7%99%D7%A8-%D7%94%D7%A9%D7%99%D7%A8%D7%99%D7%9D-%D7%97%D7%A0%D7%95%D7%AA-%D7%A7%D7%A8%D7%9F-%D7%AA%D7%9E%D7%95%D7%A0%D7%AA-%D7%9E%D7%95%D7%A6%D7%A8-6-300x300.d110a0.webp" 
                       alt="התגלות הדעת-פסח"
@@ -650,16 +665,18 @@ export default function Store() {
                       <p style={{fontSize: '0.9rem', color: '#666', marginBottom: '1rem'}}>
                         המחיר המקורי היה: 170.00 ₪. המחיר הנוכחי הוא: 148.00 ₪.
                       </p>
-                      <button style={{background: '#28a745', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
-                        הוספה לסל
-                      </button>
+                      <a href="/checkout?product=hitgalut-hadaat-pesach&price=148" style={{textDecoration: 'none'}}>
+                        <button style={{background: '#28a745', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
+                          הוספה לסל - 148 ₪
+                        </button>
+                      </a>
                     </div>
-                  </a>
+
                 </div>
 
                 {/* Product 11 - התחלת ההתחלות-פורים */}
                 <div style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', transition: 'transform 0.3s ease'}}>
-                  <a href="#" style={{textDecoration: 'none', color: 'inherit'}}>
+
                     <img 
                       src="https://www.haesh-sheli.co.il/wp-content/uploads/2023/08/%D7%A9%D7%99%D7%A8-%D7%94%D7%A9%D7%99%D7%A8%D7%99%D7%9D-%D7%97%D7%A0%D7%95%D7%AA-%D7%A7%D7%A8%D7%9F-%D7%AA%D7%9E%D7%95%D7%A0%D7%AA-%D7%9E%D7%95%D7%A6%D7%A8-5-300x300.d110a0.webp" 
                       alt="התחלת ההתחלות-פורים"
@@ -672,16 +689,18 @@ export default function Store() {
                       <div style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
                         120.00 ₪
                       </div>
-                      <button style={{background: '#28a745', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
-                        הוספה לסל
-                      </button>
+                      <a href="/checkout?product=hathalat-hahathtalot-purim&price=120" style={{textDecoration: 'none'}}>
+                        <button style={{background: '#28a745', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
+                          הוספה לסל - 120 ₪
+                        </button>
+                      </a>
                     </div>
-                  </a>
+
                 </div>
 
                 {/* Product 12 - התלמיד הגדול */}
                 <div style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', transition: 'transform 0.3s ease'}}>
-                  <a href="#" style={{textDecoration: 'none', color: 'inherit'}}>
+
                     <img 
                       src="https://www.haesh-sheli.co.il/wp-content/uploads/2025/03/%D7%94%D7%AA%D7%9C%D7%9E%D7%99%D7%93-%D7%94%D7%92%D7%93%D7%95%D7%9C-300x300.b197b0.webp" 
                       alt="התלמיד הגדול"
@@ -694,16 +713,18 @@ export default function Store() {
                       <div style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
                         75.00 ₪
                       </div>
-                      <button style={{background: '#28a745', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
-                        הוספה לסל
-                      </button>
+                      <a href="/checkout?product=hatalmid-hagadol&price=75" style={{textDecoration: 'none'}}>
+                        <button style={{background: '#28a745', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
+                          הוספה לסל - 75 ₪
+                        </button>
+                      </a>
                     </div>
-                  </a>
+
                 </div>
 
                 {/* Product 13 - זמרת הארץ */}
                 <div style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', transition: 'transform 0.3s ease'}}>
-                  <a href="#" style={{textDecoration: 'none', color: 'inherit'}}>
+
                     <img 
                       src="https://www.haesh-sheli.co.il/wp-content/uploads/2023/08/%D7%96%D7%9E%D7%A8%D7%AA-%D7%94%D7%90%D7%A8%D7%A5-%D7%97%D7%A0%D7%95%D7%AA-%D7%A7%D7%A8%D7%9F-%D7%AA%D7%9E%D7%95%D7%A0%D7%AA-%D7%9E%D7%95%D7%A6%D7%A8-300x300.d110a0.webp" 
                       alt="זמרת הארץ"
@@ -716,11 +737,13 @@ export default function Store() {
                       <div style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
                         35.00 ₪
                       </div>
-                      <button style={{background: '#28a745', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
-                        הוספה לסל
-                      </button>
+                      <a href="/checkout?product=zemrat-haaretz&price=35" style={{textDecoration: 'none'}}>
+                        <button style={{background: '#28a745', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
+                          הוספה לסל - 35 ₪
+                        </button>
+                      </a>
                     </div>
-                  </a>
+
                 </div>
 
                 {/* Product 14 - זמירות לשבת ברסלב - SALE */}
@@ -728,7 +751,7 @@ export default function Store() {
                   <div style={{position: 'absolute', top: '10px', right: '10px', background: '#dc3545', color: 'white', padding: '0.3rem 0.8rem', borderRadius: '15px', fontSize: '0.9rem', fontWeight: 'bold', zIndex: 2}}>
                     מבצע!!
                   </div>
-                  <a href="#" style={{textDecoration: 'none', color: 'inherit'}}>
+
                     <img 
                       src="https://www.haesh-sheli.co.il/wp-content/uploads/2025/03/%D7%96%D7%9E%D7%99%D7%A8%D7%95%D7%AA-2-300x300.b197b0.webp" 
                       alt="חדש! זמירות לשבת ברסלב"
@@ -745,14 +768,16 @@ export default function Store() {
                       <p style={{fontSize: '0.9rem', color: '#666', marginBottom: '1rem'}}>
                         המחיר המקורי היה: 55.00 ₪. המחיר הנוכחי הוא: 35.00 ₪.
                       </p>
-                      <button style={{background: '#dc3545', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
-                        בחר אפשרויות
-                      </button>
+                      <a href="/checkout?product=zemirot-leshabbat-breslov&price=35" style={{textDecoration: 'none'}}>
+                        <button style={{background: '#dc3545', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
+                          הוספה לסל - 35 ₪
+                        </button>
+                      </a>
                       <p style={{fontSize: '0.9rem', color: '#666', marginTop: '0.5rem'}}>
-                        למוצר זה יש מספר סוגים. ניתן לבחור את האפשרויות בעמוד המוצר
+                        מחיר כולל משלוח חינם
                       </p>
                     </div>
-                  </a>
+
                 </div>
 
                 {/* Product 15 - ימי חג השבועות - SALE */}
@@ -760,7 +785,7 @@ export default function Store() {
                   <div style={{position: 'absolute', top: '10px', right: '10px', background: '#dc3545', color: 'white', padding: '0.3rem 0.8rem', borderRadius: '15px', fontSize: '0.9rem', fontWeight: 'bold', zIndex: 2}}>
                     מבצע!!
                   </div>
-                  <a href="#" style={{textDecoration: 'none', color: 'inherit'}}>
+
                     <img 
                       src="https://www.haesh-sheli.co.il/wp-content/uploads/2023/08/%D7%A9%D7%99%D7%A8-%D7%94%D7%A9%D7%99%D7%A8%D7%99%D7%9D-%D7%97%D7%A0%D7%95%D7%AA-%D7%A7%D7%A8%D7%9F-%D7%AA%D7%9E%D7%95%D7%A0%D7%AA-%D7%9E%D7%95%D7%A6%D7%A8-6-300x300.d110a0.webp" 
                       alt="חדש! ימי חג השבועות"
@@ -777,16 +802,18 @@ export default function Store() {
                       <p style={{fontSize: '0.9rem', color: '#666', marginBottom: '1rem'}}>
                         המחיר המקורי היה: 10.00 ₪. המחיר הנוכחי הוא: 7.00 ₪.
                       </p>
-                      <button style={{background: '#28a745', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
-                        הוספה לסל
-                      </button>
+                      <a href="/checkout?product=yemei-chag-hashavuot&price=7" style={{textDecoration: 'none'}}>
+                        <button style={{background: '#28a745', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
+                          הוספה לסל - 7 ₪
+                        </button>
+                      </a>
                     </div>
-                  </a>
+
                 </div>
 
                 {/* Product 16 - חומש ליקוטי הלכות */}
                 <div style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', transition: 'transform 0.3s ease'}}>
-                  <a href="#" style={{textDecoration: 'none', color: 'inherit'}}>
+
                     <img 
                       src="https://www.haesh-sheli.co.il/wp-content/uploads/2023/08/28-300x300.d110a0.webp" 
                       alt="חומש ליקוטי הלכות"
@@ -805,14 +832,16 @@ export default function Store() {
                       <div style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
                         150.00 ₪ – 175.00 ₪
                       </div>
-                      <button style={{background: '#dc3545', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
-                        בחר אפשרויות
-                      </button>
+                      <a href="/checkout?product=chumash-likutei-halachot&price=175" style={{textDecoration: 'none'}}>
+                        <button style={{background: '#dc3545', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
+                          הוספה לסל - 175 ₪
+                        </button>
+                      </a>
                       <p style={{fontSize: '0.9rem', color: '#666', marginTop: '0.5rem'}}>
-                        למוצר זה יש מספר סוגים. ניתן לבחור את האפשרויות בעמוד המוצר
+                        מחיר כולל משלוח חינם לכל הארץ
                       </p>
                     </div>
-                  </a>
+
                 </div>
 
               </div>
