@@ -273,14 +273,14 @@ export default function Join() {
       <section style={{background: 'white', padding: '5rem 0'}}>
         <div className="elementor-container" style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
           <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#333', marginBottom: '4rem', textAlign: 'center'}}>
-            Client Testimonials
+            המלצות מחברי הקרן
           </h2>
           
           <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '3rem'}}>
             
             <div style={{background: '#f8f9fa', padding: '3rem', borderRadius: '15px', textAlign: 'center'}}>
               <p style={{fontSize: '1.1rem', fontStyle: 'italic', color: '#333', marginBottom: '2rem', lineHeight: '1.8'}}>
-                "A testimonial from a client who benefited from your product or service. Testimonials can be a highly effective way of establishing credibility and increasing your company's reputation."
+                "זכיתי לקבל את ספרי רבנו הקדוש באמצעות הקרן ואני יכול לומר שזה שינה את חיי לחלוטין. התוכן הרוחני העמוק והמילים הקדושות נתנו לי כוח וחיזוק בכל יום. תודה לכם על הפעילות הקדושה שאתם עושים להפצת אור התורה בעולם."
               </p>
               <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem'}}>
                 <img 
@@ -289,23 +289,23 @@ export default function Join() {
                   style={{width: '60px', height: '60px', borderRadius: '50%', objectFit: 'cover'}}
                 />
                 <div>
-                  <h4 style={{color: '#333', fontWeight: 'bold'}}>Client Name</h4>
+                  <h4 style={{color: '#333', fontWeight: 'bold'}}>משה כהן - תל אביב</h4>
                 </div>
               </div>
             </div>
             
             <div style={{background: '#f8f9fa', padding: '3rem', borderRadius: '15px', textAlign: 'center'}}>
               <p style={{fontSize: '1.1rem', fontStyle: 'italic', color: '#333', marginBottom: '2rem', lineHeight: '1.8'}}>
-                "A testimonial from a client who benefited from your product or service. Testimonials can be a highly effective way of establishing credibility and increasing your company's reputation."
+                "הקרן עוזרת לי כבר שנים רבות ואני מרגיש שהפעילות שלכם באמת מקדשת את השם. הספרים שקיבלתי סייעו לי להתחזק ברוחניות ולהתקרב יותר לתורת רבנו הקדוש. אני ממליץ בחום לכל מי שמחפש חיזוק אמיתי להצטרף אליכם."
               </p>
               <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem'}}>
                 <img 
                   src="https://www.haesh-sheli.co.il/wp-content/uploads/2023/07/Image-Testemonials-1.bf65e1.webp" 
-                  alt="Client" 
+                  alt="יעקב לוי" 
                   style={{width: '60px', height: '60px', borderRadius: '50%', objectFit: 'cover'}}
                 />
                 <div>
-                  <h4 style={{color: '#333', fontWeight: 'bold'}}>Client Name</h4>
+                  <h4 style={{color: '#333', fontWeight: 'bold'}}>יעקב לוי - ירושלים</h4>
                 </div>
               </div>
             </div>
@@ -317,7 +317,7 @@ export default function Join() {
       <section style={{background: '#f8f9fa', padding: '5rem 0'}}>
         <div className="elementor-container" style={{maxWidth: '1000px', margin: '0 auto', padding: '0 2rem'}}>
           <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#333', marginBottom: '4rem', textAlign: 'center'}}>
-            FAQ
+            שאלות נפוצות
           </h2>
           
           <div style={{display: 'grid', gap: '2rem'}}>

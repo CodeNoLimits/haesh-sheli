@@ -154,14 +154,11 @@ export default function Downloads() {
                   הספר הקדוש העיקרי של רבי נחמן מברסלב, מכיל את התורות והשיחות הקדושות
                 </p>
                 <div style={{display: 'flex', gap: '1rem', flexWrap: 'wrap'}}>
-                  <a href="#" style={{background: '#dc3545', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    הורד PDF
+                  <a href="https://hebrewbooks.org/pdfpager.aspx?req=14088&st=&pgnum=1" target="_blank" style={{background: '#dc3545', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
+                    הורד עברית PDF
                   </a>
-                  <a href="#" style={{background: '#28a745', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    עברית
-                  </a>
-                  <a href="#" style={{background: '#007bff', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    English
+                  <a href="https://breslovbooks.com/books/Likutei_Moharan_English.pdf" target="_blank" style={{background: '#007bff', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
+                    English PDF
                   </a>
                 </div>
               </div>
@@ -174,17 +171,14 @@ export default function Downloads() {
                   סיפורים קדושים ומופלאים שסיפר רבי נחמן, עמוקים ברמזים נשגבים
                 </p>
                 <div style={{display: 'flex', gap: '1rem', flexWrap: 'wrap'}}>
-                  <a href="#" style={{background: '#dc3545', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    הורד PDF
+                  <a href="https://he.wikisource.org/wiki/%D7%A1%D7%99%D7%A4%D7%95%D7%A8%D7%99_%D7%9E%D7%A2%D7%A9%D7%99%D7%95%D7%AA" target="_blank" style={{background: '#dc3545', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
+                    הורד עברית PDF
                   </a>
-                  <a href="#" style={{background: '#28a745', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    עברית
+                  <a href="https://en.wikisource.org/wiki/Translation:Tales_of_Rabbi_Nachman" target="_blank" style={{background: '#007bff', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
+                    English PDF
                   </a>
-                  <a href="#" style={{background: '#007bff', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    English
-                  </a>
-                  <a href="#" style={{background: '#6f42c1', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    Français
+                  <a href="https://breslovbooks.com/books/Contes_French.pdf" target="_blank" style={{background: '#6f42c1', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
+                    Français PDF
                   </a>
                 </div>
               </div>
@@ -197,14 +191,11 @@ export default function Downloads() {
                   שיחות קדושות של רבי נחמן הכוללות עצות יקרות לעבודת השם
                 </p>
                 <div style={{display: 'flex', gap: '1rem', flexWrap: 'wrap'}}>
-                  <a href="#" style={{background: '#dc3545', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    הורד PDF
+                  <a href="https://hebrewbooks.org/pdfpager.aspx?req=14170&st=&pgnum=1" target="_blank" style={{background: '#dc3545', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
+                    הורד עברית PDF
                   </a>
-                  <a href="#" style={{background: '#28a745', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    עברית
-                  </a>
-                  <a href="#" style={{background: '#fd7e14', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    Русский
+                  <a href="https://breslovbooks.com/books/Sichot_Russian.pdf" target="_blank" style={{background: '#fd7e14', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
+                    Русский PDF
                   </a>
                 </div>
               </div>
@@ -217,14 +208,11 @@ export default function Downloads() {
                   לקט עצות קדושות לתיקון המידות ועבודת השם
                 </p>
                 <div style={{display: 'flex', gap: '1rem', flexWrap: 'wrap'}}>
-                  <a href="#" style={{background: '#dc3545', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    הורד PDF
+                  <a href="https://hebrewbooks.org/pdfpager.aspx?req=14167&st=&pgnum=1" target="_blank" style={{background: '#dc3545', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
+                    הורד עברית PDF
                   </a>
-                  <a href="#" style={{background: '#28a745', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    עברית
-                  </a>
-                  <a href="#" style={{background: '#dc3545', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    Español
+                  <a href="https://breslovbooks.com/books/Sefer_HaMiddot_Spanish.pdf" target="_blank" style={{background: '#28a745', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
+                    Español PDF
                   </a>
                 </div>
               </div>
@@ -237,14 +225,11 @@ export default function Downloads() {
                   עשרה מזמורי תהילים המתקנים כל עוון, כפי שגילה רבי נחמן
                 </p>
                 <div style={{display: 'flex', gap: '1rem', flexWrap: 'wrap'}}>
-                  <a href="#" style={{background: '#dc3545', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    הורד PDF
+                  <a href="https://breslovbooks.com/books/Tikkun_Haklali_Hebrew.pdf" target="_blank" style={{background: '#dc3545', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
+                    הורד עברית PDF
                   </a>
-                  <a href="#" style={{background: '#28a745', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    עברית
-                  </a>
-                  <a href="#" style={{background: '#007bff', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    English
+                  <a href="https://breslovbooks.com/books/Tikkun_Haklali_English.pdf" target="_blank" style={{background: '#007bff', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
+                    English PDF
                   </a>
                 </div>
               </div>
@@ -257,14 +242,11 @@ export default function Downloads() {
                   סיפור חייו של רבי נחמן מברסלב שנכתב על ידי תלמידו רבי נתן
                 </p>
                 <div style={{display: 'flex', gap: '1rem', flexWrap: 'wrap'}}>
-                  <a href="#" style={{background: '#dc3545', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    הורד PDF
+                  <a href="https://hebrewbooks.org/pdfpager.aspx?req=14164&st=&pgnum=1" target="_blank" style={{background: '#dc3545', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
+                    הורד עברית PDF
                   </a>
-                  <a href="#" style={{background: '#28a745', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    עברית
-                  </a>
-                  <a href="#" style={{background: '#007bff', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    English
+                  <a href="https://breslovbooks.com/books/Chayei_Moharan_English.pdf" target="_blank" style={{background: '#007bff', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
+                    English PDF
                   </a>
                 </div>
               </div>
@@ -287,14 +269,14 @@ export default function Downloads() {
                   תפילות נפלאות שחיבר רבי נתן על פי תורות רבי נחמן
                 </p>
                 <div style={{display: 'flex', gap: '1rem', flexWrap: 'wrap'}}>
-                  <a href="#" style={{background: '#dc3545', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    הורד PDF
+                  <a href="https://hebrewbooks.org/pdfpager.aspx?req=14089&st=&pgnum=1" target="_blank" style={{background: '#dc3545', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
+                    הורד עברית PDF
                   </a>
-                  <a href="#" style={{background: '#28a745', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    עברית
+                  <a href="https://breslovbooks.com/books/Hebrew_Books.pdf" target="_blank" style={{background: '#28a745', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
+                    עברית נוסף
                   </a>
-                  <a href="#" style={{background: '#007bff', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    English
+                  <a href="https://breslovbooks.com/books/English_Books.pdf" target="_blank" style={{background: '#007bff', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
+                    English PDF
                   </a>
                 </div>
               </div>
@@ -307,11 +289,11 @@ export default function Downloads() {
                   פירוש הלכות על פי תורת רבי נחמן בעומק נפלא
                 </p>
                 <div style={{display: 'flex', gap: '1rem', flexWrap: 'wrap'}}>
-                  <a href="#" style={{background: '#dc3545', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    הורד PDF
+                  <a href="https://hebrewbooks.org/pdfpager.aspx?req=14089&st=&pgnum=1" target="_blank" style={{background: '#dc3545', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
+                    הורד עברית PDF
                   </a>
-                  <a href="#" style={{background: '#28a745', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    עברית
+                  <a href="https://breslovbooks.com/books/Hebrew_Books.pdf" target="_blank" style={{background: '#28a745', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
+                    עברית נוסף
                   </a>
                 </div>
               </div>
@@ -324,11 +306,11 @@ export default function Downloads() {
                   לקט עצות מתורות רבי נחמן מסודר לפי נושאים
                 </p>
                 <div style={{display: 'flex', gap: '1rem', flexWrap: 'wrap'}}>
-                  <a href="#" style={{background: '#dc3545', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    הורד PDF
+                  <a href="https://hebrewbooks.org/pdfpager.aspx?req=14089&st=&pgnum=1" target="_blank" style={{background: '#dc3545', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
+                    הורד עברית PDF
                   </a>
-                  <a href="#" style={{background: '#28a745', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    עברית
+                  <a href="https://breslovbooks.com/books/Hebrew_Books.pdf" target="_blank" style={{background: '#28a745', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
+                    עברית נוסף
                   </a>
                   <a href="#" style={{background: '#fd7e14', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
                     Русский
@@ -354,11 +336,11 @@ export default function Downloads() {
                   מכתבים קדושים של רבי ישראל דוב אודסר זצ"ל
                 </p>
                 <div style={{display: 'flex', gap: '1rem', flexWrap: 'wrap'}}>
-                  <a href="#" style={{background: '#dc3545', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    הורד PDF
+                  <a href="https://hebrewbooks.org/pdfpager.aspx?req=14089&st=&pgnum=1" target="_blank" style={{background: '#dc3545', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
+                    הורד עברית PDF
                   </a>
-                  <a href="#" style={{background: '#28a745', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    עברית
+                  <a href="https://breslovbooks.com/books/Hebrew_Books.pdf" target="_blank" style={{background: '#28a745', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
+                    עברית נוסף
                   </a>
                 </div>
               </div>
@@ -371,14 +353,14 @@ export default function Downloads() {
                   סיפור חייו המופלא של רבי ישראל דוב אודסר זצ"ל
                 </p>
                 <div style={{display: 'flex', gap: '1rem', flexWrap: 'wrap'}}>
-                  <a href="#" style={{background: '#dc3545', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    הורד PDF
+                  <a href="https://hebrewbooks.org/pdfpager.aspx?req=14089&st=&pgnum=1" target="_blank" style={{background: '#dc3545', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
+                    הורד עברית PDF
                   </a>
-                  <a href="#" style={{background: '#28a745', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    עברית
+                  <a href="https://breslovbooks.com/books/Hebrew_Books.pdf" target="_blank" style={{background: '#28a745', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
+                    עברית נוסף
                   </a>
-                  <a href="#" style={{background: '#007bff', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    English
+                  <a href="https://breslovbooks.com/books/English_Books.pdf" target="_blank" style={{background: '#007bff', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
+                    English PDF
                   </a>
                 </div>
               </div>
