@@ -251,6 +251,76 @@ export default function Store() {
                 </div>
               </div>
 
+              {/* Price Range */}
+              <div style={{marginBottom: '2rem'}}>
+                <h4 style={{fontWeight: 'bold', marginBottom: '1rem', color: '#333'}}>טווח מחירים</h4>
+                <div style={{marginBottom: '1rem'}}>
+                  <input 
+                    type="range" 
+                    min="0" 
+                    max="500" 
+                    defaultValue="250" 
+                    style={{
+                      width: '100%', 
+                      height: '6px', 
+                      background: '#ddd', 
+                      outline: 'none', 
+                      borderRadius: '3px',
+                      appearance: 'none',
+                      WebkitAppearance: 'none'
+                    }}
+                  />
+                </div>
+                <div style={{display: 'flex', gap: '1rem', alignItems: 'center'}}>
+                  <div style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
+                    <input 
+                      type="number" 
+                      placeholder="0" 
+                      min="0" 
+                      style={{
+                        width: '60px', 
+                        padding: '0.5rem', 
+                        border: '1px solid #ddd', 
+                        borderRadius: '4px',
+                        fontSize: '0.9rem'
+                      }}
+                    />
+                    <span style={{color: '#666'}}>₪</span>
+                  </div>
+                  <span style={{color: '#666'}}>-</span>
+                  <div style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
+                    <input 
+                      type="number" 
+                      placeholder="500" 
+                      min="0" 
+                      style={{
+                        width: '60px', 
+                        padding: '0.5rem', 
+                        border: '1px solid #ddd', 
+                        borderRadius: '4px',
+                        fontSize: '0.9rem'
+                      }}
+                    />
+                    <span style={{color: '#666'}}>₪</span>
+                  </div>
+                </div>
+                <button 
+                  style={{
+                    marginTop: '1rem',
+                    background: '#dc3545', 
+                    color: 'white', 
+                    border: 'none', 
+                    padding: '0.8rem 1.5rem', 
+                    borderRadius: '5px', 
+                    cursor: 'pointer',
+                    width: '100%',
+                    fontWeight: 'bold'
+                  }}
+                >
+                  הצג תוצאות
+                </button>
+              </div>
+
               {/* Additional Categories */}
               <div style={{marginBottom: '2rem'}}>
                 <div style={{display: 'flex', flexDirection: 'column', gap: '0.5rem'}}>
@@ -692,7 +762,7 @@ export default function Store() {
                   </div>
                   <a href="#" style={{textDecoration: 'none', color: 'inherit'}}>
                     <img 
-                      src="https://www.haesh-sheli.co.il/wp-content/uploads/woocommerce-placeholder-300x300.d110a0.webp" 
+                      src="https://www.haesh-sheli.co.il/wp-content/uploads/2023/08/%D7%A9%D7%99%D7%A8-%D7%94%D7%A9%D7%99%D7%A8%D7%99%D7%9D-%D7%97%D7%A0%D7%95%D7%AA-%D7%A7%D7%A8%D7%9F-%D7%AA%D7%9E%D7%95%D7%A0%D7%AA-%D7%9E%D7%95%D7%A6%D7%A8-6-300x300.d110a0.webp" 
                       alt="חדש! ימי חג השבועות"
                       style={{width: '100%', height: '300px', objectFit: 'cover'}}
                     />
