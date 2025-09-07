@@ -2579,6 +2579,697 @@ export const realBreslovProducts: Record<string, Product> = {
     tags: ['תהילים', 'תפילות', 'עור', 'מהודר', 'פירושים'],
     isActive: true,
     isFeatured: false
+  },
+
+  'hishtapchut-hanefesh': {
+    id: 'hishtapchut-hanefesh',
+    name: 'השתפכות הנפש',
+    nameEnglish: 'Outpouring of the Soul',
+    description: 'השתפכות הנפש - ספר יסוד בתורת רבי נחמן מברסלב העוסק בהתבודדות והתפללות מעומק הלב. הספר מכיל הדרכות מעשיות כיצד לשפוך את הנפש לפני הבורא.',
+    descriptionEnglish: 'Outpouring of the Soul - a foundational book in Rabbi Nachman\'s teachings about solitude and heartfelt prayer. Contains practical guidance on how to pour out one\'s soul before the Creator.',
+    category: 'תפילות',
+    subcategory: 'התבודדות',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'הוצאת נחל נובע מקור חכמה',
+    language: 'עברית',
+    pages: 250,
+    isbn: '978-965-7023-37-0',
+    images: [
+      '@assets/השתפכות הנפש 1_1757281125907.jpg'
+    ],
+    variants: [
+      {
+        id: 'leather-deluxe',
+        format: 'עור מהודר',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '20*14',
+        volumes: 1,
+        price: 95,
+        inStock: true,
+        stockQuantity: 18
+      }
+    ],
+    features: [
+      'כריכת עור מהודרת עם הטבעות זהב',
+      'הדרכות להתבודדות ותפילה',
+      'נייר איכותי מעולה',
+      'הדפסה ברורה וחדה'
+    ],
+    tags: ['תפילות', 'התבודדות', 'עור', 'מהודר'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'zimrat-haaretz': {
+    id: 'zimrat-haaretz',
+    name: 'זמרת הארץ',
+    nameEnglish: 'Song of the Land',
+    description: 'זמרת הארץ עם אוב יצחק מעלם ענקל - ספר המכיל ניגונים וזמירות מתורתו של רבינו הקדוש, עם פירושים מיוחדים ממקובלי דורנו.',
+    descriptionEnglish: 'Song of the Land with Or Yitzchak from Alem Angel - contains melodies and songs from our holy Rebbe\'s teachings, with special commentaries from the Kabbalists of our generation.',
+    category: 'ניגונים וזמירות',
+    subcategory: 'שירים רוחניים',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'הוצאת נחל נובע מקור חכמה',
+    language: 'עברית',
+    pages: 180,
+    isbn: '978-965-7023-38-7',
+    images: [
+      '@assets/זמרת הארץ 1_1757281125908.jpg'
+    ],
+    variants: [
+      {
+        id: 'leather-deluxe',
+        format: 'עור מהודר',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '20*14',
+        volumes: 1,
+        price: 85,
+        inStock: true,
+        stockQuantity: 22
+      }
+    ],
+    features: [
+      'כריכת עור מהודרת עם הטבעות זהב',
+      'ניגונים וזמירות רוחניות',
+      'פירושים מיוחדים מקבליים',
+      'הדפסה ברורה וחדה'
+    ],
+    tags: ['ניגונים', 'זמירות', 'עור', 'מהודר', 'רוחניות'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'chayei-moharan': {
+    id: 'chayei-moharan',
+    name: 'חיי מוהר"ן',
+    nameEnglish: 'Life of Moharan',
+    description: 'חיי מוהר"ן - ביוגרפיה מפורטת של רבינו הקדוש רבי נחמן מברסלב, כתוב על ידי תלמידו הנאמן רבי נתן מברסלב. הספר מכיל פרטים מחיי רבינו ותורותיו.',
+    descriptionEnglish: 'Life of Moharan - detailed biography of our holy Rebbe Rabbi Nachman of Breslov, written by his faithful disciple Rabbi Nathan of Breslov. Contains details from Rabbenu\'s life and teachings.',
+    category: 'ביוגרפיה',
+    subcategory: 'חיי רבינו',
+    author: 'רבי נתן מברסלב',
+    publisher: 'הוצאת נחל נובע מקור חכמה',
+    language: 'עברית',
+    pages: 420,
+    isbn: '978-965-7023-39-4',
+    images: [
+      '@assets/חיי מוהרן_1757281125908.jpg'
+    ],
+    variants: [
+      {
+        id: 'leather-deluxe',
+        format: 'עור מהודר',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '20*14',
+        volumes: 1,
+        price: 110,
+        inStock: true,
+        stockQuantity: 15
+      }
+    ],
+    features: [
+      'כריכת עור מהודרת עם הטבעות זהב',
+      'ביוגרפיה מפורטת של רבינו',
+      'כתוב על ידי רבי נתן',
+      'הדפסה ברורה וחדה'
+    ],
+    tags: ['ביוגרפיה', 'חיי רבינו', 'עור', 'מהודר', 'רבי נתן'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'yemei-moharan': {
+    id: 'yemei-moharan',
+    name: 'ימי מוהר"ן',
+    nameEnglish: 'Days of Moharan',
+    description: 'ימי מוהר"ן - תיאור יומיומי של חיי רבינו הקדוש, הרגליו הקדושים, וההנהגות הרוחניות שלו. ספר חשוב להבנת אישיותו של רבינו.',
+    descriptionEnglish: 'Days of Moharan - daily description of our holy Rebbe\'s life, his holy habits, and his spiritual conduct. An important book for understanding Rabbenu\'s personality.',
+    category: 'ביוגרפיה',
+    subcategory: 'חיי יום יום',
+    author: 'רבי נתן מברסלב',
+    publisher: 'הוצאת נחל נובע מקור חכמה',
+    language: 'עברית',
+    pages: 350,
+    isbn: '978-965-7023-40-0',
+    images: [
+      '@assets/ימי מוהרנת 1_1757281125909.jpg'
+    ],
+    variants: [
+      {
+        id: 'leather-deluxe',
+        format: 'עור מהודר',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '20*14',
+        volumes: 1,
+        price: 105,
+        inStock: true,
+        stockQuantity: 16
+      }
+    ],
+    features: [
+      'כריכת עור מהודרת עם הטבעות זהב',
+      'תיאור יומיומי של חיי רבינו',
+      'הנהגות רוחניות וקדושות',
+      'הדפסה ברורה וחדה'
+    ],
+    tags: ['ביוגרפיה', 'יום יום', 'עור', 'מהודר', 'הנהגות'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'yakara-deshabbata': {
+    id: 'yakara-deshabbata',
+    name: 'יקרא דשבתא',
+    nameEnglish: 'Precious of Sabbath',
+    description: 'יקרא דשבתא - ספר מיוחד העוסק בקדושת השבת ומעלתה העליונה. מכיל תורות וביאורים על הלכות שבת ורוחניות השבת מתורתו של רבינו.',
+    descriptionEnglish: 'Precious of Sabbath - special book dealing with the holiness of Sabbath and its supreme virtue. Contains teachings and explanations on Sabbath laws and Sabbath spirituality from Rabbenu\'s teachings.',
+    category: 'מועדי השנה',
+    subcategory: 'שבת',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'הוצאת נחל נובע מקור חכמה',
+    language: 'עברית',
+    pages: 280,
+    isbn: '978-965-7023-41-7',
+    images: [
+      '@assets/יקרא דשבתא 1_1757281125909.jpg'
+    ],
+    variants: [
+      {
+        id: 'leather-deluxe',
+        format: 'עור מהודר',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '20*14',
+        volumes: 1,
+        price: 90,
+        inStock: true,
+        stockQuantity: 20
+      }
+    ],
+    features: [
+      'כריכת עור מהודרת עם הטבעות זהב',
+      'תורות על קדושת השבת',
+      'הלכות ורוחניות השבת',
+      'הדפסה ברורה וחדה'
+    ],
+    tags: ['שבת', 'מועדים', 'עור', 'מהודר', 'הלכות'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'kochvei-or-2': {
+    id: 'kochvei-or-2',
+    name: 'כוכבי אור - כרך ב',
+    nameEnglish: 'Stars of Light - Volume 2',
+    description: 'כוכבי אור כרך שני - המשך הספר החשוב המכיל אורות וחידושים בתורתו של רבינו הקדוש. ספר זה מאיר בחכמתו את הדרך לעבודת השם.',
+    descriptionEnglish: 'Stars of Light Volume 2 - continuation of the important book containing lights and innovations in our holy Rebbe\'s teachings. This book illuminates the path to serving God with its wisdom.',
+    category: 'ספרי רבנו',
+    subcategory: 'חידושים ובאורים',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'הוצאת נחל נובע מקור חכמה',
+    language: 'עברית',
+    pages: 380,
+    isbn: '978-965-7023-42-4',
+    images: [
+      '@assets/כוכבי אור 2_1757281125909.jpg'
+    ],
+    variants: [
+      {
+        id: 'leather-deluxe',
+        format: 'עור מהודר',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '20*14',
+        volumes: 1,
+        price: 115,
+        inStock: true,
+        stockQuantity: 14
+      }
+    ],
+    features: [
+      'כריכת עור מהודרת עם הטבעות זהב',
+      'חידושים בתורתו של רבינו',
+      'אורות וביאורים עמוקים',
+      'הדפסה ברורה וחדה'
+    ],
+    tags: ['חידושים', 'אורות', 'עור', 'מהודר', 'עמוק'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'likutei-moharan-deluxe': {
+    id: 'likutei-moharan-deluxe',
+    name: 'ליקוטי מוהר"ן - מהדורה מהודרת',
+    nameEnglish: 'Likutei Moharan - Deluxe Edition',
+    description: 'ליקוטי מוהר"ן מהדורה מהודרת - החיבור הגדול של רבינו הקדוש במהדורה יוקרתית. מכיל את כל התורות החשובות והיסודיות של רבי נחמן מברסלב.',
+    descriptionEnglish: 'Likutei Moharan Deluxe Edition - our holy Rebbe\'s great work in a luxury edition. Contains all the important and fundamental teachings of Rabbi Nachman of Breslov.',
+    category: 'ספרי רבנו',
+    subcategory: 'ליקוטי מוהרן',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'הוצאת נחל נובע מקור חכמה',
+    language: 'עברית',
+    pages: 850,
+    isbn: '978-965-7023-43-1',
+    images: [
+      '@assets/ליקוטי מוהרן 1_1757281125909.jpg'
+    ],
+    variants: [
+      {
+        id: 'leather-deluxe',
+        format: 'עור מהודר',
+        binding: 'קשה',
+        size: 'גדול',
+        dimensions: '24*17',
+        volumes: 1,
+        price: 180,
+        inStock: true,
+        stockQuantity: 8
+      }
+    ],
+    features: [
+      'כריכת עור מהודרת עם הטבעות זהב',
+      'החיבור הגדול של רבינו',
+      'מהדורה יוקרתית ומהודרת',
+      'הדפסה ברורה וחדה'
+    ],
+    tags: ['ליקוטי מוהרן', 'מהודר', 'עור', 'יוקרתי', 'גדול'],
+    isActive: true,
+    isFeatured: true
+  },
+
+  'likutei-moharan-mefarshim': {
+    id: 'likutei-moharan-mefarshim',
+    name: 'ליקוטי מוהר"ן עם מפרשים',
+    nameEnglish: 'Likutei Moharan with Commentaries',
+    description: 'ליקוטי מוהר"ן עם מפרשים - המהדורה המלאה של החיבור הגדול של רבינו עם פירושים מקיפים ממפרשי הדורות. כולל ביאורים נוספים והערות מפרטות.',
+    descriptionEnglish: 'Likutei Moharan with Commentaries - complete edition of Rabbenu\'s great work with comprehensive commentaries from the interpreters of the generations. Includes additional explanations and detailed notes.',
+    category: 'ספרי רבנו',
+    subcategory: 'ליקוטי מוהרן עם פירושים',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'הוצאת נחל נובע מקור חכמה',
+    language: 'עברית',
+    pages: 1200,
+    isbn: '978-965-7023-44-8',
+    images: [
+      '@assets/ליקוטי מוהרן עם מפרשים 1_1757281125909.jpg'
+    ],
+    variants: [
+      {
+        id: 'leather-deluxe',
+        format: 'עור מהודר',
+        binding: 'קשה',
+        size: 'גדול',
+        dimensions: '24*17',
+        volumes: 1,
+        price: 220,
+        inStock: true,
+        stockQuantity: 6
+      }
+    ],
+    features: [
+      'כריכת עור מהודרת עם הטבעות זהב',
+      'פירושים מקיפים ממפרשי הדורות',
+      'ביאורים נוספים והערות',
+      'הדפסה ברורה וחדה'
+    ],
+    tags: ['ליקוטי מוהרן', 'פירושים', 'עור', 'מהודר', 'מקיף'],
+    isActive: true,
+    isFeatured: true
+  },
+
+  'likutei-etzot-deluxe': {
+    id: 'likutei-etzot-deluxe',
+    name: 'ליקוטי עצות - מהדורה מהודרת',
+    nameEnglish: 'Likutei Etzot - Deluxe Edition',
+    description: 'ליקוטי עצות במהדורה מהודרת - אוסף העצות המעשיות החשוב ביותר מתורתו של רבינו, ערוך על פי נושאים ומסודר בסדר אלפבתי לקלות השימוש.',
+    descriptionEnglish: 'Likutei Etzot Deluxe Edition - the most important collection of practical advice from Rabbenu\'s teachings, arranged by topics and organized alphabetically for ease of use.',
+    category: 'עצות',
+    subcategory: 'ליקוטי עצות',
+    author: 'רבי נתן מברסלב',
+    publisher: 'הוצאת נחל נובע מקור חכמה',
+    language: 'עברית',
+    pages: 450,
+    isbn: '978-965-7023-45-5',
+    images: [
+      '@assets/ליקוטי עצות 1_1757281125909.jpg'
+    ],
+    variants: [
+      {
+        id: 'leather-deluxe',
+        format: 'עור מהודר',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '20*14',
+        volumes: 1,
+        price: 130,
+        inStock: true,
+        stockQuantity: 12
+      }
+    ],
+    features: [
+      'כריכת עור מהודרת עם הטבעות זהב',
+      'עצות מעשיות לחיי יום יום',
+      'סידור אלפבתי לקלות השימוש',
+      'הדפסה ברורה וחדה'
+    ],
+    tags: ['עצות', 'מעשי', 'עור', 'מהודר', 'אלפבתי'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'likutei-tefilot-deluxe': {
+    id: 'likutei-tefilot-deluxe',
+    name: 'ליקוטי תפילות - מהדורה מהודרת',
+    nameEnglish: 'Likutei Tefilot - Deluxe Edition',
+    description: 'ליקוטי תפילות במהדורה מהודרת - אוסף התפילות המיוחדות של רבי נתן מברסלב הנוגעות לכל תחומי החיים. כל תפילה מבוססת על תורה מליקוטי מוהרן.',
+    descriptionEnglish: 'Likutei Tefilot Deluxe Edition - collection of special prayers by Rabbi Nathan of Breslov touching all areas of life. Each prayer is based on a teaching from Likutei Moharan.',
+    category: 'תפילות',
+    subcategory: 'ליקוטי תפילות',
+    author: 'רבי נתן מברסלב',
+    publisher: 'הוצאת נחל נובע מקור חכמה',
+    language: 'עברית',
+    pages: 650,
+    isbn: '978-965-7023-46-2',
+    images: [
+      '@assets/ליקוטי תפילות 1_1757281125910.jpg'
+    ],
+    variants: [
+      {
+        id: 'leather-deluxe',
+        format: 'עור מהודר',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '20*14',
+        volumes: 1,
+        price: 140,
+        inStock: true,
+        stockQuantity: 10
+      }
+    ],
+    features: [
+      'כריכת עור מהודרת עם הטבעות זהב',
+      'תפילות מיוחדות לכל תחומי החיים',
+      'מבוסס על ליקוטי מוהרן',
+      'הדפסה ברורה וחדה'
+    ],
+    tags: ['תפילות', 'רבי נתן', 'עור', 'מהודר', 'מיוחד'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'michtavei-rabbi-natan': {
+    id: 'michtavei-rabbi-natan',
+    name: 'מכתבי רבי נתן - בני יהודה',
+    nameEnglish: 'Letters of Rabbi Nathan - Bnei Yehuda',
+    description: 'מכתבי רבי נתן בני יהודה - אוסף המכתבים החשוב של רבי נתן מברסלב עם קומנטרים צורפים. המכתבים מכילים הדרכות רוחניות עמוקות ועצות מעשיות.',
+    descriptionEnglish: 'Letters of Rabbi Nathan Bnei Yehuda - important collection of letters by Rabbi Nathan of Breslov with attached commentaries. The letters contain deep spiritual guidance and practical advice.',
+    category: 'שיחות וביאורים',
+    subcategory: 'מכתבים',
+    author: 'רבי נתן מברסלב',
+    publisher: 'הוצאת נחל נובע מקור חכמה',
+    language: 'עברית',
+    pages: 320,
+    isbn: '978-965-7023-47-9',
+    images: [
+      '@assets/מכתבי ר נתן 1_1757281125910.jpg'
+    ],
+    variants: [
+      {
+        id: 'leather-deluxe',
+        format: 'עור מהודר',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '20*14',
+        volumes: 1,
+        price: 120,
+        inStock: true,
+        stockQuantity: 14
+      }
+    ],
+    features: [
+      'כריכת עור מהודרת עם הטבעות זהב',
+      'מכתבים של רבי נתן',
+      'הדרכות רוחניות עמוקות',
+      'קומנטרים נוספים'
+    ],
+    tags: ['מכתבים', 'רבי נתן', 'עור', 'מהודר', 'הדרכות'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'mayan-hamitgaber': {
+    id: 'mayan-hamitgaber',
+    name: 'מעין המתגבר',
+    nameEnglish: 'Spring that Strengthens',
+    description: 'מעין המתגבר - ספר העוסק בחיזוק הנפש והאמונה. מכיל עצות והדרכות כיצד להתחזק בעבודת השם גם בתקופות קשות ומאתגרות.',
+    descriptionEnglish: 'Spring that Strengthens - book dealing with strengthening the soul and faith. Contains advice and guidance on how to strengthen oneself in serving God even during difficult and challenging times.',
+    category: 'ספרי מוסר',
+    subcategory: 'חיזוק ואמונה',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'הוצאת נחל נובע מקור חכמה',
+    language: 'עברית',
+    pages: 240,
+    isbn: '978-965-7023-48-6',
+    images: [
+      '@assets/מעין המתגבר 1_1757281125910.jpg'
+    ],
+    variants: [
+      {
+        id: 'leather-deluxe',
+        format: 'עור מהודר',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '20*14',
+        volumes: 1,
+        price: 95,
+        inStock: true,
+        stockQuantity: 18
+      }
+    ],
+    features: [
+      'כריכת עור מהודרת עם הטבעות זהב',
+      'חיזוק נפש ואמונה',
+      'עצות לתקופות קשות',
+      'הדפסה ברורה וחדה'
+    ],
+    tags: ['חיזוק', 'אמונה', 'עור', 'מהודר', 'מוסר'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'sipurei-maasirot-remzei': {
+    id: 'sipurei-maasirot-remzei',
+    name: 'סיפורי מעשיות עם רמזי המעשיות',
+    nameEnglish: 'Tales with Hints of the Stories',
+    description: 'סיפורי מעשיות עם רמזי המעשיות - שלוש עשרה המעשיות הקדושות של רבינו עם הסברים ורמזים עמוקים. מכיל פירושים מיוחדים על הרמזים הנסתרים בסיפורים.',
+    descriptionEnglish: 'Tales with Hints of the Stories - the thirteen holy tales of Rabbenu with deep explanations and hints. Contains special commentaries on the hidden hints in the stories.',
+    category: 'סיפורים',
+    subcategory: 'מעשיות עם פירושים',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'הוצאת נחל נובע מקור חכמה',
+    language: 'עברית',
+    pages: 380,
+    isbn: '978-965-7023-49-3',
+    images: [
+      '@assets/סיפומ עם רמזי 1_1757281125910.jpg'
+    ],
+    variants: [
+      {
+        id: 'leather-deluxe',
+        format: 'עור מהודר',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '20*14',
+        volumes: 1,
+        price: 135,
+        inStock: true,
+        stockQuantity: 12
+      }
+    ],
+    features: [
+      'כריכת עור מהודרת עם הטבעות זהב',
+      'שלוש עשרה המעשיות הקדושות',
+      'רמזים ופירושים עמוקים',
+      'הסברים על הנסתר בסיפורים'
+    ],
+    tags: ['סיפורים', 'מעשיות', 'רמזים', 'עור', 'מהודר'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'sefer-hamidot-deluxe': {
+    id: 'sefer-hamidot-deluxe',
+    name: 'ספר המידות - מהדורה מהודרת',
+    nameEnglish: 'Book of Character Traits - Deluxe Edition',
+    description: 'ספר המידות במהדורה מהודרת - הספר החשוב של רבינו העוסק בתיקון המידות. מכיל עצות מעשיות לכל המידות הטובות והרעות, ערוך על פי סדר אלפבתי.',
+    descriptionEnglish: 'Book of Character Traits Deluxe Edition - Rabbenu\'s important book dealing with character refinement. Contains practical advice for all good and bad traits, arranged alphabetically.',
+    category: 'ספרי מוסר',
+    subcategory: 'תיקון המידות',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'הוצאת נחל נובע מקור חכמה',
+    language: 'עברית',
+    pages: 200,
+    isbn: '978-965-7023-50-9',
+    images: [
+      '@assets/ספר המידות 1_1757281125910.jpg'
+    ],
+    variants: [
+      {
+        id: 'leather-deluxe',
+        format: 'עור מהודר',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '20*14',
+        volumes: 1,
+        price: 85,
+        inStock: true,
+        stockQuantity: 25
+      }
+    ],
+    features: [
+      'כריכת עור מהודרת עם הטבעות זהב',
+      'תיקון המידות ועצות מעשיות',
+      'ערוך על פי סדר אלפבתי',
+      'הדפסה ברורה וחדה'
+    ],
+    tags: ['מידות', 'מוסר', 'עור', 'מהודר', 'תיקון'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'alim-leterufa': {
+    id: 'alim-leterufa',
+    name: 'עלים לתרופה',
+    nameEnglish: 'Leaves for Healing',
+    description: 'עלים לתרופה - מכתבי מוהרן מברזשיר ומולדויה. אוסף מכתבים של רבינו הקדוש שנכתבו בתקופות שונות ומכילים עצות רפואיות רוחניות ופיזיות.',
+    descriptionEnglish: 'Leaves for Healing - Letters of Moharan from Breszier and Moldavia. Collection of letters from our holy Rebbe written in different periods containing spiritual and physical healing advice.',
+    category: 'שיחות וביאורים',
+    subcategory: 'מכתבים ורפואה',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'הוצאת נחל נובע מקור חכמה',
+    language: 'עברית',
+    pages: 300,
+    isbn: '978-965-7023-51-6',
+    images: [
+      '@assets/עלים לתרופה 1_1757281125910.jpg'
+    ],
+    variants: [
+      {
+        id: 'leather-deluxe',
+        format: 'עור מהודר',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '20*14',
+        volumes: 1,
+        price: 110,
+        inStock: true,
+        stockQuantity: 15
+      }
+    ],
+    features: [
+      'כריכת עור מהודרת עם הטבעות זהב',
+      'מכתבים מבריזשיר ומולדויה',
+      'עצות רפואיות רוחניות ופיזיות',
+      'הדפסה ברורה וחדה'
+    ],
+    tags: ['מכתבים', 'רפואה', 'עור', 'מהודר', 'עצות'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'tikkun-haklali-deluxe': {
+    id: 'tikkun-haklali-deluxe',
+    name: 'תיקון הכללי - מהדורה מהודרת',
+    nameEnglish: 'Tikkun HaKlali - Deluxe Edition',
+    description: 'תיקון הכללי במהדורה מהודרת עם ליקוטי הלכות - עשרת המזמורים לתיקון הברית שקבע רבינו, עם פירושים והלכות נוספות מרבי נתן.',
+    descriptionEnglish: 'Tikkun HaKlali Deluxe Edition with Likutei Halakhot - the ten psalms for covenant rectification established by Rabbenu, with additional commentaries and laws from Rabbi Nathan.',
+    category: 'תפילות',
+    subcategory: 'תיקון הכללי',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'הוצאת נחל נובע מקור חכמה',
+    language: 'עברית',
+    pages: 150,
+    isbn: '978-965-7023-52-3',
+    images: [
+      '@assets/תהילים 1_1757281125911.jpg'
+    ],
+    variants: [
+      {
+        id: 'leather-deluxe',
+        format: 'עור מהודר',
+        binding: 'קשה',
+        size: 'כיס',
+        dimensions: '15*10',
+        volumes: 1,
+        price: 65,
+        inStock: true,
+        stockQuantity: 35
+      }
+    ],
+    features: [
+      'כריכת עור מהודרת עם הטבעות זהב',
+      'עשרת המזמורים לתיקון הברית',
+      'פירושים מרבי נתן',
+      'גודל כיס נוח לנשיאה'
+    ],
+    tags: ['תיקון הכללי', 'תהילים', 'עור', 'מהודר', 'כיס'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'tikkun-haklali-illustrated': {
+    id: 'tikkun-haklali-illustrated',
+    name: 'תיקון הכללי - מהדורה מאוירת',
+    nameEnglish: 'Tikkun HaKlali - Illustrated Edition',
+    description: 'תיקון הכללי במהדורה מאוירת עם ציור יפה של אומן - עשרת המזמורים לתיקון הברית עם איורים צבעוניים של העיר הקדושה אומן ונופיה.',
+    descriptionEnglish: 'Tikkun HaKlali Illustrated Edition with beautiful painting of Uman - the ten psalms for covenant rectification with colorful illustrations of the holy city of Uman and its landscape.',
+    category: 'תפילות',
+    subcategory: 'תיקון הכללי מאויר',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'הוצאת נחל נובע מקור חכמה',
+    language: 'עברית',
+    pages: 120,
+    isbn: '978-965-7023-53-0',
+    images: [
+      '@assets/תיקון הכללי_1757281158220.jpg'
+    ],
+    variants: [
+      {
+        id: 'paperback-illustrated',
+        format: 'רך עם איורים',
+        binding: 'רך',
+        size: 'בינוני',
+        dimensions: '20*14',
+        volumes: 1,
+        price: 45,
+        inStock: true,
+        stockQuantity: 30
+      },
+      {
+        id: 'hardcover-illustrated',
+        format: 'קשה עם איורים',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '20*14',
+        volumes: 1,
+        price: 65,
+        inStock: true,
+        stockQuantity: 20
+      }
+    ],
+    features: [
+      'איורים צבעוניים של אומן',
+      'עשרת המזמורים לתיקון הברית',
+      'מהדורה מיוחדת ומאוירת',
+      'הדפסה איכותית בצבע'
+    ],
+    tags: ['תיקון הכללי', 'מאויר', 'אומן', 'צבעוני', 'מיוחד'],
+    isActive: true,
+    isFeatured: true
   }
 };
 export const realDownloads = [
