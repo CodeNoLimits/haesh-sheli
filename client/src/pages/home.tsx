@@ -54,29 +54,32 @@ export default function Home() {
           </div>
 
           {/* NAVIGATION COLUMN */}
-          <div className="elementor-column elementor-col-25 elementor-top-column elementor-element elementor-element-b208748">
+          <div className="elementor-column elementor-col-33 elementor-top-column elementor-element elementor-element-b208748">
             <div className="elementor-widget-wrap elementor-element-populated">
               <div className="elementor-element elementor-nav-menu__align-center elementor-nav-menu--stretch elementor-nav-menu--dropdown-tablet elementor-nav-menu__text-align-aside elementor-nav-menu--toggle elementor-nav-menu--burger elementor-widget elementor-widget-nav-menu">
                 <div className="elementor-widget-container">
                   <nav aria-label="תפריט" className="elementor-nav-menu--main elementor-nav-menu__container elementor-nav-menu--layout-horizontal e--pointer-text e--animation-grow">
-                    <ul id="menu-1-ac3cd0c" className="elementor-nav-menu" style={{display: 'flex', gap: '2rem', listStyle: 'none', margin: 0, padding: 0}}>
+                    <ul id="menu-1-ac3cd0c" className="elementor-nav-menu" style={{display: 'flex', gap: '1.5rem', listStyle: 'none', margin: 0, padding: 0, flexWrap: 'wrap'}}>
                       <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-13 current_page_item menu-item-195">
-                        <a href="/" aria-current="page" className="elementor-item elementor-item-active" style={{color: 'white', textDecoration: 'none', fontWeight: 'bold'}}>דף הבית</a>
+                        <a href="/" aria-current="page" className="elementor-item elementor-item-active" style={{color: 'white', textDecoration: 'none', fontWeight: 'bold', fontSize: '0.9rem'}}>דף הבית</a>
                       </li>
                       <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-695">
-                        <a href="/store" className="elementor-item" style={{color: 'white', textDecoration: 'none'}}>חנות</a>
+                        <a href="/store" className="elementor-item" style={{color: 'white', textDecoration: 'none', fontSize: '0.9rem'}}>חנות</a>
                       </li>
                       <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-54">
-                        <a href="/about" className="elementor-item" style={{color: 'white', textDecoration: 'none'}}>עלינו</a>
+                        <a href="/about" className="elementor-item" style={{color: 'white', textDecoration: 'none', fontSize: '0.9rem'}}>עלינו</a>
                       </li>
                       <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-51">
-                        <a href="/magazine" className="elementor-item" style={{color: 'white', textDecoration: 'none'}}>מגזין</a>
+                        <a href="/magazine" className="elementor-item" style={{color: 'white', textDecoration: 'none', fontSize: '0.9rem'}}>מגזין</a>
                       </li>
                       <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-53">
-                        <a href="/join" className="elementor-item" style={{color: 'white', textDecoration: 'none'}}>הצטרפו אלינו</a>
+                        <a href="/join" className="elementor-item" style={{color: 'white', textDecoration: 'none', fontSize: '0.9rem'}}>הצטרפו אלינו</a>
                       </li>
                       <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-52">
-                        <a href="/contact" className="elementor-item" style={{color: 'white', textDecoration: 'none'}}>צור קשר</a>
+                        <a href="/contact" className="elementor-item" style={{color: 'white', textDecoration: 'none', fontSize: '0.9rem'}}>צור קשר</a>
+                      </li>
+                      <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-downloads">
+                        <a href="/downloads" className="elementor-item" style={{color: 'white', textDecoration: 'none', fontSize: '0.9rem'}}>הורדות</a>
                       </li>
                     </ul>
                   </nav>
@@ -85,23 +88,38 @@ export default function Home() {
             </div>
           </div>
 
-          {/* CART COLUMN */}
-          <div className="elementor-column elementor-col-25 elementor-top-column elementor-element elementor-element-884ebb2">
+          {/* YACOV REN TEMPORARY SECTION */}
+          <div className="elementor-column elementor-col-16 elementor-top-column" style={{maxWidth: '150px'}}>
+            <div className="elementor-widget-wrap elementor-element-populated">
+              <div className="elementor-element elementor-widget" style={{background: 'rgba(255,255,255,0.1)', padding: '0.5rem', borderRadius: '5px', border: '1px solid rgba(255,255,255,0.3)'}}>
+                <div className="elementor-widget-container">
+                  <a href="/yacov-ren-temp" style={{color: 'white', textDecoration: 'none', fontSize: '0.8rem', fontWeight: 'bold', display: 'block', textAlign: 'center'}}>
+                    יעקב רן זמני
+                    <br />
+                    <small style={{fontSize: '0.7rem', opacity: 0.8}}>TEMPORAIRE</small>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* CART COLUMN - REDUCED SIZE */}
+          <div className="elementor-column elementor-col-16 elementor-top-column elementor-element elementor-element-884ebb2" style={{maxWidth: '120px'}}>
             <div className="elementor-widget-wrap elementor-element-populated">
               <div className="elementor-element toggle-icon--custom elementor-widget__width-auto elementor-menu-cart--empty-indicator-hide remove-item-position--top elementor-menu-cart--items-indicator-bubble elementor-menu-cart--cart-type-side-cart elementor-menu-cart--show-remove-button-yes elementor-widget elementor-widget-woocommerce-menu-cart">
                 <div className="elementor-widget-container">
                   <div className="elementor-menu-cart__wrapper">
                     <div className="elementor-menu-cart__toggle_wrapper">
                       <div className="elementor-menu-cart__toggle elementor-button-wrapper">
-                        <a id="elementor-menu-cart__toggle_button" href="#" className="elementor-menu-cart__toggle_button elementor-button elementor-size-sm" aria-expanded="false" style={{background: 'white', color: '#dc3545', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
+                        <a id="elementor-menu-cart__toggle_button" href="#" className="elementor-menu-cart__toggle_button elementor-button elementor-size-sm" aria-expanded="false" style={{background: 'white', color: '#dc3545', padding: '0.3rem 0.6rem', borderRadius: '4px', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.3rem', fontSize: '0.8rem'}}>
                           <span className="elementor-button-text">
                             <span className="woocommerce-Price-amount amount">
                               <span>0.00 <span className="woocommerce-Price-currencySymbol">₪</span></span>
                             </span>
                           </span>
                           <span className="elementor-button-icon">
-                            <span className="elementor-button-icon-qty" data-counter="0">0</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style={{width: '16px', height: '16px', fill: 'currentColor'}}>
+                            <span className="elementor-button-icon-qty" data-counter="0" style={{fontSize: '0.7rem'}}>0</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style={{width: '14px', height: '14px', fill: 'currentColor'}}>
                               <path d="M7 4V2C7 1.45 7.45 1 8 1H16C16.55 1 17 1.45 17 2V4H20C20.55 4 21 4.45 21 5S20.55 6 20 6H19V19C19 20.1 18.1 21 17 21H7C5.9 21 5 20.1 5 19V6H4C3.45 6 3 5.55 3 5S3.45 4 4 4H7ZM9 3V4H15V3H9ZM7 6V19H17V6H7Z"/>
                             </svg>
                           </span>
