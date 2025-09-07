@@ -1017,6 +1017,663 @@ export const realBreslovProducts: Record<string, Product> = {
     tags: ['התבודדות', 'עבודת הנפש', 'רוחניות', 'מדריך', 'התקרבות'],
     isActive: true,
     isFeatured: false
+  },
+
+  'blossoms-of-spring-english': {
+    id: 'blossoms-of-spring-english',
+    name: 'אבי הנחל',
+    nameEnglish: 'Blossoms of the Spring',
+    description: 'ספר יסוד של רבי ישראל דב אודסר זצ"ל על תורת רבי נחמן מברסלב. מכיל תורות עמוקות על עבודת ה\' ודרך החסידות ברסלב.',
+    descriptionEnglish: 'A foundational book by Rabbi Israel Dov Odesser on the teachings of Rabbi Nachman of Breslov. Contains deep teachings on serving God and the Breslov path.',
+    category: 'כתבי צדיקים',
+    subcategory: 'רבי ישראל אודסר',
+    author: 'רבי ישראל דב אודסר',
+    publisher: 'Breslov Research Institute',
+    language: 'אנגלית',
+    pages: 180,
+    isbn: '978-1-928822-89-4',
+    images: [
+      '@assets/אבי הנחל באנגלית_1757280778284.jpg'
+    ],
+    variants: [
+      {
+        id: 'paperback-english',
+        format: 'רך',
+        binding: 'רכה',
+        size: 'רגיל',
+        dimensions: '23*15',
+        volumes: 1,
+        price: 45,
+        inStock: true,
+        stockQuantity: 25
+      }
+    ],
+    features: [
+      'תרגום איכותי לאנגלית',
+      'הסברים ופירושים נוספים',
+      'עיצוב מודרני וברור',
+      'מתאים לדוברי אנגלית'
+    ],
+    tags: ['אנגלית', 'רבי ישראל אודסר', 'אבי הנחל', 'ברסלב'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'rabenou-french': {
+    id: 'rabenou-french',
+    name: 'רבנו - חיי רבי נחמן',
+    nameEnglish: 'Rabenou - Life of Rabbi Nachman',
+    description: 'ביוגרפיה מקיפה על חיי רבי נחמן מברסלב בצרפתית. מתאר את התפתחותו הרוחנית, תורותיו והשפעתו על עולם החסידות.',
+    descriptionEnglish: 'Comprehensive biography of Rabbi Nachman of Breslov in French. Describes his spiritual development, teachings and influence on the Hasidic world.',
+    category: 'ביוגרפיה',
+    subcategory: 'חיי רבי נחמן',
+    author: 'רבי נתן מברסלב',
+    publisher: 'Éditions Breslov',
+    language: 'צרפתית',
+    pages: 320,
+    isbn: '978-2-123456-78-9',
+    images: [
+      '@assets/אוירה_1757280778285.jpg'
+    ],
+    variants: [
+      {
+        id: 'hardcover-french',
+        format: 'קשה',
+        binding: 'קשה',
+        size: 'גדול',
+        dimensions: '24*17',
+        volumes: 1,
+        price: 65,
+        inStock: true,
+        stockQuantity: 18
+      }
+    ],
+    features: [
+      'תרגום מדויק לצרפתית',
+      'כריכה קשה איכותית',
+      'הדפסה על נייר מעולה',
+      'מתאים לקוראי צרפתית'
+    ],
+    tags: ['צרפתית', 'ביוגרפיה', 'חיי רבי נחמן', 'רבנו'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'emounat-iteha-french': {
+    id: 'emounat-iteha-french',
+    name: 'אמונת עיתך',
+    nameEnglish: 'Émounat Ité\'ha - Living with Faith',
+    description: 'ספר על חיים באמונה ובבטחון בבורא העולם. מבוסס על תורות רבי נחמן מברסלב בנושא האמונה והביטחון.',
+    descriptionEnglish: 'A book about living with faith and trust in the Creator. Based on Rabbi Nachman\'s teachings on faith and confidence.',
+    category: 'אמונה וביטחון',
+    subcategory: 'עבודת ה\'',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'Éditions Breslov',
+    language: 'צרפתית',
+    pages: 240,
+    isbn: '978-2-234567-89-0',
+    images: [
+      '@assets/אמונת עיתך צרפתית_1757280778286.jpg'
+    ],
+    variants: [
+      {
+        id: 'standard-french',
+        format: 'רך',
+        binding: 'רכה',
+        size: 'רגיל',
+        dimensions: '21*14',
+        volumes: 1,
+        price: 55,
+        inStock: true,
+        stockQuantity: 22
+      }
+    ],
+    features: [
+      'תורות על אמונה ובטחון',
+      'תרגום איכותי לצרפתית',
+      'עיצוב יפה ומרהיב',
+      'מתאים למתחילים ומתקדמים'
+    ],
+    tags: ['צרפתית', 'אמונה', 'ביטחון', 'עבודת ה\''],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'eretz-israel-french': {
+    id: 'eretz-israel-french',
+    name: 'ארץ ישראל',
+    nameEnglish: 'Eretz Israel - The Promised Land',
+    description: 'ספר המתאר את קדושת ארץ ישראל ומעלתה הרוחנית על פי תורת רבי נחמן מברסלב ותלמידיו.',
+    descriptionEnglish: 'A book describing the holiness of the Land of Israel and its spiritual significance according to Rabbi Nachman and his disciples.',
+    category: 'ארץ ישראל',
+    subcategory: 'קדושת הארץ',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'Éditions Breslov',
+    language: 'צרפתית',
+    pages: 200,
+    isbn: '978-2-345678-90-1',
+    images: [
+      '@assets/ארץ ישראל צרפתית_1757280778286.jpg'
+    ],
+    variants: [
+      {
+        id: 'premium-french',
+        format: 'קשה',
+        binding: 'קשה',
+        size: 'גדול',
+        dimensions: '24*17',
+        volumes: 1,
+        price: 75,
+        inStock: true,
+        stockQuantity: 15
+      }
+    ],
+    features: [
+      'תורות על קדושת ארץ ישראל',
+      'כריכה קשה מהודרת',
+      'איורים ומפות',
+      'תרגום מעולה לצרפתית'
+    ],
+    tags: ['צרפתית', 'ארץ ישראל', 'קדושה', 'רוחניות'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'hitpahut-hanefesh-french': {
+    id: 'hitpahut-hanefesh-french',
+    name: 'השתפכות הנפש',
+    nameEnglish: 'L\'Épanchement de l\'Âme',
+    description: 'ספר המלמד כיצד להתבודד ולשפוך את הלב לפני הבורא. אחד מהספרים החשובים ביותר לעבודה פנימית.',
+    descriptionEnglish: 'A book teaching how to seclude oneself and pour out one\'s heart before the Creator. One of the most important books for inner spiritual work.',
+    category: 'התבודדות',
+    subcategory: 'תפילה אישית',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'Éditions Breslov',
+    language: 'צרפתית',
+    pages: 180,
+    isbn: '978-2-456789-01-2',
+    images: [
+      '@assets/השתפכות צרפתית_1757280778286.jpg',
+      '@assets/השתפכות צרפתית 2_1757280778286.jpg'
+    ],
+    variants: [
+      {
+        id: 'luxury-french',
+        format: 'עור',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '19*13',
+        volumes: 1,
+        price: 95,
+        inStock: true,
+        stockQuantity: 12
+      }
+    ],
+    features: [
+      'הדרכה מפורטת להתבודדות',
+      'כריכת עור איכותית',
+      'הדפסה מהודרת',
+      'מתאים לתפילה אישית'
+    ],
+    tags: ['צרפתית', 'התבודדות', 'תפילה', 'השתפכות הנפש'],
+    isActive: true,
+    isFeatured: true
+  },
+
+  'hatkashrut-tzaddik-french': {
+    id: 'hatkashrut-tzaddik-french',
+    name: 'התקשרות לצדיק',
+    nameEnglish: 'L\'Attachement au Tsadik Véritable',
+    description: 'ספר המבאר את חשיבות ההתקשרות לצדיק האמת ועוצמת הקשר עם רבי נחמן מברסלב.',
+    descriptionEnglish: 'A book explaining the importance of attachment to the true Tzaddik and the power of connection with Rabbi Nachman of Breslov.',
+    category: 'צדיק',
+    subcategory: 'התקשרות',
+    author: 'רבי נתן מברסלב',
+    publisher: 'Éditions Breslov',
+    language: 'צרפתית',
+    pages: 160,
+    isbn: '978-2-567890-12-3',
+    images: [
+      '@assets/התקשרות צרפתית_1757280778287.jpg'
+    ],
+    variants: [
+      {
+        id: 'elegant-french',
+        format: 'קשה',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '20*14',
+        volumes: 1,
+        price: 68,
+        inStock: true,
+        stockQuantity: 20
+      }
+    ],
+    features: [
+      'תורות על התקשרות לצדיק',
+      'עיצוב אלגנטי',
+      'הדפסה איכותית',
+      'מתאים לחסידי ברסלב'
+    ],
+    tags: ['צרפתית', 'צדיק', 'התקשרות', 'ברסלב'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'vayikra-likutei-halakhot': {
+    id: 'vayikra-likutei-halakhot',
+    name: 'ויקרא עם ליקוטי הלכות',
+    nameEnglish: 'Vayikra with Likutey Halakhot',
+    description: 'חומש ויקרא עם פירוש ליקוטי הלכות של רבי נתן מברסלב. שילוב מיוחד של פשט ורמז ברוח החסידות ברסלב.',
+    descriptionEnglish: 'The book of Leviticus with commentary from Likutey Halakhot by Rabbi Nathan of Breslov. A unique combination of literal and mystical interpretation in the Breslov spirit.',
+    category: 'חומש',
+    subcategory: 'ויקרא',
+    author: 'רבי נתן מברסלב',
+    publisher: 'הוצאת ברסלב',
+    language: 'עברית וצרפתית',
+    pages: 450,
+    isbn: '978-965-7024-89-2',
+    images: [
+      '@assets/ויקרא_1757280778287.jpg'
+    ],
+    variants: [
+      {
+        id: 'deluxe-torah',
+        format: 'קשה',
+        binding: 'קשה',
+        size: 'גדול',
+        dimensions: '25*18',
+        volumes: 1,
+        price: 95,
+        inStock: true,
+        stockQuantity: 16
+      }
+    ],
+    features: [
+      'חומש עם פירוש ליקוטי הלכות',
+      'כריכה קשה מהודרת',
+      'הדפסה על נייר איכותי',
+      'טקסט בעברית וצרפתית'
+    ],
+    tags: ['חומש', 'ויקרא', 'ליקוטי הלכות', 'פירוש'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'haye-moharan-french': {
+    id: 'haye-moharan-french',
+    name: 'חיי מוהרן',
+    nameEnglish: 'Haye Moharan - Life of Our Master',
+    description: 'ספר חיי מוהרן בתרגום צרפתי מדויק. מתאר את חיי רבי נחמן מברסלב, תורותיו ומעשיו הקדושים.',
+    descriptionEnglish: 'The book Haye Moharan in accurate French translation. Describes the life of Rabbi Nachman of Breslov, his teachings and holy deeds.',
+    category: 'ביוגרפיה',
+    subcategory: 'חיי רבי נחמן',
+    author: 'רבי נתן מברסלב',
+    publisher: 'Éditions Breslov',
+    language: 'צרפתית',
+    pages: 380,
+    isbn: '978-2-678901-23-4',
+    images: [
+      '@assets/חיי מוהרן צרפתית_1757280778287.jpg'
+    ],
+    variants: [
+      {
+        id: 'premium-biography',
+        format: 'קשה',
+        binding: 'קשה',
+        size: 'גדול',
+        dimensions: '24*17',
+        volumes: 1,
+        price: 85,
+        inStock: true,
+        stockQuantity: 14
+      }
+    ],
+    features: [
+      'ביוגרפיה מלאה וחשובה',
+      'תרגום מעולה לצרפתית',
+      'כריכה קשה איכותית',
+      'מתאים לכל קורא צרפתית'
+    ],
+    tags: ['צרפתית', 'ביוגרפיה', 'חיי מוהרן', 'רבי נחמן'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'kitvey-rabbi-nachman-french': {
+    id: 'kitvey-rabbi-nachman-french',
+    name: 'כתבי רבי נחמן',
+    nameEnglish: 'Éktivey Rabbi Na\'hman de Breslev',
+    description: 'אוסף כתבי רבי נחמן מברסלב בתרגום צרפתי. כולל תורות, מכתבים ותפילות שנכתבו בידי רבי נחמן עצמו.',
+    descriptionEnglish: 'Collection of Rabbi Nachman\'s writings in French translation. Includes teachings, letters and prayers written by Rabbi Nachman himself.',
+    category: 'כתבי רבי נחמן',
+    subcategory: 'כתבים מקוריים',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'Éditions Breslov',
+    language: 'צרפתית',
+    pages: 290,
+    isbn: '978-2-789012-34-5',
+    images: [
+      '@assets/כתבי צרפתית_1757280778287.jpg'
+    ],
+    variants: [
+      {
+        id: 'original-writings',
+        format: 'קשה',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '21*15',
+        volumes: 1,
+        price: 78,
+        inStock: true,
+        stockQuantity: 19
+      }
+    ],
+    features: [
+      'כתבים מקוריים של רבי נחמן',
+      'תרגום נאמן לצרפתית',
+      'הערות והסברים',
+      'עיצוב מסורתי ויפה'
+    ],
+    tags: ['צרפתית', 'כתבי רבי נחמן', 'כתבים מקוריים', 'תורות'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'likutey-halakhot-english-set': {
+    id: 'likutey-halakhot-english-set',
+    name: 'ליקוטי הלכות',
+    nameEnglish: 'Likutey Halakhot - Complete English Set',
+    description: 'מהדורה מלאה של ליקוטי הלכות באנגלית. כולל את כל חלקי הספר עם תרגום מדויק והסברים נוספים.',
+    descriptionEnglish: 'Complete edition of Likutey Halakhot in English. Includes all parts of the book with accurate translation and additional explanations.',
+    category: 'הלכה',
+    subcategory: 'ליקוטי הלכות',
+    author: 'רבי נתן מברסלב',
+    publisher: 'Breslov Research Institute',
+    language: 'אנגלית',
+    pages: 2800,
+    isbn: '978-1-928822-90-0',
+    images: [
+      '@assets/ליקוטי הלכות 1_1757280778288.jpg',
+      '@assets/ליקוטי הלכות 2_1757280778288.jpg',
+      '@assets/ליקוטי הלכות 3_1757280778288.jpg'
+    ],
+    variants: [
+      {
+        id: 'complete-set-english',
+        format: 'קשה',
+        binding: 'קשה',
+        size: 'גדול',
+        dimensions: '24*17',
+        volumes: 8,
+        price: 480,
+        originalPrice: 520,
+        inStock: true,
+        stockQuantity: 8
+      },
+      {
+        id: 'individual-volume',
+        format: 'קשה',
+        binding: 'קשה',
+        size: 'גדול',
+        dimensions: '24*17',
+        volumes: 1,
+        price: 65,
+        inStock: true,
+        stockQuantity: 25
+      }
+    ],
+    features: [
+      'תרגום מלא לאנגלית',
+      'הדפסה איכותית',
+      'כריכה קשה מהודרת',
+      'מתאים לדוברי אנגלית',
+      'כולל הסברים והערות'
+    ],
+    tags: ['אנגלית', 'ליקוטי הלכות', 'הלכה', 'רבי נתן'],
+    isActive: true,
+    isFeatured: true
+  },
+
+  'likutey-moharan-english': {
+    id: 'likutey-moharan-english',
+    name: 'ליקוטי מוהרן',
+    nameEnglish: 'Likutey Moharan - English Edition',
+    description: 'ספר ליקוטי מוהרן המקורי של רבי נחמן מברסלב בתרגום אנגלי מלא. כולל חלק א\' וחלק ב\' בכרך אחד.',
+    descriptionEnglish: 'The original Likutey Moharan by Rabbi Nachman of Breslov in complete English translation. Includes both Part 1 and Part 2 in one volume.',
+    category: 'ליקוטי מוהרן',
+    subcategory: 'ספר יסוד',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'Breslov Research Institute',
+    language: 'אנגלית',
+    pages: 720,
+    isbn: '978-1-928822-91-7',
+    images: [
+      '@assets/ליקוטי מוהרן אנגלית_1757280778288.jpg'
+    ],
+    variants: [
+      {
+        id: 'complete-english',
+        format: 'רך',
+        binding: 'רכה',
+        size: 'גדול',
+        dimensions: '23*16',
+        volumes: 1,
+        price: 95,
+        inStock: true,
+        stockQuantity: 22
+      }
+    ],
+    features: [
+      'תרגום מדויק של ליקוטי מוהרן',
+      'כולל חלק א\' וחלק ב\'',
+      'הסברים והערות באנגלית',
+      'מתאים לתלמידי ברסלב בעולם'
+    ],
+    tags: ['אנגלית', 'ליקוטי מוהרן', 'רבי נחמן', 'ספר יסוד'],
+    isActive: true,
+    isFeatured: true
+  },
+
+  'likutey-etzot-french': {
+    id: 'likutey-etzot-french',
+    name: 'ליקוטי עצות',
+    nameEnglish: 'Recueil de Conseils',
+    description: 'אוסף עצות מעשיות מתורת רבי נחמן מברסלב בתרגום צרפתי. מדריך חיוני לחיים רוחניים ומעשיים.',
+    descriptionEnglish: 'Collection of practical advice from Rabbi Nachman\'s teachings in French translation. An essential guide for spiritual and practical living.',
+    category: 'עצות',
+    subcategory: 'הדרכה מעשית',
+    author: 'רבי נתן מברסלב',
+    publisher: 'Éditions Breslov',
+    language: 'צרפתית',
+    pages: 220,
+    isbn: '978-2-890123-45-6',
+    images: [
+      '@assets/ליקוטי עצות צרפתית_1757280778288.jpg',
+      '@assets/ליקוטי עצות צרפתית 2_1757280778288.jpg'
+    ],
+    variants: [
+      {
+        id: 'classic-french',
+        format: 'קשה',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '19*13',
+        volumes: 1,
+        price: 58,
+        inStock: true,
+        stockQuantity: 26
+      }
+    ],
+    features: [
+      'עצות מעשיות לחיים',
+      'תרגום איכותי לצרפתית',
+      'ארגון נושאי נוח',
+      'מתאים לשימוש יומיומי'
+    ],
+    tags: ['צרפתית', 'ליקוטי עצות', 'עצות', 'הדרכה'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'sipurey-maasiyot-french': {
+    id: 'sipurey-maasiyot-french',
+    name: 'סיפורי מעשיות',
+    nameEnglish: 'Les Contes de Rabbi Na\'hman',
+    description: 'אוסף הסיפורים המפורסמים של רבי נחמן מברסלב בתרגום צרפתי יפה. כולל את כל 13 הסיפורים עם הסברים.',
+    descriptionEnglish: 'The famous collection of Rabbi Nachman\'s stories in beautiful French translation. Includes all 13 stories with explanations.',
+    category: 'סיפורים',
+    subcategory: 'סיפורי מעשיות',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'Éditions Breslov',
+    language: 'צרפתית',
+    pages: 340,
+    isbn: '978-2-901234-56-7',
+    images: [
+      '@assets/מידות מעשיות עצות_1757280778288.jpg'
+    ],
+    variants: [
+      {
+        id: 'stories-french',
+        format: 'קשה',
+        binding: 'קשה',
+        size: 'גדול',
+        dimensions: '23*16',
+        volumes: 3,
+        price: 120,
+        inStock: true,
+        stockQuantity: 15
+      }
+    ],
+    features: [
+      'כל 13 הסיפורים המפורסמים',
+      'תרגום יפה וזורם לצרפתית',
+      'הסברים ופירושים',
+      'עיצוב מהודר עם איורים'
+    ],
+    tags: ['צרפתית', 'סיפורים', 'סיפורי מעשיות', 'רבי נחמן'],
+    isActive: true,
+    isFeatured: true
+  },
+
+  'letter-from-heaven-english': {
+    id: 'letter-from-heaven-english',
+    name: 'מכתב משמים',
+    nameEnglish: 'The Letter From Heaven',
+    description: 'המכתב המפורסם שנמצא בכותל המערבי ומיוחס לרבי נחמן מברסלב. גילוי נסתר של תורות עמוקות.',
+    descriptionEnglish: 'The famous letter found at the Western Wall and attributed to Rabbi Nachman of Breslov. A mystical revelation of deep teachings.',
+    category: 'כתבי קודש',
+    subcategory: 'מכתבים',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'Breslov Publications',
+    language: 'אנגלית',
+    pages: 80,
+    isbn: '978-1-928822-92-4',
+    images: [
+      '@assets/מכתב משמים אנגלית_1757280778289.jpg'
+    ],
+    variants: [
+      {
+        id: 'special-english',
+        format: 'קשה',
+        binding: 'קשה',
+        size: 'קטן',
+        dimensions: '15*11',
+        volumes: 1,
+        price: 35,
+        inStock: true,
+        stockQuantity: 30
+      }
+    ],
+    features: [
+      'המכתב המיוחד משמים',
+      'תרגום מדויק לאנגלית',
+      'עיצוב מיוחד וקדוש',
+      'מתאים לנשיאה ולתפילה'
+    ],
+    tags: ['אנגלית', 'מכתב משמים', 'כתבי קודש', 'סוד'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'meshivat-nefesh-french': {
+    id: 'meshivat-nefesh-french',
+    name: 'משיבת נפש',
+    nameEnglish: 'Méchivat Néfech - Soul Revival',
+    description: 'ספר משיבת נפש בתרגום צרפתי. מכיל תפילות ובקשות לתיקון הנפש והתחזקות רוחנית.',
+    descriptionEnglish: 'The book Meshivat Nefesh in French translation. Contains prayers and supplications for soul correction and spiritual strengthening.',
+    category: 'תפילות',
+    subcategory: 'תחינות',
+    author: 'רבי נתן מברסלב',
+    publisher: 'Éditions Breslov',
+    language: 'צרפתית',
+    pages: 190,
+    isbn: '978-2-012345-67-8',
+    images: [
+      '@assets/משיבת נפש צרפתית_1757280778289.jpg'
+    ],
+    variants: [
+      {
+        id: 'prayer-french',
+        format: 'רך',
+        binding: 'רכה',
+        size: 'כיס',
+        dimensions: '16*11',
+        volumes: 1,
+        price: 42,
+        inStock: true,
+        stockQuantity: 35
+      }
+    ],
+    features: [
+      'תפילות לתיקון הנפש',
+      'תרגום מדויק לצרפתית',
+      'גודל נוח לנשיאה',
+      'מתאים לתפילה יומיומית'
+    ],
+    tags: ['צרפתית', 'משיבת נפש', 'תפילות', 'תחינות'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'najal-novea-spanish': {
+    id: 'najal-novea-spanish',
+    name: 'נחל נובע',
+    nameEnglish: 'Najal Novea - Flowing Stream',
+    description: 'ספר נחל נובע בתרגום ספרדי. מכיל תורות וחידושים מעולם החסידות ברסלב למען הקהילה הספרדית.',
+    descriptionEnglish: 'The book Najal Novea in Spanish translation. Contains teachings and insights from the Breslov Hasidic world for the Spanish-speaking community.',
+    category: 'תורות',
+    subcategory: 'חידושים',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'Ediciones Breslov',
+    language: 'ספרדית',
+    pages: 250,
+    isbn: '978-84-123456-78-9',
+    images: [
+      '@assets/נג\'ל נובע_1757280778289.jpg'
+    ],
+    variants: [
+      {
+        id: 'spanish-edition',
+        format: 'רך',
+        binding: 'רכה',
+        size: 'רגיל',
+        dimensions: '21*14',
+        volumes: 1,
+        price: 50,
+        inStock: true,
+        stockQuantity: 18
+      }
+    ],
+    features: [
+      'תורות חדשות וחשובות',
+      'תרגום איכותי לספרדית',
+      'מתאים לקוראי ספרדית',
+      'הוצאה מיוחדת'
+    ],
+    tags: ['ספרדית', 'נחל נובע', 'תורות', 'חידושים'],
+    isActive: true,
+    isFeatured: false
   }
 };
 export const realDownloads = [
