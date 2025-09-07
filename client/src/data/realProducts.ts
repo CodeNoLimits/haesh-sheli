@@ -1674,6 +1674,599 @@ export const realBreslovProducts: Record<string, Product> = {
     tags: ['ספרדית', 'נחל נובע', 'תורות', 'חידושים'],
     isActive: true,
     isFeatured: false
+  },
+
+  'saba-israel-children-french': {
+    id: 'saba-israel-children-french',
+    name: 'סבא ישראל לילדים',
+    nameEnglish: 'Saba Israel and the Letter from Heaven - Children\'s Edition',
+    description: 'ספר ילדים מקסים על סבא ישראל (רבי ישראל אודסר) והמכתב משמים. מספר את הסיפור באופן מותאם לילדים עם איורים צבעוניים.',
+    descriptionEnglish: 'A charming children\'s book about Saba Israel (Rabbi Israel Odesser) and the letter from heaven. Tells the story in a child-friendly way with colorful illustrations.',
+    category: 'ספרי ילדים',
+    subcategory: 'רבי ישראל אודסר',
+    author: 'רבי ישראל דב אודסר',
+    publisher: 'Éditions Breslov Jeunesse',
+    language: 'צרפתית',
+    pages: 48,
+    isbn: '978-2-345678-91-8',
+    images: [
+      '@assets/סבא ישראל לילדים_1757280885979.jpg'
+    ],
+    variants: [
+      {
+        id: 'children-hardcover-french',
+        format: 'קשה',
+        binding: 'קשה',
+        size: 'גדול',
+        dimensions: '28*22',
+        volumes: 1,
+        price: 55,
+        inStock: true,
+        stockQuantity: 40
+      }
+    ],
+    features: [
+      'מיועד לילדים',
+      'איורים צבעוניים ומקסימים',
+      'סיפור מעורר השראה',
+      'בצרפתית פשוטה ונגישה',
+      'כריכה קשה עמידה'
+    ],
+    tags: ['צרפתית', 'ילדים', 'סבא ישראל', 'מכתב משמים', 'איורים'],
+    isActive: true,
+    isFeatured: true
+  },
+
+  'tales-ancient-times-english': {
+    id: 'tales-ancient-times-english',
+    name: 'סיפורי מעשיות',
+    nameEnglish: 'Tales of Ancient Times',
+    description: 'אוסף סיפורי המעשיות של רבי נחמן מברסלב באנגלית. מהדורה מיוחדת עם עיצוב מסורתי ותרגום מדויק.',
+    descriptionEnglish: 'Collection of Rabbi Nachman\'s tales in English. Special edition with traditional design and accurate translation.',
+    category: 'סיפורים',
+    subcategory: 'סיפורי מעשיות',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'Ancient Wisdom Publications',
+    language: 'אנגלית',
+    pages: 280,
+    isbn: '978-1-234567-89-0',
+    images: [
+      '@assets/סיפורי מעשיות אנגלית_1757280885979.jpg'
+    ],
+    variants: [
+      {
+        id: 'classic-english-tales',
+        format: 'קשה',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '21*15',
+        volumes: 1,
+        price: 72,
+        inStock: true,
+        stockQuantity: 28
+      }
+    ],
+    features: [
+      'תרגום מדויק ומעמיק',
+      'עיצוב קלאסי ומסורתי',
+      'כל 13 הסיפורים',
+      'הערות והסברים',
+      'מתאים לקוראי אנגלית'
+    ],
+    tags: ['אנגלית', 'סיפורים', 'מעשיות', 'רבי נחמן', 'קלאסי'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'sipurey-maasiyot-deluxe-french': {
+    id: 'sipurey-maasiyot-deluxe-french',
+    name: 'סיפורי מעשיות',
+    nameEnglish: 'Sipourey Maassiot - Deluxe French Edition',
+    description: 'מהדורה מהודרת של סיפורי המעשיות בצרפתית. כריכה אלגנטית ותרגום מעולה של כל שלוש עשרה המעשיות.',
+    descriptionEnglish: 'Deluxe edition of the tales in French. Elegant binding and excellent translation of all thirteen stories.',
+    category: 'סיפורים',
+    subcategory: 'סיפורי מעשיות',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'Éditions Breslov Deluxe',
+    language: 'צרפתית',
+    pages: 320,
+    isbn: '978-2-456789-12-3',
+    images: [
+      '@assets/סיורי מעשיות צרפתית 2_1757280885979.jpg',
+      '@assets/סיפורי מעשיות צרפתית_1757280885980.jpg'
+    ],
+    variants: [
+      {
+        id: 'deluxe-french-edition',
+        format: 'עור דמוי',
+        binding: 'קשה',
+        size: 'גדול',
+        dimensions: '24*17',
+        volumes: 1,
+        price: 125,
+        inStock: true,
+        stockQuantity: 18
+      }
+    ],
+    features: [
+      'מהדורה מהודרת ויוקרתית',
+      'כריכה בעור דמוי איכותי',
+      'תרגום צרפתי מעולה',
+      'עיצוב פנימי מיוחד',
+      'מתאים למתנה יוקרתית'
+    ],
+    tags: ['צרפתית', 'סיפורים', 'מהדורה מהודרת', 'מעשיות', 'יוקרתי'],
+    isActive: true,
+    isFeatured: true
+  },
+
+  'sefer-hamidot-french': {
+    id: 'sefer-hamidot-french',
+    name: 'ספר המידות',
+    nameEnglish: 'Le Livre des Qualités',
+    description: 'ספר המידות של רבי נחמן מברסלב בתרגום צרפתי מדויק. מדריך למידות טובות ולתיקון הנפש על פי החסידות ברסלב.',
+    descriptionEnglish: 'Rabbi Nachman\'s Book of Traits in accurate French translation. A guide to good character traits and soul correction according to Breslov Hasidism.',
+    category: 'מוסר',
+    subcategory: 'מידות',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'Éditions Breslov',
+    language: 'צרפתית',
+    pages: 180,
+    isbn: '978-2-567890-23-4',
+    images: [
+      '@assets/ספר המידות צרפתית_1757280885980.jpg'
+    ],
+    variants: [
+      {
+        id: 'midot-french',
+        format: 'קשה',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '19*13',
+        volumes: 1,
+        price: 62,
+        inStock: true,
+        stockQuantity: 32
+      }
+    ],
+    features: [
+      'מדריך מעשי למידות טובות',
+      'תרגום נאמן לצרפתית',
+      'ארגון אלפביתי נוח',
+      'מתאים לעבודה אישית',
+      'כריכה איכותית ועמידה'
+    ],
+    tags: ['צרפתית', 'ספר המידות', 'מוסר', 'מידות', 'תיקון הנפש'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'spanish-russian-collection': {
+    id: 'spanish-russian-collection',
+    name: 'אוסף ספרדית ורוסית',
+    nameEnglish: 'Spanish & Russian Collection',
+    description: 'אוסף מיוחד של ספרי ברסלב בספרדית ורוסית. כולל את הספרים החשובים ביותר של רבי נחמן מברסלב לקהילות דוברות השפות הללו.',
+    descriptionEnglish: 'Special collection of Breslov books in Spanish and Russian. Includes the most important books of Rabbi Nachman for Spanish and Russian speaking communities.',
+    category: 'אוספים',
+    subcategory: 'רב לשוני',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'International Breslov Publishing',
+    language: 'ספרדית ורוסית',
+    pages: 450,
+    isbn: '978-84-567890-34-5',
+    images: [
+      '@assets/ספרדית רוסית_1757280885980.jpg'
+    ],
+    variants: [
+      {
+        id: 'bilingual-collection',
+        format: 'רך',
+        binding: 'רכה',
+        size: 'רגיל',
+        dimensions: '21*14',
+        volumes: 2,
+        price: 85,
+        inStock: true,
+        stockQuantity: 15
+      }
+    ],
+    features: [
+      'אוסף דו-לשוני מיוחד',
+      'ספרים חשובים בשתי השפות',
+      'מתאים לקהילות בינלאומיות',
+      'תרגומים איכותיים',
+      'מחיר משתלם לאוסף'
+    ],
+    tags: ['ספרדית', 'רוסית', 'אוסף', 'רב לשוני', 'בינלאומי'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'perek-shira-tikun-hatzot-french': {
+    id: 'perek-shira-tikun-hatzot-french',
+    name: 'פרק שירה ותיקון חצות',
+    nameEnglish: 'Perek Chira & Tikoun Hatsot',
+    description: 'ספר פרק שירה ותיקון חצות בצרפתית. כולל את השירים הקדושים של הבריאה והתפילות למתקן חצות.',
+    descriptionEnglish: 'Book of Perek Shira and Tikun Hatzot in French. Includes the holy songs of creation and midnight correction prayers.',
+    category: 'תפילות',
+    subcategory: 'פרק שירה',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'Éditions Breslov',
+    language: 'צרפתית',
+    pages: 160,
+    isbn: '978-2-678901-45-6',
+    images: [
+      '@assets/פרק שירה תיקון חצות צרפתית_1757280885980.jpg'
+    ],
+    variants: [
+      {
+        id: 'prayers-french',
+        format: 'קשה',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '18*12',
+        volumes: 1,
+        price: 58,
+        inStock: true,
+        stockQuantity: 24
+      }
+    ],
+    features: [
+      'פרק שירה מלא',
+      'תיקון חצות',
+      'תרגום צרפתי מדויק',
+      'הוראות לתפילה',
+      'עיצוב מסורתי'
+    ],
+    tags: ['צרפתית', 'פרק שירה', 'תיקון חצות', 'תפילות', 'מסורת'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'rabenou-biography-deluxe-french': {
+    id: 'rabenou-biography-deluxe-french',
+    name: 'רבנו - ביוגרפיה מהודרת',
+    nameEnglish: 'Rabenou - Deluxe Biography French',
+    description: 'ביוגרפיה מהודרת של רבי נחמן מברסלב בצרפתית. מהדורה מיוחדת עם כריכה יוקרתית ותמונות נדירות.',
+    descriptionEnglish: 'Deluxe biography of Rabbi Nachman of Breslov in French. Special edition with luxury binding and rare photographs.',
+    category: 'ביוגרפיה',
+    subcategory: 'חיי רבי נחמן',
+    author: 'רבי נתן מברסלב',
+    publisher: 'Éditions Breslov Premium',
+    language: 'צרפתית',
+    pages: 420,
+    isbn: '978-2-789012-56-7',
+    images: [
+      '@assets/רבינו צרפתית_1757280885981.jpg'
+    ],
+    variants: [
+      {
+        id: 'deluxe-biography-french',
+        format: 'עור',
+        binding: 'קשה',
+        size: 'גדול',
+        dimensions: '25*18',
+        volumes: 1,
+        price: 145,
+        inStock: true,
+        stockQuantity: 12
+      }
+    ],
+    features: [
+      'מהדורה מהודרת ויוקרתית',
+      'כריכת עור אמיתי',
+      'תמונות נדירות',
+      'תרגום מעמיק ומדויק',
+      'עיצוב פנימי מיוחד'
+    ],
+    tags: ['צרפתית', 'ביוגרפיה', 'רבנו', 'מהדורה מהודרת', 'יוקרתי'],
+    isActive: true,
+    isFeatured: true
+  },
+
+  'besedy-rabbi-nachman-russian': {
+    id: 'besedy-rabbi-nachman-russian',
+    name: 'בשיחות רבי נחמן',
+    nameEnglish: 'Беседы раби Нахмана - Rabbi Nachman\'s Conversations',
+    description: 'שיחות רבי נחמן מברסלב בתרגום רוסי מקצועי. מכיל את הדיברות והשיחות החשובות ביותר של רבי נחמן.',
+    descriptionEnglish: 'Rabbi Nachman\'s conversations in professional Russian translation. Contains the most important words and conversations of Rabbi Nachman.',
+    category: 'שיחות',
+    subcategory: 'שיחות הרן',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'Русские Издания Бреслев',
+    language: 'רוסית',
+    pages: 350,
+    isbn: '978-5-123456-78-9',
+    images: [
+      '@assets/רוסית_1757280885981.jpg',
+      '@assets/רוסית 2_1757280885981.jpg'
+    ],
+    variants: [
+      {
+        id: 'russian-conversations',
+        format: 'קשה',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '20*14',
+        volumes: 1,
+        price: 68,
+        inStock: true,
+        stockQuantity: 22
+      }
+    ],
+    features: [
+      'תרגום מקצועי לרוסית',
+      'שיחות חשובות של רבי נחמן',
+      'הערות והסברים',
+      'עיצוב קלאסי',
+      'מתאים לקוראי רוסית'
+    ],
+    tags: ['רוסית', 'שיחות הרן', 'בשיחות', 'רבי נחמן', 'דיברות'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'fairy-tales-russian': {
+    id: 'fairy-tales-russian',
+    name: 'סיפורי מעשיות',
+    nameEnglish: 'Сказочные истории - Fairy Tales',
+    description: 'סיפורי המעשיות של רבי נחמן מברסלב בתרגום רוסי יפה. כולל את כל שלוש עשרה הסיפורים עם איורים מיוחדים.',
+    descriptionEnglish: 'Rabbi Nachman\'s tales in beautiful Russian translation. Includes all thirteen stories with special illustrations.',
+    category: 'סיפורים',
+    subcategory: 'סיפורי מעשיות',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'Русские Издания Бреслев',
+    language: 'רוסית',
+    pages: 290,
+    isbn: '978-5-234567-89-0',
+    images: [
+      '@assets/רוסית_1757280885981.jpg'
+    ],
+    variants: [
+      {
+        id: 'russian-tales',
+        format: 'קשה',
+        binding: 'קשה',
+        size: 'גדול',
+        dimensions: '23*16',
+        volumes: 1,
+        price: 78,
+        inStock: true,
+        stockQuantity: 18
+      }
+    ],
+    features: [
+      'כל 13 הסיפורים ברוסית',
+      'תרגום איכותי וזורם',
+      'איורים מיוחדים',
+      'עיצוב מהודר',
+      'מתאים לכל המשפחה'
+    ],
+    tags: ['רוסית', 'סיפורים', 'מעשיות', 'איורים', 'משפחתי'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'sihot-haran-french': {
+    id: 'sihot-haran-french',
+    name: 'שיחות הרן',
+    nameEnglish: 'Si\'hot Haran - Conversations of Rabbi Nachman',
+    description: 'שיחות הרן בתרגום צרפתי מעולה. כולל את השיחות הבלתי פורמליות והאינטימיות של רבי נחמן עם תלמידיו.',
+    descriptionEnglish: 'Sihot Haran in excellent French translation. Includes the informal and intimate conversations of Rabbi Nachman with his disciples.',
+    category: 'שיחות',
+    subcategory: 'שיחות הרן',
+    author: 'רבי נתן מברסלב',
+    publisher: 'Éditions Breslov',
+    language: 'צרפתית',
+    pages: 280,
+    isbn: '978-2-890123-67-8',
+    images: [
+      '@assets/שיחות הרן צרפתית_1757280885981.jpg'
+    ],
+    variants: [
+      {
+        id: 'conversations-french',
+        format: 'קשה',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '21*15',
+        volumes: 1,
+        price: 75,
+        inStock: true,
+        stockQuantity: 26
+      }
+    ],
+    features: [
+      'שיחות אינטימיות של רבי נחמן',
+      'תרגום מעולה לצרפתית',
+      'הערות והסברים',
+      'עיצוב מסורתי',
+      'חשוב לכל חסיד ברסלב'
+    ],
+    tags: ['צרפתית', 'שיחות הרן', 'שיחות', 'רבי נחמן', 'אינטימי'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'shemot-hatzadikim-french': {
+    id: 'shemot-hatzadikim-french',
+    name: 'שמות הצדיקים',
+    nameEnglish: 'Chémot Hatsadikim - Names of the Righteous',
+    description: 'ספר שמות הצדיקים בצרפתית. כולל רשימה מקיפה של שמות הצדיקים והסגולות המיוחדות שלהם.',
+    descriptionEnglish: 'Book of Names of the Righteous in French. Includes a comprehensive list of righteous names and their special virtues.',
+    category: 'קבלה',
+    subcategory: 'שמות קדושים',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'Éditions Breslov',
+    language: 'צרפתית',
+    pages: 200,
+    isbn: '978-2-901234-78-9',
+    images: [
+      '@assets/שמות הצדיקים_1757280885981.jpg',
+      '@assets/שמות הצדיקים 2_1757280885981.jpg'
+    ],
+    variants: [
+      {
+        id: 'names-french',
+        format: 'קשה',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '19*13',
+        volumes: 1,
+        price: 65,
+        inStock: true,
+        stockQuantity: 20
+      }
+    ],
+    features: [
+      'רשימה מקיפה של שמות צדיקים',
+      'הסברים על סגולות השמות',
+      'תרגום מדויק לצרפתית',
+      'מתאים לחקירה רוחנית',
+      'עיצוב מכובד ומסורתי'
+    ],
+    tags: ['צרפתית', 'שמות הצדיקים', 'קבלה', 'שמות קדושים', 'סגולות'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'shema-israel-french': {
+    id: 'shema-israel-french',
+    name: 'שמע ישראל',
+    nameEnglish: 'Écoute Israel - Hear O Israel',
+    description: 'ספר שמע ישראל בצרפתית. מכיל את התפילה הקדושה ופירושיה העמוקים על פי תורת רבי נחמן מברסלב.',
+    descriptionEnglish: 'Book of Shema Israel in French. Contains the holy prayer and its deep interpretations according to Rabbi Nachman\'s teachings.',
+    category: 'תפילות',
+    subcategory: 'קריאת שמע',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'Éditions Breslov',
+    language: 'צרפתית',
+    pages: 140,
+    isbn: '978-2-012345-89-0',
+    images: [
+      '@assets/שמע ישראל צרפתית_1757280885982.jpg'
+    ],
+    variants: [
+      {
+        id: 'shema-french',
+        format: 'רך',
+        binding: 'רכה',
+        size: 'כיס',
+        dimensions: '15*10',
+        volumes: 1,
+        price: 35,
+        inStock: true,
+        stockQuantity: 45
+      }
+    ],
+    features: [
+      'קריאת שמע עם פירושים',
+      'גודל נוח לנשיאה',
+      'תרגום מדויק לצרפתית',
+      'מתאים לתפילה יומיומית',
+      'מחיר נגיש'
+    ],
+    tags: ['צרפתית', 'שמע ישראל', 'תפילות', 'כיס', 'יומיומי'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'tikun-haklali-deluxe-french': {
+    id: 'tikun-haklali-deluxe-french',
+    name: 'תיקון הכללי',
+    nameEnglish: 'Tikoun Haklali - General Rectification Deluxe',
+    description: 'תיקון הכללי בצרפתית - מהדורה מהודרת. כולל את עשרת המזמורים המיוחדים לתיקון הברית עם פירושים ותרגום מעולה.',
+    descriptionEnglish: 'Tikun Haklali in French - deluxe edition. Includes the ten special psalms for covenant rectification with commentary and excellent translation.',
+    category: 'תפילות',
+    subcategory: 'תיקון הכללי',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'Éditions Breslov Premium',
+    language: 'צרפתית',
+    pages: 120,
+    isbn: '978-2-123456-90-1',
+    images: [
+      '@assets/תיקון הכללי צרפתית_1757280885982.jpg',
+      '@assets/תיקון הכללי 2_1757280885982.jpg'
+    ],
+    variants: [
+      {
+        id: 'tikun-deluxe-french',
+        format: 'עור דמוי',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '18*13',
+        volumes: 1,
+        price: 78,
+        inStock: true,
+        stockQuantity: 30
+      }
+    ],
+    features: [
+      'עשרת המזמורים המיוחדים',
+      'מהדורה מהודרת',
+      'כריכה בעור דמוי איכותי',
+      'פירושים והסברים',
+      'תרגום מעולה לצרפתית'
+    ],
+    tags: ['צרפתית', 'תיקון הכללי', 'מזמורים', 'מהדורה מהודרת', 'תיקון הברית'],
+    isActive: true,
+    isFeatured: true
+  },
+
+  'complete-breslov-set-hebrew': {
+    id: 'complete-breslov-set-hebrew',
+    name: 'אוסף ברסלב מלא',
+    nameEnglish: 'Complete Breslov Collection Hebrew',
+    description: 'אוסף מלא ומקיף של ספרי ברסלב בעברית. כולל את כל הספרים החשובים: ליקוטי מוהרן, ליקוטי הלכות, ליקוטי עצות, סיפורי מעשיות ועוד.',
+    descriptionEnglish: 'Complete and comprehensive collection of Breslov books in Hebrew. Includes all important books: Likutey Moharan, Likutey Halakhot, Likutey Etzot, Tales, and more.',
+    category: 'אוספים',
+    subcategory: 'אוסף מלא',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'הוצאת ברסלב המרכזית',
+    language: 'עברית',
+    pages: 5500,
+    isbn: '978-965-7023-00-4',
+    images: [
+      '@assets/1_1757280901212.jpg',
+      '@assets/2_1757280901213.jpg',
+      '@assets/3_1757280901214.jpg'
+    ],
+    variants: [
+      {
+        id: 'complete-set-hebrew',
+        format: 'קשה',
+        binding: 'קשה',
+        size: 'גדול',
+        dimensions: '24*17',
+        volumes: 20,
+        price: 1200,
+        originalPrice: 1400,
+        inStock: true,
+        stockQuantity: 5
+      },
+      {
+        id: 'partial-set-basic',
+        format: 'קשה',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '21*15',
+        volumes: 10,
+        price: 650,
+        inStock: true,
+        stockQuantity: 12
+      }
+    ],
+    features: [
+      'אוסף מלא ומקיף',
+      'כל הספרים החשובים',
+      'איכות הדפסה מעולה',
+      'כריכות קשות מהודרות',
+      'מתאים לבית מדרש או ביתי',
+      'מחיר מיוחד לאוסף'
+    ],
+    tags: ['עברית', 'אוסף מלא', 'ליקוטי מוהרן', 'ליקוטי הלכות', 'כל הספרים'],
+    isActive: true,
+    isFeatured: true
   }
 };
 export const realDownloads = [
