@@ -10,7 +10,7 @@ export default function YacovRenTemp() {
                 <div className="elementor-widget-container">
                   <ul className="elementor-icon-list-items elementor-inline-items" style={{display: 'flex', gap: '1rem', listStyle: 'none', margin: 0, padding: 0}}>
                     <li className="elementor-icon-list-item elementor-inline-item" style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-                      <span className="elementor-icon-list-text">יעקב רן - ממשק ניהול זמני</span>
+                      <span className="elementor-icon-list-text">יעקב הן - ממשק ניהול זמני</span>
                     </li>
                   </ul>
                 </div>
@@ -66,7 +66,7 @@ export default function YacovRenTemp() {
       <section className="elementor-section elementor-top-section" style={{background: '#f8f9fa', padding: '4rem 0'}}>
         <div className="elementor-container" style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
           <h1 style={{fontSize: '3rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '2rem', textAlign: 'center'}}>
-            יעקב רן - ממשק ניהול זמני
+            יעקב הן - ממשק ניהול זמני
           </h1>
           <h2 style={{fontSize: '1.8rem', color: '#333', marginBottom: '3rem', textAlign: 'center'}}>
             לוח בקרה להתקדמות הפרויקט
@@ -95,7 +95,7 @@ export default function YacovRenTemp() {
               </h3>
               <div style={{lineHeight: '1.8', fontSize: '0.9rem', color: '#666'}}>
                 <p style={{marginBottom: '1rem'}}>
-                  <strong>07/09/2025:</strong> תוקן עיצוב הראשי, נוסף ממשק יעקב רן
+                  <strong>07/09/2025:</strong> תוקן עיצוב הראשי, נוסף ממשק יעקב הן
                 </p>
                 <p style={{marginBottom: '1rem'}}>
                   <strong>06/09/2025:</strong> יושמו כל דפי המוצרים עם אפשרויות גדלים
@@ -162,7 +162,7 @@ export default function YacovRenTemp() {
               <strong>עדכון אחרון:</strong> 07 בספטמבר 2025, 19:55
             </p>
             <p style={{marginBottom: '1rem'}}>
-              דף זה נוצר עבור יעקב רן לניהול ומעקב אחר התקדמות הפרויקט.
+              דף זה נוצר עבור יעקב הן לניהול ומעקב אחר התקדמות הפרויקט.
               כל הפונקציונליות הבסיסית מוכנה, נותר לשלב תשלומים ופיצ'רים מתקדמים.
             </p>
             <p style={{fontSize: '0.8rem', color: '#999'}}>

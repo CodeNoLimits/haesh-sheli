@@ -94,7 +94,7 @@ export default function Home() {
               <div className="elementor-element elementor-widget" style={{background: 'rgba(255,255,255,0.1)', padding: '0.5rem', borderRadius: '5px', border: '1px solid rgba(255,255,255,0.3)'}}>
                 <div className="elementor-widget-container">
                   <a href="/yacov-ren-temp" style={{color: 'white', textDecoration: 'none', fontSize: '0.8rem', fontWeight: 'bold', display: 'block', textAlign: 'center'}}>
-                    יעקב רן זמני
+                    יעקב הן זמני
                     <br />
                     <small style={{fontSize: '0.7rem', opacity: 0.8}}>TEMPORAIRE</small>
                   </a>
@@ -156,11 +156,6 @@ export default function Home() {
             </a>
           </div>
           
-          <div style={{marginTop: '2rem'}}>
-            <a href="#" className="btn-warning" style={{textDecoration: 'none', fontSize: '1.2rem', padding: '0.8rem 1.5rem', background: '#ffc107', color: '#000', border: 'none', borderRadius: '5px', display: 'inline-block'}}>
-              לחצו כאן למעבר למכירת חמץ
-            </a>
-          </div>
         </div>
       </section>
 
