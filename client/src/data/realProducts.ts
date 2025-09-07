@@ -2267,6 +2267,318 @@ export const realBreslovProducts: Record<string, Product> = {
     tags: ['עברית', 'אוסף מלא', 'ליקוטי מוהרן', 'ליקוטי הלכות', 'כל הספרים'],
     isActive: true,
     isFeatured: true
+  },
+
+  'alim': {
+    id: 'alim',
+    name: 'עלים',
+    nameEnglish: 'Leaves',
+    description: 'ספר עלים מהדורה מיוחדת בכריכה מהודרת. ספר זה מכיל לקט מפנינים ממכתביהם ותורותיהם של צדיקי דורנו, עם דגש על תורתו של רבינו הקדוש.',
+    descriptionEnglish: 'Special edition of "Leaves" in a deluxe binding. This book contains selected gems from the letters and teachings of the righteous of our generation, with emphasis on the teachings of our holy Rebbe.',
+    category: 'ספרי מוסר',
+    subcategory: 'הדרכה רוחנית',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'הוצאת נחל נובע מקור חכמה',
+    language: 'עברית',
+    pages: 280,
+    isbn: '978-965-7023-31-8',
+    images: [
+      '@assets/עלים_1757281085507.jpg'
+    ],
+    variants: [
+      {
+        id: 'leather-deluxe',
+        format: 'עור מהודר',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '20*14',
+        volumes: 1,
+        price: 85,
+        inStock: true,
+        stockQuantity: 25
+      },
+      {
+        id: 'leather-premium',
+        format: 'עור איכותי',
+        binding: 'קשה',
+        size: 'גדול',
+        dimensions: '24*17',
+        volumes: 1,
+        price: 120,
+        inStock: true,
+        stockQuantity: 15
+      }
+    ],
+    features: [
+      'כריכת עור מהודרת עם הטבעות זהב',
+      'נייר איכותי מעולה',
+      'הדפסה ברורה וחדה',
+      'עיצוב אלגנטי ומרשים',
+      'מתאים למתנה יוקרתית'
+    ],
+    tags: ['עור', 'מהודר', 'מוסר', 'הדרכה', 'יוקרתי'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'etzot-hamevoorot': {
+    id: 'etzot-hamevoorot',
+    name: 'עצות המבוארות',
+    nameEnglish: 'Explained Advice',
+    description: 'עצות המבוארות - ספר יסוד בתורת רבי נחמן מברסלב. הספר מכיל הסברים מפורטים ומבואריםעל עצותיו הקדושות של רבינו, עם פירושים נוספים והדרכות מעשיות לחיי יום יום.',
+    descriptionEnglish: 'Explained Advice - a foundational book in the teachings of Rabbi Nachman of Breslov. Contains detailed explanations of Rabbenu\'s holy advice, with additional commentaries and practical guidance for daily life.',
+    category: 'עצות',
+    subcategory: 'ליקוטי עצות',
+    author: 'רבי נתן מברסלב',
+    publisher: 'הוצאת נחל נובע מקור חכמה',
+    language: 'עברית',
+    pages: 450,
+    isbn: '978-965-7023-32-5',
+    images: [
+      '@assets/עצות המבוארות_1757281085508.jpg'
+    ],
+    variants: [
+      {
+        id: 'leather-deluxe',
+        format: 'עור מהודר',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '20*14',
+        volumes: 1,
+        price: 95,
+        inStock: true,
+        stockQuantity: 20
+      },
+      {
+        id: 'leather-premium',
+        format: 'עור איכותי',
+        binding: 'קשה',
+        size: 'גדול',
+        dimensions: '24*17',
+        volumes: 1,
+        price: 135,
+        inStock: true,
+        stockQuantity: 12
+      }
+    ],
+    features: [
+      'כריכת עור מהודרת עם הטבעות זהב',
+      'פירושים מפורטים והסברים נוספים',
+      'הדפסה ברורה וחדה',
+      'עיצוב אלגנטי ומרשים',
+      'מדריך מעשי לחיי יום יום'
+    ],
+    tags: ['עצות', 'פירושים', 'עור', 'מהודר', 'רבי נתן'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'etzot-am': {
+    id: 'etzot-am',
+    name: 'לקוטי עצות',
+    nameEnglish: 'Advice of the People',
+    description: 'לקוטי עצות עם עצות המבוארות - ספר המכיל קיבוץ עצות מעשיות מתורתו של רבינו הקדוש, מסודר על פי נושאים וערוך בסדר אלפבתי לקלות השימוש.',
+    descriptionEnglish: 'Collection of Advice with Explained Counsels - contains practical advice from the teachings of our holy Rebbe, organized by topics and arranged alphabetically for ease of use.',
+    category: 'עצות',
+    subcategory: 'ליקוטי עצות',
+    author: 'רבי נתן מברסלב',
+    publisher: 'הוצאת נחל נובע מקור חכמה',
+    language: 'עברית',
+    pages: 380,
+    isbn: '978-965-7023-33-2',
+    images: [
+      '@assets/עצות עם_1757281085508.jpg'
+    ],
+    variants: [
+      {
+        id: 'leather-deluxe',
+        format: 'עור מהודר',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '20*14',
+        volumes: 1,
+        price: 90,
+        inStock: true,
+        stockQuantity: 22
+      },
+      {
+        id: 'leather-premium',
+        format: 'עור איכותי',
+        binding: 'קשה',
+        size: 'גדול',
+        dimensions: '24*17',
+        volumes: 1,
+        price: 130,
+        inStock: true,
+        stockQuantity: 14
+      }
+    ],
+    features: [
+      'כריכת עור מהודרת עם הטבעות זהב',
+      'סידור אלפבתי לקלות השימוש',
+      'עצות מעשיות לחיי יום יום',
+      'הדפסה ברורה וחדה',
+      'עיצוב אלגנטי ומרשים'
+    ],
+    tags: ['עצות', 'סידור אלפבתי', 'עור', 'מהודר', 'מעשי'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'kitzur-likutey-moharan': {
+    id: 'kitzur-likutey-moharan',
+    name: 'קיצור ליקוטי מוהר"ן',
+    nameEnglish: 'Abridged Likutei Moharan',
+    description: 'קיצור ליקוטי מוהר"ן - תמצית מרכזי תורתו של רבינו הקדוש בצורה מתומצתת ונגישה. הספר מכיל את עיקרי התורות החשובות ביותר מספר ליקוטי מוהר"ן.',
+    descriptionEnglish: 'Abridged Likutei Moharan - the essence of our holy Rebbe\'s teachings in a condensed and accessible form. Contains the main points of the most important teachings from Likutei Moharan.',
+    category: 'ספרי רבנו',
+    subcategory: 'ליקוטי מוהרן',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'הוצאת נחל נובע מקור חכמה',
+    language: 'עברית',
+    pages: 320,
+    isbn: '978-965-7023-34-9',
+    images: [
+      '@assets/קיצור ליקומ_1757281085509.jpg'
+    ],
+    variants: [
+      {
+        id: 'leather-deluxe',
+        format: 'עור מהודר',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '20*14',
+        volumes: 1,
+        price: 100,
+        inStock: true,
+        stockQuantity: 18
+      },
+      {
+        id: 'leather-premium',
+        format: 'עור איכותי',
+        binding: 'קשה',
+        size: 'גדול',
+        dimensions: '24*17',
+        volumes: 1,
+        price: 140,
+        inStock: true,
+        stockQuantity: 10
+      }
+    ],
+    features: [
+      'כריכת עור מהודרת עם הטבעות זהב',
+      'תמצית נגישה של ליקוטי מוהרן',
+      'מתאים למתחילים ומתקדמים',
+      'הדפסה ברורה וחדה',
+      'עיצוב אלגנטי ומרשים'
+    ],
+    tags: ['ליקוטי מוהרן', 'קיצור', 'עור', 'מהודר', 'נגיש'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'sichot-haran': {
+    id: 'sichot-haran',
+    name: 'שיחות הר"ן',
+    nameEnglish: 'Talks of the Ran',
+    description: 'שיחות הר"ן - אוסף שיחותיו היומיומיות של רבינו הקדוש שנרשמו על ידי תלמידיו הקדושים. הספר מכיל פנינים רוחניות והדרכות מעשיות מחיי היום יום של רבינו.',
+    descriptionEnglish: 'Talks of the Ran - collection of daily conversations of our holy Rebbe recorded by his holy disciples. Contains spiritual gems and practical guidance from Rabbenu\'s daily life.',
+    category: 'שיחות וביאורים',
+    subcategory: 'שיחות יומיומיות',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'הוצאת נחל נובע מקור חכמה',
+    language: 'עברית',
+    pages: 290,
+    isbn: '978-965-7023-35-6',
+    images: [
+      '@assets/שיחות הרן_1757281085509.jpg'
+    ],
+    variants: [
+      {
+        id: 'leather-deluxe',
+        format: 'עור מהודר',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '20*14',
+        volumes: 1,
+        price: 88,
+        inStock: true,
+        stockQuantity: 24
+      },
+      {
+        id: 'leather-premium',
+        format: 'עור איכותי',
+        binding: 'קשה',
+        size: 'גדול',
+        dimensions: '24*17',
+        volumes: 1,
+        price: 125,
+        inStock: true,
+        stockQuantity: 16
+      }
+    ],
+    features: [
+      'כריכת עור מהודרת עם הטבעות זהב',
+      'שיחות יומיומיות של רבינו',
+      'הדרכות מעשיות לחיי יום יום',
+      'הדפסה ברורה וחדה',
+      'עיצוב אלגנטי ומרשים'
+    ],
+    tags: ['שיחות', 'יומיומי', 'עור', 'מהודר', 'הדרכה'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'sefer-tehilim-2': {
+    id: 'sefer-tehilim-2',
+    name: 'ספר תהילים - כרך ב',
+    nameEnglish: 'Book of Psalms - Volume 2',
+    description: 'ספר תהילים כרך שני עם ליקוטי הלכות. מהדורה מיוחדת הכוללת את המשך ספר תהילים עם פירושים והדרכות מתורתו של רבינו הקדוש לתיקון הנפש.',
+    descriptionEnglish: 'Book of Psalms Volume 2 with Likutei Halakhot. Special edition containing the continuation of the Book of Psalms with commentaries and guidance from our holy Rebbe\'s teachings for soul rectification.',
+    category: 'תפילות',
+    subcategory: 'תהילים',
+    author: 'מלך דוד עם פירושי רבי נתן',
+    publisher: 'הוצאת נחל נובע מקור חכמה',
+    language: 'עברית',
+    pages: 420,
+    isbn: '978-965-7023-36-3',
+    images: [
+      '@assets/תהילים 2_1757281085509.jpg'
+    ],
+    variants: [
+      {
+        id: 'leather-deluxe',
+        format: 'עור מהודר',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '20*14',
+        volumes: 1,
+        price: 92,
+        inStock: true,
+        stockQuantity: 21
+      },
+      {
+        id: 'leather-premium',
+        format: 'עור איכותי',
+        binding: 'קשה',
+        size: 'גדול',
+        dimensions: '24*17',
+        volumes: 1,
+        price: 132,
+        inStock: true,
+        stockQuantity: 13
+      }
+    ],
+    features: [
+      'כריכת עור מהודרת עם הטבעות זהב',
+      'תהילים עם פירושי רבי נתן',
+      'הדרכות לתיקון הנפש',
+      'הדפסה ברורה וחדה',
+      'עיצוב אלגנטי ומרשים'
+    ],
+    tags: ['תהילים', 'תפילות', 'עור', 'מהודר', 'פירושים'],
+    isActive: true,
+    isFeatured: false
   }
 };
 export const realDownloads = [
