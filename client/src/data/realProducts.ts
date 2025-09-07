@@ -745,6 +745,278 @@ export const realBreslovProducts: Record<string, Product> = {
     tags: ['ליקוטי הלכות', 'רבי נתן', 'הלכה', 'מהודר', 'מקיף'],
     isActive: true,
     isFeatured: true
+  },
+
+  'likutei-halakhot-thick': {
+    id: 'likutei-halakhot-thick',
+    name: 'ליקוטי הלכות עבה',
+    nameEnglish: 'Likutei Halakhot Thick Edition',
+    description: 'ליקוטי הלכות של רבי נתן מברסלב במהדורה עבה ומקיפה. שמונה כרכים עבים וחזקים הכוללים את כל הלכות רבי נתן במלואן. מהדורה מהודרת בקופסה שחורה אלגנטית עם לוגו מוזהב.',
+    descriptionEnglish: 'Likutei Halakhot by Rabbi Nathan of Breslov in thick comprehensive edition. Eight thick, sturdy volumes containing all of Rabbi Nathan\'s halakhot in their entirety. Deluxe edition in elegant black box with gold logo.',
+    category: 'ליקוטי הלכות',
+    subcategory: 'מהדורה עבה',
+    author: 'רבי נתן מברסלב',
+    publisher: 'קרן רבי ישראל',
+    language: 'עברית',
+    pages: 3200,
+    isbn: '978-965-7023-90-5',
+    images: [
+      '@assets/ליקוטי הלכות עבה 1_1757275834933.jpg',
+      '@assets/ליקוטי הלכות עבה 2_1757275834934.jpg',
+      '@assets/ליקוטי הלכות עבה 3_1757275834934.jpg',
+      '@assets/ליקוטי הלכות עבה 4_1757275834934.jpg'
+    ],
+    variants: [
+      {
+        id: 'thick-8vol-boxed',
+        format: 'סקאי שחור עבה',
+        binding: 'קשה',
+        size: 'גדול',
+        dimensions: '24*17',
+        volumes: 8,
+        price: 520,
+        inStock: true,
+        stockQuantity: 6
+      },
+      {
+        id: 'thick-premium-8vol',
+        format: 'עור אומנותי עבה',
+        binding: 'קשה',
+        size: 'גדול',
+        dimensions: '24*17',
+        volumes: 8,
+        price: 750,
+        originalPrice: 850,
+        inStock: true,
+        stockQuantity: 3
+      }
+    ],
+    features: [
+      'שמונה כרכים עבים ומקיפים',
+      'קופסה אלגנטית מהודרת',
+      'כריכה איכותית וחזקה',
+      'טקסט מלא וברור',
+      'מהדורה מדוייקת ומוגהת'
+    ],
+    tags: ['ליקוטי הלכות', 'רבי נתן', 'עבה', 'מקיף', 'מהודר'],
+    isActive: true,
+    isFeatured: true
+  },
+
+  'mei-shearim': {
+    id: 'mei-shearim',
+    name: 'מט שערים',
+    nameEnglish: 'Mei Shearim',
+    description: 'ספר מט שערים המפורסם בשני כרכים מהודרים. כולל תורות וחידושים קדושים על מעלת ירושלים ושערי הקדושה. מגיע בקופסה יוקרתית עם תמונת בתי הכנסת הקדושים.',
+    descriptionEnglish: 'The famous Mei Shearim book in two deluxe volumes. Contains holy teachings and insights about the excellence of Jerusalem and the gates of holiness. Comes in a luxurious box with image of holy synagogues.',
+    category: 'ספרי קדושה',
+    subcategory: 'ירושלים וקדושה',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'קרן רבי ישראל',
+    language: 'עברית',
+    pages: 650,
+    isbn: '978-965-7023-91-2',
+    images: [
+      '@assets/מט שערים 1_1757275840464.jpg',
+      '@assets/מט שערים 2_1757275840465.jpg',
+      '@assets/מט שערים 3_1757275840465.jpg',
+      '@assets/מט שערים 4_1757275840466.jpg'
+    ],
+    variants: [
+      {
+        id: 'deluxe-2vol-boxed',
+        format: 'סקאי כהה בקופסה',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '17*12',
+        volumes: 2,
+        price: 120,
+        inStock: true,
+        stockQuantity: 18
+      },
+      {
+        id: 'premium-2vol-special',
+        format: 'עור דמוי בקופסה מיוחדת',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '17*12',
+        volumes: 2,
+        price: 180,
+        originalPrice: 200,
+        inStock: true,
+        stockQuantity: 10
+      }
+    ],
+    features: [
+      'שני כרכים מהודרים',
+      'קופסה יוקרתית מעוצבת',
+      'תמונת בתי כנסת קדושים',
+      'תורות על ירושלים',
+      'מתאים למתנה מיוחדת'
+    ],
+    tags: ['ירושלים', 'קדושה', 'מתנה', 'מהודר', 'שערים'],
+    isActive: true,
+    isFeatured: true
+  },
+
+  'likutei-halakhot-complete-7vol': {
+    id: 'likutei-halakhot-complete-7vol',
+    name: 'ליקוטי הלכות מהדורה מלאה',
+    nameEnglish: 'Likutei Halakhot Complete Edition',
+    description: 'ליקוטי הלכות במהדורה מלאה ומקיפה בשבעה כרכים. כולל את כל הלכות רבי נתן עם פירושים והוספות. מהדורה איכותית עם כריכה שחורה מהודרת ולוגו מוזהב.',
+    descriptionEnglish: 'Likutei Halakhot in complete comprehensive edition with seven volumes. Includes all of Rabbi Nathan\'s halakhot with commentaries and additions. Quality edition with deluxe black binding and gold logo.',
+    category: 'ליקוטי הלכות',
+    subcategory: 'מהדורה מלאה',
+    author: 'רבי נתן מברסלב',
+    publisher: 'קרן רבי ישראל',
+    language: 'עברית',
+    pages: 2600,
+    isbn: '978-965-7023-92-9',
+    images: [
+      '@assets/1_1757275875790.jpg',
+      '@assets/2_1757275875790.jpg'
+    ],
+    variants: [
+      {
+        id: 'complete-7vol',
+        format: 'סקאי שחור',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '17*12',
+        volumes: 7,
+        price: 350,
+        inStock: true,
+        stockQuantity: 12
+      },
+      {
+        id: 'deluxe-7vol',
+        format: 'עור דמוי מהודר',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '17*12',
+        volumes: 7,
+        price: 450,
+        originalPrice: 500,
+        inStock: true,
+        stockQuantity: 8
+      }
+    ],
+    features: [
+      'שבעה כרכים במהדורה מלאה',
+      'כל הלכות רבי נתן',
+      'כריכה איכותית ומהודרת',
+      'לוגו מוזהב מיוחד',
+      'מהדורה מדוייקת ומוגהת'
+    ],
+    tags: ['ליקוטי הלכות', 'רבי נתן', 'מלא', 'הלכה', 'מקיף'],
+    isActive: true,
+    isFeatured: true
+  },
+
+  'likutei-halakhot-6vol': {
+    id: 'likutei-halakhot-6vol',
+    name: 'ליקוטי הלכות שישה כרכים',
+    nameEnglish: 'Likutei Halakhot Six Volumes',
+    description: 'ליקוטי הלכות בשישה כרכים מסודרים ומרשימים. כולל את העיקרים מהלכות רבי נתן בסידור נוח ומעשי. מהדורה איכותית עם כריכה שחורה וזהב.',
+    descriptionEnglish: 'Likutei Halakhot in six organized and impressive volumes. Includes the essentials from Rabbi Nathan\'s halakhot in convenient and practical arrangement. Quality edition with black and gold binding.',
+    category: 'ליקוטי הלכות',
+    subcategory: 'מהדורה מסודרת',
+    author: 'רבי נתן מברסלב',
+    publisher: 'קרן רבי ישראל',
+    language: 'עברית',
+    pages: 2200,
+    isbn: '978-965-7023-93-6',
+    images: [
+      '@assets/3_1757275875790.jpg'
+    ],
+    variants: [
+      {
+        id: 'organized-6vol',
+        format: 'סקאי שחור',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '17*12',
+        volumes: 6,
+        price: 280,
+        inStock: true,
+        stockQuantity: 15
+      },
+      {
+        id: 'premium-6vol',
+        format: 'עור דמוי איכותי',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '17*12',
+        volumes: 6,
+        price: 380,
+        originalPrice: 420,
+        inStock: true,
+        stockQuantity: 10
+      }
+    ],
+    features: [
+      'שישה כרכים מסודרים',
+      'עיקרי הלכות רבי נתן',
+      'סידור נוח ומעשי',
+      'כריכה איכותית',
+      'מהדורה מוגהת ומדוייקת'
+    ],
+    tags: ['ליקוטי הלכות', 'רבי נתן', 'מסודר', 'הלכה', 'עיקרים'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'hitbodedut-hanefesh': {
+    id: 'hitbodedut-hanefesh',
+    name: 'השתפכות הנפש',
+    nameEnglish: 'Hitbodedut HaNefesh',
+    description: 'ספר השתפכות הנפש - מדריך מקיף להתבודדות ועבודת הנפש על פי תורת רבי נחמן מברסלב. כולל הדרכות מעשיות לעבודה פנימית ודרכי התקרבות לבורא.',
+    descriptionEnglish: 'Hitbodedut HaNefesh - A comprehensive guide to solitude and soul work according to Rabbi Nachman of Breslov\'s teachings. Includes practical guidance for inner work and ways to draw closer to the Creator.',
+    category: 'עבודת הנפש',
+    subcategory: 'התבודדות',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'קרן רבי ישראל',
+    language: 'עברית',
+    pages: 280,
+    isbn: '978-965-7023-94-3',
+    images: [
+      '@assets/השתפכות 2_1757275875791.jpg'
+    ],
+    variants: [
+      {
+        id: 'standard-edition',
+        format: 'סקאי שחור',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '17*12',
+        volumes: 1,
+        price: 45,
+        inStock: true,
+        stockQuantity: 30
+      },
+      {
+        id: 'deluxe-edition',
+        format: 'עור דמוי מהודר',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '17*12',
+        volumes: 1,
+        price: 65,
+        originalPrice: 75,
+        inStock: true,
+        stockQuantity: 20
+      }
+    ],
+    features: [
+      'מדריך מקיף להתבודדות',
+      'הדרכות מעשיות',
+      'עבודת הנפש העמוקה',
+      'על פי תורת רבי נחמן',
+      'מתאים לכל הרמות'
+    ],
+    tags: ['התבודדות', 'עבודת הנפש', 'רוחניות', 'מדריך', 'התקרבות'],
+    isActive: true,
+    isFeatured: false
   }
 };
 export const realDownloads = [
