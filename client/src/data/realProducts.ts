@@ -3270,6 +3270,620 @@ export const realBreslovProducts: Record<string, Product> = {
     tags: ['תיקון הכללי', 'מאויר', 'אומן', 'צבעוני', 'מיוחד'],
     isActive: true,
     isFeatured: true
+  },
+
+  'hishtapchut-katan': {
+    id: 'hishtapchut-katan',
+    name: 'השתפכות הנפש - מהדורת כיס',
+    nameEnglish: 'Outpouring of the Soul - Pocket Edition',
+    description: 'השתפכות הנפש במהדורת כיס מיוחדת עם רקע נופי מהמם. ספר קטן ונוח לנשיאה המכיל את כל ההדרכות החשובות להתבודדות ותפילה מעומק הלב.',
+    descriptionEnglish: 'Outpouring of the Soul in special pocket edition with stunning scenic background. Small and convenient book containing all important guidance for solitude and heartfelt prayer.',
+    category: 'תפילות',
+    subcategory: 'מהדורות כיס',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'קרן רבי ישראל דוב אודסר',
+    language: 'עברית',
+    pages: 180,
+    isbn: '978-965-7023-54-7',
+    images: [
+      '@assets/השתפכות קטן_1757281252873.jpg'
+    ],
+    variants: [
+      {
+        id: 'pocket-edition',
+        format: 'כיס מהודר',
+        binding: 'קשה',
+        size: 'כיס',
+        dimensions: '12*9',
+        volumes: 1,
+        price: 35,
+        inStock: true,
+        stockQuantity: 45
+      }
+    ],
+    features: [
+      'מהדורת כיס נוחה לנשיאה',
+      'עיצוב נופי מהמם',
+      'כריכה קשה איכותית',
+      'מתאים לכל מקום וזמן'
+    ],
+    tags: ['כיס', 'נייד', 'תפילות', 'התבודדות', 'נופי'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'moharan-katan': {
+    id: 'moharan-katan',
+    name: 'ליקוטי מוהר"ן - מהדורת כיס',
+    nameEnglish: 'Likutei Moharan - Pocket Edition',
+    description: 'ליקוטי מוהר"ן במהדורת כיס מיוחדת עם תמונת ציון רבינו הקדוש באומן. מהדורה מתומצתת המכילה את עיקרי התורות החשובות של רבינו.',
+    descriptionEnglish: 'Likutei Moharan in special pocket edition with image of our holy Rebbe\'s gravesite in Uman. Condensed edition containing the main important teachings of Rabbenu.',
+    category: 'ספרי רבנו',
+    subcategory: 'מהדורות כיס',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'קרן רבי ישראל דוב אודסר',
+    language: 'עברית',
+    pages: 320,
+    isbn: '978-965-7023-55-4',
+    images: [
+      '@assets/מוהרן קטן_1757281252873.jpg'
+    ],
+    variants: [
+      {
+        id: 'pocket-edition',
+        format: 'כיס מהודר',
+        binding: 'קשה',
+        size: 'כיס',
+        dimensions: '12*9',
+        volumes: 1,
+        price: 45,
+        inStock: true,
+        stockQuantity: 35
+      }
+    ],
+    features: [
+      'מהדורת כיס נוחה לנשיאה',
+      'תמונת ציון רבינו באומן',
+      'תמצית התורות החשובות',
+      'כריכה קשה איכותית'
+    ],
+    tags: ['כיס', 'ליקוטי מוהרן', 'אומן', 'ציון', 'נייד'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'midot-katan': {
+    id: 'midot-katan', 
+    name: 'ספר המידות - מהדורת כיס',
+    nameEnglish: 'Book of Character Traits - Pocket Edition',
+    description: 'ספר המידות במהדורת כיס מיוחדת עם עיצוב אותיות עבריות אמנותי. ספר קטן ונוח המכיל את כל העצות החשובות לתיקון המידות.',
+    descriptionEnglish: 'Book of Character Traits in special pocket edition with artistic Hebrew letters design. Small and convenient book containing all important advice for character refinement.',
+    category: 'ספרי מוסר',
+    subcategory: 'מהדורות כיס',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'קרן רבי ישראל דוב אודסר',
+    language: 'עברית',
+    pages: 150,
+    isbn: '978-965-7023-56-1',
+    images: [
+      '@assets/מידות קטן_1757281252874.jpg'
+    ],
+    variants: [
+      {
+        id: 'pocket-edition',
+        format: 'כיס מהודר',
+        binding: 'קשה',
+        size: 'כיס',
+        dimensions: '12*9',
+        volumes: 1,
+        price: 32,
+        inStock: true,
+        stockQuantity: 50
+      }
+    ],
+    features: [
+      'מהדורת כיס נוחה לנשיאה',
+      'עיצוב אותיות עבריות אמנותי',
+      'עצות מעשיות לתיקון המידות',
+      'כריכה קשה איכותית'
+    ],
+    tags: ['כיס', 'מידות', 'מוסר', 'אמנותי', 'נייד'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'maasirot-katan': {
+    id: 'maasirot-katan',
+    name: 'סיפורי מעשיות - מהדורת כיס',
+    nameEnglish: 'Tales - Pocket Edition',
+    description: 'סיפורי מעשיות במהדורת כיס מיוחדת עם איור של מבנה היסטורי. שלוש עשרה המעשיות הקדושות של רבינו במהדורה נוחה ונגישה.',
+    descriptionEnglish: 'Tales in special pocket edition with historical building illustration. The thirteen holy tales of Rabbenu in convenient and accessible edition.',
+    category: 'סיפורים',
+    subcategory: 'מהדורות כיס',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'קרן רבי ישראל דוב אודסר',
+    language: 'עברית',
+    pages: 200,
+    isbn: '978-965-7023-57-8',
+    images: [
+      '@assets/מעשיות קטן_1757281252874.jpg'
+    ],
+    variants: [
+      {
+        id: 'pocket-edition',
+        format: 'כיס מהודר',
+        binding: 'קשה',
+        size: 'כיס',
+        dimensions: '12*9',
+        volumes: 1,
+        price: 38,
+        inStock: true,
+        stockQuantity: 40
+      }
+    ],
+    features: [
+      'מהדורת כיס נוחה לנשיאה',
+      'איור מבנה היסטורי',
+      'שלוש עשרה המעשיות הקדושות',
+      'כריכה קשה איכותית'
+    ],
+    tags: ['כיס', 'מעשיות', 'סיפורים', 'היסטורי', 'נייד'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'meshivat-katan': {
+    id: 'meshivat-katan',
+    name: 'משיבת נפש - מהדורת כיס', 
+    nameEnglish: 'Response of the Soul - Pocket Edition',
+    description: 'משיבת נפש במהדורת כיס מיוחדת עם תמונת קבר רחל אמנו. ספר המכיל הדרכות חשובות להחזרת הנפש ותיקון הלב.',
+    descriptionEnglish: 'Response of the Soul in special pocket edition with image of Mother Rachel\'s Tomb. Book containing important guidance for soul restoration and heart rectification.',
+    category: 'ספרי מוסר',
+    subcategory: 'מהדורות כיס',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'קרן רבי ישראל דוב אודסר',
+    language: 'עברית',
+    pages: 170,
+    isbn: '978-965-7023-58-5',
+    images: [
+      '@assets/משיבת קטן_1757281252874.jpg'
+    ],
+    variants: [
+      {
+        id: 'pocket-edition',
+        format: 'כיס מהודר',
+        binding: 'קשה',
+        size: 'כיס',
+        dimensions: '12*9',
+        volumes: 1,
+        price: 36,
+        inStock: true,
+        stockQuantity: 42
+      }
+    ],
+    features: [
+      'מהדורת כיס נוחה לנשיאה',
+      'תמונת קבר רחל אמנו',
+      'הדרכות לתיקון הלב',
+      'כריכה קשה איכותית'
+    ],
+    tags: ['כיס', 'משיבת נפש', 'קבר רחל', 'תיקון', 'נייד'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'breslov-pocket-set-1': {
+    id: 'breslov-pocket-set-1',
+    name: 'סט ברסלב כיס - אוסף א',
+    nameEnglish: 'Breslov Pocket Set - Collection A',
+    description: 'אוסף מלא של 10 ספרי כיס ברסלב בקופסה מהודרת. כולל את כל הספרים החשובים: ליקוטי תפילות, ליקוטי מוהר"ן, ליקוטי עצות, תהילים, ספורי מעשיות, השתפכות הנפש, משיבת נפש, ספר המידות, תפילות לזמני השנה.',
+    descriptionEnglish: 'Complete collection of 10 Breslov pocket books in elegant box. Includes all important books: Likutei Tefilot, Likutei Moharan, Likutei Etzot, Psalms, Tales, Outpouring of Soul, Response of Soul, Character Traits, Prayers for Times of Year.',
+    category: 'אוספים',
+    subcategory: 'סטים מלאים',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'קרן רבי ישראל דוב אודסר',
+    language: 'עברית',
+    pages: 2000,
+    isbn: '978-965-7023-59-2',
+    images: [
+      '@assets/סט 1_1757281252874.jpg'
+    ],
+    variants: [
+      {
+        id: 'complete-pocket-set',
+        format: 'סט כיס מלא',
+        binding: 'קשה',
+        size: 'כיס',
+        dimensions: '12*9',
+        volumes: 10,
+        price: 280,
+        originalPrice: 350,
+        inStock: true,
+        stockQuantity: 15
+      }
+    ],
+    features: [
+      'אוסף מלא של 10 ספרים',
+      'קופסה מהודרת לאחסון',
+      'מהדורות כיס נוחות לנשיאה',
+      'כל הספרים החשובים ביותר',
+      'מחיר מיוחד לאוסף'
+    ],
+    tags: ['סט', 'אוסף', 'כיס', '10 ספרים', 'מלא'],
+    isActive: true,
+    isFeatured: true
+  },
+
+  'breslov-pocket-set-2': {
+    id: 'breslov-pocket-set-2',
+    name: 'סט ברסלב כיס - אוסף ב',
+    nameEnglish: 'Breslov Pocket Set - Collection B',
+    description: 'אוסף שני של 10 ספרי כיס ברסלב בקופסה מהודרת עם עיצוב שונה. המשך האוסף החשוב של ספרי ברסלב במהדורות כיס נוחות ואיכותיות.',
+    descriptionEnglish: 'Second collection of 10 Breslov pocket books in elegant box with different design. Continuation of the important collection of Breslov books in convenient and quality pocket editions.',
+    category: 'אוספים',
+    subcategory: 'סטים מלאים',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'קרן רבי ישראל דוב אודסר',
+    language: 'עברית',
+    pages: 2000,
+    isbn: '978-965-7023-60-8',
+    images: [
+      '@assets/סט 2_1757281252874.jpg'
+    ],
+    variants: [
+      {
+        id: 'complete-pocket-set',
+        format: 'סט כיס מלא',
+        binding: 'קשה',
+        size: 'כיס',
+        dimensions: '12*9',
+        volumes: 10,
+        price: 280,
+        originalPrice: 350,
+        inStock: true,
+        stockQuantity: 12
+      }
+    ],
+    features: [
+      'אוסף שני של 10 ספרים',
+      'קופסה מהודרת לאחסון',
+      'עיצוב מיוחד ושונה',
+      'איכות גבוהה וכריכה קשה',
+      'מחיר מיוחד לאוסף'
+    ],
+    tags: ['סט', 'אוסף', 'כיס', '10 ספרים', 'שני'],
+    isActive: true,
+    isFeatured: true
+  },
+
+  'breslov-pocket-set-3': {
+    id: 'breslov-pocket-set-3',
+    name: 'סט ברסלב כיס - אוסף ג',
+    nameEnglish: 'Breslov Pocket Set - Collection C',
+    description: 'אוסף שלישי של 10 ספרי כיס ברסלב. סט השלמה מושלם לאוסף הספרים הברסלביים, כולל ספרים נוספים וחשובים במהדורות כיס איכותיות.',
+    descriptionEnglish: 'Third collection of 10 Breslov pocket books. Perfect completion set for the Breslov book collection, including additional important books in quality pocket editions.',
+    category: 'אוספים',
+    subcategory: 'סטים מלאים',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'קרן רבי ישראל דוב אודסר',
+    language: 'עברית',
+    pages: 2000,
+    isbn: '978-965-7023-61-5',
+    images: [
+      '@assets/סט 3_1757281252875.jpg'
+    ],
+    variants: [
+      {
+        id: 'complete-pocket-set',
+        format: 'סט כיס מלא',
+        binding: 'קשה',
+        size: 'כיס',
+        dimensions: '12*9',
+        volumes: 10,
+        price: 280,
+        originalPrice: 350,
+        inStock: true,
+        stockQuantity: 10
+      }
+    ],
+    features: [
+      'אוסף שלישי של 10 ספרים',
+      'השלמה מושלמת לאוסף',
+      'ספרים נוספים וחשובים',
+      'איכות גבוהה וכריכה קשה',
+      'מחיר מיוחד לאוסף'
+    ],
+    tags: ['סט', 'אוסף', 'כיס', '10 ספרים', 'השלמה'],
+    isActive: true,
+    isFeatured: true
+  },
+
+  'etzot-katan': {
+    id: 'etzot-katan',
+    name: 'ליקוטי עצות - מהדורת כיס',
+    nameEnglish: 'Likutei Etzot - Pocket Edition',
+    description: 'ליקוטי עצות במהדורת כיס מיוחדת עם איור בניין היסטורי. אוסף העצות המעשיות החשוב במהדורה נוחה ונגישה לכל מקום.',
+    descriptionEnglish: 'Likutei Etzot in special pocket edition with historical building illustration. Important collection of practical advice in convenient and accessible edition for anywhere.',
+    category: 'עצות',
+    subcategory: 'מהדורות כיס',
+    author: 'רבי נתן מברסלב',
+    publisher: 'קרן רבי ישראל דוב אודסר',
+    language: 'עברית',
+    pages: 280,
+    isbn: '978-965-7023-62-2',
+    images: [
+      '@assets/עצות קטן_1757281252875.jpg'
+    ],
+    variants: [
+      {
+        id: 'pocket-edition',
+        format: 'כיס מהודר',
+        binding: 'קשה',
+        size: 'כיס',
+        dimensions: '12*9',
+        volumes: 1,
+        price: 40,
+        inStock: true,
+        stockQuantity: 38
+      }
+    ],
+    features: [
+      'מהדורת כיס נוחה לנשיאה',
+      'איור בניין היסטורי',
+      'עצות מעשיות לחיי יום יום',
+      'כריכה קשה איכותית'
+    ],
+    tags: ['כיס', 'עצות', 'מעשי', 'היסטורי', 'נייד'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'shvachei-vesichot-katan': {
+    id: 'shvachei-vesichot-katan',
+    name: 'שבחי הר"ן ושיחות הר"ן - מהדורת כיס',
+    nameEnglish: 'Praises and Talks of the Ran - Pocket Edition',
+    description: 'שבחי הר"ן ושיחות הר"ן במהדורת כיס מיוחדת עם איור בית כפרי מקסים. ספר המכיל שבחים ושיחות יומיומיות של רבינו הקדוש.',
+    descriptionEnglish: 'Praises and Talks of the Ran in special pocket edition with charming village house illustration. Book containing praises and daily conversations of our holy Rebbe.',
+    category: 'שיחות וביאורים',
+    subcategory: 'מהדורות כיס',
+    author: 'רבי נתן מברסלב',
+    publisher: 'קרן רבי ישראל דוב אודסר',
+    language: 'עברית',
+    pages: 220,
+    isbn: '978-965-7023-63-9',
+    images: [
+      '@assets/שבחי ושיחות קטן_1757281252875.jpg'
+    ],
+    variants: [
+      {
+        id: 'pocket-edition',
+        format: 'כיס מהודר',
+        binding: 'קשה',
+        size: 'כיס',
+        dimensions: '12*9',
+        volumes: 1,
+        price: 37,
+        inStock: true,
+        stockQuantity: 41
+      }
+    ],
+    features: [
+      'מהדורת כיס נוחה לנשיאה',
+      'איור בית כפרי מקסים',
+      'שבחים ושיחות של רבינו',
+      'כריכה קשה איכותית'
+    ],
+    tags: ['כיס', 'שיחות', 'שבחים', 'כפרי', 'נייד'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'tehilim-katan': {
+    id: 'tehilim-katan',
+    name: 'תהילים - מהדורת כיס',
+    nameEnglish: 'Psalms - Pocket Edition',
+    description: 'תהילים עם שמות הצדיקים במהדורת כיס מיוחדת עם איור של בניין רוחני. ספר תהילים מלא עם הוספות חשובות במהדורה נוחה לנשיאה.',
+    descriptionEnglish: 'Psalms with Names of the Righteous in special pocket edition with spiritual building illustration. Complete book of Psalms with important additions in convenient carrying edition.',
+    category: 'תפילות',
+    subcategory: 'מהדורות כיס',
+    author: 'מלך דוד',
+    publisher: 'קרן רבי ישראל דוב אודסר',
+    language: 'עברית',
+    pages: 400,
+    isbn: '978-965-7023-64-6',
+    images: [
+      '@assets/תהלים קטן_1757281252875.jpg'
+    ],
+    variants: [
+      {
+        id: 'pocket-edition',
+        format: 'כיס מהודר',
+        binding: 'קשה',
+        size: 'כיס',
+        dimensions: '12*9',
+        volumes: 1,
+        price: 43,
+        inStock: true,
+        stockQuantity: 33
+      }
+    ],
+    features: [
+      'מהדורת כיס נוחה לנשיאה',
+      'כולל שמות הצדיקים',
+      'איור בניין רוחני',
+      'ספר תהילים מלא'
+    ],
+    tags: ['כיס', 'תהילים', 'צדיקים', 'רוחני', 'נייד'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'tefilot-lizemani-hashana-katan': {
+    id: 'tefilot-lizemani-hashana-katan',
+    name: 'תפילות לזמני השנה - מהדורת כיס',
+    nameEnglish: 'Prayers for Times of Year - Pocket Edition',
+    description: 'תפילות לזמני השנה במהדורת כיס מיוחדת עם איור של בניין קדוש. תפילות מיוחדות לכל עתות השנה והמועדים במהדורה נוחה ונגישה.',
+    descriptionEnglish: 'Prayers for Times of Year in special pocket edition with holy building illustration. Special prayers for all seasons and holidays in convenient and accessible edition.',
+    category: 'תפילות',
+    subcategory: 'מהדורות כיס',
+    author: 'רבי נתן מברסלב',
+    publisher: 'קרן רבי ישראל דוב אודסר',
+    language: 'עברית',
+    pages: 300,
+    isbn: '978-965-7023-65-3',
+    images: [
+      '@assets/תפילות לזמני השנה קטן_1757281252875.jpg'
+    ],
+    variants: [
+      {
+        id: 'pocket-edition',
+        format: 'כיס מהודר',
+        binding: 'קשה',
+        size: 'כיס',
+        dimensions: '12*9',
+        volumes: 1,
+        price: 41,
+        inStock: true,
+        stockQuantity: 36
+      }
+    ],
+    features: [
+      'מהדורת כיס נוחה לנשיאה',
+      'תפילות לכל עתות השנה',
+      'איור בניין קדוש',
+      'כולל כל המועדים'
+    ],
+    tags: ['כיס', 'תפילות', 'מועדים', 'קדוש', 'נייד'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'tefilot-katan': {
+    id: 'tefilot-katan',
+    name: 'ליקוטי תפילות - מהדורת כיס',
+    nameEnglish: 'Likutei Tefilot - Pocket Edition',
+    description: 'ליקוטי תפילות במהדורת כיס מיוחדת עם נוף יער מהמם. אוסף התפילות המיוחדות של רבי נתן במהדורה נוחה לנשיאה בכל מקום.',
+    descriptionEnglish: 'Likutei Tefilot in special pocket edition with stunning forest landscape. Collection of Rabbi Nathan\'s special prayers in convenient edition for carrying anywhere.',
+    category: 'תפילות',
+    subcategory: 'מהדורות כיס',
+    author: 'רבי נתן מברסלב',
+    publisher: 'קרן רבי ישראל דוב אודסר',
+    language: 'עברית',
+    pages: 450,
+    isbn: '978-965-7023-66-0',
+    images: [
+      '@assets/תפילות קטן_1757281252876.jpg'
+    ],
+    variants: [
+      {
+        id: 'pocket-edition',
+        format: 'כיס מהודר',
+        binding: 'קשה',
+        size: 'כיס',
+        dimensions: '12*9',
+        volumes: 1,
+        price: 46,
+        inStock: true,
+        stockQuantity: 30
+      }
+    ],
+    features: [
+      'מהדורת כיס נוחה לנשיאה',
+      'נוף יער מהמם',
+      'תפילות מיוחדות של רבי נתן',
+      'מתאים לכל מקום וזמן'
+    ],
+    tags: ['כיס', 'תפילות', 'יער', 'רבי נתן', 'נייד'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'rabenu-hakadosh-4vol': {
+    id: 'rabenu-hakadosh-4vol',
+    name: 'רבינו הקדוש - 4 כרכים',
+    nameEnglish: 'Our Holy Rebbe - 4 Volumes',
+    description: 'רבינו הקדוש - אוסף מרהיב של 4 כרכים עם איורים נופיים מהממים של הטבע והנוף הארץ-ישראלי. ביוגרפיה מקיפה ומפורטת של רבינו הקדוש עם איורים צבעוניים מדהימים.',
+    descriptionEnglish: 'Our Holy Rebbe - stunning collection of 4 volumes with magnificent landscape illustrations of nature and the Land of Israel scenery. Comprehensive and detailed biography of our holy Rebbe with amazing colorful illustrations.',
+    category: 'ביוגרפיה',
+    subcategory: 'אוספים מאוירים',
+    author: 'רבי נתן מברסלב',
+    publisher: 'הוצאת נחל נובע מקור חכמה',
+    language: 'עברית',
+    pages: 1600,
+    isbn: '978-965-7023-67-7',
+    images: [
+      '@assets/רבינו הקדוש 1_1757281260204.jpg',
+      '@assets/רבינו הקדוש 2_1757281260206.jpg',
+      '@assets/רבינו הקדוש 3_1757281260206.jpg',
+      '@assets/רבינו הקדוש 4_1757281260206.jpg'
+    ],
+    variants: [
+      {
+        id: 'illustrated-4vol-set',
+        format: 'מאויר 4 כרכים',
+        binding: 'קשה',
+        size: 'גדול',
+        dimensions: '24*17',
+        volumes: 4,
+        price: 320,
+        originalPrice: 380,
+        inStock: true,
+        stockQuantity: 8
+      }
+    ],
+    features: [
+      'אוסף מרהיב של 4 כרכים',
+      'איורים נופיים מהממים',
+      'ביוגרפיה מקיפה ומפורטת',
+      'איורים צבעוניים מדהימים',
+      'כריכה קשה איכותית'
+    ],
+    tags: ['ביוגרפיה', '4 כרכים', 'מאויר', 'נופי', 'צבעוני'],
+    isActive: true,
+    isFeatured: true
+  },
+
+  'shaar-hachamishim': {
+    id: 'shaar-hachamishim',
+    name: 'שער החמישים - 3 כרכים',
+    nameEnglish: 'Gate of Fifty - 3 Volumes',
+    description: 'שער החמישים - אוסף יוקרתי של 3 כרכים מהודרים בכריכת עור שחורה עם הטבעות זהב. ספר עמוק ומתקדם העוסק בקבלה ובסודות התורה מתורתו של רבינו הקדוש.',
+    descriptionEnglish: 'Gate of Fifty - luxury collection of 3 elegant volumes in black leather binding with gold embossing. Deep and advanced book dealing with Kabbalah and Torah secrets from our holy Rebbe\'s teachings.',
+    category: 'קבלה וחסידות',
+    subcategory: 'ספרי עומק',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'הוצאת נחל נובע מקור חכמה',
+    language: 'עברית',
+    pages: 1200,
+    isbn: '978-965-7023-68-4',
+    images: [
+      '@assets/שער החמישים 1_1757281267103.jpg',
+      '@assets/שער החמישים 2_1757281267104.jpg'
+    ],
+    variants: [
+      {
+        id: 'deluxe-leather-3vol',
+        format: 'עור מהודר 3 כרכים',
+        binding: 'עור',
+        size: 'גדול',
+        dimensions: '24*17',
+        volumes: 3,
+        price: 450,
+        originalPrice: 550,
+        inStock: true,
+        stockQuantity: 6
+      }
+    ],
+    features: [
+      'אוסף יוקרתי של 3 כרכים',
+      'כריכת עור שחורה מהודרת',
+      'הטבעות זהב איכותיות',
+      'עוסק בקבלה וסודות התורה',
+      'ספר עמוק ומתקדם'
+    ],
+    tags: ['קבלה', '3 כרכים', 'עור שחור', 'יוקרתי', 'עמוק'],
+    isActive: true,
+    isFeatured: true
   }
 };
 export const realDownloads = [
