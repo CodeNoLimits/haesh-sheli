@@ -459,10 +459,294 @@ export const realBreslovProducts: Record<string, Product> = {
     tags: ['תפילות', 'רבי נתן', 'ליקוטי תפילות', 'תחנונים', 'קדושה'],
     isActive: true,
     isFeatured: true
+  },
+
+  'chumash-likutei-halakhot-medium': {
+    id: 'chumash-likutei-halakhot-medium',
+    name: 'חומש עם ליקוטי הלכות בינוני',
+    nameEnglish: 'Pentateuch with Likutei Halakhot - Medium',
+    description: 'חומש תורה עם פירוש ליקוטי הלכות של רבי נתן מברסלב. מהדורה מהודרת בחמישה כרכים הכוללת את כל חמשה חומשי תורה עם ביאורים מעמיקים מתוך ליקוטי הלכות.',
+    descriptionEnglish: 'Five Books of Moses with Likutei Halakhot commentary by Rabbi Nathan of Breslov. A deluxe five-volume edition including all five books of the Torah with deep explanations from Likutei Halakhot.',
+    category: 'חומשים ותנ"ך',
+    subcategory: 'חומש עם פירושים',
+    author: 'רבי נתן מברסלב',
+    publisher: 'קרן רבי ישראל',
+    language: 'עברית',
+    pages: 1250,
+    isbn: '978-965-7023-85-1',
+    images: [
+      '@assets/חומש עם ליקוטי הלכות בינוני 1_1757275732701.jpg',
+      '@assets/חומש עם ליקוטי הלכות בינוני 2_1757275732701.jpg',
+      '@assets/חומש עם ליקוטי הלכות בינוני 3_1757275732702.jpg'
+    ],
+    variants: [
+      {
+        id: 'dark-brown-5vol',
+        format: 'סקאי כהה',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '17*12',
+        volumes: 5,
+        price: 280,
+        inStock: true,
+        stockQuantity: 15
+      },
+      {
+        id: 'white-cream-5vol',
+        format: 'סקאי לבן-קרם',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '17*12',
+        volumes: 5,
+        price: 320,
+        inStock: true,
+        stockQuantity: 12
+      }
+    ],
+    features: [
+      'חמישה כרכים מהודרים',
+      'פירוש ליקוטי הלכות מלא',
+      'טקסט חומש מנוקד',
+      'כריכה איכותית וחזקה',
+      'מתאים לתלמוד ועיון'
+    ],
+    tags: ['חומש', 'ליקוטי הלכות', 'רבי נתן', 'תנך', 'לימוד'],
+    isActive: true,
+    isFeatured: true
+  },
+
+  'chumash-likutei-halakhot-large': {
+    id: 'chumash-likutei-halakhot-large',
+    name: 'חומש עם ליקוטי הלכות גדול',
+    nameEnglish: 'Pentateuch with Likutei Halakhot - Large',
+    description: 'חומש תורה עם פירוש ליקוטי הלכות במהדורה גדולה ומהודרת. חמישה כרכים עם אותיות גדולות וברורות, מתאים במיוחד לתלמוד ועיון מעמיק.',
+    descriptionEnglish: 'Five Books of Moses with Likutei Halakhot commentary in large deluxe edition. Five volumes with large, clear letters, especially suitable for study and deep learning.',
+    category: 'חומשים ותנ"ך',
+    subcategory: 'חומש עם פירושים',
+    author: 'רבי נתן מברסלב',
+    publisher: 'קרן רבי ישראל',
+    language: 'עברית',
+    pages: 1250,
+    isbn: '978-965-7023-86-8',
+    images: [
+      '@assets/חומש עם ליקוטי הלכות גדול 1_1757275742254.jpg',
+      '@assets/חומש עם ליקוטי הלכות גדול 2_1757275742255.jpg',
+      '@assets/חומש עם ליקוטי הלכות גדול 3_1757275742255.jpg'
+    ],
+    variants: [
+      {
+        id: 'large-dark-5vol',
+        format: 'סקאי כהה',
+        binding: 'קשה',
+        size: 'גדול',
+        dimensions: '24*17',
+        volumes: 5,
+        price: 380,
+        inStock: true,
+        stockQuantity: 10
+      },
+      {
+        id: 'large-premium-5vol',
+        format: 'עור דמוי מהודר',
+        binding: 'קשה',
+        size: 'גדול',
+        dimensions: '24*17',
+        volumes: 5,
+        price: 480,
+        originalPrice: 520,
+        inStock: true,
+        stockQuantity: 6
+      }
+    ],
+    features: [
+      'אותיות גדולות וברורות',
+      'חמישה כרכים במהדורה גדולה',
+      'פירוש ליקוטי הלכות מפורט',
+      'כריכה מהודרת ואיכותית',
+      'מתאים לקריאה נוחה ועיון'
+    ],
+    tags: ['חומש', 'ליקוטי הלכות', 'אותיות גדולות', 'מהודר', 'עיון'],
+    isActive: true,
+    isFeatured: true
+  },
+
+  'nan-lesimcha-colorful': {
+    id: 'nan-lesimcha-colorful',
+    name: 'נ"ן לשמחה צבעוני',
+    nameEnglish: 'Nan Lesimcha Colorful',
+    description: 'ספר נ"ן לשמחה במהדורה צבעונית ומיוחדת. זמין בשלושה צבעים יפהפיים: ורוד, תכלת ואפור. ספר קטן ונוח לנשיאה עם תוכן מעורר שמחה ואמונה.',
+    descriptionEnglish: 'Nan Lesimcha book in a special colorful edition. Available in three beautiful colors: pink, turquoise, and gray. A small, portable book with content that inspires joy and faith.',
+    category: 'ספרי ברסלב',
+    subcategory: 'שמחה ואמונה',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'קרן רבי ישראל',
+    language: 'עברית',
+    pages: 120,
+    isbn: '978-965-7023-87-5',
+    images: [
+      '@assets/1_1757275751755.jpg',
+      '@assets/2_1757275751756.jpg',
+      '@assets/3_1757275751756.jpg',
+      '@assets/4_1757275751756.jpg',
+      '@assets/5_1757275751756.jpg'
+    ],
+    variants: [
+      {
+        id: 'pink-edition',
+        format: 'פלסטיק צבעוני',
+        binding: 'רך',
+        size: 'קטן',
+        dimensions: '12*8',
+        volumes: 1,
+        price: 25,
+        inStock: true,
+        stockQuantity: 40
+      },
+      {
+        id: 'turquoise-edition',
+        format: 'פלסטיק צבעוני',
+        binding: 'רך',
+        size: 'קטן',
+        dimensions: '12*8',
+        volumes: 1,
+        price: 25,
+        inStock: true,
+        stockQuantity: 35
+      },
+      {
+        id: 'gray-edition',
+        format: 'פלסטיק צבעוני',
+        binding: 'רך',
+        size: 'קטן',
+        dimensions: '12*8',
+        volumes: 1,
+        price: 25,
+        inStock: true,
+        stockQuantity: 30
+      }
+    ],
+    features: [
+      'עמיד במים',
+      'צבעים יפהפיים וחיים',
+      'קטן ונוח לנשיאה',
+      'מתאים לכל הגילאים',
+      'מעורר שמחה ואמונה'
+    ],
+    tags: ['שמחה', 'צבעוני', 'נייד', 'ילדים', 'אמונה'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'kitvei-rabbi-nachman': {
+    id: 'kitvei-rabbi-nachman',
+    name: 'כתבי רבי נחמן מברסלב',
+    nameEnglish: 'Writings of Rabbi Nachman of Breslov',
+    description: 'אוסף מלא של כתבי רבי נחמן מברסלב בשלושה כרכים מהודרים. כולל את כל התורות, השיחות והכתבים הקדושים של רבינו הקדוש. מהדורה מדוייקת עם הערות וביאורים.',
+    descriptionEnglish: 'Complete collection of Rabbi Nachman of Breslov\'s writings in three deluxe volumes. Includes all the holy teachings, conversations, and writings of our holy Rebbe. Accurate edition with notes and explanations.',
+    category: 'ספרי רבנו',
+    subcategory: 'כתבי רבי נחמן',
+    author: 'רבי נחמן מברסלב',
+    publisher: 'קרן רבי ישראל',
+    language: 'עברית',
+    pages: 950,
+    isbn: '978-965-7023-88-2',
+    images: [
+      '@assets/כתבי רהי נחמן מברסלב 1_1757275758580.jpg',
+      '@assets/כתבי רבי נחמן מברסלב 2_1757275758578.jpg',
+      '@assets/כתבי רבי נחמן מברסלב 3_1757275758580.jpg'
+    ],
+    variants: [
+      {
+        id: 'classic-3vol',
+        format: 'סקאי כהה',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '17*12',
+        volumes: 3,
+        price: 180,
+        inStock: true,
+        stockQuantity: 20
+      },
+      {
+        id: 'deluxe-3vol',
+        format: 'עור דמוי מהודר',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '17*12',
+        volumes: 3,
+        price: 250,
+        originalPrice: 280,
+        inStock: true,
+        stockQuantity: 12
+      }
+    ],
+    features: [
+      'אוסף מלא של כתבי רבי נחמן',
+      'שלושה כרכים מהודרים',
+      'מהדורה מדוייקת ומוגהת',
+      'הערות וביאורים חשובים',
+      'איכות הדפסה מעולה'
+    ],
+    tags: ['כתבי רבי נחמן', 'תורות', 'שיחות', 'אוסף מלא', 'יסוד'],
+    isActive: true,
+    isFeatured: true
+  },
+
+  'likutei-halakhot-large-thin': {
+    id: 'likutei-halakhot-large-thin',
+    name: 'ליקוטי הלכות דק גדול',
+    nameEnglish: 'Likutei Halakhot Large Thin Edition',
+    description: 'ליקוטי הלכות של רבי נתן מברסלב במהדורה גדולה ודקה. תשעה כרכים מהודרים עם כל ההלכות והביאורים של רבי נתן. מהדורה מיוחדת עם כריכה איכותית ואותיות ברורות.',
+    descriptionEnglish: 'Likutei Halakhot by Rabbi Nathan of Breslov in large thin edition. Nine deluxe volumes with all the halakhot and explanations of Rabbi Nathan. Special edition with quality binding and clear letters.',
+    category: 'ליקוטי הלכות',
+    subcategory: 'מהדורה מהודרת',
+    author: 'רבי נתן מברסלב',
+    publisher: 'קרן רבי ישראל',
+    language: 'עברית',
+    pages: 2800,
+    isbn: '978-965-7023-89-9',
+    images: [
+      '@assets/ליקוטי הלכות דק גדול 1_1757275769149.jpg',
+      '@assets/ליקוטי הלכות דק גדול 2_1757275769151.jpg',
+      '@assets/ליקוטי הלכות דק גדול 3_1757275769151.jpg'
+    ],
+    variants: [
+      {
+        id: 'large-thin-9vol',
+        format: 'סקאי שחור מהודר',
+        binding: 'קשה',
+        size: 'גדול',
+        dimensions: '24*17',
+        volumes: 9,
+        price: 450,
+        inStock: true,
+        stockQuantity: 8
+      },
+      {
+        id: 'premium-leather-9vol',
+        format: 'עור אומנותי',
+        binding: 'קשה',
+        size: 'גדול',
+        dimensions: '24*17',
+        volumes: 9,
+        price: 650,
+        originalPrice: 720,
+        inStock: true,
+        stockQuantity: 4
+      }
+    ],
+    features: [
+      'תשעה כרכים במהדורה דקה',
+      'גודל גדול לקריאה נוחה',
+      'כל הלכות רבי נתן',
+      'כריכה מהודרת ואיכותית',
+      'מהדורה מדוייקת ומוגהת'
+    ],
+    tags: ['ליקוטי הלכות', 'רבי נתן', 'הלכה', 'מהודר', 'מקיף'],
+    isActive: true,
+    isFeatured: true
   }
 };
-
-// Real download links from breslovbooks.com and wikisource
 export const realDownloads = [
   {
     id: 'likutei-moharan-pdf',
