@@ -384,11 +384,18 @@ export default function Store() {
                       <div style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
                         10.00 ₪ – 35.00 ₪
                       </div>
-                      <a href="/checkout?product=avi-hanachal&price=35" style={{textDecoration: 'none'}}>
-                        <button style={{background: '#dc3545', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
-                          הוספה לסל - 35 ₪
-                        </button>
-                      </a>
+                      <div style={{display: 'flex', gap: '0.5rem'}}>
+                        <a href="/product/avi-hanachal" style={{textDecoration: 'none', flex: 1}}>
+                          <button style={{background: '#007bff', color: 'white', border: 'none', padding: '0.8rem 1rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold', fontSize: '0.9rem'}}>
+                            צפה במוצר
+                          </button>
+                        </a>
+                        <a href="/checkout?product=avi-hanachal&price=35" style={{textDecoration: 'none', flex: 1}}>
+                          <button style={{background: '#dc3545', color: 'white', border: 'none', padding: '0.8rem 1rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold', fontSize: '0.9rem'}}>
+                            הוסף לסל
+                          </button>
+                        </a>
+                      </div>
                       <p style={{fontSize: '0.9rem', color: '#666', marginTop: '0.5rem'}}>
                         מחיר כולל משלוח לכל הארץ
                       </p>
@@ -415,11 +422,18 @@ export default function Store() {
                       <div style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
                         200.00 ₪
                       </div>
-                      <a href="/checkout?product=otzer-hayirah&price=200" style={{textDecoration: 'none'}}>
-                        <button style={{background: '#28a745', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
-                          הוספה לסל - 200 ₪
-                        </button>
-                      </a>
+                      <div style={{display: 'flex', gap: '0.5rem'}}>
+                        <a href="/product/otzer-hayirah" style={{textDecoration: 'none', flex: 1}}>
+                          <button style={{background: '#007bff', color: 'white', border: 'none', padding: '0.8rem 1rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold', fontSize: '0.9rem'}}>
+                            צפה במוצר
+                          </button>
+                        </a>
+                        <a href="/checkout?product=otzer-hayirah&price=200" style={{textDecoration: 'none', flex: 1}}>
+                          <button style={{background: '#28a745', color: 'white', border: 'none', padding: '0.8rem 1rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold', fontSize: '0.9rem'}}>
+                            הוסף לסל
+                          </button>
+                        </a>
+                      </div>
                       <p style={{fontSize: '0.9rem', color: '#666', marginTop: '0.5rem'}}>
                         כולל משלוח חינם
                       </p>
@@ -448,11 +462,18 @@ export default function Store() {
                       <p style={{fontSize: '0.9rem', color: '#666', marginBottom: '1rem'}}>
                         המחיר המקורי היה: 40.00 ₪. המחיר הנוכחי הוא: 35.00 ₪.
                       </p>
-                      <a href="/checkout?product=emunath-chachamim&price=35" style={{textDecoration: 'none'}}>
-                        <button style={{background: '#28a745', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
-                          הוספה לסל - 35 ₪
-                        </button>
-                      </a>
+                      <div style={{display: 'flex', gap: '0.5rem'}}>
+                        <a href="/product/emunath-chachamim" style={{textDecoration: 'none', flex: 1}}>
+                          <button style={{background: '#007bff', color: 'white', border: 'none', padding: '0.8rem 1rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold', fontSize: '0.9rem'}}>
+                            צפה במוצר
+                          </button>
+                        </a>
+                        <a href="/checkout?product=emunath-chachamim&price=35" style={{textDecoration: 'none', flex: 1}}>
+                          <button style={{background: '#28a745', color: 'white', border: 'none', padding: '0.8rem 1rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold', fontSize: '0.9rem'}}>
+                            הוסף לסל
+                          </button>
+                        </a>
+                      </div>
                     </div>
                 </div>
 
