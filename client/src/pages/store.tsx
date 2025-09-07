@@ -153,12 +153,43 @@ export default function Store() {
                 <select style={{width: '100%', padding: '0.8rem', border: '1px solid #ddd', borderRadius: '5px', marginBottom: '1rem'}}>
                   <option>כל הקטגוריות</option>
                   <option>ספרי רבנו</option>
-                  <option>מועדי השנה</option>
-                  <option>ליקוטים</option>
                   <option>תפילות</option>
                   <option>עצות</option>
                   <option>סיפורים</option>
+                  <option>ביוגרפיה</option>
+                  <option>ספרי מוסר</option>
+                  <option>שיחות וביאורים</option>
+                  <option>קבלה וחסידות</option>
+                  <option>מועדי השנה</option>
+                  <option>אוספים</option>
                 </select>
+              </div>
+              
+              {/* Edition Types */}
+              <div style={{marginBottom: '2rem'}}>
+                <h4 style={{fontWeight: 'bold', marginBottom: '1rem', color: '#333'}}>סוג מהדורה</h4>
+                <div style={{display: 'flex', flexDirection: 'column', gap: '0.5rem'}}>
+                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer'}}>
+                    <input type="checkbox" style={{marginLeft: '0.5rem'}} />
+                    מהדורות כיס
+                  </label>
+                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer'}}>
+                    <input type="checkbox" style={{marginLeft: '0.5rem'}} />
+                    מהדורות יוקרה
+                  </label>
+                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer'}}>
+                    <input type="checkbox" style={{marginLeft: '0.5rem'}} />
+                    סטים מלאים
+                  </label>
+                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer'}}>
+                    <input type="checkbox" style={{marginLeft: '0.5rem'}} />
+                    מהדורות מאוירות
+                  </label>
+                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer'}}>
+                    <input type="checkbox" style={{marginLeft: '0.5rem'}} />
+                    כריכת עור
+                  </label>
+                </div>
               </div>
 
               {/* Languages */}
