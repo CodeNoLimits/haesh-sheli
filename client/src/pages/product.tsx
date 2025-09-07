@@ -1,106 +1,7 @@
 import { useState } from 'react';
 import { useRoute } from 'wouter';
-
-interface Product {
-  id: string;
-  name: string;
-  description: string;
-  images: string[];
-  variants: {
-    id: string;
-    format: string;
-    size: string;
-    price: number;
-    originalPrice?: number;
-    inStock: boolean;
-  }[];
-  features: string[];
-  category: string;
-  language: string;
-  publisher: string;
-  pages?: number;
-  isbn?: string;
-}
-
-const products: Record<string, Product> = {
-  'avi-hanachal': {
-    id: 'avi-hanachal',
-    name: 'אב״י הנחל',
-    description: 'ספר יסוד חשוב של רבי נחמן מברסלב זצ״ל, המכיל תורות יסוד בדרך ברסלב. הספר כולל הדרכות מעשיות לחיי רוחניות והתקרבות אל הבורא.',
-    images: [
-      'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/1-1-300x300.d110a0.webp',
-      'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/1-1.d110a0.webp'
-    ],
-    variants: [
-      { id: 'pocket', format: 'כיס', size: 'קטן (10×14 ס״מ)', price: 10, inStock: true },
-      { id: 'medium', format: 'רגיל', size: 'בינוני (15×22 ס״מ)', price: 25, inStock: true },
-      { id: 'large', format: 'גדול', size: 'גדול (20×28 ס״מ)', price: 35, inStock: true },
-      { id: 'deluxe', format: 'דלוקס', size: 'מהודר (22×30 ס״מ)', price: 55, originalPrice: 65, inStock: false }
-    ],
-    features: [
-      'כריכה איכותית וחזקה',
-      'נייר איכותי לקריאה נוחה',
-      'עיצוב מסורתי ומכובד',
-      'הדפסה ברורה וחדה',
-      'מתאים לשימוש יומיומי'
-    ],
-    category: 'ספרי רבנו',
-    language: 'עברית',
-    publisher: 'קרן רבי ישראל',
-    pages: 180,
-    isbn: '978-965-0000-00-1'
-  },
-  'otzer-hayirah': {
-    id: 'otzer-hayirah',
-    name: 'אוצר היראה',
-    description: 'אוסף נפלא של תורות רבי נחמן על יראת שמים ואמונה. הספר מכיל מאמרים ותורות שנאמרו על ידי רבי נחמן ותלמידיו בנושא היראה.',
-    images: [
-      'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/24-300x300.d110a0.webp',
-      'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/24.d110a0.webp'
-    ],
-    variants: [
-      { id: 'standard', format: 'רגיל', size: 'בינוני (15×22 ס״מ)', price: 180, inStock: true },
-      { id: 'large', format: 'גדול', size: 'גדול (20×28 ס״מ)', price: 200, inStock: true },
-      { id: 'premium', format: 'פרמיום', size: 'מהודר עם זהב (22×30 ס״מ)', price: 350, inStock: true }
-    ],
-    features: [
-      'כריכה קשה מהודרת',
-      'נייר מעולה',
-      'אותיות גדולות וברורות',
-      'עמידות לשנים',
-      'מתאים למתנה'
-    ],
-    category: 'ליקוטים',
-    language: 'עברית',
-    publisher: 'קרן רבי ישראל',
-    pages: 450,
-    isbn: '978-965-0000-00-2'
-  },
-  'emunath-chachamim': {
-    id: 'emunath-chachamim',
-    name: 'אמונת חכמים',
-    description: 'ספר חשוב על אמונת חכמים וכבוד התורה. מכיל תורות עמוקות על חשיבות ההתקשרות לצדיקים והאמונה בחכמי ישראל.',
-    images: [
-      'https://www.haesh-sheli.co.il/wp-content/uploads/woocommerce-placeholder-300x300.d110a0.webp'
-    ],
-    variants: [
-      { id: 'pocket', format: 'כיס', size: 'קטן (10×14 ס״מ)', price: 35, originalPrice: 40, inStock: true },
-      { id: 'medium', format: 'רגיל', size: 'בינוני (15×22 ס״מ)', price: 45, originalPrice: 50, inStock: true }
-    ],
-    features: [
-      'מחיר מבצע מיוחד',
-      'עיצוב מסורתי',
-      'נייר איכותי',
-      'כריכה רכה נוחה',
-      'מחיר אטרקטיבי'
-    ],
-    category: 'אמונה',
-    language: 'עברית',
-    publisher: 'קרן רבי ישראל',
-    pages: 120,
-    isbn: '978-965-0000-00-3'
-  }
-};
+import { realBreslovProducts } from '../data/realProducts';
+import type { Product } from '../../../shared/schema';
 
 export default function Product() {
   const [match, params] = useRoute('/product/:id');
@@ -112,13 +13,14 @@ export default function Product() {
     return <div>מוצר לא נמצא</div>;
   }
 
-  const product = products[params.id];
+  const product = realBreslovProducts[params.id];
   
   if (!product) {
     return <div>מוצר לא נמצא</div>;
   }
 
-  const currentVariant = product.variants.find(v => v.id === selectedVariant) || product.variants[0];
+  const variants = product.variants || [];
+  const currentVariant = variants.find(v => v.id === selectedVariant) || variants[0];
 
   return (
     <div className="rtl product-page page-template-default">
@@ -211,13 +113,13 @@ export default function Product() {
             <div>
               <div style={{marginBottom: '1rem'}}>
                 <img 
-                  src={product.images[selectedImage]} 
+                  src={(product.images && product.images[selectedImage] || '').replace('@assets/', '/attached_assets/')} 
                   alt={product.name}
                   style={{width: '100%', height: '500px', objectFit: 'cover', borderRadius: '10px', border: '1px solid #ddd'}}
                 />
               </div>
               
-              {product.images.length > 1 && (
+              {product.images && product.images.length > 1 && (
                 <div style={{display: 'flex', gap: '0.5rem', justifyContent: 'center'}}>
                   {product.images.map((image, index) => (
                     <button
@@ -232,7 +134,7 @@ export default function Product() {
                       }}
                     >
                       <img 
-                        src={image} 
+                        src={image.replace('@assets/', '/attached_assets/')} 
                         alt={`${product.name} ${index + 1}`}
                         style={{width: '60px', height: '60px', objectFit: 'cover', borderRadius: '3px'}}
                       />
@@ -280,7 +182,7 @@ export default function Product() {
                   בחר גודל וכריכה:
                 </h3>
                 <div style={{display: 'grid', gap: '0.8rem'}}>
-                  {product.variants.map((variant) => (
+                  {variants.map((variant) => (
                     <label 
                       key={variant.id}
                       style={{
@@ -306,9 +208,12 @@ export default function Product() {
                       />
                       <div style={{flex: 1}}>
                         <div style={{fontWeight: 'bold', fontSize: '1rem'}}>
-                          {variant.format} - {variant.size}
+                          {variant.format} {variant.binding} - {variant.size}
                         </div>
                         <div style={{fontSize: '0.9rem', color: '#666'}}>
+                          {variant.dimensions} • {variant.volumes === 1 ? 'חלק אחד' : `${variant.volumes} כרכים`}
+                        </div>
+                        <div style={{fontSize: '0.8rem', color: variant.inStock ? '#28a745' : '#dc3545'}}>
                           {variant.inStock ? 'במלאי' : 'אזל מהמלאי'}
                         </div>
                       </div>
@@ -384,7 +289,7 @@ export default function Product() {
                   מאפיינים מיוחדים:
                 </h3>
                 <ul style={{listStyle: 'none', padding: 0}}>
-                  {product.features.map((feature, index) => (
+                  {(product.features || []).map((feature, index) => (
                     <li key={index} style={{marginBottom: '0.5rem', paddingRight: '1.5rem', position: 'relative'}}>
                       <span style={{position: 'absolute', right: 0, top: 0, color: '#dc3545', fontWeight: 'bold'}}>✓</span>
                       {feature}
@@ -417,10 +322,10 @@ export default function Product() {
             מוצרים דומים
           </h2>
           <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem'}}>
-            {Object.values(products).slice(0, 3).map((relatedProduct) => (
+            {Object.values(realBreslovProducts).filter(p => p.id !== product.id).slice(0, 3).map((relatedProduct) => (
               <div key={relatedProduct.id} style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
                 <img 
-                  src={relatedProduct.images[0]} 
+                  src={(relatedProduct.images && relatedProduct.images[0] || '').replace('@assets/', '/attached_assets/')} 
                   alt={relatedProduct.name}
                   style={{width: '100%', height: '200px', objectFit: 'cover'}}
                 />
@@ -429,7 +334,7 @@ export default function Product() {
                     {relatedProduct.name}
                   </h3>
                   <div style={{fontSize: '1.1rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
-                    {relatedProduct.variants[0].price}.00 ₪
+                    {(relatedProduct.variants && relatedProduct.variants[0] || {price: 0}).price} ₪
                   </div>
                   <a href={`/product/${relatedProduct.id}`} style={{textDecoration: 'none'}}>
                     <button style={{background: '#dc3545', color: 'white', border: 'none', padding: '0.8rem 1rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
