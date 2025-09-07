@@ -3884,6 +3884,51 @@ export const realBreslovProducts: Record<string, Product> = {
     tags: ['קבלה', '3 כרכים', 'עור שחור', 'יוקרתי', 'עמוק'],
     isActive: true,
     isFeatured: true
+  },
+
+  'toda-vehodaa-deluxe': {
+    id: 'toda-vehodaa-deluxe',
+    name: 'תודה והודאה - מהדורת יוקרה',
+    nameEnglish: 'Thanks and Gratitude - Luxury Edition',
+    description: 'תודה והודאה במהדורת יוקרה מרהיבה של שני כרכים בכריכת עור חום מהודרת עם עיטורים זהובים וקופסת מתנה מתאימה. אוסף מיוחד של תפילות תודה והכרת הטוב עם עיצוב אמנותי מדהים ואיכות ללא פשרות.',
+    descriptionEnglish: 'Thanks and Gratitude in stunning luxury edition of two volumes in elegant brown leather binding with gold decorations and matching gift box. Special collection of thanksgiving prayers and gratitude with amazing artistic design and uncompromising quality.',
+    category: 'תפילות',
+    subcategory: 'מהדורות יוקרה',
+    author: 'רבי נתן מברסלב',
+    publisher: 'הוצאת נחל נובע מקור חכמה',
+    language: 'עברית',
+    pages: 800,
+    isbn: '978-965-7023-69-1',
+    images: [
+      '@assets/תודה והודאה 1_1757281336534.jpg',
+      '@assets/תודה והודאה 2_1757281336535.jpg',
+      '@assets/תודה והודאה 3_1757281336535.jpg'
+    ],
+    variants: [
+      {
+        id: 'luxury-leather-2vol',
+        format: 'עור מהודר 2 כרכים',
+        binding: 'עור חום',
+        size: 'גדול',
+        dimensions: '22*16',
+        volumes: 2,
+        price: 380,
+        originalPrice: 450,
+        inStock: true,
+        stockQuantity: 5
+      }
+    ],
+    features: [
+      'מהדורת יוקרה של 2 כרכים',
+      'כריכת עור חום מהודרת',
+      'עיטורים ואותיות זהובים',
+      'עיצוב אמנותי מדהים',
+      'קופסת מתנה מתאימה',
+      'תפילות תודה והכרת הטוב'
+    ],
+    tags: ['תודה', 'הודאה', 'עור חום', 'יוקרה', '2 כרכים', 'מתנה'],
+    isActive: true,
+    isFeatured: true
   }
 };
 export const realDownloads = [
