@@ -264,9 +264,20 @@ export default function Store() {
                   return (
                     <div key={product.id} style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', transition: 'transform 0.3s ease'}}>
                       <img 
-                        src={(product.images && product.images[0] || '').replace('@assets/', '/attached_assets/')} 
+                        src={(product.images && product.images[0] || '').replace('@assets/', '')} 
                         alt={product.name}
                         style={{width: '100%', height: '300px', objectFit: 'cover'}}
+                        onError={(e) => {
+                          const imgElement = e.target as HTMLImageElement;
+                          imgElement.style.display = 'none';
+                          const parent = imgElement.parentElement;
+                          if (parent) {
+                            const placeholder = document.createElement('div');
+                            placeholder.style.cssText = 'width: 100%; height: 300px; background: #f8f9fa; display: flex; align-items: center; justify-content: center; color: #666; font-size: 1rem;';
+                            placeholder.textContent = 'תמונה לא זמינה';
+                            parent.insertBefore(placeholder, imgElement);
+                          }
+                        }}
                       />
                       <div style={{padding: '1.5rem'}}>
                         <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', marginBottom: '0.5rem', color: '#333'}}>
