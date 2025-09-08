@@ -1,399 +1,383 @@
+import { Header } from '../components/Header';
+import { useLanguage } from '../contexts/LanguageContext';
+import { useState } from 'react';
+
+const translations = {
+  he: {
+    title: 'צור קשר',
+    subtitle: 'נשמח לעזור ולענות על כל שאלה',
+    getInTouch: 'בוא נתחיל לדבר',
+    formTitle: 'שלח לנו הודעה',
+    name: 'שם מלא',
+    email: 'כתובת אימייל',
+    phone: 'טלפון (אופציונלי)',
+    subject: 'נושא',
+    message: 'הודעה',
+    send: 'שלח הודעה',
+    contactInfo: 'פרטי התקשרות',
+    address: 'כתובת',
+    addressText: 'ישראל, פתח תקווה',
+    emailContact: 'אימייל',
+    phoneContact: 'טלפון',
+    hours: 'שעות פתיחה',
+    hoursText: 'ימים א\'-ה\': 9:00-18:00\nימי ו\': 9:00-13:00\nימי שבת: סגור',
+    thankYou: 'תודה! ההודעה נשלחה בהצלחה',
+    errorMessage: 'אירעה שגיאה. אנא נסה שוב',
+    namePlaceholder: 'שם מלא',
+    emailPlaceholder: 'example@email.com',
+    phonePlaceholder: '+972-50-123-4567',
+    subjectPlaceholder: 'בחר נושא...',
+    messagePlaceholder: 'כתוב כאן את ההודעה שלך...',
+    subjects: [
+      'שאלה כללית',
+      'הזמנת ספר מיוחד',
+      'בעיה עם ההזמנה',
+      'משוב על המוצר',
+      'אחר'
+    ]
+  },
+  en: {
+    title: 'Contact Us',
+    subtitle: 'We\'re happy to help and answer any question',
+    getInTouch: 'Let\'s Get In Touch',
+    formTitle: 'Send Us a Message',
+    name: 'Full Name',
+    email: 'Email Address',
+    phone: 'Phone (Optional)',
+    subject: 'Subject',
+    message: 'Message',
+    send: 'Send Message',
+    contactInfo: 'Contact Information',
+    address: 'Address',
+    addressText: 'Israel, Petah Tikva',
+    emailContact: 'Email',
+    phoneContact: 'Phone',
+    hours: 'Business Hours',
+    hoursText: 'Sunday-Thursday: 9:00-18:00\nFridays: 9:00-13:00\nSaturdays: Closed',
+    thankYou: 'Thank you! Message sent successfully',
+    errorMessage: 'An error occurred. Please try again',
+    namePlaceholder: 'Full Name',
+    emailPlaceholder: 'example@email.com',
+    phonePlaceholder: '+972-50-123-4567',
+    subjectPlaceholder: 'Choose subject...',
+    messagePlaceholder: 'Write your message here...',
+    subjects: [
+      'General Question',
+      'Special Book Order',
+      'Order Problem',
+      'Product Feedback',
+      'Other'
+    ]
+  },
+  fr: {
+    title: 'Contactez-Nous',
+    subtitle: 'Nous sommes heureux d\'aider et de répondre à toute question',
+    getInTouch: 'Prenons Contact',
+    formTitle: 'Envoyez-nous un Message',
+    name: 'Nom Complet',
+    email: 'Adresse Email',
+    phone: 'Téléphone (Optionnel)',
+    subject: 'Sujet',
+    message: 'Message',
+    send: 'Envoyer le Message',
+    contactInfo: 'Informations de Contact',
+    address: 'Adresse',
+    addressText: 'Israël, Petah Tikva',
+    emailContact: 'Email',
+    phoneContact: 'Téléphone',
+    hours: 'Heures d\'Ouverture',
+    hoursText: 'Dimanche-Jeudi: 9:00-18:00\nVendredis: 9:00-13:00\nSamedis: Fermé',
+    thankYou: 'Merci! Message envoyé avec succès',
+    errorMessage: 'Une erreur s\'est produite. Veuillez réessayer',
+    namePlaceholder: 'Nom Complet',
+    emailPlaceholder: 'exemple@email.com',
+    phonePlaceholder: '+972-50-123-4567',
+    subjectPlaceholder: 'Choisir un sujet...',
+    messagePlaceholder: 'Écrivez votre message ici...',
+    subjects: [
+      'Question Générale',
+      'Commande de Livre Spécial',
+      'Problème de Commande',
+      'Commentaire sur le Produit',
+      'Autre'
+    ]
+  },
+  es: {
+    title: 'Contáctanos',
+    subtitle: 'Estamos felices de ayudar y responder cualquier pregunta',
+    getInTouch: 'Pongámonos en Contacto',
+    formTitle: 'Envíanos un Mensaje',
+    name: 'Nombre Completo',
+    email: 'Dirección de Email',
+    phone: 'Teléfono (Opcional)',
+    subject: 'Asunto',
+    message: 'Mensaje',
+    send: 'Enviar Mensaje',
+    contactInfo: 'Información de Contacto',
+    address: 'Dirección',
+    addressText: 'Israel, Petah Tikva',
+    emailContact: 'Email',
+    phoneContact: 'Teléfono',
+    hours: 'Horarios de Atención',
+    hoursText: 'Domingo-Jueves: 9:00-18:00\nViernes: 9:00-13:00\nSábados: Cerrado',
+    thankYou: '¡Gracias! Mensaje enviado exitosamente',
+    errorMessage: 'Ocurrió un error. Por favor intenta de nuevo',
+    namePlaceholder: 'Nombre Completo',
+    emailPlaceholder: 'ejemplo@email.com',
+    phonePlaceholder: '+972-50-123-4567',
+    subjectPlaceholder: 'Elegir asunto...',
+    messagePlaceholder: 'Escribe tu mensaje aquí...',
+    subjects: [
+      'Pregunta General',
+      'Pedido de Libro Especial',
+      'Problema con el Pedido',
+      'Comentario del Producto',
+      'Otro'
+    ]
+  },
+  ru: {
+    title: 'Свяжитесь с Нами',
+    subtitle: 'Мы рады помочь и ответить на любой вопрос',
+    getInTouch: 'Давайте Свяжемся',
+    formTitle: 'Отправьте Нам Сообщение',
+    name: 'Полное Имя',
+    email: 'Адрес Электронной Почты',
+    phone: 'Телефон (Необязательно)',
+    subject: 'Тема',
+    message: 'Сообщение',
+    send: 'Отправить Сообщение',
+    contactInfo: 'Контактная Информация',
+    address: 'Адрес',
+    addressText: 'Израиль, Петах-Тиква',
+    emailContact: 'Email',
+    phoneContact: 'Телефон',
+    hours: 'Часы Работы',
+    hoursText: 'Воскресенье-Четверг: 9:00-18:00\nПятницы: 9:00-13:00\nСубботы: Закрыто',
+    thankYou: 'Спасибо! Сообщение успешно отправлено',
+    errorMessage: 'Произошла ошибка. Пожалуйста, попробуйте снова',
+    namePlaceholder: 'Полное Имя',
+    emailPlaceholder: 'пример@email.com',
+    phonePlaceholder: '+972-50-123-4567',
+    subjectPlaceholder: 'Выберите тему...',
+    messagePlaceholder: 'Напишите ваше сообщение здесь...',
+    subjects: [
+      'Общий Вопрос',
+      'Заказ Специальной Книги',
+      'Проблема с Заказом',
+      'Отзыв о Продукте',
+      'Другое'
+    ]
+  }
+};
+
 export default function Contact() {
+  const { currentLanguage, setLanguage } = useLanguage();
+  const t = translations[currentLanguage as keyof typeof translations] || translations.he;
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    // Simulate form submission
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setSubmitStatus('success');
+      setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+      setTimeout(() => setSubmitStatus(''), 3000);
+    }, 1000);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+  
   return (
-    <div className="rtl home page-template-default page page-id-44 wp-custom-logo theme-hello-elementor woocommerce-js elementor-default elementor-kit-5 elementor-page elementor-page-44">
-      {/* TOP BAR */}
-      <section className="elementor-section elementor-top-section elementor-element elementor-element-ba655d5 elementor-section-full_width elementor-hidden-tablet elementor-hidden-mobile elementor-section-height-default" style={{background: '#333', color: 'white', padding: '8px 0'}}>
-        <div className="elementor-container elementor-column-gap-default">
-          <div className="elementor-column elementor-col-33 elementor-top-column">
-            <div className="elementor-widget-wrap elementor-element-populated">
-              <div className="elementor-element elementor-icon-list--layout-inline elementor-align-left elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list">
-                <div className="elementor-widget-container">
-                  <ul className="elementor-icon-list-items elementor-inline-items" style={{display: 'flex', gap: '1rem', listStyle: 'none', margin: 0, padding: 0}}>
-                    <li className="elementor-icon-list-item elementor-inline-item" style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-                      <span className="elementor-icon-list-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" viewBox="0 0 100 100" style={{width: '16px', height: '16px', fill: 'white'}}>
-                          <g>
-                            <path d="m72.341 48.514h17.306l-5.266-10.126h-10.872z"></path>
-                            <path d="m85.059 62.331h3.516l.339-2.891h-3.529z"></path>
-                            <path d="m75.463 62.1c-3.448 0-6.244 2.81-6.244 6.257 0 3.448 2.796 6.244 6.244 6.244s6.257-2.796 6.257-6.244c0-3.447-2.809-6.257-6.257-6.257zm0 9.515c-1.792 0-3.257-1.466-3.257-3.257 0-1.805 1.466-3.258 3.257-3.258 1.805 0 3.258 1.452 3.258 3.258 0 1.791-1.453 3.257-3.258 3.257z"></path>
-                            <path d="m31.161 62.1c-3.448 0-6.257 2.81-6.257 6.257 0 3.448 2.81 6.244 6.257 6.244 3.448 0 6.244-2.796 6.244-6.244-.001-3.447-2.797-6.257-6.244-6.257zm0 9.515c-1.805 0-3.271-1.466-3.271-3.257 0-1.805 1.466-3.258 3.271-3.258 1.792 0 3.257 1.452 3.257 3.258 0 1.791-1.466 3.257-3.257 3.257z"></path>
-                          </g>
-                        </svg>
-                      </span>
-                      <span className="elementor-icon-list-text">משלוחים חינם החל מ- 399 ש"ח</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* MAIN HEADER */}
-      <section className="elementor-section elementor-top-section elementor-element elementor-element-ba655d5 elementor-section-full_width elementor-hidden-tablet elementor-hidden-mobile" style={{background: '#dc3545', padding: '1rem 0'}}>
-        <div className="elementor-container elementor-column-gap-default" style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-          {/* LOGO COLUMN */}
-          <div className="elementor-column elementor-col-25 elementor-top-column elementor-element elementor-element-8cf799f">
-            <div className="elementor-widget-wrap elementor-element-populated">
-              <div className="elementor-element elementor-widget elementor-widget-theme-site-logo elementor-widget-image">
-                <div className="elementor-widget-container">
-                  <a href="/">
-                    <img 
-                      width="185" 
-                      height="300"
-                      src="https://www.haesh-sheli.co.il/wp-content/uploads/2021/12/cropped-%D7%A7%D7%A8%D7%95-%D7%A8%D7%91%D7%99-%D7%99%D7%A9%D7%A8%D7%90%D7%9C-%D7%91%D7%A8-%D7%90%D7%95%D7%93%D7%A1%D7%A8.d110a0.webp" 
-                      className="attachment-full size-full wp-image-27" 
-                      alt="האש שלי תוקף עד ביאת המשיח"
-                      style={{height: '80px', width: 'auto'}}
-                    />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* NAVIGATION COLUMN */}
-          <div className="elementor-column elementor-col-25 elementor-top-column elementor-element elementor-element-b208748">
-            <div className="elementor-widget-wrap elementor-element-populated">
-              <div className="elementor-element elementor-nav-menu__align-center elementor-nav-menu--stretch elementor-nav-menu--dropdown-tablet elementor-nav-menu__text-align-aside elementor-nav-menu--toggle elementor-nav-menu--burger elementor-widget elementor-widget-nav-menu">
-                <div className="elementor-widget-container">
-                  <nav aria-label="תפריט" className="elementor-nav-menu--main elementor-nav-menu__container elementor-nav-menu--layout-horizontal e--pointer-text e--animation-grow">
-                    <ul id="menu-1-ac3cd0c" className="elementor-nav-menu" style={{display: 'flex', gap: '2rem', listStyle: 'none', margin: 0, padding: 0}}>
-                      <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-195">
-                        <a href="/" className="elementor-item" style={{color: 'white', textDecoration: 'none'}}>דף הבית</a>
-                      </li>
-                      <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-695">
-                        <a href="/store" className="elementor-item" style={{color: 'white', textDecoration: 'none'}}>חנות</a>
-                      </li>
-                      <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-54">
-                        <a href="/about" className="elementor-item" style={{color: 'white', textDecoration: 'none'}}>עלינו</a>
-                      </li>
-                      <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-51">
-                        <a href="/magazine" className="elementor-item" style={{color: 'white', textDecoration: 'none'}}>מגזין</a>
-                      </li>
-                      <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-53">
-                        <a href="/join" className="elementor-item" style={{color: 'white', textDecoration: 'none'}}>הצטרפו אלינו</a>
-                      </li>
-                      <li className="menu-item menu-item-type-post_type menu-item-object-page current-menu-item menu-item-52">
-                        <a href="/contact" className="elementor-item elementor-item-active" style={{color: 'white', textDecoration: 'none', fontWeight: 'bold'}}>צור קשר</a>
-                      </li>
-                    </ul>
-                  </nav>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* CART COLUMN */}
-          <div className="elementor-column elementor-col-25 elementor-top-column elementor-element elementor-element-884ebb2">
-            <div className="elementor-widget-wrap elementor-element-populated">
-              <div className="elementor-element toggle-icon--custom elementor-widget__width-auto elementor-menu-cart--empty-indicator-hide remove-item-position--top elementor-menu-cart--items-indicator-bubble elementor-menu-cart--cart-type-side-cart elementor-menu-cart--show-remove-button-yes elementor-widget elementor-widget-woocommerce-menu-cart">
-                <div className="elementor-widget-container">
-                  <div className="elementor-menu-cart__wrapper">
-                    <div className="elementor-menu-cart__toggle_wrapper">
-                      <div className="elementor-menu-cart__toggle elementor-button-wrapper">
-                        <a id="elementor-menu-cart__toggle_button" href="#" className="elementor-menu-cart__toggle_button elementor-button elementor-size-sm" aria-expanded="false" style={{background: 'white', color: '#dc3545', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-                          <span className="elementor-button-text">
-                            <span className="woocommerce-Price-amount amount">
-                              <span>0.00 <span className="woocommerce-Price-currencySymbol">₪</span></span>
-                            </span>
-                          </span>
-                          <span className="elementor-button-icon">
-                            <span className="elementor-button-icon-qty" data-counter="0">0</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style={{width: '16px', height: '16px', fill: 'currentColor'}}>
-                              <path d="M7 4V2C7 1.45 7.45 1 8 1H16C16.55 1 17 1.45 17 2V4H20C20.55 4 21 4.45 21 5S20.55 6 20 6H19V19C19 20.1 18.1 21 17 21H7C5.9 21 5 20.1 5 19V6H4C3.45 6 3 5.55 3 5S3.45 4 4 4H7ZM9 3V4H15V3H9ZM7 6V19H17V6H7Z"/>
-                            </svg>
-                          </span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* HERO SECTION */}
-      <section style={{background: 'linear-gradient(135deg, #dc3545 0%, #c82333 100%)', color: 'white', padding: '5rem 0', textAlign: 'center'}}>
-        <div className="elementor-container" style={{maxWidth: '1000px', margin: '0 auto', padding: '0 2rem'}}>
-          <h1 style={{fontSize: '3rem', fontWeight: 'bold', marginBottom: '1rem', lineHeight: '1.2'}}>
-            לדבר זה תמיד טוב
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 to-orange-100" style={{direction: currentLanguage === 'he' ? 'rtl' : 'ltr'}}>
+      <Header currentLanguage={currentLanguage} onLanguageChange={setLanguage} />
+      
+      <div className="container mx-auto px-4 py-8">
+        {/* Header Section */}
+        <div className="text-center mb-12">
+          <h1 className="text-5xl font-bold text-red-800 mb-4">
+            {t.title}
           </h1>
-          <h2 style={{fontSize: '2rem', fontWeight: 'normal', marginBottom: '3rem', lineHeight: '1.4'}}>
-            אנחנו כאן בשביל לשמוע אתכם.
-          </h2>
-          
-          <div style={{display: 'flex', gap: '2rem', justifyContent: 'center', flexWrap: 'wrap'}}>
-            <a href="https://wa.me/585561516?text=%D7%94%D7%99%D7%99,+%D7%A6%D7%A8%D7%99%D7%9A+%D7%A2%D7%96%D7%A8%D7%94+%D7%91%D7%90%D7%AA%D7%A8+%D7%90%D7%95+%D7%9C%D7%92%D7%91%D7%99+%D7%91%D7%A8%D7%95%D7%A8+%D7%94%D7%96%D7%9E%D7%A0%D7%94" target="_blank" rel="noopener noreferrer" style={{textDecoration: 'none', fontSize: '1.2rem', padding: '1rem 2rem', background: 'white', color: '#dc3545', border: 'none', borderRadius: '8px', display: 'inline-block', fontWeight: 'bold'}}>
-              בוא לדבר אתנו בווצאפ
-            </a>
-            <a href="/join" style={{textDecoration: 'none', fontSize: '1.2rem', padding: '1rem 2rem', background: 'transparent', color: 'white', border: '2px solid white', borderRadius: '8px', display: 'inline-block', fontWeight: 'bold'}}>
-              בואו לראות והצטרפו לפעילות שלנו
-            </a>
-          </div>
+          <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+            {t.subtitle}
+          </p>
         </div>
-      </section>
 
-      {/* CONTACT METHODS SECTION */}
-      <section style={{background: '#f8f9fa', padding: '5rem 0'}}>
-        <div className="elementor-container" style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
-          
-          {/* CONTACT FORM */}
-          <div style={{marginBottom: '5rem', background: 'white', padding: '3rem', borderRadius: '15px', boxShadow: '0 8px 25px rgba(0,0,0,0.1)'}}>
-            <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '2rem', textAlign: 'center'}}>
-              כמה דרכים לפנות אלינו
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Contact Form */}
+          <div className="bg-white rounded-lg shadow-lg p-8">
+            <h2 className="text-2xl font-bold text-gray-800 mb-6">
+              {t.formTitle}
             </h2>
-            <h3 style={{fontSize: '1.5rem', color: '#333', marginBottom: '3rem', textAlign: 'center'}}>
-              כתבו לנו ונחזור בהקדם
-            </h3>
             
-            <form style={{maxWidth: '600px', margin: '0 auto'}}>
-              <div style={{marginBottom: '1.5rem'}}>
-                <input 
-                  type="text" 
-                  name="name" 
-                  placeholder="Your Name" 
+            {submitStatus === 'success' && (
+              <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
+                <p className="text-green-800">{t.thankYou}</p>
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  {t.name}
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder={t.namePlaceholder}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
                   required
-                  style={{
-                    width: '100%', 
-                    padding: '1rem', 
-                    border: '2px solid #e9ecef', 
-                    borderRadius: '8px', 
-                    fontSize: '1rem',
-                    direction: 'rtl'
-                  }}
                 />
               </div>
-              
-              <div style={{marginBottom: '1.5rem'}}>
-                <input 
-                  type="tel" 
-                  name="phone" 
-                  placeholder="Your Phone" 
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  {t.email}
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder={t.emailPlaceholder}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
                   required
-                  style={{
-                    width: '100%', 
-                    padding: '1rem', 
-                    border: '2px solid #e9ecef', 
-                    borderRadius: '8px', 
-                    fontSize: '1rem',
-                    direction: 'rtl'
-                  }}
                 />
               </div>
-              
-              <div style={{marginBottom: '1.5rem'}}>
-                <input 
-                  type="email" 
-                  name="email" 
-                  placeholder="Email" 
-                  required
-                  style={{
-                    width: '100%', 
-                    padding: '1rem', 
-                    border: '2px solid #e9ecef', 
-                    borderRadius: '8px', 
-                    fontSize: '1rem',
-                    direction: 'rtl'
-                  }}
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  {t.phone}
+                </label>
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  placeholder={t.phonePlaceholder}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
                 />
               </div>
-              
-              <div style={{marginBottom: '2rem'}}>
-                <textarea 
-                  name="message" 
-                  placeholder="Message" 
-                  rows={5}
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  {t.subject}
+                </label>
+                <select
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
                   required
-                  style={{
-                    width: '100%', 
-                    padding: '1rem', 
-                    border: '2px solid #e9ecef', 
-                    borderRadius: '8px', 
-                    fontSize: '1rem',
-                    direction: 'rtl',
-                    resize: 'vertical'
-                  }}
-                />
-              </div>
-              
-              <div style={{textAlign: 'center'}}>
-                <button 
-                  type="submit"
-                  style={{
-                    background: '#dc3545', 
-                    color: 'white', 
-                    padding: '1rem 3rem', 
-                    border: 'none', 
-                    borderRadius: '8px', 
-                    fontSize: '1.2rem', 
-                    fontWeight: 'bold',
-                    cursor: 'pointer'
-                  }}
                 >
-                  לשליחה לחצו כאן
-                </button>
+                  <option value="">{t.subjectPlaceholder}</option>
+                  {t.subjects.map((subject, index) => (
+                    <option key={index} value={subject}>{subject}</option>
+                  ))}
+                </select>
               </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  {t.message}
+                </label>
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder={t.messagePlaceholder}
+                  rows={5}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 resize-vertical"
+                  required
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full bg-red-600 hover:bg-red-700 disabled:bg-red-400 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200"
+              >
+                {isSubmitting ? '...' : t.send}
+              </button>
             </form>
           </div>
 
-          {/* CONTACT INFO GRID */}
-          <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '3rem'}}>
+          {/* Contact Information */}
+          <div className="bg-white rounded-lg shadow-lg p-8">
+            <h2 className="text-2xl font-bold text-gray-800 mb-6">
+              {t.contactInfo}
+            </h2>
             
-            {/* PHONE */}
-            <div style={{background: 'white', padding: '3rem', borderRadius: '15px', boxShadow: '0 8px 25px rgba(0,0,0,0.1)', textAlign: 'center'}}>
-              <div style={{fontSize: '3rem', color: '#dc3545', marginBottom: '1rem'}}>
-                📞
+            <div className="space-y-6">
+              <div className="flex items-start space-x-4 space-x-reverse">
+                <div className="flex-shrink-0 w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
+                  <svg className="w-5 h-5 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-800">{t.address}</h3>
+                  <p className="text-gray-600">{t.addressText}</p>
+                </div>
               </div>
-              <h3 style={{fontSize: '1.5rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
-                התקשרו אלינו
-              </h3>
-              <p style={{fontSize: '2rem', fontWeight: 'bold', color: '#333', marginBottom: '0.5rem'}}>
-                *2320
-              </p>
-              <p style={{fontSize: '1rem', color: '#666'}}>
-                זמין 24/7 לשירותכם
-              </p>
-            </div>
 
-            {/* VISIT */}
-            <div style={{background: 'white', padding: '3rem', borderRadius: '15px', boxShadow: '0 8px 25px rgba(0,0,0,0.1)', textAlign: 'center'}}>
-              <div style={{fontSize: '3rem', color: '#dc3545', marginBottom: '1rem'}}>
-                📍
+              <div className="flex items-start space-x-4 space-x-reverse">
+                <div className="flex-shrink-0 w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
+                  <svg className="w-5 h-5 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-800">{t.emailContact}</h3>
+                  <p className="text-gray-600">contact@haesh-sheli.co.il</p>
+                </div>
               </div>
-              <h3 style={{fontSize: '1.5rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
-                בואו לבקר אותנו
-              </h3>
-              <p style={{fontSize: '1.2rem', color: '#333', marginBottom: '0.5rem'}}>
-                רחוב חברת ש"ס 26
-              </p>
-              <p style={{fontSize: '1.1rem', color: '#666', marginBottom: '0.5rem'}}>
-                ירושלים, ישראל
-              </p>
-              <p style={{fontSize: '0.9rem', color: '#999'}}>
-                ימים א'-ה' 9:00-17:00
-              </p>
-            </div>
 
-            {/* EMAIL */}
-            <div style={{background: 'white', padding: '3rem', borderRadius: '15px', boxShadow: '0 8px 25px rgba(0,0,0,0.1)', textAlign: 'center'}}>
-              <div style={{fontSize: '3rem', color: '#dc3545', marginBottom: '1rem'}}>
-                ✉️
+              <div className="flex items-start space-x-4 space-x-reverse">
+                <div className="flex-shrink-0 w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
+                  <svg className="w-5 h-5 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-800">{t.phoneContact}</h3>
+                  <p className="text-gray-600">+972-50-123-4567</p>
+                </div>
               </div>
-              <h3 style={{fontSize: '1.5rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
-                שלחו לנו מייל
-              </h3>
-              <p style={{fontSize: '1.2rem', color: '#333', marginBottom: '0.5rem'}}>
-                info@haesh-sheli.co.il
-              </p>
-              <p style={{fontSize: '0.9rem', color: '#666'}}>
-                נחזור אליכם תוך 24 שעות
-              </p>
-            </div>
 
-            {/* WHATSAPP */}
-            <div style={{background: 'white', padding: '3rem', borderRadius: '15px', boxShadow: '0 8px 25px rgba(0,0,0,0.1)', textAlign: 'center'}}>
-              <div style={{fontSize: '3rem', color: '#25d366', marginBottom: '1rem'}}>
-                📱
+              <div className="flex items-start space-x-4 space-x-reverse">
+                <div className="flex-shrink-0 w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
+                  <svg className="w-5 h-5 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-800">{t.hours}</h3>
+                  <p className="text-gray-600 whitespace-pre-line">{t.hoursText}</p>
+                </div>
               </div>
-              <h3 style={{fontSize: '1.5rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
-                וואטסאפ
-              </h3>
-              <div style={{display: 'flex', flexDirection: 'column', gap: '0.5rem'}}>
-                <a href="https://wa.me/972587308000" target="_blank" style={{background: '#25d366', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>עברית</a>
-                <a href="https://wa.me/972587308001" target="_blank" style={{background: '#25d366', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>English</a>
-                <a href="https://wa.me/972587308002" target="_blank" style={{background: '#25d366', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>Русский</a>
-              </div>
-            </div>
-
-            {/* FAX */}
-            <div style={{background: 'white', padding: '3rem', borderRadius: '15px', boxShadow: '0 8px 25px rgba(0,0,0,0.1)', textAlign: 'center'}}>
-              <div style={{fontSize: '3rem', color: '#dc3545', marginBottom: '1rem'}}>
-                📠
-              </div>
-              <h3 style={{fontSize: '1.5rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
-                פקס
-              </h3>
-              <p style={{fontSize: '1.5rem', fontWeight: 'bold', color: '#333'}}>
-                077-5150304
-              </p>
-            </div>
-
-            {/* PO BOX */}
-            <div style={{background: 'white', padding: '3rem', borderRadius: '15px', boxShadow: '0 8px 25px rgba(0,0,0,0.1)', textAlign: 'center'}}>
-              <div style={{fontSize: '3rem', color: '#dc3545', marginBottom: '1rem'}}>
-                📮
-              </div>
-              <h3 style={{fontSize: '1.5rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
-                תיבת דואר
-              </h3>
-              <p style={{fontSize: '1.2rem', color: '#333', marginBottom: '0.5rem'}}>
-                ת.ד. 366
-              </p>
-              <p style={{fontSize: '1.1rem', color: '#666'}}>
-                בית שמש, ישראל
-              </p>
             </div>
           </div>
         </div>
-      </section>
-
-      {/* FOOTER */}
-      <footer className="main-footer" style={{background: '#2d3436', color: 'white', padding: '3rem 0 2rem'}}>
-        <div className="elementor-container">
-          <div style={{textAlign: 'center', paddingTop: '2rem'}}>
-            <div style={{color: '#999', fontSize: '0.9rem'}}>
-              <p style={{marginBottom: '0.5rem'}}>כל הזכיות שמורות 2025 © קרן רבי ישראל דב אודסר זצ"ל</p>
-              <p>האתר נבנה ע"י מדיה מאסטר</p>
-            </div>
-          </div>
-        </div>
-      </footer>
-
-      {/* ADDITIONAL SERVICES SECTION */}
-      <section style={{background: 'linear-gradient(135deg, #74b9ff 0%, #0984e3 100%)', color: 'white', padding: '4rem 0', textAlign: 'center'}}>
-        <div className="elementor-container" style={{maxWidth: '1000px', margin: '0 auto', padding: '0 2rem'}}>
-          <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '2rem'}}>
-            שירותים נוספים
-          </h2>
-          
-          <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem'}}>
-            
-            <div style={{background: 'rgba(255,255,255,0.1)', padding: '2rem', borderRadius: '15px'}}>
-              <div style={{fontSize: '3rem', marginBottom: '1rem'}}>🎤</div>
-              <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', marginBottom: '1rem'}}>הרצאות ושיחות</h3>
-              <p style={{fontSize: '1rem', opacity: 0.9}}>אירגון הרצאות וערבי חיזוק בקהילות</p>
-            </div>
-            
-            <div style={{background: 'rgba(255,255,255,0.1)', padding: '2rem', borderRadius: '15px'}}>
-              <div style={{fontSize: '3rem', marginBottom: '1rem'}}>📖</div>
-              <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', marginBottom: '1rem'}}>חוגי לימוד</h3>
-              <p style={{fontSize: '1rem', opacity: 0.9}}>הקמת חוגי לימוד בספרי רבנו הקדוש</p>
-            </div>
-            
-            <div style={{background: 'rgba(255,255,255,0.1)', padding: '2rem', borderRadius: '15px'}}>
-              <div style={{fontSize: '3rem', marginBottom: '1rem'}}>✈️</div>
-              <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', marginBottom: '1rem'}}>נסיעות לאומן</h3>
-              <p style={{fontSize: '1rem', opacity: 0.9}}>ליווי וארגון נסיעות לקבר הקדוש</p>
-            </div>
-            
-            <div style={{background: 'rgba(255,255,255,0.1)', padding: '2rem', borderRadius: '15px'}}>
-              <div style={{fontSize: '3rem', marginBottom: '1rem'}}>🎁</div>
-              <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', marginBottom: '1rem'}}>מתנות לחגים</h3>
-              <p style={{fontSize: '1rem', opacity: 0.9}}>חבילות מתנות מיוחדות לחגים ושמחות</p>
-            </div>
-          </div>
-          
-          <div style={{marginTop: '3rem'}}>
-            <a href="/contact" style={{textDecoration: 'none', fontSize: '1.3rem', padding: '1rem 2rem', background: 'white', color: '#0984e3', border: 'none', borderRadius: '8px', display: 'inline-block', fontWeight: 'bold'}}>
-              לפרטים נוספים צרו קשר
-            </a>
-          </div>
-        </div>
-      </section>
+      </div>
     </div>
   );
 }
