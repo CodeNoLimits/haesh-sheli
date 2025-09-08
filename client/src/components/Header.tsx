@@ -231,3 +231,4 @@ export function Header({ currentLanguage = 'he', onLanguageChange }: HeaderProps
     </section>
   );
 }
+

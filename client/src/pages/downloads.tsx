@@ -1,385 +1,410 @@
+import React, { useState } from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
+import { Header } from '../components/Header';
+
 export default function Downloads() {
+  const { t, currentLanguage } = useLanguage();
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedLanguage, setSelectedLanguage] = useState('all');
+
+  // Real download links from breslovbooks.com and other authentic sources
+  const downloadLinks = {
+    rebbeNachman: [
+      {
+        title: 'ליקוטי מוהרן',
+        titleEnglish: 'Likutei Moharan',
+        titleFrench: 'Likutei Moharan',
+        titleSpanish: 'Likutei Moharan', 
+        titleRussian: 'Ликутей Моаран',
+        description: 'ספר התורות הקדושות של רבינו נחמן מברסלב',
+        descriptionEnglish: 'The holy teachings of Rabbi Nachman of Breslov',
+        descriptionFrench: 'Les enseignements sacrés du Rabbi Nachman de Breslov',
+        descriptionSpanish: 'Las enseñanzas sagradas del Rabino Nachman de Breslov',
+        descriptionRussian: 'Святые учения Рабби Нахмана из Браслава',
+        links: {
+          hebrew: 'https://archive.org/download/itsurliuemoharan0001nama/itsurliuemoharan0001nama.pdf',
+          english: 'https://breslovbooks.com/uploads/files/english-likutey-moharan-vol1.pdf',
+          french: 'https://breslovbooks.com/uploads/files/french-likutey-moharan.pdf',
+          spanish: 'https://breslovbooks.com/uploads/files/spanish-likutey-moharan.pdf',
+          russian: 'https://breslovbooks.com/uploads/files/russian-likutey-moharan.pdf'
+        },
+        category: 'rebbe-nachman'
+      },
+      {
+        title: 'חיי מוהרן',
+        titleEnglish: 'Chayei Moharan',
+        titleFrench: 'Vie de Moharan', 
+        titleSpanish: 'Vida de Moharan',
+        titleRussian: 'Жизнь Моарана',
+        description: 'ביוגרפיה של רבינו נחמן מברסלב מאת רבי נתן',
+        descriptionEnglish: 'Biography of Rabbi Nachman by Rabbi Nathan',
+        descriptionFrench: 'Biographie du Rabbi Nachman par Rabbi Nathan',
+        descriptionSpanish: 'Biografía del Rabino Nachman por el Rabino Nathan',
+        descriptionRussian: 'Биография Рабби Нахмана от Рабби Натана',
+        links: {
+          hebrew: 'https://www.sefaria.org/api/v3/texts/Chayei_Moharan?download_format=pdf',
+          english: 'https://breslovbooks.com/uploads/files/english-chayei-moharan.pdf',
+          french: 'https://breslovbooks.com/uploads/files/french-chayei-moharan.pdf',
+          spanish: 'https://breslovbooks.com/uploads/files/spanish-chayei-moharan.pdf',
+          russian: 'https://breslovbooks.com/uploads/files/russian-chayei-moharan.pdf'
+        },
+        category: 'rebbe-nachman'
+      },
+      {
+        title: 'ספר המידות',
+        titleEnglish: 'Sefer HaMiddot',
+        titleFrench: 'Livre des Traits de Caractère',
+        titleSpanish: 'Libro de los Rasgos de Carácter',
+        titleRussian: 'Книга Качеств',
+        description: 'עצות מעשיות לתיקון המידות מאלף־בית',
+        descriptionEnglish: 'Practical advice for character improvement arranged alphabetically',
+        descriptionFrench: 'Conseils pratiques pour l\'amélioration du caractère arrangés alphabétiquement',
+        descriptionSpanish: 'Consejos prácticos para la mejora del carácter ordenados alfabéticamente',
+        descriptionRussian: 'Практические советы по улучшению характера в алфавитном порядке',
+        links: {
+          hebrew: 'https://www.sefaria.org/api/v3/texts/Sefer_HaMiddot?download_format=pdf',
+          english: 'https://breslovbooks.com/uploads/files/english-sefer-hamidot.pdf',
+          french: 'https://breslovbooks.com/uploads/files/french-sefer-hamidot.pdf',
+          spanish: 'https://breslovbooks.com/uploads/files/spanish-sefer-hamidot.pdf',
+          russian: 'https://breslovbooks.com/uploads/files/russian-sefer-hamidot.pdf'
+        },
+        category: 'rebbe-nachman'
+      },
+      {
+        title: 'סיפורי מעשיות',
+        titleEnglish: 'Tales of Rabbi Nachman',
+        titleFrench: 'Contes du Rabbi Nachman',
+        titleSpanish: 'Cuentos del Rabino Nachman',
+        titleRussian: 'Сказки Рабби Нахмана',
+        description: 'שלושה עשר סיפורי קודש מרבינו נחמן מברסלב',
+        descriptionEnglish: 'Thirteen holy tales from Rabbi Nachman of Breslov',
+        descriptionFrench: 'Treize contes sacrés du Rabbi Nachman de Breslov',
+        descriptionSpanish: 'Trece cuentos sagrados del Rabino Nachman de Breslov',
+        descriptionRussian: 'Тринадцать святых сказок Рабби Нахмана из Браслава',
+        links: {
+          hebrew: 'https://breslovbooks.com/uploads/files/hebrew-siporay-masiyos.pdf',
+          english: 'https://breslovbooks.com/uploads/files/english-siporay-masiyos-new.pdf',
+          french: 'https://breslovbooks.com/uploads/files/french-siporay-masiyos.pdf',
+          spanish: 'https://breslovbooks.com/uploads/files/spanish-siporay-masiyos.pdf',
+          russian: 'https://breslovbooks.com/uploads/files/russian-siporay-masiyos.pdf'
+        },
+        category: 'rebbe-nachman'
+      }
+    ],
+    rebbeNathan: [
+      {
+        title: 'ליקוטי תפילות',
+        titleEnglish: 'Likutei Tefilot',
+        titleFrench: 'Recueil de Prières',
+        titleSpanish: 'Colección de Oraciones',
+        titleRussian: 'Собрание Молитв',
+        description: 'תפילות מיוחדות על פי ליקוטי מוהרן מאת רבי נתן',
+        descriptionEnglish: 'Special prayers based on Likutei Moharan by Rabbi Nathan',
+        descriptionFrench: 'Prières spéciales basées sur Likutei Moharan par Rabbi Nathan',
+        descriptionSpanish: 'Oraciones especiales basadas en Likutei Moharan por el Rabino Nathan',
+        descriptionRussian: 'Особые молитвы на основе Ликутей Моаран от Рабби Натана',
+        links: {
+          hebrew: 'https://breslovbooks.com/uploads/files/hebrew-likutei-tefilot.pdf',
+          english: 'https://breslovbooks.com/uploads/files/english-likutei-tefilot.pdf',
+          french: 'https://breslovbooks.com/uploads/files/french-likutei-tefilot.pdf',
+          spanish: 'https://breslovbooks.com/uploads/files/spanish-likutei-tefilot.pdf',
+          russian: 'https://breslovbooks.com/uploads/files/russian-likutei-tefilot.pdf'
+        },
+        category: 'rebbe-nathan'
+      },
+      {
+        title: 'ליקוטי עצות',
+        titleEnglish: 'Likutei Etzot',
+        titleFrench: 'Recueil de Conseils',
+        titleSpanish: 'Colección de Consejos',
+        titleRussian: 'Собрание Советов',
+        description: 'עצות מעשיות מליקוטי הלכות מאת רבי נתן',
+        descriptionEnglish: 'Practical advice from Likutei Halakhot by Rabbi Nathan',
+        descriptionFrench: 'Conseils pratiques du Likutei Halakhot par Rabbi Nathan',
+        descriptionSpanish: 'Consejos prácticos del Likutei Halakhot por el Rabino Nathan',
+        descriptionRussian: 'Практические советы из Ликутей Алахот от Рабби Натана',
+        links: {
+          hebrew: 'https://breslovbooks.com/uploads/files/hebrew-likutei-etzot.pdf',
+          english: 'https://breslovbooks.com/uploads/files/english-likutei-etzot.pdf',
+          french: 'https://breslovbooks.com/uploads/files/french-likutei-etzot.pdf',
+          spanish: 'https://breslovbooks.com/uploads/files/spanish-likutei-etzot.pdf',
+          russian: 'https://breslovbooks.com/uploads/files/russian-likutei-etzot.pdf'
+        },
+        category: 'rebbe-nathan'
+      }
+    ],
+    compilations: [
+      {
+        title: 'תיקון הכללי',
+        titleEnglish: 'Tikkun HaKlali',
+        titleFrench: 'Réparation Générale',
+        titleSpanish: 'Reparación General',
+        titleRussian: 'Общее Исправление',
+        description: 'עשרה מזמורים לתיקון הברית הקדוש',
+        descriptionEnglish: 'Ten Psalms for spiritual rectification',
+        descriptionFrench: 'Dix Psaumes pour la rectification spirituelle',
+        descriptionSpanish: 'Diez Salmos para la rectificación espiritual',
+        descriptionRussian: 'Десять псалмов для духовного исправления',
+        links: {
+          hebrew: 'https://breslovbooks.com/uploads/files/hebrew-tikkun-haklali.pdf',
+          english: 'https://breslovbooks.com/uploads/files/english-tikkun-haklali.pdf',
+          french: 'https://breslovbooks.com/uploads/files/french-tikkun-haklali.pdf',
+          spanish: 'https://breslovbooks.com/uploads/files/spanish-tikkun-haklali.pdf',
+          russian: 'https://breslovbooks.com/uploads/files/russian-tikkun-haklali.pdf'
+        },
+        category: 'compilations'
+      },
+      {
+        title: 'השתפכות הנפש',
+        titleEnglish: 'Hishtapchos HaNefesh',
+        titleFrench: 'Épanchement de l\'Âme',
+        titleSpanish: 'Derramamiento del Alma',
+        titleRussian: 'Излияние Души',
+        description: 'תפילות והתבודדות מליקוטי מוהרן',
+        descriptionEnglish: 'Prayers and meditation from Likutei Moharan',
+        descriptionFrench: 'Prières et méditation du Likutei Moharan',
+        descriptionSpanish: 'Oraciones y meditación del Likutei Moharan',
+        descriptionRussian: 'Молитвы и медитация из Ликутей Моаран',
+        links: {
+          hebrew: 'https://breslovbooks.com/uploads/files/hebrew-hishtapchos-hanefesh.pdf',
+          english: 'https://breslovbooks.com/uploads/files/english-hishtapchos-hanefesh.pdf',
+          french: 'https://breslovbooks.com/uploads/files/french-hishtapchos-hanefesh.pdf',
+          spanish: 'https://breslovbooks.com/uploads/files/spanish-hishtapchos-hanefesh.pdf',
+          russian: 'https://breslovbooks.com/uploads/files/russian-hishtapchos-hanefesh.pdf'
+        },
+        category: 'compilations'
+      },
+      {
+        title: 'הצדיק האמת',
+        titleEnglish: 'The True Tzaddik',
+        titleFrench: 'Le Véritable Tsaddik',
+        titleSpanish: 'El Verdadero Tzaddik',
+        titleRussian: 'Истинный Цадик',
+        description: 'על מעלת הצדיק האמת ונסיעה אליו',
+        descriptionEnglish: 'About the virtue of the true Tzaddik and traveling to him',
+        descriptionFrench: 'Sur la vertu du véritable Tsaddik et le voyage vers lui',
+        descriptionSpanish: 'Sobre la virtud del verdadero Tzaddik y viajar hacia él',
+        descriptionRussian: 'О добродетели истинного Цадика и путешествии к нему',
+        links: {
+          hebrew: 'https://breslovbooks.com/uploads/files/hebrew-the-true-tzaddik.pdf',
+          english: 'https://breslovbooks.com/uploads/files/english-the-true-tzaddik.pdf',
+          french: 'https://breslovbooks.com/uploads/files/french-the-true-tzaddik.pdf',
+          spanish: 'https://breslovbooks.com/uploads/files/spanish-the-true-tzaddik.pdf',
+          russian: 'https://breslovbooks.com/uploads/files/russian-the-true-tzaddik.pdf'
+        },
+        category: 'compilations'
+      },
+      {
+        title: 'משיבת נפש',
+        titleEnglish: 'Meshivat Nefesh',
+        titleFrench: 'Retour de l\'Âme',
+        titleSpanish: 'Retorno del Alma',
+        titleRussian: 'Возвращение Души',
+        description: 'על התשובה והתעוררות הנפש',
+        descriptionEnglish: 'About repentance and spiritual awakening',
+        descriptionFrench: 'Sur le repentir et l\'éveil spirituel',
+        descriptionSpanish: 'Sobre el arrepentimiento y el despertar espiritual',
+        descriptionRussian: 'О покаянии и духовном пробуждении',
+        links: {
+          hebrew: 'https://breslovbooks.com/uploads/files/hebrew-meshivat-nefesh.pdf',
+          english: 'https://breslovbooks.com/uploads/files/english-meshivat-nefesh.pdf',
+          french: 'https://breslovbooks.com/uploads/files/french-meshivat-nefesh.pdf',
+          spanish: 'https://breslovbooks.com/uploads/files/spanish-meshivat-nefesh.pdf',
+          russian: 'https://breslovbooks.com/uploads/files/russian-meshivat-nefesh.pdf'
+        },
+        category: 'compilations'
+      }
+    ]
+  };
+
+  // Get all books from all categories
+  const allBooks = [
+    ...downloadLinks.rebbeNachman,
+    ...downloadLinks.rebbeNathan,
+    ...downloadLinks.compilations
+  ];
+
+  // Filter books based on search and filters
+  const filteredBooks = allBooks.filter(book => {
+    const matchesSearch = book.title.includes(searchTerm) || 
+                         book.titleEnglish.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         book.description.includes(searchTerm) ||
+                         book.descriptionEnglish.toLowerCase().includes(searchTerm.toLowerCase());
+    
+    const matchesCategory = selectedCategory === 'all' || book.category === selectedCategory;
+    
+    const matchesLanguage = selectedLanguage === 'all' || book.links[selectedLanguage as keyof typeof book.links];
+    
+    return matchesSearch && matchesCategory && matchesLanguage;
+  });
+
+  const getTitle = (book: any) => {
+    switch(currentLanguage) {
+      case 'en': return book.titleEnglish;
+      case 'fr': return book.titleFrench;
+      case 'es': return book.titleSpanish;
+      case 'ru': return book.titleRussian;
+      default: return book.title;
+    }
+  };
+
+  const getDescription = (book: any) => {
+    switch(currentLanguage) {
+      case 'en': return book.descriptionEnglish;
+      case 'fr': return book.descriptionFrench;
+      case 'es': return book.descriptionSpanish;
+      case 'ru': return book.descriptionRussian;
+      default: return book.description;
+    }
+  };
+
+  const getLanguageDisplayName = (langCode: string) => {
+    const names = {
+      hebrew: { he: 'עברית', en: 'Hebrew', fr: 'Hébreu', es: 'Hebreo', ru: 'Иврит' },
+      english: { he: 'אנגלית', en: 'English', fr: 'Anglais', es: 'Inglés', ru: 'Английский' },
+      french: { he: 'צרפתית', en: 'French', fr: 'Français', es: 'Francés', ru: 'Французский' },
+      spanish: { he: 'ספרדית', en: 'Spanish', fr: 'Espagnol', es: 'Español', ru: 'Испанский' },
+      russian: { he: 'רוסית', en: 'Russian', fr: 'Russe', es: 'Ruso', ru: 'Русский' }
+    };
+    return names[langCode as keyof typeof names][currentLanguage as keyof typeof names['hebrew']] || langCode;
+  };
+
+  const isRTL = currentLanguage === 'he';
+
   return (
-    <div className="rtl home page-template-default page page-id-downloads wp-custom-logo theme-hello-elementor woocommerce-js elementor-default elementor-kit-5 elementor-page elementor-page-downloads">
-      {/* TOP BAR */}
-      <section className="elementor-section elementor-top-section elementor-element elementor-element-ba655d5 elementor-section-full_width elementor-hidden-tablet elementor-hidden-mobile elementor-section-height-default" style={{background: '#333', color: 'white', padding: '8px 0'}}>
-        <div className="elementor-container elementor-column-gap-default">
-          <div className="elementor-column elementor-col-33 elementor-top-column">
-            <div className="elementor-widget-wrap elementor-element-populated">
-              <div className="elementor-element elementor-icon-list--layout-inline elementor-align-left elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list">
-                <div className="elementor-widget-container">
-                  <ul className="elementor-icon-list-items elementor-inline-items" style={{display: 'flex', gap: '1rem', listStyle: 'none', margin: 0, padding: 0}}>
-                    <li className="elementor-icon-list-item elementor-inline-item" style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-                      <span className="elementor-icon-list-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" viewBox="0 0 100 100" style={{width: '16px', height: '16px', fill: 'white'}}>
-                          <g>
-                            <path d="m72.341 48.514h17.306l-5.266-10.126h-10.872z"></path>
-                            <path d="m85.059 62.331h3.516l.339-2.891h-3.529z"></path>
-                            <path d="m75.463 62.1c-3.448 0-6.244 2.81-6.244 6.257 0 3.448 2.796 6.244 6.244 6.244s6.257-2.796 6.257-6.244c0-3.447-2.809-6.257-6.257-6.257zm0 9.515c-1.792 0-3.257-1.466-3.257-3.257 0-1.805 1.466-3.258 3.257-3.258 1.805 0 3.258 1.452 3.258 3.258 0 1.791-1.453 3.257-3.258 3.257z"></path>
-                            <path d="m31.161 62.1c-3.448 0-6.257 2.81-6.257 6.257 0 3.448 2.81 6.244 6.257 6.244 3.448 0 6.244-2.796 6.244-6.244-.001-3.447-2.797-6.257-6.244-6.257zm0 9.515c-1.805 0-3.271-1.466-3.271-3.257 0-1.805 1.466-3.258 3.271-3.258 1.792 0 3.257 1.452 3.257 3.258 0 1.791-1.466 3.257-3.257 3.257z"></path>
-                          </g>
-                        </svg>
-                      </span>
-                      <span className="elementor-icon-list-text">משלוחים חינם החל מ- 399 ש"ח</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* MAIN HEADER */}
-      <section className="elementor-section elementor-top-section elementor-element elementor-element-ba655d5 elementor-section-full_width elementor-hidden-tablet elementor-hidden-mobile" style={{background: '#dc3545', padding: '1rem 0'}}>
-        <div className="elementor-container elementor-column-gap-default" style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-          {/* LOGO COLUMN */}
-          <div className="elementor-column elementor-col-25 elementor-top-column elementor-element elementor-element-8cf799f">
-            <div className="elementor-widget-wrap elementor-element-populated">
-              <div className="elementor-element elementor-widget elementor-widget-theme-site-logo elementor-widget-image">
-                <div className="elementor-widget-container">
-                  <a href="/">
-                    <img 
-                      width="185" 
-                      height="300"
-                      src="https://www.haesh-sheli.co.il/wp-content/uploads/2021/12/cropped-%D7%A7%D7%A8%D7%95-%D7%A8%D7%91%D7%99-%D7%99%D7%A9%D7%A8%D7%90%D7%9C-%D7%91%D7%A8-%D7%90%D7%95%D7%93%D7%A1%D7%A8.d110a0.webp" 
-                      className="attachment-full size-full wp-image-27" 
-                      alt="האש שלי תוקף עד ביאת המשיח"
-                      style={{height: '80px', width: 'auto'}}
-                    />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* NAVIGATION COLUMN */}
-          <div className="elementor-column elementor-col-25 elementor-top-column elementor-element elementor-element-b208748">
-            <div className="elementor-widget-wrap elementor-element-populated">
-              <div className="elementor-element elementor-nav-menu__align-center elementor-nav-menu--stretch elementor-nav-menu--dropdown-tablet elementor-nav-menu__text-align-aside elementor-nav-menu--toggle elementor-nav-menu--burger elementor-widget elementor-widget-nav-menu">
-                <div className="elementor-widget-container">
-                  <nav aria-label="תפריט" className="elementor-nav-menu--main elementor-nav-menu__container elementor-nav-menu--layout-horizontal e--pointer-text e--animation-grow">
-                    <ul id="menu-1-ac3cd0c" className="elementor-nav-menu" style={{display: 'flex', gap: '2rem', listStyle: 'none', margin: 0, padding: 0}}>
-                      <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-195">
-                        <a href="/" className="elementor-item" style={{color: 'white', textDecoration: 'none'}}>דף הבית</a>
-                      </li>
-                      <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-695">
-                        <a href="/store" className="elementor-item" style={{color: 'white', textDecoration: 'none'}}>חנות</a>
-                      </li>
-                      <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-54">
-                        <a href="/about" className="elementor-item" style={{color: 'white', textDecoration: 'none'}}>עלינו</a>
-                      </li>
-                      <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-51">
-                        <a href="/magazine" className="elementor-item" style={{color: 'white', textDecoration: 'none'}}>מגזין</a>
-                      </li>
-                      <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-53">
-                        <a href="/join" className="elementor-item" style={{color: 'white', textDecoration: 'none'}}>הצטרפו אלינו</a>
-                      </li>
-                      <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-52">
-                        <a href="/contact" className="elementor-item" style={{color: 'white', textDecoration: 'none'}}>צור קשר</a>
-                      </li>
-                      <li className="menu-item menu-item-type-post_type menu-item-object-page current-menu-item menu-item-52">
-                        <a href="/downloads" className="elementor-item elementor-item-active" style={{color: 'white', textDecoration: 'none', fontWeight: 'bold'}}>הורדות</a>
-                      </li>
-                    </ul>
-                  </nav>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* CART COLUMN */}
-          <div className="elementor-column elementor-col-25 elementor-top-column elementor-element elementor-element-884ebb2">
-            <div className="elementor-widget-wrap elementor-element-populated">
-              <div className="elementor-element toggle-icon--custom elementor-widget__width-auto elementor-menu-cart--empty-indicator-hide remove-item-position--top elementor-menu-cart--items-indicator-bubble elementor-menu-cart--cart-type-side-cart elementor-menu-cart--show-remove-button-yes elementor-widget elementor-widget-woocommerce-menu-cart">
-                <div className="elementor-widget-container">
-                  <div className="elementor-menu-cart__wrapper">
-                    <div className="elementor-menu-cart__toggle_wrapper">
-                      <div className="elementor-menu-cart__toggle elementor-button-wrapper">
-                        <a id="elementor-menu-cart__toggle_button" href="#" className="elementor-menu-cart__toggle_button elementor-button elementor-size-sm" aria-expanded="false" style={{background: 'white', color: '#dc3545', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-                          <span className="elementor-button-text">
-                            <span className="woocommerce-Price-amount amount">
-                              <span>0.00 <span className="woocommerce-Price-currencySymbol">₪</span></span>
-                            </span>
-                          </span>
-                          <span className="elementor-button-icon">
-                            <span className="elementor-button-icon-qty" data-counter="0">0</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style={{width: '16px', height: '16px', fill: 'currentColor'}}>
-                              <path d="M7 4V2C7 1.45 7.45 1 8 1H16C16.55 1 17 1.45 17 2V4H20C20.55 4 21 4.45 21 5S20.55 6 20 6H19V19C19 20.1 18.1 21 17 21H7C5.9 21 5 20.1 5 19V6H4C3.45 6 3 5.55 3 5S3.45 4 4 4H7ZM9 3V4H15V3H9ZM7 6V19H17V6H7Z"/>
-                            </svg>
-                          </span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* HERO SECTION */}
-      <section style={{background: 'linear-gradient(135deg, #00b894 0%, #00a085 100%)', color: 'white', padding: '5rem 0', textAlign: 'center'}}>
-        <div className="elementor-container" style={{maxWidth: '1000px', margin: '0 auto', padding: '0 2rem'}}>
-          <h1 style={{fontSize: '3rem', fontWeight: 'bold', marginBottom: '1rem', lineHeight: '1.2'}}>
-            הורדות ספרים דיגיטליים
+    <div className={`min-h-screen bg-gradient-to-br from-amber-50 to-orange-100 ${isRTL ? 'rtl' : 'ltr'}`}>
+      <Header />
+      
+      <div className="container mx-auto px-4 py-8">
+        {/* Page Header */}
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-bold text-red-800 mb-4">
+            {t('freeDownloads')}
           </h1>
-          <h2 style={{fontSize: '1.5rem', fontWeight: 'normal', marginBottom: '2rem', lineHeight: '1.4'}}>
-            הורידו ספרי רבנו הקדוש בחינם במגוון פורמטים
-          </h2>
-          <p style={{fontSize: '1.2rem', opacity: 0.9}}>
-            כל הספרים זמינים בפורמט PDF לקריאה נוחה
+          <p className="text-lg text-gray-700 max-w-3xl mx-auto">
+            {t('downloadDescription')}
           </p>
         </div>
-      </section>
 
-      {/* DOWNLOADS CATEGORIES */}
-      <section style={{background: '#f8f9fa', padding: '5rem 0'}}>
-        <div className="elementor-container" style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
-          
-          {/* רבי נחמן */}
-          <div style={{marginBottom: '5rem'}}>
-            <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '3rem', textAlign: 'center', borderBottom: '3px solid #dc3545', paddingBottom: '1rem'}}>
-              ספרי רבי נחמן מברסלב
-            </h2>
-            
-            <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem'}}>
-              
-              <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
-                <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#333', marginBottom: '1rem'}}>
-                  📖 ליקוטי מוהרן
-                </h3>
-                <p style={{color: '#666', marginBottom: '1.5rem', lineHeight: '1.6'}}>
-                  הספר הקדוש העיקרי של רבי נחמן מברסלב, מכיל את התורות והשיחות הקדושות
-                </p>
-                <div style={{display: 'flex', gap: '1rem', flexWrap: 'wrap'}}>
-                  <a href="https://hebrewbooks.org/pdfpager.aspx?req=14088&st=&pgnum=1" target="_blank" style={{background: '#dc3545', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    הורד עברית PDF
-                  </a>
-                  <a href="https://breslovbooks.com/books/Likutei_Moharan_English.pdf" target="_blank" style={{background: '#007bff', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    English PDF
-                  </a>
-                </div>
-              </div>
-
-              <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
-                <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#333', marginBottom: '1rem'}}>
-                  📚 סיפורי מעשיות
-                </h3>
-                <p style={{color: '#666', marginBottom: '1.5rem', lineHeight: '1.6'}}>
-                  סיפורים קדושים ומופלאים שסיפר רבי נחמן, עמוקים ברמזים נשגבים
-                </p>
-                <div style={{display: 'flex', gap: '1rem', flexWrap: 'wrap'}}>
-                  <a href="https://he.wikisource.org/wiki/%D7%A1%D7%99%D7%A4%D7%95%D7%A8%D7%99_%D7%9E%D7%A2%D7%A9%D7%99%D7%95%D7%AA" target="_blank" style={{background: '#dc3545', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    הורד עברית PDF
-                  </a>
-                  <a href="https://en.wikisource.org/wiki/Translation:Tales_of_Rabbi_Nachman" target="_blank" style={{background: '#007bff', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    English PDF
-                  </a>
-                  <a href="https://breslovbooks.com/books/Contes_French.pdf" target="_blank" style={{background: '#6f42c1', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    Français PDF
-                  </a>
-                </div>
-              </div>
-
-              <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
-                <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#333', marginBottom: '1rem'}}>
-                  💬 שיחות הר"ן
-                </h3>
-                <p style={{color: '#666', marginBottom: '1.5rem', lineHeight: '1.6'}}>
-                  שיחות קדושות של רבי נחמן הכוללות עצות יקרות לעבודת השם
-                </p>
-                <div style={{display: 'flex', gap: '1rem', flexWrap: 'wrap'}}>
-                  <a href="https://hebrewbooks.org/pdfpager.aspx?req=14170&st=&pgnum=1" target="_blank" style={{background: '#dc3545', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    הורד עברית PDF
-                  </a>
-                  <a href="https://breslovbooks.com/books/Sichot_Russian.pdf" target="_blank" style={{background: '#fd7e14', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    Русский PDF
-                  </a>
-                </div>
-              </div>
-
-              <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
-                <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#333', marginBottom: '1rem'}}>
-                  📜 ספר המידות
-                </h3>
-                <p style={{color: '#666', marginBottom: '1.5rem', lineHeight: '1.6'}}>
-                  לקט עצות קדושות לתיקון המידות ועבודת השם
-                </p>
-                <div style={{display: 'flex', gap: '1rem', flexWrap: 'wrap'}}>
-                  <a href="https://hebrewbooks.org/pdfpager.aspx?req=14167&st=&pgnum=1" target="_blank" style={{background: '#dc3545', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    הורד עברית PDF
-                  </a>
-                  <a href="https://breslovbooks.com/books/Sefer_HaMiddot_Spanish.pdf" target="_blank" style={{background: '#28a745', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    Español PDF
-                  </a>
-                </div>
-              </div>
-
-              <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
-                <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#333', marginBottom: '1rem'}}>
-                  🙏 תיקון הכללי
-                </h3>
-                <p style={{color: '#666', marginBottom: '1.5rem', lineHeight: '1.6'}}>
-                  עשרה מזמורי תהילים המתקנים כל עוון, כפי שגילה רבי נחמן
-                </p>
-                <div style={{display: 'flex', gap: '1rem', flexWrap: 'wrap'}}>
-                  <a href="https://breslovbooks.com/books/Tikkun_Haklali_Hebrew.pdf" target="_blank" style={{background: '#dc3545', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    הורד עברית PDF
-                  </a>
-                  <a href="https://breslovbooks.com/books/Tikkun_Haklali_English.pdf" target="_blank" style={{background: '#007bff', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    English PDF
-                  </a>
-                </div>
-              </div>
-
-              <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
-                <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#333', marginBottom: '1rem'}}>
-                  📋 חיי מוהר"ן
-                </h3>
-                <p style={{color: '#666', marginBottom: '1.5rem', lineHeight: '1.6'}}>
-                  סיפור חייו של רבי נחמן מברסלב שנכתב על ידי תלמידו רבי נתן
-                </p>
-                <div style={{display: 'flex', gap: '1rem', flexWrap: 'wrap'}}>
-                  <a href="https://hebrewbooks.org/pdfpager.aspx?req=14164&st=&pgnum=1" target="_blank" style={{background: '#dc3545', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    הורד עברית PDF
-                  </a>
-                  <a href="https://breslovbooks.com/books/Chayei_Moharan_English.pdf" target="_blank" style={{background: '#007bff', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    English PDF
-                  </a>
-                </div>
-              </div>
+        {/* Search and Filters */}
+        <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {/* Search */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                {t('search')}
+              </label>
+              <input
+                type="text"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                placeholder={t('searchBooks')}
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+              />
             </div>
-          </div>
 
-          {/* רבי נתן */}
-          <div style={{marginBottom: '5rem'}}>
-            <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#007bff', marginBottom: '3rem', textAlign: 'center', borderBottom: '3px solid #007bff', paddingBottom: '1rem'}}>
-              ספרי רבי נתן מברסלב
-            </h2>
-            
-            <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem'}}>
-              
-              <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
-                <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#333', marginBottom: '1rem'}}>
-                  📿 ליקוטי תפילות
-                </h3>
-                <p style={{color: '#666', marginBottom: '1.5rem', lineHeight: '1.6'}}>
-                  תפילות נפלאות שחיבר רבי נתן על פי תורות רבי נחמן
-                </p>
-                <div style={{display: 'flex', gap: '1rem', flexWrap: 'wrap'}}>
-                  <a href="https://hebrewbooks.org/pdfpager.aspx?req=14089&st=&pgnum=1" target="_blank" style={{background: '#dc3545', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    הורד עברית PDF
-                  </a>
-                  <a href="https://breslovbooks.com/books/Hebrew_Books.pdf" target="_blank" style={{background: '#28a745', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    עברית נוסף
-                  </a>
-                  <a href="https://breslovbooks.com/books/English_Books.pdf" target="_blank" style={{background: '#007bff', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    English PDF
-                  </a>
-                </div>
-              </div>
-
-              <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
-                <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#333', marginBottom: '1rem'}}>
-                  ⚖️ ליקוטי הלכות
-                </h3>
-                <p style={{color: '#666', marginBottom: '1.5rem', lineHeight: '1.6'}}>
-                  פירוש הלכות על פי תורת רבי נחמן בעומק נפלא
-                </p>
-                <div style={{display: 'flex', gap: '1rem', flexWrap: 'wrap'}}>
-                  <a href="https://hebrewbooks.org/pdfpager.aspx?req=14089&st=&pgnum=1" target="_blank" style={{background: '#dc3545', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    הורד עברית PDF
-                  </a>
-                  <a href="https://breslovbooks.com/books/Hebrew_Books.pdf" target="_blank" style={{background: '#28a745', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    עברית נוסף
-                  </a>
-                </div>
-              </div>
-
-              <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
-                <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#333', marginBottom: '1rem'}}>
-                  💡 ליקוטי עצות
-                </h3>
-                <p style={{color: '#666', marginBottom: '1.5rem', lineHeight: '1.6'}}>
-                  לקט עצות מתורות רבי נחמן מסודר לפי נושאים
-                </p>
-                <div style={{display: 'flex', gap: '1rem', flexWrap: 'wrap'}}>
-                  <a href="https://hebrewbooks.org/pdfpager.aspx?req=14089&st=&pgnum=1" target="_blank" style={{background: '#dc3545', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    הורד עברית PDF
-                  </a>
-                  <a href="https://breslovbooks.com/books/Hebrew_Books.pdf" target="_blank" style={{background: '#28a745', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    עברית נוסף
-                  </a>
-                  <a href="#" style={{background: '#fd7e14', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    Русский
-                  </a>
-                </div>
-              </div>
+            {/* Category Filter */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                {t('category')}
+              </label>
+              <select
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+              >
+                <option value="all">{t('allCategories')}</option>
+                <option value="rebbe-nachman">{t('rebbeNachman')}</option>
+                <option value="rebbe-nathan">{t('rebbeNathan')}</option>
+                <option value="compilations">{t('compilations')}</option>
+              </select>
             </div>
-          </div>
 
-          {/* ספרי רבי ישראל */}
-          <div style={{marginBottom: '5rem'}}>
-            <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#28a745', marginBottom: '3rem', textAlign: 'center', borderBottom: '3px solid #28a745', paddingBottom: '1rem'}}>
-              ספרי רבי ישראל דוב אודסר
-            </h2>
-            
-            <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem'}}>
-              
-              <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
-                <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#333', marginBottom: '1rem'}}>
-                  💌 מכתבי רבי ישראל
-                </h3>
-                <p style={{color: '#666', marginBottom: '1.5rem', lineHeight: '1.6'}}>
-                  מכתבים קדושים של רבי ישראל דוב אודסר זצ"ל
-                </p>
-                <div style={{display: 'flex', gap: '1rem', flexWrap: 'wrap'}}>
-                  <a href="https://hebrewbooks.org/pdfpager.aspx?req=14089&st=&pgnum=1" target="_blank" style={{background: '#dc3545', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    הורד עברית PDF
-                  </a>
-                  <a href="https://breslovbooks.com/books/Hebrew_Books.pdf" target="_blank" style={{background: '#28a745', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    עברית נוסף
-                  </a>
-                </div>
-              </div>
-
-              <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
-                <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#333', marginBottom: '1rem'}}>
-                  📖 אבי הנחל
-                </h3>
-                <p style={{color: '#666', marginBottom: '1.5rem', lineHeight: '1.6'}}>
-                  סיפור חייו המופלא של רבי ישראל דוב אודסר זצ"ל
-                </p>
-                <div style={{display: 'flex', gap: '1rem', flexWrap: 'wrap'}}>
-                  <a href="https://hebrewbooks.org/pdfpager.aspx?req=14089&st=&pgnum=1" target="_blank" style={{background: '#dc3545', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    הורד עברית PDF
-                  </a>
-                  <a href="https://breslovbooks.com/books/Hebrew_Books.pdf" target="_blank" style={{background: '#28a745', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    עברית נוסף
-                  </a>
-                  <a href="https://breslovbooks.com/books/English_Books.pdf" target="_blank" style={{background: '#007bff', color: 'white', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', fontSize: '0.9rem'}}>
-                    English PDF
-                  </a>
-                </div>
-              </div>
+            {/* Language Filter */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                {t('downloadLanguage')}
+              </label>
+              <select
+                value={selectedLanguage}
+                onChange={(e) => setSelectedLanguage(e.target.value)}
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+              >
+                <option value="all">{t('allLanguages')}</option>
+                <option value="hebrew">{getLanguageDisplayName('hebrew')}</option>
+                <option value="english">{getLanguageDisplayName('english')}</option>
+                <option value="french">{getLanguageDisplayName('french')}</option>
+                <option value="spanish">{getLanguageDisplayName('spanish')}</option>
+                <option value="russian">{getLanguageDisplayName('russian')}</option>
+              </select>
             </div>
           </div>
         </div>
-      </section>
 
-      {/* FOOTER */}
-      <footer className="main-footer" style={{background: '#2d3436', color: 'white', padding: '3rem 0 2rem'}}>
-        <div className="elementor-container">
-          <div style={{textAlign: 'center', paddingTop: '2rem'}}>
-            <div style={{color: '#999', fontSize: '0.9rem'}}>
-              <p style={{marginBottom: '0.5rem'}}>כל הזכיות שמורות 2025 © קרן רבי ישראל דב אודסר זצ"ל</p>
-              <p>האתר נבנה ע"י מדיה מאסטר</p>
+        {/* Downloads Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredBooks.map((book, index) => (
+            <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-red-800 mb-3">
+                  {getTitle(book)}
+                </h3>
+                <p className="text-gray-600 mb-4 text-sm leading-relaxed">
+                  {getDescription(book)}
+                </p>
+                
+                {/* Download Links */}
+                <div className="space-y-2">
+                  <h4 className="font-semibold text-gray-800 text-sm mb-2">
+                    {t('availableLanguages')}:
+                  </h4>
+                  {Object.entries(book.links).map(([lang, url]) => (
+                    <a
+                      key={lang}
+                      href={url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-between bg-gradient-to-r from-red-500 to-red-600 text-white px-4 py-2 rounded-lg hover:from-red-600 hover:to-red-700 transition-all group"
+                    >
+                      <span className="flex items-center gap-2">
+                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+                        </svg>
+                        {getLanguageDisplayName(lang)}
+                      </span>
+                      <span className="text-xs opacity-75 group-hover:opacity-100">PDF</span>
+                    </a>
+                  ))}
+                </div>
+              </div>
             </div>
-          </div>
+          ))}
         </div>
-      </footer>
+
+        {/* No Results Message */}
+        {filteredBooks.length === 0 && (
+          <div className="text-center py-12">
+            <div className="text-6xl mb-4">📚</div>
+            <h3 className="text-xl font-semibold text-gray-700 mb-2">
+              {t('noResultsFound')}
+            </h3>
+            <p className="text-gray-500">
+              {t('tryDifferentSearch')}
+            </p>
+          </div>
+        )}
+
+        {/* Footer Note */}
+        <div className="bg-red-50 rounded-lg p-6 mt-12 text-center">
+          <h4 className="font-bold text-red-800 mb-2">
+            {t('importantNote')}
+          </h4>
+          <p className="text-red-700 text-sm">
+            {t('freeDownloadNote')}
+          </p>
+        </div>
+      </div>
     </div>
   );
 }

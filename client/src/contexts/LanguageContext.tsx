@@ -18,6 +18,23 @@ export const translations = {
     downloads: 'הורדות',
     fire: '🔥 האש שלי',
 
+    // Downloads page
+    freeDownloads: 'הורדות חינמיות',
+    downloadDescription: 'הורדו ספרי ברסלב במגוון שפות - כל הספרים זמינים בחינם לקהילה',
+    search: 'חיפוש',
+    searchBooks: 'חפש ספרים...',
+    category: 'קטגוריה',
+    rebbeNachman: 'כתבי רבי נחמן',
+    rebbeNathan: 'כתבי רבי נתן',
+    compilations: 'ליקוטים וקבצים',
+    downloadLanguage: 'שפת הורדה',
+    allLanguages: 'כל השפות',
+    availableLanguages: 'שפות זמינות',
+    noResultsFound: 'לא נמצאו תוצאות',
+    tryDifferentSearch: 'נסה מונחי חיפוש אחרים',
+    importantNote: 'הערה חשובה',
+    freeDownloadNote: 'כל הספרים זמינים להורדה חינמית לפי רוח הברסלב - התורה שלמה תהיה חינם',
+
     // Store page
     storeTitle: 'ספרי ברסלב - קרן רבי ישראל',
     storeSubtitle: 'אוסף מקיף של ספרי רבי נחמן מברסלב ותלמידיו במחירים מיוחדים',
@@ -99,6 +116,23 @@ export const translations = {
     ratedOutOf: 'Rated 5.00 out of 5',
     options: 'options',
 
+    // Downloads page
+    freeDownloads: 'Free Downloads',
+    downloadDescription: 'Download Breslov books in multiple languages - all books available free to the community',
+    search: 'Search',
+    searchBooks: 'Search books...',
+    category: 'Category',
+    rebbeNachman: 'Rebbe Nachman Writings',
+    rebbeNathan: 'Rebbe Nathan Writings',
+    compilations: 'Compilations',
+    downloadLanguage: 'Download Language',
+    allLanguages: 'All Languages',
+    availableLanguages: 'Available Languages',
+    noResultsFound: 'No Results Found',
+    tryDifferentSearch: 'Try different search terms',
+    importantNote: 'Important Note',
+    freeDownloadNote: 'All books are available for free download in the spirit of Breslov - the entire Torah should be free',
+
     // Common
     shekel: '₪',
     loading: 'Loading...',
@@ -147,6 +181,23 @@ export const translations = {
     contactForMore: 'Contactez pour plus de détails',
     ratedOutOf: 'Noté 5.00 sur 5',
     options: 'options',
+
+    // Downloads page
+    freeDownloads: 'Téléchargements Gratuits',
+    downloadDescription: 'Téléchargez des livres Breslov en plusieurs langues - tous les livres sont disponibles gratuitement pour la communauté',
+    search: 'Recherche',
+    searchBooks: 'Rechercher des livres...',
+    category: 'Catégorie',
+    rebbeNachman: 'Écrits de Rebbe Nachman',
+    rebbeNathan: 'Écrits de Rebbe Nathan',
+    compilations: 'Compilations',
+    downloadLanguage: 'Langue de Téléchargement',
+    allLanguages: 'Toutes les Langues',
+    availableLanguages: 'Langues Disponibles',
+    noResultsFound: 'Aucun Résultat Trouvé',
+    tryDifferentSearch: 'Essayez des termes de recherche différents',
+    importantNote: 'Note Importante',
+    freeDownloadNote: 'Tous les livres sont disponibles en téléchargement gratuit dans l\'esprit de Breslov - toute la Torah devrait être gratuite',
 
     // Common
     shekel: '₪',
