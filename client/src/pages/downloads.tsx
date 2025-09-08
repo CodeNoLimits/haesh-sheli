@@ -37,23 +37,63 @@ export default function Downloads() {
 
   const getCategoryName = (category: string) => {
     switch (category) {
-      case 'Hebrew Books - Likutey Moharan':
+      case 'Alim Letrufah':
+        return currentLanguage === 'he' ? 'עלים לתרופה' : 'Alim Letrufah';
+      case 'Ashreinu':
+        return currentLanguage === 'he' ? 'אשרנו' : 'Ashreinu';
+      case 'Brochures Hébraïques':
+        return currentLanguage === 'he' ? 'חוברות בעברית' : 'Hebrew Pamphlets';
+      case 'Chalukei Hanachal':
+        return currentLanguage === 'he' ? 'חלוקי הנחל' : 'Chalukei Hanachal';
+      case 'Chayei Moharan':
+        return currentLanguage === 'he' ? 'חיי מוהר"ן' : 'Chayei Moharan';
+      case 'Eitzos Mevu\'aros':
+        return currentLanguage === 'he' ? 'עצות המבוארות' : 'Eitzos Mevu\'aros';
+      case 'Eitzos Yesharos':
+        return currentLanguage === 'he' ? 'עצות ישרות' : 'Eitzos Yesharos';
+      case 'Hebrew Books':
+        return currentLanguage === 'he' ? 'ספרים בעברית' : 'Hebrew Books';
+      case 'Hishtapchs HaNefesh':
+        return currentLanguage === 'he' ? 'השתפכות הנפש' : 'Hishtapchs HaNefesh';
+      case 'Kochvei Ohr':
+        return currentLanguage === 'he' ? 'כוכבי אור' : 'Kochvei Ohr';
+      case 'Likutey Eitzos':
+        return currentLanguage === 'he' ? 'לקוטי עצות' : 'Likutey Eitzos';
+      case 'Likutey Halachos':
+        return currentLanguage === 'he' ? 'ליקוטי הלכות' : 'Likutey Halachos';
+      case 'Likutey Moharan':
         return currentLanguage === 'he' ? 'ליקוטי מוהר"ן' : 'Likutey Moharan';
-      case 'Hebrew Books - Sipurey Maasiyot':
-        return currentLanguage === 'he' ? 'ספורי מעשיות' : 'Tales';
-      case 'Hebrew Books - Likutey Tefilot':
-        return currentLanguage === 'he' ? 'ליקוטי תפילות' : 'Likutey Tefilot';
-      case 'Hebrew Books - Chayei Moharan':
-        return currentLanguage === 'he' ? 'חיי מוהר"ן' : 'Life of Moharan';
-      case 'Hebrew Books - Sefer Hamidot':
-        return currentLanguage === 'he' ? 'ספר המידות' : 'Sefer Hamidot';
-      case 'Hebrew Pamphlets':
-        return currentLanguage === 'he' ? 'חוברות' : 'Pamphlets';
-      case 'English Books & Pamphlets':
-        return currentLanguage === 'he' ? 'ספרים באנגלית' : 'English Books';
+      case 'Likutey Tefilos':
+        return currentLanguage === 'he' ? 'ליקוטי תפילות' : 'Likutey Tefilos';
+      case 'Megilat Koheles':
+        return currentLanguage === 'he' ? 'מגילת קהלת' : 'Megilat Koheles';
+      case 'Meshivas Nefesh':
+        return currentLanguage === 'he' ? 'משיבת נפש' : 'Meshivas Nefesh';
+      case 'Sefer Hamidos':
+        return currentLanguage === 'he' ? 'ספר המידות' : 'Sefer Hamidos';
+      case 'Shemos Hatzadikim':
+        return currentLanguage === 'he' ? 'שמות הצדיקים' : 'Shemos Hatzadikim';
+      case 'Shivchay & Sichos Haran':
+        return currentLanguage === 'he' ? 'שבחי ושיחות הר"ן' : 'Shivchay & Sichos Haran';
+      case 'Siddur':
+        return currentLanguage === 'he' ? 'סידור' : 'Siddur';
+      case 'Siporay Masiyos':
+        return currentLanguage === 'he' ? 'ספורי מעשיות' : 'Siporay Masiyos';
+      case 'Tikkun HaKlali':
+        return currentLanguage === 'he' ? 'תיקון הכללי' : 'Tikkun HaKlali';
+      case 'Torahs Utefilos':
+        return currentLanguage === 'he' ? 'תורות ותפילות' : 'Torahs Utefilos';
+      case 'Yimay Maharant':
+        return currentLanguage === 'he' ? 'ימי מוהרנ"ת' : 'Yimay Maharant';
       default:
-        return currentLanguage === 'he' ? 'כל הספרים' : 'All Books';
+        return category;
     }
+  };
+
+  // Get unique categories from the books data
+  const getUniqueCategories = () => {
+    const categories = [...new Set(breslovDownloadBooks.map(book => book.category))];
+    return categories.sort();
   };
 
   return (
@@ -102,11 +142,11 @@ export default function Downloads() {
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
               >
                 <option value="all">{currentLanguage === 'he' ? 'כל הקטגוריות' : 'All Categories'}</option>
-                <option value="Hebrew Books - Likutey Moharan">{currentLanguage === 'he' ? 'ליקוטי מוהר"ן' : 'Likutey Moharan'}</option>
-                <option value="Hebrew Books - Sipurey Maasiyot">{currentLanguage === 'he' ? 'ספורי מעשיות' : 'Tales'}</option>
-                <option value="Hebrew Books - Likutey Tefilot">{currentLanguage === 'he' ? 'ליקוטי תפילות' : 'Likutey Tefilot'}</option>
-                <option value="Hebrew Pamphlets">{currentLanguage === 'he' ? 'חוברות' : 'Pamphlets'}</option>
-                <option value="English Books & Pamphlets">{currentLanguage === 'he' ? 'ספרים באנגלית' : 'English Books'}</option>
+                {getUniqueCategories().map(category => (
+                  <option key={category} value={category}>
+                    {getCategoryName(category)}
+                  </option>
+                ))}
               </select>
             </div>
 
