@@ -16,6 +16,7 @@ import Checkout from "@/pages/checkout";
 import Downloads from "@/pages/downloads";
 import Product from "@/pages/product";
 import Yaaakov from "@/pages/yaaakov";
+import BreslevStyle from "@/pages/breslevStyle";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -31,6 +32,7 @@ function Router() {
       <Route path="/downloads" component={Downloads} />
       <Route path="/product/:id" component={Product} />
       <Route path="/yaaakov" component={Yaaakov} />
+      <Route path="/breslevstyle" component={BreslevStyle} />
       <Route component={NotFound} />
     </Switch>
   );

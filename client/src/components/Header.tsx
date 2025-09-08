@@ -17,6 +17,7 @@ const translations = {
     magazine: 'המגזין',
     join: 'הצטרפות',
     downloads: 'הורדות',
+    breslevStyle: 'ברסלב סטייל',
     fire: '🔥 האש שלי'
   },
   en: {
@@ -27,6 +28,7 @@ const translations = {
     magazine: 'Magazine',
     join: 'Join',
     downloads: 'Downloads',
+    breslevStyle: 'Breslev Style',
     fire: '🔥 My Fire'
   },
   fr: {
@@ -37,6 +39,7 @@ const translations = {
     magazine: 'Magazine',
     join: 'Rejoindre',
     downloads: 'Téléchargements',
+    breslevStyle: 'Style Breslev',
     fire: '🔥 Mon Feu'
   },
   es: {
@@ -47,6 +50,7 @@ const translations = {
     magazine: 'Revista',
     join: 'Unirse',
     downloads: 'Descargas',
+    breslevStyle: 'Estilo Breslev',
     fire: '🔥 Mi Fuego'
   },
   ru: {
@@ -57,6 +61,7 @@ const translations = {
     magazine: 'Журнал',
     join: 'Присоединиться',
     downloads: 'Загрузки',
+    breslevStyle: 'Стиль Бреслев',
     fire: '🔥 Мой Огонь'
   }
 };
@@ -140,6 +145,11 @@ export function Header({ currentLanguage = 'he', onLanguageChange }: HeaderProps
                     <li className={`menu-item ${location === '/downloads' ? 'current-menu-item' : ''}`}>
                       <a href="/downloads" className="elementor-item" style={{color: 'white', textDecoration: 'none', fontWeight: location === '/downloads' ? 'bold' : 'normal'}}>
                         {t.downloads}
+                      </a>
+                    </li>
+                    <li className={`menu-item ${location === '/breslevstyle' ? 'current-menu-item' : ''}`}>
+                      <a href="/breslevstyle" className="elementor-item" style={{color: 'white', textDecoration: 'none', fontWeight: location === '/breslevstyle' ? 'bold' : 'normal'}}>
+                        {t.breslevStyle}
                       </a>
                     </li>
                     <li className={`menu-item ${location === '/yaaakov' ? 'current-menu-item' : ''}`}>
