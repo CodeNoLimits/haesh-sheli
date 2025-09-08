@@ -172,13 +172,15 @@ export default function Product() {
                 <span style={{color: '#666', fontSize: '0.9rem'}}>דורג 5.00 מתוך 5 (23 ביקורות)</span>
               </div>
 
-              <div style={{fontSize: '2rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '2rem'}}>
+              <div style={{fontSize: '2rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '2rem', maxWidth: '100%', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap'}}>
+                <span style={{display: 'inline-block', verticalAlign: 'middle'}}>
+                  {currentVariant.price} ₪
+                </span>
                 {currentVariant.originalPrice && (
-                  <span style={{textDecoration: 'line-through', color: '#999', fontSize: '1.5rem', marginLeft: '1rem'}}>
-                    {currentVariant.originalPrice}.00 ₪
+                  <span style={{textDecoration: 'line-through', color: '#999', fontSize: '1.5rem', marginRight: '1rem', display: 'inline-block', verticalAlign: 'middle'}}>
+                    {currentVariant.originalPrice} ₪
                   </span>
                 )}
-                {currentVariant.price}.00 ₪
               </div>
 
               <p style={{fontSize: '1.1rem', color: '#666', lineHeight: '1.6', marginBottom: '2rem'}}>
@@ -226,13 +228,15 @@ export default function Product() {
                           {variant.inStock ? 'במלאי' : 'אזל מהמלאי'}
                         </div>
                       </div>
-                      <div style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#dc3545'}}>
-                        {variant.originalPrice && (
-                          <span style={{textDecoration: 'line-through', color: '#999', fontSize: '0.9rem', marginLeft: '0.5rem'}}>
-                            {variant.originalPrice}₪
-                          </span>
-                        )}
-                        {variant.price}₪
+                      <div style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#dc3545', minWidth: '80px', textAlign: 'left', flexShrink: 0}}>
+                        <div style={{display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap'}}>
+                          <span>{variant.price}₪</span>
+                          {variant.originalPrice && (
+                            <span style={{textDecoration: 'line-through', color: '#999', fontSize: '0.9rem'}}>
+                              {variant.originalPrice}₪
+                            </span>
+                          )}
+                        </div>
                       </div>
                     </label>
                   ))}
