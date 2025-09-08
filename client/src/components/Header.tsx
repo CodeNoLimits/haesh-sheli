@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation } from 'wouter';
+import { useCart } from '../contexts/CartContext';
+import { CartWidget } from './CartWidget';
 
 interface HeaderProps {
   currentLanguage?: string;
@@ -61,6 +63,7 @@ const translations = {
 
 export function Header({ currentLanguage = 'he', onLanguageChange }: HeaderProps) {
   const [location] = useLocation();
+  const { totalItems, totalPrice, setIsCartOpen } = useCart();
   const t = translations[currentLanguage as keyof typeof translations] || translations.he;
   
   const languageFlags = {
@@ -186,29 +189,37 @@ export function Header({ currentLanguage = 'he', onLanguageChange }: HeaderProps
         <div className="elementor-column elementor-col-25 elementor-top-column elementor-element elementor-element-ba655d5">
           <div className="elementor-widget-wrap elementor-element-populated" style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem'}}>
             {/* Cart Icon */}
-            <div className="cart-container" style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-              <div style={{position: 'relative', cursor: 'pointer'}}>
+            <div 
+              className="cart-container" 
+              style={{display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer'}}
+              onClick={() => setIsCartOpen(true)}
+            >
+              <div style={{position: 'relative'}}>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
                   <path d="M7 4V2C7 1.45 7.45 1 8 1H16C16.55 1 17 1.45 17 2V4H20C20.55 4 21 4.45 21 5S20.55 6 20 6H19V19C19 20.1 18.1 21 17 21H7C5.9 21 5 20.1 5 19V6H4C3.45 6 3 5.55 3 5S3.45 4 4 4H7ZM9 3V4H15V3H9ZM7 6V19H17V6H7Z"/>
                   <path d="M9 8V17H11V8H9ZM13 8V17H15V8H13Z"/>
                 </svg>
-                <span style={{
-                  position: 'absolute',
-                  top: '-8px',
-                  right: '-8px',
-                  background: '#ffc107',
-                  color: '#333',
-                  borderRadius: '50%',
-                  width: '18px',
-                  height: '18px',
-                  fontSize: '12px',
-                  fontWeight: 'bold',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}>0</span>
+                {totalItems > 0 && (
+                  <span style={{
+                    position: 'absolute',
+                    top: '-8px',
+                    right: '-8px',
+                    background: '#ffc107',
+                    color: '#333',
+                    borderRadius: '50%',
+                    width: '18px',
+                    height: '18px',
+                    fontSize: '12px',
+                    fontWeight: 'bold',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}>{totalItems}</span>
+                )}
               </div>
-              <span style={{color: 'white', fontSize: '1rem', fontWeight: 'bold'}}>₪0</span>
+              <span style={{color: 'white', fontSize: '1rem', fontWeight: 'bold'}}>
+                ₪{totalPrice.toFixed(2)}
+              </span>
             </div>
             
             {/* Fire Icon */}
@@ -222,6 +233,7 @@ export function Header({ currentLanguage = 'he', onLanguageChange }: HeaderProps
           </div>
         </div>
       </div>
+      <CartWidget />
     </section>
   );
 }

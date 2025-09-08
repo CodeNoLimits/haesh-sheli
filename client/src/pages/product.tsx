@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useRoute } from 'wouter';
 import { realBreslovProducts } from '../data/realProducts';
+import { useCart } from '../contexts/CartContext';
+import { useToast } from '@/hooks/use-toast';
 import type { Product } from '../../../shared/schema';
 
 export default function Product() {
@@ -8,6 +10,8 @@ export default function Product() {
   const [selectedVariant, setSelectedVariant] = useState<string>('');
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
+  const { addItem } = useCart();
+  const { toast } = useToast();
 
   if (!match || !params?.id) {
     return <div>מוצר לא נמצא</div>;
@@ -21,6 +25,10 @@ export default function Product() {
 
   const variants = product.variants || [];
   const currentVariant = variants.find(v => v.id === selectedVariant) || variants[0];
+  
+  if (!currentVariant) {
+    return <div>שגיאה: לא נמצאו גרסאות למוצר</div>;
+  }
 
   return (
     <div className="rtl product-page page-template-default">
@@ -257,30 +265,47 @@ export default function Product() {
                   </div>
                 </div>
 
-                <a 
-                  href={`/checkout?product=${product.id}&variant=${selectedVariant || product.variants[0].id}&quantity=${quantity}&price=${(currentVariant.price * quantity)}`}
-                  style={{textDecoration: 'none'}}
-                >
-                  <button 
-                    style={{
-                      background: currentVariant.inStock ? '#dc3545' : '#999',
-                      color: 'white',
-                      border: 'none',
-                      padding: '1rem 2rem',
-                      borderRadius: '8px',
-                      cursor: currentVariant.inStock ? 'pointer' : 'not-allowed',
-                      width: '100%',
-                      fontSize: '1.2rem',
-                      fontWeight: 'bold'
-                    }}
-                    disabled={!currentVariant.inStock}
-                  >
-                    {currentVariant.inStock ? 
-                      `הוספה לסל - ${(currentVariant.price * quantity).toFixed(2)} ₪` : 
-                      'אזל מהמלאי'
+                <button 
+                  onClick={() => {
+                    if (currentVariant.inStock) {
+                      addItem({
+                        productId: product.id,
+                        variantId: currentVariant.id,
+                        name: product.name,
+                        nameEnglish: product.nameEnglish || product.name,
+                        image: product.images?.[0] || '',
+                        price: currentVariant.price,
+                        quantity: quantity,
+                        variant: {
+                          format: currentVariant.format,
+                          binding: currentVariant.binding,
+                          size: currentVariant.size
+                        }
+                      });
+                      toast({
+                        title: "נוסף לסל הקניות!",
+                        description: `${product.name} נוסף בהצלחה לסל`,
+                      });
                     }
-                  </button>
-                </a>
+                  }}
+                  style={{
+                    background: currentVariant.inStock ? '#dc3545' : '#999',
+                    color: 'white',
+                    border: 'none',
+                    padding: '1rem 2rem',
+                    borderRadius: '8px',
+                    cursor: currentVariant.inStock ? 'pointer' : 'not-allowed',
+                    width: '100%',
+                    fontSize: '1.2rem',
+                    fontWeight: 'bold'
+                  }}
+                  disabled={!currentVariant.inStock}
+                >
+                  {currentVariant.inStock ? 
+                    `הוספה לסל - ${(currentVariant.price * quantity).toFixed(2)} ₪` : 
+                    'אזל מהמלאי'
+                  }
+                </button>
               </div>
 
               {/* PRODUCT FEATURES */}
