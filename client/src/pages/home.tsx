@@ -95,49 +95,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* YACOV REN TEMPORARY SECTION */}
-          <div className="elementor-column elementor-col-16 elementor-top-column" style={{maxWidth: '150px'}}>
-            <div className="elementor-widget-wrap elementor-element-populated">
-              <div className="elementor-element elementor-widget" style={{background: 'rgba(255,255,255,0.1)', padding: '0.5rem', borderRadius: '5px', border: '1px solid rgba(255,255,255,0.3)'}}>
-                <div className="elementor-widget-container">
-                  <a href="/yacov-ren-temp" style={{color: 'white', textDecoration: 'none', fontSize: '0.8rem', fontWeight: 'bold', display: 'block', textAlign: 'center'}}>
-                    יעקב חן זמני
-                    <br />
-                    <small style={{fontSize: '0.7rem', opacity: 0.8}}>TEMPORAIRE</small>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* CART COLUMN - REDUCED SIZE */}
-          <div className="elementor-column elementor-col-16 elementor-top-column elementor-element elementor-element-884ebb2" style={{maxWidth: '120px'}}>
-            <div className="elementor-widget-wrap elementor-element-populated">
-              <div className="elementor-element toggle-icon--custom elementor-widget__width-auto elementor-menu-cart--empty-indicator-hide remove-item-position--top elementor-menu-cart--items-indicator-bubble elementor-menu-cart--cart-type-side-cart elementor-menu-cart--show-remove-button-yes elementor-widget elementor-widget-woocommerce-menu-cart">
-                <div className="elementor-widget-container">
-                  <div className="elementor-menu-cart__wrapper">
-                    <div className="elementor-menu-cart__toggle_wrapper">
-                      <div className="elementor-menu-cart__toggle elementor-button-wrapper">
-                        <a id="elementor-menu-cart__toggle_button" href="#" className="elementor-menu-cart__toggle_button elementor-button elementor-size-sm" aria-expanded="false" style={{background: 'white', color: '#dc3545', padding: '0.3rem 0.6rem', borderRadius: '4px', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.3rem', fontSize: '0.8rem'}}>
-                          <span className="elementor-button-text">
-                            <span className="woocommerce-Price-amount amount">
-                              <span>0.00 <span className="woocommerce-Price-currencySymbol">₪</span></span>
-                            </span>
-                          </span>
-                          <span className="elementor-button-icon">
-                            <span className="elementor-button-icon-qty" data-counter="0" style={{fontSize: '0.7rem'}}>0</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style={{width: '14px', height: '14px', fill: 'currentColor'}}>
-                              <path d="M7 4V2C7 1.45 7.45 1 8 1H16C16.55 1 17 1.45 17 2V4H20C20.55 4 21 4.45 21 5S20.55 6 20 6H19V19C19 20.1 18.1 21 17 21H7C5.9 21 5 20.1 5 19V6H4C3.45 6 3 5.55 3 5S3.45 4 4 4H7ZM9 3V4H15V3H9ZM7 6V19H17V6H7Z"/>
-                            </svg>
-                          </span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 

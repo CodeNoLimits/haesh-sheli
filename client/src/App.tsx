@@ -13,7 +13,6 @@ import Contact from "@/pages/contact";
 import Checkout from "@/pages/checkout";
 import Downloads from "@/pages/downloads";
 import Product from "@/pages/product";
-import YacovRenTemp from "@/pages/yacov-ren-temp";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -28,7 +27,6 @@ function Router() {
       <Route path="/checkout" component={Checkout} />
       <Route path="/downloads" component={Downloads} />
       <Route path="/product/:id" component={Product} />
-      <Route path="/yacov-ren-temp" component={YacovRenTemp} />
       <Route component={NotFound} />
     </Switch>
   );

@@ -136,12 +136,6 @@ export function Header({ currentLanguage = 'he', onLanguageChange }: HeaderProps
                         {t.downloads}
                       </a>
                     </li>
-                    {/* Yaakov Temp Tab - Always right */}
-                    <li className={`menu-item ${location === '/yacov-ren-temp' ? 'current-menu-item' : ''}`} style={{marginLeft: 'auto'}}>
-                      <a href="/yacov-ren-temp" className="elementor-item" style={{color: '#ffc107', textDecoration: 'none', fontWeight: 'bold', background: 'rgba(255,193,7,0.2)', padding: '0.3rem 0.6rem', borderRadius: '4px', fontSize: '0.9rem'}}>
-                        יעקב חן
-                      </a>
-                    </li>
                   </ul>
                 </nav>
               </div>
