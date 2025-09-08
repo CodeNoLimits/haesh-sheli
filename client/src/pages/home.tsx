@@ -44,49 +44,120 @@ export default function Home() {
       <Header currentLanguage={currentLanguage} onLanguageChange={setLanguage} />
 
       {/* HERO SECTION */}
-      <section className="elementor-section elementor-top-section elementor-element elementor-element-1a9b8b1 elementor-section-height-full elementor-section-content-middle elementor-section-full_width elementor-section-height-default elementor-section-items-middle" style={{background: 'linear-gradient(135deg, #dc3545 0%, #c82333 100%)', color: 'white', padding: '6rem 0'}}>
-        <div className="elementor-container elementor-column-gap-default" style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
+      <section className="elementor-section elementor-top-section elementor-element elementor-element-1a9b8b1 elementor-section-height-full elementor-section-content-middle elementor-section-full_width elementor-section-height-default elementor-section-items-middle" 
+        style={{
+          background: `linear-gradient(rgba(139, 69, 19, 0.85), rgba(160, 82, 45, 0.8)), url('/assets/ליקוטי מוהרן אבן 1_1757275832024.jpg')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed',
+          color: 'white', 
+          padding: '8rem 0',
+          minHeight: '90vh',
+          display: 'flex',
+          alignItems: 'center'
+        }}>
+        <div className="elementor-container elementor-column-gap-default" style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem', width: '100%'}}>
           <div className="elementor-column elementor-col-100 elementor-top-column elementor-element">
             <div className="elementor-widget-wrap elementor-element-populated">
               <div className="elementor-element elementor-widget elementor-widget-heading" style={{textAlign: 'center'}}>
-                <div className="elementor-widget-container">
-                  <h1 className="elementor-heading-title elementor-size-default" style={{fontSize: '3.5rem', fontWeight: 'bold', marginBottom: '2rem', textShadow: '2px 2px 4px rgba(0,0,0,0.3)'}}>
-                    {currentLanguage === 'he' ? 'ברוכים הבאים לעולם ברסלב' : 
-                     currentLanguage === 'en' ? 'Welcome to the World of Breslov' :
-                     currentLanguage === 'fr' ? 'Bienvenue dans le Monde de Breslov' :
-                     currentLanguage === 'es' ? 'Bienvenidos al Mundo de Breslov' :
-                     currentLanguage === 'ru' ? 'Добро пожаловать в мир Бреслов' : 'ברוכים הבאים לעולם ברסלב'}
+                <div className="elementor-widget-container" style={{background: 'rgba(0,0,0,0.3)', padding: '3rem', borderRadius: '15px', backdropFilter: 'blur(5px)'}}>
+                  <h1 className="elementor-heading-title elementor-size-default" style={{
+                    fontSize: currentLanguage === 'he' ? '3.8rem' : '3.2rem', 
+                    fontWeight: 'bold', 
+                    marginBottom: '1.5rem', 
+                    textShadow: '3px 3px 6px rgba(0,0,0,0.7)',
+                    lineHeight: '1.2',
+                    color: '#F5F5DC'
+                  }}>
+                    {currentLanguage === 'he' ? 'ספרי רבינו נחמן מברסלב זצ״ל' : 
+                     currentLanguage === 'en' ? 'Books of Our Master Rabbi Nachman of Breslov' :
+                     currentLanguage === 'fr' ? 'Livres de Notre Maître Rabbi Nachman de Breslov' :
+                     currentLanguage === 'es' ? 'Libros de Nuestro Maestro Rabino Nachman de Breslov' :
+                     currentLanguage === 'ru' ? 'Книги Нашего Учителя Рабби Нахмана из Бреслов' : 'ספרי רבינו נחמן מברסלב זצ״ל'}
                   </h1>
-                  <p style={{fontSize: '1.3rem', marginBottom: '3rem', opacity: 0.9}}>
-                    {currentLanguage === 'he' ? 'אוסף מקיף של ספרי רבי נחמן מברסלב ותלמידיו' :
-                     currentLanguage === 'en' ? 'Comprehensive collection of Rabbi Nachman of Breslov and his students\' books' :
-                     currentLanguage === 'fr' ? 'Collection complète des livres de Rabbi Nachman de Breslov et de ses étudiants' :
-                     currentLanguage === 'es' ? 'Colección completa de libros del Rabino Nachman de Breslov y sus estudiantes' :
-                     currentLanguage === 'ru' ? 'Полная коллекция книг Рабби Нахмана из Бреслов и его учеников' : 'אוסף מקיף של ספרי רבי נחמן מברסלב ותלמידיו'}
+                  <h2 className="elementor-heading-subtitle" style={{
+                    fontSize: currentLanguage === 'he' ? '2.8rem' : '2.2rem',
+                    fontWeight: '300', 
+                    marginBottom: '2.5rem', 
+                    textShadow: '2px 2px 4px rgba(0,0,0,0.6)',
+                    color: '#FFE4B5',
+                    fontFamily: currentLanguage === 'he' ? 'Assistant, Rubik, serif' : 'Georgia, serif'
+                  }}>
+                    {currentLanguage === 'he' ? 'הדרך לאוצר שלך.' :
+                     currentLanguage === 'en' ? 'The Path to Your Treasure.' :
+                     currentLanguage === 'fr' ? 'Le Chemin vers Votre Trésor.' :
+                     currentLanguage === 'es' ? 'El Camino hacia Tu Tesoro.' :
+                     currentLanguage === 'ru' ? 'Путь к Вашему Сокровищу.' : 'הדרך לאוצר שלך.'}
+                  </h2>
+                  <p style={{fontSize: '1.4rem', marginBottom: '3rem', opacity: 0.95, textShadow: '1px 1px 3px rgba(0,0,0,0.7)', maxWidth: '800px', margin: '0 auto 3rem'}}>
+                    {currentLanguage === 'he' ? 'גלו את אוצרות החכמה והחסידות באוסף המקיף ביותר של ספרי ברסלב' :
+                     currentLanguage === 'en' ? 'Discover the treasures of wisdom and Hasidism in the most comprehensive collection of Breslov books' :
+                     currentLanguage === 'fr' ? 'Découvrez les trésors de la sagesse et du hassidisme dans la collection la plus complète de livres Breslov' :
+                     currentLanguage === 'es' ? 'Descubre los tesoros de la sabiduría y el jasidismo en la colección más completa de libros Breslov' :
+                     currentLanguage === 'ru' ? 'Откройте для себя сокровища мудрости и хасидизма в самой полной коллекции книг Бреслов' : 'גלו את אוצרות החכמה והחסידות באוסף המקיף ביותר של ספרי ברסלב'}
                   </p>
                   <div style={{display: 'flex', gap: '2rem', justifyContent: 'center', flexWrap: 'wrap'}}>
                     <a href="/store" style={{textDecoration: 'none'}}>
-                      <button style={{background: 'white', color: '#dc3545', border: 'none', padding: '1rem 2rem', borderRadius: '8px', cursor: 'pointer', fontSize: '1.1rem', fontWeight: 'bold', boxShadow: '0 4px 15px rgba(0,0,0,0.2)', transition: 'transform 0.3s ease'}} 
-                              onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
-                              onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+                      <button style={{
+                        background: 'linear-gradient(135deg, #dc3545, #c82333)', 
+                        color: 'white', 
+                        border: '3px solid #FFE4B5', 
+                        padding: '1.2rem 2.5rem', 
+                        borderRadius: '12px', 
+                        cursor: 'pointer', 
+                        fontSize: '1.2rem', 
+                        fontWeight: 'bold', 
+                        boxShadow: '0 6px 20px rgba(220, 53, 69, 0.4)', 
+                        transition: 'all 0.3s ease',
+                        textShadow: '1px 1px 2px rgba(0,0,0,0.5)'
+                      }} 
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.transform = 'translateY(-3px)';
+                          e.currentTarget.style.boxShadow = '0 8px 25px rgba(220, 53, 69, 0.6)';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.transform = 'translateY(0)';
+                          e.currentTarget.style.boxShadow = '0 6px 20px rgba(220, 53, 69, 0.4)';
+                        }}
                       >
-                        {currentLanguage === 'he' ? 'עיינו בחנות' :
-                         currentLanguage === 'en' ? 'Browse Store' :
-                         currentLanguage === 'fr' ? 'Parcourir la Boutique' :
-                         currentLanguage === 'es' ? 'Explorar Tienda' :
-                         currentLanguage === 'ru' ? 'Просмотреть Магазин' : 'עיינו בחנות'}
+                        {currentLanguage === 'he' ? '🛒 עיינו בחנות' :
+                         currentLanguage === 'en' ? '🛒 Browse Store' :
+                         currentLanguage === 'fr' ? '🛒 Parcourir la Boutique' :
+                         currentLanguage === 'es' ? '🛒 Explorar Tienda' :
+                         currentLanguage === 'ru' ? '🛒 Просмотреть Магазин' : '🛒 עיינו בחנות'}
                       </button>
                     </a>
                     <a href="/downloads" style={{textDecoration: 'none'}}>
-                      <button style={{background: 'rgba(255,255,255,0.1)', color: 'white', border: '2px solid white', padding: '1rem 2rem', borderRadius: '8px', cursor: 'pointer', fontSize: '1.1rem', fontWeight: 'bold', transition: 'all 0.3s ease'}}
-                              onMouseEnter={(e) => {e.currentTarget.style.background = 'white'; e.currentTarget.style.color = '#dc3545';}}
-                              onMouseLeave={(e) => {e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; e.currentTarget.style.color = 'white';}}
+                      <button style={{
+                        background: 'rgba(245, 245, 220, 0.15)', 
+                        color: '#FFE4B5', 
+                        border: '3px solid #FFE4B5', 
+                        padding: '1.2rem 2.5rem', 
+                        borderRadius: '12px', 
+                        cursor: 'pointer', 
+                        fontSize: '1.2rem', 
+                        fontWeight: 'bold', 
+                        transition: 'all 0.3s ease',
+                        textShadow: '1px 1px 2px rgba(0,0,0,0.7)'
+                      }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.background = '#FFE4B5';
+                          e.currentTarget.style.color = '#8B4513';
+                          e.currentTarget.style.transform = 'translateY(-3px)';
+                          e.currentTarget.style.textShadow = 'none';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.background = 'rgba(245, 245, 220, 0.15)';
+                          e.currentTarget.style.color = '#FFE4B5';
+                          e.currentTarget.style.transform = 'translateY(0)';
+                          e.currentTarget.style.textShadow = '1px 1px 2px rgba(0,0,0,0.7)';
+                        }}
                       >
-                        {currentLanguage === 'he' ? 'הורדות חינם' :
-                         currentLanguage === 'en' ? 'Free Downloads' :
-                         currentLanguage === 'fr' ? 'Téléchargements Gratuits' :
-                         currentLanguage === 'es' ? 'Descargas Gratuitas' :
-                         currentLanguage === 'ru' ? 'Бесплатные Загрузки' : 'הורדות חינם'}
+                        {currentLanguage === 'he' ? '📥 הורדות חינם' :
+                         currentLanguage === 'en' ? '📥 Free Downloads' :
+                         currentLanguage === 'fr' ? '📥 Téléchargements Gratuits' :
+                         currentLanguage === 'es' ? '📥 Descargas Gratuitas' :
+                         currentLanguage === 'ru' ? '📥 Бесплатные Загрузки' : '📥 הורדות חינם'}
                       </button>
                     </a>
                   </div>
@@ -94,27 +165,47 @@ export default function Home() {
               </div>
             </div>
           </div>
-
         </div>
       </section>
 
       {/* FEATURED BOOKS */}
-      <section style={{background: '#f8f9fa', padding: '5rem 0'}}>
-        <div className="elementor-container" style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
+      <section style={{
+        background: 'linear-gradient(135deg, #F5F5DC 0%, #FAEBD7 50%, #F0E68C 100%)', 
+        padding: '6rem 0',
+        position: 'relative'
+      }}>
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: 'url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23D4AF37" fill-opacity="0.05"%3E%3Cpath d="m36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
+          opacity: 0.1
+        }}></div>
+        <div className="elementor-container" style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem', position: 'relative', zIndex: 1}}>
           <div style={{textAlign: 'center', marginBottom: '4rem'}}>
-            <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#333', marginBottom: '1rem'}}>
+            <h2 style={{
+              fontSize: '2.8rem', 
+              fontWeight: 'bold', 
+              color: '#8B4513', 
+              marginBottom: '1.5rem',
+              textShadow: '2px 2px 4px rgba(139, 69, 19, 0.2)',
+              fontFamily: currentLanguage === 'he' ? 'Assistant, Rubik, serif' : 'Georgia, serif'
+            }}>
               {currentLanguage === 'he' ? 'ספרים מומלצים' :
                currentLanguage === 'en' ? 'Featured Books' :
                currentLanguage === 'fr' ? 'Livres en Vedette' :
                currentLanguage === 'es' ? 'Libros Destacados' :
                currentLanguage === 'ru' ? 'Рекомендуемые Книги' : 'ספרים מומלצים'}
             </h2>
-            <p style={{fontSize: '1.1rem', color: '#666'}}>
-              {currentLanguage === 'he' ? 'מבחר ספרים חשובים ומרכזיים בחסידות ברסלב' :
-               currentLanguage === 'en' ? 'Selection of important and central books in Breslov Hasidism' :
-               currentLanguage === 'fr' ? 'Sélection de livres importants et centraux du hassidisme Breslov' :
-               currentLanguage === 'es' ? 'Selección de libros importantes y centrales del jasidismo Breslov' :
-               currentLanguage === 'ru' ? 'Подборка важных и центральных книг хасидизма Бреслов' : 'מבחר ספרים חשובים ומרכזיים בחסידות ברסלב'}
+            <div style={{width: '80px', height: '3px', background: 'linear-gradient(90deg, #dc3545, #8B4513)', margin: '0 auto 2rem'}}></div>
+            <p style={{fontSize: '1.2rem', color: '#654321', maxWidth: '600px', margin: '0 auto', lineHeight: '1.6'}}>
+              {currentLanguage === 'he' ? 'מבחר ספרים חשובים ומרכזיים בחסידות ברסלב לחיזוק הנפש והעבודה הרוחנית' :
+               currentLanguage === 'en' ? 'Selection of important and central books in Breslov Hasidism for spiritual strengthening and divine service' :
+               currentLanguage === 'fr' ? 'Sélection de livres importants et centraux du hassidisme Breslov pour le renforcement spirituel et le service divin' :
+               currentLanguage === 'es' ? 'Selección de libros importantes y centrales del jasidismo Breslov para el fortalecimiento espiritual y el servicio divino' :
+               currentLanguage === 'ru' ? 'Подборка важных и центральных книг хасидизма Бреслов для духовного укрепления и служения Всевышнему' : 'מבחר ספרים חשובים ומרכזיים בחסידות ברסלב לחיזוק הנפש והעבודה הרוחנית'}
             </p>
           </div>
           
