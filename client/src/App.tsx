@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { CartProvider } from "@/contexts/CartContext";
+import { InstallPrompt } from "@/components/InstallPrompt";
 import Home from "@/pages/home";
 import Store from "@/pages/store";
 import About from "@/pages/about";
@@ -42,6 +43,7 @@ function App() {
         <LanguageProvider>
           <CartProvider>
             <Toaster />
+            <InstallPrompt />
             <Router />
           </CartProvider>
         </LanguageProvider>
