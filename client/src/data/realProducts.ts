@@ -282,8 +282,8 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 960,
     isbn: '978-965-7023-01-1',
     images: [
-      'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/likutei-moharan-1.jpg',
-      'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/likutei-moharan-2.jpg'
+      '/images/ליקוטי מוהרן אבן 1_1757275832024.jpg',
+      '/images/ליקוטי מוהרן אבן 2_1757275832025.jpg'
     ],
     variants: [
       {
@@ -390,7 +390,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 520,
     isbn: '978-965-7023-12-7',
     images: [
-      'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/likutei-tefilot-1.jpg'
+      '/images/ליקוטי תפילות 1_1757281125910.jpg'
     ],
     variants: [
       {
@@ -2689,7 +2689,7 @@ export const realBreslovProducts: Record<string, Product> = {
         size: 'בינוני',
         dimensions: '20*14',
         volumes: 1,
-        price: 110,
+        price: 35,
         inStock: true,
         stockQuantity: 15
       }
@@ -2729,7 +2729,7 @@ export const realBreslovProducts: Record<string, Product> = {
         size: 'בינוני',
         dimensions: '20*14',
         volumes: 1,
-        price: 105,
+        price: 32,
         inStock: true,
         stockQuantity: 16
       }
