@@ -181,17 +181,14 @@ export default function Store() {
                   const maxPrice = variants.length > 0 ? Math.max(...variants.map(v => v.price)) : 0;
                   const featuredVariant = variants.find(v => v.inStock) || variants[0];
                   
-                  // Fix image path - serve directly from attached_assets
+                  // Use the image path directly from product data with proper encoding
                   const imagePath = product.images && product.images[0] ? 
-                    product.images[0].replace('@assets/', '/attached_assets/') : '';
-                  
-                  // Fallback: try direct file serving if image exists
-                  const fallbackPath = imagePath ? imagePath : `/attached_assets/${product.id}-1.jpg`;
+                    encodeURI(product.images[0]) : '';
                   
                   return (
                     <div key={product.id} style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', transition: 'transform 0.3s ease'}}>
                       <img 
-                        src={imagePath || fallbackPath}
+                        src={imagePath}
                         alt={currentLanguage === 'he' ? product.name : product.nameEnglish || product.name}
                         style={{width: '100%', height: '300px', objectFit: 'cover'}}
                         onLoad={(e) => {
