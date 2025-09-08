@@ -239,7 +239,7 @@ export const realBreslovProducts: Record<string, Product> = {
         size: 'בינוני',
         dimensions: '17*12',
         volumes: 1,
-        price: 50,
+        price: 29,
         inStock: true,
         stockQuantity: 35
       },
@@ -359,7 +359,7 @@ export const realBreslovProducts: Record<string, Product> = {
         size: 'קטן',
         dimensions: '12*8',
         volumes: 3,
-        price: 40,
+        price: 23,
         inStock: true,
         stockQuantity: 30
       }
@@ -411,7 +411,7 @@ export const realBreslovProducts: Record<string, Product> = {
         size: 'גדול',
         dimensions: '24*17',
         volumes: 2,
-        price: 80,
+        price: 47,
         inStock: true,
         stockQuantity: 25
       },
@@ -422,7 +422,7 @@ export const realBreslovProducts: Record<string, Product> = {
         size: 'גדול',
         dimensions: '24*17',
         volumes: 1,
-        price: 40,
+        price: 23,
         inStock: true,
         stockQuantity: 35
       },
@@ -433,7 +433,7 @@ export const realBreslovProducts: Record<string, Product> = {
         size: 'בינוני',
         dimensions: '17*12',
         volumes: 3,
-        price: 90,
+        price: 53,
         inStock: true,
         stockQuantity: 18
       },
@@ -444,7 +444,7 @@ export const realBreslovProducts: Record<string, Product> = {
         size: 'בינוני',
         dimensions: '17*12',
         volumes: 1,
-        price: 50,
+        price: 29,
         inStock: true,
         stockQuantity: 30
       }
@@ -1664,7 +1664,7 @@ export const realBreslovProducts: Record<string, Product> = {
         size: 'רגיל',
         dimensions: '21*14',
         volumes: 1,
-        price: 50,
+        price: 29,
         inStock: true,
         stockQuantity: 18
       }
@@ -2401,7 +2401,7 @@ export const realBreslovProducts: Record<string, Product> = {
         size: 'בינוני',
         dimensions: '20*14',
         volumes: 1,
-        price: 90,
+        price: 53,
         inStock: true,
         stockQuantity: 22
       },
@@ -2769,7 +2769,7 @@ export const realBreslovProducts: Record<string, Product> = {
         size: 'בינוני',
         dimensions: '20*14',
         volumes: 1,
-        price: 90,
+        price: 53,
         inStock: true,
         stockQuantity: 20
       }
@@ -3626,7 +3626,7 @@ export const realBreslovProducts: Record<string, Product> = {
         size: 'כיס',
         dimensions: '12*9',
         volumes: 1,
-        price: 40,
+        price: 23,
         inStock: true,
         stockQuantity: 38
       }
