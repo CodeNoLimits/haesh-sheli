@@ -141,555 +141,59 @@ export default function Home() {
         </div>
       </section>
 
-      {/* MAIN HERO SECTION */}
-      <section className="elementor-section elementor-top-section" style={{background: '#f8f9fa', padding: '6rem 0', textAlign: 'center'}}>
+      {/* FEATURED BOOKS */}
+      <section style={{background: '#f8f9fa', padding: '5rem 0'}}>
         <div className="elementor-container" style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
-          <h1 style={{fontSize: '4rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem', lineHeight: '1.2', fontFamily: 'Noto Sans Hebrew, sans-serif'}}>
-            ספרי רבינו נחמן מברסלב זצ''ל
-          </h1>
-          <h2 style={{fontSize: '3rem', fontWeight: 'normal', color: '#333', marginBottom: '1rem', lineHeight: '1.3'}}>
-            הדרך לאוצר שלך.
-          </h2>
-          <p style={{fontSize: '1.8rem', color: '#666', marginBottom: '3rem', fontStyle: 'italic'}}>
-            ''רק תנו לי את ליבכם ואוליך אתכם בדרך חדשה..'' (רבי נחמן)
-          </p>
-          
-          <div style={{display: 'flex', gap: '2rem', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '2rem'}}>
-            <a href="/store" className="btn-primary" style={{textDecoration: 'none', fontSize: '1.3rem', padding: '1rem 2rem'}}>
-              כניסה לחנות
-            </a>
-            <a href="/join" className="btn-secondary" style={{textDecoration: 'none', fontSize: '1.3rem', padding: '1rem 2rem'}}>
-              באו לגלות על הפעילות שלנו
-            </a>
-          </div>
-          
-        </div>
-      </section>
-
-      {/* SECOND HERO SECTION */}
-      <section className="elementor-section elementor-top-section" style={{background: 'linear-gradient(135deg, #dc3545 0%, #c82333 100%)', color: 'white', padding: '4rem 0', textAlign: 'center'}}>
-        <div className="elementor-container" style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
-          <h2 style={{fontSize: '3rem', fontWeight: 'bold', marginBottom: '1rem', lineHeight: '1.2'}}>
-            ספרי רבנו נחמן מברסלב זצ''ל
-          </h2>
-          <h3 style={{fontSize: '2.5rem', fontWeight: 'normal', marginBottom: '2rem'}}>
-            עכשיו אונליין
-          </h3>
-          
-          <div style={{marginBottom: '3rem'}}>
-            <img 
-              src="https://www.haesh-sheli.co.il/wp-content/uploads/2024/05/Copy-of-%D7%AA%D7%9E%D7%95%D7%A0%D7%AA-%D7%9E%D7%95%D7%A6%D7%A8-2.webp" 
-              alt="ספרי רבנו אונליין" 
-              style={{maxWidth: '100%', height: 'auto', borderRadius: '10px'}}
-            />
-          </div>
-          
-          <div style={{display: 'flex', gap: '2rem', justifyContent: 'center', flexWrap: 'wrap'}}>
-            <a href="/store" style={{textDecoration: 'none', fontSize: '1.3rem', padding: '1rem 2rem', background: 'white', color: '#dc3545', border: 'none', borderRadius: '5px', display: 'inline-block'}}>
-              כניסה לחנות
-            </a>
-            <a href="/join" style={{textDecoration: 'none', fontSize: '1.3rem', padding: '1rem 2rem', background: 'transparent', color: 'white', border: '2px solid white', borderRadius: '5px', display: 'inline-block'}}>
-              באו לגלות על הפעילות שלנו
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* UMAN RAFFLE SECTION */}
-      <section className="elementor-section elementor-top-section" style={{background: 'linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%)', padding: '5rem 0', textAlign: 'center'}}>
-        <div className="elementor-container" style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
-          <h2 style={{fontSize: '3.5rem', fontWeight: 'bold', color: '#2d3436', marginBottom: '1rem', lineHeight: '1.2'}}>
-            הגרלה כרטיס לאומן מתנה
-          </h2>
-          <h3 style={{fontSize: '2.8rem', fontWeight: 'bold', color: '#d63031', marginBottom: '2rem'}}>
-            קח ספר... והטיסה לאומן עלינו!
-          </h3>
-          
-          <p style={{fontSize: '1.3rem', color: '#2d3436', marginBottom: '1.5rem', maxWidth: '800px', margin: '0 auto 1.5rem'}}>
-            מזוודה יש? ספר לדרך יש? תכינו את הלב!
-          </p>
-          <p style={{fontSize: '1.3rem', color: '#2d3436', marginBottom: '1.5rem', maxWidth: '800px', margin: '0 auto 1.5rem'}}>
-            קרן רבי ישראל מזמינה אתכם להכנס להגרלת ההגרלות, כרטיס טיסה לציונו הקדוש של רבי נחמן באומן, עיר הגעגועים
-          </p>
-          <p style={{fontSize: '1.3rem', color: '#2d3436', marginBottom: '3rem', maxWidth: '800px', margin: '0 auto 3rem'}}>
-            חוויה רוחנית בלתי נשכחת של תעצומות וכח!
-          </p>
-          
-          <div style={{background: 'white', padding: '2rem', borderRadius: '15px', marginBottom: '3rem', boxShadow: '0 8px 25px rgba(0,0,0,0.1)'}}>
-            <h4 style={{fontSize: '2rem', fontWeight: 'bold', color: '#d63031', marginBottom: '2rem'}}>
-              איך משתתפים?
-            </h4>
-            
-            <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '2rem', textAlign: 'center'}}>
-              <div>
-                <div style={{background: '#d63031', color: 'white', width: '50px', height: '50px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem', fontSize: '1.5rem', fontWeight: 'bold'}}>1</div>
-                <p style={{fontSize: '1.1rem', color: '#2d3436'}}>מבצעים רכישה באתר.</p>
-              </div>
-              
-              <div>
-                <div style={{background: '#d63031', color: 'white', width: '50px', height: '50px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem', fontSize: '1.5rem', fontWeight: 'bold'}}>2</div>
-                <p style={{fontSize: '1.1rem', color: '#2d3436'}}>שולחים את פרטים עם מספר ההזמנה</p>
-              </div>
-              
-              <div>
-                <div style={{background: '#d63031', color: 'white', width: '50px', height: '50px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem', fontSize: '1.5rem', fontWeight: 'bold'}}>3</div>
-                <p style={{fontSize: '1.1rem', color: '#2d3436'}}>ונכנסים להגרלה הגדולה.</p>
-              </div>
-              
-              <div>
-                <div style={{background: '#d63031', color: 'white', width: '50px', height: '50px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem', fontSize: '1.5rem', fontWeight: 'bold'}}>4</div>
-                <p style={{fontSize: '1.1rem', color: '#2d3436'}}>מחכים לזכייה הגדולה, ולחוויות הרוחניות באומן!</p>
-              </div>
-            </div>
-          </div>
-          
-          <a href="#" style={{textDecoration: 'none', fontSize: '1.5rem', padding: '1.2rem 3rem', background: '#d63031', color: 'white', border: 'none', borderRadius: '10px', display: 'inline-block', fontWeight: 'bold'}}>
-            לחצו כאן להצטרף להגרלה
-          </a>
-        </div>
-      </section>
-
-      {/* DETAILED RAFFLE SECTION */}
-      <section className="elementor-section elementor-top-section" style={{background: 'white', padding: '4rem 0'}}>
-        <div className="elementor-container" style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
-          <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center'}}>
-            
-            <div>
-              <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#d63031', marginBottom: '2rem'}}>
-                הגרלה מיוחדת – הזדמנות לזכות
-              </h2>
-              <h3 style={{fontSize: '2rem', fontWeight: 'bold', color: '#2d3436', marginBottom: '2rem'}}>
-                בטיסה חינם לאומן!
-              </h3>
-              
-              <p style={{fontSize: '1.1rem', color: '#636e72', lineHeight: '1.8', marginBottom: '1.5rem'}}>
-                בואו להצטרף להגרלה הבלעדית שלנו ותוכלו לזכות בטיסה מרגשת ובלתי נשכחת לאומן, המקום הקדוש של רבי נחמן מברסלב. כל מה שעליכם לעשות הוא לרכוש באתר <strong>בסכום של 35 שקלים ומעלה</strong>, והכניסה להגרלה מובטחת!
-              </p>
-              
-              <h4 style={{fontSize: '1.5rem', fontWeight: 'bold', color: '#d63031', marginBottom: '1rem'}}>
-                למה להשתתף?
-              </h4>
-              
-              <ul style={{listStyle: 'none', padding: 0}}>
-                <li style={{marginBottom: '1rem', paddingRight: '1.5rem', position: 'relative'}}>
-                  <span style={{position: 'absolute', right: 0, top: 0, color: '#d63031', fontWeight: 'bold'}}>•</span>
-                  <strong>חווית חיים מיוחדת:</strong> טיסה ישירה לאומן הכוללת ביקור במקום הקדוש של רבי נחמן מברסלב.
-                </li>
-                <li style={{marginBottom: '1rem', paddingRight: '1.5rem', position: 'relative'}}>
-                  <span style={{position: 'absolute', right: 0, top: 0, color: '#d63031', fontWeight: 'bold'}}>•</span>
-                  <strong>ספרי רבנו מיוחדים ומרשימים במיוחד:</strong> אפשרות לזכות ספרי רבינו מעור אומנותי
-                </li>
-                <li style={{marginBottom: '1rem', paddingRight: '1.5rem', position: 'relative'}}>
-                  <span style={{position: 'absolute', right: 0, top: 0, color: '#d63031', fontWeight: 'bold'}}>•</span>
-                  <strong>פשוט וקל:</strong> רכישה פשוטה בסכום סמלי של 35 שקלים ומעלה באתר.
-                </li>
-                <li style={{marginBottom: '1rem', paddingRight: '1.5rem', position: 'relative'}}>
-                  <span style={{position: 'absolute', right: 0, top: 0, color: '#d63031', fontWeight: 'bold'}}>•</span>
-                  <strong>הזדמנות חד פעמית:</strong> פרס מדהים שמגיע ישר לידיכם.
-                </li>
-              </ul>
-              
-              <a href="#" style={{textDecoration: 'none', fontSize: '1.3rem', padding: '1rem 2rem', background: '#d63031', color: 'white', border: 'none', borderRadius: '8px', display: 'inline-block', marginTop: '2rem'}}>
-                לחצו כאן להצטרף להגרלה
-              </a>
-            </div>
-            
-            <div style={{textAlign: 'center'}}>
-              <img 
-                src="https://www.haesh-sheli.co.il/wp-content/uploads/2025/02/%D7%94%D7%92%D7%A8%D7%9C%D7%AA-%D7%98%D7%99%D7%A1%D7%94-%D7%9C%D7%A8%D7%91%D7%A0%D7%95-%D7%94%D7%A7%D7%93%D7%95%D7%A9-%D7%A7%D7%A8%D7%9F-%D7%A8%D7%91%D7%99-%D7%99%D7%A9%D7%A8%D7%90%D7%9C.webp" 
-                alt="הגרלת טיסה לאומן" 
-                style={{width: '100%', height: 'auto', borderRadius: '15px', boxShadow: '0 8px 25px rgba(0,0,0,0.15)'}}
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* POPULAR BOOKS SECTION */}
-      <section className="elementor-section elementor-top-section" style={{background: '#f8f9fa', padding: '4rem 0'}}>
-        <div className="elementor-container" style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
-          <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#2d3436', textAlign: 'center', marginBottom: '3rem'}}>
-            ספרי רבנו המובילים
-          </h2>
-          
-          <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '2rem'}}>
-            <div style={{textAlign: 'center'}}>
-              <a href="/store">
-                <img 
-                  src="https://www.haesh-sheli.co.il/wp-content/uploads/2023/07/6.d110a0.webp" 
-                  alt="ליקוטי מוהרן" 
-                  style={{width: '100%', height: 'auto', borderRadius: '10px', marginBottom: '1rem', transition: 'transform 0.3s ease'}}
-                />
-              </a>
-              <h3 style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#2d3436', marginBottom: '0.5rem'}}>
-                ליקוטי מוהרן
-              </h3>
-            </div>
-            
-            <div style={{textAlign: 'center'}}>
-              <a href="/store">
-                <img 
-                  src="https://www.haesh-sheli.co.il/wp-content/uploads/2023/07/3.d110a0.webp" 
-                  alt="ליקוטי תפילות" 
-                  style={{width: '100%', height: 'auto', borderRadius: '10px', marginBottom: '1rem', transition: 'transform 0.3s ease'}}
-                />
-              </a>
-              <h3 style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#2d3436', marginBottom: '0.5rem'}}>
-                ליקוטי תפילות
-              </h3>
-            </div>
-            
-            <div style={{textAlign: 'center'}}>
-              <a href="/store">
-                <img 
-                  src="https://www.haesh-sheli.co.il/wp-content/uploads/2023/07/5.d110a0.webp" 
-                  alt="חומש ליקוטי הלכות" 
-                  style={{width: '100%', height: 'auto', borderRadius: '10px', marginBottom: '1rem', transition: 'transform 0.3s ease'}}
-                />
-              </a>
-              <h3 style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#2d3436', marginBottom: '0.5rem'}}>
-                חומש ליקוטי הלכות
-              </h3>
-            </div>
-            
-            <div style={{textAlign: 'center'}}>
-              <a href="/store">
-                <img 
-                  src="https://www.haesh-sheli.co.il/wp-content/uploads/2023/07/2.d110a0.webp" 
-                  alt="ליקוטי הלכות" 
-                  style={{width: '100%', height: 'auto', borderRadius: '10px', marginBottom: '1rem', transition: 'transform 0.3s ease'}}
-                />
-              </a>
-              <h3 style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#2d3436', marginBottom: '0.5rem'}}>
-                ליקוטי הלכות
-              </h3>
-            </div>
-            
-            <div style={{textAlign: 'center'}}>
-              <a href="/store">
-                <img 
-                  src="https://www.haesh-sheli.co.il/wp-content/uploads/2025/02/%D7%AA%D7%9E%D7%95%D7%A0%D7%AA-%D7%9E%D7%95%D7%A6%D7%A8-3.d110a0.webp" 
-                  alt="סיפורי מעשיות" 
-                  style={{width: '100%', height: 'auto', borderRadius: '10px', marginBottom: '1rem', transition: 'transform 0.3s ease'}}
-                />
-              </a>
-              <h3 style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#2d3436', marginBottom: '0.5rem'}}>
-                סיפורי מעשיות
-              </h3>
-            </div>
-            
-            <div style={{textAlign: 'center'}}>
-              <a href="/store">
-                <img 
-                  src="https://www.haesh-sheli.co.il/wp-content/uploads/2023/07/1.d110a0.webp" 
-                  alt="כל בו לישועות" 
-                  style={{width: '100%', height: 'auto', borderRadius: '10px', marginBottom: '1rem', transition: 'transform 0.3s ease'}}
-                />
-              </a>
-              <h3 style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#2d3436', marginBottom: '0.5rem'}}>
-                כל בו לישועות
-              </h3>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* QUOTE SECTION */}
-      <section className="elementor-section elementor-top-section" style={{background: 'linear-gradient(135deg, #74b9ff 0%, #0984e3 100%)', color: 'white', padding: '5rem 0', textAlign: 'center'}}>
-        <div className="elementor-container" style={{maxWidth: '800px', margin: '0 auto', padding: '0 2rem'}}>
-          <div style={{fontSize: '4rem', marginBottom: '2rem'}}>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style={{width: '60px', height: '60px', fill: 'white', opacity: 0.7}}>
-              <path d="M14,17H17L19,13V7H13V13H16M6,17H9L11,13V7H5V13H8L6,17Z" />
-            </svg>
-          </div>
-          
-          <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '1rem', lineHeight: '1.4'}}>
-            דף אחד מספרי רבנו
-          </h2>
-          <h3 style={{fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '2rem', lineHeight: '1.4'}}>
-            יהיה תיקון על הכל!
-          </h3>
-          <p style={{fontSize: '1.5rem', fontStyle: 'italic', opacity: 0.9}}>
-            רבי נתן מברסלב
-          </p>
-          
-          <div style={{fontSize: '4rem', marginTop: '2rem', transform: 'scaleX(-1)'}}>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style={{width: '60px', height: '60px', fill: 'white', opacity: 0.7}}>
-              <path d="M14,17H17L19,13V7H13V13H16M6,17H9L11,13V7H5V13H8L6,17Z" />
-            </svg>
-          </div>
-        </div>
-      </section>
-
-      {/* SERVICES SECTION */}
-      <section className="elementor-section elementor-top-section" style={{background: 'white', padding: '4rem 0'}}>
-        <div className="elementor-container" style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
-          <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '3rem', textAlign: 'center'}}>
-            
-            <div>
-              <div style={{fontSize: '3rem', marginBottom: '1rem', color: '#d63031'}}>
-                🚚
-              </div>
-              <h3 style={{fontSize: '1.5rem', fontWeight: 'bold', color: '#2d3436', marginBottom: '1rem'}}>
-                משלוח מהיר עד הבית חינם
-              </h3>
-              <p style={{color: '#636e72'}}>
-                ברכישה מעל 299 ₪ מהחנות
-              </p>
-            </div>
-            
-            <div>
-              <div style={{fontSize: '3rem', marginBottom: '1rem', color: '#00b894'}}>
-                🔒
-              </div>
-              <h3 style={{fontSize: '1.5rem', fontWeight: 'bold', color: '#2d3436', marginBottom: '1rem'}}>
-                רכישה מאובטחת
-              </h3>
-              <p style={{color: '#636e72'}}>
-                באמצעות תעודת SSL ובתקנים המחמירים ביותר
-              </p>
-            </div>
-            
-            <div>
-              <div style={{fontSize: '3rem', marginBottom: '1rem', color: '#fdcb6e'}}>
-                📚
-              </div>
-              <h3 style={{fontSize: '1.5rem', fontWeight: 'bold', color: '#2d3436', marginBottom: '1rem'}}>
-                חנות הספרים הגדולה ביותר לספרי רבנו אונליין
-              </h3>
-              <p style={{color: '#636e72'}}>
-                משלוחים לכל הארץ
-              </p>
-            </div>
-            
-            <div>
-              <div style={{fontSize: '3rem', marginBottom: '1rem', color: '#e17055'}}>
-                🎧
-              </div>
-              <h3 style={{fontSize: '1.5rem', fontWeight: 'bold', color: '#2d3436', marginBottom: '1rem'}}>
-                שירות לקוחות מעולה וזמין תמיד לשירותכם
-              </h3>
-              <p style={{color: '#636e72'}}>
-                עד 12 תשלומים ללא ריבית
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CATEGORIES SECTION */}
-      <section className="elementor-section elementor-top-section" style={{background: '#f8f9fa', padding: '4rem 0'}}>
-        <div className="elementor-container" style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem', textAlign: 'center'}}>
-          <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#2d3436', marginBottom: '3rem'}}>
-            הקטגוריות בחנות
-          </h2>
-          
-          <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem', marginBottom: '3rem'}}>
-            <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
-              <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#d63031', marginBottom: '1rem'}}>
-                כל חיבורי רבנו הקדוש
-              </h3>
-              <a href="/store" style={{textDecoration: 'none', color: '#0984e3', fontWeight: 'bold'}}>
-                לחצו כאן
-              </a>
-            </div>
-            
-            <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
-              <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#d63031', marginBottom: '1rem'}}>
-                כל ספרי רבי ישראל
-              </h3>
-              <a href="/store" style={{textDecoration: 'none', color: '#0984e3', fontWeight: 'bold'}}>
-                לחצו כאן
-              </a>
-            </div>
-          </div>
-          
-          <a href="/store" style={{textDecoration: 'none', color: '#0984e3', fontWeight: 'bold', fontSize: '1.1rem'}}>
-            לקטגוריות נוספות לחצו כאן
-          </a>
-        </div>
-      </section>
-
-      {/* NEWSLETTER SECTION */}
-      <section style={{background: 'linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%)', padding: '4rem 0', textAlign: 'center'}}>
-        <div className="elementor-container" style={{maxWidth: '800px', margin: '0 auto', padding: '0 2rem'}}>
-          <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#2d3436', marginBottom: '1rem'}}>
-            הצטרפו עכשיו לרשימת תפוצה
-          </h2>
-          <p style={{fontSize: '1.3rem', color: '#636e72', marginBottom: '2rem'}}>
-            וקבלו 10% הנחנה ברכישה ראשונה באתר
-          </p>
-          <form style={{display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap', marginBottom: '3rem'}}>
-            <input 
-              type="text" 
-              name="name"
-              placeholder="שם מלא"
-              required
-              style={{
-                padding: '1rem', 
-                fontSize: '1rem', 
-                border: '2px solid #ddd', 
-                borderRadius: '8px', 
-                minWidth: '200px',
-                direction: 'rtl'
-              }}
-            />
-            <input 
-              type="email" 
-              name="email"
-              placeholder="כתובת דואר אלקטרוני"
-              required
-              style={{
-                padding: '1rem', 
-                fontSize: '1rem', 
-                border: '2px solid #ddd', 
-                borderRadius: '8px', 
-                minWidth: '200px',
-                direction: 'rtl'
-              }}
-            />
-            <button 
-              type="submit"
-              style={{
-                background: '#dc3545', 
-                color: 'white', 
-                border: 'none', 
-                padding: '1rem 2rem', 
-                borderRadius: '8px', 
-                fontSize: '1rem', 
-                fontWeight: 'bold', 
-                cursor: 'pointer'
-              }}
-            >
-              הצטרפו עכשיו
-            </button>
-          </form>
-          
-          <div style={{background: 'rgba(255,255,255,0.8)', padding: '2rem', borderRadius: '15px', marginBottom: '2rem'}}>
-            <h3 style={{fontSize: '1.8rem', fontWeight: 'bold', color: '#2d3436', marginBottom: '1rem'}}>
-              הצטרפו לקבוצות הוואטסאפ שלנו
-            </h3>
-            <p style={{fontSize: '1.1rem', color: '#636e72', marginBottom: '2rem'}}>
-              קבלו עדכונים יומיים, חוויות מרגשות וחיזוק רוחני
+          <div style={{textAlign: 'center', marginBottom: '4rem'}}>
+            <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#333', marginBottom: '1rem'}}>
+              {currentLanguage === 'he' ? 'ספרים מומלצים' :
+               currentLanguage === 'en' ? 'Featured Books' :
+               currentLanguage === 'fr' ? 'Livres en Vedette' :
+               currentLanguage === 'es' ? 'Libros Destacados' :
+               currentLanguage === 'ru' ? 'Рекомендуемые Книги' : 'ספרים מומלצים'}
+            </h2>
+            <p style={{fontSize: '1.1rem', color: '#666'}}>
+              {currentLanguage === 'he' ? 'מבחר ספרים חשובים ומרכזיים בחסידות ברסלב' :
+               currentLanguage === 'en' ? 'Selection of important and central books in Breslov Hasidism' :
+               currentLanguage === 'fr' ? 'Sélection de livres importants et centraux du hassidisme Breslov' :
+               currentLanguage === 'es' ? 'Selección de libros importantes y centrales del jasidismo Breslov' :
+               currentLanguage === 'ru' ? 'Подборка важных и центральных книг хасидизма Бреслов' : 'מבחר ספרים חשובים ומרכזיים בחסידות ברסלב'}
             </p>
-            
-            <div style={{display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap'}}>
-              <a 
-                href="https://wa.me/972587308000" 
-                target="_blank"
-                style={{
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  gap: '0.5rem', 
-                  background: '#25d366', 
-                  color: 'white', 
-                  padding: '0.8rem 1.2rem', 
-                  borderRadius: '8px', 
-                  textDecoration: 'none', 
-                  fontWeight: 'bold',
-                  fontSize: '1rem'
-                }}
-              >
-                📱 עברית
-              </a>
-              
-              <a 
-                href="https://wa.me/972587308001" 
-                target="_blank"
-                style={{
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  gap: '0.5rem', 
-                  background: '#25d366', 
-                  color: 'white', 
-                  padding: '0.8rem 1.2rem', 
-                  borderRadius: '8px', 
-                  textDecoration: 'none', 
-                  fontWeight: 'bold',
-                  fontSize: '1rem'
-                }}
-              >
-                🌍 English
-              </a>
-              
-              <a 
-                href="https://wa.me/972587308002" 
-                target="_blank"
-                style={{
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  gap: '0.5rem', 
-                  background: '#25d366', 
-                  color: 'white', 
-                  padding: '0.8rem 1.2rem', 
-                  borderRadius: '8px', 
-                  textDecoration: 'none', 
-                  fontWeight: 'bold',
-                  fontSize: '1rem'
-                }}
-              >
-                🇷🇺 Русский
-              </a>
-              
-              <a 
-                href="https://wa.me/972587308003" 
-                target="_blank"
-                style={{
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  gap: '0.5rem', 
-                  background: '#25d366', 
-                  color: 'white', 
-                  padding: '0.8rem 1.2rem', 
-                  borderRadius: '8px', 
-                  textDecoration: 'none', 
-                  fontWeight: 'bold',
-                  fontSize: '1rem'
-                }}
-              >
-                🇪🇸 Español
-              </a>
-              
-              <a 
-                href="https://wa.me/972587308004" 
-                target="_blank"
-                style={{
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  gap: '0.5rem', 
-                  background: '#25d366', 
-                  color: 'white', 
-                  padding: '0.8rem 1.2rem', 
-                  borderRadius: '8px', 
-                  textDecoration: 'none', 
-                  fontWeight: 'bold',
-                  fontSize: '1rem'
-                }}
-              >
-                🇫🇷 Français
-              </a>
-            </div>
           </div>
-        </div>
-      </section>
-
-      {/* DONATION SECTION */}
-      <section className="elementor-section elementor-top-section" style={{background: 'linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%)', color: 'white', padding: '4rem 0', textAlign: 'center'}}>
-        <div className="elementor-container" style={{maxWidth: '1000px', margin: '0 auto', padding: '0 2rem'}}>
-          <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '1rem', lineHeight: '1.4'}}>
-            הצטרפו עכשיו לפרסום והפצת ספרי רבי נחמן בעולם
-          </h2>
-          <h3 style={{fontSize: '2rem', marginBottom: '3rem', lineHeight: '1.4'}}>
-            ההזדמנות שלכם לעזור ולתת יד לפרסום שם הצדיק בעולם
-          </h3>
           
-          <div style={{display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap'}}>
-            <a href="/join" style={{textDecoration: 'none', fontSize: '1.3rem', padding: '1rem 2rem', background: 'white', color: '#6c5ce7', border: 'none', borderRadius: '8px', display: 'inline-block', fontWeight: 'bold'}}>
-              הצטרפו אלינו
-            </a>
-            <a href="/contact" style={{textDecoration: 'none', fontSize: '1.3rem', padding: '1rem 2rem', background: 'transparent', color: 'white', border: '2px solid white', borderRadius: '8px', display: 'inline-block', fontWeight: 'bold'}}>
-              צרו קשר לתרומה
-            </a>
+          <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem'}}>
+            <div style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', transition: 'transform 0.3s ease'}} 
+                 onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
+                 onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}>
+              <div style={{background: 'linear-gradient(135deg, #dc3545 0%, #c82333 100%)', height: '200px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '3rem'}}>
+                📖
+              </div>
+              <div style={{padding: '2rem'}}>
+                <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', marginBottom: '1rem', color: '#333'}}>
+                  {currentLanguage === 'he' ? 'ליקוטי מוהר"ן' :
+                   currentLanguage === 'en' ? 'Likutei Moharan' :
+                   currentLanguage === 'fr' ? 'Likutei Moharan' :
+                   currentLanguage === 'es' ? 'Likutei Moharan' :
+                   currentLanguage === 'ru' ? 'Ликутей Мохаран' : 'ליקוטי מוהר"ן'}
+                </h3>
+                <p style={{color: '#666', marginBottom: '1.5rem'}}>
+                  {currentLanguage === 'he' ? 'הספר המרכזי של רבינו הקדוש' :
+                   currentLanguage === 'en' ? 'The central book of our holy Rebbe' :
+                   currentLanguage === 'fr' ? 'Le livre central de notre saint Rebbe' :
+                   currentLanguage === 'es' ? 'El libro central de nuestro santo Rebe' :
+                   currentLanguage === 'ru' ? 'Центральная книга нашего святого Ребе' : 'הספר המרכזי של רבינו הקדוש'}
+                </p>
+                <a href="/store" style={{textDecoration: 'none'}}>
+                  <button style={{background: '#dc3545', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
+                    {currentLanguage === 'he' ? 'צפה במוצר' :
+                     currentLanguage === 'en' ? 'View Product' :
+                     currentLanguage === 'fr' ? 'Voir le Produit' :
+                     currentLanguage === 'es' ? 'Ver Producto' :
+                     currentLanguage === 'ru' ? 'Посмотреть Товар' : 'צפה במוצר'}
+                  </button>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -699,8 +203,20 @@ export default function Home() {
         <div className="elementor-container">
           <div style={{textAlign: 'center', paddingTop: '2rem'}}>
             <div style={{color: '#999', fontSize: '0.9rem'}}>
-              <p style={{marginBottom: '0.5rem'}}>כל הזכיות שמורות 2025 © קרן רבי ישראל דב אודסר זצ"ל</p>
-              <p>האתר נבנה ע"י מדיה מאסטר</p>
+              <p style={{marginBottom: '0.5rem'}}>
+                {currentLanguage === 'he' ? 'כל הזכיות שמורות 2025 © קרן רבי ישראל דב אודסר זצ"ל' :
+                 currentLanguage === 'en' ? 'All rights reserved 2025 © Rabbi Israel Dov Odesser Foundation' :
+                 currentLanguage === 'fr' ? 'Tous droits réservés 2025 © Fondation Rabbi Israel Dov Odesser' :
+                 currentLanguage === 'es' ? 'Todos los derechos reservados 2025 © Fundación Rabino Israel Dov Odesser' :
+                 currentLanguage === 'ru' ? 'Все права защищены 2025 © Фонд Рабби Израэля Дова Одессера' : 'כל הזכיות שמורות 2025 © קרן רבי ישראל דב אודסר זצ"ל'}
+              </p>
+              <p>
+                {currentLanguage === 'he' ? 'האתר נבנה ע"י מדיה מאסטר' :
+                 currentLanguage === 'en' ? 'Website built by Media Master' :
+                 currentLanguage === 'fr' ? 'Site web construit par Media Master' :
+                 currentLanguage === 'es' ? 'Sitio web construido por Media Master' :
+                 currentLanguage === 'ru' ? 'Сайт создан Media Master' : 'האתר נבנה ע"י מדיה מאסטר'}
+              </p>
             </div>
           </div>
         </div>
@@ -708,3 +224,6 @@ export default function Home() {
     </div>
   );
 }
+          <h2 style={{fontSize: '3rem', fontWeight: 'normal', color: '#333', marginBottom: '1rem', lineHeight: '1.3'}}>
+            הדרך לאוצר שלך.
+          </h2>
