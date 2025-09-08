@@ -1222,7 +1222,7 @@ export const realBreslovProducts: Record<string, Product> = {
 
   'hatkashrut-tzaddik-french': {
     id: 'hatkashrut-tzaddik-french',
-    name: 'התקשרות לצדיק',
+    name: 'L\'Attachement au Tsadik Véritable',
     nameEnglish: 'L\'Attachement au Tsadik Véritable',
     description: 'ספר המבאר את חשיבות ההתקשרות לצדיק האמת ועוצמת הקשר עם רבי נחמן מברסלב.',
     descriptionEnglish: 'A book explaining the importance of attachment to the true Tzaddik and the power of connection with Rabbi Nachman of Breslov.',
@@ -1966,7 +1966,7 @@ export const realBreslovProducts: Record<string, Product> = {
 
   'besedy-rabbi-nachman-russian': {
     id: 'besedy-rabbi-nachman-russian',
-    name: 'בשיחות רבי נחמן',
+    name: 'Беседы раби Нахмана',
     nameEnglish: 'Беседы раби Нахмана - Rabbi Nachman\'s Conversations',
     description: 'שיחות רבי נחמן מברסלב בתרגום רוסי מקצועי. מכיל את הדיברות והשיחות החשובות ביותר של רבי נחמן.',
     descriptionEnglish: 'Rabbi Nachman\'s conversations in professional Russian translation. Contains the most important words and conversations of Rabbi Nachman.',
@@ -2008,7 +2008,7 @@ export const realBreslovProducts: Record<string, Product> = {
 
   'fairy-tales-russian': {
     id: 'fairy-tales-russian',
-    name: 'סיפורי מעשיות',
+    name: 'Сказочные истории',
     nameEnglish: 'Сказочные истории - Fairy Tales',
     description: 'סיפורי המעשיות של רבי נחמן מברסלב בתרגום רוסי יפה. כולל את כל שלוש עשרה הסיפורים עם איורים מיוחדים.',
     descriptionEnglish: 'Rabbi Nachman\'s tales in beautiful Russian translation. Includes all thirteen stories with special illustrations.',
@@ -2196,7 +2196,7 @@ export const realBreslovProducts: Record<string, Product> = {
         size: 'בינוני',
         dimensions: '18*13',
         volumes: 1,
-        price: 78,
+        price: 45,
         inStock: true,
         stockQuantity: 30
       }
@@ -3376,7 +3376,7 @@ export const realBreslovProducts: Record<string, Product> = {
         size: 'כיס',
         dimensions: '12*9',
         volumes: 1,
-        price: 32,
+        price: 45,
         inStock: true,
         stockQuantity: 50
       }
