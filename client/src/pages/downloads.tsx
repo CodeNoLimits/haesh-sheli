@@ -8,146 +8,324 @@ export default function Downloads() {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedLanguage, setSelectedLanguage] = useState('all');
 
-  // REAL Breslov books from breslovbooks.com - mostly Hebrew with few English
+  // REAL Breslov books from breslovbooks.com - authentic URLs from CSV
   const realBreslovBooks = [
     // REBBE NACHMAN WRITINGS - כתבי רבי נחמן
     {
-      id: 'likutey-moharan-heb',
-      title: 'ליקוטי מוהרן',
-      titleEnglish: 'Likutey Moharan',
-      description: 'הספר העיקרי של רבי נחמן מברסלב - אוסף התורות והחידושים שלו',
+      id: 'likutey-moharan-part1',
+      title: 'ליקוטי מוהר"ן חלק א',
+      titleEnglish: 'Likutey Moharan Part 1',
+      description: 'חלק ראשון של הספר העיקרי של רבי נחמן מברסלב',
       author: 'רבי נחמן מברסלב',
       category: 'rebbe-nachman',
       language: 'עברית',
-      downloadUrl: 'https://breslovbooks.com/pdf/likutey-moharan-hebrew.pdf',
+      downloadUrl: 'https://breslovbooks.com/uploads/files/hebrew-likutey-moharan-part1.pdf',
       pages: 400
     },
     {
-      id: 'tikkun-haklali-heb',
+      id: 'likutey-moharan-part2',
+      title: 'ליקוטי מוהר"ן חלק ב',
+      titleEnglish: 'Likutey Moharan Part 2',
+      description: 'חלק שני של הספר העיקרי של רבי נחמן מברסלב',
+      author: 'רבי נחמן מברסלב',
+      category: 'rebbe-nachman',
+      language: 'עברית',
+      downloadUrl: 'https://breslovbooks.com/uploads/files/hebrew-likutey-moharan-part2.pdf',
+      pages: 400
+    },
+    {
+      id: 'likutey-moharan-aramaic',
+      title: 'לקוטי מהר"ן השלם עם תרגום ארמי',
+      titleEnglish: 'Likutey Moharan Complete with Aramaic Translation',
+      description: 'ליקוטי מוהר"ן השלם עם תרגום לארמית',
+      author: 'רבי נחמן מברסלב',
+      category: 'rebbe-nachman',
+      language: 'עברית',
+      downloadUrl: 'https://breslovbooks.com/uploads/files/hebrew-likutey-moharan-aramaic.pdf',
+      pages: 800
+    },
+    {
+      id: 'kitzur-likutey-moharan',
+      title: 'קצור לקוטי מהר"ן',
+      titleEnglish: 'Kitzur Likutey Moharan',
+      description: 'קיצור ליקוטי מוהר"ן',
+      author: 'רבי נחמן מברסלב',
+      category: 'rebbe-nachman',
+      language: 'עברית',
+      downloadUrl: 'https://breslovbooks.com/uploads/files/hebrew-kitzur-likutey-moharan.pdf',
+      pages: 200
+    },
+    {
+      id: 'kitzur-likutey-moharan-2',
+      title: 'עוד ספר קיצור לקוטי מוהר\'ן',
+      titleEnglish: 'Another Kitzur Likutey Moharan',
+      description: 'עוד קיצור ליקוטי מוהר"ן',
+      author: 'רבי נחמן מברסלב',
+      category: 'rebbe-nachman',
+      language: 'עברית',
+      downloadUrl: 'https://breslovbooks.com/uploads/files/hebrew-kitzur-likutey-moharan-2.pdf',
+      pages: 180
+    },
+    {
+      id: 'sipurey-maasiyot',
+      title: 'ספורי מעשיות',
+      titleEnglish: 'Tales of Rabbi Nachman',
+      description: 'שלוש עשרה המעשיות הקדושות של רבי נחמן',
+      author: 'רבי נחמן מברסלב',
+      category: 'rebbe-nachman',
+      language: 'עברית',
+      downloadUrl: 'https://breslovbooks.com/uploads/files/hebrew-sipurey-maasiyot.pdf',
+      pages: 200
+    },
+    {
+      id: 'sipurey-maasiyot-pictures',
+      title: 'ספורי מעשיות עם ציורים',
+      titleEnglish: 'Tales with Pictures',
+      description: 'סיפורי המעשיות עם איורים מרהיבים',
+      author: 'רבי נחמן מברסלב',
+      category: 'rebbe-nachman',
+      language: 'עברית',
+      downloadUrl: 'https://breslovbooks.com/uploads/files/hebrew-sipurey-maasiyot-pictures.pdf',
+      pages: 250
+    },
+    {
+      id: 'shivchey-haran',
+      title: 'שבחי ושיחות הר\'ן',
+      titleEnglish: 'Shivchey HaRan',
+      description: 'שבחי ושיחות רבי נחמן מברסלב',
+      author: 'רבי נתן מברסלב',
+      category: 'rebbe-nachman',
+      language: 'עברית',
+      downloadUrl: 'https://breslovbooks.com/uploads/files/hebrew-shivchey-haran.pdf',
+      pages: 150
+    },
+    {
+      id: 'chayei-moharan',
+      title: 'חיי מוהר"ן',
+      titleEnglish: 'Chayei Moharan',
+      description: 'סיפור חייו של רבי נחמן מברסלב',
+      author: 'רבי נתן מברסלב',
+      category: 'rebbe-nachman',
+      language: 'עברית',
+      downloadUrl: 'https://breslovbooks.com/uploads/files/hebrew-chayei-moharan.pdf',
+      pages: 120
+    },
+    {
+      id: 'sefer-hamidot-complete',
+      title: 'ספר המידות השלם',
+      titleEnglish: 'Sefer Hamidot Complete',
+      description: 'ספר המידות המלא של רבי נחמן מברסלב',
+      author: 'רבי נחמן מברסלב',
+      category: 'rebbe-nachman',
+      language: 'עברית',
+      downloadUrl: 'https://breslovbooks.com/uploads/files/hebrew-sefer-hamidot.pdf',
+      pages: 200
+    },
+    {
+      id: 'sefer-hamidot-short',
+      title: 'ספר המידות הקצר',
+      titleEnglish: 'Sefer Hamidot Short',
+      description: 'ספר המידות בגרסה מקוצרת',
+      author: 'רבי נחמן מברסלב',
+      category: 'rebbe-nachman',
+      language: 'עברית',
+      downloadUrl: 'https://breslovbooks.com/uploads/files/hebrew-sefer-hamidot-short.pdf',
+      pages: 100
+    },
+    {
+      id: 'tikkun-haklali',
       title: 'תיקון הכללי',
       titleEnglish: 'Tikkun Haklali',
       description: 'עשרת המזמורים לתיקון הברית',
       author: 'רבי נחמן מברסלב',
       category: 'rebbe-nachman',
       language: 'עברית',
-      downloadUrl: 'https://breslovbooks.com/pdf/tikkun-haklali.pdf',
+      downloadUrl: 'https://breslovbooks.com/uploads/files/hebrew-tikkun-haklali.pdf',
       pages: 24
-    },
-    {
-      id: 'sefer-hamidos-heb',
-      title: 'ספר המידות',
-      titleEnglish: 'Sefer Hamidos',
-      description: 'ספר המידות של רבי נחמן - מדריך למידות טובות',
-      author: 'רבי נחמן מברסלv',
-      category: 'rebbe-nachman',
-      language: 'עברית',
-      downloadUrl: 'https://breslovbooks.com/pdf/sefer-hamidos.pdf',
-      pages: 150
-    },
-    {
-      id: 'siporay-masiyos-heb',
-      title: 'סיפורי מעשיות',
-      titleEnglish: 'Tales of Rabbi Nachman',
-      description: 'שלוש עשרה המעשיות הקדושות של רבי נחמן',
-      author: 'רבי נחמן מברסלב',
-      category: 'rebbe-nachman',
-      language: 'עברית',
-      downloadUrl: 'https://breslovbooks.com/pdf/siporay-masiyos.pdf',
-      pages: 200
-    },
-    {
-      id: 'chayei-moharan-heb',
-      title: 'חיי מוהרן',
-      titleEnglish: 'Chayei Moharan',
-      description: 'סיפור חייו של רבי נחמן מברסלב',
-      author: 'רבי נתן מברסלב',
-      category: 'rebbe-nachman',
-      language: 'עברית',
-      downloadUrl: 'https://breslovbooks.com/pdf/chayei-moharan.pdf',
-      pages: 120
     },
 
     // REBBE NOSON WRITINGS - כתבי רבי נתן
     {
-      id: 'likutey-tefilos-heb',
+      id: 'likutey-tefilot',
       title: 'ליקוטי תפילות',
-      titleEnglish: 'Likutey Tefilos',
+      titleEnglish: 'Likutey Tefilot',
       description: 'תפילות ובקשות על פי תורות רבי נחמן',
       author: 'רבי נתן מברסלב',
       category: 'rebbe-noson',
       language: 'עברית',
-      downloadUrl: 'https://breslovbooks.com/pdf/likutey-tefilos.pdf',
+      downloadUrl: 'https://breslovbooks.com/uploads/files/hebrew-likutey-tefilot.pdf',
       pages: 300
     },
     {
-      id: 'likutey-halachos-heb',
-      title: 'ליקוטי הלכות',
-      titleEnglish: 'Likutey Halachos',
-      description: 'פירוש הלכות על פי תורות רבי נחמן',
+      id: 'likutey-halachot',
+      title: 'ליקוטי הלכות - כל הסט',
+      titleEnglish: 'Likutey Halachot Complete Set',
+      description: 'פירוש הלכות על פי תורות רבי נחמן - כל הסט',
       author: 'רבי נתן מברסלב',
       category: 'rebbe-noson',
       language: 'עברית',
-      downloadUrl: 'https://breslovbooks.com/pdf/likutey-halachos.pdf',
-      pages: 500
+      downloadUrl: 'https://breslovbooks.com/uploads/files/hebrew-likutey-halachot-all.pdf',
+      pages: 2000
     },
     {
-      id: 'likutey-eitzos-heb',
-      title: 'ליקוטי עצות',
-      titleEnglish: 'Likutey Eitzos',
+      id: 'likutey-eitzot',
+      title: 'לקוטי עצות',
+      titleEnglish: 'Likutey Eitzot',
       description: 'עצות מעשיות לחיי יומיום על פי ברסלב',
       author: 'רבי נתן מברסלב',
       category: 'rebbe-noson',
       language: 'עברית',
-      downloadUrl: 'https://breslovbooks.com/pdf/likutey-eitzos.pdf',
+      downloadUrl: 'https://breslovbooks.com/uploads/files/hebrew-likutey-eitzot.pdf',
       pages: 250
     },
-
-    // COMPILATIONS - ליקוטים
     {
-      id: 'otzar-hayirah-heb',
-      title: 'אוצר היראה',
-      titleEnglish: 'Otzar HaYirah',
-      description: 'ליקוט עצות מספרי ברסלב ליראת שמים',
+      id: 'yemey-maharnat',
+      title: 'ימי מוהרנ\'ת - ימי התלאות',
+      titleEnglish: 'Yemey Maharnat',
+      description: 'ימי רבי נתן וימי התלאות',
+      author: 'רבי נתן מברסלב',
+      category: 'rebbe-noson',
+      language: 'עברית',
+      downloadUrl: 'https://breslovbooks.com/uploads/files/hebrew-yemey-maharnat.pdf',
+      pages: 180
+    },
+
+    // COMPILATIONS AND OTHER BOOKS
+    {
+      id: 'alim-letrufa',
+      title: 'עלים לתרופה',
+      titleEnglish: 'Alim Letrufa',
+      description: 'עלים לתרופה - ליקוט עצות רפואיות',
       author: 'ליקוט מספרי ברסלב',
       category: 'compilations',
       language: 'עברית',
-      downloadUrl: 'https://breslovbooks.com/pdf/otzar-hayirah.pdf',
-      pages: 180
+      downloadUrl: 'https://breslovbooks.com/uploads/files/hebrew-alim-letrufa.pdf',
+      pages: 120
     },
     {
-      id: 'meshivas-nefesh-heb',
+      id: 'meshivat-nefesh',
       title: 'משיבת נפש',
-      titleEnglish: 'Meshivas Nefesh',
+      titleEnglish: 'Meshivat Nefesh',
       description: 'ליקוט תפילות לחיזוק הנפש',
       author: 'ליקוט מספרי ברסלב',
       category: 'compilations',
       language: 'עברית',
-      downloadUrl: 'https://breslovbooks.com/pdf/meshivas-nefesh.pdf',
+      downloadUrl: 'https://breslovbooks.com/uploads/files/hebrew-meshivat-nefesh.pdf',
       pages: 120
     },
-
-    // FEW ENGLISH BOOKS (as user mentioned some exist)
     {
-      id: 'tikkun-haklali-eng',
+      id: 'hishtapchut-hanefesh',
+      title: 'השתפכות הנפש',
+      titleEnglish: 'Hishtapchut HaNefesh',
+      description: 'השתפכות הנפש - תפילות והתבודדות',
+      author: 'ליקוט מספרי ברסלב',
+      category: 'compilations',
+      language: 'עברית',
+      downloadUrl: 'https://breslovbooks.com/uploads/files/hebrew-hishtapchut-hanefesh.pdf',
+      pages: 150
+    },
+    {
+      id: 'siddur',
+      title: 'סידור',
+      titleEnglish: 'Siddur',
+      description: 'סידור תפילות ברסלב',
+      author: 'נוסח ברסלב',
+      category: 'prayers',
+      language: 'עברית',
+      downloadUrl: 'https://breslovbooks.com/uploads/files/hebrew-siddur.pdf',
+      pages: 400
+    },
+
+    // PAMPHLETS - חוברות
+    {
+      id: 'pamphlet-rebbe',
+      title: 'רבי',
+      titleEnglish: 'Rebbe',
+      description: 'חוברת על גדולת הצדיק',
+      author: 'חוברות ברסלב',
+      category: 'pamphlets',
+      language: 'עברית',
+      downloadUrl: 'https://breslovbooks.com/uploads/files/hebrew-pamphlet-rebbe.pdf',
+      pages: 20
+    },
+    {
+      id: 'pamphlet-simcha',
+      title: 'שמחה',
+      titleEnglish: 'Joy',
+      description: 'חוברת על מעלת השמחה',
+      author: 'חוברות ברסלב',
+      category: 'pamphlets',
+      language: 'עברית',
+      downloadUrl: 'https://breslovbooks.com/uploads/files/hebrew-pamphlet-simcha.pdf',
+      pages: 16
+    },
+    {
+      id: 'pamphlet-emuna',
+      title: 'אמונה',
+      titleEnglish: 'Faith',
+      description: 'חוברת על חיזוק האמונה',
+      author: 'חוברות ברסלב',
+      category: 'pamphlets',
+      language: 'עברית',
+      downloadUrl: 'https://breslovbooks.com/uploads/files/hebrew-pamphlet-emuna.pdf',
+      pages: 18
+    },
+    {
+      id: 'pamphlet-teshuva',
+      title: 'תשובה',
+      titleEnglish: 'Repentance',
+      description: 'חוברת על מעלת התשובה',
+      author: 'חוברות ברסלב',
+      category: 'pamphlets',
+      language: 'עברית',
+      downloadUrl: 'https://breslovbooks.com/uploads/files/hebrew-pamphlet-teshuva.pdf',
+      pages: 20
+    },
+
+    // ENGLISH BOOKS
+    {
+      id: 'tikkun-haklali-english',
       title: 'Tikkun Haklali',
       titleEnglish: 'Tikkun Haklali',
       description: 'The Ten Psalms for Covenant Rectification',
       author: 'Rabbi Nachman of Breslov',
       category: 'rebbe-nachman',
       language: 'English',
-      downloadUrl: 'https://breslovbooks.com/pdf/tikkun-haklali-english.pdf',
+      downloadUrl: 'https://breslovbooks.com/uploads/files/english-tikkun-haklali.pdf',
       pages: 24
     },
     {
-      id: 'rabbi-nachman-stories-eng',
-      title: 'Rabbi Nachman\'s Stories',
-      titleEnglish: 'Rabbi Nachman\'s Stories',
-      description: 'The Thirteen Tales of Rabbi Nachman in English',
-      author: 'Rabbi Nachman of Breslov',
-      category: 'rebbe-nachman',
+      id: 'the-true-tzaddik',
+      title: 'The True Tzadik',
+      titleEnglish: 'The True Tzadik',
+      description: 'About the nature of the true righteous leader',
+      author: 'Breslov Research Institute',
+      category: 'english-books',
       language: 'English',
-      downloadUrl: 'https://breslovbooks.com/pdf/rabbi-nachman-stories-english.pdf',
-      pages: 180
+      downloadUrl: 'https://breslovbooks.com/uploads/files/english-the-true-tzaddik.pdf',
+      pages: 60
+    },
+    {
+      id: 'holy-nation',
+      title: 'Holy Nation on Shmiras Habris',
+      titleEnglish: 'Holy Nation on Shmiras Habris',
+      description: 'Guidance on personal holiness and purity',
+      author: 'Breslov Research Institute',
+      category: 'english-books',
+      language: 'English',
+      downloadUrl: 'https://breslovbooks.com/uploads/files/english-holy-nation-pamphlet.pdf',
+      pages: 40
+    },
+    {
+      id: 'likutei-etzot-english',
+      title: 'Ongoing project - Likutay Eitzot: Current Draft',
+      titleEnglish: 'Likutay Eitzot: Current Draft',
+      description: 'Draft translation of Likutey Eitzot in English',
+      author: 'Breslov Research Institute',
+      category: 'english-books',
+      language: 'English',
+      downloadUrl: 'https://breslovbooks.com/uploads/files/english-likutei-etzot.pdf',
+      pages: 200
     }
   ];
 
@@ -185,6 +363,12 @@ export default function Downloads() {
         return currentLanguage === 'he' ? 'כתבי רבי נתן' : 'Rebbe Noson Writings';
       case 'compilations':
         return currentLanguage === 'he' ? 'ליקוטים וקבצים' : 'Compilations';
+      case 'prayers':
+        return currentLanguage === 'he' ? 'תפילות' : 'Prayers';
+      case 'pamphlets':
+        return currentLanguage === 'he' ? 'חוברות' : 'Pamphlets';
+      case 'english-books':
+        return currentLanguage === 'he' ? 'ספרים באנגלית' : 'English Books';
       default:
         return currentLanguage === 'he' ? 'כל הספרים' : 'All Books';
     }
@@ -239,6 +423,9 @@ export default function Downloads() {
                 <option value="rebbe-nachman">{currentLanguage === 'he' ? 'כתבי רבי נחמן' : 'Rebbe Nachman'}</option>
                 <option value="rebbe-noson">{currentLanguage === 'he' ? 'כתבי רבי נתן' : 'Rebbe Noson'}</option>
                 <option value="compilations">{currentLanguage === 'he' ? 'ליקוטים' : 'Compilations'}</option>
+                <option value="prayers">{currentLanguage === 'he' ? 'תפילות' : 'Prayers'}</option>
+                <option value="pamphlets">{currentLanguage === 'he' ? 'חוברות' : 'Pamphlets'}</option>
+                <option value="english-books">{currentLanguage === 'he' ? 'ספרים באנגלית' : 'English Books'}</option>
               </select>
             </div>
 
