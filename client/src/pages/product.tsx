@@ -3,6 +3,7 @@ import { useRoute } from 'wouter';
 import { realBreslovProducts } from '../data/realProducts';
 import { useCart } from '../contexts/CartContext';
 import { useToast } from '@/hooks/use-toast';
+import { getBookDisplayTitle } from '../utils/bookTitleHelper';
 import type { Product } from '../../../shared/schema';
 
 export default function Product() {
@@ -107,7 +108,7 @@ export default function Product() {
             <span style={{margin: '0 0.5rem'}}>←</span>
             <a href="/store" style={{color: '#dc3545', textDecoration: 'none'}}>חנות</a>
             <span style={{margin: '0 0.5rem'}}>←</span>
-            <span style={{color: '#999'}}>{product.name}</span>
+            <span style={{color: '#999'}}>{getBookDisplayTitle(product)}</span>
           </nav>
         </div>
       </section>
@@ -122,7 +123,7 @@ export default function Product() {
               <div style={{marginBottom: '1rem'}}>
                 <img 
                   src={(product.images && product.images[selectedImage] || '').replace('@assets/', '/attached_assets/')} 
-                  alt={product.name}
+                  alt={getBookDisplayTitle(product)}
                   style={{width: '100%', height: '500px', objectFit: 'cover', borderRadius: '10px', border: '1px solid #ddd'}}
                 />
               </div>
@@ -143,7 +144,7 @@ export default function Product() {
                     >
                       <img 
                         src={image.replace('@assets/', '/attached_assets/')} 
-                        alt={`${product.name} ${index + 1}`}
+                        alt={`${getBookDisplayTitle(product)} ${index + 1}`}
                         style={{width: '60px', height: '60px', objectFit: 'cover', borderRadius: '3px'}}
                       />
                     </button>
@@ -161,7 +162,7 @@ export default function Product() {
               </div>
 
               <h1 style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#333', marginBottom: '1rem'}}>
-                {product.name}
+                {getBookDisplayTitle(product)}
               </h1>
 
               <div style={{display: 'flex', alignItems: 'center', marginBottom: '1.5rem'}}>
@@ -271,7 +272,7 @@ export default function Product() {
                       addItem({
                         productId: product.id,
                         variantId: currentVariant.id,
-                        name: product.name,
+                        name: getBookDisplayTitle(product),
                         nameEnglish: product.nameEnglish || product.name,
                         image: product.images?.[0] || '',
                         price: currentVariant.price,
@@ -284,7 +285,7 @@ export default function Product() {
                       });
                       toast({
                         title: "נוסף לסל הקניות!",
-                        description: `${product.name} נוסף בהצלחה לסל`,
+                        description: `${getBookDisplayTitle(product)} נוסף בהצלחה לסל`,
                       });
                     }
                   }}
