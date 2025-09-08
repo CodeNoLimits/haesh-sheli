@@ -143,17 +143,17 @@ export default function Store() {
               {/* Price Range */}
               <div style={{marginBottom: '2rem'}}>
                 <h4 style={{fontWeight: 'bold', marginBottom: '1rem', color: '#333'}}>{t('priceRange')}</h4>
-                <div style={{display: 'flex', gap: '1rem', alignItems: 'center', marginBottom: '1rem'}}>
+                <div style={{display: 'flex', gap: '0.5rem', alignItems: 'center', marginBottom: '1rem', maxWidth: '100%', overflow: 'hidden'}}>
                   <input 
                     type="number" 
                     placeholder={t('minimum')}
-                    style={{flex: 1, padding: '0.5rem', border: '1px solid #ddd', borderRadius: '5px', textAlign: 'center'}}
+                    style={{width: '70px', maxWidth: '70px', padding: '0.4rem', border: '1px solid #ddd', borderRadius: '5px', textAlign: 'center', fontSize: '0.9rem'}}
                   />
-                  <span>-</span>
+                  <span style={{fontSize: '0.9rem', color: '#666'}}>-</span>
                   <input 
                     type="number" 
                     placeholder={t('maximum')}
-                    style={{flex: 1, padding: '0.5rem', border: '1px solid #ddd', borderRadius: '5px', textAlign: 'center'}}
+                    style={{width: '70px', maxWidth: '70px', padding: '0.4rem', border: '1px solid #ddd', borderRadius: '5px', textAlign: 'center', fontSize: '0.9rem'}}
                   />
                 </div>
                 <button style={{background: '#17a2b8', color: 'white', border: 'none', padding: '0.8rem 1.2rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
