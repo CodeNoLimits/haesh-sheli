@@ -140,8 +140,8 @@ export default function Downloads() {
     },
     {
       id: 'rabbi-nachman-stories-eng',
-      title: 'Rabbi Nachman\\'s Stories',
-      titleEnglish: 'Rabbi Nachman\\'s Stories',
+      title: 'Rabbi Nachman\'s Stories',
+      titleEnglish: 'Rabbi Nachman\'s Stories',
       description: 'The Thirteen Tales of Rabbi Nachman in English',
       author: 'Rabbi Nachman of Breslov',
       category: 'rebbe-nachman',
