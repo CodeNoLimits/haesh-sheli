@@ -3420,7 +3420,7 @@ export const realBreslovProducts: Record<string, Product> = {
         size: 'כיס',
         dimensions: '12*9',
         volumes: 1,
-        price: 38,
+        price: 25,
         inStock: true,
         stockQuantity: 40
       }
