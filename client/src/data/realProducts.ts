@@ -2174,7 +2174,7 @@ export const realBreslovProducts: Record<string, Product> = {
   'tikun-haklali-deluxe-french': {
     id: 'tikun-haklali-deluxe-french',
     name: 'תיקון הכללי',
-    nameEnglish: 'Tikoun Haklali - General Rectification Deluxe',
+    nameEnglish: 'Tikkun Haklali - General Rectification Deluxe',
     description: 'תיקון הכללי בצרפתית - מהדורה מהודרת. כולל את עשרת המזמורים המיוחדים לתיקון הברית עם פירושים ותרגום מעולה.',
     descriptionEnglish: 'Tikun Haklali in French - deluxe edition. Includes the ten special psalms for covenant rectification with commentary and excellent translation.',
     category: 'תפילות',
@@ -2196,7 +2196,7 @@ export const realBreslovProducts: Record<string, Product> = {
         size: 'בינוני',
         dimensions: '18*13',
         volumes: 1,
-        price: 45,
+        price: 25,
         inStock: true,
         stockQuantity: 30
       }
@@ -3104,7 +3104,7 @@ export const realBreslovProducts: Record<string, Product> = {
   'sefer-hamidot-deluxe': {
     id: 'sefer-hamidot-deluxe',
     name: 'ספר המידות - מהדורה מהודרת',
-    nameEnglish: 'Book of Character Traits - Deluxe Edition',
+    nameEnglish: 'Sefer Hamidos - Deluxe Edition',
     description: 'ספר המידות במהדורה מהודרת - הספר החשוב של רבינו העוסק בתיקון המידות. מכיל עצות מעשיות לכל המידות הטובות והרעות, ערוך על פי סדר אלפבתי.',
     descriptionEnglish: 'Book of Character Traits Deluxe Edition - Rabbenu\'s important book dealing with character refinement. Contains practical advice for all good and bad traits, arranged alphabetically.',
     category: 'ספרי מוסר',
@@ -3355,7 +3355,7 @@ export const realBreslovProducts: Record<string, Product> = {
   'midot-katan': {
     id: 'midot-katan', 
     name: 'ספר המידות - מהדורת כיס',
-    nameEnglish: 'Book of Character Traits - Pocket Edition',
+    nameEnglish: 'Sefer Hamidos - Pocket Edition',
     description: 'ספר המידות במהדורת כיס מיוחדת עם עיצוב אותיות עבריות אמנותי. ספר קטן ונוח המכיל את כל העצות החשובות לתיקון המידות.',
     descriptionEnglish: 'Book of Character Traits in special pocket edition with artistic Hebrew letters design. Small and convenient book containing all important advice for character refinement.',
     category: 'ספרי מוסר',
@@ -3376,7 +3376,7 @@ export const realBreslovProducts: Record<string, Product> = {
         size: 'כיס',
         dimensions: '12*9',
         volumes: 1,
-        price: 45,
+        price: 18,
         inStock: true,
         stockQuantity: 50
       }
