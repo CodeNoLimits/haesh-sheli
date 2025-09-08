@@ -136,18 +136,24 @@ export default function Store() {
               {/* Categories */}
               <div style={{marginBottom: '2rem'}}>
                 <h4 style={{fontWeight: 'bold', marginBottom: '1rem', color: '#333'}}>{t('categories')}</h4>
-                <select style={{width: '100%', padding: '0.8rem', border: '1px solid #ddd', borderRadius: '5px', marginBottom: '1rem'}}>
-                  <option>{t('allCategories')}</option>
-                  <option>ספרי רבנו</option>
-                  <option>תפילות</option>
-                  <option>עצות</option>
-                  <option>סיפורים</option>
-                  <option>ביוגרפיה</option>
-                  <option>ספרי מוסר</option>
-                  <option>שיחות וביאורים</option>
-                  <option>קבלה וחסידות</option>
-                  <option>מועדי השנה</option>
-                  <option>אוספים</option>
+                <select 
+                  value={selectedCategory}
+                  onChange={(e) => setSelectedCategory(e.target.value)}
+                  style={{width: '100%', padding: '0.8rem', border: '1px solid #ddd', borderRadius: '5px', marginBottom: '1rem'}}
+                >
+                  <option value="all">{t('allCategories')}</option>
+                  <option value="ספרי רבנו">ספרי רבנו</option>
+                  <option value="תפילות">תפילות</option>
+                  <option value="מועדי השנה">מועדי השנה</option>
+                  <option value="ביוגרפיה">ביוגרפיה</option>
+                  <option value="סיפורים">סיפורים</option>
+                  <option value="חומשים ותנ&quot;ך">חומשים ותנ&quot;ך</option>
+                  <option value="ליקוטי הלכות">ליקוטי הלכות</option>
+                  <option value="ספרי ברסלב">ספרי ברסלב</option>
+                  <option value="רבי נתן">רבי נתן</option>
+                  <option value="מוסר">מוסר</option>
+                  <option value="קבלה וחסידות">קבלה וחסידות</option>
+                  <option value="ליקוטים">ליקוטים</option>
                 </select>
               </div>
               
