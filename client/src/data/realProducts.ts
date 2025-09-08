@@ -16,9 +16,9 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 320,
     isbn: '978-965-7023-15-8',
     images: [
-      '@assets/ראש השנה שלי 1_1757275239936.jpg',
-      '@assets/ראש השנה שלי 2_1757275239936.jpg',
-      '@assets/הראש השנה שלי 3_1757275239935.jpg'
+      '/images/ראש השנה שלי 1_1757275239936.jpg',
+      '/images/ראש השנה שלי 2_1757275239936.jpg',
+      '/images/הראש השנה שלי 3_1757275239935.jpg'
     ],
     variants: [
       {
@@ -82,10 +82,10 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 850,
     isbn: '978-965-7023-25-7',
     images: [
-      '@assets/אוצר היראה 1_1757275234154.jpg',
-      '@assets/אוצר היראה 2_1757275234155.jpg',
-      '@assets/אוצר היראה 3_1757275234155.jpg',
-      '@assets/אוצר היראה 4_1757275234156.jpg'
+      '/images/אוצר היראה 1_1757275234154.jpg',
+      '/images/אוצר היראה 2_1757275234155.jpg',
+      '/images/אוצר היראה 3_1757275234155.jpg',
+      '/images/אוצר היראה 4_1757275234156.jpg'
     ],
     variants: [
       {
@@ -149,10 +149,10 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 420,
     isbn: '978-965-7023-35-6',
     images: [
-      '@assets/התגלות הדעת 1_1757275244732.jpg',
-      '@assets/התגלות הדעת 2_1757275244733.jpg',
-      '@assets/התגלות הדעת 3_1757275244733.jpg',
-      '@assets/התגלות הדעת 4_1757275244733.jpg'
+      '/images/התגלות הדעת 1_1757275244732.jpg',
+      '/images/התגלות הדעת 2_1757275244733.jpg',
+      '/images/התגלות הדעת 3_1757275244733.jpg',
+      '/images/התגלות הדעת 4_1757275244733.jpg'
     ],
     variants: [
       {
@@ -216,9 +216,9 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 380,
     isbn: '978-965-7023-45-5',
     images: [
-      '@assets/התחלת ההתחלות 1_1757275250997.jpg',
-      '@assets/התחלת ההתחלות 2_1757275250998.jpg',
-      '@assets/התחלת ההתחלות 3_1757275250998.jpg'
+      '/images/התחלת ההתחלות 1_1757275250997.jpg',
+      '/images/התחלת ההתחלות 2_1757275250998.jpg',
+      '/images/התחלת ההתחלות 3_1757275250998.jpg'
     ],
     variants: [
       {
@@ -475,9 +475,9 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 1250,
     isbn: '978-965-7023-85-1',
     images: [
-      '@assets/חומש עם ליקוטי הלכות בינוני 1_1757275732701.jpg',
-      '@assets/חומש עם ליקוטי הלכות בינוני 2_1757275732701.jpg',
-      '@assets/חומש עם ליקוטי הלכות בינוני 3_1757275732702.jpg'
+      '/images/חומש עם ליקוטי הלכות בינוני 1_1757275732701.jpg',
+      '/images/חומש עם ליקוטי הלכות בינוני 2_1757275732701.jpg',
+      '/images/חומש עם ליקוטי הלכות בינוני 3_1757275732702.jpg'
     ],
     variants: [
       {
@@ -529,9 +529,9 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 1250,
     isbn: '978-965-7023-86-8',
     images: [
-      '@assets/חומש עם ליקוטי הלכות גדול 1_1757275742254.jpg',
-      '@assets/חומש עם ליקוטי הלכות גדול 2_1757275742255.jpg',
-      '@assets/חומש עם ליקוטי הלכות גדול 3_1757275742255.jpg'
+      '/images/חומש עם ליקוטי הלכות גדול 1_1757275742254.jpg',
+      '/images/חומש עם ליקוטי הלכות גדול 2_1757275742255.jpg',
+      '/images/חומש עם ליקוטי הלכות גדול 3_1757275742255.jpg'
     ],
     variants: [
       {
@@ -584,11 +584,11 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 120,
     isbn: '978-965-7023-87-5',
     images: [
-      '@assets/1_1757275751755.jpg',
-      '@assets/2_1757275751756.jpg',
-      '@assets/3_1757275751756.jpg',
-      '@assets/4_1757275751756.jpg',
-      '@assets/5_1757275751756.jpg'
+      '/images/1_1757275751755.jpg',
+      '/images/2_1757275751756.jpg',
+      '/images/3_1757275751756.jpg',
+      '/images/4_1757275751756.jpg',
+      '/images/5_1757275751756.jpg'
     ],
     variants: [
       {
@@ -651,9 +651,9 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 950,
     isbn: '978-965-7023-88-2',
     images: [
-      '@assets/כתבי רהי נחמן מברסלב 1_1757275758580.jpg',
-      '@assets/כתבי רבי נחמן מברסלב 2_1757275758578.jpg',
-      '@assets/כתבי רבי נחמן מברסלב 3_1757275758580.jpg'
+      '/images/כתבי רהי נחמן מברסלב 1_1757275758580.jpg',
+      '/images/כתבי רבי נחמן מברסלב 2_1757275758578.jpg',
+      '/images/כתבי רבי נחמן מברסלב 3_1757275758580.jpg'
     ],
     variants: [
       {
@@ -706,9 +706,9 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 2800,
     isbn: '978-965-7023-89-9',
     images: [
-      '@assets/ליקוטי הלכות דק גדול 1_1757275769149.jpg',
-      '@assets/ליקוטי הלכות דק גדול 2_1757275769151.jpg',
-      '@assets/ליקוטי הלכות דק גדול 3_1757275769151.jpg'
+      '/images/ליקוטי הלכות דק גדול 1_1757275769149.jpg',
+      '/images/ליקוטי הלכות דק גדול 2_1757275769151.jpg',
+      '/images/ליקוטי הלכות דק גדול 3_1757275769151.jpg'
     ],
     variants: [
       {
@@ -761,10 +761,10 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 3200,
     isbn: '978-965-7023-90-5',
     images: [
-      '@assets/ליקוטי הלכות עבה 1_1757275834933.jpg',
-      '@assets/ליקוטי הלכות עבה 2_1757275834934.jpg',
-      '@assets/ליקוטי הלכות עבה 3_1757275834934.jpg',
-      '@assets/ליקוטי הלכות עבה 4_1757275834934.jpg'
+      '/images/ליקוטי הלכות עבה 1_1757275834933.jpg',
+      '/images/ליקוטי הלכות עבה 2_1757275834934.jpg',
+      '/images/ליקוטי הלכות עבה 3_1757275834934.jpg',
+      '/images/ליקוטי הלכות עבה 4_1757275834934.jpg'
     ],
     variants: [
       {
@@ -817,10 +817,10 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 650,
     isbn: '978-965-7023-91-2',
     images: [
-      '@assets/מט שערים 1_1757275840464.jpg',
-      '@assets/מט שערים 2_1757275840465.jpg',
-      '@assets/מט שערים 3_1757275840465.jpg',
-      '@assets/מט שערים 4_1757275840466.jpg'
+      '/images/מט שערים 1_1757275840464.jpg',
+      '/images/מט שערים 2_1757275840465.jpg',
+      '/images/מט שערים 3_1757275840465.jpg',
+      '/images/מט שערים 4_1757275840466.jpg'
     ],
     variants: [
       {
@@ -873,8 +873,8 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 2600,
     isbn: '978-965-7023-92-9',
     images: [
-      '@assets/1_1757275875790.jpg',
-      '@assets/2_1757275875790.jpg'
+      '/images/1_1757275875790.jpg',
+      '/images/2_1757275875790.jpg'
     ],
     variants: [
       {
@@ -927,7 +927,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 2200,
     isbn: '978-965-7023-93-6',
     images: [
-      '@assets/3_1757275875790.jpg'
+      '/images/3_1757275875790.jpg'
     ],
     variants: [
       {
@@ -980,7 +980,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 280,
     isbn: '978-965-7023-94-3',
     images: [
-      '@assets/השתפכות 2_1757275875791.jpg'
+      '/images/השתפכות 2_1757275875791.jpg'
     ],
     variants: [
       {
@@ -1033,7 +1033,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 180,
     isbn: '978-1-928822-89-4',
     images: [
-      '@assets/אבי הנחל באנגלית_1757280778284.jpg'
+      '/images/אבי הנחל באנגלית_1757280778284.jpg'
     ],
     variants: [
       {
@@ -1073,7 +1073,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 320,
     isbn: '978-2-123456-78-9',
     images: [
-      '@assets/אוירה_1757280778285.jpg'
+      '/images/אוירה_1757280778285.jpg'
     ],
     variants: [
       {
@@ -1113,7 +1113,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 240,
     isbn: '978-2-234567-89-0',
     images: [
-      '@assets/אמונת עיתך צרפתית_1757280778286.jpg'
+      '/images/אמונת עיתך צרפתית_1757280778286.jpg'
     ],
     variants: [
       {
@@ -1153,7 +1153,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 200,
     isbn: '978-2-345678-90-1',
     images: [
-      '@assets/ארץ ישראל צרפתית_1757280778286.jpg'
+      '/images/ארץ ישראל צרפתית_1757280778286.jpg'
     ],
     variants: [
       {
@@ -1193,8 +1193,8 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 180,
     isbn: '978-2-456789-01-2',
     images: [
-      '@assets/השתפכות צרפתית_1757280778286.jpg',
-      '@assets/השתפכות צרפתית 2_1757280778286.jpg'
+      '/images/השתפכות צרפתית_1757280778286.jpg',
+      '/images/השתפכות צרפתית 2_1757280778286.jpg'
     ],
     variants: [
       {
@@ -1234,7 +1234,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 160,
     isbn: '978-2-567890-12-3',
     images: [
-      '@assets/התקשרות צרפתית_1757280778287.jpg'
+      '/images/התקשרות צרפתית_1757280778287.jpg'
     ],
     variants: [
       {
@@ -1274,7 +1274,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 450,
     isbn: '978-965-7024-89-2',
     images: [
-      '@assets/ויקרא_1757280778287.jpg'
+      '/images/ויקרא_1757280778287.jpg'
     ],
     variants: [
       {
@@ -1314,7 +1314,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 380,
     isbn: '978-2-678901-23-4',
     images: [
-      '@assets/חיי מוהרן צרפתית_1757280778287.jpg'
+      '/images/חיי מוהרן צרפתית_1757280778287.jpg'
     ],
     variants: [
       {
@@ -1354,7 +1354,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 290,
     isbn: '978-2-789012-34-5',
     images: [
-      '@assets/כתבי צרפתית_1757280778287.jpg'
+      '/images/כתבי צרפתית_1757280778287.jpg'
     ],
     variants: [
       {
@@ -1394,9 +1394,9 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 2800,
     isbn: '978-1-928822-90-0',
     images: [
-      '@assets/ליקוטי הלכות 1_1757280778288.jpg',
-      '@assets/ליקוטי הלכות 2_1757280778288.jpg',
-      '@assets/ליקוטי הלכות 3_1757280778288.jpg'
+      '/images/ליקוטי הלכות 1_1757280778288.jpg',
+      '/images/ליקוטי הלכות 2_1757280778288.jpg',
+      '/images/ליקוטי הלכות 3_1757280778288.jpg'
     ],
     variants: [
       {
@@ -1449,7 +1449,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 720,
     isbn: '978-1-928822-91-7',
     images: [
-      '@assets/ליקוטי מוהרן אנגלית_1757280778288.jpg'
+      '/images/ליקוטי מוהרן אנגלית_1757280778288.jpg'
     ],
     variants: [
       {
@@ -1489,8 +1489,8 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 220,
     isbn: '978-2-890123-45-6',
     images: [
-      '@assets/ליקוטי עצות צרפתית_1757280778288.jpg',
-      '@assets/ליקוטי עצות צרפתית 2_1757280778288.jpg'
+      '/images/ליקוטי עצות צרפתית_1757280778288.jpg',
+      '/images/ליקוטי עצות צרפתית 2_1757280778288.jpg'
     ],
     variants: [
       {
@@ -1530,7 +1530,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 340,
     isbn: '978-2-901234-56-7',
     images: [
-      '@assets/מידות מעשיות עצות_1757280778288.jpg'
+      '/images/מידות מעשיות עצות_1757280778288.jpg'
     ],
     variants: [
       {
@@ -1570,7 +1570,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 80,
     isbn: '978-1-928822-92-4',
     images: [
-      '@assets/מכתב משמים אנגלית_1757280778289.jpg'
+      '/images/מכתב משמים אנגלית_1757280778289.jpg'
     ],
     variants: [
       {
@@ -1610,7 +1610,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 190,
     isbn: '978-2-012345-67-8',
     images: [
-      '@assets/משיבת נפש צרפתית_1757280778289.jpg'
+      '/images/משיבת נפש צרפתית_1757280778289.jpg'
     ],
     variants: [
       {
@@ -1650,7 +1650,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 250,
     isbn: '978-84-123456-78-9',
     images: [
-      '@assets/נג\'ל נובע_1757280778289.jpg'
+      '/images/נג\'ל נובע_1757280778289.jpg'
     ],
     variants: [
       {
@@ -1690,7 +1690,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 48,
     isbn: '978-2-345678-91-8',
     images: [
-      '@assets/סבא ישראל לילדים_1757280885979.jpg'
+      '/images/סבא ישראל לילדים_1757280885979.jpg'
     ],
     variants: [
       {
@@ -1731,7 +1731,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 280,
     isbn: '978-1-234567-89-0',
     images: [
-      '@assets/סיפורי מעשיות אנגלית_1757280885979.jpg'
+      '/images/סיפורי מעשיות אנגלית_1757280885979.jpg'
     ],
     variants: [
       {
@@ -1772,8 +1772,8 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 320,
     isbn: '978-2-456789-12-3',
     images: [
-      '@assets/סיורי מעשיות צרפתית 2_1757280885979.jpg',
-      '@assets/סיפורי מעשיות צרפתית_1757280885980.jpg'
+      '/images/סיורי מעשיות צרפתית 2_1757280885979.jpg',
+      '/images/סיפורי מעשיות צרפתית_1757280885980.jpg'
     ],
     variants: [
       {
@@ -1814,7 +1814,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 180,
     isbn: '978-2-567890-23-4',
     images: [
-      '@assets/ספר המידות צרפתית_1757280885980.jpg'
+      '/images/ספר המידות צרפתית_1757280885980.jpg'
     ],
     variants: [
       {
@@ -1855,7 +1855,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 450,
     isbn: '978-84-567890-34-5',
     images: [
-      '@assets/ספרדית רוסית_1757280885980.jpg'
+      '/images/ספרדית רוסית_1757280885980.jpg'
     ],
     variants: [
       {
@@ -1896,7 +1896,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 160,
     isbn: '978-2-678901-45-6',
     images: [
-      '@assets/פרק שירה תיקון חצות צרפתית_1757280885980.jpg'
+      '/images/פרק שירה תיקון חצות צרפתית_1757280885980.jpg'
     ],
     variants: [
       {
@@ -1937,7 +1937,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 420,
     isbn: '978-2-789012-56-7',
     images: [
-      '@assets/רבינו צרפתית_1757280885981.jpg'
+      '/images/רבינו צרפתית_1757280885981.jpg'
     ],
     variants: [
       {
@@ -1978,8 +1978,8 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 350,
     isbn: '978-5-123456-78-9',
     images: [
-      '@assets/רוסית_1757280885981.jpg',
-      '@assets/רוסית 2_1757280885981.jpg'
+      '/images/רוסית_1757280885981.jpg',
+      '/images/רוסית 2_1757280885981.jpg'
     ],
     variants: [
       {
@@ -2020,7 +2020,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 290,
     isbn: '978-5-234567-89-0',
     images: [
-      '@assets/רוסית_1757280885981.jpg'
+      '/images/רוסית_1757280885981.jpg'
     ],
     variants: [
       {
@@ -2061,7 +2061,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 280,
     isbn: '978-2-890123-67-8',
     images: [
-      '@assets/שיחות הרן צרפתית_1757280885981.jpg'
+      '/images/שיחות הרן צרפתית_1757280885981.jpg'
     ],
     variants: [
       {
@@ -2102,8 +2102,8 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 200,
     isbn: '978-2-901234-78-9',
     images: [
-      '@assets/שמות הצדיקים_1757280885981.jpg',
-      '@assets/שמות הצדיקים 2_1757280885981.jpg'
+      '/images/שמות הצדיקים_1757280885981.jpg',
+      '/images/שמות הצדיקים 2_1757280885981.jpg'
     ],
     variants: [
       {
@@ -2144,7 +2144,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 140,
     isbn: '978-2-012345-89-0',
     images: [
-      '@assets/שמע ישראל צרפתית_1757280885982.jpg'
+      '/images/שמע ישראל צרפתית_1757280885982.jpg'
     ],
     variants: [
       {
@@ -2185,8 +2185,8 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 120,
     isbn: '978-2-123456-90-1',
     images: [
-      '@assets/תיקון הכללי צרפתית_1757280885982.jpg',
-      '@assets/תיקון הכללי 2_1757280885982.jpg'
+      '/images/תיקון הכללי צרפתית_1757280885982.jpg',
+      '/images/תיקון הכללי 2_1757280885982.jpg'
     ],
     variants: [
       {
@@ -2227,9 +2227,9 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 5500,
     isbn: '978-965-7023-00-4',
     images: [
-      '@assets/1_1757280901212.jpg',
-      '@assets/2_1757280901213.jpg',
-      '@assets/3_1757280901214.jpg'
+      '/images/1_1757280901212.jpg',
+      '/images/2_1757280901213.jpg',
+      '/images/3_1757280901214.jpg'
     ],
     variants: [
       {
@@ -2283,7 +2283,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 280,
     isbn: '978-965-7023-31-8',
     images: [
-      '@assets/עלים_1757281085507.jpg'
+      '/images/עלים_1757281085507.jpg'
     ],
     variants: [
       {
@@ -2335,7 +2335,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 450,
     isbn: '978-965-7023-32-5',
     images: [
-      '@assets/עצות המבוארות_1757281085508.jpg'
+      '/images/עצות המבוארות_1757281085508.jpg'
     ],
     variants: [
       {
@@ -2387,7 +2387,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 380,
     isbn: '978-965-7023-33-2',
     images: [
-      '@assets/עצות עם_1757281085508.jpg'
+      '/images/עצות עם_1757281085508.jpg'
     ],
     variants: [
       {
@@ -2439,7 +2439,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 320,
     isbn: '978-965-7023-34-9',
     images: [
-      '@assets/קיצור ליקומ_1757281085509.jpg'
+      '/images/קיצור ליקומ_1757281085509.jpg'
     ],
     variants: [
       {
@@ -2491,7 +2491,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 290,
     isbn: '978-965-7023-35-6',
     images: [
-      '@assets/שיחות הרן_1757281085509.jpg'
+      '/images/שיחות הרן_1757281085509.jpg'
     ],
     variants: [
       {
@@ -2543,7 +2543,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 420,
     isbn: '978-965-7023-36-3',
     images: [
-      '@assets/תהילים 2_1757281085509.jpg'
+      '/images/תהילים 2_1757281085509.jpg'
     ],
     variants: [
       {
@@ -2595,7 +2595,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 250,
     isbn: '978-965-7023-37-0',
     images: [
-      '@assets/השתפכות הנפש 1_1757281125907.jpg'
+      '/images/השתפכות הנפש 1_1757281125907.jpg'
     ],
     variants: [
       {
@@ -2635,7 +2635,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 180,
     isbn: '978-965-7023-38-7',
     images: [
-      '@assets/זמרת הארץ 1_1757281125908.jpg'
+      '/images/זמרת הארץ 1_1757281125908.jpg'
     ],
     variants: [
       {
@@ -2675,7 +2675,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 420,
     isbn: '978-965-7023-39-4',
     images: [
-      '@assets/חיי מוהרן_1757281125908.jpg'
+      '/images/חיי מוהרן_1757281125908.jpg'
     ],
     variants: [
       {
@@ -2715,7 +2715,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 350,
     isbn: '978-965-7023-40-0',
     images: [
-      '@assets/ימי מוהרנת 1_1757281125909.jpg'
+      '/images/ימי מוהרנת 1_1757281125909.jpg'
     ],
     variants: [
       {
@@ -2755,7 +2755,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 280,
     isbn: '978-965-7023-41-7',
     images: [
-      '@assets/יקרא דשבתא 1_1757281125909.jpg'
+      '/images/יקרא דשבתא 1_1757281125909.jpg'
     ],
     variants: [
       {
@@ -2795,7 +2795,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 380,
     isbn: '978-965-7023-42-4',
     images: [
-      '@assets/כוכבי אור 2_1757281125909.jpg'
+      '/images/כוכבי אור 2_1757281125909.jpg'
     ],
     variants: [
       {
@@ -2835,7 +2835,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 850,
     isbn: '978-965-7023-43-1',
     images: [
-      '@assets/ליקוטי מוהרן 1_1757281125909.jpg'
+      '/images/ליקוטי מוהרן 1_1757281125909.jpg'
     ],
     variants: [
       {
@@ -2875,7 +2875,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 1200,
     isbn: '978-965-7023-44-8',
     images: [
-      '@assets/ליקוטי מוהרן עם מפרשים 1_1757281125909.jpg'
+      '/images/ליקוטי מוהרן עם מפרשים 1_1757281125909.jpg'
     ],
     variants: [
       {
@@ -2915,7 +2915,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 450,
     isbn: '978-965-7023-45-5',
     images: [
-      '@assets/ליקוטי עצות 1_1757281125909.jpg'
+      '/images/ליקוטי עצות 1_1757281125909.jpg'
     ],
     variants: [
       {
@@ -2955,7 +2955,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 650,
     isbn: '978-965-7023-46-2',
     images: [
-      '@assets/ליקוטי תפילות 1_1757281125910.jpg'
+      '/images/ליקוטי תפילות 1_1757281125910.jpg'
     ],
     variants: [
       {
@@ -2995,7 +2995,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 320,
     isbn: '978-965-7023-47-9',
     images: [
-      '@assets/מכתבי ר נתן 1_1757281125910.jpg'
+      '/images/מכתבי ר נתן 1_1757281125910.jpg'
     ],
     variants: [
       {
@@ -3035,7 +3035,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 240,
     isbn: '978-965-7023-48-6',
     images: [
-      '@assets/מעין המתגבר 1_1757281125910.jpg'
+      '/images/מעין המתגבר 1_1757281125910.jpg'
     ],
     variants: [
       {
@@ -3075,7 +3075,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 380,
     isbn: '978-965-7023-49-3',
     images: [
-      '@assets/סיפומ עם רמזי 1_1757281125910.jpg'
+      '/images/סיפומ עם רמזי 1_1757281125910.jpg'
     ],
     variants: [
       {
@@ -3115,7 +3115,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 200,
     isbn: '978-965-7023-50-9',
     images: [
-      '@assets/ספר המידות 1_1757281125910.jpg'
+      '/images/ספר המידות 1_1757281125910.jpg'
     ],
     variants: [
       {
@@ -3155,7 +3155,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 300,
     isbn: '978-965-7023-51-6',
     images: [
-      '@assets/עלים לתרופה 1_1757281125910.jpg'
+      '/images/עלים לתרופה 1_1757281125910.jpg'
     ],
     variants: [
       {
@@ -3195,7 +3195,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 150,
     isbn: '978-965-7023-52-3',
     images: [
-      '@assets/תהילים 1_1757281125911.jpg'
+      '/images/תהילים 1_1757281125911.jpg'
     ],
     variants: [
       {
@@ -3235,7 +3235,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 120,
     isbn: '978-965-7023-53-0',
     images: [
-      '@assets/תיקון הכללי_1757281158220.jpg'
+      '/images/תיקון הכללי_1757281158220.jpg'
     ],
     variants: [
       {
@@ -3286,7 +3286,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 180,
     isbn: '978-965-7023-54-7',
     images: [
-      '@assets/השתפכות קטן_1757281252873.jpg'
+      '/images/השתפכות קטן_1757281252873.jpg'
     ],
     variants: [
       {
@@ -3326,7 +3326,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 320,
     isbn: '978-965-7023-55-4',
     images: [
-      '@assets/מוהרן קטן_1757281252873.jpg'
+      '/images/מוהרן קטן_1757281252873.jpg'
     ],
     variants: [
       {
@@ -3366,7 +3366,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 150,
     isbn: '978-965-7023-56-1',
     images: [
-      '@assets/מידות קטן_1757281252874.jpg'
+      '/images/מידות קטן_1757281252874.jpg'
     ],
     variants: [
       {
@@ -3406,7 +3406,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 200,
     isbn: '978-965-7023-57-8',
     images: [
-      '@assets/מעשיות קטן_1757281252874.jpg'
+      '/images/מעשיות קטן_1757281252874.jpg'
     ],
     variants: [
       {
@@ -3446,7 +3446,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 170,
     isbn: '978-965-7023-58-5',
     images: [
-      '@assets/משיבת קטן_1757281252874.jpg'
+      '/images/משיבת קטן_1757281252874.jpg'
     ],
     variants: [
       {
@@ -3486,7 +3486,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 2000,
     isbn: '978-965-7023-59-2',
     images: [
-      '@assets/סט 1_1757281252874.jpg'
+      '/images/סט 1_1757281252874.jpg'
     ],
     variants: [
       {
@@ -3528,7 +3528,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 2000,
     isbn: '978-965-7023-60-8',
     images: [
-      '@assets/סט 2_1757281252874.jpg'
+      '/images/סט 2_1757281252874.jpg'
     ],
     variants: [
       {
@@ -3570,7 +3570,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 2000,
     isbn: '978-965-7023-61-5',
     images: [
-      '@assets/סט 3_1757281252875.jpg'
+      '/images/סט 3_1757281252875.jpg'
     ],
     variants: [
       {
@@ -3612,7 +3612,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 280,
     isbn: '978-965-7023-62-2',
     images: [
-      '@assets/עצות קטן_1757281252875.jpg'
+      '/images/עצות קטן_1757281252875.jpg'
     ],
     variants: [
       {
@@ -3652,7 +3652,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 220,
     isbn: '978-965-7023-63-9',
     images: [
-      '@assets/שבחי ושיחות קטן_1757281252875.jpg'
+      '/images/שבחי ושיחות קטן_1757281252875.jpg'
     ],
     variants: [
       {
@@ -3692,7 +3692,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 400,
     isbn: '978-965-7023-64-6',
     images: [
-      '@assets/תהלים קטן_1757281252875.jpg'
+      '/images/תהלים קטן_1757281252875.jpg'
     ],
     variants: [
       {
@@ -3732,7 +3732,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 300,
     isbn: '978-965-7023-65-3',
     images: [
-      '@assets/תפילות לזמני השנה קטן_1757281252875.jpg'
+      '/images/תפילות לזמני השנה קטן_1757281252875.jpg'
     ],
     variants: [
       {
@@ -3772,7 +3772,7 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 450,
     isbn: '978-965-7023-66-0',
     images: [
-      '@assets/תפילות קטן_1757281252876.jpg'
+      '/images/תפילות קטן_1757281252876.jpg'
     ],
     variants: [
       {
@@ -3812,10 +3812,10 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 1600,
     isbn: '978-965-7023-67-7',
     images: [
-      '@assets/רבינו הקדוש 1_1757281260204.jpg',
-      '@assets/רבינו הקדוש 2_1757281260206.jpg',
-      '@assets/רבינו הקדוש 3_1757281260206.jpg',
-      '@assets/רבינו הקדוש 4_1757281260206.jpg'
+      '/images/רבינו הקדוש 1_1757281260204.jpg',
+      '/images/רבינו הקדוש 2_1757281260206.jpg',
+      '/images/רבינו הקדוש 3_1757281260206.jpg',
+      '/images/רבינו הקדוש 4_1757281260206.jpg'
     ],
     variants: [
       {
@@ -3857,8 +3857,8 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 1200,
     isbn: '978-965-7023-68-4',
     images: [
-      '@assets/שער החמישים 1_1757281267103.jpg',
-      '@assets/שער החמישים 2_1757281267104.jpg'
+      '/images/שער החמישים 1_1757281267103.jpg',
+      '/images/שער החמישים 2_1757281267104.jpg'
     ],
     variants: [
       {
@@ -3900,9 +3900,9 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 800,
     isbn: '978-965-7023-69-1',
     images: [
-      '@assets/תודה והודאה 1_1757281336534.jpg',
-      '@assets/תודה והודאה 2_1757281336535.jpg',
-      '@assets/תודה והודאה 3_1757281336535.jpg'
+      '/images/תודה והודאה 1_1757281336534.jpg',
+      '/images/תודה והודאה 2_1757281336535.jpg',
+      '/images/תודה והודאה 3_1757281336535.jpg'
     ],
     variants: [
       {
