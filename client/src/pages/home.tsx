@@ -46,7 +46,7 @@ export default function Home() {
       {/* HERO SECTION */}
       <section className="elementor-section elementor-top-section elementor-element elementor-element-1a9b8b1 elementor-section-height-full elementor-section-content-middle elementor-section-full_width elementor-section-height-default elementor-section-items-middle" 
         style={{
-          background: `linear-gradient(rgba(139, 69, 19, 0.85), rgba(160, 82, 45, 0.8)), url('/assets/ליקוטי מוהרן אבן 1_1757275832024.jpg')`,
+          background: `url('/images/hero-books-composition.png')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundAttachment: 'fixed',
