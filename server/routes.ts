@@ -7,10 +7,15 @@ import { fileURLToPath } from "url";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Serve attached_assets images directly 
-  const currentDir = path.dirname(fileURLToPath(import.meta.url));
-  app.use('/images', express.static(path.join(currentDir, '..', 'attached_assets'), {
+  const attachedAssetsPath = path.resolve(process.cwd(), 'attached_assets');
+  console.log('📁 Express static path:', attachedAssetsPath);
+  
+  app.use('/images', (req, res, next) => {
+    console.log('🖼️ Image request:', req.url);
+    next();
+  }, express.static(attachedAssetsPath, {
     setHeaders: (res, filePath) => {
-      // Set proper headers for images with UTF-8 support
+      console.log('📤 Serving file:', filePath);
       res.setHeader('Cache-Control', 'public, max-age=31536000');
       if (filePath.endsWith('.jpg') || filePath.endsWith('.jpeg')) {
         res.setHeader('Content-Type', 'image/jpeg');

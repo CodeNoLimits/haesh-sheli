@@ -191,31 +191,7 @@ export default function Store() {
                         src={imagePath}
                         alt={currentLanguage === 'he' ? product.name : product.nameEnglish || product.name}
                         style={{width: '100%', height: '300px', objectFit: 'cover'}}
-                        onLoad={(e) => {
-                          // Image loaded successfully, ensure it's visible
-                          (e.target as HTMLImageElement).style.display = 'block';
-                        }}
-                        onError={(e) => {
-                          const imgElement = e.target as HTMLImageElement;
-                          console.log('Image failed to load:', imagePath);
-                          // Try alternative loading method or show elegant fallback
-                          imgElement.style.display = 'none';
-                          const parent = imgElement.parentElement;
-                          if (parent && !parent.querySelector('.image-placeholder')) {
-                            const placeholder = document.createElement('div');
-                            placeholder.className = 'image-placeholder';
-                            placeholder.style.cssText = 'width: 100%; height: 300px; background: linear-gradient(135deg, #dc3545 0%, #c82333 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 1rem; flex-direction: column; gap: 0.5rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);';
-                            placeholder.innerHTML = `<div style="font-size: 3rem;">📚</div><div style="text-align: center; font-weight: bold; padding: 0 1rem;">${currentLanguage === 'he' ? product.name : product.nameEnglish || product.name}</div>`;
-                            parent.insertBefore(placeholder, imgElement);
-                          }
-                        }}
                       />
-                      {!imagePath && (
-                        <div style={{width: '100%', height: '300px', background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#666', fontSize: '1rem', flexDirection: 'column', gap: '0.5rem'}}>
-                          <div style={{fontSize: '3rem'}}>📖</div>
-                          <div style={{textAlign: 'center', fontWeight: 'bold'}}>{currentLanguage === 'he' ? product.name : product.nameEnglish || product.name}</div>
-                        </div>
-                      )}
                       <div style={{padding: '1.5rem'}}>
                         <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', marginBottom: '0.5rem', color: '#333'}}>
                           {currentLanguage === 'he' ? product.name : product.nameEnglish || product.name}
