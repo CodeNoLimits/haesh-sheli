@@ -136,6 +136,12 @@ export function Header({ currentLanguage = 'he', onLanguageChange }: HeaderProps
                         {t.downloads}
                       </a>
                     </li>
+                    {/* Yaakov Temp Tab - Always right */}
+                    <li className={`menu-item ${location === '/yacov-ren-temp' ? 'current-menu-item' : ''}`} style={{marginLeft: 'auto'}}>
+                      <a href="/yacov-ren-temp" className="elementor-item" style={{color: '#ffc107', textDecoration: 'none', fontWeight: 'bold', background: 'rgba(255,193,7,0.2)', padding: '0.3rem 0.6rem', borderRadius: '4px', fontSize: '0.9rem'}}>
+                        יעקב הן
+                      </a>
+                    </li>
                   </ul>
                 </nav>
               </div>
@@ -182,9 +188,36 @@ export function Header({ currentLanguage = 'he', onLanguageChange }: HeaderProps
           </div>
         </div>
 
-        {/* FIRE ICON COLUMN */}
+        {/* CART AND FIRE COLUMN */}
         <div className="elementor-column elementor-col-25 elementor-top-column elementor-element elementor-element-ba655d5">
-          <div className="elementor-widget-wrap elementor-element-populated">
+          <div className="elementor-widget-wrap elementor-element-populated" style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem'}}>
+            {/* Cart Icon */}
+            <div className="cart-container" style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
+              <div style={{position: 'relative', cursor: 'pointer'}}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7 4V2C7 1.45 7.45 1 8 1H16C16.55 1 17 1.45 17 2V4H20C20.55 4 21 4.45 21 5S20.55 6 20 6H19V19C19 20.1 18.1 21 17 21H7C5.9 21 5 20.1 5 19V6H4C3.45 6 3 5.55 3 5S3.45 4 4 4H7ZM9 3V4H15V3H9ZM7 6V19H17V6H7Z"/>
+                  <path d="M9 8V17H11V8H9ZM13 8V17H15V8H13Z"/>
+                </svg>
+                <span style={{
+                  position: 'absolute',
+                  top: '-8px',
+                  right: '-8px',
+                  background: '#ffc107',
+                  color: '#333',
+                  borderRadius: '50%',
+                  width: '18px',
+                  height: '18px',
+                  fontSize: '12px',
+                  fontWeight: 'bold',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}>0</span>
+              </div>
+              <span style={{color: 'white', fontSize: '1rem', fontWeight: 'bold'}}>₪0</span>
+            </div>
+            
+            {/* Fire Icon */}
             <div className="elementor-element elementor-widget elementor-widget-heading" style={{textAlign: 'center'}}>
               <div className="elementor-widget-container">
                 <h2 className="elementor-heading-title elementor-size-default" style={{color: 'white', fontSize: '1.5rem', fontWeight: 'bold', margin: 0}}>

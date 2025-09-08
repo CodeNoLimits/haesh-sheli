@@ -39,10 +39,10 @@ export default function Store() {
       <Header currentLanguage={currentLanguage} onLanguageChange={setLanguage} />
 
       {/* MAIN CONTENT */}
-      <section style={{background: '#f8f9fa', padding: '3rem 0', minHeight: '100vh'}}>
+      <section style={{background: '#f8f9fa', padding: '3rem 0', minHeight: '100vh', overflowY: 'auto'}}>
         <div className="elementor-container" style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
           
-          <div style={{display: 'grid', gridTemplateColumns: '300px 1fr', gap: '3rem', alignItems: 'start'}}>
+          <div style={{display: 'grid', gridTemplateColumns: '300px 1fr', gap: '3rem', alignItems: 'start', height: 'auto'}}>
             
             {/* FILTERS SIDEBAR */}
             <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', position: 'sticky', top: '2rem'}}>
@@ -181,29 +181,39 @@ export default function Store() {
                   const maxPrice = variants.length > 0 ? Math.max(...variants.map(v => v.price)) : 0;
                   const featuredVariant = variants.find(v => v.inStock) || variants[0];
                   
-                  // Fix image path - remove @assets/ prefix completely for static serving
-                  const imagePath = product.images && product.images[0] ? product.images[0].replace('@assets/', '/attached_assets/') : '';
+                  // Fix image path - serve directly from attached_assets
+                  const imagePath = product.images && product.images[0] ? 
+                    product.images[0].replace('@assets/', '/attached_assets/') : '';
+                  
+                  // Fallback: try direct file serving if image exists
+                  const fallbackPath = imagePath ? imagePath : `/attached_assets/${product.id}-1.jpg`;
                   
                   return (
                     <div key={product.id} style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', transition: 'transform 0.3s ease'}}>
-                      {imagePath ? (
-                        <img 
-                          src={imagePath}
-                          alt={currentLanguage === 'he' ? product.name : product.nameEnglish || product.name}
-                          style={{width: '100%', height: '300px', objectFit: 'cover'}}
-                          onError={(e) => {
-                            const imgElement = e.target as HTMLImageElement;
-                            imgElement.style.display = 'none';
-                            const parent = imgElement.parentElement;
-                            if (parent) {
-                              const placeholder = document.createElement('div');
-                              placeholder.style.cssText = 'width: 100%; height: 300px; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); display: flex; align-items: center; justify-content: center; color: #666; font-size: 1rem; flex-direction: column; gap: 0.5rem;';
-                              placeholder.innerHTML = `<div>📖</div><div style="text-align: center; font-weight: bold;">${currentLanguage === 'he' ? product.name : product.nameEnglish || product.name}</div>`;
-                              parent.insertBefore(placeholder, imgElement);
-                            }
-                          }}
-                        />
-                      ) : (
+                      <img 
+                        src={imagePath || fallbackPath}
+                        alt={currentLanguage === 'he' ? product.name : product.nameEnglish || product.name}
+                        style={{width: '100%', height: '300px', objectFit: 'cover'}}
+                        onLoad={(e) => {
+                          // Image loaded successfully, ensure it's visible
+                          (e.target as HTMLImageElement).style.display = 'block';
+                        }}
+                        onError={(e) => {
+                          const imgElement = e.target as HTMLImageElement;
+                          console.log('Image failed to load:', imagePath);
+                          // Try alternative loading method or show elegant fallback
+                          imgElement.style.display = 'none';
+                          const parent = imgElement.parentElement;
+                          if (parent && !parent.querySelector('.image-placeholder')) {
+                            const placeholder = document.createElement('div');
+                            placeholder.className = 'image-placeholder';
+                            placeholder.style.cssText = 'width: 100%; height: 300px; background: linear-gradient(135deg, #dc3545 0%, #c82333 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 1rem; flex-direction: column; gap: 0.5rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);';
+                            placeholder.innerHTML = `<div style="font-size: 3rem;">📚</div><div style="text-align: center; font-weight: bold; padding: 0 1rem;">${currentLanguage === 'he' ? product.name : product.nameEnglish || product.name}</div>`;
+                            parent.insertBefore(placeholder, imgElement);
+                          }
+                        }}
+                      />
+                      {!imagePath && (
                         <div style={{width: '100%', height: '300px', background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#666', fontSize: '1rem', flexDirection: 'column', gap: '0.5rem'}}>
                           <div style={{fontSize: '3rem'}}>📖</div>
                           <div style={{textAlign: 'center', fontWeight: 'bold'}}>{currentLanguage === 'he' ? product.name : product.nameEnglish || product.name}</div>
