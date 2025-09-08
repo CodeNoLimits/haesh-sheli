@@ -14,11 +14,48 @@ export default function Store() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   
+  // Function to detect language from book title
+  const detectLanguageFromTitle = (product: any) => {
+    const title = getBookDisplayTitle(product);
+    const titleToCheck = title || product.name || '';
+    
+    // Hebrew detection - contains Hebrew characters
+    if (/[\u0590-\u05FF]/.test(titleToCheck)) {
+      return 'עברית';
+    }
+    
+    // Russian detection - contains Cyrillic characters
+    if (/[\u0400-\u04FF]/.test(titleToCheck)) {
+      return 'Русский';
+    }
+    
+    // French detection - French specific words or accents
+    if (/[àâäéèêëïîôùûüÿç]/.test(titleToCheck) || 
+        /\b(le|la|les|de|du|des|et|avec|pour|dans|sur|par|un|une|ce|cette|qui|que|dont|où|mais|ou|donc|or|ni|car|selon|depuis|pendant|avant|après|sous|sans|avec|contre|entre|parmi|chez|vers|jusqu|depuis|malgré|grâce|cause|suite|lors|durant|moyennant|faute|exception|travers|sein|bord|long|large|bout|sein)\b/i.test(titleToCheck)) {
+      return 'Français';
+    }
+    
+    // Spanish detection - Spanish specific words or accents
+    if (/[áéíóúüñ¿¡]/.test(titleToCheck) || 
+        /\b(el|la|los|las|de|del|y|en|que|es|se|no|te|le|da|su|por|son|con|para|al|lo|le|da|me|si|ya|todo|pero|más|hacer|go|tiempo|muy|puede|ahora|cada|así|vida|sobre|después|sin|hasta|año|contra|entre|durante|menos|tanto|casi|siempre|vez|lugar|bien|día|forma|aquí|allí|donde|cuando|mientras|antes|aunque|porque|como|qué|cuál|dónde|cuándo|cómo|por|qué)\b/i.test(titleToCheck)) {
+      return 'Español';
+    }
+    
+    // Default to English for Latin characters
+    if (/^[a-zA-Z\s\-.,;:'"()!?0-9]+$/.test(titleToCheck)) {
+      return 'English';
+    }
+    
+    // Default fallback
+    return 'עברית';
+  };
+
   // Filter products based on selected criteria
   const filteredProducts = useMemo(() => {
     return Object.values(realBreslovProducts).filter(product => {
-      // Language filter
-      const matchesLanguage = selectedLanguages.length === 0 || selectedLanguages.includes(product.language || 'עברית');
+      // Language filter - detect from title
+      const productLanguage = detectLanguageFromTitle(product);
+      const matchesLanguage = selectedLanguages.length === 0 || selectedLanguages.includes(productLanguage);
       
       // Category filter  
       const matchesCategory = selectedCategory === 'all' || product.category === selectedCategory;
