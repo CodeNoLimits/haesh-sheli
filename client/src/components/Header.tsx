@@ -66,6 +66,9 @@ export function Header({ currentLanguage = 'he', onLanguageChange }: HeaderProps
   const { totalItems, totalPrice, setIsCartOpen } = useCart();
   const t = translations[currentLanguage as keyof typeof translations] || translations.he;
   
+  // Force re-render when cart changes
+  const [, forceUpdate] = useState({});
+  
   const languageFlags = {
     he: '🇮🇱',
     en: '🇺🇸', 
@@ -139,6 +142,11 @@ export function Header({ currentLanguage = 'he', onLanguageChange }: HeaderProps
                         {t.downloads}
                       </a>
                     </li>
+                    <li className={`menu-item ${location === '/yaaakov' ? 'current-menu-item' : ''}`}>
+                      <a href="/yaaakov" className="elementor-item" style={{color: 'white', textDecoration: 'none', fontWeight: location === '/yaaakov' ? 'bold' : 'normal'}}>
+                        {currentLanguage === 'he' ? 'יעקב' : currentLanguage === 'en' ? 'Yaaakov' : currentLanguage === 'fr' ? 'Yaaakov' : currentLanguage === 'es' ? 'Yaaakov' : currentLanguage === 'ru' ? 'Яааков' : 'יעקב'}
+                      </a>
+                    </li>
                   </ul>
                 </nav>
               </div>
@@ -200,21 +208,27 @@ export function Header({ currentLanguage = 'he', onLanguageChange }: HeaderProps
                   <path d="M9 8V17H11V8H9ZM13 8V17H15V8H13Z"/>
                 </svg>
                 {totalItems > 0 && (
-                  <span style={{
-                    position: 'absolute',
-                    top: '-8px',
-                    right: '-8px',
-                    background: '#ffc107',
-                    color: '#333',
-                    borderRadius: '50%',
-                    width: '18px',
-                    height: '18px',
-                    fontSize: '12px',
-                    fontWeight: 'bold',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                  }}>{totalItems}</span>
+                  <span 
+                    key={totalItems} // Force re-render on change
+                    style={{
+                      position: 'absolute',
+                      top: '-8px',
+                      right: '-8px',
+                      background: '#ffc107',
+                      color: '#333',
+                      borderRadius: '50%',
+                      width: '18px',
+                      height: '18px',
+                      fontSize: '12px',
+                      fontWeight: 'bold',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      animation: totalItems > 0 ? 'bounce 0.5s ease-out' : 'none'
+                    }}
+                  >
+                    {totalItems}
+                  </span>
                 )}
               </div>
               <span style={{color: 'white', fontSize: '1rem', fontWeight: 'bold'}}>

@@ -181,14 +181,40 @@ export default function Downloads() {
                   </div>
 
                   {/* Download Button */}
-                  <a 
-                    href={book.downloadUrl} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
+                  <button 
+                    onClick={() => {
+                      // Try direct download first, with fallback handling
+                      const link = document.createElement('a');
+                      link.href = book.downloadUrl;
+                      link.target = '_blank';
+                      link.rel = 'noopener noreferrer';
+                      
+                      // Add error handling
+                      const timeout = setTimeout(() => {
+                        alert(currentLanguage === 'he' ? 
+                          `לא ניתן להוריד ${book.title} כרגע. אנא נסה שוב מאוחר יותר או פנה אלינו לקבלת הספר.` :
+                          `Unable to download ${book.titleEnglish} right now. Please try again later or contact us for the book.`
+                        );
+                      }, 3000);
+                      
+                      // If successful, clear the timeout
+                      link.onload = () => clearTimeout(timeout);
+                      link.onerror = () => {
+                        clearTimeout(timeout);
+                        alert(currentLanguage === 'he' ? 
+                          `שגיאה בהורדת ${book.title}. נא ליצור קשר לקבלת הספר.` :
+                          `Error downloading ${book.titleEnglish}. Please contact us to get the book.`
+                        );
+                      };
+                      
+                      document.body.appendChild(link);
+                      link.click();
+                      document.body.removeChild(link);
+                    }}
                     className="block w-full bg-red-600 hover:bg-red-700 text-white text-center py-2 px-4 rounded-md font-medium transition-colors duration-200"
                   >
                     {currentLanguage === 'he' ? 'הורדה חינם' : 'Free Download'}
-                  </a>
+                  </button>
                 </div>
               </div>
             ))
