@@ -1021,7 +1021,7 @@ export const realBreslovProducts: Record<string, Product> = {
 
   'blossoms-of-spring-english': {
     id: 'blossoms-of-spring-english',
-    name: 'אבי הנחל',
+    name: 'Blossoms of the Spring',
     nameEnglish: 'Blossoms of the Spring',
     description: 'ספר יסוד של רבי ישראל דב אודסר זצ"ל על תורת רבי נחמן מברסלב. מכיל תורות עמוקות על עבודת ה\' ודרך החסידות ברסלב.',
     descriptionEnglish: 'A foundational book by Rabbi Israel Dov Odesser on the teachings of Rabbi Nachman of Breslov. Contains deep teachings on serving God and the Breslov path.',
@@ -1101,8 +1101,9 @@ export const realBreslovProducts: Record<string, Product> = {
 
   'emounat-iteha-french': {
     id: 'emounat-iteha-french',
-    name: 'אמונת עיתך',
-    nameEnglish: 'Émounat Ité\'ha - Living with Faith',
+    name: 'Émounat Itékha',
+    nameEnglish: 'Faith in You - Living with Faith',
+    nameFrench: 'Émounat Itékha',
     description: 'ספר על חיים באמונה ובבטחון בבורא העולם. מבוסס על תורות רבי נחמן מברסלב בנושא האמונה והביטחון.',
     descriptionEnglish: 'A book about living with faith and trust in the Creator. Based on Rabbi Nachman\'s teachings on faith and confidence.',
     category: 'אמונה וביטחון',
@@ -1141,8 +1142,9 @@ export const realBreslovProducts: Record<string, Product> = {
 
   'eretz-israel-french': {
     id: 'eretz-israel-french',
-    name: 'ארץ ישראל',
-    nameEnglish: 'Eretz Israel - The Promised Land',
+    name: 'Eretz Israël',
+    nameEnglish: 'Land of Israel - The Promised Land',
+    nameFrench: 'Eretz Israël',
     description: 'ספר המתאר את קדושת ארץ ישראל ומעלתה הרוחנית על פי תורת רבי נחמן מברסלב ותלמידיו.',
     descriptionEnglish: 'A book describing the holiness of the Land of Israel and its spiritual significance according to Rabbi Nachman and his disciples.',
     category: 'ארץ ישראל',
@@ -1437,8 +1439,8 @@ export const realBreslovProducts: Record<string, Product> = {
 
   'likutey-moharan-english': {
     id: 'likutey-moharan-english',
-    name: 'ליקוטי מוהרן',
-    nameEnglish: 'Likutey Moharan - English Edition',
+    name: 'Likutei Moharan',
+    nameEnglish: 'Likutei Moharan - English Edition',
     description: 'ספר ליקוטי מוהרן המקורי של רבי נחמן מברסלב בתרגום אנגלי מלא. כולל חלק א\' וחלק ב\' בכרך אחד.',
     descriptionEnglish: 'The original Likutey Moharan by Rabbi Nachman of Breslov in complete English translation. Includes both Part 1 and Part 2 in one volume.',
     category: 'ליקוטי מוהרן',
@@ -1518,8 +1520,9 @@ export const realBreslovProducts: Record<string, Product> = {
 
   'sipurey-maasiyot-french': {
     id: 'sipurey-maasiyot-french',
-    name: 'סיפורי מעשיות',
-    nameEnglish: 'Les Contes de Rabbi Na\'hman',
+    name: 'Les Contes de Rabbi Nachman',
+    nameEnglish: 'The Tales of Rabbi Nachman',
+    nameFrench: 'Les Contes de Rabbi Nachman',
     description: 'אוסף הסיפורים המפורסמים של רבי נחמן מברסלב בתרגום צרפתי יפה. כולל את כל 13 הסיפורים עם הסברים.',
     descriptionEnglish: 'The famous collection of Rabbi Nachman\'s stories in beautiful French translation. Includes all 13 stories with explanations.',
     category: 'סיפורים',
@@ -1558,7 +1561,7 @@ export const realBreslovProducts: Record<string, Product> = {
 
   'letter-from-heaven-english': {
     id: 'letter-from-heaven-english',
-    name: 'מכתב משמים',
+    name: 'The Letter From Heaven',
     nameEnglish: 'The Letter From Heaven',
     description: 'המכתב המפורסם שנמצא בכותל המערבי ומיוחס לרבי נחמן מברסלב. גילוי נסתר של תורות עמוקות.',
     descriptionEnglish: 'The famous letter found at the Western Wall and attributed to Rabbi Nachman of Breslov. A mystical revelation of deep teachings.',
@@ -1638,8 +1641,9 @@ export const realBreslovProducts: Record<string, Product> = {
 
   'najal-novea-spanish': {
     id: 'najal-novea-spanish',
-    name: 'נחל נובע',
-    nameEnglish: 'Najal Novea - Flowing Stream',
+    name: 'Najal Novea',
+    nameEnglish: 'Flowing Stream',
+    nameSpanish: 'Najal Novea',
     description: 'ספר נחל נובע בתרגום ספרדי. מכיל תורות וחידושים מעולם החסידות ברסלב למען הקהילה הספרדית.',
     descriptionEnglish: 'The book Najal Novea in Spanish translation. Contains teachings and insights from the Breslov Hasidic world for the Spanish-speaking community.',
     category: 'תורות',
@@ -1719,7 +1723,7 @@ export const realBreslovProducts: Record<string, Product> = {
 
   'tales-ancient-times-english': {
     id: 'tales-ancient-times-english',
-    name: 'סיפורי מעשיות',
+    name: 'Tales of Ancient Times',
     nameEnglish: 'Tales of Ancient Times',
     description: 'אוסף סיפורי המעשיות של רבי נחמן מברסלב באנגלית. מהדורה מיוחדת עם עיצוב מסורתי ותרגום מדויק.',
     descriptionEnglish: 'Collection of Rabbi Nachman\'s tales in English. Special edition with traditional design and accurate translation.',

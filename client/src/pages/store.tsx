@@ -1,6 +1,7 @@
 import { realBreslovProducts } from '../data/realProducts';
 import { Header } from '../components/Header';
 import { useLanguage } from '../contexts/LanguageContext';
+import { getBookDisplayTitle } from '../utils/bookTitleHelper';
 
 export default function Store() {
   const { currentLanguage, setLanguage, t } = useLanguage();
@@ -189,12 +190,12 @@ export default function Store() {
                     <div key={product.id} style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', transition: 'transform 0.3s ease'}}>
                       <img 
                         src={imagePath}
-                        alt={currentLanguage === 'he' ? product.name : product.nameEnglish || product.name}
+                        alt={getBookDisplayTitle(product)}
                         style={{width: '100%', height: '300px', objectFit: 'cover'}}
                       />
                       <div style={{padding: '1.5rem'}}>
                         <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', marginBottom: '0.5rem', color: '#333'}}>
-                          {currentLanguage === 'he' ? product.name : product.nameEnglish || product.name}
+                          {getBookDisplayTitle(product)}
                         </h3>
                         <div style={{display: 'flex', alignItems: 'center', marginBottom: '0.8rem'}}>
                           <div style={{color: '#ffc107', fontSize: '1.1rem'}}>
