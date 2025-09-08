@@ -1,6 +1,11 @@
+import { Header } from '../components/Header';
+import { useLanguage } from '../contexts/LanguageContext';
+
 export default function Home() {
+  const { currentLanguage, setLanguage } = useLanguage();
+  
   return (
-    <div className="rtl home page-template-default page page-id-13 wp-custom-logo theme-hello-elementor woocommerce-js elementor-default elementor-kit-5 elementor-page elementor-page-13">
+    <div className="rtl home page-template-default page page-id-13 wp-custom-logo theme-hello-elementor woocommerce-js elementor-default elementor-kit-5 elementor-page elementor-page-13" style={{direction: currentLanguage === 'he' ? 'rtl' : 'ltr'}}>
       {/* TOP BAR */}
       <section className="elementor-section elementor-top-section elementor-element elementor-element-ba655d5 elementor-section-full_width elementor-hidden-tablet elementor-hidden-mobile elementor-section-height-default" style={{background: '#333', color: 'white', padding: '8px 0'}}>
         <div className="elementor-container elementor-column-gap-default">
@@ -20,7 +25,13 @@ export default function Home() {
                           </g>
                         </svg>
                       </span>
-                      <span className="elementor-icon-list-text">משלוחים חינם החל מ- 399 ש"ח</span>
+                      <span className="elementor-icon-list-text">
+                        {currentLanguage === 'he' ? 'משלוחים חינם החל מ- 399 ש"ח' :
+                         currentLanguage === 'en' ? 'Free shipping from 399 ₪' :
+                         currentLanguage === 'fr' ? 'Livraison gratuite à partir de 399 ₪' :
+                         currentLanguage === 'es' ? 'Envío gratis desde 399 ₪' :
+                         currentLanguage === 'ru' ? 'Бесплатная доставка от 399 ₪' : 'משלוחים חינם החל מ- 399 ש"ח'}
+                      </span>
                     </li>
                   </ul>
                 </div>
@@ -30,59 +41,55 @@ export default function Home() {
         </div>
       </section>
 
-      {/* MAIN HEADER */}
-      <section className="elementor-section elementor-top-section elementor-element elementor-element-ba655d5 elementor-section-full_width elementor-hidden-tablet elementor-hidden-mobile" style={{background: '#dc3545', padding: '1rem 0'}}>
-        <div className="elementor-container elementor-column-gap-default" style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-          {/* LOGO COLUMN */}
-          <div className="elementor-column elementor-col-25 elementor-top-column elementor-element elementor-element-8cf799f">
-            <div className="elementor-widget-wrap elementor-element-populated">
-              <div className="elementor-element elementor-widget elementor-widget-theme-site-logo elementor-widget-image">
-                <div className="elementor-widget-container">
-                  <a href="/">
-                    <img 
-                      width="185" 
-                      height="300"
-                      src="https://www.haesh-sheli.co.il/wp-content/uploads/2021/12/cropped-%D7%A7%D7%A8%D7%95-%D7%A8%D7%91%D7%99-%D7%99%D7%A9%D7%A8%D7%90%D7%9C-%D7%91%D7%A8-%D7%90%D7%95%D7%93%D7%A1%D7%A8.d110a0.webp" 
-                      className="attachment-full size-full wp-image-27" 
-                      alt="האש שלי תוקף עד ביאת המשיח"
-                      style={{height: '80px', width: 'auto'}}
-                    />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
+      <Header currentLanguage={currentLanguage} onLanguageChange={setLanguage} />
 
-          {/* NAVIGATION COLUMN */}
-          <div className="elementor-column elementor-col-33 elementor-top-column elementor-element elementor-element-b208748">
+      {/* HERO SECTION */}
+      <section className="elementor-section elementor-top-section elementor-element elementor-element-1a9b8b1 elementor-section-height-full elementor-section-content-middle elementor-section-full_width elementor-section-height-default elementor-section-items-middle" style={{background: 'linear-gradient(135deg, #dc3545 0%, #c82333 100%)', color: 'white', padding: '6rem 0'}}>
+        <div className="elementor-container elementor-column-gap-default" style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
+          <div className="elementor-column elementor-col-100 elementor-top-column elementor-element">
             <div className="elementor-widget-wrap elementor-element-populated">
-              <div className="elementor-element elementor-nav-menu__align-center elementor-nav-menu--stretch elementor-nav-menu--dropdown-tablet elementor-nav-menu__text-align-aside elementor-nav-menu--toggle elementor-nav-menu--burger elementor-widget elementor-widget-nav-menu">
+              <div className="elementor-element elementor-widget elementor-widget-heading" style={{textAlign: 'center'}}>
                 <div className="elementor-widget-container">
-                  <nav aria-label="תפריט" className="elementor-nav-menu--main elementor-nav-menu__container elementor-nav-menu--layout-horizontal e--pointer-text e--animation-grow">
-                    <ul id="menu-1-ac3cd0c" className="elementor-nav-menu" style={{display: 'flex', gap: '1.5rem', listStyle: 'none', margin: 0, padding: 0, flexWrap: 'wrap'}}>
-                      <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-13 current_page_item menu-item-195">
-                        <a href="/" aria-current="page" className="elementor-item elementor-item-active" style={{color: 'white', textDecoration: 'none', fontWeight: 'bold', fontSize: '0.9rem'}}>דף הבית</a>
-                      </li>
-                      <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-695">
-                        <a href="/store" className="elementor-item" style={{color: 'white', textDecoration: 'none', fontSize: '0.9rem'}}>חנות</a>
-                      </li>
-                      <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-54">
-                        <a href="/about" className="elementor-item" style={{color: 'white', textDecoration: 'none', fontSize: '0.9rem'}}>עלינו</a>
-                      </li>
-                      <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-51">
-                        <a href="/magazine" className="elementor-item" style={{color: 'white', textDecoration: 'none', fontSize: '0.9rem'}}>מגזין</a>
-                      </li>
-                      <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-53">
-                        <a href="/join" className="elementor-item" style={{color: 'white', textDecoration: 'none', fontSize: '0.9rem'}}>הצטרפו אלינו</a>
-                      </li>
-                      <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-52">
-                        <a href="/contact" className="elementor-item" style={{color: 'white', textDecoration: 'none', fontSize: '0.9rem'}}>צור קשר</a>
-                      </li>
-                      <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-downloads">
-                        <a href="/downloads" className="elementor-item" style={{color: 'white', textDecoration: 'none', fontSize: '0.9rem'}}>הורדות</a>
-                      </li>
-                    </ul>
-                  </nav>
+                  <h1 className="elementor-heading-title elementor-size-default" style={{fontSize: '3.5rem', fontWeight: 'bold', marginBottom: '2rem', textShadow: '2px 2px 4px rgba(0,0,0,0.3)'}}>
+                    {currentLanguage === 'he' ? 'ברוכים הבאים לעולם ברסלב' : 
+                     currentLanguage === 'en' ? 'Welcome to the World of Breslov' :
+                     currentLanguage === 'fr' ? 'Bienvenue dans le Monde de Breslov' :
+                     currentLanguage === 'es' ? 'Bienvenidos al Mundo de Breslov' :
+                     currentLanguage === 'ru' ? 'Добро пожаловать в мир Бреслов' : 'ברוכים הבאים לעולם ברסלב'}
+                  </h1>
+                  <p style={{fontSize: '1.3rem', marginBottom: '3rem', opacity: 0.9}}>
+                    {currentLanguage === 'he' ? 'אוסף מקיף של ספרי רבי נחמן מברסלב ותלמידיו' :
+                     currentLanguage === 'en' ? 'Comprehensive collection of Rabbi Nachman of Breslov and his students\' books' :
+                     currentLanguage === 'fr' ? 'Collection complète des livres de Rabbi Nachman de Breslov et de ses étudiants' :
+                     currentLanguage === 'es' ? 'Colección completa de libros del Rabino Nachman de Breslov y sus estudiantes' :
+                     currentLanguage === 'ru' ? 'Полная коллекция книг Рабби Нахмана из Бреслов и его учеников' : 'אוסף מקיף של ספרי רבי נחמן מברסלב ותלמידיו'}
+                  </p>
+                  <div style={{display: 'flex', gap: '2rem', justifyContent: 'center', flexWrap: 'wrap'}}>
+                    <a href="/store" style={{textDecoration: 'none'}}>
+                      <button style={{background: 'white', color: '#dc3545', border: 'none', padding: '1rem 2rem', borderRadius: '8px', cursor: 'pointer', fontSize: '1.1rem', fontWeight: 'bold', boxShadow: '0 4px 15px rgba(0,0,0,0.2)', transition: 'transform 0.3s ease'}} 
+                              onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
+                              onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+                      >
+                        {currentLanguage === 'he' ? 'עיינו בחנות' :
+                         currentLanguage === 'en' ? 'Browse Store' :
+                         currentLanguage === 'fr' ? 'Parcourir la Boutique' :
+                         currentLanguage === 'es' ? 'Explorar Tienda' :
+                         currentLanguage === 'ru' ? 'Просмотреть Магазин' : 'עיינו בחנות'}
+                      </button>
+                    </a>
+                    <a href="/downloads" style={{textDecoration: 'none'}}>
+                      <button style={{background: 'rgba(255,255,255,0.1)', color: 'white', border: '2px solid white', padding: '1rem 2rem', borderRadius: '8px', cursor: 'pointer', fontSize: '1.1rem', fontWeight: 'bold', transition: 'all 0.3s ease'}}
+                              onMouseEnter={(e) => {e.currentTarget.style.background = 'white'; e.currentTarget.style.color = '#dc3545';}}
+                              onMouseLeave={(e) => {e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; e.currentTarget.style.color = 'white';}}
+                      >
+                        {currentLanguage === 'he' ? 'הורדות חינם' :
+                         currentLanguage === 'en' ? 'Free Downloads' :
+                         currentLanguage === 'fr' ? 'Téléchargements Gratuits' :
+                         currentLanguage === 'es' ? 'Descargas Gratuitas' :
+                         currentLanguage === 'ru' ? 'Бесплатные Загрузки' : 'הורדות חינם'}
+                      </button>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>

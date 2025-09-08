@@ -239,12 +239,12 @@ export default function Checkout() {
                   <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
                     <div>
                       <h4 style={{fontSize: '1.1rem', fontWeight: 'bold', color: '#333', marginBottom: '0.5rem'}}>
-                        ליקוטי מוהרן
+                        ראש השנה שלי
                       </h4>
-                      <p style={{color: '#666', fontSize: '0.9rem'}}>כמות: 1</p>
+                      <p style={{color: '#666', fontSize: '0.9rem'}}>גדול סקאי - כמות: 1</p>
                     </div>
                     <div style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#dc3545'}}>
-                      75.00 ₪
+                      45.00 ₪
                     </div>
                   </div>
                 </div>
@@ -253,12 +253,12 @@ export default function Checkout() {
                   <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
                     <div>
                       <h4 style={{fontSize: '1.1rem', fontWeight: 'bold', color: '#333', marginBottom: '0.5rem'}}>
-                        ליקוטי תפילות
+                        תודה והודאה
                       </h4>
-                      <p style={{color: '#666', fontSize: '0.9rem'}}>כמות: 2</p>
+                      <p style={{color: '#666', fontSize: '0.9rem'}}>עור יוקרה 2 כרכים - כמות: 1</p>
                     </div>
                     <div style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#dc3545'}}>
-                      150.00 ₪
+                      380.00 ₪
                     </div>
                   </div>
                 </div>
@@ -268,7 +268,7 @@ export default function Checkout() {
               <div style={{borderTop: '2px solid #eee', paddingTop: '1rem'}}>
                 <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem'}}>
                   <span style={{color: '#666'}}>סכום ביניים:</span>
-                  <span style={{fontWeight: 'bold'}}>225.00 ₪</span>
+                  <span style={{fontWeight: 'bold'}}>425.00 ₪</span>
                 </div>
                 <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem'}}>
                   <span style={{color: '#666'}}>משלוח:</span>
@@ -276,7 +276,7 @@ export default function Checkout() {
                 </div>
                 <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '2rem', fontSize: '1.3rem', fontWeight: 'bold', paddingTop: '1rem', borderTop: '1px solid #eee'}}>
                   <span>סה"כ:</span>
-                  <span style={{color: '#dc3545'}}>225.00 ₪</span>
+                  <span style={{color: '#dc3545'}}>425.00 ₪</span>
                 </div>
               </div>
 
