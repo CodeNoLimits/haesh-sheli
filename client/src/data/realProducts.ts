@@ -1345,7 +1345,7 @@ export const realBreslovProducts: Record<string, Product> = {
   'kitvey-rabbi-nachman-french': {
     id: 'kitvey-rabbi-nachman-french',
     name: 'כתבי רבי נחמן',
-    nameEnglish: 'Éktivey Rabbi Na\'hman de Breslev',
+    nameEnglish: 'Kitve Rabbi Nachman de Breslov',
     description: 'אוסף כתבי רבי נחמן מברסלב בתרגום צרפתי. כולל תורות, מכתבים ותפילות שנכתבו בידי רבי נחמן עצמו.',
     descriptionEnglish: 'Collection of Rabbi Nachman\'s writings in French translation. Includes teachings, letters and prayers written by Rabbi Nachman himself.',
     category: 'כתבי רבי נחמן',
