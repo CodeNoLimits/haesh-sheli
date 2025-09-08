@@ -2,9 +2,35 @@ import { realBreslovProducts } from '../data/realProducts';
 import { Header } from '../components/Header';
 import { useLanguage } from '../contexts/LanguageContext';
 import { getBookDisplayTitle } from '../utils/bookTitleHelper';
+import { useState, useMemo } from 'react';
+import { useCart } from '../contexts/CartContext';
 
 export default function Store() {
   const { currentLanguage, setLanguage, t } = useLanguage();
+  const { addItem, totalItems, setIsCartOpen } = useCart();
+  
+  // Filter states
+  const [selectedLanguages, setSelectedLanguages] = useState<string[]>(['עברית']); // Hebrew selected by default
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  
+  // Filter products based on selected criteria
+  const filteredProducts = useMemo(() => {
+    return Object.values(realBreslovProducts).filter(product => {
+      // Language filter
+      const matchesLanguage = selectedLanguages.length === 0 || selectedLanguages.includes(product.language || 'עברית');
+      
+      // Category filter  
+      const matchesCategory = selectedCategory === 'all' || product.category === selectedCategory;
+      
+      // Search filter
+      const matchesSearch = !searchTerm || 
+        getBookDisplayTitle(product).toLowerCase().includes(searchTerm.toLowerCase()) ||
+        product.category.toLowerCase().includes(searchTerm.toLowerCase());
+        
+      return matchesLanguage && matchesCategory && matchesSearch;
+    });
+  }, [selectedLanguages, selectedCategory, searchTerm]);
   
   return (
     <div className="rtl home page-template-default page page-id-8 wp-custom-logo theme-hello-elementor woocommerce-js elementor-default elementor-kit-5 elementor-page elementor-page-8" style={{direction: currentLanguage === 'he' ? 'rtl' : 'ltr'}}>
@@ -60,6 +86,8 @@ export default function Store() {
                 <label style={{fontWeight: 'bold', marginBottom: '0.8rem', display: 'block', color: '#333'}}>{t('freeSearch')}</label>
                 <input 
                   type="text" 
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
                   placeholder={t('searchPlaceholder')}
                   style={{width: '100%', padding: '0.8rem', border: '1px solid #ddd', borderRadius: '5px', marginBottom: '0.8rem'}}
                 />
@@ -117,26 +145,29 @@ export default function Store() {
               <div style={{marginBottom: '2rem'}}>
                 <h4 style={{fontWeight: 'bold', marginBottom: '1rem', color: '#333'}}>{t('languages')}</h4>
                 <div style={{display: 'flex', flexDirection: 'column', gap: '0.5rem'}}>
-                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer'}}>
-                    <input type="checkbox" style={{marginLeft: '0.5rem'}} defaultChecked />
-                    {t('hebrew')}
-                  </label>
-                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer'}}>
-                    <input type="checkbox" style={{marginLeft: '0.5rem'}} />
-                    {t('english')}
-                  </label>
-                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer'}}>
-                    <input type="checkbox" style={{marginLeft: '0.5rem'}} />
-                    {t('french')}
-                  </label>
-                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer'}}>
-                    <input type="checkbox" style={{marginLeft: '0.5rem'}} />
-                    {t('russian')}
-                  </label>
-                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer'}}>
-                    <input type="checkbox" style={{marginLeft: '0.5rem'}} />
-                    {t('spanish')}
-                  </label>
+                  {[
+                    { key: 'עברית', label: t('hebrew') },
+                    { key: 'English', label: t('english') },
+                    { key: 'Français', label: t('french') },
+                    { key: 'Русский', label: t('russian') },
+                    { key: 'Español', label: t('spanish') }
+                  ].map(lang => (
+                    <label key={lang.key} style={{display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer'}}>
+                      <input 
+                        type="checkbox" 
+                        checked={selectedLanguages.includes(lang.key)}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setSelectedLanguages(prev => [...prev, lang.key]);
+                          } else {
+                            setSelectedLanguages(prev => prev.filter(l => l !== lang.key));
+                          }
+                        }}
+                        style={{marginLeft: '0.5rem'}} 
+                      />
+                      {lang.label}
+                    </label>
+                  ))}
                 </div>
               </div>
 
@@ -175,8 +206,8 @@ export default function Store() {
               
               <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '2rem'}}>
                 
-                {/* Real Products from Excel data */}
-                {Object.values(realBreslovProducts).map((product) => {
+                {/* Filtered Products */}
+                {filteredProducts.map((product) => {
                   const variants = product.variants || [];
                   const minPrice = variants.length > 0 ? Math.min(...variants.map(v => v.price)) : 0;
                   const maxPrice = variants.length > 0 ? Math.max(...variants.map(v => v.price)) : 0;
@@ -215,11 +246,29 @@ export default function Store() {
                               {t('viewProduct')}
                             </button>
                           </a>
-                          <a href={`/checkout?product=${product.id}&variant=${featuredVariant?.id}&price=${featuredVariant?.price}`} style={{textDecoration: 'none', flex: 1}}>
-                            <button style={{background: '#dc3545', color: 'white', border: 'none', padding: '0.8rem 1rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold', fontSize: '0.9rem'}}>
-                              {t('addToCart')}
-                            </button>
-                          </a>
+                          <button 
+                            onClick={() => {
+                              if (featuredVariant) {
+                                addItem({
+                                  productId: product.id,
+                                  variantId: featuredVariant.id,
+                                  name: getBookDisplayTitle(product),
+                                  nameEnglish: product.englishTitle || product.hebrewTitle,
+                                  variant: featuredVariant.name,
+                                  price: featuredVariant.price,
+                                  quantity: 1,
+                                  image: product.images?.[0] || ''
+                                });
+                                
+                                // Show cart briefly to give visual feedback
+                                setIsCartOpen(true);
+                                setTimeout(() => setIsCartOpen(false), 1500);
+                              }
+                            }}
+                            style={{background: '#dc3545', color: 'white', border: 'none', padding: '0.8rem 1rem', borderRadius: '5px', cursor: 'pointer', flex: 1, fontWeight: 'bold', fontSize: '0.9rem'}}
+                          >
+                            {t('addToCart')}
+                          </button>
                         </div>
                         <p style={{fontSize: '0.9rem', color: '#666', marginTop: '0.5rem'}}>
                           {t('freeShipping')}
