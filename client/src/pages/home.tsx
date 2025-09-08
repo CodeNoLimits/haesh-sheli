@@ -119,26 +119,107 @@ export default function Home() {
           </div>
           
           <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem'}}>
+            {/* Likutei Moharan */}
             <div style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', transition: 'transform 0.3s ease'}} 
                  onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
                  onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}>
-              <div style={{background: 'linear-gradient(135deg, #dc3545 0%, #c82333 100%)', height: '200px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '3rem'}}>
-                📖
+              <div style={{height: '200px', overflow: 'hidden'}}>
+                <img 
+                  src="/assets/ליקוטי הלכות דק גדול 1_1757275769149.jpg" 
+                  alt="ליקוטי הלכות" 
+                  style={{width: '100%', height: '100%', objectFit: 'cover'}}
+                />
               </div>
               <div style={{padding: '2rem'}}>
                 <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', marginBottom: '1rem', color: '#333'}}>
-                  {currentLanguage === 'he' ? 'ליקוטי מוהר"ן' :
-                   currentLanguage === 'en' ? 'Likutei Moharan' :
-                   currentLanguage === 'fr' ? 'Likutei Moharan' :
-                   currentLanguage === 'es' ? 'Likutei Moharan' :
-                   currentLanguage === 'ru' ? 'Ликутей Мохаран' : 'ליקוטי מוהר"ן'}
+                  {currentLanguage === 'he' ? 'ליקוטי הלכות' :
+                   currentLanguage === 'en' ? 'Likutei Halachos' :
+                   currentLanguage === 'fr' ? 'Likutei Halachos' :
+                   currentLanguage === 'es' ? 'Likutei Halachos' :
+                   currentLanguage === 'ru' ? 'Ликутей Алахот' : 'ליקוטי הלכות'}
                 </h3>
                 <p style={{color: '#666', marginBottom: '1.5rem'}}>
-                  {currentLanguage === 'he' ? 'הספר המרכזי של רבינו הקדוש' :
-                   currentLanguage === 'en' ? 'The central book of our holy Rebbe' :
-                   currentLanguage === 'fr' ? 'Le livre central de notre saint Rebbe' :
-                   currentLanguage === 'es' ? 'El libro central de nuestro santo Rebe' :
-                   currentLanguage === 'ru' ? 'Центральная книга нашего святого Ребе' : 'הספר המרכזי של רבינו הקדוש'}
+                  {currentLanguage === 'he' ? 'ספר ההלכות של רבי נתן מברסלב' :
+                   currentLanguage === 'en' ? 'The halachic work by Rabbi Nathan of Breslov' :
+                   currentLanguage === 'fr' ? 'L\'ouvrage halakhique de Rabbi Nathan de Breslov' :
+                   currentLanguage === 'es' ? 'La obra halájica del Rabino Nathan de Breslov' :
+                   currentLanguage === 'ru' ? 'Галахическое произведение Рабби Натана из Бреслов' : 'ספר ההלכות של רבי נתן מברסלב'}
+                </p>
+                <a href="/store" style={{textDecoration: 'none'}}>
+                  <button style={{background: '#dc3545', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
+                    {currentLanguage === 'he' ? 'צפה במוצר' :
+                     currentLanguage === 'en' ? 'View Product' :
+                     currentLanguage === 'fr' ? 'Voir le Produit' :
+                     currentLanguage === 'es' ? 'Ver Producto' :
+                     currentLanguage === 'ru' ? 'Посмотреть Товар' : 'צפה במוצר'}
+                  </button>
+                </a>
+              </div>
+            </div>
+
+            {/* Sefer Hamidos */}
+            <div style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', transition: 'transform 0.3s ease'}} 
+                 onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
+                 onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}>
+              <div style={{height: '200px', overflow: 'hidden'}}>
+                <img 
+                  src="/assets/ספר המידות 1_1757281125910.jpg" 
+                  alt="ספר המידות" 
+                  style={{width: '100%', height: '100%', objectFit: 'cover'}}
+                />
+              </div>
+              <div style={{padding: '2rem'}}>
+                <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', marginBottom: '1rem', color: '#333'}}>
+                  {currentLanguage === 'he' ? 'ספר המידות' :
+                   currentLanguage === 'en' ? 'Sefer Hamidos' :
+                   currentLanguage === 'fr' ? 'Livre des Traits de Caractère' :
+                   currentLanguage === 'es' ? 'Libro de los Rasgos de Carácter' :
+                   currentLanguage === 'ru' ? 'Книга Качеств' : 'ספר המידות'}
+                </h3>
+                <p style={{color: '#666', marginBottom: '1.5rem'}}>
+                  {currentLanguage === 'he' ? 'עצות מעשיות לתיקון המידות' :
+                   currentLanguage === 'en' ? 'Practical advice for character improvement' :
+                   currentLanguage === 'fr' ? 'Conseils pratiques pour l\'amélioration du caractère' :
+                   currentLanguage === 'es' ? 'Consejos prácticos para la mejora del carácter' :
+                   currentLanguage === 'ru' ? 'Практические советы по улучшению характера' : 'עצות מעשיות לתיקון המידות'}
+                </p>
+                <a href="/store" style={{textDecoration: 'none'}}>
+                  <button style={{background: '#dc3545', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
+                    {currentLanguage === 'he' ? 'צפה במוצר' :
+                     currentLanguage === 'en' ? 'View Product' :
+                     currentLanguage === 'fr' ? 'Voir le Produit' :
+                     currentLanguage === 'es' ? 'Ver Producto' :
+                     currentLanguage === 'ru' ? 'Посмотреть Товар' : 'צפה במוצר'}
+                  </button>
+                </a>
+              </div>
+            </div>
+
+            {/* Tikkun HaKlali */}
+            <div style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', transition: 'transform 0.3s ease'}} 
+                 onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
+                 onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}>
+              <div style={{height: '200px', overflow: 'hidden'}}>
+                <img 
+                  src="/assets/תיקון הכללי_1757281158220.jpg" 
+                  alt="תיקון הכללי" 
+                  style={{width: '100%', height: '100%', objectFit: 'cover'}}
+                />
+              </div>
+              <div style={{padding: '2rem'}}>
+                <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', marginBottom: '1rem', color: '#333'}}>
+                  {currentLanguage === 'he' ? 'תיקון הכללי' :
+                   currentLanguage === 'en' ? 'Tikkun HaKlali' :
+                   currentLanguage === 'fr' ? 'Tikkun HaKlali' :
+                   currentLanguage === 'es' ? 'Tikkun HaKlali' :
+                   currentLanguage === 'ru' ? 'Тиккун Аклали' : 'תיקון הכללי'}
+                </h3>
+                <p style={{color: '#666', marginBottom: '1.5rem'}}>
+                  {currentLanguage === 'he' ? 'עשרת המזמורים לתיקון הברית' :
+                   currentLanguage === 'en' ? 'The ten psalms for covenant rectification' :
+                   currentLanguage === 'fr' ? 'Les dix psaumes pour la rectification de l\'alliance' :
+                   currentLanguage === 'es' ? 'Los diez salmos para la rectificación del pacto' :
+                   currentLanguage === 'ru' ? 'Десять псалмов для исправления завета' : 'עשרת המזמורים לתיקון הברית'}
                 </p>
                 <a href="/store" style={{textDecoration: 'none'}}>
                   <button style={{background: '#dc3545', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
