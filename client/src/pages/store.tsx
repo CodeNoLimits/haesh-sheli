@@ -2,6 +2,7 @@ import { realBreslovProducts } from '../data/realProducts';
 import { Header } from '../components/Header';
 import { useLanguage } from '../contexts/LanguageContext';
 import { getBookDisplayTitle } from '../utils/bookTitleHelper';
+import { getFirstProductImage } from '../utils/imagePathHelper';
 import { useState, useMemo } from 'react';
 import { useCart } from '../contexts/CartContext';
 
@@ -256,9 +257,8 @@ export default function Store() {
                   const maxPrice = variants.length > 0 ? Math.max(...variants.map(v => v.price)) : 0;
                   const featuredVariant = variants.find(v => v.inStock) || variants[0];
                   
-                  // Use the image path directly from product data with proper encoding
-                  const imagePath = product.images && product.images[0] ? 
-                    encodeURI(product.images[0]) : '';
+                  // Use the standardized helper to get the first product image
+                  const imagePath = getFirstProductImage(product.images);
                   
                   return (
                     <div key={product.id} style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', transition: 'transform 0.3s ease'}}>
@@ -296,8 +296,12 @@ export default function Store() {
                                   productId: product.id,
                                   variantId: featuredVariant.id,
                                   name: getBookDisplayTitle(product),
-                                  nameEnglish: product.englishTitle || product.hebrewTitle,
-                                  variant: featuredVariant.name,
+                                  nameEnglish: product.nameEnglish || product.name,
+                                  variant: {
+                                    format: featuredVariant.format,
+                                    binding: featuredVariant.binding,
+                                    size: featuredVariant.size
+                                  },
                                   price: featuredVariant.price,
                                   quantity: 1,
                                   image: product.images?.[0] || ''

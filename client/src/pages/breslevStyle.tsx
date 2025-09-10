@@ -2,6 +2,7 @@ import { Header } from '../components/Header';
 import { useLanguage } from '../contexts/LanguageContext';
 import { breslovDownloadBooks } from '../data/downloadLinks';
 import { realBreslovProducts } from '../data/realProducts';
+import { convertImagePathForGlob } from '../utils/imagePathHelper';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ChevronLeft, ChevronRight, Download, ExternalLink } from 'lucide-react';
@@ -12,18 +13,18 @@ const assets = import.meta.glob('/attached_assets/*.{png,jpg,jpeg,webp}', { eage
 export default function BreslovStyle() {
   const { currentLanguage, setLanguage } = useLanguage();
   
-  // Helper function to resolve image paths with fallback
+  // Helper function to resolve image paths with fallback using standardized utility
   const getImageUrl = (imagePath: string): string | undefined => {
     if (!imagePath) return undefined;
     
-    // Clean the path - remove /images/ prefix if present
-    const cleanPath = imagePath.replace('/images/', '');
+    // Use the standardized helper to convert the path
+    const convertedPath = convertImagePathForGlob(imagePath);
     
     // Try different possible asset paths
     const possiblePaths = [
-      `/attached_assets/${cleanPath}`,
-      `/attached_assets/images/${cleanPath}`,
-      cleanPath.startsWith('/attached_assets/') ? cleanPath : `/attached_assets/${cleanPath}`
+      convertedPath,
+      `/attached_assets/images/${convertedPath.replace('/attached_assets/', '')}`,
+      convertedPath.startsWith('/attached_assets/') ? convertedPath : `/attached_assets/${convertedPath}`
     ];
     
     for (const path of possiblePaths) {

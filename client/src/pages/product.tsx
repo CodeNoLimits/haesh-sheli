@@ -4,6 +4,7 @@ import { realBreslovProducts } from '../data/realProducts';
 import { useCart } from '../contexts/CartContext';
 import { useToast } from '@/hooks/use-toast';
 import { getBookDisplayTitle } from '../utils/bookTitleHelper';
+import { convertImagePath } from '../utils/imagePathHelper';
 import type { Product } from '../../../shared/schema';
 
 export default function Product() {
@@ -122,7 +123,7 @@ export default function Product() {
             <div>
               <div style={{marginBottom: '1rem'}}>
                 <img 
-                  src={(product.images && product.images[selectedImage] || '').replace('@assets/', '/attached_assets/')} 
+                  src={convertImagePath(product.images && product.images[selectedImage] || '')} 
                   alt={getBookDisplayTitle(product)}
                   style={{width: '100%', height: '500px', objectFit: 'cover', borderRadius: '10px', border: '1px solid #ddd'}}
                 />
@@ -143,7 +144,7 @@ export default function Product() {
                       }}
                     >
                       <img 
-                        src={image.replace('@assets/', '/attached_assets/')} 
+                        src={convertImagePath(image)} 
                         alt={`${getBookDisplayTitle(product)} ${index + 1}`}
                         style={{width: '60px', height: '60px', objectFit: 'cover', borderRadius: '3px'}}
                       />
