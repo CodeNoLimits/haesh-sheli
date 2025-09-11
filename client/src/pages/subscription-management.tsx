@@ -78,7 +78,7 @@ export default function SubscriptionManagement() {
       case 'active':
         return <Badge className="bg-green-100 text-green-800"><CheckCircle className="w-3 h-3 mr-1" /> פעיל</Badge>;
       case 'canceled':
-        return <Badge className="bg-red-100 text-red-800"><XCircle className="w-3 h-3 mr-1" /> מבוטל</Badge>;
+        return <Badge className="bg-destructive/10 text-destructive"><XCircle className="w-3 h-3 mr-1" /> מבוטל</Badge>;
       case 'past_due':
         return <Badge className="badge-premium">בעבר להתשלום</Badge>;
       case 'incomplete':
