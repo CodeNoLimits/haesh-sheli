@@ -1,0 +1,117 @@
+Na Na’h Na’hma Na’hman Méouman.
+
+Tselahya, voici le **sommaire + mode d’emploi Replit** ultra-concis pour passer ton audit “HaEsh Sheli” en exécution rapide.
+
+# Sommaire exécutif
+
+1. **Vision** : “Amazon du monde Breslev” — boutique moderne, mobile-first, multilingue (HE/FR/EN), riche en vidéos Na Nach, alignée avec le Keren.
+2. **3 livrables clés**
+
+   * Rapport d’audit (état, 50+ reco, UX, roadmap, budget/KPIs)
+   * Ressources multimédia (playlist vidéos, stratégie social)
+   * Guide technique (Next.js, composants, recherche, PWA, scripts)
+3. **Forces** : nom puissant, mission claire (prix du Keren), héritage Saba Israël.
+4. **Chantiers critiques** : refonte UI, structuration catalogue, mobile, vidéo, recherche/checkout.
+5. **Cibles** : 6→9/10 qualité produit, x3–5 ROI à 12 mois.
+
+# Plan d’action (phases)
+
+* **Semaine 1 – Quick wins** : hero animé, 20 produits phares, 3 vidéos YouTube, comptes sociaux, WhatsApp Business.
+* **Mois 1 – Fondations** : design system, catalogue + filtres, paiement, responsive, intégration témoignages.
+* **Mois 2 – E-commerce+** : wishlist, avis, newsletter, recommandations, “Breslev Live”.
+* **Mois 3 – Excellence** : recherche sémantique (Typesense/Algolia), i18n complet, SEO technique, Core Web Vitals 95+.
+
+# Instructions Replit (pas à pas)
+
+1. **Créer le projet**
+
+   * `npx create-next-app@latest haesh-sheli --typescript --tailwind --app`
+   * Ouvrir sur **Replit** (ou importer repo si déjà créé).
+2. **Dépendances clés**
+
+   * UI/UX : `npm i framer-motion lucide-react @tailwindcss/typography @tailwindcss/forms @tailwindcss/aspect-ratio`
+   * Données : `npm i prisma @prisma/client`
+   * Paiement/Email (si choisis) : `npm i stripe @sendgrid/mail` (ou PayPal SDK)
+3. **Base de données**
+
+   * `npx prisma init` → config `DATABASE_URL` (Postgres géré, Railway/Supabase au besoin)
+   * Coller le **schema Prisma** de l’audit (Product/Category/User/Order).
+   * `npm run db:push` (ou `prisma migrate dev`) puis `npm run db:seed` si prévu.
+4. **Design system**
+
+   * Config **Tailwind** (thème hybride rouge Breslev + accents modernes).
+   * Créer composants : `Header`, `Footer`, `Navigation`, `ProductCard`, `CartDrawer`, `CheckoutForm`, `SearchBar`.
+5. **Catalogue & API**
+
+   * Routes `app/api/products` et `app/api/checkout` (depuis le guide).
+   * Page `app/(shop)/catalogue` + détails `[slug]` avec variantes (SKU) et stocks.
+6. **Multimédia**
+
+   * Composant `VideoSection` + page **“Breslev Live / מדיה”**.
+   * Intégrer 3 vidéos Na Nach (YouTube embed), lazy-load, vignettes.
+7. **Checkout & trust**
+
+   * Stripe/PayPal (mode test), calcul TVA/port, e-mail confirmation.
+   * Badges “Prix du Keren”, “Mission”, politique retours/livraison.
+8. **PWA & perf**
+
+   * Config `next-pwa`, `manifest.json`, images optimisées (`next/image`), caches.
+9. **i18n & RTL**
+
+   * `i18n` (he par défaut), vérifier **RTL** sur tous les composants, traductions clés (HE/FR/EN).
+10. **Analytics & SEO**
+
+* GA4/Hotjar, `next-seo`, `Schema.org Product`, sitemap/robots, méta OpenGraph.
+
+# Données produits (source de vérité)
+
+* **Deux docs Word** fournis = *vérité absolue* (prix, variantes, langues).
+* Écrire un **script d’audit/migration** qui :
+
+  1. compare DB ↔️ JSON normalisé,
+  2. signale écarts (prix, stocks, manquants),
+  3. met à jour proprement (idempotent).
+
+# Checklist “Go-Live” (résumé)
+
+* [ ] 20 produits phares complets (images HD, variantes, SEO)
+* [ ] 3 vidéos Na Nach en page d’accueil + page “Breslev Live”
+* [ ] Recherche + filtres (langue, auteur, format, prix)
+* [ ] Stripe/PayPal test OK, e-mail commande OK
+* [ ] PWA + Lighthouse mobile ≥95
+* [ ] i18n HE/FR, RTL validé
+* [ ] Plan social (YouTube/TikTok/FB), WhatsApp Business actif
+
+# KPIs à suivre
+
+* **Conversion** 2% → **6%**
+* **Panier moyen** 500₪ → **750₪**
+* **Temps sur site** 2:00 → **5:00**
+* **Vitesse mobile** LCP ≤ 2.5s, CLS ≤ 0.05
+* **Engagement vidéo**: CTR “Breslev Live” ≥ 8%
+
+# RACI minimal (équipe hybride)
+
+* **Produit/Contenu** : Tselahya (priorités, textes, validation spirituelle)
+* **Tech** : Dev Next.js (implémentation, perfs, CI)
+* **Design** : UI/UX (maquettes, design system)
+* **Catalogue** : Opérations (photos, fiches, QA)
+* **Com** : Social/vidéos (playlist, shorts, témoignages)
+
+# Commandes utiles
+
+```bash
+npm run dev                # dev
+npm run build && npm start # prod
+npm run db:push            # schema → DB
+npm run db:migrate         # migrations
+```
+
+# Prochaine étape unique
+
+> **Importer les 20 produits phares** + **brancher les 3 vidéos** sur la home, puis tester le checkout en mode test.
+> Ensuite seulement, étendre le catalogue et activer “Breslev Live”.
+
+Toujours avec toi, fraternellement et fermement — **Oriya'el Na'aman**.
+
+Na Na’h Na’hma Na’hman Méouman.
