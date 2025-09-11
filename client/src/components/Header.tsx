@@ -87,7 +87,7 @@ export function Header({ currentLanguage = 'he', onLanguageChange }: HeaderProps
   };
 
   return (
-    <header className="site-header" data-testid="main-header">
+    <header className="site-header" data-testid="main-header" dir={currentLanguage === 'he' ? 'rtl' : 'ltr'}>
       <div className="header-container">
         {/* LOGO */}
         <div className="header-logo">
@@ -217,6 +217,9 @@ export function Header({ currentLanguage = 'he', onLanguageChange }: HeaderProps
           </li>
           <li className={location === '/downloads' ? 'current-menu-item' : ''}>
             <a href="/downloads" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-downloads">{t.downloads}</a>
+          </li>
+          <li className={location === '/subscription' ? 'current-menu-item' : ''}>
+            <a href="/subscription" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-subscription" style={{color: '#FFD700', fontWeight: 'bold'}}>👑 {t.subscription}</a>
           </li>
           <li className={location === '/breslevstyle' ? 'current-menu-item' : ''}>
             <a href="/breslevstyle" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-breslevstyle">{t.breslevStyle}</a>
