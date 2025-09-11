@@ -19,7 +19,6 @@ const translations = {
     join: 'הצטרפות',
     downloads: 'הורדות',
     subscription: 'הוראת קבע',
-    breslevStyle: 'ברסלב סטייל',
     fire: '🔥 האש שלי'
   },
   en: {
@@ -31,7 +30,6 @@ const translations = {
     join: 'Join',
     downloads: 'Downloads',
     subscription: 'Subscription',
-    breslevStyle: 'Breslev Style',
     fire: '🔥 My Fire'
   },
   fr: {
@@ -43,7 +41,6 @@ const translations = {
     join: 'Rejoindre',
     downloads: 'Téléchargements',
     subscription: 'Abonnement',
-    breslevStyle: 'Style Breslev',
     fire: '🔥 Mon Feu'
   },
   es: {
@@ -55,7 +52,6 @@ const translations = {
     join: 'Unirse',
     downloads: 'Descargas',
     subscription: 'Suscripción',
-    breslevStyle: 'Estilo Breslev',
     fire: '🔥 Mi Fuego'
   },
   ru: {
@@ -67,7 +63,6 @@ const translations = {
     join: 'Присоединиться',
     downloads: 'Загрузки',
     subscription: 'Подписка',
-    breslevStyle: 'Стиль Бреслев',
     fire: '🔥 Мой Огонь'
   }
 };
@@ -126,9 +121,6 @@ export function Header({ currentLanguage = 'he', onLanguageChange }: HeaderProps
             </li>
             <li className={location === '/subscription' ? 'current-menu-item' : ''}>
               <a href="/subscription" data-testid="link-subscription" style={{color: '#FFD700', fontWeight: 'bold'}}>👑 {t.subscription}</a>
-            </li>
-            <li className={location === '/breslevstyle' ? 'current-menu-item' : ''}>
-              <a href="/breslevstyle" data-testid="link-breslevstyle">{t.breslevStyle}</a>
             </li>
             <li className={location === '/yaaakov' ? 'current-menu-item' : ''}>
               <a href="/yaaakov" data-testid="link-yaaakov">
@@ -220,9 +212,6 @@ export function Header({ currentLanguage = 'he', onLanguageChange }: HeaderProps
           </li>
           <li className={location === '/subscription' ? 'current-menu-item' : ''}>
             <a href="/subscription" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-subscription" style={{color: '#FFD700', fontWeight: 'bold'}}>👑 {t.subscription}</a>
-          </li>
-          <li className={location === '/breslevstyle' ? 'current-menu-item' : ''}>
-            <a href="/breslevstyle" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-breslevstyle">{t.breslevStyle}</a>
           </li>
           <li className={location === '/yaaakov' ? 'current-menu-item' : ''}>
             <a href="/yaaakov" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-yaaakov">
