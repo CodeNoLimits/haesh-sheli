@@ -1056,7 +1056,7 @@ export default function Join() {
                 >
                   <div className="flex mb-4">
                     {[...Array(testimonial.rating)].map((_, starIndex) => (
-                      <Star key={starIndex} className="w-5 h-5 text-yellow-400 fill-current" />
+                      <Star key={starIndex} className="w-5 h-5 text-gold-accent fill-current" />
                     ))}
                   </div>
                   <p className="text-muted-foreground leading-relaxed mb-6 italic" data-testid={`testimonial-quote-${index}`}>

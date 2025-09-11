@@ -212,9 +212,9 @@ const SubscriptionPlanCard = ({ plan, isCurrentPlan }: { plan: SubscriptionPlan;
         </div>
 
         {/* Value proposition */}
-        <div className="bg-gradient-to-r from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20 p-4 rounded-lg border border-primary/30">
-          <h5 className="font-semibold text-red-700 dark:text-red-300 mb-2">💰 חסכון משמעותי!</h5>
-          <p className="text-sm text-red-600 dark:text-red-300">
+        <div className="section-surface-strong p-4 rounded-lg border border-primary/30">
+          <h5 className="font-semibold text-primary mb-2">💰 חסכון משמעותי!</h5>
+          <p className="text-sm text-foreground">
             במקום לשלם על כל ספר בנפרד, קבל גישה לכל הספרים הדיגיטליים תמיד תמורת רק ₪99 לחודש!
           </p>
         </div>
@@ -242,9 +242,9 @@ const SubscriptionPlanCard = ({ plan, isCurrentPlan }: { plan: SubscriptionPlan;
             <SubscriptionForm plan={plan} clientSecret={clientSecret} />
           </Elements>
         ) : showPayment && clientSecret && !stripePromise ? (
-          <div className="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-primary/30">
-            <h5 className="font-semibold text-red-700 dark:text-red-300 mb-2">⚠️ מערכת התשלום אינה זמינה</h5>
-            <p className="text-sm text-red-600 dark:text-red-300">
+          <div className="section-surface-strong p-4 rounded-lg border border-primary/30">
+            <h5 className="font-semibold text-primary mb-2">⚠️ מערכת התשלום אינה זמינה</h5>
+            <p className="text-sm text-foreground">
               אנא צור קשר עם השירות לקוחות להשלמת המנוי: support@haesh-sheli.co.il
             </p>
           </div>
