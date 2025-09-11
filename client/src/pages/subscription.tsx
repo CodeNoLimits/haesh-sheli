@@ -89,7 +89,7 @@ const SubscriptionForm = ({ plan, clientSecret }: { plan: SubscriptionPlan; clie
       
       <Button 
         type="submit" 
-        className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white py-3 text-lg font-bold shadow-lg" 
+        className="w-full btn-breslov-primary text-white py-3 text-lg font-bold shadow-lg" 
         disabled={!stripe || !elements || isLoading}
         data-testid="button-subscribe"
       >
@@ -160,10 +160,10 @@ const SubscriptionPlanCard = ({ plan, isCurrentPlan }: { plan: SubscriptionPlan;
   if (!plan.isActive) return null;
 
   return (
-    <Card className="relative overflow-hidden border-2 border-red-200 dark:border-red-800 shadow-xl">
+    <Card className="relative overflow-hidden border-2 border-primary/30 shadow-xl">
       {/* Premium badge */}
       <div className="absolute top-4 right-4">
-        <Badge className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-yellow-900 font-bold">
+        <Badge className="btn-breslov-gold text-white font-bold">
           <Star className="w-3 h-3 mr-1" />
           פרימיום
         </Badge>
@@ -171,12 +171,12 @@ const SubscriptionPlanCard = ({ plan, isCurrentPlan }: { plan: SubscriptionPlan;
 
       <CardHeader className="text-center pb-2">
         <div className="flex justify-center mb-4">
-          <div className="bg-gradient-to-r from-red-500 to-red-600 p-3 rounded-full">
+          <div className="bg-primary p-3 rounded-full">
             <Crown className="h-8 w-8 text-white" />
           </div>
         </div>
         
-        <CardTitle className="text-2xl font-bold text-red-600 dark:text-red-400">
+        <CardTitle className="text-2xl font-bold text-primary">
           {plan.nameHebrew}
         </CardTitle>
         
@@ -186,7 +186,7 @@ const SubscriptionPlanCard = ({ plan, isCurrentPlan }: { plan: SubscriptionPlan;
 
         {/* Price display */}
         <div className="text-center mt-4">
-          <div className="text-4xl font-bold text-red-600 dark:text-red-400">
+          <div className="text-4xl font-bold text-primary">
             ₪{(plan.price / 100).toFixed(0)}
           </div>
           <div className="text-sm text-gray-500 dark:text-gray-400">
@@ -212,7 +212,7 @@ const SubscriptionPlanCard = ({ plan, isCurrentPlan }: { plan: SubscriptionPlan;
         </div>
 
         {/* Value proposition */}
-        <div className="bg-gradient-to-r from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+        <div className="bg-gradient-to-r from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20 p-4 rounded-lg border border-primary/30">
           <h5 className="font-semibold text-red-700 dark:text-red-300 mb-2">💰 חסכון משמעותי!</h5>
           <p className="text-sm text-red-600 dark:text-red-300">
             במקום לשלם על כל ספר בנפרד, קבל גישה לכל הספרים הדיגיטליים תמיד תמורת רק ₪99 לחודש!
@@ -242,7 +242,7 @@ const SubscriptionPlanCard = ({ plan, isCurrentPlan }: { plan: SubscriptionPlan;
             <SubscriptionForm plan={plan} clientSecret={clientSecret} />
           </Elements>
         ) : showPayment && clientSecret && !stripePromise ? (
-          <div className="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+          <div className="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-primary/30">
             <h5 className="font-semibold text-red-700 dark:text-red-300 mb-2">⚠️ מערכת התשלום אינה זמינה</h5>
             <p className="text-sm text-red-600 dark:text-red-300">
               אנא צור קשר עם השירות לקוחות להשלמת המנוי: support@haesh-sheli.co.il
@@ -252,7 +252,7 @@ const SubscriptionPlanCard = ({ plan, isCurrentPlan }: { plan: SubscriptionPlan;
           <Button 
             onClick={handleSubscribe}
             disabled={isCreatingSubscription}
-            className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white py-3 text-lg font-bold shadow-lg"
+            className="w-full btn-breslov-primary text-white py-3 text-lg font-bold shadow-lg"
             data-testid="button-show-payment"
           >
             {isCreatingSubscription ? (
@@ -310,7 +310,7 @@ export default function SubscriptionPage() {
     return (
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-2xl font-bold text-red-600 dark:text-red-400 mb-4">
+          <h1 className="text-2xl font-bold text-primary mb-4">
             שגיאה בטעינת תוכנית המנוי
           </h1>
           <p className="text-gray-600 dark:text-gray-300">
@@ -322,7 +322,7 @@ export default function SubscriptionPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-orange-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+    <div className="min-h-screen hero-surface dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       <div className="container mx-auto px-4 py-8">
         {/* Hero section */}
         <div className="text-center mb-12">
@@ -367,7 +367,7 @@ export default function SubscriptionPage() {
           <div className="grid md:grid-cols-2 gap-6">
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg text-red-600 dark:text-red-400">
+                <CardTitle className="text-lg text-primary">
                   מתי אני יכול לבטל את המנוי?
                 </CardTitle>
               </CardHeader>
@@ -380,7 +380,7 @@ export default function SubscriptionPage() {
 
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg text-red-600 dark:text-red-400">
+                <CardTitle className="text-lg text-primary">
                   האם יש תקופת ניסיון?
                 </CardTitle>
               </CardHeader>
@@ -393,7 +393,7 @@ export default function SubscriptionPage() {
 
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg text-red-600 dark:text-red-400">
+                <CardTitle className="text-lg text-primary">
                   כמה ספרים כלולים במנוי?
                 </CardTitle>
               </CardHeader>
@@ -406,7 +406,7 @@ export default function SubscriptionPage() {
 
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg text-red-600 dark:text-red-400">
+                <CardTitle className="text-lg text-primary">
                   האם ההנחה חלה על כל הספרים?
                 </CardTitle>
               </CardHeader>

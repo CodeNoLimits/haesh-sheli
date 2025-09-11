@@ -256,6 +256,19 @@
   background: linear-gradient(135deg, hsl(45, 95%, 50%) 0%, hsl(35, 90%, 45%) 100%);
 }
 
+/* Surfaces Harmonieuses - Remplacer warm gradients */
+.section-surface {
+  background: linear-gradient(135deg, var(--background-blue) 0%, var(--background-teal) 100%);
+}
+
+.section-surface-strong {
+  background: linear-gradient(135deg, hsl(210, 30%, 96%) 0%, hsl(180, 30%, 96%) 100%);
+}
+
+.hero-surface {
+  background: linear-gradient(135deg, hsl(0, 0%, 100%) 0%, hsl(180, 30%, 98%) 50%, hsl(210, 30%, 98%) 100%);
+}
+
 /* Typography Classes */
 .heading-oversized {
   font-size: var(--heading-1);

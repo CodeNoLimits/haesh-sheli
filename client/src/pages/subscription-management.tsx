@@ -109,10 +109,10 @@ export default function SubscriptionManagement() {
 
   if (subscriptionLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-orange-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+      <div className="min-h-screen hero-surface dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
         <div className="container mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="animate-spin w-8 h-8 border-4 border-red-500 border-t-transparent rounded-full mx-auto" />
+            <div className="animate-spin w-8 h-8 border-4 border-primary border-t-transparent rounded-full mx-auto" />
             <p className="mt-4 text-gray-600 dark:text-gray-300">טוען מידע על המנוי...</p>
           </div>
         </div>
@@ -122,10 +122,10 @@ export default function SubscriptionManagement() {
 
   if (!subscription?.user) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-orange-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+      <div className="min-h-screen hero-surface dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
         <div className="container mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-2xl font-bold text-red-600 dark:text-red-400 mb-4">
+            <h1 className="text-2xl font-bold text-primary mb-4">
               נדרשת התחברות
             </h1>
             <p className="text-gray-600 dark:text-gray-300 mb-6">
@@ -144,7 +144,7 @@ export default function SubscriptionManagement() {
   const isSubscriber = user.isSubscriber;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-orange-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+    <div className="min-h-screen hero-surface dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="text-center mb-12">
@@ -160,7 +160,7 @@ export default function SubscriptionManagement() {
           {/* Subscription Status Card */}
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center text-red-600 dark:text-red-400">
+              <CardTitle className="flex items-center text-primary">
                 <Crown className="w-5 h-5 mr-2" />
                 מצב המנוי
               </CardTitle>
