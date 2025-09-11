@@ -3,6 +3,37 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Global Animation Classes */
+@layer utilities {
+  .animate-hover-float {
+    @apply transition-all duration-300 hover:scale-105 hover:-translate-y-2 hover:shadow-xl;
+  }
+  
+  .animate-hover-bounce {
+    @apply transition-all duration-300 hover:scale-110 hover:-translate-y-1 hover:shadow-lg;
+  }
+  
+  .animate-hover-rotate {
+    @apply transition-all duration-500 hover:rotate-3 hover:scale-105 hover:shadow-xl;
+  }
+  
+  .animate-hover-glow {
+    @apply transition-all duration-300 hover:shadow-2xl hover:shadow-blue-300/50 hover:scale-105;
+  }
+  
+  .animate-interactive {
+    @apply transition-all duration-300 cursor-pointer hover:scale-105 hover:shadow-lg active:scale-95;
+  }
+  
+  .animate-card-hover {
+    @apply transition-all duration-500 hover:scale-105 hover:-translate-y-3 hover:rotate-1 hover:shadow-2xl;
+  }
+  
+  .animate-button-hover {
+    @apply transition-all duration-300 hover:scale-110 hover:shadow-xl hover:-translate-y-1 active:scale-95;
+  }
+}
+
 /* === MOBILE SAFE-AREA ENFORCEMENT === */
 html, body {
   min-height: 100dvh;

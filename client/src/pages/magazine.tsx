@@ -1205,20 +1205,20 @@ export default function Magazine() {
                 <div 
                   key={index}
                   onClick={() => setSelectedCategory(selectedCategory === category.name ? '' : category.name)}
-                  className={`card-premium p-6 text-center cursor-pointer transition-all duration-300 ${
-                    selectedCategory === category.name ? 'ring-2 ring-primary bg-primary/5' : 'hover:shadow-lg'
+                  className={`card-premium p-6 text-center cursor-pointer transition-all duration-500 group ${
+                    selectedCategory === category.name ? 'ring-2 ring-primary bg-primary/5 scale-105 shadow-xl' : 'hover:shadow-2xl hover:scale-110 hover:-translate-y-4 hover:rotate-2'
                   }`}
                   data-testid={`category-${index}`}
                 >
                   <div className="mb-4 flex justify-center">
-                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                      <IconComponent iconName={category.icon} className="w-6 h-6 text-primary" />
+                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center transition-all duration-300 group-hover:scale-125 group-hover:bg-blue-500 group-hover:shadow-xl group-hover:rotate-12">
+                      <IconComponent iconName={category.icon} className="w-6 h-6 text-primary transition-all duration-300 group-hover:text-white group-hover:scale-125" />
                     </div>
                   </div>
-                  <h3 className="text-sm font-semibold text-foreground mb-2" data-testid={`category-name-${index}`}>
+                  <h3 className="text-sm font-semibold text-foreground mb-2 transition-all duration-300 group-hover:text-blue-600 group-hover:scale-110 group-hover:font-bold" data-testid={`category-name-${index}`}>
                     {category.name}
                   </h3>
-                  <span className="text-xs text-muted-foreground" data-testid={`category-count-${index}`}>
+                  <span className="text-xs text-muted-foreground transition-all duration-300 group-hover:text-green-600 group-hover:scale-105 group-hover:font-semibold" data-testid={`category-count-${index}`}>
                     {category.count} מאמרים
                   </span>
                 </div>
@@ -1246,46 +1246,46 @@ export default function Magazine() {
                 {featuredArticles.slice(0, 4).map((article: Article, index: number) => (
                   <article 
                     key={article.id}
-                    className="card-premium overflow-hidden group hover:shadow-xl transition-all duration-300"
+                    className="card-premium overflow-hidden group hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-4 hover:rotate-1 cursor-pointer"
                     data-testid={`featured-article-${index}`}
                   >
                     <div className="relative overflow-hidden">
                       <img 
                         src={article.image} 
                         alt={article.title}
-                        className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                        className="w-full h-48 object-cover group-hover:scale-110 group-hover:brightness-110 group-hover:contrast-110 transition-all duration-500"
                       />
                       <div className="absolute top-4 right-4">
-                        <span className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-medium">
+                        <span className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-medium transition-all duration-300 group-hover:scale-110 group-hover:bg-yellow-500 group-hover:text-black group-hover:shadow-lg group-hover:rotate-3">
                           {article.category}
                         </span>
                       </div>
                     </div>
                     <div className="p-6">
-                      <h3 className="text-xl font-bold text-primary mb-3 group-hover:text-primary/80 transition-colors duration-200" data-testid={`featured-article-title-${index}`}>
+                      <h3 className="text-xl font-bold text-primary mb-3 group-hover:text-blue-600 transition-all duration-300 group-hover:scale-105" data-testid={`featured-article-title-${index}`}>
                         {article.title}
                       </h3>
-                      <p className="text-muted-foreground mb-4 leading-relaxed" data-testid={`featured-article-excerpt-${index}`}>
+                      <p className="text-muted-foreground mb-4 leading-relaxed transition-all duration-300 group-hover:text-gray-700 group-hover:scale-105" data-testid={`featured-article-excerpt-${index}`}>
                         {article.excerpt}
                       </p>
                       <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
                         <div className="flex items-center gap-4">
-                          <span className="flex items-center gap-1">
-                            <User className="w-4 h-4" />
+                          <span className="flex items-center gap-1 transition-all duration-300 group-hover:text-blue-600 group-hover:scale-110">
+                            <User className="w-4 h-4 transition-all duration-300 group-hover:scale-125" />
                             {article.author}
                           </span>
-                          <span className="flex items-center gap-1">
-                            <Calendar className="w-4 h-4" />
+                          <span className="flex items-center gap-1 transition-all duration-300 group-hover:text-green-600 group-hover:scale-110">
+                            <Calendar className="w-4 h-4 transition-all duration-300 group-hover:scale-125" />
                             {article.date}
                           </span>
                         </div>
                         <div className="flex items-center gap-4">
-                          <span className="flex items-center gap-1">
-                            <Clock className="w-4 h-4" />
+                          <span className="flex items-center gap-1 transition-all duration-300 group-hover:text-purple-600 group-hover:scale-110">
+                            <Clock className="w-4 h-4 transition-all duration-300 group-hover:scale-125" />
                             {article.readTime}
                           </span>
-                          <span className="flex items-center gap-1">
-                            <Eye className="w-4 h-4" />
+                          <span className="flex items-center gap-1 transition-all duration-300 group-hover:text-orange-600 group-hover:scale-110">
+                            <Eye className="w-4 h-4 transition-all duration-300 group-hover:scale-125" />
                             {article.views}
                           </span>
                         </div>
@@ -1293,18 +1293,18 @@ export default function Magazine() {
                       <div className="flex items-center justify-between">
                         <div className="flex gap-2">
                           {article.tags.slice(0, 3).map((tag: string, tagIndex: number) => (
-                            <span key={tagIndex} className="bg-secondary text-secondary-foreground px-2 py-1 rounded-md text-xs">
+                            <span key={tagIndex} className="bg-secondary text-secondary-foreground px-2 py-1 rounded-md text-xs transition-all duration-300 group-hover:scale-110 group-hover:bg-blue-100 group-hover:text-blue-700 group-hover:shadow-md">
                               {tag}
                             </span>
                           ))}
                         </div>
                         <a 
                           href="#" 
-                          className="text-primary hover:text-primary/80 font-medium inline-flex items-center gap-1 transition-colors duration-200"
+                          className="text-primary hover:text-primary/80 font-medium inline-flex items-center gap-1 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:-translate-y-1"
                           data-testid={`featured-article-link-${index}`}
                         >
                           {t.readMore}
-                          <ArrowRight className="w-4 h-4" />
+                          <ArrowRight className="w-4 h-4 transition-all duration-300 hover:scale-125 hover:translate-x-1" />
                         </a>
                       </div>
                     </div>
@@ -1333,39 +1333,39 @@ export default function Magazine() {
               {latestArticles.map((article: Article, index: number) => (
                 <article 
                   key={article.id}
-                  className="card-premium overflow-hidden group hover:shadow-xl transition-all duration-300"
+                  className="card-premium overflow-hidden group hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-3 hover:rotate-1 cursor-pointer"
                   data-testid={`latest-article-${index}`}
                 >
                   <div className="relative overflow-hidden">
                     <img 
                       src={article.image} 
                       alt={article.title}
-                      className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300"
+                      className="w-full h-40 object-cover group-hover:scale-110 group-hover:brightness-110 group-hover:contrast-110 transition-all duration-500"
                     />
                     <div className="absolute top-3 right-3">
-                      <span className="bg-primary text-primary-foreground px-2 py-1 rounded-md text-xs font-medium">
+                      <span className="bg-primary text-primary-foreground px-2 py-1 rounded-md text-xs font-medium transition-all duration-300 group-hover:scale-110 group-hover:bg-purple-500 group-hover:shadow-lg group-hover:rotate-3">
                         {article.category}
                       </span>
                     </div>
                   </div>
                   <div className="p-6">
-                    <h3 className="text-lg font-bold text-primary mb-3 group-hover:text-primary/80 transition-colors duration-200" data-testid={`latest-article-title-${index}`}>
+                    <h3 className="text-lg font-bold text-primary mb-3 group-hover:text-blue-600 transition-all duration-300 group-hover:scale-105" data-testid={`latest-article-title-${index}`}>
                       {article.title}
                     </h3>
-                    <p className="text-muted-foreground mb-4 text-sm leading-relaxed" data-testid={`latest-article-excerpt-${index}`}>
+                    <p className="text-muted-foreground mb-4 text-sm leading-relaxed transition-all duration-300 group-hover:text-gray-700 group-hover:scale-105" data-testid={`latest-article-excerpt-${index}`}>
                       {article.excerpt.slice(0, 120)}...
                     </p>
                     <div className="flex items-center justify-between text-xs text-muted-foreground mb-4">
-                      <span>{article.author}</span>
-                      <span>{article.readTime}</span>
+                      <span className="transition-all duration-300 group-hover:text-blue-600 group-hover:scale-110 group-hover:font-bold">{article.author}</span>
+                      <span className="transition-all duration-300 group-hover:text-green-600 group-hover:scale-110 group-hover:font-bold">{article.readTime}</span>
                     </div>
                     <a 
                       href="#" 
-                      className="text-primary hover:text-primary/80 font-medium inline-flex items-center gap-1 text-sm transition-colors duration-200"
+                      className="text-primary hover:text-primary/80 font-medium inline-flex items-center gap-1 text-sm transition-all duration-300 hover:scale-110 hover:shadow-lg hover:-translate-y-1"
                       data-testid={`latest-article-link-${index}`}
                     >
                       {t.readMore}
-                      <ArrowRight className="w-4 h-4" />
+                      <ArrowRight className="w-4 h-4 transition-all duration-300 hover:scale-125 hover:translate-x-1" />
                     </a>
                   </div>
                 </article>

@@ -40,7 +40,7 @@ export default function Store() {
 
             <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '2rem'}}>
               {products.map((product, index) => (
-                <div key={product.id} style={{
+                <div key={product.id} className="transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:-translate-y-3 hover:rotate-1 group cursor-pointer" style={{
                   background: 'white', 
                   borderRadius: '10px', 
                   overflow: 'hidden', 
@@ -48,7 +48,7 @@ export default function Store() {
                   position: 'relative'
                 }}>
                   {/* Price Badge */}
-                  <div style={{
+                  <div className="transition-all duration-300 group-hover:scale-110 group-hover:bg-yellow-500 group-hover:shadow-lg group-hover:rotate-3" style={{
                     position: 'absolute',
                     top: '10px',
                     right: '10px',
@@ -68,13 +68,14 @@ export default function Store() {
                     <img 
                       src={product.images[0]}
                       alt={product.name}
+                      className="transition-all duration-500 group-hover:scale-110 group-hover:brightness-110 group-hover:contrast-110"
                       style={{width: '100%', height: '300px', objectFit: 'cover'}}
                       onError={(e) => {
                         e.currentTarget.style.display = 'none';
                       }}
                     />
                   ) : (
-                    <div style={{
+                    <div className="transition-all duration-500 group-hover:scale-110 group-hover:bg-gradient-to-br group-hover:from-blue-100 group-hover:to-purple-100" style={{
                       width: '100%', 
                       height: '300px', 
                       background: 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)', 
@@ -83,30 +84,30 @@ export default function Store() {
                       justifyContent: 'center',
                       fontSize: '2rem'
                     }}>
-                      📖
+                      <span className="transition-all duration-300 group-hover:scale-125 group-hover:rotate-12">📖</span>
                     </div>
                   )}
                   
                   {/* Content */}
                   <div style={{padding: '1.5rem'}}>
-                    <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', marginBottom: '0.5rem', color: '#333'}}>
+                    <h3 className="transition-all duration-300 group-hover:text-blue-600 group-hover:scale-105" style={{fontSize: '1.3rem', fontWeight: 'bold', marginBottom: '0.5rem', color: '#333'}}>
                       {product.name}
                     </h3>
                     
-                    <div style={{color: '#ffc107', fontSize: '1.1rem', marginBottom: '0.8rem'}}>★★★★★</div>
+                    <div className="transition-all duration-300 group-hover:scale-110 group-hover:text-yellow-400" style={{color: '#ffc107', fontSize: '1.1rem', marginBottom: '0.8rem'}}>★★★★★</div>
                     
-                    <div style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '0.5rem'}}>
+                    <div className="transition-all duration-300 group-hover:scale-110 group-hover:text-red-600 group-hover:font-extrabold" style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '0.5rem'}}>
                       {product.variants && product.variants.length > 0 ? 
                         `${Math.min(...product.variants.map(v => v.price))} ₪ – ${Math.max(...product.variants.map(v => v.price))} ₪` : 
                         'מחיר לא זמין'
                       }
                     </div>
                     
-                    <div style={{fontSize: '0.9rem', color: '#666', marginBottom: '1rem'}}>
+                    <div className="transition-all duration-300 group-hover:text-gray-800 group-hover:scale-105" style={{fontSize: '0.9rem', color: '#666', marginBottom: '1rem'}}>
                       {product.category} • {product.variants?.length || 0} אפשרויות
                     </div>
                     
-                    <button style={{
+                    <button className="transition-all duration-300 hover:scale-105 hover:bg-blue-600 hover:shadow-xl hover:-translate-y-1 hover:font-extrabold" style={{
                       background: '#007bff', 
                       color: 'white', 
                       border: 'none', 
@@ -123,11 +124,11 @@ export default function Store() {
               ))}
             </div>
             
-            <div style={{textAlign: 'center', padding: '2rem', background: 'white', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', marginTop: '2rem'}}>
-              <p style={{fontSize: '1.1rem', color: '#666', marginBottom: '1rem'}}>
+            <div className="transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:-translate-y-2" style={{textAlign: 'center', padding: '2rem', background: 'white', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', marginTop: '2rem'}}>
+              <p className="transition-all duration-300 hover:text-gray-800 hover:scale-105" style={{fontSize: '1.1rem', color: '#666', marginBottom: '1rem'}}>
                 מחפשים ספר נוסף? צרו קשר ונמצא עבורכם!
               </p>
-              <button style={{background: '#28a745', color: 'white', border: 'none', padding: '1rem 2rem', borderRadius: '8px', cursor: 'pointer', fontSize: '1rem', fontWeight: 'bold'}}>
+              <button className="transition-all duration-300 hover:scale-110 hover:bg-green-600 hover:shadow-xl hover:-translate-y-2" style={{background: '#28a745', color: 'white', border: 'none', padding: '1rem 2rem', borderRadius: '8px', cursor: 'pointer', fontSize: '1rem', fontWeight: 'bold'}}>
                 צרו קשר לפרטים נוספים
               </button>
             </div>
