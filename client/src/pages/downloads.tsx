@@ -2,12 +2,25 @@ import React, { useState } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Header } from '../components/Header';
 import { breslovDownloadBooks } from '../data/downloadLinks';
+import { useQuery } from '@tanstack/react-query';
+import { Crown, Lock } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 
 export default function Downloads() {
   const { t, currentLanguage } = useLanguage();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedLanguage, setSelectedLanguage] = useState('all');
+
+  // Check subscription status for free access
+  const { data: userSubscription } = useQuery({
+    queryKey: ['/api/user/subscription'],
+    retry: false,
+    refetchOnWindowFocus: false,
+  });
+
+  const isSubscriber = (userSubscription as any)?.user?.isSubscriber || false;
 
   // Filter books based on search and filters
   const getFilteredBooks = () => {
@@ -92,7 +105,7 @@ export default function Downloads() {
 
   // Get unique categories from the books data
   const getUniqueCategories = () => {
-    const categories = [...new Set(breslovDownloadBooks.map(book => book.category))];
+    const categories = Array.from(new Set(breslovDownloadBooks.map(book => book.category)));
     return categories.sort();
   };
 

@@ -1,6 +1,6 @@
 import { Header } from '../components/Header';
 import { useLanguage } from '../contexts/LanguageContext';
-import { User, Code, Heart, Target, BarChart3, Lightbulb, Mail, Github, Linkedin, MessageCircle, Globe, Users, BookOpen, Award } from 'lucide-react';
+import { User, Code, Heart, Target, BarChart3, Lightbulb, Mail, Github, Linkedin, MessageCircle, Globe, Users, BookOpen, Award, Zap, Star, ChevronRight, Play, ExternalLink, Download, Coffee, Calendar, Clock, TrendingUp, Rocket, Sparkles, Shield, Database, Smartphone, Monitor, Layers, Settings } from 'lucide-react';
 
 const translations = {
   he: {
@@ -1029,14 +1029,16 @@ const translations = {
   }
 };
 
-const IconComponent = ({ name, className }: { name: string; className?: string }) => {
+const IconComponent = ({ name, className, size }: { name: string; className?: string; size?: number }) => {
   const icons: { [key: string]: React.ComponentType<any> } = {
     User, Code, Heart, Target, BarChart3, Lightbulb, Mail, Github, Linkedin, 
-    MessageCircle, Globe, Users, BookOpen, Award
+    MessageCircle, Globe, Users, BookOpen, Award, Zap, Star, ChevronRight, Play, 
+    ExternalLink, Download, Coffee, Calendar, Clock, TrendingUp, Rocket, Sparkles, 
+    Shield, Database, Smartphone, Monitor, Layers, Settings
   };
   
   const Icon = icons[name] || User;
-  return <Icon className={className} />;
+  return <Icon className={className} width={size} height={size} />;
 };
 
 export default function Yaaakov() {
@@ -1049,68 +1051,190 @@ export default function Yaaakov() {
       <Header currentLanguage={currentLanguage} onLanguageChange={setLanguage} />
       
       <div className="container mx-auto px-4 py-8">
-        {/* Hero Section */}
-        <div className="text-center mb-16" data-testid="hero-section">
-          <div className="mb-8">
-            <div className="w-32 h-32 mx-auto mb-6 bg-gradient-to-br from-red-600 to-orange-600 rounded-full flex items-center justify-center text-white text-6xl">
-              🔥
+        {/* Enhanced Hero Section */}
+        <div className="relative text-center mb-20" data-testid="hero-section">
+          {/* Background decorations */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div className="absolute top-20 left-10 w-20 h-20 bg-red-200 rounded-full opacity-20 animate-pulse"></div>
+            <div className="absolute top-32 right-16 w-16 h-16 bg-orange-200 rounded-full opacity-30 animate-bounce"></div>
+            <div className="absolute bottom-20 left-20 w-24 h-24 bg-yellow-200 rounded-full opacity-25 animate-pulse"></div>
+            <div className="absolute bottom-32 right-10 w-12 h-12 bg-red-300 rounded-full opacity-40 animate-bounce"></div>
+          </div>
+          
+          <div className="relative z-10">
+            <div className="mb-12">
+              <div className="relative w-40 h-40 mx-auto mb-8">
+                <div className="absolute inset-0 bg-gradient-to-br from-red-600 to-orange-600 rounded-full animate-pulse"></div>
+                <div className="absolute inset-2 bg-gradient-to-br from-red-500 to-orange-500 rounded-full flex items-center justify-center text-white text-7xl shadow-2xl">
+                  🔥
+                </div>
+                <div className="absolute -top-2 -right-2 w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center animate-bounce">
+                  <Sparkles className="text-orange-600" size={16} />
+                </div>
+              </div>
+              
+              {/* Floating badges */}
+              <div className="flex justify-center gap-4 mb-8">
+                <div className="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold animate-float">
+                  <Code size={16} className="inline mr-2" />
+                  Full-Stack Developer
+                </div>
+                <div className="bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-semibold animate-float" style={{animationDelay: '0.2s'}}>
+                  <Rocket size={16} className="inline mr-2" />
+                  8+ Years Experience
+                </div>
+                <div className="bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm font-semibold animate-float" style={{animationDelay: '0.4s'}}>
+                  <Star size={16} className="inline mr-2" />
+                  Community Impact
+                </div>
+              </div>
+            </div>
+            
+            <h1 className="text-6xl md:text-7xl font-bold text-red-800 mb-8 leading-tight" data-testid="hero-title">
+              {t.heroTitle}
+            </h1>
+            
+            <p className="text-2xl md:text-3xl text-gray-700 max-w-5xl mx-auto mb-12 leading-relaxed" data-testid="hero-subtitle">
+              {t.heroSubtitle}
+            </p>
+            
+            <div className="bg-white/90 backdrop-blur-lg rounded-3xl p-10 max-w-6xl mx-auto shadow-2xl border-2 border-orange-200 relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-red-500 via-orange-500 to-yellow-500"></div>
+              <p className="text-xl text-gray-700 leading-relaxed mb-8" data-testid="hero-description">
+                {t.heroDescription}
+              </p>
+              
+              {/* Call-to-action buttons */}
+              <div className="flex flex-wrap justify-center gap-4">
+                <button className="bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 text-white font-bold py-4 px-8 rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center gap-2" data-testid="hero-cta-primary">
+                  <Play size={20} />
+                  {currentLanguage === 'he' ? 'צפה בפרויקט' : currentLanguage === 'en' ? 'View Project' : 'Voir le Projet'}
+                </button>
+                <button className="bg-white hover:bg-gray-50 text-gray-800 font-bold py-4 px-8 rounded-xl shadow-lg border-2 border-gray-200 transition-all duration-300 hover:border-orange-300 flex items-center gap-2" data-testid="hero-cta-secondary">
+                  <Download size={20} />
+                  {currentLanguage === 'he' ? 'הורד קורות חיים' : currentLanguage === 'en' ? 'Download Resume' : 'Télécharger CV'}
+                </button>
+              </div>
             </div>
           </div>
-          <h1 className="text-5xl md:text-6xl font-bold text-red-800 mb-6" data-testid="hero-title">
-            {t.heroTitle}
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-700 max-w-4xl mx-auto mb-8" data-testid="hero-subtitle">
-            {t.heroSubtitle}
-          </p>
-          <div className="bg-white/80 backdrop-blur rounded-2xl p-8 max-w-5xl mx-auto shadow-lg border border-orange-200">
-            <p className="text-lg text-gray-700 leading-relaxed" data-testid="hero-description">
-              {t.heroDescription}
-            </p>
+        </div>
+        
+        {/* Quick Stats Bar */}
+        <div className="bg-gradient-to-r from-gray-900 to-gray-800 rounded-2xl shadow-xl p-8 mb-20 text-white" data-testid="quick-stats">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div className="group">
+              <div className="text-4xl font-bold mb-2 text-blue-400 group-hover:text-blue-300 transition-colors">8+</div>
+              <div className="text-sm text-gray-300">{currentLanguage === 'he' ? 'שנות פיתוח' : currentLanguage === 'en' ? 'Years Development' : 'Années Développement'}</div>
+            </div>
+            <div className="group">
+              <div className="text-4xl font-bold mb-2 text-green-400 group-hover:text-green-300 transition-colors">50+</div>
+              <div className="text-sm text-gray-300">{currentLanguage === 'he' ? 'פרויקטים הושלמו' : currentLanguage === 'en' ? 'Projects Completed' : 'Projets Terminés'}</div>
+            </div>
+            <div className="group">
+              <div className="text-4xl font-bold mb-2 text-purple-400 group-hover:text-purple-300 transition-colors">15k+</div>
+              <div className="text-sm text-gray-300">{currentLanguage === 'he' ? 'משתמשים מרוצים' : currentLanguage === 'en' ? 'Happy Users' : 'Utilisateurs Satisfaits'}</div>
+            </div>
+            <div className="group">
+              <div className="text-4xl font-bold mb-2 text-orange-400 group-hover:text-orange-300 transition-colors">35</div>
+              <div className="text-sm text-gray-300">{currentLanguage === 'he' ? 'מדינות' : currentLanguage === 'en' ? 'Countries' : 'Pays'}</div>
+            </div>
           </div>
         </div>
 
-        {/* About Section */}
-        <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 mb-16 border border-orange-200" data-testid="about-section">
-          <h2 className="text-4xl font-bold text-gray-800 mb-8 text-center flex items-center justify-center gap-3">
-            <User className="text-red-600" size={40} />
+        {/* Enhanced About Section with Skills Showcase */}
+        <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 mb-20 border-2 border-orange-200 relative overflow-hidden" data-testid="about-section">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-orange-200 to-red-200 rounded-full opacity-20 transform translate-x-16 -translate-y-16"></div>
+          
+          <h2 className="text-5xl font-bold text-gray-800 mb-12 text-center flex items-center justify-center gap-4">
+            <div className="p-3 bg-red-100 rounded-2xl">
+              <User className="text-red-600" size={40} />
+            </div>
             {t.aboutTitle}
           </h2>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <div>
-              <p className="text-lg text-gray-700 leading-relaxed mb-8" data-testid="about-content">
-                {t.aboutContent}
-              </p>
+          <div className="grid grid-cols-1 xl:grid-cols-3 gap-12">
+            {/* About Content */}
+            <div className="xl:col-span-2">
+              <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-8 mb-8">
+                <p className="text-xl text-gray-700 leading-relaxed" data-testid="about-content">
+                  {t.aboutContent}
+                </p>
+              </div>
               
+              {/* Technical Skills with Progress Bars */}
               <div className="mb-8">
-                <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
-                  <Code className="text-blue-600" size={28} />
+                <h3 className="text-3xl font-bold text-gray-800 mb-8 flex items-center gap-3">
+                  <div className="p-2 bg-blue-100 rounded-xl">
+                    <Code className="text-blue-600" size={28} />
+                  </div>
                   {t.technicalSkills}
                 </h3>
-                <div className="space-y-3">
-                  {t.skills.map((skill, index) => (
-                    <div key={index} className="flex items-start gap-3 p-3 bg-blue-50 rounded-lg border border-blue-200" data-testid={`skill-${index}`}>
-                      <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <span className="text-white text-sm font-bold">✓</span>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {[{name: 'React & TypeScript', level: 95, color: 'blue'}, {name: 'Node.js & Express', level: 90, color: 'green'}, {name: 'PostgreSQL & Drizzle', level: 85, color: 'purple'}, {name: 'Stripe Integration', level: 88, color: 'orange'}, {name: 'Responsive Design', level: 92, color: 'pink'}, {name: 'RTL Support', level: 95, color: 'red'}].map((skill, index) => (
+                    <div key={index} className="bg-white rounded-xl p-6 shadow-lg border border-gray-200 hover:shadow-xl transition-shadow" data-testid={`skill-progress-${index}`}>
+                      <div className="flex justify-between items-center mb-3">
+                        <span className="font-semibold text-gray-800">{skill.name}</span>
+                        <span className={`text-${skill.color}-600 font-bold`}>{skill.level}%</span>
                       </div>
-                      <span className="text-blue-800 font-medium">{skill}</span>
+                      <div className="w-full bg-gray-200 rounded-full h-3">
+                        <div 
+                          className={`bg-gradient-to-r from-${skill.color}-500 to-${skill.color}-600 h-3 rounded-full transition-all duration-1000 ease-out`}
+                          style={{width: `${skill.level}%`}}
+                        ></div>
+                      </div>
                     </div>
                   ))}
                 </div>
               </div>
             </div>
 
+            {/* Personal Values & Quick Info */}
             <div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
-                <Heart className="text-red-600" size={28} />
-                {t.personalValues}
-              </h3>
-              <div className="space-y-4">
-                {t.values.map((value, index) => (
-                  <div key={index} className="p-4 bg-red-50 rounded-lg border border-red-200" data-testid={`value-${index}`}>
-                    <p className="text-red-800 font-medium">{value}</p>
+              <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-2xl p-6 mb-6 border border-red-200">
+                <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+                  <div className="p-2 bg-red-100 rounded-xl">
+                    <Heart className="text-red-600" size={24} />
                   </div>
-                ))}
+                  {t.personalValues}
+                </h3>
+                <div className="space-y-4">
+                  {t.values.map((value, index) => (
+                    <div key={index} className="flex items-start gap-3 p-4 bg-white rounded-xl shadow-sm border border-red-100 hover:shadow-md transition-shadow" data-testid={`value-${index}`}>
+                      <div className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0">
+                        <Heart className="text-white" size={16} />
+                      </div>
+                      <p className="text-gray-700 font-medium">{value}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              
+              {/* Quick Info Cards */}
+              <div className="space-y-4">
+                <div className="bg-blue-50 rounded-xl p-4 border border-blue-200">
+                  <div className="flex items-center gap-3 mb-2">
+                    <Coffee className="text-blue-600" size={20} />
+                    <span className="font-semibold text-blue-800">{currentLanguage === 'he' ? 'נוכחות' : currentLanguage === 'en' ? 'Availability' : 'Disponibilité'}</span>
+                  </div>
+                  <p className="text-blue-700 text-sm">{currentLanguage === 'he' ? 'זמין לפרויקטים חדשים' : currentLanguage === 'en' ? 'Available for new projects' : 'Disponible pour nouveaux projets'}</p>
+                </div>
+                
+                <div className="bg-green-50 rounded-xl p-4 border border-green-200">
+                  <div className="flex items-center gap-3 mb-2">
+                    <Clock className="text-green-600" size={20} />
+                    <span className="font-semibold text-green-800">{currentLanguage === 'he' ? 'אזור זמן' : currentLanguage === 'en' ? 'Time Zone' : 'Fuseau Horaire'}</span>
+                  </div>
+                  <p className="text-green-700 text-sm">GMT+2 (Israel)</p>
+                </div>
+                
+                <div className="bg-purple-50 rounded-xl p-4 border border-purple-200">
+                  <div className="flex items-center gap-3 mb-2">
+                    <TrendingUp className="text-purple-600" size={20} />
+                    <span className="font-semibold text-purple-800">{currentLanguage === 'he' ? 'התמחות' : currentLanguage === 'en' ? 'Specialization' : 'Spécialisation'}</span>
+                  </div>
+                  <p className="text-purple-700 text-sm">{currentLanguage === 'he' ? 'פרויקטים קהילתיים' : currentLanguage === 'en' ? 'Community Projects' : 'Projets Communautaires'}</p>
+                </div>
               </div>
             </div>
           </div>
@@ -1205,6 +1329,190 @@ export default function Yaaakov() {
           </div>
         </div>
 
+        {/* Project Gallery & Screenshots */}
+        <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-3xl shadow-2xl p-8 md:p-12 mb-20 border-2 border-indigo-200" data-testid="project-gallery">
+          <h2 className="text-5xl font-bold text-gray-800 mb-12 text-center flex items-center justify-center gap-4">
+            <div className="p-3 bg-indigo-100 rounded-2xl">
+              <Monitor className="text-indigo-600" size={40} />
+            </div>
+            {currentLanguage === 'he' ? '🖼️ גלריית הפרויקט' : currentLanguage === 'en' ? '🖼️ Project Gallery' : '🖼️ Galerie du Projet'}
+          </h2>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
+            <div>
+              <h3 className="text-3xl font-bold text-gray-800 mb-6">{currentLanguage === 'he' ? 'העמוד הראשי' : currentLanguage === 'en' ? 'Homepage' : 'Page d\'Accueil'}</h3>
+              <div className="bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-indigo-200 card-hover">
+                <div className="h-64 bg-gradient-to-br from-red-500 to-orange-500 flex items-center justify-center">
+                  <div className="text-center text-white">
+                    <div className="text-6xl mb-4">🔥</div>
+                    <h4 className="text-2xl font-bold mb-2">האש שלי</h4>
+                    <p className="text-lg opacity-90">{currentLanguage === 'he' ? 'חנות ספרי ברסלב' : currentLanguage === 'en' ? 'Breslov Books Store' : 'Librairie Breslov'}</p>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <div className="flex justify-between items-center mb-3">
+                    <span className="text-lg font-semibold text-gray-800">{currentLanguage === 'he' ? 'עיצוב מודרני' : currentLanguage === 'en' ? 'Modern Design' : 'Design Moderne'}</span>
+                    <div className="flex gap-1">
+                      <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                      <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                      <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                    </div>
+                  </div>
+                  <p className="text-gray-600 text-sm">{currentLanguage === 'he' ? 'ממשק משתמש אינטואיטיבי עם תמיכה RTL מלאה' : currentLanguage === 'en' ? 'Intuitive UI with full RTL support' : 'Interface intuitive avec support RTL complet'}</p>
+                </div>
+              </div>
+            </div>
+            
+            <div>
+              <h3 className="text-3xl font-bold text-gray-800 mb-6">{currentLanguage === 'he' ? 'חנות מתקדמת' : currentLanguage === 'en' ? 'Advanced Store' : 'Boutique Avancée'}</h3>
+              <div className="bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-indigo-200 card-hover">
+                <div className="h-64 bg-gradient-to-br from-blue-500 to-teal-500 flex items-center justify-center">
+                  <div className="grid grid-cols-3 gap-4 p-8">
+                    {[1,2,3,4,5,6].map((book, index) => (
+                      <div key={index} className="bg-white/20 rounded-lg h-16 w-12 flex items-center justify-center">
+                        <BookOpen className="text-white" size={20} />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="p-6">
+                  <div className="flex justify-between items-center mb-3">
+                    <span className="text-lg font-semibold text-gray-800">{currentLanguage === 'he' ? 'חיפוש חכם' : currentLanguage === 'en' ? 'Smart Search' : 'Recherche Intelligente'}</span>
+                    <div className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">AI-Powered</div>
+                  </div>
+                  <p className="text-gray-600 text-sm">{currentLanguage === 'he' ? 'מערכת חיפוש מתקדמת ב-5 שפות עם בינה מלאכותית' : currentLanguage === 'en' ? 'Advanced search system in 5 languages with AI' : 'Système de recherche avancé en 5 langues avec IA'}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Technical Features Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-white rounded-xl p-6 shadow-lg border border-indigo-200 card-hover" data-testid="feature-responsive">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-2 bg-blue-100 rounded-lg">
+                  <Smartphone className="text-blue-600" size={24} />
+                </div>
+                <h4 className="text-xl font-bold text-gray-800">{currentLanguage === 'he' ? 'רספונסיבי' : currentLanguage === 'en' ? 'Responsive' : 'Responsive'}</h4>
+              </div>
+              <p className="text-gray-600">{currentLanguage === 'he' ? 'מותאם לכל המכשירים - נייד, טאבלט ומחשב' : currentLanguage === 'en' ? 'Adapted for all devices - mobile, tablet, desktop' : 'Adapté à tous les appareils - mobile, tablette, ordinateur'}</p>
+            </div>
+            
+            <div className="bg-white rounded-xl p-6 shadow-lg border border-indigo-200 card-hover" data-testid="feature-security">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-2 bg-green-100 rounded-lg">
+                  <Shield className="text-green-600" size={24} />
+                </div>
+                <h4 className="text-xl font-bold text-gray-800">{currentLanguage === 'he' ? 'אבטחה' : currentLanguage === 'en' ? 'Security' : 'Sécurité'}</h4>
+              </div>
+              <p className="text-gray-600">{currentLanguage === 'he' ? 'תשלומים מאובטחים ו-SSL encryption מלא' : currentLanguage === 'en' ? 'Secure payments and full SSL encryption' : 'Paiements sécurisés et cryptage SSL complet'}</p>
+            </div>
+            
+            <div className="bg-white rounded-xl p-6 shadow-lg border border-indigo-200 card-hover" data-testid="feature-performance">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-2 bg-purple-100 rounded-lg">
+                  <Zap className="text-purple-600" size={24} />
+                </div>
+                <h4 className="text-xl font-bold text-gray-800">{currentLanguage === 'he' ? 'ביצועים' : currentLanguage === 'en' ? 'Performance' : 'Performance'}</h4>
+              </div>
+              <p className="text-gray-600">{currentLanguage === 'he' ? 'טעינה מהירה תחת 2 שניות עם אופטימיזציה מתקדמת' : currentLanguage === 'en' ? 'Fast loading under 2 seconds with advanced optimization' : 'Chargement rapide sous 2 secondes avec optimisation avancée'}</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Interactive Development Timeline */}
+        <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 mb-20 border-2 border-orange-200 relative overflow-hidden" data-testid="development-timeline">
+          <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-orange-500 via-red-500 to-pink-500"></div>
+          
+          <h2 className="text-5xl font-bold text-gray-800 mb-12 text-center flex items-center justify-center gap-4">
+            <div className="p-3 bg-orange-100 rounded-2xl">
+              <Calendar className="text-orange-600" size={40} />
+            </div>
+            {currentLanguage === 'he' ? '📅 לוח זמני הפיתוח' : currentLanguage === 'en' ? '📅 Development Timeline' : '📅 Timeline de Développement'}
+          </h2>
+          
+          <div className="relative">
+            {/* Timeline line */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-orange-500 to-red-500 rounded-full"></div>
+            
+            <div className="space-y-16">
+              {[
+                {
+                  phase: currentLanguage === 'he' ? 'שלב 1: מחקר וקהילה' : currentLanguage === 'en' ? 'Phase 1: Research & Community' : 'Phase 1: Recherche & Communauté',
+                  duration: currentLanguage === 'he' ? '2 חודשים' : currentLanguage === 'en' ? '2 months' : '2 mois',
+                  description: currentLanguage === 'he' ? 'מחקר עמוק על הקהילה הברסלבית והבנת הצרכים' : currentLanguage === 'en' ? 'Deep research on Breslov community and understanding needs' : 'Recherche approfondie sur la communauté Breslov et compréhension des besoins',
+                  progress: 100,
+                  color: 'green',
+                  side: 'right'
+                },
+                {
+                  phase: currentLanguage === 'he' ? 'שלב 2: עיצוב UX/UI' : currentLanguage === 'en' ? 'Phase 2: UX/UI Design' : 'Phase 2: Design UX/UI',
+                  duration: currentLanguage === 'he' ? '3 חודשים' : currentLanguage === 'en' ? '3 months' : '3 mois',
+                  description: currentLanguage === 'he' ? 'עיצוב ממשק משתמש ידידותי עם דגש על נגישות' : currentLanguage === 'en' ? 'User-friendly interface design with focus on accessibility' : 'Design d\'interface conviviale avec accent sur l\'accessibilité',
+                  progress: 100,
+                  color: 'blue',
+                  side: 'left'
+                },
+                {
+                  phase: currentLanguage === 'he' ? 'שלב 3: פיתוח טכני' : currentLanguage === 'en' ? 'Phase 3: Technical Development' : 'Phase 3: Développement Technique',
+                  duration: currentLanguage === 'he' ? '6 חודשים' : currentLanguage === 'en' ? '6 months' : '6 mois',
+                  description: currentLanguage === 'he' ? 'בניית האתר עם טכנולוגיות מתקדמות' : currentLanguage === 'en' ? 'Building the site with advanced technologies' : 'Construction du site avec technologies avancées',
+                  progress: 95,
+                  color: 'purple',
+                  side: 'right'
+                },
+                {
+                  phase: currentLanguage === 'he' ? 'שלב 4: אינטגרציות' : currentLanguage === 'en' ? 'Phase 4: Integrations' : 'Phase 4: Intégrations',
+                  duration: currentLanguage === 'he' ? '2 חודשים' : currentLanguage === 'en' ? '2 months' : '2 mois',
+                  description: currentLanguage === 'he' ? 'חיבור מערכות תשלום, משלוחים ושירותים' : currentLanguage === 'en' ? 'Connecting payment, shipping, and service systems' : 'Connexion des systèmes de paiement, livraison et services',
+                  progress: 88,
+                  color: 'orange',
+                  side: 'left'
+                },
+                {
+                  phase: currentLanguage === 'he' ? 'שלב 5: השקה וקהילה' : currentLanguage === 'en' ? 'Phase 5: Launch & Community' : 'Phase 5: Lancement & Communauté',
+                  duration: currentLanguage === 'he' ? 'מתמשך' : currentLanguage === 'en' ? 'Ongoing' : 'En cours',
+                  description: currentLanguage === 'he' ? 'השקה רשמית ובניית קהילת משתמשים פעילה' : currentLanguage === 'en' ? 'Official launch and building active user community' : 'Lancement officiel et construction d\'une communauté d\'utilisateurs active',
+                  progress: 75,
+                  color: 'red',
+                  side: 'right'
+                }
+              ].map((item, index) => (
+                <div key={index} className={`flex items-center ${item.side === 'right' ? 'justify-start' : 'justify-end'}`} data-testid={`timeline-phase-${index}`}>
+                  <div className={`w-5/12 ${item.side === 'right' ? 'text-left pl-12' : 'text-right pr-12'}`}>
+                    <div className={`bg-gradient-to-br from-${item.color}-50 to-${item.color}-100 rounded-2xl p-6 border-2 border-${item.color}-200 card-hover`}>
+                      <div className="flex justify-between items-center mb-3">
+                        <h4 className="text-xl font-bold text-gray-800">{item.phase}</h4>
+                        <span className={`bg-${item.color}-500 text-white px-3 py-1 rounded-full text-sm font-semibold`}>{item.duration}</span>
+                      </div>
+                      <p className="text-gray-700 mb-4">{item.description}</p>
+                      
+                      {/* Progress bar */}
+                      <div className="mb-2">
+                        <div className="flex justify-between items-center mb-1">
+                          <span className="text-sm font-medium text-gray-600">{currentLanguage === 'he' ? 'התקדמות' : currentLanguage === 'en' ? 'Progress' : 'Progrès'}</span>
+                          <span className={`text-sm font-bold text-${item.color}-600`}>{item.progress}%</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-3 progress-bar">
+                          <div 
+                            className={`bg-gradient-to-r from-${item.color}-500 to-${item.color}-600 h-3 rounded-full transition-all duration-1000 ease-out`}
+                            style={{width: `${item.progress}%`}}
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Timeline node */}
+                  <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-white rounded-full border-4 border-orange-500 z-10">
+                    <div className={`w-2 h-2 bg-${item.color}-500 rounded-full m-auto mt-0.5`}></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
         {/* Achievements & Impact Section */}
         <div className="bg-gradient-to-r from-green-600 to-teal-600 rounded-2xl shadow-xl p-8 md:p-12 mb-16 text-white" data-testid="achievements-section">
           <h2 className="text-4xl font-bold mb-12 text-center flex items-center justify-center gap-3">
@@ -1228,15 +1536,71 @@ export default function Yaaakov() {
           </div>
 
           <div className="mb-12">
-            <h3 className="text-2xl font-bold mb-8 text-center">{t.testimonials}</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <h3 className="text-3xl font-bold mb-12 text-center flex items-center justify-center gap-3">
+              <div className="p-2 bg-white/20 rounded-xl">
+                <MessageCircle className="text-white" size={32} />
+              </div>
+              {t.testimonials}
+            </h3>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {t.userTestimonials.map((testimonial, index) => (
-                <div key={index} className="bg-white/10 backdrop-blur rounded-xl p-6" data-testid={`testimonial-${index}`}>
-                  <p className="text-white/90 mb-4 italic">"{testimonial.quote}"</p>
-                  <div className="text-white font-bold">{testimonial.name}</div>
-                  <div className="text-white/70 text-sm">{testimonial.location}</div>
+                <div key={index} className="relative card-hover" data-testid={`testimonial-${index}`}>
+                  <div className="bg-white/15 backdrop-blur-lg rounded-2xl p-8 border border-white/20 relative overflow-hidden">
+                    {/* Quote decoration */}
+                    <div className="absolute top-4 left-4 text-6xl text-white/10 font-serif">"</div>
+                    <div className="absolute bottom-4 right-4 text-6xl text-white/10 font-serif rotate-180">"</div>
+                    
+                    {/* Star rating */}
+                    <div className="flex gap-1 mb-4 relative z-10">
+                      {[1,2,3,4,5].map((star) => (
+                        <Star key={star} className="text-yellow-400 fill-current" size={20} />
+                      ))}
+                    </div>
+                    
+                    <p className="text-white/95 mb-6 italic text-lg leading-relaxed relative z-10">
+                      "{testimonial.quote}"
+                    </p>
+                    
+                    <div className="flex items-center gap-4 relative z-10">
+                      <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+                        <User className="text-white" size={24} />
+                      </div>
+                      <div>
+                        <div className="text-white font-bold text-lg">{testimonial.name}</div>
+                        <div className="text-white/80 text-sm flex items-center gap-1">
+                          <Globe size={14} />
+                          {testimonial.location}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Card index number */}
+                  <div className="absolute -top-4 -right-4 w-12 h-12 bg-yellow-400 text-green-800 rounded-full flex items-center justify-center font-bold text-lg shadow-lg">
+                    {index + 1}
+                  </div>
                 </div>
               ))}
+            </div>
+            
+            {/* Testimonial stats */}
+            <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+              <div className="bg-white/10 backdrop-blur rounded-xl p-4">
+                <div className="text-3xl font-bold text-white mb-1">4.9</div>
+                <div className="text-white/80 text-sm">{currentLanguage === 'he' ? 'דירוג ממוצע' : currentLanguage === 'en' ? 'Average Rating' : 'Note Moyenne'}</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur rounded-xl p-4">
+                <div className="text-3xl font-bold text-white mb-1">150+</div>
+                <div className="text-white/80 text-sm">{currentLanguage === 'he' ? 'ביקורות' : currentLanguage === 'en' ? 'Reviews' : 'Avis'}</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur rounded-xl p-4">
+                <div className="text-3xl font-bold text-white mb-1">98%</div>
+                <div className="text-white/80 text-sm">{currentLanguage === 'he' ? 'שביעות רצון' : currentLanguage === 'en' ? 'Satisfaction' : 'Satisfaction'}</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur rounded-xl p-4">
+                <div className="text-3xl font-bold text-white mb-1">24h</div>
+                <div className="text-white/80 text-sm">{currentLanguage === 'he' ? 'זמן תגובה' : currentLanguage === 'en' ? 'Response Time' : 'Temps Réponse'}</div>
+              </div>
             </div>
           </div>
 
@@ -1307,57 +1671,123 @@ export default function Yaaakov() {
           </div>
         </div>
 
-        {/* Contact & Collaboration Section */}
-        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl shadow-xl p-8 md:p-12 mb-16 text-white" data-testid="contact-section">
-          <h2 className="text-4xl font-bold mb-12 text-center flex items-center justify-center gap-3">
-            <Mail className="text-white" size={40} />
-            {t.contactTitle}
-          </h2>
-
-          <div className="mb-12 text-center">
-            <h3 className="text-2xl font-bold mb-6">{t.getInTouch}</h3>
-            <div className="bg-white/10 backdrop-blur rounded-xl p-8 max-w-4xl mx-auto">
-              <p className="text-xl leading-relaxed text-white/90 mb-6" data-testid="contact-description">
-                {t.contactDescription}
-              </p>
-              <div className="flex justify-center gap-4 flex-wrap">
-                <button className="bg-white/20 hover:bg-white/30 backdrop-blur px-6 py-3 rounded-lg flex items-center gap-2 transition-colors" data-testid="contact-email">
-                  <Mail size={20} />
-                  yaakov@haesh-sheli.co.il
-                </button>
-                <button className="bg-white/20 hover:bg-white/30 backdrop-blur px-6 py-3 rounded-lg flex items-center gap-2 transition-colors" data-testid="contact-github">
-                  <Github size={20} />
-                  GitHub
-                </button>
-                <button className="bg-white/20 hover:bg-white/30 backdrop-blur px-6 py-3 rounded-lg flex items-center gap-2 transition-colors" data-testid="contact-linkedin">
-                  <Linkedin size={20} />
-                  LinkedIn
-                </button>
+        {/* Enhanced Contact & Collaboration Section */}
+        <div className="bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-600 rounded-3xl shadow-2xl p-8 md:p-12 mb-20 text-white relative overflow-hidden" data-testid="contact-section">
+          {/* Background decorations */}
+          <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full transform translate-x-32 -translate-y-32"></div>
+          <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full transform -translate-x-24 translate-y-24"></div>
+          
+          <div className="relative z-10">
+            <h2 className="text-5xl font-bold mb-16 text-center flex items-center justify-center gap-4">
+              <div className="p-3 bg-white/20 rounded-2xl backdrop-blur">
+                <Mail className="text-white" size={40} />
               </div>
-              <p className="text-white/70 text-sm mt-4">{t.responseTime}</p>
-            </div>
-          </div>
+              {t.contactTitle}
+            </h2>
 
-          <div className="mb-8">
-            <h3 className="text-2xl font-bold mb-8 text-center">{t.collaborationOpportunities}</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {t.opportunities.map((opportunity, index) => (
-                <div key={index} className="bg-white/10 backdrop-blur rounded-xl p-6" data-testid={`opportunity-${index}`}>
-                  <div className="flex items-center gap-3 mb-4">
-                    <IconComponent name={opportunity.icon} className="text-white" size={28} />
-                    <h4 className="text-xl font-bold">{opportunity.title}</h4>
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-12 mb-16">
+              {/* Contact Info */}
+              <div>
+                <h3 className="text-3xl font-bold mb-8 flex items-center gap-3">
+                  <div className="p-2 bg-white/20 rounded-xl">
+                    <MessageCircle className="text-white" size={28} />
                   </div>
-                  <p className="text-white/90">{opportunity.description}</p>
+                  {t.getInTouch}
+                </h3>
+                
+                <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 mb-8">
+                  <p className="text-xl leading-relaxed text-white/95 mb-8" data-testid="contact-description">
+                    {t.contactDescription}
+                  </p>
+                  
+                  {/* Contact Methods */}
+                  <div className="space-y-4">
+                    <div className="bg-white/10 rounded-xl p-4 flex items-center gap-4 hover:bg-white/20 transition-colors cursor-pointer" data-testid="contact-email">
+                      <div className="p-3 bg-red-500 rounded-lg">
+                        <Mail className="text-white" size={20} />
+                      </div>
+                      <div>
+                        <div className="font-semibold">Email</div>
+                        <div className="text-white/80 text-sm">yaakov@haesh-sheli.co.il</div>
+                      </div>
+                    </div>
+                    
+                    <div className="bg-white/10 rounded-xl p-4 flex items-center gap-4 hover:bg-white/20 transition-colors cursor-pointer" data-testid="contact-github">
+                      <div className="p-3 bg-gray-800 rounded-lg">
+                        <Github className="text-white" size={20} />
+                      </div>
+                      <div>
+                        <div className="font-semibold">GitHub</div>
+                        <div className="text-white/80 text-sm">github.com/yaakov-ran</div>
+                      </div>
+                    </div>
+                    
+                    <div className="bg-white/10 rounded-xl p-4 flex items-center gap-4 hover:bg-white/20 transition-colors cursor-pointer" data-testid="contact-linkedin">
+                      <div className="p-3 bg-blue-600 rounded-lg">
+                        <Linkedin className="text-white" size={20} />
+                      </div>
+                      <div>
+                        <div className="font-semibold">LinkedIn</div>
+                        <div className="text-white/80 text-sm">linkedin.com/in/yaakov-ran</div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="mt-6 p-4 bg-green-500/20 rounded-xl border border-green-400/30">
+                    <div className="flex items-center gap-2 mb-1">
+                      <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                      <span className="font-semibold text-green-100">{currentLanguage === 'he' ? 'זמין כעת' : currentLanguage === 'en' ? 'Available Now' : 'Disponible Maintenant'}</span>
+                    </div>
+                    <p className="text-green-200 text-sm">{t.responseTime}</p>
+                  </div>
                 </div>
-              ))}
-            </div>
-          </div>
+              </div>
 
-          <div className="text-center">
-            <div className="bg-white/10 backdrop-blur rounded-xl p-6 inline-block">
-              <p className="text-xl font-bold text-green-300" data-testid="open-to-work">
-                ✨ {t.openToWork}
-              </p>
+              {/* Collaboration Opportunities */}
+              <div>
+                <h3 className="text-3xl font-bold mb-8 flex items-center gap-3">
+                  <div className="p-2 bg-white/20 rounded-xl">
+                    <Users className="text-white" size={28} />
+                  </div>
+                  {t.collaborationOpportunities}
+                </h3>
+                
+                <div className="space-y-6">
+                  {t.opportunities.map((opportunity, index) => (
+                    <div key={index} className="bg-white/10 backdrop-blur rounded-2xl p-6 border border-white/20 card-hover" data-testid={`opportunity-${index}`}>
+                      <div className="flex items-start gap-4">
+                        <div className="p-3 bg-white/20 rounded-xl flex-shrink-0">
+                          <IconComponent name={opportunity.icon} className="text-white" size={24} />
+                        </div>
+                        <div>
+                          <h4 className="text-xl font-bold mb-3">{opportunity.title}</h4>
+                          <p className="text-white/90 leading-relaxed">{opportunity.description}</p>
+                          
+                          <div className="mt-4">
+                            <button className="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors flex items-center gap-2">
+                              {currentLanguage === 'he' ? 'למידע נוסף' : currentLanguage === 'en' ? 'Learn More' : 'En Savoir Plus'}
+                              <ChevronRight size={16} />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Status Banner */}
+            <div className="text-center">
+              <div className="bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl p-8 inline-block shadow-2xl">
+                <div className="flex items-center justify-center gap-4 mb-4">
+                  <div className="w-4 h-4 bg-white rounded-full animate-pulse"></div>
+                  <p className="text-2xl font-bold text-white" data-testid="open-to-work">
+                    ✨ {t.openToWork}
+                  </p>
+                </div>
+                <p className="text-green-100">{currentLanguage === 'he' ? 'מחפש פרויקטים מעניינים ומשמעותיים' : currentLanguage === 'en' ? 'Looking for interesting and meaningful projects' : 'À la recherche de projets intéressants et significatifs'}</p>
+              </div>
             </div>
           </div>
         </div>

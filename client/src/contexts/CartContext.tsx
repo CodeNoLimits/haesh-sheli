@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
 export interface CartItem {
   id: string;
@@ -20,6 +21,9 @@ interface CartContextType {
   items: CartItem[];
   totalItems: number;
   totalPrice: number;
+  subtotalPrice: number;
+  discount: number;
+  isSubscriber: boolean;
   addItem: (item: Omit<CartItem, 'id'>) => void;
   removeItem: (itemId: string) => void;
   updateQuantity: (itemId: string, quantity: number) => void;
@@ -43,6 +47,15 @@ const CART_STORAGE_KEY = 'breslov-cart';
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [items, setItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+
+  // Fetch user subscription status
+  const { data: userSubscription } = useQuery({
+    queryKey: ['/api/user/subscription'],
+    retry: false,
+    refetchOnWindowFocus: false,
+  });
+
+  const isSubscriber = (userSubscription as any)?.user?.isSubscriber || false;
 
   // Load cart from localStorage on mount
   useEffect(() => {
@@ -114,12 +127,19 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
-  const totalPrice = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  const subtotalPrice = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  
+  // Apply 5% discount for subscribers
+  const discount = isSubscriber ? subtotalPrice * 0.05 : 0;
+  const totalPrice = subtotalPrice - discount;
 
   const value: CartContextType = {
     items,
     totalItems,
     totalPrice,
+    subtotalPrice,
+    discount,
+    isSubscriber,
     addItem,
     removeItem,
     updateQuantity,

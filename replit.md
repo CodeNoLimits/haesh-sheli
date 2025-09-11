@@ -2,9 +2,35 @@
 
 This is a Hebrew language e-commerce website for selling books by Rabbi Nachman of Breslov. The site features a modern React frontend with a Node.js/Express backend, designed specifically for the Israeli/Hebrew-speaking market. It includes features like book browsing, shopping cart functionality, and promotional campaigns such as flight giveaways to Uman (a significant pilgrimage site for Breslov Hasidim).
 
+## 🔥 TRANSFORMATION PLANNED - September 2025
+
+A comprehensive design improvement plan has been developed to transform Haesh Sheli into the **world's premier Breslov website**. The transformation includes:
+
+- **Modern Design System**: White/blue color scheme inspired by leading Breslov sites
+- **Premium UX**: Amazon-inspired e-commerce patterns with advanced product pages
+- **Content Ecosystem**: Daily teachings, Ask the Rabbi, video library, community features
+- **Mobile-First Responsive**: Optimized for 60%+ mobile traffic
+- **Performance Excellence**: Core Web Vitals optimization for premium user experience
+
+**Documentation**:
+- `DESIGN_IMPROVEMENT_PLAN.md` - Complete transformation specifications
+- `IMPLEMENTATION_PRIORITIES.md` - Execution roadmap with priority matrix
+
+**Timeline**: 16 weeks in 4 phases, targeting 300%+ conversion rate improvement
+
 # User Preferences
 
 Preferred communication style: Simple, everyday language.
+
+# Recent Changes
+
+## September 11, 2025 - Design Transformation Plan
+- **Created comprehensive design improvement plan** targeting world-class Breslov website status
+- **Analyzed competitor landscape** including breslev.co.il, breslov.org for best practices
+- **Developed 4-phase implementation roadmap** with priority matrix and ROI projections
+- **Established modern design system** with white/blue Breslov-inspired palette
+- **Planned advanced e-commerce features** including reviews, recommendations, video integration
+- **Defined content strategy** with daily teachings, Ask the Rabbi, community features
 
 # System Architecture
 

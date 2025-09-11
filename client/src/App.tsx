@@ -17,6 +17,8 @@ import Downloads from "@/pages/downloads";
 import Product from "@/pages/product";
 import Yaaakov from "@/pages/yaaakov";
 import BreslevStyle from "@/pages/breslevStyle";
+import Subscription from "@/pages/subscription";
+import SubscriptionManagement from "@/pages/subscription-management";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -30,6 +32,8 @@ function Router() {
       <Route path="/contact" component={Contact} />
       <Route path="/checkout" component={Checkout} />
       <Route path="/downloads" component={Downloads} />
+      <Route path="/subscription" component={Subscription} />
+      <Route path="/subscription/manage" component={SubscriptionManagement} />
       <Route path="/product/:id" component={Product} />
       <Route path="/yaaakov" component={Yaaakov} />
       <Route path="/breslevstyle" component={BreslevStyle} />

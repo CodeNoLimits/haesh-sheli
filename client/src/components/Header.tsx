@@ -18,6 +18,7 @@ const translations = {
     magazine: 'המגזין',
     join: 'הצטרפות',
     downloads: 'הורדות',
+    subscription: 'הוראת קבע',
     breslevStyle: 'ברסלב סטייל',
     fire: '🔥 האש שלי'
   },
@@ -29,6 +30,7 @@ const translations = {
     magazine: 'Magazine',
     join: 'Join',
     downloads: 'Downloads',
+    subscription: 'Subscription',
     breslevStyle: 'Breslev Style',
     fire: '🔥 My Fire'
   },
@@ -40,6 +42,7 @@ const translations = {
     magazine: 'Magazine',
     join: 'Rejoindre',
     downloads: 'Téléchargements',
+    subscription: 'Abonnement',
     breslevStyle: 'Style Breslev',
     fire: '🔥 Mon Feu'
   },
@@ -51,6 +54,7 @@ const translations = {
     magazine: 'Revista',
     join: 'Unirse',
     downloads: 'Descargas',
+    subscription: 'Suscripción',
     breslevStyle: 'Estilo Breslev',
     fire: '🔥 Mi Fuego'
   },
@@ -62,6 +66,7 @@ const translations = {
     magazine: 'Журнал',
     join: 'Присоединиться',
     downloads: 'Загрузки',
+    subscription: 'Подписка',
     breslevStyle: 'Стиль Бреслев',
     fire: '🔥 Мой Огонь'
   }
@@ -118,6 +123,9 @@ export function Header({ currentLanguage = 'he', onLanguageChange }: HeaderProps
             </li>
             <li className={location === '/downloads' ? 'current-menu-item' : ''}>
               <a href="/downloads" data-testid="link-downloads">{t.downloads}</a>
+            </li>
+            <li className={location === '/subscription' ? 'current-menu-item' : ''}>
+              <a href="/subscription" data-testid="link-subscription" style={{color: '#FFD700', fontWeight: 'bold'}}>👑 {t.subscription}</a>
             </li>
             <li className={location === '/breslevstyle' ? 'current-menu-item' : ''}>
               <a href="/breslevstyle" data-testid="link-breslevstyle">{t.breslevStyle}</a>
