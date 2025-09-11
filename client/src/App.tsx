@@ -43,6 +43,7 @@ import Product from "@/pages/product";
 import BreslevStyle from "@/pages/breslevStyle";
 import Subscription from "@/pages/subscription";
 import SubscriptionManagement from "@/pages/subscription-management";
+import YaakovDashboard from "@/pages/yaaakov";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -61,6 +62,7 @@ function Router() {
       <Route path="/subscription/manage" component={SubscriptionManagement} />
       <Route path="/product/:id" component={Product} />
       <Route path="/breslevstyle" component={BreslevStyle} />
+      <Route path="/yaaakov" component={YaakovDashboard} />
       <Route component={NotFound} />
     </Switch>
   );
