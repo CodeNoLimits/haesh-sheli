@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div className="rtl home page-template-default page page-id-13 wp-custom-logo theme-hello-elementor woocommerce-js elementor-default elementor-kit-5 elementor-page elementor-page-13" style={{direction: currentLanguage === 'he' ? 'rtl' : 'ltr'}}>
       {/* TOP BAR */}
-      <section className="elementor-section elementor-top-section elementor-element elementor-element-ba655d5 elementor-section-full_width elementor-hidden-tablet elementor-hidden-mobile elementor-section-height-default" style={{background: '#333', color: 'white', padding: '8px 0'}}>
+      <section className="elementor-section elementor-top-section elementor-element elementor-element-ba655d5 elementor-section-full_width elementor-hidden-tablet elementor-hidden-mobile elementor-section-height-default" style={{background: 'hsl(210, 85%, 45%)', color: 'white', padding: '8px 0'}}>
         <div className="elementor-container elementor-column-gap-default" style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
           <div className="elementor-column elementor-col-33 elementor-top-column">
             <div className="elementor-widget-wrap elementor-element-populated">
@@ -37,13 +37,13 @@ export default function Home() {
       <Header currentLanguage={currentLanguage} onLanguageChange={setLanguage} />
 
       {/* HERO SECTION */}
-      <section className="elementor-section elementor-top-section elementor-element elementor-element-1a9b8b1 elementor-section-height-full elementor-section-content-middle elementor-section-full_width elementor-section-height-default elementor-section-items-middle" 
+      <section className="hero-gradient animate-fade-in-scale" 
         style={{
-          background: `url('/images/hero-books-composition.png')`,
+          background: `linear-gradient(135deg, hsl(0, 0%, 100%, 0.95) 0%, hsl(210, 85%, 45%, 0.05) 100%), url('/images/hero-books-composition.png')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundAttachment: 'fixed',
-          color: 'white', 
+          color: 'hsl(210, 8%, 25%)', 
           padding: '8rem 0',
           minHeight: '90vh',
           display: 'flex',
@@ -53,14 +53,11 @@ export default function Home() {
           <div className="elementor-column elementor-col-100 elementor-top-column elementor-element">
             <div className="elementor-widget-wrap elementor-element-populated">
               <div className="elementor-element elementor-widget elementor-widget-heading" style={{textAlign: 'center'}}>
-                <div className="elementor-widget-container" style={{background: 'rgba(0,0,0,0.4)', padding: '3rem', borderRadius: '15px', backdropFilter: 'blur(5px)'}}>
-                  <h1 className="elementor-heading-title elementor-size-default" style={{
-                    fontSize: currentLanguage === 'he' ? '3.8rem' : '3.2rem', 
-                    fontWeight: 'bold', 
+                <div className="card-premium animate-scale-in" style={{background: 'rgba(255,255,255,0.95)', padding: '3rem', borderRadius: '15px', backdropFilter: 'blur(10px)', boxShadow: '0 25px 50px -12px hsl(210, 85%, 45%, 0.25)'}}>
+                  <h1 className="heading-oversized text-breslov-gradient" style={{
                     marginBottom: '1.5rem', 
-                    textShadow: '3px 3px 6px rgba(0,0,0,0.7)',
-                    lineHeight: '1.2',
-                    color: 'white'
+                    lineHeight: '1.1',
+                    fontFamily: currentLanguage === 'he' ? 'var(--font-hebrew)' : 'var(--font-latin)'
                   }}>
                     {currentLanguage === 'he' ? 'ספרי רבינו נחמן מברסלב זצ״ל' : 
                      currentLanguage === 'en' ? 'Books of Our Master Rabbi Nachman of Breslov' :
@@ -68,13 +65,12 @@ export default function Home() {
                      currentLanguage === 'es' ? 'Libros de Nuestro Maestro Rabino Nachman de Breslov' :
                      currentLanguage === 'ru' ? 'Книги Нашего Учителя Рабби Нахмана из Бреслов' : 'ספרי רבינו נחמן מברסלב זצ״ל'}
                   </h1>
-                  <h2 className="elementor-heading-subtitle" style={{
-                    fontSize: currentLanguage === 'he' ? '2.8rem' : '2.2rem',
+                  <h2 style={{
+                    fontSize: 'var(--heading-3)',
                     fontWeight: '300', 
                     marginBottom: '2rem', 
-                    textShadow: '2px 2px 4px rgba(0,0,0,0.6)',
-                    color: 'white',
-                    fontFamily: currentLanguage === 'he' ? 'Assistant, Rubik, serif' : 'Georgia, serif'
+                    color: 'hsl(210, 12%, 55%)',
+                    fontFamily: currentLanguage === 'he' ? 'var(--font-hebrew)' : 'var(--font-serif)'
                   }}>
                     {currentLanguage === 'he' ? 'הדרך לאוצר שלך.' :
                      currentLanguage === 'en' ? 'The Path to Your Treasure.' :
@@ -82,7 +78,7 @@ export default function Home() {
                      currentLanguage === 'es' ? 'El Camino hacia Tu Tesoro.' :
                      currentLanguage === 'ru' ? 'Путь к Вашему Сокровищу.' : 'הדרך לאוצר שלך.'}
                   </h2>
-                  <p style={{fontSize: '1.6rem', marginBottom: '2rem', textShadow: '1px 1px 3px rgba(0,0,0,0.7)', fontStyle: 'italic', color: 'white'}}>
+                  <p className="text-large" style={{marginBottom: '2rem', fontStyle: 'italic', color: 'hsl(210, 8%, 25%)', textAlign: 'center'}}>
                     {currentLanguage === 'he' ? '\'\'רק תנו לי את ליבכם ואוליך אתכם בדרך חדשה..\'\' (רבי נחמן)' :
                      currentLanguage === 'en' ? '"Just give me your hearts and I will lead you on a new path..." (Rabbi Nachman)' :
                      currentLanguage === 'fr' ? '"Donnez-moi simplement vos cœurs et je vous mènerai sur un nouveau chemin..." (Rabbi Nachman)' :
@@ -91,28 +87,7 @@ export default function Home() {
                   </p>
                   <div style={{display: 'flex', gap: '2rem', justifyContent: 'center', flexWrap: 'wrap'}}>
                     <a href="/store" style={{textDecoration: 'none'}}>
-                      <button style={{
-                        background: 'linear-gradient(135deg, #dc3545, #c82333)', 
-                        color: 'white', 
-                        border: '3px solid white', 
-                        padding: '1.2rem 2.5rem', 
-                        borderRadius: '12px', 
-                        cursor: 'pointer', 
-                        fontSize: '1.2rem', 
-                        fontWeight: 'bold', 
-                        boxShadow: '0 6px 20px rgba(220, 53, 69, 0.4)', 
-                        transition: 'all 0.3s ease',
-                        textShadow: '1px 1px 2px rgba(0,0,0,0.5)'
-                      }} 
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.transform = 'translateY(-3px)';
-                          e.currentTarget.style.boxShadow = '0 8px 25px rgba(220, 53, 69, 0.6)';
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.transform = 'translateY(0)';
-                          e.currentTarget.style.boxShadow = '0 6px 20px rgba(220, 53, 69, 0.4)';
-                        }}
-                      >
+                      <button className="btn-breslov-primary" data-testid="button-enter-store">
                         {currentLanguage === 'he' ? 'כניסה לחנות' :
                          currentLanguage === 'en' ? 'Enter Store' :
                          currentLanguage === 'fr' ? 'Entrer dans la Boutique' :
@@ -121,31 +96,7 @@ export default function Home() {
                       </button>
                     </a>
                     <a href="/join" style={{textDecoration: 'none'}}>
-                      <button style={{
-                        background: 'rgba(255, 255, 255, 0.15)', 
-                        color: 'white', 
-                        border: '3px solid white', 
-                        padding: '1.2rem 2.5rem', 
-                        borderRadius: '12px', 
-                        cursor: 'pointer', 
-                        fontSize: '1.2rem', 
-                        fontWeight: 'bold', 
-                        transition: 'all 0.3s ease',
-                        textShadow: '1px 1px 2px rgba(0,0,0,0.7)'
-                      }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.background = 'white';
-                          e.currentTarget.style.color = '#8B4513';
-                          e.currentTarget.style.transform = 'translateY(-3px)';
-                          e.currentTarget.style.textShadow = 'none';
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.background = 'rgba(255, 255, 255, 0.15)';
-                          e.currentTarget.style.color = 'white';
-                          e.currentTarget.style.transform = 'translateY(0)';
-                          e.currentTarget.style.textShadow = '1px 1px 2px rgba(0,0,0,0.7)';
-                        }}
-                      >
+                      <button className="btn-breslov-secondary" data-testid="button-discover-activities">
                         {currentLanguage === 'he' ? 'באו לגלות על הפעילות שלנו' :
                          currentLanguage === 'en' ? 'Discover Our Activities' :
                          currentLanguage === 'fr' ? 'Découvrez nos Activités' :
@@ -162,15 +113,14 @@ export default function Home() {
       </section>
 
       {/* ONLINE BOOKS SECTION */}
-      <section style={{background: 'linear-gradient(135deg, #F5F5DC 0%, #FAEBD7 50%, #F0E68C 100%)', padding: '6rem 0'}}>
+      <section className="hero-gradient animate-fade-in-up" style={{background: 'linear-gradient(135deg, hsl(0, 0%, 100%) 0%, hsl(45, 30%, 98%) 30%, hsl(210, 70%, 98%) 100%)', padding: '6rem 0'}}>
         <div style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
-          <div style={{textAlign: 'center'}}>
-            <h2 style={{
-              fontSize: '3rem', 
+          <div className="card-premium animate-scale-in" style={{textAlign: 'center', padding: '3rem', margin: '2rem 0'}}>
+            <h2 className="text-breslov-gradient" style={{
+              fontSize: 'var(--heading-2)', 
               fontWeight: 'bold', 
-              color: '#8B4513', 
               marginBottom: '1rem',
-              fontFamily: currentLanguage === 'he' ? 'Assistant, Rubik, serif' : 'Georgia, serif'
+              fontFamily: currentLanguage === 'he' ? 'var(--font-hebrew)' : 'var(--font-serif)'
             }}>
               {currentLanguage === 'he' ? 'ספרי רבנו נחמן מברסלב זצ״ל' :
                currentLanguage === 'en' ? 'Books of Our Master Rabbi Nachman of Breslov' :
@@ -178,7 +128,7 @@ export default function Home() {
                currentLanguage === 'es' ? 'Libros de Nuestro Maestro Rabino Nachman de Breslov' :
                currentLanguage === 'ru' ? 'Книги Нашего Учителя Рабби Нахмана из Бреслов' : 'ספרי רבנו נחמן מברסלב זצ״ל'}
             </h2>
-            <h3 style={{fontSize: '2rem', fontWeight: '300', color: '#654321', marginBottom: '2rem'}}>
+            <h3 style={{fontSize: 'var(--heading-4)', fontWeight: '300', color: 'hsl(210, 12%, 55%)', marginBottom: '2rem'}}>
               {currentLanguage === 'he' ? 'עכשיו אונליין' :
                currentLanguage === 'en' ? 'Now Online' :
                currentLanguage === 'fr' ? 'Maintenant en Ligne' :
@@ -194,18 +144,7 @@ export default function Home() {
             </div>
             <div style={{display: 'flex', gap: '2rem', justifyContent: 'center', flexWrap: 'wrap'}}>
               <a href="/store" style={{textDecoration: 'none'}}>
-                <button style={{
-                  background: 'linear-gradient(135deg, #dc3545, #c82333)', 
-                  color: 'white', 
-                  border: '3px solid #8B4513', 
-                  padding: '1.2rem 2.5rem', 
-                  borderRadius: '12px', 
-                  cursor: 'pointer', 
-                  fontSize: '1.2rem', 
-                  fontWeight: 'bold', 
-                  boxShadow: '0 6px 20px rgba(220, 53, 69, 0.4)', 
-                  transition: 'all 0.3s ease'
-                }}>
+                <button className="btn-breslov-primary" data-testid="button-online-store">
                   {currentLanguage === 'he' ? 'כניסה לחנות' :
                    currentLanguage === 'en' ? 'Enter Store' :
                    currentLanguage === 'fr' ? 'Entrer dans la Boutique' :
@@ -214,17 +153,7 @@ export default function Home() {
                 </button>
               </a>
               <a href="/join" style={{textDecoration: 'none'}}>
-                <button style={{
-                  background: 'rgba(139, 69, 19, 0.1)', 
-                  color: '#8B4513', 
-                  border: '3px solid #8B4513', 
-                  padding: '1.2rem 2.5rem', 
-                  borderRadius: '12px', 
-                  cursor: 'pointer', 
-                  fontSize: '1.2rem', 
-                  fontWeight: 'bold', 
-                  transition: 'all 0.3s ease'
-                }}>
+                <button className="btn-breslov-secondary" data-testid="button-online-activities">
                   {currentLanguage === 'he' ? 'באו לגלות על הפעילות שלנו' :
                    currentLanguage === 'en' ? 'Discover Our Activities' :
                    currentLanguage === 'fr' ? 'Découvrez nos Activités' :
@@ -238,25 +167,25 @@ export default function Home() {
       </section>
 
       {/* UMAN RAFFLE SECTION */}
-      <section style={{background: 'linear-gradient(135deg, #8B4513 0%, #A0522D 100%)', color: 'white', padding: '6rem 0'}}>
+      <section className="animate-fade-in-up" style={{background: 'linear-gradient(135deg, hsl(210, 85%, 45%) 0%, hsl(210, 90%, 35%) 100%)', color: 'white', padding: '6rem 0'}}>
         <div style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
           <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4rem', alignItems: 'center'}}>
-            <div>
-              <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '1rem', color: '#FFE4B5'}}>
+            <div className="card-premium animate-slide-in-left" style={{background: 'rgba(255,255,255,0.1)', padding: '3rem', borderRadius: '15px', backdropFilter: 'blur(10px)'}}>
+              <h2 style={{fontSize: 'var(--heading-3)', fontWeight: 'bold', marginBottom: '1rem', color: 'hsl(45, 100%, 85%)', fontFamily: currentLanguage === 'he' ? 'var(--font-hebrew)' : 'var(--font-latin)'}}>
                 {currentLanguage === 'he' ? 'הגרלה כרטיס לאומן מתנה' :
                  currentLanguage === 'en' ? 'Uman Flight Ticket Raffle Gift' :
                  currentLanguage === 'fr' ? 'Tirage au Sort Billet d\'Avion Uman Cadeau' :
                  currentLanguage === 'es' ? 'Sorteo Boleto de Vuelo a Uman Regalo' :
                  currentLanguage === 'ru' ? 'Розыгрыш Билета на Самолет в Умань в Подарок' : 'הגרלה כרטיס לאומן מתנה'}
               </h2>
-              <h3 style={{fontSize: '1.8rem', fontWeight: '300', marginBottom: '2rem', color: '#F0E68C'}}>
+              <h3 style={{fontSize: 'var(--heading-4)', fontWeight: '300', marginBottom: '2rem', color: 'hsl(45, 100%, 80%)', fontFamily: currentLanguage === 'he' ? 'var(--font-hebrew)' : 'var(--font-serif)'}}>
                 {currentLanguage === 'he' ? 'קח ספר... והטיסה לאומן עלינו!' :
                  currentLanguage === 'en' ? 'Take a book... and the flight to Uman is on us!' :
                  currentLanguage === 'fr' ? 'Prenez un livre... et le vol vers Uman est pour nous!' :
                  currentLanguage === 'es' ? '¡Toma un libro... y el vuelo a Uman corre por nuestra cuenta!' :
                  currentLanguage === 'ru' ? 'Возьмите книгу... а перелет в Умань за наш счет!' : 'קח ספר... והטיסה לאומן עלינו!'}
               </h3>
-              <p style={{fontSize: '1.1rem', lineHeight: '1.6', marginBottom: '2rem', color: '#F5DEB3'}}>
+              <p className="text-large" style={{lineHeight: '1.6', marginBottom: '2rem', color: 'rgba(255,255,255,0.9)'}}>
                 {currentLanguage === 'he' ? 'מזוודה יש? ספר לדרך יש? תכינו את הלב!\n\nקרן רבי ישראל מזמינה אתכם להכנס להגרלת ההגרלות, כרטיס טיסה לציונו הקדוש של רבי נחמן באומן, עיר הגעגועים\n\nחוויה רוחנית בלתי נשכחת של תעצומות וכח!' :
                  currentLanguage === 'en' ? 'Got a suitcase? Got a book for the road? Prepare your heart!\n\nRabbi Israel Foundation invites you to enter the raffle of raffles, a flight ticket to the holy tomb of Rabbi Nachman in Uman, the city of longing\n\nAn unforgettable spiritual experience of strength and power!' :
                  currentLanguage === 'fr' ? 'Vous avez une valise? Un livre pour la route? Préparez votre cœur!\n\nLa Fondation Rabbi Israel vous invite à participer au tirage des tirages, un billet d\'avion vers la tombe sainte de Rabbi Nachman à Uman, la ville de l\'aspiration\n\nUne expérience spirituelle inoubliable de force et de puissance!' :
@@ -265,7 +194,7 @@ export default function Home() {
               </p>
               
               <div style={{marginBottom: '2rem'}}>
-                <h4 style={{fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem', color: '#FFE4B5'}}>
+                <h4 style={{fontSize: 'var(--heading-4)', fontWeight: 'bold', marginBottom: '1rem', color: 'hsl(45, 100%, 85%)', fontFamily: currentLanguage === 'he' ? 'var(--font-hebrew)' : 'var(--font-latin)'}}>
                   {currentLanguage === 'he' ? 'איך משתתפים?' :
                    currentLanguage === 'en' ? 'How to participate?' :
                    currentLanguage === 'fr' ? 'Comment participer?' :
@@ -274,19 +203,20 @@ export default function Home() {
                 </h4>
                 <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem'}}>
                   {[1, 2, 3, 4].map((step) => (
-                    <div key={step} style={{background: 'rgba(255, 228, 181, 0.1)', padding: '1.5rem', borderRadius: '10px', textAlign: 'center'}}>
+                    <div key={step} className="card-premium" style={{background: 'rgba(255, 255, 255, 0.15)', padding: '1.5rem', borderRadius: '10px', textAlign: 'center', backdropFilter: 'blur(5px)'}}>
                       <div style={{
                         width: '50px', 
                         height: '50px', 
-                        background: '#FFE4B5', 
-                        color: '#8B4513', 
+                        background: 'hsl(45, 100%, 85%)', 
+                        color: 'hsl(210, 85%, 45%)', 
                         borderRadius: '50%', 
                         display: 'flex', 
                         alignItems: 'center', 
                         justifyContent: 'center', 
                         fontSize: '1.5rem', 
                         fontWeight: 'bold', 
-                        margin: '0 auto 1rem'
+                        margin: '0 auto 1rem',
+                        boxShadow: '0 4px 15px hsl(210, 85%, 45%, 0.2)'
                       }}>
                         {step}
                       </div>
@@ -328,15 +258,15 @@ export default function Home() {
               
               <a href="/raffle" style={{textDecoration: 'none'}}>
                 <button style={{
-                  background: 'linear-gradient(135deg, #dc3545, #c82333)', 
+                  background: 'linear-gradient(135deg, hsl(210, 85%, 45%), hsl(210, 90%, 35%))', 
                   color: 'white', 
-                  border: '3px solid #FFE4B5', 
+                  border: '3px solid hsl(45, 100%, 85%)', 
                   padding: '1.2rem 2.5rem', 
                   borderRadius: '12px', 
                   cursor: 'pointer', 
                   fontSize: '1.2rem', 
                   fontWeight: 'bold', 
-                  boxShadow: '0 6px 20px rgba(220, 53, 69, 0.4)', 
+                  boxShadow: '0 6px 20px hsl(210, 85%, 45%, 0.4)', 
                   transition: 'all 0.3s ease',
                   width: '100%'
                 }}>
@@ -469,17 +399,9 @@ export default function Home() {
             </div>
             
             <a href="/raffle" style={{textDecoration: 'none'}}>
-              <button style={{
-                background: 'linear-gradient(135deg, #dc3545, #c82333)', 
-                color: 'white', 
-                border: '3px solid #8B4513', 
+              <button className="btn-breslov-primary" data-testid="button-detailed-raffle" style={{
                 padding: '1.5rem 3rem', 
-                borderRadius: '12px', 
-                cursor: 'pointer', 
-                fontSize: '1.3rem', 
-                fontWeight: 'bold', 
-                boxShadow: '0 6px 20px rgba(220, 53, 69, 0.4)', 
-                transition: 'all 0.3s ease'
+                fontSize: '1.3rem'
               }}>
                 {currentLanguage === 'he' ? 'לחצו כאן להצטרף להגרלה' :
                  currentLanguage === 'en' ? 'Click here to join the raffle' :
@@ -493,15 +415,14 @@ export default function Home() {
       </section>
 
       {/* LEADING BOOKS SECTION */}
-      <section style={{background: 'linear-gradient(135deg, #F5F5DC 0%, #FAEBD7 50%, #F0E68C 100%)', padding: '6rem 0'}}>
+      <section className="hero-gradient animate-fade-in-up" style={{background: 'linear-gradient(135deg, hsl(0, 0%, 100%) 0%, hsl(45, 30%, 98%) 30%, hsl(210, 70%, 98%) 100%)', padding: '6rem 0'}}>
         <div style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
-          <div style={{textAlign: 'center', marginBottom: '4rem'}}>
-            <h2 style={{
-              fontSize: '2.8rem', 
+          <div className="card-premium animate-scale-in" style={{textAlign: 'center', marginBottom: '4rem', padding: '2rem', borderRadius: '15px'}}>
+            <h2 className="text-breslov-gradient" style={{
+              fontSize: 'var(--heading-2)', 
               fontWeight: 'bold', 
-              color: '#8B4513', 
               marginBottom: '1.5rem',
-              fontFamily: currentLanguage === 'he' ? 'Assistant, Rubik, serif' : 'Georgia, serif'
+              fontFamily: currentLanguage === 'he' ? 'var(--font-hebrew)' : 'var(--font-serif)'
             }}>
               {currentLanguage === 'he' ? 'ספרי רבנו המובילים' :
                currentLanguage === 'en' ? 'Leading Books of Our Master' :
@@ -546,12 +467,10 @@ export default function Home() {
               }
             ].map((book, index) => (
               <a key={index} href="/store" style={{textDecoration: 'none', color: 'inherit'}}>
-                <div style={{
-                  background: 'white', 
-                  borderRadius: '10px', 
+                <div className="card-premium card-hover" style={{
+                  borderRadius: '15px', 
                   overflow: 'hidden', 
-                  boxShadow: '0 4px 15px rgba(0,0,0,0.1)', 
-                  transition: 'transform 0.3s ease',
+                  transition: 'all 0.3s ease',
                   cursor: 'pointer'
                 }} 
                   onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
