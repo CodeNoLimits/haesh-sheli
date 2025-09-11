@@ -6,6 +6,9 @@ export default function Store() {
   const { currentLanguage, setLanguage } = useLanguage();
   const products = Object.values(realBreslovProducts);
   
+  console.log('✅ STORE DEBUG: Total products in realBreslovProducts:', Object.keys(realBreslovProducts).length);
+  console.log('✅ STORE DEBUG: Products array length:', products.length);
+  console.log('✅ STORE DEBUG: First 5 product IDs:', products.slice(0, 5).map(p => p.id));
   console.log('✅ STORE: Loading', products.length, 'books');
 
   return (

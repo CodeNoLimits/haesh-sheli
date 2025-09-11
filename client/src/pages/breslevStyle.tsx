@@ -25,9 +25,11 @@ export default function BreslovStyle() {
     return undefined;
   };
   
-  // Get real products for display
-  const featuredProducts = Object.values(realBreslovProducts).filter(p => p.isFeatured).slice(0, 6);
-  const allProducts = Object.values(realBreslovProducts).slice(0, 12);
+  // CORRECTED: Guarantee ALL 43 products are displayed uniquely without duplications
+  const allProducts = Object.values(realBreslovProducts);
+  const featuredProducts = allProducts.filter(p => p.isFeatured).slice(0, 6); // Max 6 featured
+  const featuredIds = new Set(featuredProducts.map(p => p.id));
+  const remainingProducts = allProducts.filter(p => !featuredIds.has(p.id)); // All non-featured products
   
   // Categories from real data
   const categories = [
@@ -148,7 +150,7 @@ export default function BreslovStyle() {
 
           {/* Secondary Articles - 4 columns stacked */}
           <div className="col-span-12 lg:col-span-4 space-y-4">
-            {featuredProducts.slice(1, 3).map((product) => (
+            {featuredProducts.slice(1).map((product) => (
               <Card key={product.id} className="group hover:shadow-lg transition-shadow duration-300 bg-white border-gray-100" data-testid={`featured-secondary-${product.id}`}>
                 <div className="flex">
                   <div className="w-24 h-24 bg-gradient-to-br from-blue-50 to-gray-50 flex-shrink-0 relative">
@@ -230,7 +232,7 @@ export default function BreslovStyle() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" data-testid="books-grid">
-            {allProducts.slice(3, 7).map((product) => (
+            {remainingProducts.map((product) => (
               <Card key={product.id} className="group hover:shadow-lg transition-shadow duration-300 bg-white border-gray-100" data-testid={`book-card-${product.id}`}>
                 <div className="aspect-[4/3] bg-gradient-to-br from-blue-50 to-gray-50 relative overflow-hidden">
                   {product.images && product.images[0] && getImageUrl(product.images[0]) ? (
