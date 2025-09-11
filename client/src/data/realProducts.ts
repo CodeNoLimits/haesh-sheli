@@ -20,10 +20,10 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 960,
     isbn: '978-965-7023-01-1',
     images: [
-      '/attached_assets/1_1757275751755.jpg',
-      '/attached_assets/2_1757275751756.jpg',
-      '/attached_assets/3_1757275751756.jpg',
-      '/attached_assets/4_1757275751756.jpg'
+      '/attached_assets/ליקוטי מוהרן 1_1757275910545.jpg',
+      '/attached_assets/ליקוטי מוהרן 1_1757278339720.jpg',
+      '/attached_assets/ליקוטי מוהרן 1_1757281125909.jpg',
+      '/attached_assets/ליקוטי מוהרן 2_1757280401419.jpg'
     ],
     variants: [
       {
@@ -166,10 +166,10 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 416,
     isbn: '978-965-7023-02-8',
     images: [
-      '/attached_assets/1_1757275875790.jpg',
-      '/attached_assets/2_1757275875790.jpg',
-      '/attached_assets/3_1757275875790.jpg',
-      '/attached_assets/1_1757278349498.jpg'
+      '/attached_assets/קיצור ליקומ 1_1757275910546.jpg',
+      '/attached_assets/קיצור ליקומ 1_1757278339721.jpg',
+      '/attached_assets/קיצור ליקומ 1_1757281125911.jpg',
+      '/attached_assets/קיצור ליקומ_1757281085509.jpg'
     ],
     variants: [
       {
@@ -224,10 +224,10 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 1152,
     isbn: '978-965-7023-12-7',
     images: [
-      '/attached_assets/2_1757278349499.jpg',
-      '/attached_assets/3_1757278349499.jpg',
-      '/attached_assets/1_1757280901212.jpg',
-      '/attached_assets/2_1757280901213.jpg'
+      '/attached_assets/ליקוטי תפילות 1_1757275910545.jpg',
+      '/attached_assets/ליקוטי תפילות 1_1757278339720.jpg',
+      '/attached_assets/ליקוטי תפילות 1_1757281125910.jpg',
+      '/attached_assets/ליקוטי תפילות 2_1757280401419.jpg'
     ],
     variants: [
       {
@@ -370,9 +370,10 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 1088,
     isbn: '978-965-7023-13-4',
     images: [
-      '/attached_assets/3_1757280901214.jpg',
-      '/attached_assets/4_1757275751756.jpg',
-      '/attached_assets/5_1757275751756.jpg'
+      '/attached_assets/עלים לתרופה 1_1757275910546.jpg',
+      '/attached_assets/עלים לתרופה 1_1757278339721.jpg',
+      '/attached_assets/עלים לתרופה 1_1757281125910.jpg',
+      '/attached_assets/עלים_1757281085507.jpg'
     ],
     variants: [
       {
@@ -449,9 +450,9 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 448,
     isbn: '978-965-7023-14-1',
     images: [
-      '/attached_assets/1_1757275751755.jpg',
-      '/attached_assets/2_1757275751756.jpg',
-      '/attached_assets/3_1757275751756.jpg'
+      '/attached_assets/סיפורי מעשיות 1_1757275910546.jpg',
+      '/attached_assets/סיפורי מעשיות 1_1757278339721.jpg',
+      '/attached_assets/סיפורי מעשיות 2_1757280401419.jpg'
     ],
     variants: [
       {
@@ -561,9 +562,10 @@ export const realBreslovProducts: Record<string, Product> = {
     pages: 320,
     isbn: '978-965-7023-15-8',
     images: [
-      '/attached_assets/1_1757275875790.jpg',
-      '/attached_assets/2_1757275875790.jpg',
-      '/attached_assets/3_1757275875790.jpg'
+      '/attached_assets/ספר המידות 1_1757275910546.jpg',
+      '/attached_assets/ספר המידות 1_1757278339721.jpg',
+      '/attached_assets/ספר המידות 1_1757281125910.jpg',
+      '/attached_assets/ספר המידות 2_1757280401419.jpg'
     ],
     variants: [
       {
@@ -631,7 +633,8 @@ export const realBreslovProducts: Record<string, Product> = {
     images: [
       '/attached_assets/השתפכות 1_1757275910544.jpg',
       '/attached_assets/השתפכות 1_1757278339719.jpg',
-      '/attached_assets/השתפכות 2_1757275875791.jpg'
+      '/attached_assets/השתפכות 2_1757275875791.jpg',
+      '/attached_assets/השתפכות_1757281003111.jpg'
     ],
     variants: [
       {
@@ -778,7 +781,8 @@ export const realBreslovProducts: Record<string, Product> = {
     images: [
       '/attached_assets/ליקוטי עצות 1_1757275910545.jpg',
       '/attached_assets/ליקוטי עצות 1_1757278339720.jpg',
-      '/attached_assets/ליקוטי עצות 1_1757281125909.jpg'
+      '/attached_assets/ליקוטי עצות 1_1757281125909.jpg',
+      '/attached_assets/ליקוטי עצות_1757281003113.jpg'
     ],
     variants: [
       {
