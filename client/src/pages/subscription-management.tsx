@@ -80,7 +80,7 @@ export default function SubscriptionManagement() {
       case 'canceled':
         return <Badge className="bg-red-100 text-red-800"><XCircle className="w-3 h-3 mr-1" /> מבוטל</Badge>;
       case 'past_due':
-        return <Badge className="bg-yellow-100 text-yellow-800">בעבר להתשלום</Badge>;
+        return <Badge className="badge-premium">בעבר להתשלום</Badge>;
       case 'incomplete':
         return <Badge className="bg-gray-100 text-gray-800">לא הושלם</Badge>;
       default:
@@ -174,7 +174,7 @@ export default function SubscriptionManagement() {
               <div className="flex justify-between items-center">
                 <span className="text-gray-600 dark:text-gray-300">חבר פרימיום:</span>
                 {isSubscriber ? (
-                  <Badge className="bg-yellow-100 text-yellow-800">
+                  <Badge className="badge-premium">
                     <Crown className="w-3 h-3 mr-1" />
                     כן
                   </Badge>

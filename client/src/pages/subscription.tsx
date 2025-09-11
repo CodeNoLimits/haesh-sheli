@@ -199,7 +199,7 @@ const SubscriptionPlanCard = ({ plan, isCurrentPlan }: { plan: SubscriptionPlan;
         {/* Features list */}
         <div className="space-y-3">
           <h4 className="font-semibold text-gray-900 dark:text-gray-100 flex items-center">
-            <Sparkles className="w-4 h-4 mr-2 text-yellow-500" />
+            <Sparkles className="w-4 h-4 mr-2 text-gold-accent" />
             יתרונות המנוי:
           </h4>
           
@@ -344,7 +344,7 @@ export default function SubscriptionPage() {
               <span className="text-sm font-medium">5% הנחה על קניות</span>
             </div>
             <div className="flex items-center bg-white dark:bg-gray-800 px-4 py-2 rounded-full shadow-md border">
-              <Crown className="w-5 h-5 text-yellow-500 mr-2" />
+              <Crown className="w-5 h-5 text-gold-accent mr-2" />
               <span className="text-sm font-medium">סטטוס חבר פרימיום</span>
             </div>
           </div>
