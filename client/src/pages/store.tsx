@@ -259,30 +259,14 @@ export default function Store() {
                   
                   // Use the standardized helper to get the first product image
                   const imagePath = getFirstProductImage(product.images);
-                  console.log('Product:', product.name, 'Images:', product.images, 'ImagePath:', imagePath);
                   
                   return (
                     <div key={product.id} style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', transition: 'transform 0.3s ease'}}>
-                      {/* DEBUG INFO */}
-                      <div style={{background: '#ffeb3b', padding: '5px', fontSize: '10px', color: '#000'}}>
-                        DEBUG: {product.name} | Images: {product.images?.length || 0} | Path: {imagePath || 'EMPTY'}
-                      </div>
-                      
-                      {imagePath ? (
-                        <img 
-                          src={imagePath}
-                          alt={getBookDisplayTitle(product)}
-                          style={{width: '100%', height: '300px', objectFit: 'cover'}}
-                          onError={(e) => {
-                            console.error('Image failed to load:', imagePath);
-                            e.currentTarget.src = '/attached_assets/placeholder.jpg';
-                          }}
-                        />
-                      ) : (
-                        <div style={{width: '100%', height: '300px', background: '#f0f0f0', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#666'}}>
-                          No Image Available - Path Empty
-                        </div>
-                      )}
+                      <img 
+                        src={imagePath}
+                        alt={getBookDisplayTitle(product)}
+                        style={{width: '100%', height: '300px', objectFit: 'cover'}}
+                      />
                       <div style={{padding: '1.5rem'}}>
                         <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', marginBottom: '0.5rem', color: '#333'}}>
                           {getBookDisplayTitle(product)}
