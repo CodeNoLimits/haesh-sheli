@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { apiRequest, queryClient } from '@/lib/queryClient';
 import { useToast } from '@/hooks/use-toast';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { Header } from '@/components/Header';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -110,6 +112,7 @@ export default function SubscriptionManagement() {
   if (subscriptionLoading) {
     return (
       <div className="min-h-screen hero-surface dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+        <Header />
         <div className="container mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="animate-spin w-8 h-8 border-4 border-primary border-t-transparent rounded-full mx-auto" />
@@ -123,6 +126,7 @@ export default function SubscriptionManagement() {
   if (!subscription?.user) {
     return (
       <div className="min-h-screen hero-surface dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+        <Header />
         <div className="container mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-2xl font-bold text-primary mb-4">
@@ -145,6 +149,7 @@ export default function SubscriptionManagement() {
 
   return (
     <div className="min-h-screen hero-surface dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+      <Header />
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="text-center mb-12">

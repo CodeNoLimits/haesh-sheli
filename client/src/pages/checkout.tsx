@@ -5,6 +5,8 @@ import { loadStripe } from '@stripe/stripe-js';
 import { apiRequest, queryClient } from '@/lib/queryClient';
 import { useToast } from '@/hooks/use-toast';
 import { useCart } from '@/contexts/CartContext';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { Header } from '@/components/Header';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -259,17 +261,7 @@ export default function Checkout() {
 
   return (
     <div className="min-h-screen bg-gray-50" dir="rtl">
-      {/* Header */}
-      <div className="bg-blue-600 text-white py-4">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-bold">🔥 האש שלי - תשלום מאובטח</h1>
-            <div className="text-sm">
-              🚚 משלוח חינם מעל ₪399
-            </div>
-          </div>
-        </div>
-      </div>
+      <Header />
 
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto">

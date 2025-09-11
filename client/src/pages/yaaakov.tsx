@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { TrendingUp, DollarSign, Users, Star, Target, Calendar, CheckCircle2, ArrowUp, ArrowDown, Eye } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { Header } from '@/components/Header';
 
 export default function YaakovInvestorDashboard() {
   const [activeTab, setActiveTab] = useState('overview');
@@ -110,7 +112,9 @@ export default function YaakovInvestorDashboard() {
 
   return (
     <div className="min-h-screen bg-gray-50" dir="rtl">
-      {/* Header */}
+      <Header />
+      
+      {/* Dashboard Header */}
       <div className="bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 py-6">
           <div className="flex items-center justify-between">
