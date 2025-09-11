@@ -22,6 +22,10 @@ A comprehensive design improvement plan has been developed to transform Haesh Sh
 
 Preferred communication style: Simple, everyday language.
 
+## IMPORTANT CORRECTIONS TO REMEMBER:
+- **Yaakov's correct name**: "Yaakov Hen יעקוב חן" (NOT "Yaakov Ren")
+- This must be hardcoded and never forgotten
+
 # Recent Changes
 
 ## September 11, 2025 - Design Transformation Plan

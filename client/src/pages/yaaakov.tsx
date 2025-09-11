@@ -5,7 +5,7 @@ import { User, Code, Heart, Target, BarChart3, Lightbulb, Mail, Github, Linkedin
 const translations = {
   he: {
     // Hero Section
-    heroTitle: '🔥 יעקב רן - מפתח האש שלי',
+    heroTitle: '🔥 יעקוב חן - מפתח האש שלי',
     heroSubtitle: 'מפתח Full-Stack עם תשוקה ליצירת פתרונות טכנולوגיים למען הפצת הספרות הברסלבית',
     heroDescription: 'שלום! אני יעקב, המפתח מאחורי אתר "האש שלי". אני מתמחה בפיתוח אתרים מתקדמים ובניית חוויות משתמש מעולות. המטרה שלי היא להביא את האור של ספרי ברסלב לכל בית יהודי באמצעות הטכנולוגיה המתקדמת ביותר.',
 
@@ -210,7 +210,7 @@ const translations = {
 
   en: {
     // Hero Section
-    heroTitle: '🔥 Yaakov Ran - My Fire Developer',
+    heroTitle: '🔥 Yaakov Hen יעקוב חן - My Fire Developer',
     heroSubtitle: 'Full-Stack Developer with a passion for creating technological solutions to spread Breslov literature',
     heroDescription: 'Hello! I\'m Yaakov, the developer behind the "My Fire" website. I specialize in developing advanced websites and building excellent user experiences. My goal is to bring the light of Breslov books to every Jewish home using the most advanced technology.',
 
@@ -415,7 +415,7 @@ const translations = {
 
   fr: {
     // Hero Section
-    heroTitle: '🔥 Yaakov Ran - Développeur Mon Feu',
+    heroTitle: '🔥 Yaakov Hen יעקוב חן - Développeur Mon Feu',
     heroSubtitle: 'Développeur Full-Stack passionné par la création de solutions technologiques pour diffuser la littérature Breslov',
     heroDescription: 'Bonjour! Je suis Yaakov, le développeur derrière le site "Mon Feu". Je me spécialise dans le développement de sites web avancés et la création d\'excellentes expériences utilisateur. Mon objectif est d\'apporter la lumière des livres Breslov dans chaque foyer juif en utilisant la technologie la plus avancée.',
 
@@ -620,7 +620,7 @@ const translations = {
 
   es: {
     // Hero Section
-    heroTitle: '🔥 Yaakov Ran - Desarrollador Mi Fuego',
+    heroTitle: '🔥 Yaakov Hen יעקוב חן - Desarrollador Mi Fuego',
     heroSubtitle: 'Desarrollador Full-Stack apasionado por crear soluciones tecnológicas para difundir la literatura Breslov',
     heroDescription: '¡Hola! Soy Yaakov, el desarrollador detrás del sitio web "Mi Fuego". Me especializo en desarrollar sitios web avanzados y crear excelentes experiencias de usuario. Mi objetivo es traer la luz de los libros Breslov a cada hogar judío usando la tecnología más avanzada.',
 
