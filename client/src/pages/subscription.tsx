@@ -9,6 +9,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { CheckCircle, Star, Download, ShoppingCart, Crown, Sparkles } from 'lucide-react';
 import { StripeNotConfiguredFallback } from '@/components/StripeNotConfiguredFallback';
+import { Header } from '@/components/Header';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 // Load Stripe (will need VITE_STRIPE_PUBLIC_KEY)
 const stripePublicKey = import.meta.env.VITE_STRIPE_PUBLIC_KEY;
@@ -308,11 +310,12 @@ const SubscriptionPlanCard = ({ plan, isCurrentPlan }: { plan: SubscriptionPlan;
 
 export default function SubscriptionPage() {
   const { toast } = useToast();
+  const { currentLanguage, setLanguage } = useLanguage();
 
-  // Fetch the HoRaat Keva plan
-  const { data: plan, isLoading: planLoading } = useQuery({
-    queryKey: ['/api/subscription-plans/horat-keva'],
-    meta: { errorMessage: "שגיאה בטעינת תוכנית המנוי" }
+  // Fetch all subscription plans
+  const { data: plans, isLoading: planLoading } = useQuery({
+    queryKey: ['/api/subscription-plans'],
+    meta: { errorMessage: "שגיאה בטעינת תוכניות המנוי" }
   });
 
   // Check current user subscription status
@@ -322,35 +325,58 @@ export default function SubscriptionPage() {
   });
 
   const isCurrentSubscriber = (userSubscription as any)?.user?.isSubscriber || false;
+  const currentUserPlan = (userSubscription as any)?.user?.subscriptionPlanId || null;
 
   if (planLoading) {
     return (
-      <div className="container mx-auto px-4 py-8">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="animate-spin w-8 h-8 border-4 border-red-500 border-t-transparent rounded-full mx-auto" />
-          <p className="mt-4 text-gray-600 dark:text-gray-300">טוען תוכנית מנוי...</p>
+      <div 
+        className="min-h-screen hero-surface dark:from-gray-900 dark:via-gray-800 dark:to-gray-900"
+        dir={currentLanguage === 'he' ? 'rtl' : 'ltr'}
+        data-testid="subscription-page"
+      >
+        <Header currentLanguage={currentLanguage} onLanguageChange={setLanguage} />
+        <div className="container mx-auto px-4 py-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="animate-spin w-8 h-8 border-4 border-red-500 border-t-transparent rounded-full mx-auto" />
+            <p className="mt-4 text-gray-600 dark:text-gray-300">טוען תוכניות מנוי...</p>
+          </div>
         </div>
       </div>
     );
   }
 
-  if (!plan) {
+  if (!plans || !Array.isArray(plans) || plans.length === 0) {
     return (
-      <div className="container mx-auto px-4 py-8">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-2xl font-bold text-primary mb-4">
-            שגיאה בטעינת תוכנית המנוי
-          </h1>
-          <p className="text-gray-600 dark:text-gray-300">
-            אנא נסה שוב מאוחר יותר או צור קשר עם השירות לקוחות
-          </p>
+      <div 
+        className="min-h-screen hero-surface dark:from-gray-900 dark:via-gray-800 dark:to-gray-900"
+        dir={currentLanguage === 'he' ? 'rtl' : 'ltr'}
+        data-testid="subscription-page"
+      >
+        <Header currentLanguage={currentLanguage} onLanguageChange={setLanguage} />
+        <div className="container mx-auto px-4 py-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="text-2xl font-bold text-primary mb-4">
+              שגיאה בטעינת תוכניות המנוי
+            </h1>
+            <p className="text-gray-600 dark:text-gray-300">
+              אנא נסה שוב מאוחר יותר או צור קשר עם השירות לקוחות
+            </p>
+          </div>
         </div>
       </div>
     );
   }
+
+  // Sort plans by price (ascending) for better display
+  const sortedPlans = [...plans].sort((a, b) => a.price - b.price);
 
   return (
-    <div className="min-h-screen hero-surface dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+    <div 
+      className="min-h-screen hero-surface dark:from-gray-900 dark:via-gray-800 dark:to-gray-900"
+      dir={currentLanguage === 'he' ? 'rtl' : 'ltr'}
+      data-testid="subscription-page"
+    >
+      <Header currentLanguage={currentLanguage} onLanguageChange={setLanguage} />
       <div className="container mx-auto px-4 py-8">
         {/* Hero section */}
         <div className="text-center mb-12">
@@ -378,14 +404,18 @@ export default function SubscriptionPage() {
           </div>
         </div>
 
-        {/* Main subscription card */}
-        <div className="max-w-2xl mx-auto">
-          <StripeNotConfiguredFallback plan={plan as SubscriptionPlan}>
-            <SubscriptionPlanCard 
-              plan={plan as SubscriptionPlan} 
-              isCurrentPlan={isCurrentSubscriber}
-            />
-          </StripeNotConfiguredFallback>
+        {/* Multiple subscription plans */}
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {sortedPlans.map((plan) => (
+              <StripeNotConfiguredFallback key={plan.id} plan={plan as SubscriptionPlan}>
+                <SubscriptionPlanCard 
+                  plan={plan as SubscriptionPlan} 
+                  isCurrentPlan={currentUserPlan === plan.id}
+                />
+              </StripeNotConfiguredFallback>
+            ))}
+          </div>
         </div>
 
         {/* FAQ or additional info */}

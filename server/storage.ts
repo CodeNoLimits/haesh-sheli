@@ -102,10 +102,11 @@ export class MemStorage implements IStorage {
   }
 
   private initializeDefaultPlans() {
-    const horatKevaPlan: SubscriptionPlan = {
+    // Basic HoRaat Keva Plan - 99₪
+    const horatKevaBasic: SubscriptionPlan = {
       id: "horat_keva_99",
-      name: "HoRaat Keva Premium",
-      nameHebrew: "הוראת קבע פרימיום",
+      name: "HoRaat Keva Basic",
+      nameHebrew: "הוראת קבע בסיסי",
       description: "Monthly subscription with access to all digital books and 5% discount on physical books",
       descriptionHebrew: "מנוי חודשי עם גישה לכל הספרים הדיגיטליים ו-5% הנחה על ספרים פיזיים",
       price: 9900, // 99 shekels in agorot
@@ -128,8 +129,119 @@ export class MemStorage implements IStorage {
       isActive: true,
       createdAt: new Date()
     };
+
+    // Silver HoRaat Keva Plan - 299₪
+    const horatKevaSilver: SubscriptionPlan = {
+      id: "horat_keva_299",
+      name: "HoRaat Keva Silver",
+      nameHebrew: "הוראת קבע כסף",
+      description: "Enhanced monthly subscription with premium features and higher discounts for generous supporters",
+      descriptionHebrew: "מנוי חודשי משופר עם תכונות פרימיום והנחות גבוהות יותר לתומכים נדיבים",
+      price: 29900, // 299 shekels in agorot
+      currency: "ILS",
+      intervalType: "month",
+      intervalCount: 1,
+      stripePriceId: null,
+      features: [
+        "Free access to all digital books",
+        "10% discount on all physical orders",
+        "Silver supporter status",
+        "Priority customer support",
+        "Monthly digital newsletter",
+        "Tax-deductible receipt provided"
+      ] as string[],
+      featuresHebrew: [
+        "גישה חופשית לכל הספרים הדיגיטליים",
+        "10% הנחה על כל ההזמנות הפיזיות",
+        "סטטוס תומך כסף",
+        "שירות לקוחות עדיפות",
+        "עלון דיגיטלי חודשי",
+        "קבלה זכאית לניכוי במס"
+      ] as string[],
+      isActive: true,
+      createdAt: new Date()
+    };
+
+    // Gold HoRaat Keva Plan - 499₪
+    const horatKevaGold: SubscriptionPlan = {
+      id: "horat_keva_499",
+      name: "HoRaat Keva Gold",
+      nameHebrew: "הוראת קבע זהב",
+      description: "Premium monthly subscription for dedicated supporters with exclusive benefits and significant savings",
+      descriptionHebrew: "מנוי חודשי פרימיום לתומכים מסורים עם הטבות בלעדיות וחסכון משמעותי",
+      price: 49900, // 499 shekels in agorot
+      currency: "ILS",
+      intervalType: "month",
+      intervalCount: 1,
+      stripePriceId: null,
+      features: [
+        "Free access to all digital books",
+        "15% discount on all physical orders",
+        "Gold supporter status",
+        "Priority customer support",
+        "Monthly digital newsletter",
+        "Exclusive spiritual content",
+        "Free shipping on all orders",
+        "Tax-deductible receipt provided"
+      ] as string[],
+      featuresHebrew: [
+        "גישה חופשית לכל הספרים הדיגיטליים",
+        "15% הנחה על כל ההזמנות הפיזיות",
+        "סטטוס תומך זהב",
+        "שירות לקוחות עדיפות",
+        "עלון דיגיטלי חודשי",
+        "תוכן רוחני בלעדי",
+        "משלוח חינם על כל ההזמנות",
+        "קבלה זכאית לניכוי במס"
+      ] as string[],
+      isActive: true,
+      createdAt: new Date()
+    };
+
+    // Platinum HoRaat Keva Plan - 999₪
+    const horatKevaPlatinum: SubscriptionPlan = {
+      id: "horat_keva_999",
+      name: "HoRaat Keva Platinum",
+      nameHebrew: "הוראת קבע פלטינום",
+      description: "Ultimate monthly subscription for major supporters with maximum benefits and exclusive access",
+      descriptionHebrew: "מנוי חודשי אולטימטיבי לתומכים גדולים עם הטבות מירביות וגישה בלעדית",
+      price: 99900, // 999 shekels in agorot
+      currency: "ILS",
+      intervalType: "month",
+      intervalCount: 1,
+      stripePriceId: null,
+      features: [
+        "Free access to all digital books",
+        "20% discount on all physical orders",
+        "Platinum supporter status",
+        "VIP customer support",
+        "Monthly digital newsletter",
+        "Exclusive spiritual content",
+        "Free express shipping worldwide",
+        "Personal blessing from Rabbi",
+        "Annual supporter recognition",
+        "Tax-deductible receipt provided"
+      ] as string[],
+      featuresHebrew: [
+        "גישה חופשית לכל הספרים הדיגיטליים",
+        "20% הנחה על כל ההזמנות הפיזיות",
+        "סטטוס תומך פלטינום",
+        "שירות לקוחות VIP",
+        "עלון דיגיטלי חודשי",
+        "תוכן רוחני בלעדי",
+        "משלוח מהיר חינם ברחבי העולם",
+        "ברכה אישית מהרב",
+        "הכרה שנתית של תומכים",
+        "קבלה זכאית לניכוי במס"
+      ] as string[],
+      isActive: true,
+      createdAt: new Date()
+    };
     
-    this.subscriptionPlans.set(horatKevaPlan.id, horatKevaPlan);
+    this.subscriptionPlans.set(horatKevaBasic.id, horatKevaBasic);
+    this.subscriptionPlans.set(horatKevaSilver.id, horatKevaSilver);
+    this.subscriptionPlans.set(horatKevaGold.id, horatKevaGold);
+    this.subscriptionPlans.set(horatKevaPlatinum.id, horatKevaPlatinum);
   }
 
   private initializeDefaultShippingRates() {
