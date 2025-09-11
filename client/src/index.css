@@ -4,17 +4,28 @@
 @tailwind utilities;
 
 :root {
-  /* === NOUVELLE PALETTE BRESLOV 2025 === */
+  /* === PALETTE BRESLOV HARMONIEUSE 2025 === */
+  /* Analogique: Bleu + Teal + Or | 60-30-10 Rule | Critères 2025 */
   
-  /* Bleus Breslov inspirés de breslev.co.il */
+  /* Bleu Breslov Principal (60% - Dominant) */
   --primary-blue: hsl(210, 85%, 45%);
   --primary-blue-dark: hsl(210, 90%, 35%);
   --primary-blue-light: hsl(210, 70%, 60%);
   
-  /* Backgrounds & Surfaces */
+  /* Teal Breslov Secondaire (30% - Analogique Harmony) */
+  --teal-breslov: hsl(180, 65%, 45%);
+  --teal-breslov-light: hsl(180, 60%, 65%);
+  --teal-breslov-dark: hsl(180, 75%, 35%);
+  
+  /* Or Breslov Accent (10% - Premium Touch) */
+  --gold-breslov: hsl(45, 90%, 55%);
+  --gold-breslov-light: hsl(45, 85%, 70%);
+  --gold-breslov-muted: hsl(45, 40%, 85%);
+  
+  /* Backgrounds & Surfaces - Harmonieux */
   --background: hsl(0, 0%, 100%);
-  --cream-white: hsl(45, 30%, 98%);
-  --warm-gray: hsl(30, 8%, 95%);
+  --background-teal: hsl(180, 30%, 98%);
+  --background-blue: hsl(210, 30%, 98%);
   --foreground: hsl(210, 8%, 25%);
   
   /* Cards & Containers */
@@ -27,26 +38,26 @@
   --primary: hsl(210, 85%, 45%);
   --primary-foreground: hsl(0, 0%, 98%);
   
-  /* Secondary & Muted */
-  --secondary: hsl(45, 30%, 98%);
-  --secondary-foreground: hsl(210, 8%, 25%);
-  --muted: hsl(30, 8%, 95%);
+  /* Secondary & Muted - Teal Harmony */
+  --secondary: hsl(180, 30%, 98%);
+  --secondary-foreground: hsl(180, 8%, 25%);
+  --muted: hsl(210, 15%, 95%);
   --muted-foreground: hsl(210, 12%, 55%);
   
-  /* Accent & Highlights */
-  --accent: hsl(210, 70%, 60%);
+  /* Accent & Highlights - Teal + Gold */
+  --accent: hsl(180, 65%, 45%);
   --accent-foreground: hsl(0, 0%, 98%);
-  --gold-accent: hsl(45, 100%, 60%);
+  --gold-accent: hsl(45, 90%, 55%);
   
-  /* Status Colors */
+  /* Status Colors - Harmonisées */
   --destructive: hsl(0, 70%, 55%);
   --destructive-foreground: hsl(0, 0%, 98%);
-  --success-green: hsl(140, 60%, 45%);
+  --success-green: hsl(150, 60%, 45%);
   --warning-amber: hsl(35, 90%, 55%);
   
-  /* Borders & Inputs */
-  --border: hsl(210, 15%, 90%);
-  --input: hsl(210, 15%, 90%);
+  /* Borders & Inputs - Teal Touch */
+  --border: hsl(180, 15%, 90%);
+  --input: hsl(180, 15%, 90%);
   --ring: hsl(210, 85%, 45%);
   
   /* Design System */
@@ -200,29 +211,49 @@
 
 /* === UTILITAIRES DESIGN SYSTEM BRESLOV === */
 
-/* Premium Cards */
+/* Premium Cards - Harmonie Analogique */
 .card-premium {
   @apply bg-card border border-border rounded-xl shadow-sm hover:shadow-lg transition-all duration-300;
-  background: linear-gradient(135deg, hsl(0, 0%, 100%) 0%, hsl(45, 30%, 99%) 100%);
+  background: linear-gradient(135deg, hsl(0, 0%, 100%) 0%, hsl(180, 30%, 99%) 100%);
+  border-color: hsl(180, 25%, 92%);
 }
 
 .card-premium:hover {
   transform: translateY(-2px);
-  box-shadow: 0 20px 40px -12px hsl(210, 85%, 45%, 0.15);
+  box-shadow: 0 20px 40px -12px hsl(180, 65%, 45%, 0.15);
+  border-color: hsl(180, 45%, 85%);
 }
 
-/* Modern Buttons */
+/* Modern Buttons - Palette Harmonieuse */
 .btn-breslov-primary {
   @apply bg-primary text-primary-foreground px-8 py-4 rounded-xl font-semibold;
   @apply hover:opacity-90 transition-all duration-200;
   @apply shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
-  background: linear-gradient(135deg, hsl(210, 85%, 45%) 0%, hsl(210, 90%, 35%) 100%);
+  background: linear-gradient(135deg, hsl(210, 85%, 45%) 0%, hsl(180, 85%, 40%) 100%);
 }
 
 .btn-breslov-secondary {
   @apply bg-secondary text-secondary-foreground px-8 py-4 rounded-xl font-semibold;
   @apply hover:bg-slate-50 transition-all duration-200;
-  @apply border border-border hover:border-blue-400;
+  @apply border border-border;
+  background: linear-gradient(135deg, hsl(180, 30%, 98%) 0%, hsl(210, 30%, 98%) 100%);
+  border-color: hsl(180, 25%, 88%);
+}
+
+.btn-breslov-secondary:hover {
+  border-color: hsl(180, 45%, 75%);
+  background: linear-gradient(135deg, hsl(180, 35%, 96%) 0%, hsl(210, 35%, 96%) 100%);
+}
+
+/* Bouton Accent Or - Premium */
+.btn-breslov-gold {
+  @apply px-8 py-4 rounded-xl font-semibold text-white transition-all duration-200;
+  @apply shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
+  background: linear-gradient(135deg, hsl(45, 90%, 55%) 0%, hsl(35, 85%, 50%) 100%);
+}
+
+.btn-breslov-gold:hover {
+  background: linear-gradient(135deg, hsl(45, 95%, 50%) 0%, hsl(35, 90%, 45%) 100%);
 }
 
 /* Typography Classes */
