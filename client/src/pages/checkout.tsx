@@ -2,7 +2,7 @@ export default function Checkout() {
   return (
     <div className="rtl home page-template-default page page-id-checkout wp-custom-logo theme-hello-elementor woocommerce-js elementor-default elementor-kit-5 elementor-page elementor-page-checkout">
       {/* TOP BAR */}
-      <section className="elementor-section elementor-top-section elementor-element elementor-element-ba655d5 elementor-section-full_width elementor-hidden-tablet elementor-hidden-mobile elementor-section-height-default" style={{background: '#333', color: 'white', padding: '8px 0'}}>
+      <section className="elementor-section elementor-top-section elementor-element elementor-element-ba655d5 elementor-section-full_width elementor-hidden-tablet elementor-hidden-mobile elementor-section-height-default" style={{background: 'hsl(210, 8%, 25%)', color: 'white', padding: '8px 0'}}>
         <div className="elementor-container elementor-column-gap-default">
           <div className="elementor-column elementor-col-33 elementor-top-column">
             <div className="elementor-widget-wrap elementor-element-populated">
@@ -31,7 +31,7 @@ export default function Checkout() {
       </section>
 
       {/* MAIN HEADER */}
-      <section className="elementor-section elementor-top-section elementor-element elementor-element-ba655d5 elementor-section-full_width elementor-hidden-tablet elementor-hidden-mobile" style={{background: '#dc3545', padding: '1rem 0'}}>
+      <section className="elementor-section elementor-top-section elementor-element elementor-element-ba655d5 elementor-section-full_width elementor-hidden-tablet elementor-hidden-mobile" style={{background: 'hsl(210, 85%, 45%)', padding: '1rem 0'}}>
         <div className="elementor-container elementor-column-gap-default" style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
           {/* LOGO COLUMN */}
           <div className="elementor-column elementor-col-25 elementor-top-column elementor-element elementor-element-8cf799f">
@@ -96,7 +96,7 @@ export default function Checkout() {
                   <div className="elementor-menu-cart__wrapper">
                     <div className="elementor-menu-cart__toggle_wrapper">
                       <div className="elementor-menu-cart__toggle elementor-button-wrapper">
-                        <a id="elementor-menu-cart__toggle_button" href="#" className="elementor-menu-cart__toggle_button elementor-button elementor-size-sm" aria-expanded="false" style={{background: 'white', color: '#dc3545', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
+                        <a id="elementor-menu-cart__toggle_button" href="#" className="elementor-menu-cart__toggle_button elementor-button elementor-size-sm" aria-expanded="false" style={{background: 'white', color: 'hsl(210, 85%, 45%)', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
                           <span className="elementor-button-text">
                             <span className="woocommerce-Price-amount amount">
                               <span>0.00 <span className="woocommerce-Price-currencySymbol">₪</span></span>
@@ -120,10 +120,10 @@ export default function Checkout() {
       </section>
 
       {/* CHECKOUT CONTENT */}
-      <section style={{background: '#f8f9fa', padding: '4rem 0', minHeight: '80vh'}}>
+      <section style={{background: 'hsl(180, 30%, 98%)', padding: '4rem 0', minHeight: '80vh'}}>
         <div className="elementor-container" style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
           
-          <h1 style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#333', textAlign: 'center', marginBottom: '3rem'}}>
+          <h1 style={{fontSize: '2.5rem', fontWeight: 'bold', color: 'hsl(210, 8%, 25%)', textAlign: 'center', marginBottom: '3rem'}}>
             סיום הזמנה
           </h1>
 
@@ -131,96 +131,96 @@ export default function Checkout() {
             
             {/* BILLING FORM */}
             <div style={{background: 'white', padding: '2rem', borderRadius: '15px', boxShadow: '0 8px 25px rgba(0,0,0,0.1)'}}>
-              <h2 style={{fontSize: '1.8rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '2rem'}}>
+              <h2 style={{fontSize: '1.8rem', fontWeight: 'bold', color: 'hsl(210, 85%, 45%)', marginBottom: '2rem'}}>
                 פרטי חיוב
               </h2>
               
               <form>
                 <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1.5rem'}}>
                   <div>
-                    <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: 'bold', color: '#333'}}>
+                    <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: 'bold', color: 'hsl(210, 8%, 25%)'}}>
                       שם פרטי *
                     </label>
                     <input 
                       type="text" 
                       required
-                      style={{width: '100%', padding: '0.75rem', border: '2px solid #e9ecef', borderRadius: '8px', fontSize: '1rem', direction: 'rtl'}}
+                      style={{width: '100%', padding: '0.75rem', border: '2px solid hsl(180, 15%, 90%)', borderRadius: '8px', fontSize: '1rem', direction: 'rtl'}}
                     />
                   </div>
                   <div>
-                    <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: 'bold', color: '#333'}}>
+                    <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: 'bold', color: 'hsl(210, 8%, 25%)'}}>
                       שם משפחה *
                     </label>
                     <input 
                       type="text" 
                       required
-                      style={{width: '100%', padding: '0.75rem', border: '2px solid #e9ecef', borderRadius: '8px', fontSize: '1rem', direction: 'rtl'}}
+                      style={{width: '100%', padding: '0.75rem', border: '2px solid hsl(180, 15%, 90%)', borderRadius: '8px', fontSize: '1rem', direction: 'rtl'}}
                     />
                   </div>
                 </div>
 
                 <div style={{marginBottom: '1.5rem'}}>
-                  <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: 'bold', color: '#333'}}>
+                  <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: 'bold', color: 'hsl(210, 8%, 25%)'}}>
                     כתובת דואר אלקטרוני *
                   </label>
                   <input 
                     type="email" 
                     required
-                    style={{width: '100%', padding: '0.75rem', border: '2px solid #e9ecef', borderRadius: '8px', fontSize: '1rem', direction: 'rtl'}}
+                    style={{width: '100%', padding: '0.75rem', border: '2px solid hsl(180, 15%, 90%)', borderRadius: '8px', fontSize: '1rem', direction: 'rtl'}}
                   />
                 </div>
 
                 <div style={{marginBottom: '1.5rem'}}>
-                  <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: 'bold', color: '#333'}}>
+                  <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: 'bold', color: 'hsl(210, 8%, 25%)'}}>
                     טלפון *
                   </label>
                   <input 
                     type="tel" 
                     required
-                    style={{width: '100%', padding: '0.75rem', border: '2px solid #e9ecef', borderRadius: '8px', fontSize: '1rem', direction: 'rtl'}}
+                    style={{width: '100%', padding: '0.75rem', border: '2px solid hsl(180, 15%, 90%)', borderRadius: '8px', fontSize: '1rem', direction: 'rtl'}}
                   />
                 </div>
 
                 <div style={{marginBottom: '1.5rem'}}>
-                  <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: 'bold', color: '#333'}}>
+                  <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: 'bold', color: 'hsl(210, 8%, 25%)'}}>
                     כתובת מלאה *
                   </label>
                   <input 
                     type="text" 
                     required
-                    style={{width: '100%', padding: '0.75rem', border: '2px solid #e9ecef', borderRadius: '8px', fontSize: '1rem', direction: 'rtl'}}
+                    style={{width: '100%', padding: '0.75rem', border: '2px solid hsl(180, 15%, 90%)', borderRadius: '8px', fontSize: '1rem', direction: 'rtl'}}
                   />
                 </div>
 
                 <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1.5rem'}}>
                   <div>
-                    <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: 'bold', color: '#333'}}>
+                    <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: 'bold', color: 'hsl(210, 8%, 25%)'}}>
                       עיר *
                     </label>
                     <input 
                       type="text" 
                       required
-                      style={{width: '100%', padding: '0.75rem', border: '2px solid #e9ecef', borderRadius: '8px', fontSize: '1rem', direction: 'rtl'}}
+                      style={{width: '100%', padding: '0.75rem', border: '2px solid hsl(180, 15%, 90%)', borderRadius: '8px', fontSize: '1rem', direction: 'rtl'}}
                     />
                   </div>
                   <div>
-                    <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: 'bold', color: '#333'}}>
+                    <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: 'bold', color: 'hsl(210, 8%, 25%)'}}>
                       מיקוד
                     </label>
                     <input 
                       type="text"
-                      style={{width: '100%', padding: '0.75rem', border: '2px solid #e9ecef', borderRadius: '8px', fontSize: '1rem', direction: 'rtl'}}
+                      style={{width: '100%', padding: '0.75rem', border: '2px solid hsl(180, 15%, 90%)', borderRadius: '8px', fontSize: '1rem', direction: 'rtl'}}
                     />
                   </div>
                 </div>
 
                 <div style={{marginBottom: '2rem'}}>
-                  <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: 'bold', color: '#333'}}>
+                  <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: 'bold', color: 'hsl(210, 8%, 25%)'}}>
                     הערות להזמנה (אופציונלי)
                   </label>
                   <textarea 
                     rows={4}
-                    style={{width: '100%', padding: '0.75rem', border: '2px solid #e9ecef', borderRadius: '8px', fontSize: '1rem', direction: 'rtl', resize: 'vertical'}}
+                    style={{width: '100%', padding: '0.75rem', border: '2px solid hsl(180, 15%, 90%)', borderRadius: '8px', fontSize: '1rem', direction: 'rtl', resize: 'vertical'}}
                     placeholder="הערות על ההזמנה, למשל הוראות מיוחדות למשלוח"
                   />
                 </div>
@@ -229,35 +229,35 @@ export default function Checkout() {
 
             {/* ORDER SUMMARY */}
             <div style={{background: 'white', padding: '2rem', borderRadius: '15px', boxShadow: '0 8px 25px rgba(0,0,0,0.1)'}}>
-              <h2 style={{fontSize: '1.8rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '2rem'}}>
+              <h2 style={{fontSize: '1.8rem', fontWeight: 'bold', color: 'hsl(210, 85%, 45%)', marginBottom: '2rem'}}>
                 סיכום הזמנה
               </h2>
 
               {/* Order Items */}
               <div style={{marginBottom: '2rem'}}>
-                <div style={{borderBottom: '1px solid #eee', paddingBottom: '1rem', marginBottom: '1rem'}}>
+                <div style={{borderBottom: '1px solid hsl(180, 15%, 92%)', paddingBottom: '1rem', marginBottom: '1rem'}}>
                   <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
                     <div>
-                      <h4 style={{fontSize: '1.1rem', fontWeight: 'bold', color: '#333', marginBottom: '0.5rem'}}>
+                      <h4 style={{fontSize: '1.1rem', fontWeight: 'bold', color: 'hsl(210, 8%, 25%)', marginBottom: '0.5rem'}}>
                         ראש השנה שלי
                       </h4>
-                      <p style={{color: '#666', fontSize: '0.9rem'}}>גדול סקאי - כמות: 1</p>
+                      <p style={{color: 'hsl(210, 12%, 55%)', fontSize: '0.9rem'}}>גדול סקאי - כמות: 1</p>
                     </div>
-                    <div style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#dc3545'}}>
+                    <div style={{fontSize: '1.2rem', fontWeight: 'bold', color: 'hsl(210, 85%, 45%)'}}>
                       45.00 ₪
                     </div>
                   </div>
                 </div>
 
-                <div style={{borderBottom: '1px solid #eee', paddingBottom: '1rem', marginBottom: '1rem'}}>
+                <div style={{borderBottom: '1px solid hsl(180, 15%, 92%)', paddingBottom: '1rem', marginBottom: '1rem'}}>
                   <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
                     <div>
-                      <h4 style={{fontSize: '1.1rem', fontWeight: 'bold', color: '#333', marginBottom: '0.5rem'}}>
+                      <h4 style={{fontSize: '1.1rem', fontWeight: 'bold', color: 'hsl(210, 8%, 25%)', marginBottom: '0.5rem'}}>
                         תודה והודאה
                       </h4>
-                      <p style={{color: '#666', fontSize: '0.9rem'}}>עור יוקרה 2 כרכים - כמות: 1</p>
+                      <p style={{color: 'hsl(210, 12%, 55%)', fontSize: '0.9rem'}}>עור יוקרה 2 כרכים - כמות: 1</p>
                     </div>
-                    <div style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#dc3545'}}>
+                    <div style={{fontSize: '1.2rem', fontWeight: 'bold', color: 'hsl(210, 85%, 45%)'}}>
                       380.00 ₪
                     </div>
                   </div>
@@ -265,36 +265,36 @@ export default function Checkout() {
               </div>
 
               {/* Pricing Summary */}
-              <div style={{borderTop: '2px solid #eee', paddingTop: '1rem'}}>
+              <div style={{borderTop: '2px solid hsl(180, 15%, 92%)', paddingTop: '1rem'}}>
                 <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem'}}>
-                  <span style={{color: '#666'}}>סכום ביניים:</span>
+                  <span style={{color: 'hsl(210, 12%, 55%)'}}>סכום ביניים:</span>
                   <span style={{fontWeight: 'bold'}}>425.00 ₪</span>
                 </div>
                 <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem'}}>
-                  <span style={{color: '#666'}}>משלוח:</span>
-                  <span style={{color: '#28a745', fontWeight: 'bold'}}>חינם</span>
+                  <span style={{color: 'hsl(210, 12%, 55%)'}}>משלוח:</span>
+                  <span style={{color: 'hsl(150, 60%, 45%)', fontWeight: 'bold'}}>חינם</span>
                 </div>
-                <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '2rem', fontSize: '1.3rem', fontWeight: 'bold', paddingTop: '1rem', borderTop: '1px solid #eee'}}>
+                <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '2rem', fontSize: '1.3rem', fontWeight: 'bold', paddingTop: '1rem', borderTop: '1px solid hsl(180, 15%, 92%)'}}>
                   <span>סה"כ:</span>
-                  <span style={{color: '#dc3545'}}>425.00 ₪</span>
+                  <span style={{color: 'hsl(210, 85%, 45%)'}}>425.00 ₪</span>
                 </div>
               </div>
 
               {/* Payment Method */}
               <div style={{marginBottom: '2rem'}}>
-                <h3 style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#333', marginBottom: '1rem'}}>
+                <h3 style={{fontSize: '1.2rem', fontWeight: 'bold', color: 'hsl(210, 8%, 25%)', marginBottom: '1rem'}}>
                   אמצעי תשלום
                 </h3>
                 <div style={{display: 'flex', flexDirection: 'column', gap: '0.8rem'}}>
-                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', padding: '1rem', border: '2px solid #e9ecef', borderRadius: '8px'}}>
+                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', padding: '1rem', border: '2px solid hsl(180, 15%, 90%)', borderRadius: '8px'}}>
                     <input type="radio" name="payment" value="credit" defaultChecked style={{marginLeft: '0.5rem'}} />
                     <span style={{fontWeight: 'bold'}}>כרטיס אשראי</span>
                   </label>
-                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', padding: '1rem', border: '2px solid #e9ecef', borderRadius: '8px'}}>
+                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', padding: '1rem', border: '2px solid hsl(180, 15%, 90%)', borderRadius: '8px'}}>
                     <input type="radio" name="payment" value="paypal" style={{marginLeft: '0.5rem'}} />
                     <span style={{fontWeight: 'bold'}}>PayPal</span>
                   </label>
-                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', padding: '1rem', border: '2px solid #e9ecef', borderRadius: '8px'}}>
+                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', padding: '1rem', border: '2px solid hsl(180, 15%, 90%)', borderRadius: '8px'}}>
                     <input type="radio" name="payment" value="bank" style={{marginLeft: '0.5rem'}} />
                     <span style={{fontWeight: 'bold'}}>העברה בנקאית</span>
                   </label>
@@ -305,7 +305,7 @@ export default function Checkout() {
               <button 
                 style={{
                   width: '100%', 
-                  background: '#dc3545', 
+                  background: 'hsl(210, 85%, 45%)', 
                   color: 'white', 
                   border: 'none', 
                   padding: '1.2rem', 
@@ -318,7 +318,7 @@ export default function Checkout() {
                 ביצוע הזמנה
               </button>
 
-              <p style={{fontSize: '0.9rem', color: '#666', textAlign: 'center', marginTop: '1rem'}}>
+              <p style={{fontSize: '0.9rem', color: 'hsl(210, 12%, 55%)', textAlign: 'center', marginTop: '1rem'}}>
                 הנתונים שלכם מוגנים ומאובטחים
               </p>
             </div>
@@ -327,10 +327,10 @@ export default function Checkout() {
       </section>
 
       {/* FOOTER */}
-      <footer className="main-footer" style={{background: '#2d3436', color: 'white', padding: '3rem 0 2rem'}}>
+      <footer className="main-footer" style={{background: 'hsl(210, 85%, 25%)', color: 'white', padding: '3rem 0 2rem'}}>
         <div className="elementor-container">
           <div style={{textAlign: 'center', paddingTop: '2rem'}}>
-            <div style={{color: '#999', fontSize: '0.9rem'}}>
+            <div style={{color: 'hsl(210, 12%, 65%)', fontSize: '0.9rem'}}>
               <p style={{marginBottom: '0.5rem'}}>כל הזכיות שמורות 2025 © קרן רבי ישראל דב אודסר זצ"ל</p>
               <p>האתר נבנה ע"י מדיה מאסטר</p>
             </div>

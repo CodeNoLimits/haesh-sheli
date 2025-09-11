@@ -113,7 +113,7 @@ export default function Home() {
       </section>
 
       {/* ONLINE BOOKS SECTION */}
-      <section className="hero-gradient animate-fade-in-up" style={{background: 'linear-gradient(135deg, hsl(0, 0%, 100%) 0%, hsl(45, 30%, 98%) 30%, hsl(210, 70%, 98%) 100%)', padding: '6rem 0'}}>
+      <section className="hero-gradient animate-fade-in-up" style={{background: 'linear-gradient(135deg, hsl(0, 0%, 100%) 0%, hsl(180, 30%, 98%) 30%, hsl(210, 70%, 98%) 100%)', padding: '6rem 0'}}>
         <div style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
           <div className="card-premium animate-scale-in" style={{textAlign: 'center', padding: '3rem', margin: '2rem 0'}}>
             <h2 className="text-breslov-gradient" style={{
@@ -291,24 +291,24 @@ export default function Home() {
       </section>
 
       {/* DETAILED RAFFLE SECTION */}
-      <section style={{background: 'linear-gradient(135deg, #F5F5DC 0%, #FAEBD7 100%)', padding: '6rem 0'}}>
+      <section style={{background: 'linear-gradient(135deg, hsl(180, 30%, 98%) 0%, hsl(210, 30%, 98%) 100%)', padding: '6rem 0'}}>
         <div style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
           <div style={{textAlign: 'center', marginBottom: '3rem'}}>
-            <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#8B4513', marginBottom: '1rem'}}>
+            <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', color: 'hsl(210, 85%, 45%)', marginBottom: '1rem'}}>
               {currentLanguage === 'he' ? 'הגרלה מיוחדת – הזדמנות לזכות' :
                currentLanguage === 'en' ? 'Special Raffle – Opportunity to Win' :
                currentLanguage === 'fr' ? 'Tirage Spécial – Opportunité de Gagner' :
                currentLanguage === 'es' ? 'Sorteo Especial – Oportunidad de Ganar' :
                currentLanguage === 'ru' ? 'Специальный Розыгрыш – Возможность Выиграть' : 'הגרלה מיוחדת – הזדמנות לזכות'}
             </h2>
-            <h3 style={{fontSize: '1.8rem', fontWeight: '300', color: '#654321', marginBottom: '2rem'}}>
+            <h3 style={{fontSize: '1.8rem', fontWeight: '300', color: 'hsl(180, 65%, 45%)', marginBottom: '2rem'}}>
               {currentLanguage === 'he' ? 'בטיסה חינם לאומן!' :
                currentLanguage === 'en' ? 'Free Flight to Uman!' :
                currentLanguage === 'fr' ? 'Vol Gratuit vers Uman!' :
                currentLanguage === 'es' ? '¡Vuelo Gratis a Uman!' :
                currentLanguage === 'ru' ? 'Бесплатный Перелет в Умань!' : 'בטיסה חינם לאומן!'}
             </h3>
-            <p style={{fontSize: '1.1rem', lineHeight: '1.6', color: '#654321', maxWidth: '800px', margin: '0 auto 2rem'}}>
+            <p style={{fontSize: '1.1rem', lineHeight: '1.6', color: 'hsl(180, 65%, 45%)', maxWidth: '800px', margin: '0 auto 2rem'}}>
               {currentLanguage === 'he' ? 'בואו להצטרף להגרלה הבלעדית שלנו ותוכלו לזכות בטיסה מרגשת ובלתי נשכחת לאומן, המקום הקדוש של רבי נחמן מברסלב. כל מה שעליכם לעשות הוא לרכוש באתר בסכום של 35 שקלים ומעלה, והכניסה להגרלה מובטחת!' :
                currentLanguage === 'en' ? 'Come join our exclusive raffle and you could win an exciting and unforgettable trip to Uman, the holy place of Rabbi Nachman of Breslov. All you need to do is purchase on the site for 35 shekels or more, and entry to the raffle is guaranteed!' :
                currentLanguage === 'fr' ? 'Venez rejoindre notre tirage exclusif et vous pourriez gagner un voyage passionnant et inoubliable à Uman, le lieu saint de Rabbi Nachman de Breslov. Tout ce que vous devez faire est d\'acheter sur le site pour 35 shekels ou plus, et l\'entrée au tirage est garantie!' :
@@ -316,7 +316,7 @@ export default function Home() {
                currentLanguage === 'ru' ? 'Присоединяйтесь к нашему эксклюзивному розыгрышу и вы можете выиграть захватывающую и незабываемую поездку в Умань, святое место Рабби Нахмана из Бреслов. Все, что вам нужно сделать, это купить на сайте на сумму 35 шекелей или больше, и вход в розыгрыш гарантирован!' : 'בואו להצטרף להגרלה הבלעדית שלנו ותוכלו לזכות בטיסה מרגשת ובלתי נשכחת לאומן, המקום הקדוש של רבי נחמן מברסלב. כל מה שעליכם לעשות הוא לרכוש באתר בסכום של 35 שקלים ומעלה, והכניסה להגרלה מובטחת!'}
             </p>
             
-            <h4 style={{fontSize: '1.5rem', fontWeight: 'bold', color: '#8B4513', marginBottom: '1.5rem'}}>
+            <h4 style={{fontSize: '1.5rem', fontWeight: 'bold', color: 'hsl(210, 85%, 45%)', marginBottom: '1.5rem'}}>
               {currentLanguage === 'he' ? 'למה להשתתף?' :
                currentLanguage === 'en' ? 'Why participate?' :
                currentLanguage === 'fr' ? 'Pourquoi participer?' :
@@ -327,14 +327,14 @@ export default function Home() {
             <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem', marginBottom: '3rem'}}>
               <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
                 <div style={{fontSize: '2rem', marginBottom: '1rem'}}>✈️</div>
-                <h5 style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#8B4513', marginBottom: '1rem'}}>
+                <h5 style={{fontSize: '1.2rem', fontWeight: 'bold', color: 'hsl(210, 85%, 45%)', marginBottom: '1rem'}}>
                   {currentLanguage === 'he' ? 'חווית חיים מיוחדת' :
                    currentLanguage === 'en' ? 'Special Life Experience' :
                    currentLanguage === 'fr' ? 'Expérience de Vie Spéciale' :
                    currentLanguage === 'es' ? 'Experiencia de Vida Especial' :
                    currentLanguage === 'ru' ? 'Особый Жизненный Опыт' : 'חווית חיים מיוחדת'}
                 </h5>
-                <p style={{color: '#666', fontSize: '0.9rem'}}>
+                <p style={{color: 'hsl(210, 12%, 55%)', fontSize: '0.9rem'}}>
                   {currentLanguage === 'he' ? 'טיסה ישירה לאומן הכוללת ביקור במקום הקדוש של רבי נחמן מברסלב.' :
                    currentLanguage === 'en' ? 'Direct flight to Uman including visit to the holy place of Rabbi Nachman of Breslov.' :
                    currentLanguage === 'fr' ? 'Vol direct vers Uman incluant une visite du lieu saint de Rabbi Nachman de Breslov.' :
@@ -345,14 +345,14 @@ export default function Home() {
               
               <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
                 <div style={{fontSize: '2rem', marginBottom: '1rem'}}>📚</div>
-                <h5 style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#8B4513', marginBottom: '1rem'}}>
+                <h5 style={{fontSize: '1.2rem', fontWeight: 'bold', color: 'hsl(210, 85%, 45%)', marginBottom: '1rem'}}>
                   {currentLanguage === 'he' ? 'ספרי רבנו מיוחדים ומרשימים' :
                    currentLanguage === 'en' ? 'Special and Impressive Rabbenu Books' :
                    currentLanguage === 'fr' ? 'Livres Spéciaux et Impressionnants de Rabbenu' :
                    currentLanguage === 'es' ? 'Libros Especiales e Impresionantes de Rabbenu' :
                    currentLanguage === 'ru' ? 'Особые и Впечатляющие Книги Раббену' : 'ספרי רבנו מיוחדים ומרשימים'}
                 </h5>
-                <p style={{color: '#666', fontSize: '0.9rem'}}>
+                <p style={{color: 'hsl(210, 12%, 55%)', fontSize: '0.9rem'}}>
                   {currentLanguage === 'he' ? 'אפשרות לזכות ספרי רבינו מעור אומנותי במיוחד' :
                    currentLanguage === 'en' ? 'Opportunity to win specially crafted artistic leather Rabbenu books' :
                    currentLanguage === 'fr' ? 'Opportunité de gagner des livres de Rabbenu en cuir artistique spécialement conçus' :
@@ -363,14 +363,14 @@ export default function Home() {
               
               <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
                 <div style={{fontSize: '2rem', marginBottom: '1rem'}}>💝</div>
-                <h5 style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#8B4513', marginBottom: '1rem'}}>
+                <h5 style={{fontSize: '1.2rem', fontWeight: 'bold', color: 'hsl(210, 85%, 45%)', marginBottom: '1rem'}}>
                   {currentLanguage === 'he' ? 'פשוט וקל' :
                    currentLanguage === 'en' ? 'Simple and Easy' :
                    currentLanguage === 'fr' ? 'Simple et Facile' :
                    currentLanguage === 'es' ? 'Simple y Fácil' :
                    currentLanguage === 'ru' ? 'Просто и Легко' : 'פשוט וקל'}
                 </h5>
-                <p style={{color: '#666', fontSize: '0.9rem'}}>
+                <p style={{color: 'hsl(210, 12%, 55%)', fontSize: '0.9rem'}}>
                   {currentLanguage === 'he' ? 'רכישה פשוטה בסכום סמלי של 35 שקלים ומעלה באתר.' :
                    currentLanguage === 'en' ? 'Simple purchase for a symbolic amount of 35 shekels and up on the site.' :
                    currentLanguage === 'fr' ? 'Achat simple pour un montant symbolique de 35 shekels et plus sur le site.' :
@@ -381,14 +381,14 @@ export default function Home() {
               
               <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
                 <div style={{fontSize: '2rem', marginBottom: '1rem'}}>⭐</div>
-                <h5 style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#8B4513', marginBottom: '1rem'}}>
+                <h5 style={{fontSize: '1.2rem', fontWeight: 'bold', color: 'hsl(210, 85%, 45%)', marginBottom: '1rem'}}>
                   {currentLanguage === 'he' ? 'הזדמנות חד פעמית' :
                    currentLanguage === 'en' ? 'One-time Opportunity' :
                    currentLanguage === 'fr' ? 'Opportunité Unique' :
                    currentLanguage === 'es' ? 'Oportunidad Única' :
                    currentLanguage === 'ru' ? 'Единственная Возможность' : 'הזדמנות חד פעמית'}
                 </h5>
-                <p style={{color: '#666', fontSize: '0.9rem'}}>
+                <p style={{color: 'hsl(210, 12%, 55%)', fontSize: '0.9rem'}}>
                   {currentLanguage === 'he' ? 'פרס מדהים שמגיע ישר לידיכם.' :
                    currentLanguage === 'en' ? 'Amazing prize that comes straight to your hands.' :
                    currentLanguage === 'fr' ? 'Prix incroyable qui arrive directement entre vos mains.' :
@@ -483,7 +483,7 @@ export default function Home() {
                     />
                   </div>
                   <div style={{padding: '1.5rem', textAlign: 'center'}}>
-                    <h3 style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#8B4513', marginBottom: '0.5rem'}}>
+                    <h3 style={{fontSize: '1.2rem', fontWeight: 'bold', color: 'hsl(210, 85%, 45%)', marginBottom: '0.5rem'}}>
                       {currentLanguage === 'he' ? book.title : book.titleEn}
                     </h3>
                   </div>
@@ -495,23 +495,23 @@ export default function Home() {
       </section>
 
       {/* RABBI NATHAN QUOTE SECTION */}
-      <section style={{background: 'linear-gradient(135deg, #8B4513 0%, #A0522D 100%)', color: 'white', padding: '4rem 0'}}>
+      <section style={{background: 'linear-gradient(135deg, hsl(210, 85%, 45%) 0%, hsl(210, 90%, 35%) 100%)', color: 'white', padding: '4rem 0'}}>
         <div style={{maxWidth: '800px', margin: '0 auto', padding: '0 2rem', textAlign: 'center'}}>
-          <h2 style={{fontSize: '2rem', fontWeight: 'bold', marginBottom: '1rem', color: '#FFE4B5'}}>
+          <h2 style={{fontSize: '2rem', fontWeight: 'bold', marginBottom: '1rem', color: 'hsl(45, 90%, 85%)'}}>
             {currentLanguage === 'he' ? 'דף אחד מספרי רבנו' :
              currentLanguage === 'en' ? 'One Page from Our Master\'s Books' :
              currentLanguage === 'fr' ? 'Une Page des Livres de Notre Maître' :
              currentLanguage === 'es' ? 'Una Página de los Libros de Nuestro Maestro' :
              currentLanguage === 'ru' ? 'Одна Страница из Книг Нашего Учителя' : 'דף אחד מספרי רבנו'}
           </h2>
-          <h3 style={{fontSize: '1.8rem', fontWeight: '300', marginBottom: '1rem', color: '#F0E68C'}}>
+          <h3 style={{fontSize: '1.8rem', fontWeight: '300', marginBottom: '1rem', color: 'hsl(45, 90%, 75%)'}}>
             {currentLanguage === 'he' ? 'יהיה תיקון על הכל!' :
              currentLanguage === 'en' ? 'There will be rectification for everything!' :
              currentLanguage === 'fr' ? 'Il y aura une rectification pour tout!' :
              currentLanguage === 'es' ? '¡Habrá rectificación para todo!' :
              currentLanguage === 'ru' ? 'Будет исправление для всего!' : 'יהיה תיקון על הכל!'}
           </h3>
-          <p style={{fontSize: '1.1rem', fontStyle: 'italic', color: '#F5DEB3'}}>
+          <p style={{fontSize: '1.1rem', fontStyle: 'italic', color: 'hsl(45, 85%, 90%)'}}>
             {currentLanguage === 'he' ? 'רבי נתן מברסלב' :
              currentLanguage === 'en' ? 'Rabbi Nathan of Breslov' :
              currentLanguage === 'fr' ? 'Rabbi Nathan de Breslov' :
@@ -522,19 +522,19 @@ export default function Home() {
       </section>
 
       {/* SERVICES SECTION */}
-      <section style={{background: 'linear-gradient(135deg, #F5F5DC 0%, #FAEBD7 100%)', padding: '5rem 0'}}>
+      <section style={{background: 'linear-gradient(135deg, hsl(180, 30%, 98%) 0%, hsl(210, 30%, 98%) 100%)', padding: '5rem 0'}}>
         <div style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
           <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem'}}>
             <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', textAlign: 'center'}}>
               <div style={{fontSize: '3rem', marginBottom: '1rem'}}>🚚</div>
-              <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#8B4513', marginBottom: '1rem'}}>
+              <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', color: 'hsl(210, 85%, 45%)', marginBottom: '1rem'}}>
                 {currentLanguage === 'he' ? 'משלוח מהיר עד הבית חינם' :
                  currentLanguage === 'en' ? 'Fast Free Home Delivery' :
                  currentLanguage === 'fr' ? 'Livraison Rapide Gratuite à Domicile' :
                  currentLanguage === 'es' ? 'Entrega Rápida Gratuita a Domicilio' :
                  currentLanguage === 'ru' ? 'Быстрая Бесплатная Доставка на Дом' : 'משלוח מהיר עד הבית חינם'}
               </h3>
-              <p style={{color: '#666', fontSize: '0.9rem'}}>
+              <p style={{color: 'hsl(210, 12%, 55%)', fontSize: '0.9rem'}}>
                 {currentLanguage === 'he' ? 'ברכישה מעל 299 ₪ מהחנות' :
                  currentLanguage === 'en' ? 'On purchases over 299 ₪ from the store' :
                  currentLanguage === 'fr' ? 'Sur les achats de plus de 299 ₪ du magasin' :
@@ -545,14 +545,14 @@ export default function Home() {
             
             <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', textAlign: 'center'}}>
               <div style={{fontSize: '3rem', marginBottom: '1rem'}}>🔒</div>
-              <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#8B4513', marginBottom: '1rem'}}>
+              <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', color: 'hsl(210, 85%, 45%)', marginBottom: '1rem'}}>
                 {currentLanguage === 'he' ? 'רכישה מאובטחת' :
                  currentLanguage === 'en' ? 'Secure Purchase' :
                  currentLanguage === 'fr' ? 'Achat Sécurisé' :
                  currentLanguage === 'es' ? 'Compra Segura' :
                  currentLanguage === 'ru' ? 'Безопасная Покупка' : 'רכישה מאובטחת'}
               </h3>
-              <p style={{color: '#666', fontSize: '0.9rem'}}>
+              <p style={{color: 'hsl(210, 12%, 55%)', fontSize: '0.9rem'}}>
                 {currentLanguage === 'he' ? 'באמצעות תעודת SSL ובתקנים המחמירים ביותר' :
                  currentLanguage === 'en' ? 'Using SSL certificate and the most stringent standards' :
                  currentLanguage === 'fr' ? 'En utilisant un certificat SSL et les normes les plus strictes' :
@@ -563,14 +563,14 @@ export default function Home() {
             
             <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', textAlign: 'center'}}>
               <div style={{fontSize: '3rem', marginBottom: '1rem'}}>📚</div>
-              <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#8B4513', marginBottom: '1rem'}}>
+              <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', color: 'hsl(210, 85%, 45%)', marginBottom: '1rem'}}>
                 {currentLanguage === 'he' ? 'חנות הספרים הגדולה ביותר לספרי רבנו אונליין' :
                  currentLanguage === 'en' ? 'Largest Online Bookstore for Our Master\'s Books' :
                  currentLanguage === 'fr' ? 'Plus Grande Librairie en Ligne pour les Livres de Notre Maître' :
                  currentLanguage === 'es' ? 'Librería en Línea Más Grande para los Libros de Nuestro Maestro' :
                  currentLanguage === 'ru' ? 'Крупнейший Интернет-Книжный Магазин Книг Нашего Учителя' : 'חנות הספרים הגדולה ביותר לספרי רבנו אונליין'}
               </h3>
-              <p style={{color: '#666', fontSize: '0.9rem'}}>
+              <p style={{color: 'hsl(210, 12%, 55%)', fontSize: '0.9rem'}}>
                 {currentLanguage === 'he' ? 'משלוחים לכל הארץ' :
                  currentLanguage === 'en' ? 'Shipping throughout the country' :
                  currentLanguage === 'fr' ? 'Expédition dans tout le pays' :
@@ -581,14 +581,14 @@ export default function Home() {
             
             <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', textAlign: 'center'}}>
               <div style={{fontSize: '3rem', marginBottom: '1rem'}}>🎧</div>
-              <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#8B4513', marginBottom: '1rem'}}>
+              <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', color: 'hsl(210, 85%, 45%)', marginBottom: '1rem'}}>
                 {currentLanguage === 'he' ? 'שירות לקוחות מעולה וזמין תמיד לשירותכם' :
                  currentLanguage === 'en' ? 'Excellent Customer Service Always Available' :
                  currentLanguage === 'fr' ? 'Excellent Service Client Toujours Disponible' :
                  currentLanguage === 'es' ? 'Excelente Servicio al Cliente Siempre Disponible' :
                  currentLanguage === 'ru' ? 'Отличное Обслуживание Клиентов Всегда Доступно' : 'שירות לקוחות מעולה וזמין תמיד לשירותכם'}
               </h3>
-              <p style={{color: '#666', fontSize: '0.9rem'}}>
+              <p style={{color: 'hsl(210, 12%, 55%)', fontSize: '0.9rem'}}>
                 {currentLanguage === 'he' ? 'עד 12 תשלומים ללא ריבית' :
                  currentLanguage === 'en' ? 'Up to 12 payments without interest' :
                  currentLanguage === 'fr' ? 'Jusqu\'à 12 paiements sans intérêt' :
@@ -601,10 +601,10 @@ export default function Home() {
       </section>
 
       {/* CATEGORIES SECTION */}
-      <section style={{background: 'linear-gradient(135deg, #8B4513 0%, #A0522D 100%)', color: 'white', padding: '5rem 0'}}>
+      <section style={{background: 'linear-gradient(135deg, hsl(210, 85%, 45%) 0%, hsl(210, 90%, 35%) 100%)', color: 'white', padding: '5rem 0'}}>
         <div style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
           <div style={{textAlign: 'center', marginBottom: '3rem'}}>
-            <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '1rem', color: '#FFE4B5'}}>
+            <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '1rem', color: 'hsl(45, 90%, 85%)'}}>
               {currentLanguage === 'he' ? 'הקטגוריות בחנות' :
                currentLanguage === 'en' ? 'Store Categories' :
                currentLanguage === 'fr' ? 'Catégories du Magasin' :
@@ -615,7 +615,7 @@ export default function Home() {
           
           <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem'}}>
             <div style={{background: 'rgba(255, 228, 181, 0.1)', padding: '2rem', borderRadius: '10px', textAlign: 'center'}}>
-              <h3 style={{fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem', color: '#FFE4B5'}}>
+              <h3 style={{fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem', color: 'hsl(45, 90%, 85%)'}}>
                 {currentLanguage === 'he' ? 'כל חיבורי רבנו הקדוש' :
                  currentLanguage === 'en' ? 'All Holy Compositions of Our Master' :
                  currentLanguage === 'fr' ? 'Toutes les Compositions Saintes de Notre Maître' :
@@ -624,7 +624,7 @@ export default function Home() {
               </h3>
               <a href="/store" style={{textDecoration: 'none'}}>
                 <button style={{
-                  background: 'linear-gradient(135deg, #dc3545, #c82333)', 
+                  background: 'linear-gradient(135deg, hsl(210, 85%, 45%), hsl(210, 90%, 35%))', 
                   color: 'white', 
                   border: 'none', 
                   padding: '1rem 2rem', 
@@ -643,7 +643,7 @@ export default function Home() {
             </div>
             
             <div style={{background: 'rgba(255, 228, 181, 0.1)', padding: '2rem', borderRadius: '10px', textAlign: 'center'}}>
-              <h3 style={{fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem', color: '#FFE4B5'}}>
+              <h3 style={{fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem', color: 'hsl(45, 90%, 85%)'}}>
                 {currentLanguage === 'he' ? 'כל ספרי רבי ישראל' :
                  currentLanguage === 'en' ? 'All Books of Rabbi Israel' :
                  currentLanguage === 'fr' ? 'Tous les Livres de Rabbi Israel' :
@@ -652,7 +652,7 @@ export default function Home() {
               </h3>
               <a href="/store" style={{textDecoration: 'none'}}>
                 <button style={{
-                  background: 'linear-gradient(135deg, #dc3545, #c82333)', 
+                  background: 'linear-gradient(135deg, hsl(210, 85%, 45%), hsl(210, 90%, 35%))', 
                   color: 'white', 
                   border: 'none', 
                   padding: '1rem 2rem', 
@@ -675,8 +675,8 @@ export default function Home() {
             <a href="/store" style={{textDecoration: 'none'}}>
               <button style={{
                 background: 'rgba(255, 228, 181, 0.2)', 
-                color: '#FFE4B5', 
-                border: '2px solid #FFE4B5', 
+                color: 'hsl(45, 90%, 85%)', 
+                border: '2px solid hsl(45, 90%, 85%)', 
                 padding: '1rem 2rem', 
                 borderRadius: '8px', 
                 cursor: 'pointer', 
@@ -695,16 +695,16 @@ export default function Home() {
       </section>
 
       {/* NEWSLETTER SECTION */}
-      <section style={{background: 'linear-gradient(135deg, #F5F5DC 0%, #FAEBD7 100%)', padding: '5rem 0'}}>
+      <section style={{background: 'linear-gradient(135deg, hsl(180, 30%, 98%) 0%, hsl(210, 30%, 98%) 100%)', padding: '5rem 0'}}>
         <div style={{maxWidth: '800px', margin: '0 auto', padding: '0 2rem', textAlign: 'center'}}>
-          <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#8B4513', marginBottom: '1rem'}}>
+          <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', color: 'hsl(210, 85%, 45%)', marginBottom: '1rem'}}>
             {currentLanguage === 'he' ? 'הצטרפו עכשיו לרשימת תפוצה' :
              currentLanguage === 'en' ? 'Join Our Mailing List Now' :
              currentLanguage === 'fr' ? 'Rejoignez Notre Liste de Diffusion Maintenant' :
              currentLanguage === 'es' ? 'Únete a Nuestra Lista de Correo Ahora' :
              currentLanguage === 'ru' ? 'Присоединяйтесь к Нашему Списку Рассылки Сейчас' : 'הצטרפו עכשיו לרשימת תפוצה'}
           </h2>
-          <p style={{fontSize: '1.2rem', color: '#654321', marginBottom: '2rem'}}>
+          <p style={{fontSize: '1.2rem', color: 'hsl(180, 65%, 45%)', marginBottom: '2rem'}}>
             {currentLanguage === 'he' ? 'וקבלו 10% הנחנה ברכישה ראשונה באתר' :
              currentLanguage === 'en' ? 'And get 10% discount on your first purchase on the site' :
              currentLanguage === 'fr' ? 'Et obtenez 10% de réduction sur votre premier achat sur le site' :
@@ -719,14 +719,14 @@ export default function Home() {
               style={{
                 padding: '1rem 1.5rem', 
                 borderRadius: '8px', 
-                border: '2px solid #8B4513', 
+                border: '2px solid hsl(210, 85%, 45%)', 
                 fontSize: '1rem', 
                 minWidth: '300px',
                 textAlign: currentLanguage === 'he' ? 'right' : 'left'
               }}
             />
             <button style={{
-              background: 'linear-gradient(135deg, #dc3545, #c82333)', 
+              background: 'linear-gradient(135deg, hsl(210, 85%, 45%), hsl(210, 90%, 35%))', 
               color: 'white', 
               border: 'none', 
               padding: '1rem 2rem', 
@@ -744,14 +744,14 @@ export default function Home() {
           </div>
 
           <div style={{marginBottom: '3rem'}}>
-            <h3 style={{fontSize: '1.8rem', fontWeight: 'bold', color: '#8B4513', marginBottom: '1.5rem'}}>
+            <h3 style={{fontSize: '1.8rem', fontWeight: 'bold', color: 'hsl(210, 85%, 45%)', marginBottom: '1.5rem'}}>
               {currentLanguage === 'he' ? 'הצטרפו לקבוצות הוואטסאפ שלנו' :
                currentLanguage === 'en' ? 'Join Our WhatsApp Groups' :
                currentLanguage === 'fr' ? 'Rejoignez Nos Groupes WhatsApp' :
                currentLanguage === 'es' ? 'Únete a Nuestros Grupos de WhatsApp' :
                currentLanguage === 'ru' ? 'Присоединяйтесь к Нашим Группам WhatsApp' : 'הצטרפו לקבוצות הוואטסאפ שלנו'}
             </h3>
-            <p style={{fontSize: '1.1rem', color: '#654321', marginBottom: '2rem'}}>
+            <p style={{fontSize: '1.1rem', color: 'hsl(180, 65%, 45%)', marginBottom: '2rem'}}>
               {currentLanguage === 'he' ? 'קבלו עדכונים יומיים, חוויות מרגשות וחיזוק רוחני' :
                currentLanguage === 'en' ? 'Receive daily updates, exciting experiences and spiritual strengthening' :
                currentLanguage === 'fr' ? 'Recevez des mises à jour quotidiennes, des expériences passionnantes et un renforcement spirituel' :
@@ -769,7 +769,7 @@ export default function Home() {
               ].map((item, index) => (
                 <a key={index} href={`https://wa.me/${item.phone}`} target="_blank" rel="noopener noreferrer" style={{textDecoration: 'none'}}>
                   <button style={{
-                    background: '#25d366', 
+                    background: 'hsl(150, 60%, 45%)', 
                     color: 'white', 
                     border: 'none', 
                     padding: '0.8rem 1.5rem', 
@@ -791,16 +791,16 @@ export default function Home() {
       </section>
 
       {/* JOIN SECTION */}
-      <section style={{background: 'linear-gradient(135deg, #8B4513 0%, #A0522D 100%)', color: 'white', padding: '5rem 0'}}>
+      <section style={{background: 'linear-gradient(135deg, hsl(210, 85%, 45%) 0%, hsl(210, 90%, 35%) 100%)', color: 'white', padding: '5rem 0'}}>
         <div style={{maxWidth: '1000px', margin: '0 auto', padding: '0 2rem', textAlign: 'center'}}>
-          <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '1rem', color: '#FFE4B5'}}>
+          <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '1rem', color: 'hsl(45, 90%, 85%)'}}>
             {currentLanguage === 'he' ? 'הצטרפו עכשיו לפרסום והפצת ספרי רבי נחמן בעולם' :
              currentLanguage === 'en' ? 'Join Now to Promote and Spread Rabbi Nachman\'s Books Worldwide' :
              currentLanguage === 'fr' ? 'Rejoignez Maintenant pour Promouvoir et Diffuser les Livres de Rabbi Nachman dans le Monde' :
              currentLanguage === 'es' ? 'Únete Ahora para Promover y Difundir los Libros del Rabino Nachman en el Mundo' :
              currentLanguage === 'ru' ? 'Присоединяйтесь Сейчас к Продвижению и Распространению Книг Рабби Нахмана по Всему Миру' : 'הצטרפו עכשיו לפרסום והפצת ספרי רבי נחמן בעולם'}
           </h2>
-          <h3 style={{fontSize: '1.8rem', fontWeight: '300', marginBottom: '2rem', color: '#F0E68C'}}>
+          <h3 style={{fontSize: '1.8rem', fontWeight: '300', marginBottom: '2rem', color: 'hsl(45, 90%, 75%)'}}>
             {currentLanguage === 'he' ? 'ההזדמנות שלכם לעזור ולתת יד לפרסום שם הצדיק בעולם' :
              currentLanguage === 'en' ? 'Your opportunity to help and lend a hand in spreading the name of the Tzaddik in the world' :
              currentLanguage === 'fr' ? 'Votre opportunité d\'aider et de donner un coup de main à la diffusion du nom du Tzaddik dans le monde' :
@@ -811,9 +811,9 @@ export default function Home() {
           <div style={{display: 'flex', gap: '2rem', justifyContent: 'center', flexWrap: 'wrap'}}>
             <a href="/join" style={{textDecoration: 'none'}}>
               <button style={{
-                background: 'linear-gradient(135deg, #dc3545, #c82333)', 
+                background: 'linear-gradient(135deg, hsl(210, 85%, 45%), hsl(210, 90%, 35%))', 
                 color: 'white', 
-                border: '3px solid #FFE4B5', 
+                border: '3px solid hsl(45, 90%, 85%)', 
                 padding: '1.2rem 2.5rem', 
                 borderRadius: '12px', 
                 cursor: 'pointer', 
@@ -832,8 +832,8 @@ export default function Home() {
             <a href="/contact" style={{textDecoration: 'none'}}>
               <button style={{
                 background: 'rgba(255, 228, 181, 0.15)', 
-                color: '#FFE4B5', 
-                border: '3px solid #FFE4B5', 
+                color: 'hsl(45, 90%, 85%)', 
+                border: '3px solid hsl(45, 90%, 85%)', 
                 padding: '1.2rem 2.5rem', 
                 borderRadius: '12px', 
                 cursor: 'pointer', 
@@ -853,10 +853,10 @@ export default function Home() {
       </section>
 
       {/* FOOTER */}
-      <footer className="main-footer" style={{background: '#2d3436', color: 'white', padding: '3rem 0 2rem'}}>
+      <footer className="main-footer" style={{background: 'hsl(210, 85%, 25%)', color: 'white', padding: '3rem 0 2rem'}}>
         <div className="elementor-container" style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
           <div style={{textAlign: 'center', paddingTop: '2rem'}}>
-            <div style={{color: '#999', fontSize: '0.9rem'}}>
+            <div style={{color: 'hsl(210, 12%, 65%)', fontSize: '0.9rem'}}>
               <p style={{marginBottom: '0.5rem'}}>
                 {currentLanguage === 'he' ? 'כל הזכיות שמורות 2025 © קרן רבי ישראל דב אודסר זצ"ל' :
                  currentLanguage === 'en' ? 'All rights reserved 2025 © Rabbi Israel Dov Odesser Foundation' :
