@@ -1,10 +1,20 @@
 import { 
   type User, 
   type InsertUser, 
+  type Product,
+  type InsertProduct,
   type SubscriptionPlan,
   type InsertSubscriptionPlan,
   type SubscriptionHistory,
-  type InsertSubscriptionHistory 
+  type InsertSubscriptionHistory,
+  type Order,
+  type InsertOrder,
+  type OrderItem,
+  type InsertOrderItem,
+  type PaymentTransaction,
+  type InsertPaymentTransaction,
+  type ShippingRate,
+  type InsertShippingRate
 } from "@shared/schema";
 import { randomUUID } from "crypto";
 
@@ -24,6 +34,16 @@ export interface IStorage {
   updateUserSubscriptionStatus(id: string, status: string, startDate?: Date, endDate?: Date): Promise<User>;
   setUserAsSubscriber(id: string, isSubscriber: boolean): Promise<User>;
   
+  // Product methods
+  getProduct(id: string): Promise<Product | undefined>;
+  getAllProducts(): Promise<Product[]>;
+  getActiveProducts(): Promise<Product[]>;
+  getFeaturedProducts(): Promise<Product[]>;
+  getProductsByCategory(category: string): Promise<Product[]>;
+  createProduct(product: InsertProduct): Promise<Product>;
+  updateProduct(id: string, updates: Partial<Product>): Promise<Product>;
+  getProductVariant(productId: string, variantId: string): Promise<{product: Product, variant: any} | null>;
+  
   // Subscription plans methods
   getSubscriptionPlan(id: string): Promise<SubscriptionPlan | undefined>;
   getAllSubscriptionPlans(): Promise<SubscriptionPlan[]>;
@@ -32,20 +52,53 @@ export interface IStorage {
   // Subscription history methods
   createSubscriptionHistory(history: InsertSubscriptionHistory): Promise<SubscriptionHistory>;
   getSubscriptionHistoryByUser(userId: string): Promise<SubscriptionHistory[]>;
+  
+  // Order methods
+  createOrder(order: InsertOrder): Promise<Order>;
+  getOrder(id: string): Promise<Order | undefined>;
+  getOrdersByUser(userId: string): Promise<Order[]>;
+  updateOrder(id: string, updates: Partial<Order>): Promise<Order>;
+  updateOrderStatus(id: string, status: string): Promise<Order>;
+  
+  // Order items methods
+  createOrderItem(orderItem: InsertOrderItem): Promise<OrderItem>;
+  getOrderItems(orderId: string): Promise<OrderItem[]>;
+  
+  // Payment transaction methods
+  createPaymentTransaction(transaction: InsertPaymentTransaction): Promise<PaymentTransaction>;
+  getPaymentTransactionsByOrder(orderId: string): Promise<PaymentTransaction[]>;
+  updatePaymentTransaction(id: string, updates: Partial<PaymentTransaction>): Promise<PaymentTransaction>;
+  
+  // Shipping rates methods
+  getShippingRates(country?: string): Promise<ShippingRate[]>;
+  createShippingRate(rate: InsertShippingRate): Promise<ShippingRate>;
+  calculateShipping(subtotal: number, country: string, weight?: number): Promise<{ rate: ShippingRate; cost: number } | null>;
 }
 
 export class MemStorage implements IStorage {
   private users: Map<string, User>;
+  private products: Map<string, Product>;
   private subscriptionPlans: Map<string, SubscriptionPlan>;
   private subscriptionHistory: Map<string, SubscriptionHistory>;
+  private orders: Map<string, Order>;
+  private orderItems: Map<string, OrderItem>;
+  private paymentTransactions: Map<string, PaymentTransaction>;
+  private shippingRates: Map<string, ShippingRate>;
 
   constructor() {
     this.users = new Map();
+    this.products = new Map();
     this.subscriptionPlans = new Map();
     this.subscriptionHistory = new Map();
+    this.orders = new Map();
+    this.orderItems = new Map();
+    this.paymentTransactions = new Map();
+    this.shippingRates = new Map();
     
-    // Initialize default subscription plan
+    // Initialize default data
     this.initializeDefaultPlans();
+    this.initializeDefaultShippingRates();
+    this.initializeDefaultProducts();
   }
 
   private initializeDefaultPlans() {
@@ -77,6 +130,252 @@ export class MemStorage implements IStorage {
     };
     
     this.subscriptionPlans.set(horatKevaPlan.id, horatKevaPlan);
+  }
+
+  private initializeDefaultShippingRates() {
+    const israelStandard: ShippingRate = {
+      id: "israel_standard",
+      name: "Standard Shipping (Israel)",
+      nameHebrew: "משלוח רגיל (ישראל)",
+      description: "Standard delivery within Israel",
+      descriptionHebrew: "משלוח רגיל בתוך ישראל",
+      country: "IL",
+      regions: null,
+      baseRate: 3000, // 30 shekels in agorot
+      freeShippingThreshold: 39900, // 399 shekels - matches the free shipping threshold from UI
+      estimatedDaysMin: 3,
+      estimatedDaysMax: 7,
+      maxWeight: null,
+      maxDimensions: null,
+      isActive: true,
+      sortOrder: 1,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    };
+
+    const israelExpress: ShippingRate = {
+      id: "israel_express",
+      name: "Express Shipping (Israel)",
+      nameHebrew: "משלוח מהיר (ישראל)",
+      description: "Express delivery within Israel",
+      descriptionHebrew: "משלוח מהיר בתוך ישראל",
+      country: "IL",
+      regions: null,
+      baseRate: 4500, // 45 shekels in agorot
+      freeShippingThreshold: 59900, // 599 shekels for express
+      estimatedDaysMin: 1,
+      estimatedDaysMax: 3,
+      maxWeight: null,
+      maxDimensions: null,
+      isActive: true,
+      sortOrder: 2,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    };
+
+    this.shippingRates.set(israelStandard.id, israelStandard);
+    this.shippingRates.set(israelExpress.id, israelExpress);
+  }
+
+  private initializeDefaultProducts() {
+    // Import and load real product data
+    // Since we can't directly import the frontend file in the backend,
+    // we'll inline some key products for now - this could be moved to a shared location
+    const products = [
+      {
+        id: 'likutei-moharan',
+        name: 'ליקוטי מוהר"ן',
+        nameEnglish: 'Likutei Moharan',
+        nameFrench: null,
+        nameSpanish: null,
+        nameRussian: null,
+        description: 'חיבורו הגדול, הקדוש והנורא, של רבינו רבי נחמן מברסלב. מכיל מאות "תורות" - מאמרי קודש שנאמרו על ידי רבינו בשבתות, בחגים ובמועדים שונים.',
+        descriptionEnglish: 'The great, holy and awesome work of our teacher Rabbi Nachman of Breslov. Contains hundreds of "teachings" - holy discourses given by Rabbenu on Sabbaths, holidays and various occasions.',
+        category: 'ספרי רבינו',
+        subcategory: 'ליקוטי מוהר"ן',
+        author: 'רבי נחמן מברסלב',
+        publisher: 'קרן רבי ישראל',
+        language: 'עברית',
+        pages: 960,
+        isbn: '978-965-7023-01-1',
+        images: [
+          '/attached_assets/ליקוטי מוהרן 1_1757275910545.jpg',
+          '/attached_assets/ליקוטי מוהרן 1_1757278339720.jpg'
+        ],
+        variants: [
+          {
+            id: 'giant-skai-with-commentaries',
+            format: 'סקאי עם מפרשים',
+            binding: 'קשה',
+            size: 'ענק',
+            dimensions: '32*22',
+            volumes: 1,
+            price: 9500, // Convert to agorot (95 * 100)
+            inStock: true,
+            stockQuantity: 15
+          },
+          {
+            id: 'giant-skai',
+            format: 'סקאי',
+            binding: 'קשה',
+            size: 'ענק',
+            dimensions: '32*22',
+            volumes: 1,
+            price: 5500, // Convert to agorot (55 * 100)
+            inStock: true,
+            stockQuantity: 20
+          },
+          {
+            id: 'large-skai',
+            format: 'סקאי',
+            binding: 'קשה',
+            size: 'גדול',
+            dimensions: '24*17',
+            volumes: 1,
+            price: 3500, // Convert to agorot (35 * 100)
+            inStock: true,
+            stockQuantity: 40
+          }
+        ],
+        features: [
+          'חיבורו הגדול של רבי נחמן',
+          'מאות תורות קדושות',
+          'נדפס עוד בחיי רבינו'
+        ],
+        tags: ['ליקוטי מוהר"ן', 'תורות', 'רבי נחמן'],
+        isActive: true,
+        isFeatured: true
+      },
+      {
+        id: 'likutei-tefilot',
+        name: 'ליקוטי תפילות',
+        nameEnglish: 'Likutei Tefilot',
+        nameFrench: null,
+        nameSpanish: null,
+        nameRussian: null,
+        description: 'תפילותיו הנפלאות של רבי נתן, שחוברו על בסיס תורות רבי נחמן מליקוטי מוהר"ן.',
+        descriptionEnglish: 'The wonderful prayers of Rabbi Nathan, composed based on Rabbi Nachman\'s teachings from Likutei Moharan.',
+        category: 'תפילות',
+        subcategory: 'ליקוטי תפילות',
+        author: 'רבי נתן מברסלב',
+        publisher: 'קרן רבי ישראל',
+        language: 'עברית',
+        pages: 1152,
+        isbn: '978-965-7023-12-7',
+        images: [
+          '/attached_assets/ליקוטי תפילות 1_1757275910545.jpg'
+        ],
+        variants: [
+          {
+            id: 'large-skai',
+            format: 'סקאי',
+            binding: 'קשה',
+            size: 'גדול',
+            dimensions: '24*17',
+            volumes: 1,
+            price: 4000, // Convert to agorot (40 * 100)
+            inStock: true,
+            stockQuantity: 35
+          },
+          {
+            id: 'medium-skai',
+            format: 'סקאי',
+            binding: 'קשה',
+            size: 'בינוני',
+            dimensions: '17*12',
+            volumes: 1,
+            price: 3500, // Convert to agorot (35 * 100)
+            inStock: true,
+            stockQuantity: 40
+          }
+        ],
+        features: [
+          'תפילות מיוסדות על תורות רבי נחמן',
+          'חיבורו הנפלא של רבי נתן'
+        ],
+        tags: ['תפילות', 'רבי נתן', 'ליקוטי תפילות'],
+        isActive: true,
+        isFeatured: true
+      }
+    ];
+
+    // Convert products to proper Product type and store them
+    products.forEach(productData => {
+      const product: Product = productData as Product;
+      this.products.set(product.id, product);
+    });
+  }
+
+  // Product methods
+  async getProduct(id: string): Promise<Product | undefined> {
+    return this.products.get(id);
+  }
+
+  async getAllProducts(): Promise<Product[]> {
+    return Array.from(this.products.values());
+  }
+
+  async getActiveProducts(): Promise<Product[]> {
+    return Array.from(this.products.values()).filter(product => product.isActive);
+  }
+
+  async getFeaturedProducts(): Promise<Product[]> {
+    return Array.from(this.products.values()).filter(product => product.isActive && product.isFeatured);
+  }
+
+  async getProductsByCategory(category: string): Promise<Product[]> {
+    return Array.from(this.products.values()).filter(product => 
+      product.isActive && product.category === category
+    );
+  }
+
+  async createProduct(insertProduct: InsertProduct): Promise<Product> {
+    const product: Product = {
+      ...insertProduct,
+      nameEnglish: insertProduct.nameEnglish || null,
+      nameFrench: insertProduct.nameFrench || null,
+      nameSpanish: insertProduct.nameSpanish || null,
+      nameRussian: insertProduct.nameRussian || null,
+      descriptionEnglish: insertProduct.descriptionEnglish || null,
+      subcategory: insertProduct.subcategory || null,
+      author: insertProduct.author || 'רבי נחמן מברסלב',
+      publisher: insertProduct.publisher || 'קרן רבי ישראל',
+      language: insertProduct.language || 'עברית',
+      pages: insertProduct.pages || null,
+      isbn: insertProduct.isbn || null,
+      images: insertProduct.images || null,
+      variants: insertProduct.variants || null,
+      features: insertProduct.features || null,
+      tags: insertProduct.tags || null,
+      isActive: insertProduct.isActive !== false,
+      isFeatured: insertProduct.isFeatured || false
+    };
+    this.products.set(product.id, product);
+    return product;
+  }
+
+  async updateProduct(id: string, updates: Partial<Product>): Promise<Product> {
+    const product = this.products.get(id);
+    if (!product) {
+      throw new Error(`Product with id ${id} not found`);
+    }
+    const updatedProduct = { ...product, ...updates };
+    this.products.set(id, updatedProduct);
+    return updatedProduct;
+  }
+
+  async getProductVariant(productId: string, variantId: string): Promise<{product: Product, variant: any} | null> {
+    const product = await this.getProduct(productId);
+    if (!product || !product.variants) {
+      return null;
+    }
+    
+    const variant = product.variants.find(v => v.id === variantId);
+    if (!variant) {
+      return null;
+    }
+    
+    return { product, variant };
   }
 
   // User methods
@@ -194,6 +493,167 @@ export class MemStorage implements IStorage {
     return Array.from(this.subscriptionHistory.values())
       .filter(history => history.userId === userId)
       .sort((a, b) => (b.createdAt?.getTime() || 0) - (a.createdAt?.getTime() || 0));
+  }
+
+  // Order methods
+  async createOrder(insertOrder: InsertOrder): Promise<Order> {
+    const id = randomUUID();
+    const order: Order = {
+      ...insertOrder,
+      id,
+      userId: insertOrder.userId || null,
+      status: (insertOrder.status || 'pending') as 'pending' | 'processing' | 'shipped' | 'delivered' | 'canceled' | 'refunded',
+      discountAmount: insertOrder.discountAmount || 0,
+      paymentStatus: (insertOrder.paymentStatus || 'pending') as 'pending' | 'processing' | 'succeeded' | 'failed' | 'canceled',
+      stripePaymentIntentId: insertOrder.stripePaymentIntentId || null,
+      stripeChargeId: insertOrder.stripeChargeId || null,
+      shippingAddress: insertOrder.shippingAddress || null,
+      billingAddress: insertOrder.billingAddress || null,
+      trackingNumber: insertOrder.trackingNumber || null,
+      estimatedDelivery: insertOrder.estimatedDelivery || null,
+      deliveredAt: insertOrder.deliveredAt || null,
+      customerNotes: insertOrder.customerNotes || null,
+      adminNotes: insertOrder.adminNotes || null,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    };
+    this.orders.set(id, order);
+    return order;
+  }
+
+  async getOrder(id: string): Promise<Order | undefined> {
+    return this.orders.get(id);
+  }
+
+  async getOrdersByUser(userId: string): Promise<Order[]> {
+    return Array.from(this.orders.values())
+      .filter(order => order.userId === userId)
+      .sort((a, b) => (b.createdAt?.getTime() || 0) - (a.createdAt?.getTime() || 0));
+  }
+
+  async updateOrder(id: string, updates: Partial<Order>): Promise<Order> {
+    const order = this.orders.get(id);
+    if (!order) {
+      throw new Error(`Order with id ${id} not found`);
+    }
+    const updatedOrder = { ...order, ...updates, updatedAt: new Date() };
+    this.orders.set(id, updatedOrder);
+    return updatedOrder;
+  }
+
+  async updateOrderStatus(id: string, status: string): Promise<Order> {
+    return this.updateOrder(id, { status: status as any });
+  }
+
+  // Order items methods
+  async createOrderItem(insertOrderItem: InsertOrderItem): Promise<OrderItem> {
+    const id = randomUUID();
+    const orderItem: OrderItem = {
+      ...insertOrderItem,
+      id,
+      productNameEnglish: insertOrderItem.productNameEnglish || null,
+      variantDetails: insertOrderItem.variantDetails || null,
+      createdAt: new Date()
+    };
+    this.orderItems.set(id, orderItem);
+    return orderItem;
+  }
+
+  async getOrderItems(orderId: string): Promise<OrderItem[]> {
+    return Array.from(this.orderItems.values())
+      .filter(item => item.orderId === orderId)
+      .sort((a, b) => (a.createdAt?.getTime() || 0) - (b.createdAt?.getTime() || 0));
+  }
+
+  // Payment transaction methods
+  async createPaymentTransaction(insertTransaction: InsertPaymentTransaction): Promise<PaymentTransaction> {
+    const id = randomUUID();
+    const transaction: PaymentTransaction = {
+      ...insertTransaction,
+      id,
+      providerTransactionId: insertTransaction.providerTransactionId || null,
+      providerCustomerId: insertTransaction.providerCustomerId || null,
+      currency: insertTransaction.currency || 'ILS',
+      status: insertTransaction.status as 'pending' | 'processing' | 'succeeded' | 'failed' | 'canceled' | 'refunded',
+      failureCode: insertTransaction.failureCode || null,
+      failureMessage: insertTransaction.failureMessage || null,
+      refundAmount: insertTransaction.refundAmount || 0,
+      refundReason: insertTransaction.refundReason || null,
+      refundedAt: insertTransaction.refundedAt || null,
+      metadata: insertTransaction.metadata || null,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    };
+    this.paymentTransactions.set(id, transaction);
+    return transaction;
+  }
+
+  async getPaymentTransactionsByOrder(orderId: string): Promise<PaymentTransaction[]> {
+    return Array.from(this.paymentTransactions.values())
+      .filter(transaction => transaction.orderId === orderId)
+      .sort((a, b) => (b.createdAt?.getTime() || 0) - (a.createdAt?.getTime() || 0));
+  }
+
+  async updatePaymentTransaction(id: string, updates: Partial<PaymentTransaction>): Promise<PaymentTransaction> {
+    const transaction = this.paymentTransactions.get(id);
+    if (!transaction) {
+      throw new Error(`Payment transaction with id ${id} not found`);
+    }
+    const updatedTransaction = { ...transaction, ...updates, updatedAt: new Date() };
+    this.paymentTransactions.set(id, updatedTransaction);
+    return updatedTransaction;
+  }
+
+  // Shipping rates methods
+  async getShippingRates(country: string = 'IL'): Promise<ShippingRate[]> {
+    return Array.from(this.shippingRates.values())
+      .filter(rate => rate.isActive && rate.country === country)
+      .sort((a, b) => (a.sortOrder || 0) - (b.sortOrder || 0));
+  }
+
+  async createShippingRate(insertRate: InsertShippingRate): Promise<ShippingRate> {
+    const id = randomUUID();
+    const rate: ShippingRate = {
+      ...insertRate,
+      id,
+      description: insertRate.description || null,
+      descriptionHebrew: insertRate.descriptionHebrew || null,
+      country: insertRate.country || 'IL',
+      regions: insertRate.regions || null,
+      freeShippingThreshold: insertRate.freeShippingThreshold || null,
+      estimatedDaysMin: insertRate.estimatedDaysMin || 1,
+      estimatedDaysMax: insertRate.estimatedDaysMax || 7,
+      maxWeight: insertRate.maxWeight || null,
+      maxDimensions: insertRate.maxDimensions || null,
+      isActive: insertRate.isActive !== false,
+      sortOrder: insertRate.sortOrder || 0,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    };
+    this.shippingRates.set(id, rate);
+    return rate;
+  }
+
+  async calculateShipping(subtotal: number, country: string = 'IL', weight?: number): Promise<{ rate: ShippingRate; cost: number } | null> {
+    const rates = await this.getShippingRates(country);
+    
+    // Find the first applicable shipping rate
+    for (const rate of rates) {
+      // Check if subtotal qualifies for free shipping
+      if (rate.freeShippingThreshold && subtotal >= rate.freeShippingThreshold) {
+        return { rate, cost: 0 };
+      }
+      
+      // Check weight limits if specified
+      if (weight && rate.maxWeight && weight > rate.maxWeight) {
+        continue;
+      }
+      
+      // Return the base rate for this shipping method
+      return { rate, cost: rate.baseRate };
+    }
+    
+    return null; // No applicable shipping rate found
   }
 }
 

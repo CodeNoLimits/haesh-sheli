@@ -124,3 +124,150 @@ export const downloads = pgTable("downloads", {
 export const insertDownloadSchema = createInsertSchema(downloads);
 export type InsertDownload = z.infer<typeof insertDownloadSchema>;
 export type Download = typeof downloads.$inferSelect;
+
+// Orders table for checkout system
+export const orders = pgTable("orders", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  userId: varchar("user_id").references(() => users.id),
+  email: text("email").notNull(),
+  status: text("status").$type<'pending' | 'processing' | 'shipped' | 'delivered' | 'canceled' | 'refunded'>().default('pending'),
+  
+  // Order totals (in agorot - Israeli cents)
+  subtotal: integer("subtotal").notNull(), // Before taxes and shipping
+  vatAmount: integer("vat_amount").notNull(), // 17% VAT in Israel
+  shippingAmount: integer("shipping_amount").notNull(),
+  discountAmount: integer("discount_amount").default(0), // Subscriber discount, coupons, etc.
+  totalAmount: integer("total_amount").notNull(), // Final amount charged
+  
+  // Shipping information
+  shippingMethod: text("shipping_method").notNull(), // standard, express, pickup
+  shippingAddress: json("shipping_address").$type<ShippingAddress>(),
+  billingAddress: json("billing_address").$type<ShippingAddress>(),
+  
+  // Payment information
+  paymentMethod: text("payment_method").notNull(), // stripe, paypal, cash_on_delivery
+  stripePaymentIntentId: text("stripe_payment_intent_id").unique(),
+  stripeChargeId: text("stripe_charge_id").unique(),
+  paymentStatus: text("payment_status").$type<'pending' | 'processing' | 'succeeded' | 'failed' | 'canceled'>().default('pending'),
+  
+  // Order tracking
+  trackingNumber: text("tracking_number"),
+  estimatedDelivery: timestamp("estimated_delivery"),
+  deliveredAt: timestamp("delivered_at"),
+  
+  // Customer notes
+  customerNotes: text("customer_notes"),
+  adminNotes: text("admin_notes"),
+  
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export interface ShippingAddress {
+  fullName: string;
+  company?: string;
+  addressLine1: string;
+  addressLine2?: string;
+  city: string;
+  region: string; // State/Province
+  postalCode: string;
+  country: string;
+  phone: string;
+}
+
+export const insertOrderSchema = createInsertSchema(orders);
+export type InsertOrder = z.infer<typeof insertOrderSchema>;
+export type Order = typeof orders.$inferSelect;
+
+// Order items table
+export const orderItems = pgTable("order_items", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  orderId: varchar("order_id").notNull().references(() => orders.id),
+  productId: varchar("product_id").notNull(),
+  variantId: text("variant_id").notNull(),
+  
+  // Product details at time of order (for historical accuracy)
+  productName: text("product_name").notNull(),
+  productNameEnglish: text("product_name_english"),
+  variantDetails: json("variant_details").$type<ProductVariant>(),
+  
+  quantity: integer("quantity").notNull(),
+  unitPrice: integer("unit_price").notNull(), // Price per item in agorot
+  totalPrice: integer("total_price").notNull(), // quantity * unitPrice
+  
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const insertOrderItemSchema = createInsertSchema(orderItems);
+export type InsertOrderItem = z.infer<typeof insertOrderItemSchema>;
+export type OrderItem = typeof orderItems.$inferSelect;
+
+// Payment transactions table for tracking all payment attempts
+export const paymentTransactions = pgTable("payment_transactions", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  orderId: varchar("order_id").notNull().references(() => orders.id),
+  
+  // Payment provider details
+  provider: text("provider").notNull(), // stripe, paypal, etc.
+  providerTransactionId: text("provider_transaction_id").unique(),
+  providerCustomerId: text("provider_customer_id"),
+  
+  // Transaction details
+  amount: integer("amount").notNull(), // in agorot
+  currency: text("currency").default("ILS"),
+  status: text("status").$type<'pending' | 'processing' | 'succeeded' | 'failed' | 'canceled' | 'refunded'>().notNull(),
+  
+  // Failure/success details
+  failureCode: text("failure_code"),
+  failureMessage: text("failure_message"),
+  
+  // Refund information
+  refundAmount: integer("refund_amount").default(0),
+  refundReason: text("refund_reason"),
+  refundedAt: timestamp("refunded_at"),
+  
+  // Metadata for debugging and tracking
+  metadata: json("metadata"),
+  
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export const insertPaymentTransactionSchema = createInsertSchema(paymentTransactions);
+export type InsertPaymentTransaction = z.infer<typeof insertPaymentTransactionSchema>;
+export type PaymentTransaction = typeof paymentTransactions.$inferSelect;
+
+// Shipping rates table for calculating shipping costs
+export const shippingRates = pgTable("shipping_rates", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: text("name").notNull(),
+  nameHebrew: text("name_hebrew").notNull(),
+  description: text("description"),
+  descriptionHebrew: text("description_hebrew"),
+  
+  // Geographic coverage
+  country: text("country").notNull().default("IL"), // Israel by default
+  regions: json("regions").$type<string[]>(), // Specific regions/cities if applicable
+  
+  // Rate calculation
+  baseRate: integer("base_rate").notNull(), // Base shipping cost in agorot
+  freeShippingThreshold: integer("free_shipping_threshold"), // Minimum order value for free shipping
+  
+  // Delivery timeframe
+  estimatedDaysMin: integer("estimated_days_min").default(1),
+  estimatedDaysMax: integer("estimated_days_max").default(7),
+  
+  // Weight/size restrictions
+  maxWeight: integer("max_weight"), // in grams
+  maxDimensions: text("max_dimensions"), // e.g., "30x20x15cm"
+  
+  isActive: boolean("is_active").default(true),
+  sortOrder: integer("sort_order").default(0),
+  
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export const insertShippingRateSchema = createInsertSchema(shippingRates);
+export type InsertShippingRate = z.infer<typeof insertShippingRateSchema>;
+export type ShippingRate = typeof shippingRates.$inferSelect;

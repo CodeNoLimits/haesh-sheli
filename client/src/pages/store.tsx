@@ -261,7 +261,23 @@ export default function Store() {
                   const imagePath = getFirstProductImage(product.images);
                   
                   return (
-                    <div key={product.id} style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', transition: 'transform 0.3s ease'}}>
+                    <div key={product.id} style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', transition: 'transform 0.3s ease', position: 'relative'}}>
+                      {/* Prix du Keren Badge */}
+                      <div style={{
+                        position: 'absolute',
+                        top: '10px',
+                        right: '10px',
+                        background: 'linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%)',
+                        color: 'white',
+                        padding: '6px 12px',
+                        borderRadius: '20px',
+                        fontSize: '0.75rem',
+                        fontWeight: 'bold',
+                        zIndex: 2,
+                        boxShadow: '0 2px 8px rgba(124, 58, 237, 0.3)'
+                      }}>
+                        💎 מחיר הקרן
+                      </div>
                       <img 
                         src={imagePath}
                         alt={getBookDisplayTitle(product)}
@@ -317,9 +333,18 @@ export default function Store() {
                             {t('addToCart')}
                           </button>
                         </div>
-                        <p style={{fontSize: '0.9rem', color: '#666', marginTop: '0.5rem'}}>
-                          {t('freeShipping')}
-                        </p>
+                        {/* Spiritual Mission & Shipping Info */}
+                        <div style={{marginTop: '1rem', padding: '0.8rem', background: 'linear-gradient(135deg, #fef3c7 0%, #fde68a 100%)', borderRadius: '8px', border: '1px solid #f59e0b'}}>
+                          <div style={{fontSize: '0.8rem', color: '#92400e', marginBottom: '0.5rem', fontWeight: 'bold'}}>
+                            🙏 תומך במשימה הרוחנית
+                          </div>
+                          <div style={{fontSize: '0.8rem', color: '#92400e', marginBottom: '0.5rem'}}>
+                            כל רכישה מחזקת את הפצת אור רבינו בעולם
+                          </div>
+                          <div style={{fontSize: '0.8rem', color: '#059669', fontWeight: 'bold'}}>
+                            🚚 {t('freeShipping')}
+                          </div>
+                        </div>
                       </div>
                     </div>
                   );
