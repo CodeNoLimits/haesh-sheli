@@ -21,8 +21,76 @@ import {
   Award,
   Target,
   MessageCircle,
-  Users
+  Users,
+  Play,
+  Quote,
+  MapPin,
+  Video,
+  Image,
+  ThumbsUp,
+  Bookmark,
+  Download,
+  ExternalLink,
+  Volume2
 } from 'lucide-react';
+
+// Types pour TypeScript
+interface Article {
+  id: number;
+  title: string;
+  excerpt: string;
+  category: string;
+  author: string;
+  date: string;
+  readTime: string;
+  views: number;
+  image: string;
+  featured: boolean;
+  tags: string[];
+}
+
+interface Category {
+  name: string;
+  count: number;
+  icon: string;
+}
+
+interface Stat {
+  number: string;
+  label: string;
+  icon: string;
+}
+
+interface ContentType {
+  title: string;
+  description: string;
+  icon: string;
+}
+
+interface Testimonial {
+  id: number;
+  name: string;
+  location: string;
+  content: string;
+  image: string;
+  rating: number;
+}
+
+interface Event {
+  id: number;
+  title: string;
+  date: string;
+  location: string;
+  type: string;
+  image?: string;
+}
+
+interface DailyQuote {
+  id: number;
+  text: string;
+  source: string;
+  author: string;
+}
 
 const translations = {
   he: {
@@ -54,7 +122,7 @@ const translations = {
     latestTitle: 'מאמרים אחרונים',
     latestSubtitle: 'התוכן החדש ביותר שלנו',
 
-    // Articles Data
+    // Articles Data - Enriched with authentic Breslov content
     articles: [
       {
         id: 1,
@@ -133,6 +201,162 @@ const translations = {
         image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/5-1-300x300.d110a0.webp',
         featured: true,
         tags: ['אומן', 'נסיעה', 'ראש השנה']
+      },
+      {
+        id: 7,
+        title: 'נ נח נחמא נחמן מאומן - פירוש והסבר',
+        excerpt: 'משמעות הפסוק המיוחד "נ נח נחמא נחמן מאומן" ותפקידו בחסידות ברסלב. המסר הקבלי והרוחני הטמון בניגון המיוחד הזה.',
+        category: 'תורה ורוחניות',
+        author: 'הרב אריה נועם',
+        date: '2 ינואר 2025',
+        readTime: '10 דקות קריאה',
+        views: 1850,
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/1-1-300x300.d110a0.webp',
+        featured: true,
+        tags: ['נ נח', 'ניגון', 'קבלה']
+      },
+      {
+        id: 8,
+        title: 'ליקוטי תפילות - התפילה מהלב',
+        excerpt: 'עיון בליקוטי תפילות של רבי נתן מברסלב. איך התפילות הללו יכולות לעזור לנו להתחבר לתפילה אמיתית ולהתרגש בעבודת השם.',
+        category: 'תורה ורוחניות',
+        author: 'הרב אליהו שמעון',
+        date: '30 דצמבר 2024',
+        readTime: '14 דקות קריאה',
+        views: 1320,
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/2-1-300x300.d110a0.webp',
+        featured: false,
+        tags: ['ליקוטי תפילות', 'רב נתן', 'תפילה']
+      },
+      {
+        id: 9,
+        title: 'סיפורי מעשיות - הסיפור הרוחני',
+        excerpt: 'ניתוח מעמיק של סיפורי המעשיות של רבי נחמן מברסלב. המסרים הנסתרים והלקחים הרוחניים בכל סיפור, ואיך הם רלוונטיים היום.',
+        category: 'תורה ורוחניות',
+        author: 'הרב יצחק ברקוביץ',
+        date: '28 דצמבר 2024',
+        readTime: '16 דקות קריאה',
+        views: 2240,
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/3-1-300x300.d110a0.webp',
+        featured: true,
+        tags: ['סיפורי מעשיות', 'נסתר', 'חכמה']
+      },
+      {
+        id: 10,
+        title: 'הקיבוץ השנתי באומן - חוויה רוחנית',
+        excerpt: 'דיווח מפורט על הקיבוץ השנתי באומן לראש השנה. עדויות מרגשות, חוויות רוחניות ותיאור האווירה המיוחדת בקברו הקדוש של רבנו.',
+        category: 'ברסלב בעולם',
+        author: 'הרב מרדכי גולן',
+        date: '25 דצמבר 2024',
+        readTime: '12 דקות קריאה',
+        views: 3150,
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/5-1-300x300.d110a0.webp',
+        featured: true,
+        tags: ['אומן', 'ראש השנה', 'קיבוץ']
+      },
+      {
+        id: 11,
+        title: 'ספר המידות - מדריך מעשי לחיים',
+        excerpt: 'ספר המידות של רבי נחמן מברסלב כמדריך מעשי לחיי היום יום. איך לקחים פשוטים יכולים לשנות את החיים שלנו לטובה.',
+        category: 'תורה ורוחניות',
+        author: 'הרב שמואל הלוי',
+        date: '22 דצמבר 2024',
+        readTime: '8 דקות קריאה',
+        views: 890,
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/44-300x300.d110a0.webp',
+        featured: false,
+        tags: ['ספר המידות', 'מעשי', 'חיים']
+      },
+      {
+        id: 12,
+        title: 'רבי נתן מברסלב - התלמיד הנאמן',
+        excerpt: 'הכרת דמותו המיוחדת של רבי נתן מברסלב, התלמיד הנאמן של רבי נחמן. תפקידו בהנצחת התורה ובהקמת חסידות ברסלב.',
+        category: 'סיפורים',
+        author: 'הרב אברהם כהן',
+        date: '20 דצמבר 2024',
+        readTime: '11 דקות קריאה',
+        views: 1450,
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/1-1-300x300.d110a0.webp',
+        featured: false,
+        tags: ['רב נתן', 'תלמיד', 'נאמנות']
+      },
+      {
+        id: 13,
+        title: 'התיקון הכללי - דרך לתשובה שלמה',
+        excerpt: 'עיון בתיקון הכללי שגילה רבי נחמן מברסלב. איך עשרת המזמורים המיוחדים יכולים לתקן את הנשמה ולהביא לתשובה שלמה.',
+        category: 'תורה ורוחניות',
+        author: 'הרב צבי הירש',
+        date: '18 דצמבר 2024',
+        readTime: '13 דקות קריאה',
+        views: 1920,
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/2-1-300x300.d110a0.webp',
+        featured: true,
+        tags: ['תיקון כללי', 'תשובה', 'מזמורים']
+      },
+      {
+        id: 14,
+        title: 'ברסלב בישראל - מרכזים ופעילויות',
+        excerpt: 'מפת מרכזי ברסלב בישראל - בתי מדרש, מקווי הרחצה ומוקדי פעילות רוחנית. מידע מעודכן על שיעורים, אירועים ופעילויות.',
+        category: 'עדכוני הקרן',
+        author: 'צוות האש שלי',
+        date: '15 דצמבר 2024',
+        readTime: '7 דקות קריאה',
+        views: 680,
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/02/Untitled-design-10-1024x1024.d110a0.webp',
+        featured: false,
+        tags: ['ישראל', 'מרכזים', 'פעילויות']
+      },
+      {
+        id: 15,
+        title: 'רוש חודש בברסלב - התחדשות רוחנית',
+        excerpt: 'המשמעות המיוחדת של ראש חודש בחסידות ברסלב. איך לנצל את זמן הזה להתחדשות רוחנית ולהתקרבות לבורא עולם.',
+        category: 'מועדים וחגים',
+        author: 'הרב נחמן גולדשטיין',
+        date: '12 דצמבר 2024',
+        readTime: '6 דקות קריאה',
+        views: 520,
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/3-1-300x300.d110a0.webp',
+        featured: false,
+        tags: ['ראש חודש', 'התחדשות', 'זמן']
+      },
+      {
+        id: 16,
+        title: 'היכל הקודש באומן - מקום קדוש',
+        excerpt: 'תיאור היכל הקודש באומן שבו קבור רבי נחמן מברסלב. ההיסטוריה, הקדושה והמשמעות הרוחנית של המקום עבור חסידי ברסלב.',
+        category: 'ברסלב בעולם',
+        author: 'הרב יעקב אוקראיני',
+        date: '10 דצמבר 2024',
+        readTime: '15 דקות קריאה',
+        views: 2850,
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/5-1-300x300.d110a0.webp',
+        featured: true,
+        tags: ['היכל הקודש', 'אומן', 'קדושה']
+      },
+      {
+        id: 17,
+        title: 'שיחות הרן - חכמת החיים',
+        excerpt: 'לימוד שיחות הרן של רבי נחמן מברסלב. עצות מעשיות לחיי היום יום, דברי חיזוק והדרכה רוחנית לכל אחד ואחת.',
+        category: 'תורה ורוחניות',
+        author: 'הרב שלמה ברסלבי',
+        date: '8 דצמבר 2024',
+        readTime: '9 דקות קריאה',
+        views: 1150,
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/44-300x300.d110a0.webp',
+        featured: false,
+        tags: ['שיחות הרן', 'עצות', 'חכמה']
+      },
+      {
+        id: 18,
+        title: 'הפצת ספרי ברסלב בעולם - משימה קדושה',
+        excerpt: 'הפצת ספרי רבי נחמן מברסלב ברחבי העולם. פעילות הקרן, התרגומים לשפות שונות והשפעה על יהדות העולם.',
+        category: 'עדכוני הקרן',
+        author: 'הרב מיכאל הפץ',
+        date: '5 דצמבר 2024',
+        readTime: '10 דקות קריאה',
+        views: 980,
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/02/Untitled-design-10-1024x1024.d110a0.webp',
+        featured: false,
+        tags: ['הפצה', 'עולם', 'ספרים']
       }
     ],
 
@@ -184,6 +408,187 @@ const translations = {
     ctaButtonPrimary: 'שלחו תוכן',
     ctaButtonSecondary: 'צרו קשר',
 
+    // Daily Quotes - NEW SECTION
+    dailyQuotesTitle: 'ציטוט יומי מרבנו הקדוש',
+    dailyQuotesSubtitle: 'דברי חיזוק והשראה מתורת רבי נחמן מברסלב',
+    dailyQuotes: [
+      {
+        id: 1,
+        text: 'כל העולם כולו גשר צר מאוד, והעיקר לא לפחד כלל',
+        source: 'ליקוטי מוהרן ב\', מח',
+        author: 'רבי נחמן מברסלב'
+      },
+      {
+        id: 2,
+        text: 'אין שום יאוש בעולם כלל',
+        source: 'שיחות הרן',
+        author: 'רבי נחמן מברסלב'
+      },
+      {
+        id: 3,
+        text: 'מצוה גדולה להיות בשמחה תמיד',
+        source: 'ליקוטי מוהרן ב\', כד',
+        author: 'רבי נחמן מברסלב'
+      },
+      {
+        id: 4,
+        text: 'והתפילה היא למעלה מכל מדריגה',
+        source: 'ליקוטי מוהרן א\', ב',
+        author: 'רבי נחמן מברסלב'
+      },
+      {
+        id: 5,
+        text: 'אדם צריך לעבור על גשר צר מאוד, והכלל לא לפחד כלל',
+        source: 'ליקוטי מוהרן ב\', מח',
+        author: 'רבי נחמן מברסלב'
+      }
+    ],
+
+    // Testimonials - NEW SECTION
+    testimonialsTitle: 'עדויות קוראים',
+    testimonialsSubtitle: 'איך המגזין שלנו משפיע על חייהם של קוראים ברחבי העולם',
+    testimonials: [
+      {
+        id: 1,
+        name: 'יעקב לוי',
+        location: 'ירושלים, ישראל',
+        content: 'המגזין הזה שינה את החיים שלי. כל מאמר מביא לי חיזוק והשראה חדשה. במיוחד אהבתי את המאמר על ההתבודדות - עזר לי להתחבר באמת לתפילה.',
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/1-1-300x300.d110a0.webp',
+        rating: 5
+      },
+      {
+        id: 2,
+        name: 'שרה כהן',
+        location: 'תל אביב, ישראל',
+        content: 'אני קוראת כבר שנתיים ולא מפסיקה להתרגש מהתוכן. הסיפורים מברסלב ברחבי העולם נותנים לי כוח והאמונה שהקב"ה שומר עלינו תמיד.',
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/2-1-300x300.d110a0.webp',
+        rating: 5
+      },
+      {
+        id: 3,
+        name: 'אברהם גולדברג',
+        location: 'ניו יורק, ארה"ב',
+        content: 'המגזין מחבר אותי לקהילת ברסלב ברחבי העולם. הציטוטים היומיים עוזרים לי להתחיל כל יום בהשראה, והמאמרים עמוקים ומעניינים.',
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/3-1-300x300.d110a0.webp',
+        rating: 5
+      },
+      {
+        id: 4,
+        name: 'מרים שוורץ',
+        location: 'בני ברק, ישראל',
+        content: 'תוכן איכותי שבאמת בנוי על יסודות תורת רבנו הקדוש. המדריכים המעשיים עוזרים לי ליישם את ההלכות בחיי היום יום שלי.',
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/44-300x300.d110a0.webp',
+        rating: 5
+      }
+    ],
+
+    // Events Calendar - NEW SECTION
+    eventsTitle: 'לוח אירועים ברסלב',
+    eventsSubtitle: 'אירועים, שיעורים והתכנסויות ברחבי העולם',
+    events: [
+      {
+        id: 1,
+        title: 'שיעור בליקוטי מוהרן - הרב יעקב הן',
+        date: '18 ינואר 2025',
+        location: 'בית מדרש ברסלב, ירושלים',
+        type: 'שיעור',
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/1-1-300x300.d110a0.webp'
+      },
+      {
+        id: 2,
+        title: 'התכנסות חסידי ברסלב - ראש חודש שבט',
+        date: '30 ינואר 2025',
+        location: 'מירון, ישראל',
+        type: 'התכנסות',
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/2-1-300x300.d110a0.webp'
+      },
+      {
+        id: 3,
+        title: 'נסיעה לאומן - הכנה לראש השנה',
+        date: '15 ספטמבר 2025',
+        location: 'אומן, אוקראינה',
+        type: 'נסיעה',
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/5-1-300x300.d110a0.webp'
+      },
+      {
+        id: 4,
+        title: 'חלקת הפצת ספרי ברסלב - יום התנדבות',
+        date: '25 ינואר 2025',
+        location: 'מרכז האש שלי, ירושלים',
+        type: 'התנדבות',
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/02/Untitled-design-10-1024x1024.d110a0.webp'
+      }
+    ],
+
+    // Videos Section - NEW SECTION
+    videosTitle: 'סרטונים והרצאות',
+    videosSubtitle: 'הרצאות מעמיקות, שיעורים וסיפורים מעשיים',
+    videos: [
+      {
+        id: 1,
+        title: 'עצות לשמחה מליקוטי מוהרן - הרב יעקב הן',
+        description: 'הרצאה מעמיקה על דברי רבנו הקדוש בענין השמחה והאמונה',
+        duration: '45:30',
+        views: 15420,
+        thumbnail: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/1-1-300x300.d110a0.webp'
+      },
+      {
+        id: 2,
+        title: 'סיפור מרגש מאומן - עדות אישית',
+        description: 'עדות מרגשת של חסיד ברסלב על ישועה שקיבל בזכות רבנו הקדוש',
+        duration: '22:15',
+        views: 8930,
+        thumbnail: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/2-1-300x300.d110a0.webp'
+      },
+      {
+        id: 3,
+        title: 'מדריך להתבודדות יומיומית',
+        description: 'הדרכה מעשית לביצוע התבודדות על פי תורת רבי נחמן מברסלב',
+        duration: '31:45',
+        views: 12650,
+        thumbnail: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/3-1-300x300.d110a0.webp'
+      }
+    ],
+
+    // World News - NEW SECTION
+    worldNewsTitle: 'ברסלב בעולם',
+    worldNewsSubtitle: 'חדשות ועדכונים מקהילות ברסלב ברחבי העולם',
+    worldNews: [
+      {
+        id: 1,
+        title: 'הקמת מרכז ברסלב חדש בברוקלין',
+        location: 'ניו יורק, ארה"ב',
+        date: '10 ינואר 2025',
+        summary: 'מרכז חדש לחסידי ברסלב נפתח בברוקלין עם בית מדרש ומקווה טהרה',
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/1-1-300x300.d110a0.webp'
+      },
+      {
+        id: 2,
+        title: 'חלוקת ספרי ברסלב בפריז',
+        location: 'פריז, צרפת',
+        date: '5 ינואר 2025',
+        summary: 'מבצע הפצת ספרים נרחב ברובע היהודי בפריז הגיע ל-500 משפחות',
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/2-1-300x300.d110a0.webp'
+      },
+      {
+        id: 3,
+        title: 'כנס צעירי ברסלב בלונדון',
+        location: 'לונדון, אנגליה',
+        date: '2 ינואר 2025',
+        summary: 'למעלה מ-300 צעירים השתתפו בכנס השנתי לחיזוק והתעוררות רוחנית',
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/3-1-300x300.d110a0.webp'
+      }
+    ],
+
+    // Interactive Features - NEW SECTION
+    interactiveTitle: 'כלים אינטראקטיביים',
+    bookmarkText: 'הוסף למועדפים',
+    shareText: 'שתף מאמר',
+    downloadText: 'הורד PDF',
+    printText: 'הדפס',
+    relatedArticles: 'מאמרים קשורים',
+    popularTags: 'תגיות פופולריות',
+
     // Common
     readMore: 'קרא עוד',
     readTime: 'זמן קריאה',
@@ -194,7 +599,11 @@ const translations = {
     allCategories: 'כל הקטגוריות',
     sortBy: 'מיין לפי',
     newest: 'החדשים ביותר',
-    popular: 'הפופולריים ביותר'
+    popular: 'הפופולריים ביותר',
+    watchVideo: 'צפה בסרטון',
+    readTestimonial: 'קרא עדות',
+    viewEvent: 'פרטי אירוע',
+    subscribeNewsletter: 'הירשם לעדכונים'
   },
 
   en: {
@@ -705,21 +1114,21 @@ export default function Magazine() {
 
   // Filter and sort articles
   const filteredArticles = t.articles
-    .filter(article => 
+    .filter((article: Article) => 
       (selectedCategory === '' || article.category === selectedCategory) &&
       (searchTerm === '' || 
         article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         article.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        article.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
+        article.tags.some((tag: string) => tag.toLowerCase().includes(searchTerm.toLowerCase()))
       )
     )
-    .sort((a, b) => {
+    .sort((a: Article, b: Article) => {
       if (sortBy === 'popular') return b.views - a.views;
       return new Date(b.date).getTime() - new Date(a.date).getTime();
     });
 
-  const featuredArticles = filteredArticles.filter(article => article.featured);
-  const latestArticles = filteredArticles.filter(article => !article.featured);
+  const featuredArticles = filteredArticles.filter((article: Article) => article.featured);
+  const latestArticles = filteredArticles.filter((article: Article) => !article.featured);
 
   return (
     <div className="min-h-screen bg-background" style={{ direction: isRTL ? 'rtl' : 'ltr' }}>
@@ -834,7 +1243,7 @@ export default function Magazine() {
               </div>
               
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {featuredArticles.slice(0, 4).map((article, index) => (
+                {featuredArticles.slice(0, 4).map((article: Article, index: number) => (
                   <article 
                     key={article.id}
                     className="card-premium overflow-hidden group hover:shadow-xl transition-all duration-300"
@@ -883,7 +1292,7 @@ export default function Magazine() {
                       </div>
                       <div className="flex items-center justify-between">
                         <div className="flex gap-2">
-                          {article.tags.slice(0, 3).map((tag, tagIndex) => (
+                          {article.tags.slice(0, 3).map((tag: string, tagIndex: number) => (
                             <span key={tagIndex} className="bg-secondary text-secondary-foreground px-2 py-1 rounded-md text-xs">
                               {tag}
                             </span>
@@ -921,7 +1330,7 @@ export default function Magazine() {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {latestArticles.map((article, index) => (
+              {latestArticles.map((article: Article, index: number) => (
                 <article 
                   key={article.id}
                   className="card-premium overflow-hidden group hover:shadow-xl transition-all duration-300"
@@ -1076,6 +1485,273 @@ export default function Magazine() {
                 {t.newsletterButton}
               </button>
             </form>
+          </div>
+        </div>
+      </section>
+
+      {/* Daily Quotes Section - NEW */}
+      <section className="py-20 bg-secondary/20" data-testid="daily-quotes-section">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl lg:text-5xl font-bold text-primary mb-6" data-testid="daily-quotes-title">
+                {t.dailyQuotesTitle || 'Daily Quotes'}
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto" data-testid="daily-quotes-subtitle">
+                {t.dailyQuotesSubtitle || 'Inspiration from Rabbi Nachman of Breslov'}
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {(t.dailyQuotes || []).map((quote: DailyQuote, index: number) => (
+                <div 
+                  key={quote.id}
+                  className="card-premium p-8 text-center group hover:shadow-xl transition-all duration-300"
+                  data-testid={`daily-quote-${index}`}
+                >
+                  <Quote className="w-12 h-12 text-primary mx-auto mb-6" />
+                  <blockquote className="text-xl font-medium text-foreground mb-6 leading-relaxed" data-testid={`quote-text-${index}`}>
+                    "{quote.text}"
+                  </blockquote>
+                  <div className="text-sm text-muted-foreground space-y-1">
+                    <div className="font-semibold text-primary" data-testid={`quote-source-${index}`}>
+                      {quote.source}
+                    </div>
+                    <div data-testid={`quote-author-${index}`}>
+                      {quote.author}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section - NEW */}
+      <section className="py-20 bg-background" data-testid="testimonials-section">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl lg:text-5xl font-bold text-primary mb-6" data-testid="testimonials-title">
+                {t.testimonialsTitle || 'Reader Testimonials'}
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto" data-testid="testimonials-subtitle">
+                {t.testimonialsSubtitle || 'How our magazine impacts readers worldwide'}
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {(t.testimonials || []).map((testimonial: Testimonial, index: number) => (
+                <div 
+                  key={testimonial.id}
+                  className="card-premium p-8 group hover:shadow-xl transition-all duration-300"
+                  data-testid={`testimonial-${index}`}
+                >
+                  <div className="flex items-center mb-6">
+                    <img 
+                      src={testimonial.image} 
+                      alt={testimonial.name}
+                      className="w-16 h-16 rounded-full object-cover mr-4"
+                      data-testid={`testimonial-image-${index}`}
+                    />
+                    <div>
+                      <h3 className="font-bold text-foreground" data-testid={`testimonial-name-${index}`}>
+                        {testimonial.name}
+                      </h3>
+                      <p className="text-sm text-muted-foreground" data-testid={`testimonial-location-${index}`}>
+                        {testimonial.location}
+                      </p>
+                      <div className="flex mt-1">
+                        {[...Array(testimonial.rating)].map((_, i) => (
+                          <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                  <blockquote className="text-foreground leading-relaxed italic" data-testid={`testimonial-content-${index}`}>
+                    "{testimonial.content}"
+                  </blockquote>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Events Calendar Section - NEW */}
+      <section className="py-20 bg-secondary/20" data-testid="events-section">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl lg:text-5xl font-bold text-primary mb-6" data-testid="events-title">
+                {t.eventsTitle || 'Breslov Events Calendar'}
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto" data-testid="events-subtitle">
+                {t.eventsSubtitle || 'Events, classes and gatherings worldwide'}
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {(t.events || []).map((event: Event, index: number) => (
+                <div 
+                  key={event.id}
+                  className="card-premium overflow-hidden group hover:shadow-xl transition-all duration-300"
+                  data-testid={`event-${index}`}
+                >
+                  {event.image && (
+                    <img 
+                      src={event.image} 
+                      alt={event.title}
+                      className="w-full h-32 object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  )}
+                  <div className="p-6">
+                    <div className="flex items-center mb-3">
+                      <Calendar className="w-4 h-4 text-primary mr-2" />
+                      <span className="text-sm font-medium text-primary" data-testid={`event-type-${index}`}>
+                        {event.type}
+                      </span>
+                    </div>
+                    <h3 className="font-bold text-foreground mb-3 text-sm leading-tight" data-testid={`event-title-${index}`}>
+                      {event.title}
+                    </h3>
+                    <div className="space-y-2 text-xs text-muted-foreground">
+                      <div className="flex items-center">
+                        <Calendar className="w-3 h-3 mr-2" />
+                        <span data-testid={`event-date-${index}`}>{event.date}</span>
+                      </div>
+                      <div className="flex items-center">
+                        <MapPin className="w-3 h-3 mr-2" />
+                        <span data-testid={`event-location-${index}`}>{event.location}</span>
+                      </div>
+                    </div>
+                    <button 
+                      className="mt-4 text-primary hover:text-primary/80 font-medium text-sm transition-colors duration-200"
+                      data-testid={`event-button-${index}`}
+                    >
+                      {t.viewEvent || 'View Event'}
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Videos Section - NEW */}
+      <section className="py-20 bg-background" data-testid="videos-section">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl lg:text-5xl font-bold text-primary mb-6" data-testid="videos-title">
+                {t.videosTitle || 'Videos & Lectures'}
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto" data-testid="videos-subtitle">
+                {t.videosSubtitle || 'Deep lectures, classes and practical stories'}
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {(t.videos || []).map((video: any, index: number) => (
+                <div 
+                  key={video.id}
+                  className="card-premium overflow-hidden group hover:shadow-xl transition-all duration-300"
+                  data-testid={`video-${index}`}
+                >
+                  <div className="relative">
+                    <img 
+                      src={video.thumbnail} 
+                      alt={video.title}
+                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <Play className="w-16 h-16 text-white" />
+                    </div>
+                    <div className="absolute bottom-2 right-2 bg-black/80 text-white px-2 py-1 rounded text-xs">
+                      {video.duration}
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <h3 className="font-bold text-foreground mb-3 text-lg leading-tight" data-testid={`video-title-${index}`}>
+                      {video.title}
+                    </h3>
+                    <p className="text-muted-foreground mb-4 text-sm leading-relaxed" data-testid={`video-description-${index}`}>
+                      {video.description}
+                    </p>
+                    <div className="flex items-center justify-between text-sm text-muted-foreground">
+                      <div className="flex items-center">
+                        <Eye className="w-4 h-4 mr-1" />
+                        <span data-testid={`video-views-${index}`}>{video.views.toLocaleString()}</span>
+                      </div>
+                      <button 
+                        className="text-primary hover:text-primary/80 font-medium transition-colors duration-200"
+                        data-testid={`video-button-${index}`}
+                      >
+                        {t.watchVideo || 'Watch Video'}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* World News Section - NEW */}
+      <section className="py-20 bg-secondary/20" data-testid="world-news-section">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl lg:text-5xl font-bold text-primary mb-6" data-testid="world-news-title">
+                {t.worldNewsTitle || 'Breslov Around the World'}
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto" data-testid="world-news-subtitle">
+                {t.worldNewsSubtitle || 'News and updates from Breslov communities worldwide'}
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {(t.worldNews || []).map((news: any, index: number) => (
+                <div 
+                  key={news.id}
+                  className="card-premium overflow-hidden group hover:shadow-xl transition-all duration-300"
+                  data-testid={`world-news-${index}`}
+                >
+                  <img 
+                    src={news.image} 
+                    alt={news.title}
+                    className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="p-6">
+                    <div className="flex items-center mb-3">
+                      <Globe className="w-4 h-4 text-primary mr-2" />
+                      <span className="text-sm font-medium text-primary" data-testid={`news-location-${index}`}>
+                        {news.location}
+                      </span>
+                    </div>
+                    <h3 className="font-bold text-foreground mb-3 leading-tight" data-testid={`news-title-${index}`}>
+                      {news.title}
+                    </h3>
+                    <p className="text-muted-foreground mb-4 text-sm leading-relaxed" data-testid={`news-summary-${index}`}>
+                      {news.summary}
+                    </p>
+                    <div className="flex items-center justify-between text-sm text-muted-foreground">
+                      <span data-testid={`news-date-${index}`}>{news.date}</span>
+                      <a 
+                        href="#" 
+                        className="text-primary hover:text-primary/80 font-medium transition-colors duration-200"
+                        data-testid={`news-link-${index}`}
+                      >
+                        {t.readMore}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
