@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { Star, Heart, Book, Lightbulb, Quote, Mountain, Music, Flame } from 'lucide-react';
+import { Star, Heart, Book, Lightbulb, Quote, Mountain, Music, Flame, Play, Volume2, VolumeX, Youtube } from 'lucide-react';
 import { Header } from '@/components/Header';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function BreslovWisdom() {
   const { currentLanguage, setLanguage } = useLanguage();
   const [activeSection, setActiveSection] = useState('teachings');
+  const [ambientMusicEnabled, setAmbientMusicEnabled] = useState(false);
 
   const breslovTeachings = [
     {
@@ -92,6 +93,45 @@ export default function BreslovWisdom() {
     }
   ];
 
+  const breslovVideos = [
+    {
+      id: '0yDDjp4i2rQ',
+      title: 'תורת רבי נחמן - חכמת הלב',
+      description: 'הרצאה מעמיקה על תורת רבי נחמן מברסלב והדרך לחיבור עם ה\' דרך השמחה',
+      category: 'שיעור תורה',
+      duration: '45:30'
+    },
+    {
+      id: 'YlmlOW5Rvi0',
+      title: 'ליקוטי מוהרן - פרק הראשון', 
+      description: 'ביאור מקיף על הפרק הראשון בליקוטי מוהרן - יסודות האמונה הפשוטה',
+      category: 'לימוד עמוק',
+      duration: '38:15'
+    },
+    {
+      id: '3LFVAOXVB9Y',
+      title: 'התבודדות ותפילה',
+      description: 'המדריך המלא להתבודדות יומית - איך לדבר עם ה\' כמו עם חבר',
+      category: 'הדרכה מעשית',
+      duration: '29:45'
+    },
+    {
+      id: '3uQP06r20H8',
+      title: 'דרכי השמחה בעבודת ה\'',
+      description: 'מצוה גדולה להיות בשמחה תמיד - איך להגיע לשמחה אמיתית בכל יום',
+      category: 'חיזוק וחיזוק',
+      duration: '52:20'
+    },
+    {
+      id: 'Imiqgs8VvyE',
+      title: 'ניגוני ברסלב לנשמה',
+      description: 'ניגונים קדושים ומרגשים של רבי נחמן מברסלv - מוזיקה לעילוי הנשמה',
+      category: 'מוזיקה קדושה',
+      duration: '1:15:30',
+      isAmbientMusic: true
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800" dir={currentLanguage === 'he' ? 'rtl' : 'ltr'}>
       <Header currentLanguage={currentLanguage} onLanguageChange={setLanguage} />
@@ -122,6 +162,7 @@ export default function BreslovWisdom() {
           <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-2 flex gap-2">
             {[
               { id: 'teachings', label: 'תורות ומאמרים', icon: <Book className="w-4 h-4" /> },
+              { id: 'videos', label: 'סרטוני לימוד', icon: <Youtube className="w-4 h-4" /> },
               { id: 'books', label: 'ספרי ברסלב', icon: <Star className="w-4 h-4" /> },
               { id: 'practices', label: 'דרכי עבודה', icon: <Lightbulb className="w-4 h-4" /> }
             ].map((section) => (
@@ -141,6 +182,171 @@ export default function BreslovWisdom() {
             ))}
           </div>
         </div>
+
+        {/* Videos Section */}
+        {activeSection === 'videos' && (
+          <div className="space-y-8">
+            <div className="text-center mb-12">
+              <div className="flex justify-center items-center gap-4 mb-4">
+                <Youtube className="w-12 h-12 text-red-600" />
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
+                  סרטוני לימוד וחיזוק ברוח ברסלב
+                </h2>
+                <Youtube className="w-12 h-12 text-red-600" />
+              </div>
+              <p className="text-gray-600 dark:text-gray-300 max-w-3xl mx-auto text-lg">
+                אוסף מיוחד של סרטוני לימוד, הרצאות וניגונים קדושים המביאים את תורת רבי נחמן מברסלב בצורה מעמיקה ומרגשת
+              </p>
+              
+              {/* Ambient Music Toggle */}
+              <div className="mt-8 flex justify-center">
+                <div className="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-2xl p-6 border border-purple-200 dark:border-purple-700">
+                  <div className="flex items-center gap-4">
+                    <Music className="w-6 h-6 text-purple-600" />
+                    <span className="text-gray-800 dark:text-gray-200 font-medium">מוזיקת רקע לנשמה</span>
+                    <button
+                      onClick={() => setAmbientMusicEnabled(!ambientMusicEnabled)}
+                      className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all ${
+                        ambientMusicEnabled
+                          ? 'bg-purple-600 text-white shadow-lg'
+                          : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-gray-600'
+                      }`}
+                      data-testid="toggle-ambient-music"
+                    >
+                      {ambientMusicEnabled ? (
+                        <>
+                          <Volume2 className="w-4 h-4" />
+                          <span>מופעל</span>
+                        </>
+                      ) : (
+                        <>
+                          <VolumeX className="w-4 h-4" />
+                          <span>כבוי</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 text-center">
+                    הפעל ניגוני ברסלב קדושים כמוזיקת רקע בזמן הגלישה באתר
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Videos Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {breslovVideos.map((video, index) => (
+                <div key={video.id} className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]">
+                  {/* Video Header */}
+                  <div className={`p-4 ${
+                    video.isAmbientMusic 
+                      ? 'bg-gradient-to-r from-purple-500 to-pink-500' 
+                      : index % 2 === 0 
+                      ? 'bg-gradient-to-r from-blue-500 to-teal-500'
+                      : 'bg-gradient-to-r from-orange-500 to-red-500'
+                  }`}>
+                    <div className="flex justify-between items-center text-white">
+                      <div className="flex items-center gap-2">
+                        <Play className="w-5 h-5" />
+                        <span className="font-medium text-sm">{video.category}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm opacity-90">{video.duration}</span>
+                        {video.isAmbientMusic && (
+                          <Music className="w-5 h-5" />
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Video Iframe */}
+                  <div className="relative aspect-video bg-black">
+                    <iframe
+                      src={`https://www.youtube.com/embed/${video.id}${
+                        video.isAmbientMusic && ambientMusicEnabled 
+                          ? '?autoplay=1&loop=1&playlist=' + video.id + '&controls=1&modestbranding=1&rel=0'
+                          : '?controls=1&modestbranding=1&rel=0'
+                      }`}
+                      title={video.title}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                      className="w-full h-full"
+                      data-testid={`video-iframe-${video.id}`}
+                    />
+                    
+                    {/* Ambient Music Overlay */}
+                    {video.isAmbientMusic && (
+                      <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-sm font-medium ${
+                        ambientMusicEnabled
+                          ? 'bg-purple-600 text-white'
+                          : 'bg-black/70 text-white'
+                      }`}>
+                        {ambientMusicEnabled ? '♪ נגן ברקע' : '♪ מוזיקת רקע'}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Video Info */}
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                      {video.title}
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-4">
+                      {video.description}
+                    </p>
+                    
+                    {/* Action Buttons */}
+                    <div className="flex gap-3">
+                      <button 
+                        className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-lg font-medium hover:from-blue-700 hover:to-purple-700 transition-all duration-200 flex items-center justify-center gap-2"
+                        data-testid={`watch-video-${video.id}`}
+                      >
+                        <Play className="w-4 h-4" />
+                        צפה עכשיו
+                      </button>
+                      
+                      {video.isAmbientMusic && (
+                        <button
+                          onClick={() => setAmbientMusicEnabled(!ambientMusicEnabled)}
+                          className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 flex items-center gap-2 ${
+                            ambientMusicEnabled
+                              ? 'bg-purple-600 text-white'
+                              : 'border-2 border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white'
+                          }`}
+                          data-testid="toggle-ambient-button"
+                        >
+                          {ambientMusicEnabled ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+                          {ambientMusicEnabled ? 'כבה' : 'הפעל'}
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Call to Action for Videos */}
+            <div className="text-center mt-16">
+              <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-2xl p-8 border border-blue-200 dark:border-blue-700">
+                <Youtube className="w-16 h-16 text-red-600 mx-auto mb-4" />
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                  רוצים עוד תכנים מעמיקים?
+                </h3>
+                <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
+                  הירשמו לערוץ שלנו ותקבלו התראות על סרטוני לימוד חדשים, שיעורים מעמיקים וניגונים קדושים
+                </p>
+                <button 
+                  className="bg-red-600 text-white px-8 py-3 rounded-lg font-bold hover:bg-red-700 transition-colors flex items-center gap-2 mx-auto"
+                  data-testid="subscribe-youtube"
+                >
+                  <Youtube className="w-5 h-5" />
+                  הירשמו לערוץ היוטיוב
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Teachings Section */}
         {activeSection === 'teachings' && (
