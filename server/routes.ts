@@ -81,11 +81,40 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Check Stripe configuration status
+  app.get('/api/stripe-status', (req, res) => {
+    const isConfigured = !!(stripe && process.env.STRIPE_SECRET_KEY && process.env.STRIPE_PRICE_ID);
+    res.json({ 
+      configured: isConfigured,
+      message: isConfigured 
+        ? "Stripe is properly configured"
+        : "Stripe configuration incomplete. Contact support for subscription services.",
+      missingConfig: {
+        secret_key: !process.env.STRIPE_SECRET_KEY,
+        price_id: !process.env.STRIPE_PRICE_ID,
+        public_key_needed: "Check VITE_STRIPE_PUBLIC_KEY on frontend"
+      }
+    });
+  });
+
   // Create Stripe subscription for HoRaat Keva
   app.post('/api/create-subscription', async (req, res) => {
     if (!stripe) {
-      return res.status(500).json({ 
-        message: "Stripe not configured. Please set STRIPE_SECRET_KEY environment variable." 
+      return res.status(503).json({ 
+        message: "מערכת התשלומים אינה זמינה כרגע. אנא צרו קשר עם השירות לקוחות.",
+        messageEn: "Payment system is currently unavailable. Please contact customer service.",
+        contactEmail: "support@haesh-sheli.co.il",
+        contactPhone: "+972-2-123-4567",
+        configured: false
+      });
+    }
+
+    if (!process.env.STRIPE_PRICE_ID) {
+      return res.status(503).json({ 
+        message: "תוכנית המנוי אינה זמינה כרגע. אנא צרו קשר עם השירות לקוחות.",
+        messageEn: "Subscription plan is currently unavailable. Please contact customer service.",
+        contactEmail: "support@haesh-sheli.co.il",
+        configured: false
       });
     }
 
@@ -172,8 +201,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Cancel subscription
   app.post('/api/cancel-subscription', async (req, res) => {
     if (!stripe) {
-      return res.status(500).json({ 
-        message: "Stripe not configured. Please set STRIPE_SECRET_KEY environment variable." 
+      return res.status(503).json({ 
+        message: "מערכת התשלומים אינה זמינה כרגע. אנא צרו קשר עם השירות לקוחות לביטול המנוי.",
+        messageEn: "Payment system is currently unavailable. Please contact customer service to cancel subscription.",
+        contactEmail: "support@haesh-sheli.co.il",
+        contactPhone: "+972-2-123-4567",
+        configured: false
       });
     }
 

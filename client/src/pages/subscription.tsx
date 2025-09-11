@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { CheckCircle, Star, Download, ShoppingCart, Crown, Sparkles } from 'lucide-react';
+import { StripeNotConfiguredFallback } from '@/components/StripeNotConfiguredFallback';
 
 // Load Stripe (will need VITE_STRIPE_PUBLIC_KEY)
 const stripePublicKey = import.meta.env.VITE_STRIPE_PUBLIC_KEY;
@@ -118,25 +119,52 @@ const SubscriptionPlanCard = ({ plan, isCurrentPlan }: { plan: SubscriptionPlan;
   const createSubscriptionMutation = useMutation({
     mutationFn: async (data: { email?: string; name?: string }) => {
       const res = await apiRequest('POST', '/api/create-subscription', data);
-      return res.json();
+      const result = await res.json();
+      
+      // Handle specific error responses from server
+      if (!res.ok) {
+        if (result.configured === false) {
+          // Stripe not configured - throw specific error for fallback handling
+          throw new Error(result.message || 'מערכת התשלומים אינה זמינה כרגע');
+        }
+        throw new Error(result.message || 'שגיאה ביצירת המנוי');
+      }
+      
+      return result;
     },
     onSuccess: (result) => {
       if (result.clientSecret) {
         setClientSecret(result.clientSecret);
         setShowPayment(true);
+        toast({
+          title: "מוכן לתשלום!",
+          description: "אנא מלא את פרטי התשלום למטה",
+        });
       } else {
         toast({
           title: "שגיאה",
-          description: "לא ניתן ליצור את המנוי כרגע",
+          description: "לא ניתן ליצור את המנוי כרגע - אנא נסה שוב",
           variant: "destructive",
         });
       }
     },
     onError: (error: any) => {
+      console.error('Subscription creation error:', error);
+      
+      // Show appropriate error message
+      let errorMessage = "אירעה שגיאה ביצירת המנוי";
+      let errorTitle = "שגיאה";
+      
+      if (error.message?.includes('מערכת התשלומים אינה זמינה')) {
+        errorTitle = "השירות זמנית לא זמין";
+        errorMessage = error.message + "\n\nאנא צרו קשר: support@haesh-sheli.co.il";
+      }
+      
       toast({
-        title: "שגיאה",
-        description: error.message || "אירעה שגיאה ביצירת המנוי",
+        title: errorTitle,
+        description: errorMessage,
         variant: "destructive",
+        duration: 6000, // Show longer for contact info
       });
     },
     onSettled: () => {
@@ -352,10 +380,12 @@ export default function SubscriptionPage() {
 
         {/* Main subscription card */}
         <div className="max-w-2xl mx-auto">
-          <SubscriptionPlanCard 
-            plan={plan as SubscriptionPlan} 
-            isCurrentPlan={isCurrentSubscriber}
-          />
+          <StripeNotConfiguredFallback plan={plan as SubscriptionPlan}>
+            <SubscriptionPlanCard 
+              plan={plan as SubscriptionPlan} 
+              isCurrentPlan={isCurrentSubscriber}
+            />
+          </StripeNotConfiguredFallback>
         </div>
 
         {/* FAQ or additional info */}

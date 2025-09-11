@@ -24,6 +24,7 @@ import {
   Award
 } from 'lucide-react';
 import { breslovDownloadBooks, freeBookIds } from '../data/downloadLinks';
+import { SubscriptionCTA } from '../components/SubscriptionCTA';
 
 const translations = {
   he: {
@@ -749,36 +750,12 @@ export default function Downloads() {
                 ))}
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                {subscriptionLoading ? (
-                  <div className="btn-breslov-primary opacity-50" data-testid="subscription-loading">
-                    טוען...
-                  </div>
-                ) : isSubscriber && subscriptionStatus === 'active' ? (
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    <div className="btn-breslov-primary bg-green-600 hover:bg-green-700" data-testid="subscription-active">
-                      <CheckCircle className="w-5 h-5" />
-                      {t.subscriptionButtonActive}
-                    </div>
-                    <a 
-                      href="/subscription" 
-                      className="btn-breslov-secondary"
-                      data-testid="subscription-manage"
-                    >
-                      <ArrowRight className="w-5 h-5" />
-                      {t.subscriptionButtonManage}
-                    </a>
-                  </div>
-                ) : (
-                  <a 
-                    href="/subscription" 
-                    className="btn-breslov-primary"
-                    data-testid="subscription-join"
-                  >
-                    <Crown className="w-5 h-5" />
-                    {t.subscriptionButtonJoin}
-                  </a>
-                )}
+              <div className="flex justify-center">
+                <SubscriptionCTA 
+                  size="lg"
+                  showManageLink={true}
+                  data-testid="downloads-subscription-cta"
+                />
               </div>
             </div>
           </div>
