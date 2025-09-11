@@ -47,7 +47,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Serve attached_assets images directly 
   const attachedAssetsPath = path.resolve(process.cwd(), 'attached_assets');
   
-  app.use('/images', express.static(attachedAssetsPath, {
+  app.use('/attached_assets', express.static(attachedAssetsPath, {
     setHeaders: (res, filePath) => {
       res.setHeader('Cache-Control', 'public, max-age=31536000');
       if (filePath.endsWith('.jpg') || filePath.endsWith('.jpeg')) {
