@@ -715,23 +715,26 @@ const translations = {
   }
 };
 
-// Icon mapping component
+// Icon mapping component - SECURE IMPLEMENTATION
+const iconMap = {
+  Users,
+  BookOpen,
+  Award,
+  Globe,
+  Lightbulb,
+  Heart,
+  Zap,
+  Star,
+  Shield,
+  Code
+} as const;
+
+type IconKey = keyof typeof iconMap;
+
 const IconComponent = ({ iconName, className = "w-6 h-6" }: { iconName: string, className?: string }) => {
-  const iconMap: { [key: string]: any } = {
-    'Users': Users,
-    'BookOpen': BookOpen,
-    'Award': Award,
-    'Globe': Globe,
-    'Lightbulb': Lightbulb,
-    'Heart': Heart,
-    'Zap': Zap,
-    'Star': Star,
-    'Shield': Shield,
-    'Code': Code
-  };
-  
-  const Icon = iconMap[iconName] || Star;
-  return <Icon className={className} />;
+  // Safe icon resolution with fallback to prevent crashes
+  const Icon = iconMap[iconName as IconKey] ?? Star;
+  return <Icon className={className} aria-hidden />;
 };
 
 // Animated counter component
