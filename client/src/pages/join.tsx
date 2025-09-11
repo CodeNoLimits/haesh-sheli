@@ -1,433 +1,1163 @@
+import { Header } from '../components/Header';
+import { useLanguage } from '../contexts/LanguageContext';
+import { useState, useEffect } from 'react';
+import { 
+  Users, 
+  BookOpen, 
+  Heart, 
+  Globe, 
+  Award, 
+  Target,
+  Lightbulb,
+  Mail,
+  Plus,
+  Minus,
+  Star,
+  MessageCircle,
+  Building,
+  ChevronRight,
+  Check
+} from 'lucide-react';
+
+const translations = {
+  he: {
+    // SEO
+    title: 'הצטרפו אלינו - האש שלי | הזדמנות להפיץ את אור רבנו בעולם',
+    description: 'הצטרפו לקהילת האש שלי ועזרו להפיץ את תורת רבי נחמן מברסלב בעולם. למעלה מ-30 שנה של פעילות קדושה.',
+
+    // Hero Section
+    heroTitle: 'יש לכם הזדמנות',
+    heroSubtitle: 'להפיץ ולגלות את אור רבנו בעולם',
+    heroDescription: 'למעלה מ-30 שנה שאנחנו עוסקים ועמלים בהדפסה והפצת ספרי רבנו הקדוש. הפעילות שהסבא רבי ישראל דוב אודסר פעל להקים - מאז ועד היום הקרן עומדת כגוף הגדול והפעיל ביותר בחסידות ברסלב.',
+
+    // Statistics Section
+    statsTitle: 'כמה מספרים רק לסבר את האוזן',
+    statsSubtitle: 'שנים של הדפסה והפצה עם פעילות יום יומית',
+    stats: [
+      {
+        number: '30+',
+        label: 'שנים של הדפסה והפצה',
+        icon: 'Award'
+      },
+      {
+        number: '1M+',
+        label: 'ספרים בשפה העברית',
+        icon: 'BookOpen'
+      },
+      {
+        number: '50+',
+        label: 'מדינות עם הפצה ישירה',
+        icon: 'Globe'
+      },
+      {
+        number: '1000+',
+        label: 'משפחות בקהילה',
+        icon: 'Users'
+      }
+    ],
+
+    // Activities Section
+    activitiesTitle: 'הפעילות שלנו',
+    activitiesSubtitle: 'פועלים בכל התחומים להפצת תורת רבנו',
+    activities: [
+      {
+        title: 'הדפסה והפצה',
+        description: 'הדפסה והפצה של ספרי רבנו הקדוש בכל רחבי העולם',
+        icon: 'BookOpen'
+      },
+      {
+        title: 'פעילות במירון',
+        description: 'מחדשים את הבסטות במירון ואצל רבי ישראל',
+        icon: 'Building'
+      },
+      {
+        title: 'חינוך והסברה',
+        description: 'פעילות חינוכית לדור הצעיר בתורת רבנו',
+        icon: 'Lightbulb'
+      },
+      {
+        title: 'קהילה עולמית',
+        description: 'חיבור בין חסידי ברסלב בכל רחבי העולם',
+        icon: 'Globe'
+      }
+    ],
+
+    // Features Section
+    featuresTitle: 'למה להצטרף אלינו?',
+    features: [
+      {
+        title: 'משימה קדושה',
+        description: 'להפיץ את תורת רבי נחמן מברסלב בכל העולם',
+        icon: 'Heart'
+      },
+      {
+        title: 'קהילה תומכת',
+        description: 'חלק מקהילה חמה ותומכת של חסידי ברסלב',
+        icon: 'Users'
+      },
+      {
+        title: 'השפעה אמיתית',
+        description: 'כל תרומה ופעילות יוצרת שינוי אמיתי בעולם',
+        icon: 'Target'
+      }
+    ],
+
+    // Testimonials
+    testimonialsTitle: 'המלצות מחברי הקהילה',
+    testimonials: [
+      {
+        quote: 'זכיתי לקבל את ספרי רבנו הקדוש והם שינו את חיי לחלוטין. התוכן הרוחני העמוק נתן לי כוח וחיזוק בכל יום.',
+        author: 'משה כהן',
+        location: 'תל אביב',
+        rating: 5
+      },
+      {
+        quote: 'הקרן עוזרת לי כבר שנים רבות. הפעילות באמת מקדשת את השם והספרים סייעו לי להתחזק ברוחניות.',
+        author: 'יעקב לוי',
+        location: 'ירושלים',
+        rating: 5
+      },
+      {
+        quote: 'השירות המקצועי והיחס האישי מרגשים. זה יותר מקהילה - זה משפחה אמיתית המחוברת לתורת רבנו.',
+        author: 'רחל אברהם',
+        location: 'בני ברק',
+        rating: 5
+      }
+    ],
+
+    // FAQ Section
+    faqTitle: 'שאלות נפוצות',
+    faq: [
+      {
+        question: 'איך יכולני להצטרף לקהילה?',
+        answer: 'ניתן להצטרף באמצעות האתר, השתתפות בפעילויות, נדבות, או התנדבות. כל דרך של חיבור מברכת בואכם.'
+      },
+      {
+        question: 'אילו ספרים זמינים ובאילו שפות?',
+        answer: 'יש לנו מגוון רחב של ספרי רבי נחמן מברסלב בעברית, אנגלית, צרפתית, ספרדית ורוסית. הקטלוג מתעדכן באופן שוטף.'
+      },
+      {
+        question: 'האם יש עלויות להצטרפות?',
+        answer: 'ההצטרפות לקהילה חינמית לחלוטין. ישנן אפשרויות נדבה ותמיכה למי שרוצה לתרום למשימה הקדושה.'
+      },
+      {
+        question: 'איך מתנהל שירותי הלקוחות?',
+        answer: 'אנחנו זמינים 24/7 דרך האתר, אימייל וטלפון. הצוות שלנו דובר עברית, אנגלית וכמה שפות נוספות.'
+      }
+    ],
+
+    // CTA Section
+    ctaTitle: 'מוכנים להצטרף למשימה?',
+    ctaSubtitle: 'הפכו לחלק מקהילה עולמית שפועלת להפצת אור רבנו',
+    ctaDescription: 'כל אחד יכול לתרום ולהיות חלק מהמשימה הקדושה הזו. בואו נפעל יחד!',
+    ctaButtonPrimary: 'הצטרפו עכשיו',
+    ctaButtonSecondary: 'למדו עוד',
+
+    // Join Methods
+    joinMethodsTitle: 'דרכים להצטרפות',
+    joinMethods: [
+      {
+        title: 'התנדבות',
+        description: 'השתתפו בהפצת ספרים ובפעילויות הקהילה',
+        icon: 'Users'
+      },
+      {
+        title: 'תמיכה כספית',
+        description: 'תרמו לעזור במימון ההדפסות וההפצה',
+        icon: 'Heart'
+      },
+      {
+        title: 'הפצה מקומית',
+        description: 'עזרו להפיץ ספרים באזור המגורים שלכם',
+        icon: 'Target'
+      },
+      {
+        title: 'רשתות חברתיות',
+        description: 'שתפו ופרסמו על הפעילות ברשתות',
+        icon: 'MessageCircle'
+      }
+    ]
+  },
+
+  en: {
+    // SEO
+    title: 'Join Us - My Fire | Opportunity to spread Rabbi\'s light worldwide',
+    description: 'Join the My Fire community and help spread Rabbi Nachman of Breslov\'s teachings worldwide. Over 30 years of sacred activity.',
+
+    // Hero Section
+    heroTitle: 'You Have an Opportunity',
+    heroSubtitle: 'To spread and reveal our Rabbi\'s light in the world',
+    heroDescription: 'For over 30 years we have been engaged in printing and distributing our holy Rabbi\'s books. The activity that the Saba Rabbi Israel Dov Odser worked to establish - from then until today the foundation stands as the largest and most active body in Breslov Hasidism.',
+
+    // Statistics Section
+    statsTitle: 'Some Numbers Just to Please the Ear',
+    statsSubtitle: 'Years of printing and distribution with daily activity',
+    stats: [
+      {
+        number: '30+',
+        label: 'Years of printing and distribution',
+        icon: 'Award'
+      },
+      {
+        number: '1M+',
+        label: 'Books in Hebrew language',
+        icon: 'BookOpen'
+      },
+      {
+        number: '50+',
+        label: 'Countries with direct distribution',
+        icon: 'Globe'
+      },
+      {
+        number: '1000+',
+        label: 'Families in community',
+        icon: 'Users'
+      }
+    ],
+
+    // Activities Section
+    activitiesTitle: 'Our Activities',
+    activitiesSubtitle: 'Working in all areas to spread our Rabbi\'s teachings',
+    activities: [
+      {
+        title: 'Printing & Distribution',
+        description: 'Printing and distributing our holy Rabbi\'s books worldwide',
+        icon: 'BookOpen'
+      },
+      {
+        title: 'Meron Activities',
+        description: 'Renewing the activities in Meron and at Rabbi Israel\'s',
+        icon: 'Building'
+      },
+      {
+        title: 'Education & Outreach',
+        description: 'Educational activity for the younger generation in our Rabbi\'s teachings',
+        icon: 'Lightbulb'
+      },
+      {
+        title: 'Global Community',
+        description: 'Connecting Breslov Hasidim from all over the world',
+        icon: 'Globe'
+      }
+    ],
+
+    // Features Section
+    featuresTitle: 'Why Join Us?',
+    features: [
+      {
+        title: 'Sacred Mission',
+        description: 'To spread Rabbi Nachman of Breslov\'s teachings throughout the world',
+        icon: 'Heart'
+      },
+      {
+        title: 'Supportive Community',
+        description: 'Part of a warm and supportive community of Breslov Hasidim',
+        icon: 'Users'
+      },
+      {
+        title: 'Real Impact',
+        description: 'Every contribution and activity creates real change in the world',
+        icon: 'Target'
+      }
+    ],
+
+    // Testimonials
+    testimonialsTitle: 'Testimonials from Community Members',
+    testimonials: [
+      {
+        quote: 'I had the privilege of receiving our holy Rabbi\'s books and they completely changed my life. The deep spiritual content gave me strength and encouragement every day.',
+        author: 'Moshe Cohen',
+        location: 'Tel Aviv',
+        rating: 5
+      },
+      {
+        quote: 'The foundation has been helping me for many years. The activity truly sanctifies the Name and the books helped me strengthen spiritually.',
+        author: 'Yaakov Levi',
+        location: 'Jerusalem',
+        rating: 5
+      },
+      {
+        quote: 'The professional service and personal treatment are moving. It\'s more than a community - it\'s a real family connected to our Rabbi\'s teachings.',
+        author: 'Rachel Abraham',
+        location: 'Bnei Brak',
+        rating: 5
+      }
+    ],
+
+    // FAQ Section
+    faqTitle: 'Frequently Asked Questions',
+    faq: [
+      {
+        question: 'How can I join the community?',
+        answer: 'You can join through the website, participation in activities, donations, or volunteering. Any way of connection welcomes you.'
+      },
+      {
+        question: 'What books are available and in which languages?',
+        answer: 'We have a wide range of Rabbi Nachman of Breslov\'s books in Hebrew, English, French, Spanish and Russian. The catalog is constantly updated.'
+      },
+      {
+        question: 'Are there costs for joining?',
+        answer: 'Joining the community is completely free. There are donation and support options for those who want to contribute to the sacred mission.'
+      },
+      {
+        question: 'How is customer service managed?',
+        answer: 'We are available 24/7 through the website, email and phone. Our team speaks Hebrew, English and several other languages.'
+      }
+    ],
+
+    // CTA Section
+    ctaTitle: 'Ready to Join the Mission?',
+    ctaSubtitle: 'Become part of a global community working to spread our Rabbi\'s light',
+    ctaDescription: 'Everyone can contribute and be part of this sacred mission. Let\'s work together!',
+    ctaButtonPrimary: 'Join Now',
+    ctaButtonSecondary: 'Learn More',
+
+    // Join Methods
+    joinMethodsTitle: 'Ways to Join',
+    joinMethods: [
+      {
+        title: 'Volunteering',
+        description: 'Participate in book distribution and community activities',
+        icon: 'Users'
+      },
+      {
+        title: 'Financial Support',
+        description: 'Donate to help fund printing and distribution',
+        icon: 'Heart'
+      },
+      {
+        title: 'Local Distribution',
+        description: 'Help distribute books in your local area',
+        icon: 'Target'
+      },
+      {
+        title: 'Social Media',
+        description: 'Share and promote activities on social networks',
+        icon: 'MessageCircle'
+      }
+    ]
+  },
+
+  fr: {
+    // SEO
+    title: 'Rejoignez-Nous - Mon Feu | Opportunité de répandre la lumière du Rabbi dans le monde',
+    description: 'Rejoignez la communauté Mon Feu et aidez à répandre les enseignements de Rabbi Nachman de Breslov dans le monde. Plus de 30 ans d\'activité sacrée.',
+
+    // Hero Section
+    heroTitle: 'Vous Avez une Opportunité',
+    heroSubtitle: 'De répandre et révéler la lumière de notre Rabbi dans le monde',
+    heroDescription: 'Depuis plus de 30 ans, nous nous engageons dans l\'impression et la distribution des livres de notre saint Rabbi. L\'activité que le Saba Rabbi Israel Dov Odser a travaillé à établir - depuis lors jusqu\'à aujourd\'hui, la fondation se dresse comme le corps le plus grand et le plus actif du hassidisme de Breslov.',
+
+    // Statistics Section
+    statsTitle: 'Quelques Chiffres Juste pour Faire Plaisir à l\'Oreille',
+    statsSubtitle: 'Années d\'impression et de distribution avec activité quotidienne',
+    stats: [
+      {
+        number: '30+',
+        label: 'Années d\'impression et distribution',
+        icon: 'Award'
+      },
+      {
+        number: '1M+',
+        label: 'Livres en langue hébraïque',
+        icon: 'BookOpen'
+      },
+      {
+        number: '50+',
+        label: 'Pays avec distribution directe',
+        icon: 'Globe'
+      },
+      {
+        number: '1000+',
+        label: 'Familles dans la communauté',
+        icon: 'Users'
+      }
+    ],
+
+    // Activities Section
+    activitiesTitle: 'Nos Activités',
+    activitiesSubtitle: 'Travailler dans tous les domaines pour répandre les enseignements de notre Rabbi',
+    activities: [
+      {
+        title: 'Impression et Distribution',
+        description: 'Impression et distribution des livres de notre saint Rabbi dans le monde entier',
+        icon: 'BookOpen'
+      },
+      {
+        title: 'Activités de Meron',
+        description: 'Renouvellement des activités à Meron et chez Rabbi Israel',
+        icon: 'Building'
+      },
+      {
+        title: 'Éducation et Sensibilisation',
+        description: 'Activité éducative pour la jeune génération dans les enseignements de notre Rabbi',
+        icon: 'Lightbulb'
+      },
+      {
+        title: 'Communauté Mondiale',
+        description: 'Connecter les hassidim de Breslov du monde entier',
+        icon: 'Globe'
+      }
+    ],
+
+    // Features Section
+    featuresTitle: 'Pourquoi Nous Rejoindre?',
+    features: [
+      {
+        title: 'Mission Sacrée',
+        description: 'Répandre les enseignements de Rabbi Nachman de Breslov dans le monde entier',
+        icon: 'Heart'
+      },
+      {
+        title: 'Communauté Solidaire',
+        description: 'Partie d\'une communauté chaleureuse et solidaire de hassidim de Breslov',
+        icon: 'Users'
+      },
+      {
+        title: 'Impact Réel',
+        description: 'Chaque contribution et activité crée un changement réel dans le monde',
+        icon: 'Target'
+      }
+    ],
+
+    // Testimonials
+    testimonialsTitle: 'Témoignages des Membres de la Communauté',
+    testimonials: [
+      {
+        quote: 'J\'ai eu le privilège de recevoir les livres de notre saint Rabbi et ils ont complètement changé ma vie. Le contenu spirituel profond m\'a donné force et encouragement chaque jour.',
+        author: 'Moshe Cohen',
+        location: 'Tel Aviv',
+        rating: 5
+      },
+      {
+        quote: 'La fondation m\'aide depuis de nombreuses années. L\'activité sanctifie vraiment le Nom et les livres m\'ont aidé à me renforcer spirituellement.',
+        author: 'Yaakov Levi',
+        location: 'Jérusalem',
+        rating: 5
+      },
+      {
+        quote: 'Le service professionnel et le traitement personnel sont émouvants. C\'est plus qu\'une communauté - c\'est une vraie famille connectée aux enseignements de notre Rabbi.',
+        author: 'Rachel Abraham',
+        location: 'Bnei Brak',
+        rating: 5
+      }
+    ],
+
+    // FAQ Section
+    faqTitle: 'Questions Fréquemment Posées',
+    faq: [
+      {
+        question: 'Comment puis-je rejoindre la communauté?',
+        answer: 'Vous pouvez rejoindre via le site web, participation aux activités, dons, ou bénévolat. Toute façon de se connecter vous accueille.'
+      },
+      {
+        question: 'Quels livres sont disponibles et dans quelles langues?',
+        answer: 'Nous avons une large gamme de livres de Rabbi Nachman de Breslov en hébreu, anglais, français, espagnol et russe. Le catalogue est constamment mis à jour.'
+      },
+      {
+        question: 'Y a-t-il des coûts pour rejoindre?',
+        answer: 'Rejoindre la communauté est complètement gratuit. Il y a des options de don et de soutien pour ceux qui veulent contribuer à la mission sacrée.'
+      },
+      {
+        question: 'Comment le service client est-il géré?',
+        answer: 'Nous sommes disponibles 24/7 via le site web, email et téléphone. Notre équipe parle hébreu, anglais et plusieurs autres langues.'
+      }
+    ],
+
+    // CTA Section
+    ctaTitle: 'Prêt à Rejoindre la Mission?',
+    ctaSubtitle: 'Devenez partie d\'une communauté mondiale travaillant à répandre la lumière de notre Rabbi',
+    ctaDescription: 'Chacun peut contribuer et faire partie de cette mission sacrée. Travaillons ensemble!',
+    ctaButtonPrimary: 'Rejoignez Maintenant',
+    ctaButtonSecondary: 'En Savoir Plus',
+
+    // Join Methods
+    joinMethodsTitle: 'Façons de Rejoindre',
+    joinMethods: [
+      {
+        title: 'Bénévolat',
+        description: 'Participez à la distribution de livres et aux activités communautaires',
+        icon: 'Users'
+      },
+      {
+        title: 'Soutien Financier',
+        description: 'Faites un don pour aider à financer l\'impression et la distribution',
+        icon: 'Heart'
+      },
+      {
+        title: 'Distribution Locale',
+        description: 'Aidez à distribuer des livres dans votre région',
+        icon: 'Target'
+      },
+      {
+        title: 'Réseaux Sociaux',
+        description: 'Partagez et promouvez les activités sur les réseaux sociaux',
+        icon: 'MessageCircle'
+      }
+    ]
+  },
+
+  es: {
+    // SEO
+    title: 'Únete a Nosotros - Mi Fuego | Oportunidad de difundir la luz del Rabino en el mundo',
+    description: 'Únete a la comunidad Mi Fuego y ayuda a difundir las enseñanzas del Rabino Najman de Breslov en todo el mundo. Más de 30 años de actividad sagrada.',
+
+    // Hero Section
+    heroTitle: 'Tienes una Oportunidad',
+    heroSubtitle: 'De difundir y revelar la luz de nuestro Rabino en el mundo',
+    heroDescription: 'Durante más de 30 años hemos estado comprometidos en la impresión y distribución de los libros de nuestro santo Rabino. La actividad que el Saba Rabino Israel Dov Odser trabajó para establecer - desde entonces hasta hoy la fundación se erige como el cuerpo más grande y activo en el jasidismo de Breslov.',
+
+    // Statistics Section
+    statsTitle: 'Algunos Números Solo para Complacer al Oído',
+    statsSubtitle: 'Años de impresión y distribución con actividad diaria',
+    stats: [
+      {
+        number: '30+',
+        label: 'Años de impresión y distribución',
+        icon: 'Award'
+      },
+      {
+        number: '1M+',
+        label: 'Libros en idioma hebreo',
+        icon: 'BookOpen'
+      },
+      {
+        number: '50+',
+        label: 'Países con distribución directa',
+        icon: 'Globe'
+      },
+      {
+        number: '1000+',
+        label: 'Familias en la comunidad',
+        icon: 'Users'
+      }
+    ],
+
+    // Activities Section
+    activitiesTitle: 'Nuestras Actividades',
+    activitiesSubtitle: 'Trabajando en todas las áreas para difundir las enseñanzas de nuestro Rabino',
+    activities: [
+      {
+        title: 'Impresión y Distribución',
+        description: 'Impresión y distribución de los libros de nuestro santo Rabino en todo el mundo',
+        icon: 'BookOpen'
+      },
+      {
+        title: 'Actividades en Meron',
+        description: 'Renovando las actividades en Meron y en el Rabino Israel',
+        icon: 'Building'
+      },
+      {
+        title: 'Educación y Divulgación',
+        description: 'Actividad educativa para la generación joven en las enseñanzas de nuestro Rabino',
+        icon: 'Lightbulb'
+      },
+      {
+        title: 'Comunidad Global',
+        description: 'Conectando jasidim de Breslov de todo el mundo',
+        icon: 'Globe'
+      }
+    ],
+
+    // Features Section
+    featuresTitle: '¿Por Qué Unirse a Nosotros?',
+    features: [
+      {
+        title: 'Misión Sagrada',
+        description: 'Difundir las enseñanzas del Rabino Najman de Breslov por todo el mundo',
+        icon: 'Heart'
+      },
+      {
+        title: 'Comunidad Solidaria',
+        description: 'Parte de una comunidad cálida y solidaria de jasidim de Breslov',
+        icon: 'Users'
+      },
+      {
+        title: 'Impacto Real',
+        description: 'Cada contribución y actividad crea un cambio real en el mundo',
+        icon: 'Target'
+      }
+    ],
+
+    // Testimonials
+    testimonialsTitle: 'Testimonios de Miembros de la Comunidad',
+    testimonials: [
+      {
+        quote: 'Tuve el privilegio de recibir los libros de nuestro santo Rabino y cambiaron completamente mi vida. El contenido espiritual profundo me dio fuerza y ánimo cada día.',
+        author: 'Moshe Cohen',
+        location: 'Tel Aviv',
+        rating: 5
+      },
+      {
+        quote: 'La fundación me ha estado ayudando durante muchos años. La actividad realmente santifica el Nombre y los libros me ayudaron a fortalecerme espiritualmente.',
+        author: 'Yaakov Levi',
+        location: 'Jerusalén',
+        rating: 5
+      },
+      {
+        quote: 'El servicio profesional y el trato personal son conmovedores. Es más que una comunidad - es una familia real conectada a las enseñanzas de nuestro Rabino.',
+        author: 'Rachel Abraham',
+        location: 'Bnei Brak',
+        rating: 5
+      }
+    ],
+
+    // FAQ Section
+    faqTitle: 'Preguntas Frecuentes',
+    faq: [
+      {
+        question: '¿Cómo puedo unirme a la comunidad?',
+        answer: 'Puedes unirte a través del sitio web, participación en actividades, donaciones, o voluntariado. Cualquier forma de conexión te da la bienvenida.'
+      },
+      {
+        question: '¿Qué libros están disponibles y en qué idiomas?',
+        answer: 'Tenemos una amplia gama de libros del Rabino Najman de Breslov en hebreo, inglés, francés, español y ruso. El catálogo se actualiza constantemente.'
+      },
+      {
+        question: '¿Hay costos por unirse?',
+        answer: 'Unirse a la comunidad es completamente gratis. Hay opciones de donación y apoyo para aquellos que quieren contribuir a la misión sagrada.'
+      },
+      {
+        question: '¿Cómo se maneja el servicio al cliente?',
+        answer: 'Estamos disponibles 24/7 a través del sitio web, email y teléfono. Nuestro equipo habla hebreo, inglés y varios otros idiomas.'
+      }
+    ],
+
+    // CTA Section
+    ctaTitle: '¿Listo para Unirte a la Misión?',
+    ctaSubtitle: 'Conviértete en parte de una comunidad global trabajando para difundir la luz de nuestro Rabino',
+    ctaDescription: 'Todos pueden contribuir y ser parte de esta misión sagrada. ¡Trabajemos juntos!',
+    ctaButtonPrimary: 'Únete Ahora',
+    ctaButtonSecondary: 'Aprende Más',
+
+    // Join Methods
+    joinMethodsTitle: 'Formas de Unirse',
+    joinMethods: [
+      {
+        title: 'Voluntariado',
+        description: 'Participa en la distribución de libros y actividades comunitarias',
+        icon: 'Users'
+      },
+      {
+        title: 'Apoyo Financiero',
+        description: 'Dona para ayudar a financiar la impresión y distribución',
+        icon: 'Heart'
+      },
+      {
+        title: 'Distribución Local',
+        description: 'Ayuda a distribuir libros en tu área local',
+        icon: 'Target'
+      },
+      {
+        title: 'Redes Sociales',
+        description: 'Comparte y promueve actividades en redes sociales',
+        icon: 'MessageCircle'
+      }
+    ]
+  },
+
+  ru: {
+    // SEO
+    title: 'Присоединяйтесь к Нам - Мой Огонь | Возможность распространить свет Рабби в мире',
+    description: 'Присоединяйтесь к сообществу Мой Огонь и помогите распространить учения Рабби Нахмана из Бреслов по всему миру. Более 30 лет священной деятельности.',
+
+    // Hero Section
+    heroTitle: 'У Вас Есть Возможность',
+    heroSubtitle: 'Распространить и открыть свет нашего Рабби в мире',
+    heroDescription: 'Более 30 лет мы занимаемся печатью и распространением книг нашего святого Рабби. Деятельность, которую Саба Рабби Израэль Дов Одсер работал, чтобы установить - с тех пор до сегодня фонд стоит как самое большое и активное тело в хасидизме Бреслов.',
+
+    // Statistics Section
+    statsTitle: 'Несколько Цифр Просто Чтобы Порадовать Слух',
+    statsSubtitle: 'Годы печати и распространения с ежедневной деятельностью',
+    stats: [
+      {
+        number: '30+',
+        label: 'Лет печати и распространения',
+        icon: 'Award'
+      },
+      {
+        number: '1M+',
+        label: 'Книг на иврите',
+        icon: 'BookOpen'
+      },
+      {
+        number: '50+',
+        label: 'Стран с прямым распространением',
+        icon: 'Globe'
+      },
+      {
+        number: '1000+',
+        label: 'Семей в сообществе',
+        icon: 'Users'
+      }
+    ],
+
+    // Activities Section
+    activitiesTitle: 'Наша Деятельность',
+    activitiesSubtitle: 'Работаем во всех областях для распространения учений нашего Рабби',
+    activities: [
+      {
+        title: 'Печать и Распространение',
+        description: 'Печать и распространение книг нашего святого Рабби по всему миру',
+        icon: 'BookOpen'
+      },
+      {
+        title: 'Деятельность в Мероне',
+        description: 'Обновление деятельности в Мероне и у Рабби Израэля',
+        icon: 'Building'
+      },
+      {
+        title: 'Образование и Просвещение',
+        description: 'Образовательная деятельность для молодого поколения в учениях нашего Рабби',
+        icon: 'Lightbulb'
+      },
+      {
+        title: 'Глобальное Сообщество',
+        description: 'Соединение хасидов Бреслов со всего мира',
+        icon: 'Globe'
+      }
+    ],
+
+    // Features Section
+    featuresTitle: 'Почему Присоединиться к Нам?',
+    features: [
+      {
+        title: 'Священная Миссия',
+        description: 'Распространить учения Рабби Нахмана из Бреслов по всему миру',
+        icon: 'Heart'
+      },
+      {
+        title: 'Поддерживающее Сообщество',
+        description: 'Часть теплого и поддерживающего сообщества хасидов Бреслов',
+        icon: 'Users'
+      },
+      {
+        title: 'Реальное Влияние',
+        description: 'Каждый вклад и деятельность создают реальные изменения в мире',
+        icon: 'Target'
+      }
+    ],
+
+    // Testimonials
+    testimonialsTitle: 'Отзывы Членов Сообщества',
+    testimonials: [
+      {
+        quote: 'Я имел привилегию получить книги нашего святого Рабби, и они полностью изменили мою жизнь. Глубокое духовное содержание дало мне силу и поощрение каждый день.',
+        author: 'Моше Коэн',
+        location: 'Тель-Авив',
+        rating: 5
+      },
+      {
+        quote: 'Фонд помогает мне уже много лет. Деятельность действительно освящает Имя, и книги помогли мне укрепиться духовно.',
+        author: 'Яаков Леви',
+        location: 'Иерусалим',
+        rating: 5
+      },
+      {
+        quote: 'Профессиональный сервис и личное обращение трогательны. Это больше чем сообщество - это настоящая семья, связанная с учениями нашего Рабби.',
+        author: 'Рахель Авраам',
+        location: 'Бней-Брак',
+        rating: 5
+      }
+    ],
+
+    // FAQ Section
+    faqTitle: 'Часто Задаваемые Вопросы',
+    faq: [
+      {
+        question: 'Как я могу присоединиться к сообществу?',
+        answer: 'Вы можете присоединиться через веб-сайт, участие в деятельности, пожертвования или волонтерство. Любой способ связи приветствует вас.'
+      },
+      {
+        question: 'Какие книги доступны и на каких языках?',
+        answer: 'У нас есть широкий ассортимент книг Рабби Нахмана из Бреслов на иврите, английском, французском, испанском и русском языках. Каталог постоянно обновляется.'
+      },
+      {
+        question: 'Есть ли расходы на присоединение?',
+        answer: 'Присоединение к сообществу полностью бесплатно. Есть варианты пожертвований и поддержки для тех, кто хочет внести свой вклад в священную миссию.'
+      },
+      {
+        question: 'Как управляется обслуживание клиентов?',
+        answer: 'Мы доступны 24/7 через веб-сайт, электронную почту и телефон. Наша команда говорит на иврите, английском и нескольких других языках.'
+      }
+    ],
+
+    // CTA Section
+    ctaTitle: 'Готовы Присоединиться к Миссии?',
+    ctaSubtitle: 'Станьте частью глобального сообщества, работающего над распространением света нашего Рабби',
+    ctaDescription: 'Каждый может внести свой вклад и быть частью этой священной миссии. Давайте работать вместе!',
+    ctaButtonPrimary: 'Присоединиться Сейчас',
+    ctaButtonSecondary: 'Узнать Больше',
+
+    // Join Methods
+    joinMethodsTitle: 'Способы Присоединения',
+    joinMethods: [
+      {
+        title: 'Волонтерство',
+        description: 'Участвуйте в распространении книг и общественной деятельности',
+        icon: 'Users'
+      },
+      {
+        title: 'Финансовая Поддержка',
+        description: 'Жертвуйте, чтобы помочь финансировать печать и распространение',
+        icon: 'Heart'
+      },
+      {
+        title: 'Местное Распространение',
+        description: 'Помогите распространять книги в вашем районе',
+        icon: 'Target'
+      },
+      {
+        title: 'Социальные Сети',
+        description: 'Делитесь и продвигайте деятельность в социальных сетях',
+        icon: 'MessageCircle'
+      }
+    ]
+  }
+};
+
+// Icon mapping component
+const iconMap = {
+  Users,
+  BookOpen,
+  Heart,
+  Globe,
+  Award,
+  Target,
+  Lightbulb,
+  Mail,
+  Plus,
+  Minus,
+  Star,
+  MessageCircle,
+  Building,
+  ChevronRight,
+  Check
+} as const;
+
+type IconKey = keyof typeof iconMap;
+
+const IconComponent = ({ iconName, className = "w-6 h-6" }: { iconName: string, className?: string }) => {
+  const Icon = iconMap[iconName as IconKey] ?? Star;
+  return <Icon className={className} aria-hidden />;
+};
+
 export default function Join() {
+  const { currentLanguage, setLanguage } = useLanguage();
+  const t = translations[currentLanguage as keyof typeof translations] || translations.he;
+  const isRTL = currentLanguage === 'he';
+  
+  const [openFAQ, setOpenFAQ] = useState<number | null>(null);
+
+  // Set document title and meta description
+  useEffect(() => {
+    document.title = t.title;
+    
+    // Set meta description
+    let metaDescription = document.querySelector('meta[name="description"]');
+    if (!metaDescription) {
+      metaDescription = document.createElement('meta');
+      metaDescription.setAttribute('name', 'description');
+      document.head.appendChild(metaDescription);
+    }
+    metaDescription.setAttribute('content', t.description);
+  }, [t.title, t.description]);
+
+  const toggleFAQ = (index: number) => {
+    setOpenFAQ(openFAQ === index ? null : index);
+  };
+
   return (
-    <div className="rtl home page-template-default page page-id-39 wp-custom-logo theme-hello-elementor woocommerce-js elementor-default elementor-kit-5 elementor-page elementor-page-39">
-      {/* TOP BAR */}
-      <section className="elementor-section elementor-top-section elementor-element elementor-element-ba655d5 elementor-section-full_width elementor-hidden-tablet elementor-hidden-mobile elementor-section-height-default" style={{background: '#333', color: 'white', padding: '8px 0'}}>
-        <div className="elementor-container elementor-column-gap-default">
-          <div className="elementor-column elementor-col-33 elementor-top-column">
-            <div className="elementor-widget-wrap elementor-element-populated">
-              <div className="elementor-element elementor-icon-list--layout-inline elementor-align-left elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list">
-                <div className="elementor-widget-container">
-                  <ul className="elementor-icon-list-items elementor-inline-items" style={{display: 'flex', gap: '1rem', listStyle: 'none', margin: 0, padding: 0}}>
-                    <li className="elementor-icon-list-item elementor-inline-item" style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-                      <span className="elementor-icon-list-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" viewBox="0 0 100 100" style={{width: '16px', height: '16px', fill: 'white'}}>
-                          <g>
-                            <path d="m72.341 48.514h17.306l-5.266-10.126h-10.872z"></path>
-                            <path d="m85.059 62.331h3.516l.339-2.891h-3.529z"></path>
-                            <path d="m75.463 62.1c-3.448 0-6.244 2.81-6.244 6.257 0 3.448 2.796 6.244 6.244 6.244s6.257-2.796 6.257-6.244c0-3.447-2.809-6.257-6.257-6.257zm0 9.515c-1.792 0-3.257-1.466-3.257-3.257 0-1.805 1.466-3.258 3.257-3.258 1.805 0 3.258 1.452 3.258 3.258 0 1.791-1.453 3.257-3.258 3.257z"></path>
-                            <path d="m31.161 62.1c-3.448 0-6.257 2.81-6.257 6.257 0 3.448 2.81 6.244 6.257 6.244 3.448 0 6.244-2.796 6.244-6.244-.001-3.447-2.797-6.257-6.244-6.257zm0 9.515c-1.805 0-3.271-1.466-3.271-3.257 0-1.805 1.466-3.258 3.271-3.258 1.792 0 3.257 1.452 3.257 3.258 0 1.791-1.466 3.257-3.257 3.257z"></path>
-                          </g>
-                        </svg>
-                      </span>
-                      <span className="elementor-icon-list-text">משלוחים חינם החל מ- 399 ש"ח</span>
-                    </li>
-                  </ul>
+    <div className="min-h-screen bg-background" style={{ direction: isRTL ? 'rtl' : 'ltr' }}>
+      <Header currentLanguage={currentLanguage} onLanguageChange={setLanguage} />
+      
+      {/* Hero Section */}
+      <section className="hero-gradient relative overflow-hidden py-20 lg:py-32" data-testid="hero-section">
+        <div className="hero-overlay absolute inset-0"></div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-4xl mx-auto text-center animate-fade-in-scale">
+            <h3 className="text-2xl font-bold text-primary mb-4" data-testid="hero-subtitle">
+              {t.heroTitle}
+            </h3>
+            <h1 className="heading-oversized mb-6 text-primary" data-testid="hero-title">
+              {t.heroSubtitle}
+            </h1>
+            <p className="text-lg text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed" data-testid="hero-description">
+              {t.heroDescription}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Statistics Section */}
+      <section className="py-20 bg-background" data-testid="stats-section">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl lg:text-5xl font-bold text-primary mb-6" data-testid="stats-title">
+                {t.statsTitle}
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto" data-testid="stats-subtitle">
+                {t.statsSubtitle}
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {t.stats.map((stat, index) => (
+                <div 
+                  key={index}
+                  className="card-premium p-8 text-center group hover:scale-105 transition-transform duration-300"
+                  data-testid={`stat-card-${index}`}
+                >
+                  <div className="mb-6 flex justify-center">
+                    <div className="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
+                      <IconComponent iconName={stat.icon} className="w-8 h-8 text-primary" />
+                    </div>
+                  </div>
+                  <div className="text-4xl lg:text-5xl font-bold text-primary mb-4" data-testid={`stat-number-${index}`}>
+                    {stat.number}
+                  </div>
+                  <h3 className="text-lg font-semibold text-foreground" data-testid={`stat-label-${index}`}>
+                    {stat.label}
+                  </h3>
                 </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* MAIN HEADER */}
-      <section className="elementor-section elementor-top-section elementor-element elementor-element-ba655d5 elementor-section-full_width elementor-hidden-tablet elementor-hidden-mobile" style={{background: '#dc3545', padding: '1rem 0'}}>
-        <div className="elementor-container elementor-column-gap-default" style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-          {/* LOGO COLUMN */}
-          <div className="elementor-column elementor-col-25 elementor-top-column elementor-element elementor-element-8cf799f">
-            <div className="elementor-widget-wrap elementor-element-populated">
-              <div className="elementor-element elementor-widget elementor-widget-theme-site-logo elementor-widget-image">
-                <div className="elementor-widget-container">
-                  <a href="/">
-                    <img 
-                      width="185" 
-                      height="300"
-                      src="https://www.haesh-sheli.co.il/wp-content/uploads/2021/12/cropped-%D7%A7%D7%A8%D7%95-%D7%A8%D7%91%D7%99-%D7%99%D7%A9%D7%A8%D7%90%D7%9C-%D7%91%D7%A8-%D7%90%D7%95%D7%93%D7%A1%D7%A8.d110a0.webp" 
-                      className="attachment-full size-full wp-image-27" 
-                      alt="האש שלי תוקף עד ביאת המשיח"
-                      style={{height: '80px', width: 'auto'}}
-                    />
-                  </a>
-                </div>
-              </div>
+      {/* Activities Section */}
+      <section className="py-20 bg-secondary/20" data-testid="activities-section">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl lg:text-5xl font-bold text-primary mb-6" data-testid="activities-title">
+                {t.activitiesTitle}
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto" data-testid="activities-subtitle">
+                {t.activitiesSubtitle}
+              </p>
             </div>
-          </div>
-
-          {/* NAVIGATION COLUMN */}
-          <div className="elementor-column elementor-col-25 elementor-top-column elementor-element elementor-element-b208748">
-            <div className="elementor-widget-wrap elementor-element-populated">
-              <div className="elementor-element elementor-nav-menu__align-center elementor-nav-menu--stretch elementor-nav-menu--dropdown-tablet elementor-nav-menu__text-align-aside elementor-nav-menu--toggle elementor-nav-menu--burger elementor-widget elementor-widget-nav-menu">
-                <div className="elementor-widget-container">
-                  <nav aria-label="תפריט" className="elementor-nav-menu--main elementor-nav-menu__container elementor-nav-menu--layout-horizontal e--pointer-text e--animation-grow">
-                    <ul id="menu-1-ac3cd0c" className="elementor-nav-menu" style={{display: 'flex', gap: '2rem', listStyle: 'none', margin: 0, padding: 0}}>
-                      <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-195">
-                        <a href="/" className="elementor-item" style={{color: 'white', textDecoration: 'none'}}>דף הבית</a>
-                      </li>
-                      <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-695">
-                        <a href="/store" className="elementor-item" style={{color: 'white', textDecoration: 'none'}}>חנות</a>
-                      </li>
-                      <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-54">
-                        <a href="/about" className="elementor-item" style={{color: 'white', textDecoration: 'none'}}>עלינו</a>
-                      </li>
-                      <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-51">
-                        <a href="/magazine" className="elementor-item" style={{color: 'white', textDecoration: 'none'}}>מגזין</a>
-                      </li>
-                      <li className="menu-item menu-item-type-post_type menu-item-object-page current-menu-item menu-item-53">
-                        <a href="/join" className="elementor-item elementor-item-active" style={{color: 'white', textDecoration: 'none', fontWeight: 'bold'}}>הצטרפו אלינו</a>
-                      </li>
-                      <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-52">
-                        <a href="/contact" className="elementor-item" style={{color: 'white', textDecoration: 'none'}}>צור קשר</a>
-                      </li>
-                    </ul>
-                  </nav>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* CART COLUMN */}
-          <div className="elementor-column elementor-col-25 elementor-top-column elementor-element elementor-element-884ebb2">
-            <div className="elementor-widget-wrap elementor-element-populated">
-              <div className="elementor-element toggle-icon--custom elementor-widget__width-auto elementor-menu-cart--empty-indicator-hide remove-item-position--top elementor-menu-cart--items-indicator-bubble elementor-menu-cart--cart-type-side-cart elementor-menu-cart--show-remove-button-yes elementor-widget elementor-widget-woocommerce-menu-cart">
-                <div className="elementor-widget-container">
-                  <div className="elementor-menu-cart__wrapper">
-                    <div className="elementor-menu-cart__toggle_wrapper">
-                      <div className="elementor-menu-cart__toggle elementor-button-wrapper">
-                        <a id="elementor-menu-cart__toggle_button" href="#" className="elementor-menu-cart__toggle_button elementor-button elementor-size-sm" aria-expanded="false" style={{background: 'white', color: '#dc3545', padding: '0.5rem 1rem', borderRadius: '5px', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-                          <span className="elementor-button-text">
-                            <span className="woocommerce-Price-amount amount">
-                              <span>0.00 <span className="woocommerce-Price-currencySymbol">₪</span></span>
-                            </span>
-                          </span>
-                          <span className="elementor-button-icon">
-                            <span className="elementor-button-icon-qty" data-counter="0">0</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style={{width: '16px', height: '16px', fill: 'currentColor'}}>
-                              <path d="M7 4V2C7 1.45 7.45 1 8 1H16C16.55 1 17 1.45 17 2V4H20C20.55 4 21 4.45 21 5S20.55 6 20 6H19V19C19 20.1 18.1 21 17 21H7C5.9 21 5 20.1 5 19V6H4C3.45 6 3 5.55 3 5S3.45 4 4 4H7ZM9 3V4H15V3H9ZM7 6V19H17V6H7Z"/>
-                            </svg>
-                          </span>
-                        </a>
-                      </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {t.activities.map((activity, index) => (
+                <div 
+                  key={index}
+                  className="card-premium p-8 group hover:shadow-xl transition-all duration-300"
+                  data-testid={`activity-card-${index}`}
+                >
+                  <div className="flex items-start gap-6">
+                    <div className="flex-shrink-0 w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
+                      <IconComponent iconName={activity.icon} className="w-8 h-8 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-primary mb-3" data-testid={`activity-title-${index}`}>
+                        {activity.title}
+                      </h3>
+                      <p className="text-muted-foreground leading-relaxed" data-testid={`activity-description-${index}`}>
+                        {activity.description}
+                      </p>
                     </div>
                   </div>
                 </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* MAIN HERO SECTION */}
-      <section style={{background: 'linear-gradient(135deg, #dc3545 0%, #c82333 100%)', color: 'white', padding: '5rem 0', textAlign: 'center'}}>
-        <div className="elementor-container" style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
-          <h3 style={{fontSize: '2rem', fontWeight: 'bold', marginBottom: '1rem', lineHeight: '1.4'}}>
-            יש לכם הזדמנות
-          </h3>
-          <h1 style={{fontSize: '3.5rem', fontWeight: 'bold', marginBottom: '2rem', lineHeight: '1.2'}}>
-            להפיץ ולגלות את אור רבנו בעולם
-          </h1>
-          <p style={{fontSize: '1.3rem', lineHeight: '1.8', marginBottom: '3rem', maxWidth: '900px', margin: '0 auto 3rem'}}>
-            למעלה מ-30 שנה שאנחנו עוסקים ועמלים בהדפסה והפצת ספרי רבנו הקדוש, הפעילות שהסבא רבי ישראל דוב אודסר פעל להקים, מאז ועד היום הקרן עומדת כגוף הגדול והפעיל ביותר בחסידות ברסלב שעוסק לקדם ולפרסם את ספרי רבנו הקדוש בארץ ובעולם
-          </p>
-        </div>
-      </section>
-
-      {/* STATISTICS SECTION */}
-      <section style={{background: '#f8f9fa', padding: '5rem 0'}}>
-        <div className="elementor-container" style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
-          <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#333', textAlign: 'center', marginBottom: '3rem'}}>
-            כמה מספרים רק לסבר את האוזן
-          </h2>
-          <p style={{fontSize: '1.2rem', color: '#666', textAlign: 'center', marginBottom: '4rem'}}>
-            שנים של הדפסה והפצה עם פעילות יום יומית
-          </p>
-          
-          <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '3rem', textAlign: 'center'}}>
-            <div>
-              <div style={{fontSize: '4rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
-                30+
-              </div>
-              <h3 style={{fontSize: '1.3rem', color: '#333'}}>
-                שנים של הדפסה והפצה
-              </h3>
-            </div>
-            
-            <div>
-              <div style={{fontSize: '4rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
-                1M+
-              </div>
-              <h3 style={{fontSize: '1.3rem', color: '#333'}}>
-                ספרים רק בשפה העברית
-              </h3>
-            </div>
-            
-            <div>
-              <div style={{fontSize: '4rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
-                50+
-              </div>
-              <h3 style={{fontSize: '1.3rem', color: '#333'}}>
-                מדינות שמופצים הספרים באופן ישיר
-              </h3>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* MESSIAH SECTION */}
-      <section style={{background: 'linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%)', padding: '4rem 0', textAlign: 'center'}}>
-        <div className="elementor-container" style={{maxWidth: '800px', margin: '0 auto', padding: '0 2rem'}}>
-          <h2 style={{fontSize: '3rem', fontWeight: 'bold', color: '#2d3436', marginBottom: '2rem'}}>
-            עד ביאת המשיח!
-          </h2>
-        </div>
-      </section>
-
-      {/* MERON ACTIVITIES SECTION */}
-      <section style={{background: 'white', padding: '5rem 0'}}>
-        <div className="elementor-container" style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
-          <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center'}}>
-            
-            <div>
-              <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '2rem'}}>
-                מחדשים את הבסטות במירון ואצל רבי ישראל
+      {/* Features Section */}
+      <section className="py-20 bg-background" data-testid="features-section">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl lg:text-5xl font-bold text-primary mb-6" data-testid="features-title">
+                {t.featuresTitle}
               </h2>
-              <p style={{fontSize: '1.1rem', lineHeight: '1.8', color: '#333', marginBottom: '1.5rem'}}>
-                בשנים האחרונות אנו עדים מלחמה לא פשוטה עם מס' גופים שלצערינו אף הצליחו לפגוע בפעילות ההפצה במירון וגם בהר המנוחות, במבט לאחור אפשר לראות גם בזה את יד ההשגחה ואת החסדים שהיו בכל דבר וענין ואיך שהכל לטובה. במקביל אנו פועלים בכל דרך אפשרית שנזכה להאיר ולגדל את שם רבינו בכל מקום ובכל זמן
-              </p>
-              <p style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#dc3545'}}>
-                אמן
-              </p>
             </div>
             
-            <div style={{textAlign: 'center'}}>
-              <img 
-                src="https://www.haesh-sheli.co.il/wp-content/uploads/2023/02/Untitled-design-10-1024x1024.d110a0.webp" 
-                alt="פעילויות במירון" 
-                style={{width: '100%', height: 'auto', borderRadius: '15px', boxShadow: '0 8px 25px rgba(0,0,0,0.15)'}}
-              />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {t.features.map((feature, index) => (
+                <div 
+                  key={index}
+                  className="card-premium p-8 text-center group hover:scale-105 transition-transform duration-300"
+                  data-testid={`feature-card-${index}`}
+                >
+                  <div className="mb-6 flex justify-center">
+                    <div className="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
+                      <IconComponent iconName={feature.icon} className="w-8 h-8 text-primary" />
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-bold text-primary mb-4" data-testid={`feature-title-${index}`}>
+                    {feature.title}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed" data-testid={`feature-description-${index}`}>
+                    {feature.description}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* MAILING LIST SECTION */}
-      <section style={{background: '#f8f9fa', padding: '4rem 0', textAlign: 'center'}}>
-        <div className="elementor-container" style={{maxWidth: '1000px', margin: '0 auto', padding: '0 2rem'}}>
-          <img 
-            src="https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/%D7%94%D7%A6%D7%98%D7%A8%D7%A4%D7%95%D7%AA-%D7%A8%D7%A9%D7%99%D7%9E%D7%AA-%D7%AA%D7%A4%D7%95%D7%A6%D7%94-%D7%A7%D7%A8%D7%9F-%D7%A8%D7%91%D7%99-%D7%99%D7%A9%D7%A8%D7%90%D7%9C-1.d110a0.webp" 
-            alt="הצטרפות לרשימת תפוצה" 
-            style={{width: '100%', height: 'auto', borderRadius: '15px', marginBottom: '2rem'}}
-          />
-        </div>
-      </section>
-
-      {/* NEXT GENERATION SECTION */}
-      <section style={{background: 'white', padding: '5rem 0'}}>
-        <div className="elementor-container" style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
-          <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '3rem', textAlign: 'center'}}>
-            פועלים למען דור ההמשך של רבנו
-          </h2>
-          <p style={{fontSize: '1.1rem', lineHeight: '1.8', color: '#333', marginBottom: '2rem', textAlign: 'center', maxWidth: '900px', margin: '0 auto 2rem'}}>
-            כחלק מהמטרה לפרסם את שם רבינו, זכינו ליצור מהדורה מיוחדת של במהדורה זו ספרים שמספרים מהבעל שם טוב הקדוש, מרבינו נחמן מברסלב, ומרבי נתן זצ"ל וכל זה בשפה נוחה לקריאה וברצף שמלקט את סיפור חייהם של הצדיקים מכל המובא בספרים הקדושים והכל בכדי שנזכה להחדיר לעצמינו ולדור העתיד את דרכם של אותם אנשי ההוד, צדיקי יסוד עולם
-          </p>
-        </div>
-      </section>
-
-      {/* NEW REGIONS SECTION */}
-      <section style={{background: '#f8f9fa', padding: '5rem 0'}}>
-        <div className="elementor-container" style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
-          <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center'}}>
-            
-            <div>
-              <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '2rem'}}>
-                מתחילים לפעול במחוזות חדשים
+      {/* Join Methods Section */}
+      <section className="py-20 bg-secondary/20" data-testid="join-methods-section">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl lg:text-5xl font-bold text-primary mb-6" data-testid="join-methods-title">
+                {t.joinMethodsTitle}
               </h2>
-              <p style={{fontSize: '1.1rem', lineHeight: '1.8', color: '#333', marginBottom: '1.5rem'}}>
-                לפנינו עומד חזון שכל בית בישראל ידע ויעסוק בספרי רבינו,
-              </p>
-              <p style={{fontSize: '1.1rem', lineHeight: '1.8', color: '#333', marginBottom: '1.5rem'}}>
-                בנוסף להפצה שעושים מידי יום מבית לבית וברחובות.
-              </p>
-              <p style={{fontSize: '1.1rem', lineHeight: '1.8', color: '#333', marginBottom: '1.5rem'}}>
-                כרגע יצאנו בפרויקט מיוחד
-              </p>
-              <p style={{fontSize: '1.1rem', lineHeight: '1.8', color: '#333', marginBottom: '1.5rem'}}>
-                שמקנה <strong>50% הנחה</strong> לבתי כנסיות, ישיבות, כוללים.
-              </p>
-              <p style={{fontSize: '1.1rem', lineHeight: '1.8', color: '#333'}}>
-                ובפנינו עומדת מטרה שנזכה בקרוב לפתוח בית מדרש להפצה במס' ערים בעזרת ה' בזכות רבינו הקדוש
-              </p>
             </div>
             
-            <div style={{textAlign: 'center'}}>
-              <img 
-                src="https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/%D7%94%D7%A6%D7%98%D7%A8%D7%A4%D7%95%D7%AA-%D7%A8%D7%A9%D7%99%D7%9E%D7%AA-%D7%AA%D7%A4%D7%95%D7%A6%D7%94-%D7%A7%D7%A8%D7%9F-%D7%A8%D7%91%D7%99-%D7%99%D7%A9%D7%A8%D7%90%D7%9C-2.d110a0.webp" 
-                alt="פעילות במחוזות חדשים" 
-                style={{width: '100%', height: 'auto', borderRadius: '15px', boxShadow: '0 8px 25px rgba(0,0,0,0.15)'}}
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CLIENT TESTIMONIALS SECTION */}
-      <section style={{background: 'white', padding: '5rem 0'}}>
-        <div className="elementor-container" style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
-          <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#333', marginBottom: '4rem', textAlign: 'center'}}>
-            המלצות מחברי הקרן
-          </h2>
-          
-          <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '3rem'}}>
-            
-            <div style={{background: '#f8f9fa', padding: '3rem', borderRadius: '15px', textAlign: 'center'}}>
-              <p style={{fontSize: '1.1rem', fontStyle: 'italic', color: '#333', marginBottom: '2rem', lineHeight: '1.8'}}>
-                "זכיתי לקבל את ספרי רבנו הקדוש באמצעות הקרן ואני יכול לומר שזה שינה את חיי לחלוטין. התוכן הרוחני העמוק והמילים הקדושות נתנו לי כוח וחיזוק בכל יום. תודה לכם על הפעילות הקדושה שאתם עושים להפצת אור התורה בעולם."
-              </p>
-              <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem'}}>
-                <img 
-                  src="https://www.haesh-sheli.co.il/wp-content/uploads/2023/07/Image-Testemonials-1.bf65e1.webp" 
-                  alt="Client" 
-                  style={{width: '60px', height: '60px', borderRadius: '50%', objectFit: 'cover'}}
-                />
-                <div>
-                  <h4 style={{color: '#333', fontWeight: 'bold'}}>משה כהן - תל אביב</h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {t.joinMethods.map((method, index) => (
+                <div 
+                  key={index}
+                  className="card-premium p-6 text-center group hover:shadow-xl transition-all duration-300"
+                  data-testid={`join-method-${index}`}
+                >
+                  <div className="mb-4 flex justify-center">
+                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
+                      <IconComponent iconName={method.icon} className="w-6 h-6 text-primary" />
+                    </div>
+                  </div>
+                  <h3 className="text-lg font-bold text-primary mb-3" data-testid={`join-method-title-${index}`}>
+                    {method.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed" data-testid={`join-method-description-${index}`}>
+                    {method.description}
+                  </p>
                 </div>
-              </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-20 bg-background" data-testid="testimonials-section">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl lg:text-5xl font-bold text-primary mb-6" data-testid="testimonials-title">
+                {t.testimonialsTitle}
+              </h2>
             </div>
             
-            <div style={{background: '#f8f9fa', padding: '3rem', borderRadius: '15px', textAlign: 'center'}}>
-              <p style={{fontSize: '1.1rem', fontStyle: 'italic', color: '#333', marginBottom: '2rem', lineHeight: '1.8'}}>
-                "הקרן עוזרת לי כבר שנים רבות ואני מרגיש שהפעילות שלכם באמת מקדשת את השם. הספרים שקיבלתי סייעו לי להתחזק ברוחניות ולהתקרב יותר לתורת רבנו הקדוש. אני ממליץ בחום לכל מי שמחפש חיזוק אמיתי להצטרף אליכם."
-              </p>
-              <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem'}}>
-                <img 
-                  src="https://www.haesh-sheli.co.il/wp-content/uploads/2023/07/Image-Testemonials-1.bf65e1.webp" 
-                  alt="יעקב לוי" 
-                  style={{width: '60px', height: '60px', borderRadius: '50%', objectFit: 'cover'}}
-                />
-                <div>
-                  <h4 style={{color: '#333', fontWeight: 'bold'}}>יעקב לוי - ירושלים</h4>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {t.testimonials.map((testimonial, index) => (
+                <div 
+                  key={index}
+                  className="card-premium p-8 group hover:shadow-xl transition-all duration-300"
+                  data-testid={`testimonial-${index}`}
+                >
+                  <div className="flex mb-4">
+                    {[...Array(testimonial.rating)].map((_, starIndex) => (
+                      <Star key={starIndex} className="w-5 h-5 text-yellow-400 fill-current" />
+                    ))}
+                  </div>
+                  <p className="text-muted-foreground leading-relaxed mb-6 italic" data-testid={`testimonial-quote-${index}`}>
+                    "{testimonial.quote}"
+                  </p>
+                  <div>
+                    <h4 className="font-bold text-primary" data-testid={`testimonial-author-${index}`}>
+                      {testimonial.author}
+                    </h4>
+                    <p className="text-sm text-muted-foreground" data-testid={`testimonial-location-${index}`}>
+                      {testimonial.location}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* FAQ SECTION */}
-      <section style={{background: '#f8f9fa', padding: '5rem 0'}}>
-        <div className="elementor-container" style={{maxWidth: '1000px', margin: '0 auto', padding: '0 2rem'}}>
-          <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#333', marginBottom: '4rem', textAlign: 'center'}}>
-            שאלות נפוצות
-          </h2>
-          
-          <div style={{display: 'grid', gap: '2rem'}}>
-            
-            <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
-              <h4 style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
-                איך יכולני להצטרף לפעילויות הקרן?
-              </h4>
-              <p style={{fontSize: '1rem', color: '#666', lineHeight: '1.6'}}>
-                ניתן להצטרף לפעילויות הקרן במגוון דרכים: השתתפות במסיבות, נדבות כספיות, התנדבות להפצת ספרים, או הצטרפות לרשימת התפוצה שלנו. כל תרומה חשובה ומקרבת אותנו למטרה.
-              </p>
+      {/* FAQ Section */}
+      <section className="py-20 bg-secondary/20" data-testid="faq-section">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl lg:text-5xl font-bold text-primary mb-6" data-testid="faq-title">
+                {t.faqTitle}
+              </h2>
             </div>
             
-            <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
-              <h4 style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
-                האם הספרים מגיעים לכל רחבי העולם?
-              </h4>
-              <p style={{fontSize: '1rem', color: '#666', lineHeight: '1.6'}}>
-                כן! אנחנו שולחים ספרים לכל רחבי העולם. יש לנו נציגים במדינות רבות ואנחנו עובדים ללא הפסקה להביא את תורת רבנו הקדוש לכל יהודי בכל מקום בעולם.
-              </p>
-            </div>
-            
-            <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
-              <h4 style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
-                מה עושה הקרן עם הכספים שהיא מקבלת?
-              </h4>
-              <p style={{fontSize: '1rem', color: '#666', lineHeight: '1.6'}}>
-                כל הכספים מיועדים להדפסה והפצה של ספרי רבנו הקדוש, תחזוקת הקבר הקדוש באומן, פעילויות חינוך והסברה, ותמיכה בבני הישיבה. אנחנו פועלים בשקיפות מלאה.
-              </p>
-            </div>
-            
-            <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
-              <h4 style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
-                איך יכולני לקבל עדכונים על פעילויות הקרן?
-              </h4>
-              <p style={{fontSize: '1rem', color: '#666', lineHeight: '1.6'}}>
-                ניתן להירשם לרשימת התפוצה באתר, לעקוב אחרינו ברשתות החברתיות, או ליצור איתנו קשר ישיר. אנחנו שולחים עדכונים שוטפים על כל הפעילויות והאירועים החדשים.
-              </p>
-            </div>
-            
-            <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
-              <h4 style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
-                מתי התחילה לפעול הקרן?
-              </h4>
-              <p style={{fontSize: '1rem', color: '#666', lineHeight: '1.6'}}>
-                הקרן פועלת כבר יותר מ-30 שנה ברציפות, מאז שנת 1990. במהלך השנים הפצנו מיליוני ספרים ברחבי העולם וזכינו להעמיד דור של אנשים הלומדים תורת רבנו הקדוש.
-              </p>
-            </div>
-            
-            <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
-              <h4 style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
-                האם יש מגבלת גיל להצטרפות?
-              </h4>
-              <p style={{fontSize: '1rem', color: '#666', lineHeight: '1.6'}}>
-                אין מגבלת גיל! אנחנו מקבלים בברכה את כולם - צעירים ומבוגרים, משפחות ויחידים. כל אחד יכול לתרום את חלקו להפצת תורת רבנו הקדוש במידה ובדרך שמתאימה לו.
-              </p>
-            </div>
-            
-            <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
-              <h4 style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
-                איך יכולני לעזור בהפצת הספרים?
-              </h4>
-              <p style={{fontSize: '1rem', color: '#666', lineHeight: '1.6'}}>
-                יש דרכים רבות: חלוקת ספרים בקהילה שלכם, ארגון הרצאות ושיחות, שיתוף התכנים ברשתות החברתיות, או פשוט המלצה לחברים. כל פעולה קטנה יוצרת גלים גדולים.
-              </p>
-            </div>
-            
-            <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
-              <h4 style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
-                מה ההבדל בין הקרן לארגונים אחרים?
-              </h4>
-              <p style={{fontSize: '1rem', color: '#666', lineHeight: '1.6'}}>
-                הקרן שלנו מוקדשת במיוחד להנחלת מורשתו של רבי ישראל דוב אודסר זצ"ל וההפצה של תורת רבי נחמן מברסלב. אנחנו פועלים מתוך אמונה טהורה ומסירות מלאה לדרך.
-              </p>
+            <div className="space-y-4">
+              {t.faq.map((item, index) => (
+                <div 
+                  key={index}
+                  className="card-premium overflow-hidden"
+                  data-testid={`faq-item-${index}`}
+                >
+                  <button
+                    onClick={() => toggleFAQ(index)}
+                    className="w-full p-6 text-left flex items-center justify-between hover:bg-secondary/30 transition-colors duration-200"
+                    data-testid={`faq-question-${index}`}
+                  >
+                    <h3 className="text-lg font-semibold text-primary">
+                      {item.question}
+                    </h3>
+                    {openFAQ === index ? (
+                      <Minus className="w-5 h-5 text-primary flex-shrink-0" />
+                    ) : (
+                      <Plus className="w-5 h-5 text-primary flex-shrink-0" />
+                    )}
+                  </button>
+                  {openFAQ === index && (
+                    <div className="px-6 pb-6 animate-fade-in-scale" data-testid={`faq-answer-${index}`}>
+                      <p className="text-muted-foreground leading-relaxed">
+                        {item.answer}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* CALL TO ACTION SECTION */}
-      <section style={{background: 'linear-gradient(135deg, #dc3545 0%, #c82333 100%)', color: 'white', padding: '5rem 0', textAlign: 'center'}}>
-        <div className="elementor-container" style={{maxWidth: '800px', margin: '0 auto', padding: '0 2rem'}}>
-          <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '1rem'}}>
-            הצטרפו אלינו היום והיו שותפים במעשה הקדוש
-          </h2>
-          <p style={{fontSize: '1.3rem', marginBottom: '3rem'}}>
-            כל תרומה, כל פעולה, כל שיתוף - הכל חשוב ומקרב את האור של תורת רבנו הקדוש לכל פינה בעולם
-          </p>
-          <div style={{display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap'}}>
-            <a href="/contact" style={{textDecoration: 'none', fontSize: '1.3rem', padding: '1rem 2rem', background: 'white', color: '#dc3545', border: 'none', borderRadius: '8px', display: 'inline-block', fontWeight: 'bold'}}>
-              צרו קשר עכשיו
-            </a>
-            <a href="/downloads" style={{textDecoration: 'none', fontSize: '1.3rem', padding: '1rem 2rem', background: 'transparent', color: 'white', border: '2px solid white', borderRadius: '8px', display: 'inline-block', fontWeight: 'bold'}}>
-              הורידו ספרים בחינם
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* FOOTER */}
-      <footer className="main-footer" style={{background: '#2d3436', color: 'white', padding: '3rem 0 2rem'}}>
-        <div className="elementor-container">
-          <div style={{textAlign: 'center', paddingTop: '2rem'}}>
-            <div style={{color: '#999', fontSize: '0.9rem'}}>
-              <p style={{marginBottom: '0.5rem'}}>כל הזכיות שמורות 2025 © קרן רבי ישראל דב אודסר זצ"ל</p>
-              <p>האתר נבנה ע"י מדיה מאסטר</p>
+      {/* CTA Section */}
+      <section className="py-20 bg-gradient-to-r from-primary to-accent relative overflow-hidden" data-testid="cta-section">
+        <div className="absolute inset-0 bg-primary/90"></div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-4xl mx-auto text-center text-primary-foreground">
+            <h2 className="text-4xl lg:text-5xl font-bold mb-6" data-testid="cta-title">
+              {t.ctaTitle}
+            </h2>
+            <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto leading-relaxed" data-testid="cta-subtitle">
+              {t.ctaSubtitle}
+            </p>
+            <p className="text-lg mb-12 opacity-80 max-w-3xl mx-auto leading-relaxed" data-testid="cta-description">
+              {t.ctaDescription}
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a 
+                href="/contact" 
+                className="bg-background text-primary px-8 py-4 rounded-xl font-semibold hover:bg-background/90 transition-all duration-200 inline-flex items-center justify-center gap-2"
+                data-testid="cta-button-primary"
+              >
+                <Heart className="w-5 h-5" />
+                {t.ctaButtonPrimary}
+              </a>
+              <a 
+                href="/about" 
+                className="border-2 border-background text-background px-8 py-4 rounded-xl font-semibold hover:bg-background hover:text-primary transition-all duration-200 inline-flex items-center justify-center gap-2"
+                data-testid="cta-button-secondary"
+              >
+                <ChevronRight className="w-5 h-5" />
+                {t.ctaButtonSecondary}
+              </a>
             </div>
           </div>
         </div>
-      </footer>
+      </section>
     </div>
   );
 }
