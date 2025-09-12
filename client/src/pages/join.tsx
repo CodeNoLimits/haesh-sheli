@@ -874,6 +874,14 @@ export default function Join() {
       {/* Hero Section */}
       <section className="hero-gradient relative overflow-hidden py-20 lg:py-32" data-testid="hero-section">
         <div className="hero-overlay absolute inset-0"></div>
+        {/* Background Books Composition */}
+        <div className="absolute inset-0 opacity-15">
+          <img 
+            src="/images/hero-books-composition.png" 
+            alt="Breslov Books Collection - Sacred Mission" 
+            className="w-full h-full object-cover object-center"
+          />
+        </div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center animate-fade-in-scale">
             <h3 className="text-2xl font-bold text-primary mb-4" data-testid="hero-subtitle">
@@ -890,8 +898,19 @@ export default function Join() {
       </section>
 
       {/* Statistics Section */}
-      <section className="py-20 bg-background" data-testid="stats-section">
-        <div className="container mx-auto px-4">
+      <section className="py-20 bg-background relative overflow-hidden" data-testid="stats-section">
+        {/* Background with multiple book images */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="grid grid-cols-6 gap-4 h-full">
+            <img src="/images/ליקוטי מוהרן 1_1757275910545.jpg" alt="" className="w-full h-full object-cover" />
+            <img src="/images/ספר המידות 1_1757275910546.jpg" alt="" className="w-full h-full object-cover" />
+            <img src="/images/חיי מוהרן 1_1757275910544.jpg" alt="" className="w-full h-full object-cover" />
+            <img src="/images/ליקוטי תפילות 1_1757275910545.jpg" alt="" className="w-full h-full object-cover" />
+            <img src="/images/סיפורי מעשיות 1_1757275910546.jpg" alt="" className="w-full h-full object-cover" />
+            <img src="/images/ליקוטי עצות 1_1757275910545.jpg" alt="" className="w-full h-full object-cover" />
+          </div>
+        </div>
+        <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl lg:text-5xl font-bold text-primary mb-6" data-testid="stats-title">
@@ -944,10 +963,23 @@ export default function Join() {
               {t.activities.map((activity, index) => (
                 <div 
                   key={index}
-                  className="card-premium p-8 group hover:shadow-xl transition-all duration-300"
+                  className="card-premium p-8 group hover:shadow-xl transition-all duration-300 relative overflow-hidden"
                   data-testid={`activity-card-${index}`}
                 >
-                  <div className="flex items-start gap-6">
+                  {/* Book image per activity */}
+                  <div className="absolute top-4 right-4 opacity-10 pointer-events-none">
+                    <img 
+                      src={`/images/${
+                        index === 0 ? "כתבי רבי נחמן מברסלב 2_1757275758578.jpg" :
+                        index === 1 ? "רבינו הקדוש 1_1757281260204.jpg" :
+                        index === 2 ? "חומש עם ליקוטי הלכות גדול 1_1757275742254.jpg" :
+                        "ליקוטי מוהרן עם מפרשים 1_1757281125909.jpg"
+                      }`} 
+                      alt="" 
+                      className="w-24 h-30 object-cover rounded-lg transform rotate-12"
+                    />
+                  </div>
+                  <div className="flex items-start gap-6 relative z-10">
                     <div className="flex-shrink-0 w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
                       <IconComponent iconName={activity.icon} className="w-8 h-8 text-primary" />
                     </div>
@@ -968,8 +1000,20 @@ export default function Join() {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-background" data-testid="features-section">
-        <div className="container mx-auto px-4">
+      <section className="py-20 bg-background relative overflow-hidden" data-testid="features-section">
+        {/* Background accent images */}
+        <div className="absolute inset-0 opacity-8">
+          <div className="absolute top-10 left-10">
+            <img src="/images/השתפכות הנפש 1_1757281125907.jpg" alt="" className="w-32 h-40 object-cover rounded-lg transform -rotate-12" />
+          </div>
+          <div className="absolute top-20 right-10">
+            <img src="/images/מכתבי ר נתן 1_1757281125910.jpg" alt="" className="w-28 h-36 object-cover rounded-lg transform rotate-6" />
+          </div>
+          <div className="absolute bottom-20 left-1/4">
+            <img src="/images/עצות המבוארות 1_1757275910546.jpg" alt="" className="w-24 h-30 object-cover rounded-lg transform rotate-12" />
+          </div>
+        </div>
+        <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl lg:text-5xl font-bold text-primary mb-6" data-testid="features-title">

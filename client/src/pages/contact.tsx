@@ -525,6 +525,14 @@ export default function Contact() {
       {/* Hero Section */}
       <section className="hero-gradient relative overflow-hidden py-20 lg:py-32" data-testid="hero-section">
         <div className="hero-overlay absolute inset-0"></div>
+        {/* Background Image */}
+        <div className="absolute inset-0 opacity-10">
+          <img 
+            src="/images/hero-books-composition.png" 
+            alt="Breslov Books Collection" 
+            className="w-full h-full object-cover object-center"
+          />
+        </div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center animate-fade-in-scale">
             <h1 className="heading-oversized mb-6 text-primary" data-testid="hero-title">
@@ -667,6 +675,27 @@ export default function Contact() {
 
             {/* Contact Information */}
             <div className="space-y-8">
+              {/* Breslov Books Visual */}
+              <div className="relative mb-8">
+                <div className="grid grid-cols-3 gap-4 opacity-80">
+                  <img 
+                    src="/images/ליקוטי מוהרן 1_1757275910545.jpg" 
+                    alt="Likutei Moharan" 
+                    className="w-full h-32 object-cover rounded-lg shadow-lg transform rotate-1 hover:rotate-0 transition-transform duration-300"
+                  />
+                  <img 
+                    src="/images/ספר המידות 1_1757275910546.jpg" 
+                    alt="Sefer HaMidot" 
+                    className="w-full h-32 object-cover rounded-lg shadow-lg transform -rotate-1 hover:rotate-0 transition-transform duration-300"
+                  />
+                  <img 
+                    src="/images/חיי מוהרן 1_1757275910544.jpg" 
+                    alt="Chayei Moharan" 
+                    className="w-full h-32 object-cover rounded-lg shadow-lg transform rotate-2 hover:rotate-0 transition-transform duration-300"
+                  />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent rounded-lg"></div>
+              </div>
               {/* Contact Details */}
               <div className="card-premium p-8" data-testid="contact-info">
                 <h2 className="text-3xl font-bold text-primary mb-3" data-testid="contact-title">
@@ -726,16 +755,24 @@ export default function Contact() {
               </div>
 
               {/* Features */}
-              <div className="card-premium p-8" data-testid="features-section">
-                <h2 className="text-2xl font-bold text-primary mb-6" data-testid="features-title">
+              <div className="card-premium p-8 relative overflow-hidden" data-testid="features-section">
+                {/* Background book image */}
+                <div className="absolute top-4 right-4 opacity-5 pointer-events-none">
+                  <img 
+                    src="/images/ליקוטי תפילות 1_1757275910545.jpg" 
+                    alt="Likutei Tefilot" 
+                    className="w-32 h-40 object-cover rounded-lg transform rotate-12"
+                  />
+                </div>
+                <h2 className="text-2xl font-bold text-primary mb-6 relative z-10" data-testid="features-title">
                   {t.featuresTitle}
                 </h2>
                 
-                <div className="space-y-6">
+                <div className="space-y-6 relative z-10">
                   {t.features.map((feature, index) => (
                     <div 
                       key={index}
-                      className="flex items-start gap-4 p-4 rounded-xl bg-secondary/30 hover:bg-secondary/50 transition-colors duration-200"
+                      className="flex items-start gap-4 p-4 rounded-xl bg-secondary/30 hover:bg-secondary/50 transition-colors duration-200 backdrop-blur-sm"
                       data-testid={`feature-item-${index}`}
                     >
                       <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
@@ -761,6 +798,14 @@ export default function Contact() {
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-primary to-accent relative overflow-hidden" data-testid="cta-section">
         <div className="absolute inset-0 bg-primary/90"></div>
+        {/* Breslov books composition background */}
+        <div className="absolute inset-0 opacity-20">
+          <img 
+            src="/images/hero-books-composition.png" 
+            alt="Breslov Books Collection" 
+            className="w-full h-full object-cover object-center"
+          />
+        </div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center text-primary-foreground">
             <h2 className="text-4xl lg:text-5xl font-bold mb-6" data-testid="cta-title">

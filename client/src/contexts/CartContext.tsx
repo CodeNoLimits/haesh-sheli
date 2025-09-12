@@ -51,7 +51,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const { user, isAuthenticated } = useAuth();
   
   // Generate user-specific cart key or use guest key
-  const cartStorageKey = isAuthenticated && user ? `${CART_STORAGE_KEY_BASE}-${(user as any).id}` : `${CART_STORAGE_KEY_BASE}-guest`;
+  const cartStorageKey = isAuthenticated && user?.id ? `${CART_STORAGE_KEY_BASE}-${user.id}` : `${CART_STORAGE_KEY_BASE}-guest`;
 
   // Fetch user subscription status for authenticated users only
   const { data: userSubscription } = useQuery({
