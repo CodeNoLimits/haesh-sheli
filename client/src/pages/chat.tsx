@@ -1,11 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
-import { MessageCircle, Send, Bot, User, BookOpen, Sparkles, Heart, ArrowDown, Copy, Share2, RotateCcw, Volume2 } from 'lucide-react';
+import { MessageCircle, Send, Bot, User, BookOpen, Sparkles, Heart, ArrowDown, Copy, Share2, RotateCcw, Volume2, Brain, Zap } from 'lucide-react';
 import { Header } from '@/components/Header';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useToast } from '@/hooks/use-toast';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { apiRequest } from '@/lib/queryClient';
@@ -26,6 +28,8 @@ interface ChatStatus {
   error?: string;
 }
 
+type ChatProvider = 'gemini' | 'openai';
+
 export default function Chat() {
   const { currentLanguage } = useLanguage();
   const { toast } = useToast();
@@ -37,16 +41,26 @@ export default function Chat() {
   const [isLoading, setIsLoading] = useState(false);
   const [conversationId, setConversationId] = useState<string | null>(null);
   const [streamingMessageId, setStreamingMessageId] = useState<string | null>(null);
+  const [selectedProvider, setSelectedProvider] = useState<ChatProvider>('gemini');
   
   // Références DOM
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   // Vérification du statut de Gemini
-  const { data: chatStatus } = useQuery<ChatStatus>({
+  const { data: geminiStatus } = useQuery<ChatStatus>({
     queryKey: ['/api/chat/status'],
     refetchInterval: 30000, // Vérification toutes les 30 secondes
   });
+
+  // Vérification du statut d'OpenAI
+  const { data: openaiStatus } = useQuery<ChatStatus>({
+    queryKey: ['/api/openai/status'],
+    refetchInterval: 30000, // Vérification toutes les 30 secondes
+  });
+
+  // Statut actuel selon le provider sélectionné
+  const currentStatus = selectedProvider === 'gemini' ? geminiStatus : openaiStatus;
 
   // Auto-scroll vers le bas
   const scrollToBottom = () => {
@@ -83,9 +97,13 @@ export default function Chat() {
 
   // שליחת הודעה רגילה
   const sendMessageMutation = useMutation({
-    mutationFn: async (messageData: { message: string; conversationHistory: ChatMessage[] }) => {
-      const response = await apiRequest('/api/chat', {
+    mutationFn: async (messageData: { message: string; conversationHistory: ChatMessage[]; provider: ChatProvider }) => {
+      const endpoint = messageData.provider === 'gemini' ? '/api/chat' : '/api/openai/chat';
+      const response = await fetch(endpoint, {
         method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify({
           message: messageData.message,
           conversationHistory: messageData.conversationHistory,
@@ -131,7 +149,7 @@ export default function Chat() {
   });
 
   // שליחת הודעה עם streaming
-  const sendStreamingMessage = async (message: string, conversationHistory: ChatMessage[]) => {
+  const sendStreamingMessage = async (message: string, conversationHistory: ChatMessage[], provider: ChatProvider) => {
     try {
       setIsLoading(true);
       
@@ -156,8 +174,9 @@ export default function Chat() {
       setMessages(prev => [...prev, userMessage, assistantMessage]);
       setStreamingMessageId(assistantMessageId);
       
-      // קריאה לשרת עם streaming
-      const response = await fetch('/api/chat/stream', {
+      // קריאה לשרת עם streaming - בחירת endpoint לפי provider
+      const endpoint = provider === 'gemini' ? '/api/chat/stream' : '/api/openai/stream';
+      const response = await fetch(endpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -208,11 +227,13 @@ export default function Chat() {
       console.error('Streaming error:', error);
       
       // הצגת שגיאה
-      setMessages(prev => prev.map(msg => 
-        msg.id === assistantMessageId 
-          ? { ...msg, content: 'מצטער, אירעה שגיאה בעיבוד השאלה. אנא נסה שוב.', isStreaming: false }
-          : msg
-      ));
+      if (streamingMessageId) {
+        setMessages(prev => prev.map(msg => 
+          msg.id === streamingMessageId 
+            ? { ...msg, content: 'מצטער, אירעה שגיאה בעיבוד השאלה. אנא נסה שוב.', isStreaming: false }
+            : msg
+        ));
+      }
       
       toast({
         title: 'שגיאת צ\'אט',
@@ -233,8 +254,8 @@ export default function Chat() {
     
     setInputMessage('');
     
-    // שימוש ב-streaming response
-    await sendStreamingMessage(message, messages);
+    // שימוש ב-streaming response עם הפרוביידר הנבחר
+    await sendStreamingMessage(message, messages, selectedProvider);
   };
 
   // טיפול בלחיצת Enter
@@ -285,26 +306,80 @@ export default function Chat() {
             שאל כל שאלה על תורת רבי נחמן מברסלב, קבל המלצות על ספרים, וגלה את החכמה הברסלבית
           </p>
           
-          {/* סטטוס חיבור */}
-          {chatStatus && (
-            <div className="mt-4">
-              <Badge 
-                variant={chatStatus.connected ? "default" : "destructive"}
-                className="text-sm"
+          {/* בחירת מערכת הצ'אט */}
+          <div className="mt-4 space-y-4">
+            <div className="flex items-center justify-center gap-4">
+              <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                בחר מערכת הצ'אט:
+              </label>
+              <Select 
+                value={selectedProvider} 
+                onValueChange={(value: ChatProvider) => setSelectedProvider(value)}
+                data-testid="provider-selector"
               >
-                {chatStatus.connected ? "✅ מחובר ומוכן" : "❌ לא זמין"}
-              </Badge>
-              {chatStatus.connected && (
-                <div className="flex flex-wrap justify-center gap-2 mt-2">
-                  {chatStatus.features.map((feature, index) => (
-                    <Badge key={index} variant="outline" className="text-xs">
-                      {feature}
-                    </Badge>
-                  ))}
+                <SelectTrigger className="w-[200px]">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="gemini">
+                    <div className="flex items-center gap-2">
+                      <Brain className="w-4 h-4 text-blue-600" />
+                      <span>Gemini 2.5 Pro</span>
+                    </div>
+                  </SelectItem>
+                  <SelectItem value="openai">
+                    <div className="flex items-center gap-2">
+                      <Zap className="w-4 h-4 text-green-600" />
+                      <span>ChatGPT 4o-mini</span>
+                    </div>
+                  </SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* סטטוס מערכת נבחרת */}
+            {currentStatus && (
+              <div className="text-center">
+                <Badge 
+                  variant={currentStatus.connected ? "default" : "destructive"}
+                  className="text-sm mb-2"
+                  data-testid="current-status-badge"
+                >
+                  {selectedProvider === 'gemini' ? '🧠' : '⚡'} {selectedProvider === 'gemini' ? 'Gemini' : 'OpenAI'}: {currentStatus.connected ? "✅ מחובר" : "❌ לא זמין"}
+                </Badge>
+                
+                {currentStatus.connected && (
+                  <div className="flex flex-wrap justify-center gap-2">
+                    {currentStatus.features.map((feature, index) => (
+                      <Badge key={index} variant="outline" className="text-xs">
+                        {feature}
+                      </Badge>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* סטטוס כללי של שני המערכות */}
+            <div className="flex justify-center gap-4 text-xs">
+              {geminiStatus && (
+                <div className="flex items-center gap-1" data-testid="gemini-status">
+                  <Brain className="w-3 h-3" />
+                  <span className={geminiStatus.connected ? 'text-green-600' : 'text-red-600'}>
+                    Gemini: {geminiStatus.connected ? '✅' : '❌'}
+                  </span>
+                </div>
+              )}
+              {openaiStatus && (
+                <div className="flex items-center gap-1" data-testid="openai-status">
+                  <Zap className="w-3 h-3" />
+                  <span className={openaiStatus.connected ? 'text-green-600' : 'text-red-600'}>
+                    OpenAI: {openaiStatus.connected ? '✅' : '❌'}
+                  </span>
                 </div>
               )}
             </div>
-          )}
+          </div>
         </div>
 
         {/* אזור הודעות */}

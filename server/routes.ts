@@ -8,6 +8,7 @@ import Stripe from "stripe";
 import { User } from "@shared/schema";
 import { sendOrderConfirmation } from "./emailService";
 import { chatWithGemini, chatWithGeminiStream, checkGeminiConnection, analyzeUserSentiment, type ChatRequest, type ChatMessage } from "./geminiService";
+import { chatWithOpenAI, chatWithOpenAIStream, checkOpenAIConnection, analyzeUserSentimentOpenAI } from "./openaiService";
 import { setupAuth, isAuthenticated } from "./replitAuth";
 
 // Extend Request interface to include authentication properties
@@ -915,6 +916,162 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({ 
         error: 'Failed to get recommendations',
         message: 'שגיאה בקבלת המלצות ספרים.'
+      });
+    }
+  });
+
+  // OpenAI Chat Endpoints - ChatGPT 4o-mini via Open Router
+  
+  // Vérification du statut d'OpenAI
+  app.get('/api/openai/status', async (req, res) => {
+    try {
+      const status = await checkOpenAIConnection();
+      res.json({
+        ...status,
+        message: status.connected 
+          ? "צ'אט עם ChatGPT 4o-mini זמין - שאל כל שאלה על תורת רבי נחמן!"
+          : "מערכת הצ'אט עם OpenAI אינה זמינה כרגע. אנא צרו קשר עם השירות לקוחות.",
+        features: [
+          "ChatGPT 4o-mini (OpenAI דרך Open Router)",
+          "מומחה לתורת רבי נחמן מברסלב",
+          "מידע על כל ספרי ברסלב באתר",
+          "ציטוטים ותורות אותנטיות",
+          "המלצות אישיות על ספרים",
+          "תמיכה בעברית, אנגלית, צרפתית ועוד"
+        ]
+      });
+    } catch (error: any) {
+      res.status(500).json({ 
+        connected: false, 
+        error: 'OpenAI status check failed',
+        message: "מערכת הצ'אט עם OpenAI אינה זמינה כרגע. אנא צרו קשר עם השירות לקוחות."
+      });
+    }
+  });
+
+  // OpenAI Chat רגיל (non-streaming)
+  app.post('/api/openai/chat', async (req, res) => {
+    try {
+      const { message, conversationHistory, useRAG = true } = req.body;
+
+      if (!message || typeof message !== 'string' || message.trim().length === 0) {
+        return res.status(400).json({ 
+          error: 'Message is required',
+          message: 'אנא כתב שאלה או הודעה.'
+        });
+      }
+
+      // ניתוח סנטימנט של השאלה (אופציונלי לסטטיסטיקות)
+      const sentiment = await analyzeUserSentimentOpenAI(message);
+      
+      const chatRequest: ChatRequest = {
+        message: message.trim(),
+        conversationHistory: conversationHistory || [],
+        useRAG
+      };
+
+      const response = await chatWithOpenAI(chatRequest);
+
+      // רישום השיחה (אופציונלי)
+      if (req.isAuthenticated() && response.conversationId) {
+        console.log(`OpenAI Chat session for user ${req.user.id}: ${response.conversationId}, sentiment: ${sentiment.sentiment}`);
+      }
+
+      res.json({
+        ...response,
+        sentiment,
+        timestamp: new Date(),
+        userId: req.isAuthenticated() ? req.user.id : null,
+        provider: 'openai'
+      });
+
+    } catch (error: any) {
+      console.error('OpenAI Chat endpoint error:', error);
+      res.status(500).json({ 
+        error: 'OpenAI Chat failed',
+        response: 'מצטער, אירעה שגיאה במערכת OpenAI. אנא נסה שוב בעוד רגע.',
+        message: 'שגיאה פנימית בשרת הצ\'אט עם OpenAI.'
+      });
+    }
+  });
+
+  // OpenAI Chat עם Streaming Response
+  app.post('/api/openai/stream', async (req, res) => {
+    try {
+      const { message, conversationHistory, useRAG = true } = req.body;
+
+      if (!message || typeof message !== 'string' || message.trim().length === 0) {
+        return res.status(400).json({ 
+          error: 'Message is required',
+          message: 'אנא כתב שאלה או הודעה.'
+        });
+      }
+
+      // הגדרת headers עבור streaming
+      res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+      res.setHeader('Cache-Control', 'no-cache');
+      res.setHeader('Connection', 'keep-alive');
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.setHeader('Access-Control-Allow-Headers', 'Cache-Control');
+
+      const chatRequest: ChatRequest = {
+        message: message.trim(),
+        conversationHistory: conversationHistory || [],
+        useRAG
+      };
+
+      // התחלת streaming response עם OpenAI
+      const streamGenerator = chatWithOpenAIStream(chatRequest);
+      
+      for await (const chunk of streamGenerator) {
+        if (chunk && chunk.trim().length > 0) {
+          res.write(chunk);
+        }
+      }
+
+      res.end();
+
+    } catch (error: any) {
+      console.error('OpenAI Streaming chat error:', error);
+      
+      if (!res.headersSent) {
+        res.status(500).json({ 
+          error: 'OpenAI Streaming chat failed',
+          message: 'שגיאה בשירות הצ\'אט הזורם עם OpenAI.'
+        });
+      } else {
+        res.write('\n\nמצטער, אירעה שגיאה במערכת OpenAI. אנא נסה שוב.');
+        res.end();
+      }
+    }
+  });
+
+  // Endpoint לקבלת המלצות ספרים עם OpenAI
+  app.post('/api/openai/book-recommendations', async (req, res) => {
+    try {
+      const { interests, level, language = 'hebrew' } = req.body;
+      
+      const recommendationPrompt = `בהתבסס על הנושאים שמעניינים אותי: ${interests}, ורמת הלימוד שלי: ${level}, תן לי 3-5 המלצות ממוקדות על ספרי ברסלב מהקטלוג של האש שלי. כלול מחירים ותיאורים קצרים. השתמש בידע שלך על ספרי ברסלב המותאמים לפרופיל שלי.`;
+
+      const chatRequest: ChatRequest = {
+        message: recommendationPrompt,
+        useRAG: true
+      };
+
+      const response = await chatWithOpenAI(chatRequest);
+
+      res.json({
+        recommendations: response.response,
+        basedOn: { interests, level, language },
+        timestamp: new Date(),
+        provider: 'openai'
+      });
+
+    } catch (error: any) {
+      console.error('OpenAI Book recommendations error:', error);
+      res.status(500).json({ 
+        error: 'Failed to get OpenAI recommendations',
+        message: 'שגיאה בקבלת המלצות ספרים מ-OpenAI.'
       });
     }
   });
