@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { realBreslovProducts } from '../data/realProducts';
 import { Header } from '../components/Header';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -28,7 +28,7 @@ export default function Store() {
     categories: [],
     formats: [],
     sizes: [],
-    priceRange: [0, 200],
+    priceRange: [0, 1000], // Will be updated by useEffect to real range
     searchQuery: '',
     languages: []
   });
@@ -75,6 +75,16 @@ export default function Store() {
     };
   }, [allProducts]);
   
+  // Sync initial price range with calculated filterOptions
+  useEffect(() => {
+    if (filterOptions.priceRange[0] !== Infinity) {
+      setFilters(prev => ({
+        ...prev,
+        priceRange: filterOptions.priceRange
+      }));
+    }
+  }, [filterOptions.priceRange]);
+  
   // Filtered products
   const filteredProducts = useMemo(() => {
     return allProducts.filter(product => {
@@ -94,12 +104,19 @@ export default function Store() {
         return false;
       }
       
-      // Format and size filters (check variants)
-      if (filters.formats.length > 0 || filters.sizes.length > 0 || filters.priceRange) {
+      // Format, size and price filters (check variants)
+      const needsVariantCheck = filters.formats.length > 0 || filters.sizes.length > 0 || 
+        (filters.priceRange[0] !== filterOptions.priceRange[0] || filters.priceRange[1] !== filterOptions.priceRange[1]);
+      
+      if (needsVariantCheck) {
         const hasMatchingVariant = product.variants?.some(variant => {
           const formatMatch = filters.formats.length === 0 || filters.formats.includes(variant.format || '');
           const sizeMatch = filters.sizes.length === 0 || filters.sizes.includes(variant.size || '');
-          const priceMatch = !variant.price || (variant.price >= filters.priceRange[0] && variant.price <= filters.priceRange[1]);
+          
+          // Price match: only apply if price range differs from full range AND variant has price
+          const priceRangeActive = filters.priceRange[0] !== filterOptions.priceRange[0] || filters.priceRange[1] !== filterOptions.priceRange[1];
+          const priceMatch = !priceRangeActive || (variant.price !== undefined && variant.price >= filters.priceRange[0] && variant.price <= filters.priceRange[1]);
+          
           return formatMatch && sizeMatch && priceMatch;
         });
         
@@ -150,21 +167,21 @@ export default function Store() {
 
       <Header currentLanguage={currentLanguage} onLanguageChange={setLanguage} />
 
-      <div className="flex min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
-        {/* Beautiful Custom Sidebar */}
-        <div className={`${sidebarVisible ? 'w-80' : 'w-0'} transition-all duration-300 overflow-hidden`}>
-          <div className="h-full bg-white shadow-2xl border-r-4 border-blue-600">
-            {/* Elegant Sidebar Header */}
-            <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-6 shadow-lg">
+      <div className="flex min-h-screen bg-gray-50">
+        {/* Clean Simple Sidebar */}
+        <div className={`${sidebarVisible ? 'w-80' : 'w-0'} transition-all duration-200 overflow-hidden`}>
+          <div className="h-full bg-white shadow-lg border-r border-gray-200">
+            {/* Simple Header */}
+            <div className="bg-white p-4 border-b border-gray-200">
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-xl font-bold flex items-center gap-2" data-testid="sidebar-title">
-                  🔍 <span className="text-yellow-200">מסנני חיפוש</span>
+                <h2 className="text-lg font-semibold text-gray-800" data-testid="sidebar-title">
+                  מסנני חיפוש
                 </h2>
                 <Button 
-                  variant="ghost" 
+                  variant="outline" 
                   size="sm" 
                   onClick={clearAllFilters}
-                  className="text-white hover:bg-blue-800 transition-all duration-200 rounded-full px-3 py-1"
+                  className="text-sm"
                   data-testid="button-clear-filters"
                 >
                   <X className="h-4 w-4 mr-1" />
@@ -172,32 +189,30 @@ export default function Store() {
                 </Button>
               </div>
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-blue-200" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                 <Input 
-                  placeholder="חיפוש ספרים קדושים..."
+                  placeholder="חיפוש ספרים..."
                   value={filters.searchQuery}
                   onChange={(e) => setFilters(prev => ({ ...prev, searchQuery: e.target.value }))}
-                  className="pl-12 pr-4 py-3 bg-white/20 text-white placeholder-blue-200 border-blue-400 rounded-full focus:bg-white/30 transition-all duration-200"
+                  className="pl-10 text-sm"
                   data-testid="input-search"
                 />
               </div>
             </div>
 
-            <div className="p-6 space-y-6 max-h-screen overflow-y-auto">
+            <div className="p-4 space-y-4 max-h-screen overflow-y-auto">
               {/* Price Filter */}
-              <div className="bg-gradient-to-r from-purple-50 to-blue-50 rounded-xl p-4 shadow-md border border-purple-200">
+              <div className="bg-white border border-gray-200 rounded p-4">
                 <div 
-                  className="flex items-center justify-between cursor-pointer mb-3 hover:bg-white/50 rounded-lg p-2 transition-all duration-200"
+                  className="flex items-center justify-between cursor-pointer mb-3"
                   onClick={() => toggleSection('price')}
                   data-testid="label-price-range"
                 >
-                  <span className="text-lg font-bold text-purple-700 flex items-center gap-2">
-                    💰 <span className="text-blue-700">טווח מחירים</span>
-                  </span>
-                  {expandedSections.price ? <ChevronUp className="h-5 w-5 text-purple-600" /> : <ChevronDown className="h-5 w-5 text-purple-600" />}
+                  <span className="text-sm font-medium text-gray-700">טווח מחירים</span>
+                  {expandedSections.price ? <ChevronUp className="h-4 w-4 text-gray-500" /> : <ChevronDown className="h-4 w-4 text-gray-500" />}
                 </div>
                 {expandedSections.price && (
-                  <div className="space-y-4 animate-in slide-in-from-top-5 duration-300">
+                  <div className="space-y-3">
                     <Slider
                       min={filterOptions.priceRange[0]}
                       max={filterOptions.priceRange[1]}
@@ -206,43 +221,41 @@ export default function Store() {
                       className="w-full"
                       data-testid="slider-price-range"
                     />
-                    <div className="flex justify-between text-sm font-semibold text-blue-700 bg-white rounded-lg px-3 py-2">
-                      <span data-testid="text-price-min" className="flex items-center gap-1">💎 {filters.priceRange[0]} ₪</span>
-                      <span data-testid="text-price-max" className="flex items-center gap-1">💎 {filters.priceRange[1]} ₪</span>
+                    <div className="flex justify-between text-xs text-gray-600">
+                      <span data-testid="text-price-min">{filters.priceRange[0]} ₪</span>
+                      <span data-testid="text-price-max">{filters.priceRange[1]} ₪</span>
                     </div>
                   </div>
                 )}
               </div>
 
-              {/* Categories Filter */}
-              <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-4 shadow-md border border-blue-200">
+              {/* Languages Filter - PROMINENT POSITION */}
+              <div className="bg-blue-50 border-2 border-blue-200 rounded p-4">
                 <div 
-                  className="flex items-center justify-between cursor-pointer mb-3 hover:bg-white/50 rounded-lg p-2 transition-all duration-200"
-                  onClick={() => toggleSection('categories')}
-                  data-testid="label-categories"
+                  className="flex items-center justify-between cursor-pointer mb-3"
+                  onClick={() => toggleSection('languages')}
+                  data-testid="label-languages"
                 >
-                  <span className="text-lg font-bold text-blue-700 flex items-center gap-2">
-                    📚 <span className="text-indigo-700">קטגוריות</span>
-                  </span>
-                  {expandedSections.categories ? <ChevronUp className="h-5 w-5 text-blue-600" /> : <ChevronDown className="h-5 w-5 text-blue-600" />}
+                  <span className="text-sm font-semibold text-blue-800">שפות</span>
+                  {expandedSections.languages ? <ChevronUp className="h-4 w-4 text-blue-600" /> : <ChevronDown className="h-4 w-4 text-blue-600" />}
                 </div>
-                {expandedSections.categories && (
-                  <div className="space-y-3 animate-in slide-in-from-top-5 duration-300 max-h-48 overflow-y-auto">
-                    {filterOptions.categories.map((category) => (
-                      <div key={category} className="flex items-center space-x-3 rtl:space-x-reverse hover:bg-white/70 rounded-lg p-2 transition-all duration-200 group">
+                {expandedSections.languages && (
+                  <div className="space-y-2">
+                    {filterOptions.languages.map((language) => (
+                      <div key={language} className="flex items-center space-x-2 rtl:space-x-reverse">
                         <Checkbox
-                          id={`category-${category}`}
-                          checked={filters.categories.includes(category)}
-                          onCheckedChange={() => toggleFilter('categories', category)}
-                          className="border-2 border-blue-400 text-blue-600"
-                          data-testid={`checkbox-category-${category}`}
+                          id={`language-${language}`}
+                          checked={filters.languages.includes(language)}
+                          onCheckedChange={() => toggleFilter('languages', language)}
+                          className="border-blue-400 text-blue-600"
+                          data-testid={`checkbox-language-${language}`}
                         />
                         <label 
-                          htmlFor={`category-${category}`} 
-                          className="text-sm font-semibold leading-none cursor-pointer text-gray-700 group-hover:text-blue-700 transition-colors duration-200 flex items-center gap-1"
-                          data-testid={`text-category-${category}`}
+                          htmlFor={`language-${language}`} 
+                          className="text-sm cursor-pointer text-blue-700 font-medium"
+                          data-testid={`text-language-${language}`}
                         >
-                          📖 {category}
+                          {language}
                         </label>
                       </div>
                     ))}
@@ -250,35 +263,32 @@ export default function Store() {
                 )}
               </div>
 
-              {/* Languages Filter */}
-              <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-4 shadow-md border border-green-200">
+              {/* Categories Filter */}
+              <div className="bg-white border border-gray-200 rounded p-4">
                 <div 
-                  className="flex items-center justify-between cursor-pointer mb-3 hover:bg-white/50 rounded-lg p-2 transition-all duration-200"
-                  onClick={() => toggleSection('languages')}
-                  data-testid="label-languages"
+                  className="flex items-center justify-between cursor-pointer mb-3"
+                  onClick={() => toggleSection('categories')}
+                  data-testid="label-categories"
                 >
-                  <span className="text-lg font-bold text-green-700 flex items-center gap-2">
-                    🌐 <span className="text-emerald-700">שפות</span>
-                  </span>
-                  {expandedSections.languages ? <ChevronUp className="h-5 w-5 text-green-600" /> : <ChevronDown className="h-5 w-5 text-green-600" />}
+                  <span className="text-sm font-medium text-gray-700">קטגוריות</span>
+                  {expandedSections.categories ? <ChevronUp className="h-4 w-4 text-gray-500" /> : <ChevronDown className="h-4 w-4 text-gray-500" />}
                 </div>
-                {expandedSections.languages && (
-                  <div className="space-y-3 animate-in slide-in-from-top-5 duration-300">
-                    {filterOptions.languages.map((language) => (
-                      <div key={language} className="flex items-center space-x-3 rtl:space-x-reverse hover:bg-white/70 rounded-lg p-2 transition-all duration-200 group">
+                {expandedSections.categories && (
+                  <div className="space-y-2 max-h-48 overflow-y-auto">
+                    {filterOptions.categories.map((category) => (
+                      <div key={category} className="flex items-center space-x-2 rtl:space-x-reverse">
                         <Checkbox
-                          id={`language-${language}`}
-                          checked={filters.languages.includes(language)}
-                          onCheckedChange={() => toggleFilter('languages', language)}
-                          className="border-2 border-green-400 text-green-600"
-                          data-testid={`checkbox-language-${language}`}
+                          id={`category-${category}`}
+                          checked={filters.categories.includes(category)}
+                          onCheckedChange={() => toggleFilter('categories', category)}
+                          data-testid={`checkbox-category-${category}`}
                         />
                         <label 
-                          htmlFor={`language-${language}`} 
-                          className="text-sm font-semibold leading-none cursor-pointer text-gray-700 group-hover:text-green-700 transition-colors duration-200 flex items-center gap-1"
-                          data-testid={`text-language-${language}`}
+                          htmlFor={`category-${category}`} 
+                          className="text-xs cursor-pointer text-gray-700"
+                          data-testid={`text-category-${category}`}
                         >
-                          🗣️ {language}
+                          {category}
                         </label>
                       </div>
                     ))}
@@ -287,34 +297,31 @@ export default function Store() {
               </div>
 
               {/* Sizes Filter */}
-              <div className="bg-gradient-to-r from-orange-50 to-yellow-50 rounded-xl p-4 shadow-md border border-orange-200">
+              <div className="bg-white border border-gray-200 rounded p-4">
                 <div 
-                  className="flex items-center justify-between cursor-pointer mb-3 hover:bg-white/50 rounded-lg p-2 transition-all duration-200"
+                  className="flex items-center justify-between cursor-pointer mb-3"
                   onClick={() => toggleSection('sizes')}
                   data-testid="label-sizes"
                 >
-                  <span className="text-lg font-bold text-orange-700 flex items-center gap-2">
-                    📏 <span className="text-yellow-700">גדלים</span>
-                  </span>
-                  {expandedSections.sizes ? <ChevronUp className="h-5 w-5 text-orange-600" /> : <ChevronDown className="h-5 w-5 text-orange-600" />}
+                  <span className="text-sm font-medium text-gray-700">גדלים</span>
+                  {expandedSections.sizes ? <ChevronUp className="h-4 w-4 text-gray-500" /> : <ChevronDown className="h-4 w-4 text-gray-500" />}
                 </div>
                 {expandedSections.sizes && (
-                  <div className="space-y-3 animate-in slide-in-from-top-5 duration-300">
+                  <div className="space-y-2">
                     {filterOptions.sizes.map((size) => (
-                      <div key={size} className="flex items-center space-x-3 rtl:space-x-reverse hover:bg-white/70 rounded-lg p-2 transition-all duration-200 group">
+                      <div key={size} className="flex items-center space-x-2 rtl:space-x-reverse">
                         <Checkbox
                           id={`size-${size}`}
                           checked={filters.sizes.includes(size)}
                           onCheckedChange={() => toggleFilter('sizes', size)}
-                          className="border-2 border-orange-400 text-orange-600"
                           data-testid={`checkbox-size-${size}`}
                         />
                         <label 
                           htmlFor={`size-${size}`} 
-                          className="text-sm font-semibold leading-none cursor-pointer text-gray-700 group-hover:text-orange-700 transition-colors duration-200 flex items-center gap-1"
+                          className="text-xs cursor-pointer text-gray-700"
                           data-testid={`text-size-${size}`}
                         >
-                          📐 {size}
+                          {size}
                         </label>
                       </div>
                     ))}
@@ -323,40 +330,37 @@ export default function Store() {
               </div>
 
               {/* Formats Filter */}
-              <div className="bg-gradient-to-r from-pink-50 to-rose-50 rounded-xl p-4 shadow-md border border-pink-200">
+              <div className="bg-white border border-gray-200 rounded p-4">
                 <div 
-                  className="flex items-center justify-between cursor-pointer mb-3 hover:bg-white/50 rounded-lg p-2 transition-all duration-200"
+                  className="flex items-center justify-between cursor-pointer mb-3"
                   onClick={() => toggleSection('formats')}
                   data-testid="label-formats"
                 >
-                  <span className="text-lg font-bold text-pink-700 flex items-center gap-2">
-                    🎨 <span className="text-rose-700">עיצובים וכריכות</span>
-                  </span>
-                  {expandedSections.formats ? <ChevronUp className="h-5 w-5 text-pink-600" /> : <ChevronDown className="h-5 w-5 text-pink-600" />}
+                  <span className="text-sm font-medium text-gray-700">כריכות</span>
+                  {expandedSections.formats ? <ChevronUp className="h-4 w-4 text-gray-500" /> : <ChevronDown className="h-4 w-4 text-gray-500" />}
                 </div>
                 {expandedSections.formats && (
-                  <div className="space-y-2 max-h-64 overflow-y-auto animate-in slide-in-from-top-5 duration-300">
-                    {filterOptions.formats.slice(0, 10).map((format) => (
-                      <div key={format} className="flex items-center space-x-3 rtl:space-x-reverse hover:bg-white/70 rounded-lg p-2 transition-all duration-200 group">
+                  <div className="space-y-2 max-h-48 overflow-y-auto">
+                    {filterOptions.formats.slice(0, 12).map((format) => (
+                      <div key={format} className="flex items-center space-x-2 rtl:space-x-reverse">
                         <Checkbox
                           id={`format-${format}`}
                           checked={filters.formats.includes(format)}
                           onCheckedChange={() => toggleFilter('formats', format)}
-                          className="border-2 border-pink-400 text-pink-600"
                           data-testid={`checkbox-format-${format}`}
                         />
                         <label 
                           htmlFor={`format-${format}`} 
-                          className="text-xs font-semibold leading-none cursor-pointer text-gray-700 group-hover:text-pink-700 transition-colors duration-200 flex items-center gap-1"
+                          className="text-xs cursor-pointer text-gray-700"
                           data-testid={`text-format-${format}`}
                         >
-                          ✨ {format}
+                          {format}
                         </label>
                       </div>
                     ))}
-                    {filterOptions.formats.length > 10 && (
-                      <div className="text-xs text-pink-600 font-semibold pt-2 flex items-center gap-1" data-testid="text-more-formats">
-                        🔢 ועוד {filterOptions.formats.length - 10} אפשרויות...
+                    {filterOptions.formats.length > 12 && (
+                      <div className="text-xs text-gray-500 pt-1" data-testid="text-more-formats">
+                        ועוד {filterOptions.formats.length - 12} אפשרויות...
                       </div>
                     )}
                   </div>
@@ -367,24 +371,24 @@ export default function Store() {
         </div>
 
         {/* Main Content Area */}
-        <div className="flex-1 relative">
+        <div className="flex-1">
           <div className="p-6">
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center space-x-4">
                 <Button 
                   onClick={() => setSidebarVisible(!sidebarVisible)}
-                  className="bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl transition-all duration-200 rounded-full p-3"
+                  className="bg-blue-600 hover:bg-blue-700 text-white"
                   data-testid="button-toggle-sidebar"
                 >
                   <Filter className="h-5 w-5" />
                 </Button>
-                <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent" data-testid="text-page-title">
-                  ✨ ספרי ברסלב המיוחדים שלנו 📚
+                <h1 className="text-3xl font-bold text-gray-900" data-testid="text-page-title">
+                  ספרי ברסלב
                 </h1>
               </div>
-              <div className="bg-gradient-to-r from-blue-100 to-purple-100 px-6 py-3 rounded-full shadow-md border border-blue-200" data-testid="text-results-count">
-                <span className="text-sm font-bold text-blue-700 flex items-center gap-2">
-                  🔍 נמצאו <span className="text-purple-600 text-lg">{filteredProducts.length}</span> מתוך <span className="text-blue-600 text-lg">{allProducts.length}</span> ספרים קדושים
+              <div className="bg-white px-4 py-2 rounded border border-gray-200" data-testid="text-results-count">
+                <span className="text-sm text-gray-600">
+                  נמצאו <span className="font-semibold text-blue-600">{filteredProducts.length}</span> מתוך <span className="font-semibold">{allProducts.length}</span> ספרים
                 </span>
               </div>
             </div>
@@ -393,20 +397,16 @@ export default function Store() {
               {filteredProducts.map((product) => (
                 <div 
                   key={product.id} 
-                  className="group bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 hover:-translate-y-2 border border-gray-100"
+                  className="bg-white rounded-lg overflow-hidden shadow hover:shadow-lg transition-shadow border border-gray-200"
                   data-testid={`card-product-${product.id}`}
                 >
-                  {/* Price Badge */}
-                  <div className="absolute top-3 right-3 bg-gradient-to-r from-purple-600 to-purple-700 text-white px-3 py-1 rounded-full text-xs font-bold z-10 shadow-md">
-                    💎 מחיר הקרן
-                  </div>
                   
                   {/* Image */}
                   {product.images && product.images.length > 0 ? (
                     <img 
                       src={product.images[0]}
                       alt={product.name}
-                      className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                      className="w-full h-48 object-cover"
                       data-testid={`img-product-${product.id}`}
                       onError={(e) => {
                         e.currentTarget.style.display = 'none';
@@ -414,28 +414,24 @@ export default function Store() {
                     />
                   ) : (
                     <div 
-                      className="w-full h-48 bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center group-hover:from-blue-50 group-hover:to-purple-50 transition-all duration-500"
+                      className="w-full h-48 bg-gray-100 flex items-center justify-center"
                       data-testid={`placeholder-product-${product.id}`}
                     >
-                      <span className="text-4xl group-hover:scale-125 group-hover:rotate-12 transition-all duration-300">📖</span>
+                      <span className="text-2xl">📖</span>
                     </div>
                   )}
                   
                   {/* Content */}
                   <div className="p-4">
                     <h3 
-                      className="font-bold text-lg mb-2 text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2"
+                      className="font-semibold text-lg mb-2 text-gray-900 line-clamp-2"
                       data-testid={`text-title-${product.id}`}
                     >
                       {product.name}
                     </h3>
                     
-                    <div className="flex items-center mb-3">
-                      <div className="text-yellow-400 text-sm" data-testid={`rating-${product.id}`}>★★★★★</div>
-                    </div>
-                    
                     <div 
-                      className="text-lg font-bold text-red-600 mb-2 group-hover:text-red-700 transition-colors"
+                      className="text-lg font-bold text-blue-600 mb-2"
                       data-testid={`text-price-${product.id}`}
                     >
                       {product.variants && product.variants.length > 0 ? 
@@ -448,11 +444,11 @@ export default function Store() {
                       className="text-sm text-gray-600 mb-4"
                       data-testid={`text-category-${product.id}`}
                     >
-                      {product.category} • {product.variants?.length || 0} אפשרויות
+                      {product.category}
                     </div>
                     
                     <Button 
-                      className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg transition-all duration-200 hover:shadow-lg"
+                      className="w-full bg-blue-600 hover:bg-blue-700 text-white"
                       data-testid={`button-view-details-${product.id}`}
                     >
                       צפייה בפרטים
@@ -464,7 +460,7 @@ export default function Store() {
             
             {filteredProducts.length === 0 && (
               <div className="text-center py-12" data-testid="text-no-results">
-                <div className="text-6xl mb-4">🔍</div>
+                <div className="text-4xl mb-4">🔍</div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">לא נמצאו תוצאות</h3>
                 <p className="text-gray-600 mb-4">נסו לשנות את מסנני החיפוש</p>
                 <Button onClick={clearAllFilters} data-testid="button-clear-filters-no-results">
@@ -473,11 +469,11 @@ export default function Store() {
               </div>
             )}
             
-            <div className="bg-white rounded-xl p-8 text-center shadow-lg border border-gray-100 mt-12">
+            <div className="bg-white rounded-lg p-8 text-center shadow border border-gray-200 mt-12">
               <p className="text-lg text-gray-700 mb-4" data-testid="text-contact-message">
                 מחפשים ספר נוסף? צרו קשר ונמצא עבורכם!
               </p>
-              <Button className="bg-green-600 hover:bg-green-700 text-white font-semibold px-8 py-3 rounded-lg transition-all duration-200 hover:shadow-lg" data-testid="button-contact">
+              <Button className="bg-green-600 hover:bg-green-700 text-white" data-testid="button-contact">
                 צרו קשר לפרטים נוספים
               </Button>
             </div>
