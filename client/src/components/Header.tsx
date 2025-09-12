@@ -19,6 +19,9 @@ const translations = {
     join: 'הצטרפות',
     downloads: 'הורדות',
     subscription: 'הוראת קבע',
+    breslovVideos: 'ברסלב סגנון',
+    chat: '💬 צ\'אט ברסלבי',
+    whatsapp: '💬 דבר איתנו',
     fire: '🔥 האש שלי'
   },
   en: {
@@ -30,6 +33,9 @@ const translations = {
     join: 'Join',
     downloads: 'Downloads',
     subscription: 'Subscription',
+    breslovVideos: 'Breslov Style',
+    chat: '💬 Breslov Chat',
+    whatsapp: '💬 Talk to Us',
     fire: '🔥 My Fire'
   },
   fr: {
@@ -41,6 +47,9 @@ const translations = {
     join: 'Rejoindre',
     downloads: 'Téléchargements',
     subscription: 'Abonnement',
+    breslovVideos: 'Style Breslov',
+    chat: '💬 Chat Breslov',
+    whatsapp: '💬 Parlez-nous',
     fire: '🔥 Mon Feu'
   },
   es: {
@@ -52,6 +61,9 @@ const translations = {
     join: 'Unirse',
     downloads: 'Descargas',
     subscription: 'Suscripción',
+    breslovVideos: 'Estilo Breslov',
+    chat: '💬 Chat Breslov',
+    whatsapp: '💬 Habla con Nosotros',
     fire: '🔥 Mi Fuego'
   },
   ru: {
@@ -63,6 +75,9 @@ const translations = {
     join: 'Присоединиться',
     downloads: 'Загрузки',
     subscription: 'Подписка',
+    breslovVideos: 'Брeslов Стиль',
+    chat: '💬 Брeslов Чат',
+    whatsapp: '💬 Поговорить с Нами',
     fire: '🔥 Мой Огонь'
   }
 };
@@ -120,8 +135,14 @@ export function Header({ currentLanguage = 'he', onLanguageChange }: HeaderProps
             <li className={location === '/downloads' ? 'current-menu-item' : ''}>
               <a href="/downloads" data-testid="link-downloads" className="transition-all duration-300 hover:scale-110 hover:text-yellow-300 hover:drop-shadow-lg inline-block hover:-translate-y-1">{t.downloads}</a>
             </li>
+            <li className={location === '/chat' ? 'current-menu-item' : ''}>
+              <a href="/chat" data-testid="link-chat" style={{color: '#10B981', fontWeight: 'bold'}} className="px-3 py-1 rounded-lg transition-all duration-300 hover:scale-125 hover:text-white hover:bg-green-500 hover:shadow-xl hover:-translate-y-2 inline-block">{t.chat}</a>
+            </li>
             <li className={location === '/subscription' ? 'current-menu-item' : ''}>
               <a href="/subscription" data-testid="link-subscription" style={{color: '#FFD700', fontWeight: 'bold'}} className="px-3 py-1 rounded-lg transition-all duration-300 hover:scale-125 hover:text-white hover:bg-yellow-500 hover:shadow-xl hover:-translate-y-2 inline-block">👑 {t.subscription}</a>
+            </li>
+            <li className={location === '/breslov-videos' ? 'current-menu-item' : ''}>
+              <a href="/breslov-videos" data-testid="link-breslov-videos" style={{color: '#FF6B35', fontWeight: 'bold'}} className="px-3 py-1 rounded-lg transition-all duration-300 hover:scale-125 hover:text-white hover:bg-orange-500 hover:shadow-xl hover:-translate-y-2 inline-block">🎥 {t.breslovVideos}</a>
             </li>
             <li className={location === '/yaaakov' ? 'current-menu-item' : ''}>
               <a href="/yaaakov" data-testid="link-yaaakov" className="transition-all duration-300 hover:scale-110 hover:text-yellow-300 hover:drop-shadow-lg inline-block hover:-translate-y-1">
@@ -160,6 +181,18 @@ export function Header({ currentLanguage = 'he', onLanguageChange }: HeaderProps
 
         {/* HEADER ACTIONS */}
         <div className="header-actions">
+          {/* WhatsApp Button */}
+          <a 
+            href="https://wa.me/972501234567?text=שלום, אני מעוניין לשמוע עוד על הספרים והמנויים שלכם" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="whatsapp-widget transition-all duration-300 hover:scale-110 hover:bg-green-500 hover:text-white hover:shadow-xl hover:-translate-y-1 cursor-pointer flex items-center px-3 py-2 rounded-lg bg-white bg-opacity-20 text-white border border-white border-opacity-30" 
+            data-testid="button-whatsapp"
+            style={{marginRight: currentLanguage === 'he' ? '10px' : '0', marginLeft: currentLanguage !== 'he' ? '10px' : '0'}}
+          >
+            <span className="text-lg">{t.whatsapp}</span>
+          </a>
+
           {/* Cart Widget */}
           <div 
             className="cart-widget transition-all duration-300 hover:scale-110 hover:bg-white hover:text-red-600 hover:shadow-xl hover:-translate-y-1 cursor-pointer" 
@@ -213,8 +246,23 @@ export function Header({ currentLanguage = 'he', onLanguageChange }: HeaderProps
           <li className={location === '/downloads' ? 'current-menu-item' : ''}>
             <a href="/downloads" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-downloads">{t.downloads}</a>
           </li>
+          <li>
+            <a 
+              href="https://wa.me/972501234567?text=שלום, אני מעוניין לשמוע עוד על הספרים והמנויים שלכם" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              onClick={() => setMobileMenuOpen(false)} 
+              data-testid="mobile-link-whatsapp" 
+              style={{color: '#25D366', fontWeight: 'bold'}}
+            >
+              {t.whatsapp}
+            </a>
+          </li>
           <li className={location === '/subscription' ? 'current-menu-item' : ''}>
             <a href="/subscription" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-subscription" style={{color: '#FFD700', fontWeight: 'bold'}}>👑 {t.subscription}</a>
+          </li>
+          <li className={location === '/breslov-videos' ? 'current-menu-item' : ''}>
+            <a href="/breslov-videos" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-breslov-videos" style={{color: '#FF6B35', fontWeight: 'bold'}}>🎥 {t.breslovVideos}</a>
           </li>
           <li className={location === '/yaaakov' ? 'current-menu-item' : ''}>
             <a href="/yaaakov" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-yaaakov">

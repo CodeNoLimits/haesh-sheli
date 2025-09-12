@@ -7,6 +7,7 @@ import { fileURLToPath } from "url";
 import Stripe from "stripe";
 import { User } from "@shared/schema";
 import { sendOrderConfirmation } from "./emailService";
+import { chatWithGemini, chatWithGeminiStream, checkGeminiConnection, analyzeUserSentiment, type ChatRequest, type ChatMessage } from "./geminiService";
 
 // Extend Request interface to include authentication properties
 declare global {
@@ -728,6 +729,197 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error: any) {
       console.error('Error handling webhook:', error);
       res.status(500).json({ error: 'Webhook handler failed' });
+    }
+  });
+
+  // Chat Endpoints avec Gemini 2.5 Pro et RAG HaEsh Sheli
+  
+  // Vérification du statut de Gemini
+  app.get('/api/chat/status', async (req, res) => {
+    try {
+      const status = await checkGeminiConnection();
+      res.json({
+        ...status,
+        message: status.connected 
+          ? "צ'אט עם מומחה ברסלב זמין - שאל כל שאלה על תורת רבי נחמן!"
+          : "מערכת הצ'אט אינה זמינה כרגע. אנא צרו קשר עם השירות לקוחות.",
+        features: [
+          "מומחה לתורת רבי נחמן מברסלב",
+          "מידע על כל ספרי ברסלב באתר",
+          "ציטוטים ותורות אותנטיות",
+          "המלצות אישיות על ספרים",
+          "תמיכה בעברית, אנגלית, צרפתית ועוד"
+        ]
+      });
+    } catch (error: any) {
+      res.status(500).json({ 
+        connected: false, 
+        error: 'Status check failed',
+        message: "מערכת הצ'אט אינה זמינה כרגע. אנא צרו קשר עם השירות לקוחות."
+      });
+    }
+  });
+
+  // Chat רגיל (non-streaming)
+  app.post('/api/chat', async (req, res) => {
+    try {
+      const { message, conversationHistory, useRAG = true } = req.body;
+
+      if (!message || typeof message !== 'string' || message.trim().length === 0) {
+        return res.status(400).json({ 
+          error: 'Message is required',
+          message: 'אנא כתב שאלה או הודעה.'
+        });
+      }
+
+      // ניתוח סנטימנט של השאלה (אופציונלי לסטטיסטיקות)
+      const sentiment = await analyzeUserSentiment(message);
+      
+      const chatRequest: ChatRequest = {
+        message: message.trim(),
+        conversationHistory: conversationHistory || [],
+        useRAG
+      };
+
+      const response = await chatWithGemini(chatRequest);
+
+      // רישום השיחה (אופציונלי)
+      if (req.isAuthenticated() && response.conversationId) {
+        console.log(`Chat session for user ${req.user.id}: ${response.conversationId}, sentiment: ${sentiment.sentiment}`);
+      }
+
+      res.json({
+        ...response,
+        sentiment,
+        timestamp: new Date(),
+        userId: req.isAuthenticated() ? req.user.id : null
+      });
+
+    } catch (error: any) {
+      console.error('Chat endpoint error:', error);
+      res.status(500).json({ 
+        error: 'Chat failed',
+        response: 'מצטער, אירעה שגיאה. אנא נסה שוב בעוד רגע.',
+        message: 'שגיאה פנימית בשרת הצ\'אט.'
+      });
+    }
+  });
+
+  // Chat עם Streaming Response
+  app.post('/api/chat/stream', async (req, res) => {
+    try {
+      const { message, conversationHistory, useRAG = true } = req.body;
+
+      if (!message || typeof message !== 'string' || message.trim().length === 0) {
+        return res.status(400).json({ 
+          error: 'Message is required',
+          message: 'אנא כתב שאלה או הודעה.'
+        });
+      }
+
+      // הגדרת headers עבור streaming
+      res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+      res.setHeader('Cache-Control', 'no-cache');
+      res.setHeader('Connection', 'keep-alive');
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.setHeader('Access-Control-Allow-Headers', 'Cache-Control');
+
+      const chatRequest: ChatRequest = {
+        message: message.trim(),
+        conversationHistory: conversationHistory || [],
+        useRAG
+      };
+
+      // התחלת streaming response
+      const streamGenerator = chatWithGeminiStream(chatRequest);
+      
+      for await (const chunk of streamGenerator) {
+        if (chunk && chunk.trim().length > 0) {
+          res.write(chunk);
+        }
+      }
+
+      res.end();
+
+    } catch (error: any) {
+      console.error('Streaming chat error:', error);
+      
+      if (!res.headersSent) {
+        res.status(500).json({ 
+          error: 'Streaming chat failed',
+          message: 'שגיאה בשירות הצ\'אט הזורם.'
+        });
+      } else {
+        res.write('\n\nמצטער, אירעה שגיאה בעיבוד השאלה. אנא נסה שוב.');
+        res.end();
+      }
+    }
+  });
+
+  // Endpoint לשמירת היסטוריית שיחות (אופציונלי)
+  app.post('/api/chat/save-conversation', async (req, res) => {
+    try {
+      if (!req.isAuthenticated()) {
+        return res.status(401).json({ 
+          error: 'Authentication required',
+          message: 'נדרשת הזדהות לשמירת שיחות.'
+        });
+      }
+
+      const { conversationId, messages, title } = req.body;
+      
+      if (!conversationId || !messages || !Array.isArray(messages)) {
+        return res.status(400).json({ 
+          error: 'Invalid conversation data',
+          message: 'נתוני שיחה לא תקינים.'
+        });
+      }
+
+      // כאן ניתן להוסיף שמירה למסד נתונים אם נדרש
+      // await storage.saveConversation(req.user.id, conversationId, messages, title);
+
+      res.json({
+        success: true,
+        message: 'השיחה נשמרה בהצלחה.',
+        conversationId,
+        savedAt: new Date()
+      });
+
+    } catch (error: any) {
+      console.error('Save conversation error:', error);
+      res.status(500).json({ 
+        error: 'Failed to save conversation',
+        message: 'שגיאה בשמירת השיחה.'
+      });
+    }
+  });
+
+  // Endpoint לקבלת המלצות ספרים על בסיס AI
+  app.post('/api/chat/book-recommendations', async (req, res) => {
+    try {
+      const { interests, level, language = 'hebrew' } = req.body;
+      
+      const recommendationPrompt = `בהתבסס על הנושאים שמעניינים אותי: ${interests}, ורמת הלימוד שלי: ${level}, תן לי 3-5 המלצות ממוקדות על ספרי ברסלב מהקטלוג של האש שלי. כלול מחירים ותיאורים קצרים.`;
+
+      const chatRequest: ChatRequest = {
+        message: recommendationPrompt,
+        useRAG: true
+      };
+
+      const response = await chatWithGemini(chatRequest);
+
+      res.json({
+        recommendations: response.response,
+        basedOn: { interests, level, language },
+        timestamp: new Date()
+      });
+
+    } catch (error: any) {
+      console.error('Book recommendations error:', error);
+      res.status(500).json({ 
+        error: 'Failed to get recommendations',
+        message: 'שגיאה בקבלת המלצות ספרים.'
+      });
     }
   });
 

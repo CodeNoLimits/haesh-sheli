@@ -14,7 +14,9 @@ import {
   type PaymentTransaction,
   type InsertPaymentTransaction,
   type ShippingRate,
-  type InsertShippingRate
+  type InsertShippingRate,
+  type ProductVariant,
+  type ShippingAddress
 } from "@shared/schema";
 import { randomUUID } from "crypto";
 
@@ -134,9 +136,9 @@ export class MemStorage implements IStorage {
     const horatKevaSilver: SubscriptionPlan = {
       id: "horat_keva_299",
       name: "HoRaat Keva Silver",
-      nameHebrew: "הוראת קבע כסף",
-      description: "Enhanced monthly subscription with premium features and higher discounts for generous supporters",
-      descriptionHebrew: "מנוי חודשי משופר עם תכונות פרימיום והנחות גבוהות יותר לתומכים נדיבים",
+      nameHebrew: "הוראת קבע - מנוי כסף",
+      description: "Monthly subscription with 10% discount and preferential shipping rates for dedicated supporters",
+      descriptionHebrew: "מנוי חודשי עם 10% הנחה ותעריפי משלוח מועדפים לתומכים מסורים",
       price: 29900, // 299 shekels in agorot
       currency: "ILS",
       intervalType: "month",
@@ -145,18 +147,18 @@ export class MemStorage implements IStorage {
       features: [
         "Free access to all digital books",
         "10% discount on all physical orders",
-        "Silver supporter status",
+        "Preferential shipping rates in Israel",
         "Priority customer support",
-        "Monthly digital newsletter",
-        "Tax-deductible receipt provided"
+        "Monthly spiritual newsletter",
+        "Tax-deductible receipt for donations"
       ] as string[],
       featuresHebrew: [
-        "גישה חופשית לכל הספרים הדיגיטליים",
-        "10% הנחה על כל ההזמנות הפיזיות",
-        "סטטוס תומך כסף",
-        "שירות לקוחות עדיפות",
-        "עלון דיגיטלי חודשי",
-        "קבלה זכאית לניכוי במס"
+        "גישה מלאה לכל הספרים הדיגיטליים",
+        "10% הנחה על כל הזמנות הספרים הפיזיים",
+        "תעריפי משלוח מועדפים בישראל",
+        "שירות לקוחות מועדף",
+        "עלון רוחני חודשי",
+        "קבלה להקלה במס על תרומות"
       ] as string[],
       isActive: true,
       createdAt: new Date()
@@ -166,9 +168,9 @@ export class MemStorage implements IStorage {
     const horatKevaGold: SubscriptionPlan = {
       id: "horat_keva_499",
       name: "HoRaat Keva Gold",
-      nameHebrew: "הוראת קבע זהב",
-      description: "Premium monthly subscription for dedicated supporters with exclusive benefits and significant savings",
-      descriptionHebrew: "מנוי חודשי פרימיום לתומכים מסורים עם הטבות בלעדיות וחסכון משמעותי",
+      nameHebrew: "הוראת קבע - מנוי זהב",
+      description: "Premium monthly subscription with free shipping once per month in Israel and 10% discount",
+      descriptionHebrew: "מנוי חודשי מתקדם עם משלוח חינם פעם בחודש בישראל ו-10% הנחה",
       price: 49900, // 499 shekels in agorot
       currency: "ILS",
       intervalType: "month",
@@ -176,23 +178,23 @@ export class MemStorage implements IStorage {
       stripePriceId: null,
       features: [
         "Free access to all digital books",
-        "15% discount on all physical orders",
+        "10% discount on all physical orders",
+        "Free shipping in Israel once per month",
         "Gold supporter status",
         "Priority customer support",
-        "Monthly digital newsletter",
-        "Exclusive spiritual content",
-        "Free shipping on all orders",
-        "Tax-deductible receipt provided"
+        "Monthly spiritual newsletter",
+        "Exclusive Breslov content",
+        "Tax-deductible receipt for donations"
       ] as string[],
       featuresHebrew: [
-        "גישה חופשית לכל הספרים הדיגיטליים",
-        "15% הנחה על כל ההזמנות הפיזיות",
-        "סטטוס תומך זהב",
-        "שירות לקוחות עדיפות",
-        "עלון דיגיטלי חודשי",
-        "תוכן רוחני בלעדי",
-        "משלוח חינם על כל ההזמנות",
-        "קבלה זכאית לניכוי במס"
+        "גישה מלאה לכל הספרים הדיגיטליים",
+        "10% הנחה על כל הזמנות הספרים הפיזיים",
+        "משלוח חינם בישראל פעם בחודש",
+        "מעמד תומך זהב",
+        "שירות לקוחות מועדף",
+        "עלון רוחני חודשי",
+        "תכנים בלעדיים מעולם ברסלב",
+        "קבלה להקלה במס על תרומות"
       ] as string[],
       isActive: true,
       createdAt: new Date()
@@ -202,9 +204,9 @@ export class MemStorage implements IStorage {
     const horatKevaPlatinum: SubscriptionPlan = {
       id: "horat_keva_999",
       name: "HoRaat Keva Platinum",
-      nameHebrew: "הוראת קבע פלטינום",
-      description: "Ultimate monthly subscription for major supporters with maximum benefits and exclusive access",
-      descriptionHebrew: "מנוי חודשי אולטימטיבי לתומכים גדולים עם הטבות מירביות וגישה בלעדית",
+      nameHebrew: "הוראת קבע - מנוי פלטינום",
+      description: "Ultimate monthly subscription with free shipping 3x per month, complimentary books and 20% discount",
+      descriptionHebrew: "מנוי חודשי מעולה עם משלוח חינם 3 פעמים בחודש, ספרים במתנה ו-20% הנחה",
       price: 99900, // 999 shekels in agorot
       currency: "ILS",
       intervalType: "month",
@@ -213,26 +215,28 @@ export class MemStorage implements IStorage {
       features: [
         "Free access to all digital books",
         "20% discount on all physical orders",
+        "Free shipping in Israel up to 3 times per month",
+        "Monthly complimentary book selection",
         "Platinum supporter status",
         "VIP customer support",
-        "Monthly digital newsletter",
-        "Exclusive spiritual content",
-        "Free express shipping worldwide",
-        "Personal blessing from Rabbi",
-        "Annual supporter recognition",
-        "Tax-deductible receipt provided"
+        "Monthly spiritual newsletter",
+        "Exclusive Breslov content and teachings",
+        "Personal blessing certificate",
+        "Annual recognition in supporter list",
+        "Tax-deductible receipt for donations"
       ] as string[],
       featuresHebrew: [
-        "גישה חופשית לכל הספרים הדיגיטליים",
-        "20% הנחה על כל ההזמנות הפיזיות",
-        "סטטוס תומך פלטינום",
+        "גישה מלאה לכל הספרים הדיגיטליים",
+        "20% הנחה על כל הזמנות הספרים הפיזיים",
+        "משלוח חינם בישראל עד 3 פעמים בחודש",
+        "בחירת ספר חודשית במתנה",
+        "מעמד תומך פלטינום",
         "שירות לקוחות VIP",
-        "עלון דיגיטלי חודשי",
-        "תוכן רוחני בלעדי",
-        "משלוח מהיר חינם ברחבי העולם",
-        "ברכה אישית מהרב",
-        "הכרה שנתית של תומכים",
-        "קבלה זכאית לניכוי במס"
+        "עלון רוחני חודשי",
+        "תכנים ושיעורים בלעדיים מעולם ברסלב",
+        "תעודת ברכה אישית",
+        "הכרה שנתית ברשימת התומכים",
+        "קבלה להקלה במס על תרומות"
       ] as string[],
       isActive: true,
       createdAt: new Date()
@@ -455,10 +459,10 @@ export class MemStorage implements IStorage {
       language: insertProduct.language || 'עברית',
       pages: insertProduct.pages || null,
       isbn: insertProduct.isbn || null,
-      images: insertProduct.images || null,
-      variants: insertProduct.variants || null,
-      features: insertProduct.features || null,
-      tags: insertProduct.tags || null,
+      images: Array.isArray(insertProduct.images) ? insertProduct.images as string[] : null,
+      variants: Array.isArray(insertProduct.variants) ? insertProduct.variants as ProductVariant[] : null,
+      features: Array.isArray(insertProduct.features) ? insertProduct.features as string[] : null,
+      tags: Array.isArray(insertProduct.tags) ? insertProduct.tags as string[] : null,
       isActive: insertProduct.isActive !== false,
       isFeatured: insertProduct.isFeatured || false
     };
@@ -577,9 +581,9 @@ export class MemStorage implements IStorage {
       intervalType: (plan.intervalType || "month") as "month" | "year", // Handle undefined -> default interval
       intervalCount: plan.intervalCount ?? 1, // Handle undefined -> default count of 1
       stripePriceId: plan.stripePriceId || null, // Handle undefined -> null conversion
-      features: Array.isArray(plan.features) ? (plan.features as string[]) : null, // Handle undefined/invalid -> null conversion
-      featuresHebrew: Array.isArray(plan.featuresHebrew) ? (plan.featuresHebrew as string[]) : null, // Handle undefined/invalid -> null conversion
-      isActive: plan.isActive || null, // Handle undefined -> null conversion
+      features: Array.isArray(plan.features) ? plan.features as string[] : null,
+      featuresHebrew: Array.isArray(plan.featuresHebrew) ? plan.featuresHebrew as string[] : null,
+      isActive: plan.isActive !== false,
       createdAt: new Date()
     };
     this.subscriptionPlans.set(id, subscriptionPlan);
@@ -619,8 +623,8 @@ export class MemStorage implements IStorage {
       paymentStatus: (insertOrder.paymentStatus || 'pending') as 'pending' | 'processing' | 'succeeded' | 'failed' | 'canceled',
       stripePaymentIntentId: insertOrder.stripePaymentIntentId || null,
       stripeChargeId: insertOrder.stripeChargeId || null,
-      shippingAddress: insertOrder.shippingAddress || null,
-      billingAddress: insertOrder.billingAddress || null,
+      shippingAddress: insertOrder.shippingAddress as ShippingAddress | null,
+      billingAddress: insertOrder.billingAddress as ShippingAddress | null,
       trackingNumber: insertOrder.trackingNumber || null,
       estimatedDelivery: insertOrder.estimatedDelivery || null,
       deliveredAt: insertOrder.deliveredAt || null,
@@ -664,7 +668,7 @@ export class MemStorage implements IStorage {
       ...insertOrderItem,
       id,
       productNameEnglish: insertOrderItem.productNameEnglish || null,
-      variantDetails: insertOrderItem.variantDetails || null,
+      variantDetails: insertOrderItem.variantDetails as ProductVariant | null,
       createdAt: new Date()
     };
     this.orderItems.set(id, orderItem);
@@ -692,7 +696,7 @@ export class MemStorage implements IStorage {
       refundAmount: insertTransaction.refundAmount || 0,
       refundReason: insertTransaction.refundReason || null,
       refundedAt: insertTransaction.refundedAt || null,
-      metadata: insertTransaction.metadata || null,
+      metadata: insertTransaction.metadata as any,
       createdAt: new Date(),
       updatedAt: new Date()
     };
@@ -731,7 +735,7 @@ export class MemStorage implements IStorage {
       description: insertRate.description || null,
       descriptionHebrew: insertRate.descriptionHebrew || null,
       country: insertRate.country || 'IL',
-      regions: insertRate.regions || null,
+      regions: Array.isArray(insertRate.regions) ? insertRate.regions as string[] : null,
       freeShippingThreshold: insertRate.freeShippingThreshold || null,
       estimatedDaysMin: insertRate.estimatedDaysMin || 1,
       estimatedDaysMax: insertRate.estimatedDaysMax || 7,

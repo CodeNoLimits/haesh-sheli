@@ -154,12 +154,12 @@ const SubscriptionPlanCard = ({ plan, isCurrentPlan }: { plan: SubscriptionPlan;
       console.error('Subscription creation error:', error);
       
       // Show appropriate error message
-      let errorMessage = "אירעה שגיאה ביצירת המנוי";
-      let errorTitle = "שגיאה";
+      let errorMessage = "נכשלנו בעיבוד הבקשה. אנא נסה שוב";
+      let errorTitle = "אופס!";
       
-      if (error.message?.includes('מערכת התשלומים אינה זמינה')) {
-        errorTitle = "השירות זמנית לא זמין";
-        errorMessage = error.message + "\n\nאנא צרו קשר: support@haesh-sheli.co.il";
+      if (error.message?.includes('מערכת התשלומים')) {
+        errorTitle = "יצירת קשר";
+        errorMessage = "נתקלנו בקושי זמני. צוות השירות שלנו יעזור לך להשלים את המנוי. אנא פנה אלינו";
       }
       
       toast({
@@ -177,9 +177,9 @@ const SubscriptionPlanCard = ({ plan, isCurrentPlan }: { plan: SubscriptionPlan;
   const handleSubscribe = async () => {
     if (!stripePromise) {
       toast({
-        title: "מערכת התשלום אינה זמינה",
-        description: "אנא צור קשר עם השירות לקוחות: support@haesh-sheli.co.il",
-        variant: "destructive",
+        title: "בואו נדבר!",
+        description: "נשמח לעזור לך להצטרף למשפחת 'האש שלי'. צור איתנו קשר: support@haesh-sheli.co.il או דרך הוואטסאפ",
+        duration: 8000,
       });
       return;
     }
@@ -245,14 +245,17 @@ const SubscriptionPlanCard = ({ plan, isCurrentPlan }: { plan: SubscriptionPlan;
         <div className="section-surface-strong p-4 rounded-lg border border-primary/30">
           <h5 className="font-semibold text-primary mb-2">💰 חסכון משמעותי!</h5>
           <p className="text-sm text-foreground">
-            במקום לשלם על כל ספר בנפרד, קבל גישה לכל הספרים הדיגיטליים תמיד תמורת רק ₪99 לחודש!
+            במקום לשלם על כל ספר בנפרד, קבל גישה לכל הספרים הדיגיטליים + הנחות על ספרים פיזיים!
           </p>
         </div>
 
         {/* Social proof */}
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
-          <p className="text-sm text-blue-700 dark:text-blue-300 text-center">
-            🌟 מעל 5,000 חברים כבר נהנים מהמנוי המיוחד שלנו
+        <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+          <p className="text-sm text-green-700 dark:text-green-300 text-center">
+            🌟 אלפי משפחות בישראל כבר חלק ממשפחת 'האש שלי'
+          </p>
+          <p className="text-xs text-green-600 dark:text-green-400 text-center mt-1">
+            "הספרים הדיגיטליים שינו את חיי הרוחניים" - שרה מירושלים
           </p>
         </div>
 
@@ -272,11 +275,27 @@ const SubscriptionPlanCard = ({ plan, isCurrentPlan }: { plan: SubscriptionPlan;
             <SubscriptionForm plan={plan} clientSecret={clientSecret} />
           </Elements>
         ) : showPayment && clientSecret && !stripePromise ? (
-          <div className="section-surface-strong p-4 rounded-lg border border-primary/30">
-            <h5 className="font-semibold text-primary mb-2">⚠️ מערכת התשלום אינה זמינה</h5>
-            <p className="text-sm text-foreground">
-              אנא צור קשר עם השירות לקוחות להשלמת המנוי: support@haesh-sheli.co.il
+          <div className="section-surface-strong p-4 rounded-lg border border-primary/30 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20">
+            <h5 className="font-semibold text-primary mb-2">💬 בואו נדבר אישית!</h5>
+            <p className="text-sm text-foreground mb-3">
+              נשמח לעזור לך להצטרף למשפחת 'האש שלי' בצורה הטובה ביותר
             </p>
+            <div className="flex gap-2">
+              <a 
+                href="https://wa.me/972501234567?text=שלום, אני מעוניין להצטרף למנוי הוראת קבע שלכם" 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                <Button size="sm" className="btn-breslov-primary text-white hover:bg-green-600">
+                  💬 דבר איתנו
+                </Button>
+              </a>
+              <a href="mailto:support@haesh-sheli.co.il?subject=הצטרפות למנוי הוראת קבע">
+                <Button size="sm" variant="outline">
+                  📧 שלח מייל
+                </Button>
+              </a>
+            </div>
           </div>
         ) : (
           <Button 
@@ -381,10 +400,10 @@ export default function SubscriptionPage() {
         {/* Hero section */}
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            הוראת קבע - מנוי פרימיום
+            הוראת קבע - תמכו בהפצת אור רבינו
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 mb-6 max-w-3xl mx-auto">
-            קבל גישה לכל הספרים הדיגיטליים של רבי נחמן מברסלב + הנחה על כל הקניות
+            הצטרפו למשפחת 'האש שלי' וקבלו גישה לכל הספרים הדיגיטליים והנחות מיוחדות
           </p>
           
           {/* Benefits showcase */}
@@ -395,7 +414,7 @@ export default function SubscriptionPage() {
             </div>
             <div className="flex items-center bg-white dark:bg-gray-800 px-4 py-2 rounded-full shadow-md border">
               <ShoppingCart className="w-5 h-5 text-blue-500 mr-2" />
-              <span className="text-sm font-medium">5% הנחה על קניות</span>
+              <span className="text-sm font-medium">הנחה עד 20% על קניות</span>
             </div>
             <div className="flex items-center bg-white dark:bg-gray-800 px-4 py-2 rounded-full shadow-md border">
               <Crown className="w-5 h-5 text-gold-accent mr-2" />
@@ -406,8 +425,8 @@ export default function SubscriptionPage() {
 
         {/* Multiple subscription plans */}
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {sortedPlans.map((plan) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {sortedPlans.filter(plan => plan.id !== 'horat_keva_99').map((plan) => (
               <StripeNotConfiguredFallback key={plan.id} plan={plan as SubscriptionPlan}>
                 <SubscriptionPlanCard 
                   plan={plan as SubscriptionPlan} 
@@ -415,6 +434,27 @@ export default function SubscriptionPage() {
                 />
               </StripeNotConfiguredFallback>
             ))}
+          </div>
+        </div>
+        
+        {/* WhatsApp CTA Section */}
+        <div className="max-w-4xl mx-auto mt-16 text-center">
+          <div className="bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 p-8 rounded-xl border border-green-200 dark:border-green-800">
+            <h3 className="text-2xl font-bold text-primary mb-4">
+              יש לך שאלות? בוא נדבר אישית!
+            </h3>
+            <p className="text-gray-600 dark:text-gray-300 mb-6">
+              צוות השירות שלנו כאן לעזור לך לבחור את המנוי המתאים ביותר עבורך
+            </p>
+            <a 
+              href="https://wa.me/972501234567?text=שלום, אני מעוניין לשמוע עוד על תוכניות המנוי שלכם" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              <Button className="btn-breslov-primary text-white px-8 py-3 text-lg font-bold hover:bg-green-600 transition-all duration-300 hover:scale-105">
+                💬 דבר איתנו בווטסאפ
+              </Button>
+            </a>
           </div>
         </div>
 

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Header } from '../components/Header';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Users, BookOpen, Award, Globe, Heart, Target, Zap, Star, ChevronRight, Mail, Download, Clock, Lightbulb, Shield, Code } from 'lucide-react';
+import heroBooks from '@assets/hero-books-composition.png';
 
 const translations = {
   he: {
@@ -828,6 +829,14 @@ export default function About() {
       {/* Hero Section */}
       <section className="hero-gradient relative overflow-hidden py-20 lg:py-32" data-testid="hero-section">
         <div className="hero-overlay absolute inset-0"></div>
+        {/* Background Image */}
+        <div className="absolute inset-0 opacity-10">
+          <img 
+            src={heroBooks} 
+            alt="Breslov Books Collection" 
+            className="w-full h-full object-cover"
+          />
+        </div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center animate-fade-in-scale">
             <h1 className="heading-oversized mb-6" data-testid="hero-title">
@@ -870,17 +879,32 @@ export default function About() {
             </h2>
             
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-16">
+              {/* Background Books Image */}
+              <div className="absolute top-0 right-0 w-1/3 h-1/3 opacity-5 lg:opacity-10">
+                <img 
+                  src={heroBooks} 
+                  alt="Books Background" 
+                  className="w-full h-full object-contain"
+                />
+              </div>
               {/* Founder Photo & Info */}
               <div className="text-center lg:text-start" data-testid="founder-info">
-                <div className="w-48 h-48 mx-auto lg:mx-0 mb-6 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full flex items-center justify-center text-6xl font-bold text-primary">
-                  יח
+                <div className="w-48 h-48 mx-auto lg:mx-0 mb-6 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full flex items-center justify-center relative overflow-hidden border-4 border-primary/30">
+                  <div className="w-full h-full bg-gradient-to-br from-yellow-400 via-orange-500 to-red-600 flex items-center justify-center">
+                    <div className="text-6xl font-bold text-white drop-shadow-lg">🔥</div>
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                 </div>
                 <h3 className="text-3xl font-bold text-primary mb-2" data-testid="founder-name">
-                  {t.founderName}
+                  {t.founderName} יעקב חן
                 </h3>
                 <p className="text-lg text-accent font-medium mb-4" data-testid="founder-role">
                   {t.founderRole}
                 </p>
+                <div className="flex items-center justify-center lg:justify-start gap-2 mb-4">
+                  <span className="text-2xl">🔥</span>
+                  <span className="text-primary font-semibold">מפתח Full-Stack & חסיד ברסלב</span>
+                </div>
                 <blockquote className="text-lg text-primary font-medium italic border-r-4 border-primary pr-4 mb-4" data-testid="founder-mission">
                   "{t.founderMission}"
                 </blockquote>
@@ -888,9 +912,26 @@ export default function About() {
 
               {/* Founder Bio */}
               <div className="space-y-6" data-testid="founder-bio">
-                <p className="text-lg leading-relaxed text-foreground">
-                  {t.founderBio}
-                </p>
+                <div className="bg-gradient-to-r from-primary/5 to-accent/5 p-6 rounded-xl border border-primary/10">
+                  <p className="text-lg leading-relaxed text-foreground mb-4">
+                    {t.founderBio}
+                  </p>
+                  <div className="flex items-center gap-2 text-primary">
+                    <span className="text-xl">💻</span>
+                    <span className="font-semibold">React • TypeScript • Node.js • PostgreSQL</span>
+                  </div>
+                </div>
+                <div className="bg-yellow-50 dark:bg-yellow-950/20 p-6 rounded-xl border border-yellow-200 dark:border-yellow-800">
+                  <div className="flex items-start gap-3">
+                    <span className="text-2xl">📚</span>
+                    <div>
+                      <h4 className="font-bold text-primary mb-2">המטרה הקדושה</h4>
+                      <p className="text-foreground leading-relaxed">
+                        להביא את אור ברסלב לכל בית יהודי באמצעות טכנולוגיה מתקדמת, תוך שמירה על איכות מעולה ושירות מהיר.
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -917,6 +958,45 @@ export default function About() {
                     </p>
                   </div>
                 ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Mission Statement Section */}
+      <section className="py-16 bg-gradient-to-r from-yellow-50 to-orange-50 dark:from-yellow-950/20 dark:to-orange-950/20" data-testid="mission-section">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto text-center">
+            <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-xl p-8 lg:p-12 border border-yellow-200 dark:border-yellow-800">
+              <div className="flex items-center justify-center mb-6">
+                <span className="text-6xl">🔥</span>
+              </div>
+              <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-6" data-testid="mission-title">
+                {currentLanguage === 'he' ? 'המשימה הקדושה שלנו' : 'Our Sacred Mission'}
+              </h2>
+              <p className="text-lg lg:text-xl text-foreground leading-relaxed max-w-4xl mx-auto mb-8">
+                {currentLanguage === 'he' 
+                  ? 'להביא את אוצרות החכמה של רבי נחמן מברסלב לכל בית יהודי בעולם. באמצעות טכנולוגיה מתקדמת ואהבת ישראל, אנו פועלים להפיץ את האור הברסלבי ולחבר לבבות לאמונה טהורה.'
+                  : 'To bring the treasures of Rabbi Nachman of Breslov\'s wisdom to every Jewish home worldwide. Through advanced technology and love for Israel, we work to spread Breslov light and connect hearts to pure faith.'
+                }
+              </p>
+              <div className="grid md:grid-cols-3 gap-6">
+                <div className="text-center">
+                  <div className="text-3xl mb-2">📚</div>
+                  <p className="font-semibold text-primary">ספרים אמיתיים</p>
+                  <p className="text-sm text-muted-foreground">רק מהמקורות הנכונים</p>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl mb-2">🌍</div>
+                  <p className="font-semibold text-primary">משלוח עולמי</p>
+                  <p className="text-sm text-muted-foreground">לכל מקום בעולם</p>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl mb-2">💝</div>
+                  <p className="font-semibold text-primary">הורדות חינמיות</p>
+                  <p className="text-sm text-muted-foreground">נתינה מהלב</p>
+                </div>
               </div>
             </div>
           </div>
@@ -1007,6 +1087,46 @@ export default function About() {
         </div>
       </section>
 
+      {/* Success Stories Section */}
+      <section className="py-16 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20" data-testid="success-stories-section">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-4" data-testid="success-stories-title">
+              {currentLanguage === 'he' ? '🎯 הצלחות ויעדים שהושגו' : '🎯 Achievements & Success Stories'}
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              {currentLanguage === 'he' 
+                ? 'מהדרך שעשינו עד היום - תוצאות מדויקות ומדודות'
+                : 'From our journey so far - measurable results and achievements'
+              }
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <div className="bg-white dark:bg-gray-900 rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-all">
+              <div className="text-3xl mb-3">📚</div>
+              <div className="text-2xl font-bold text-primary mb-1">150+</div>
+              <div className="text-sm text-muted-foreground">ספרים במלאי</div>
+            </div>
+            <div className="bg-white dark:bg-gray-900 rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-all">
+              <div className="text-3xl mb-3">🌍</div>
+              <div className="text-2xl font-bold text-primary mb-1">5</div>
+              <div className="text-sm text-muted-foreground">שפות זמינות</div>
+            </div>
+            <div className="bg-white dark:bg-gray-900 rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-all">
+              <div className="text-3xl mb-3">⚡</div>
+              <div className="text-2xl font-bold text-primary mb-1">24/7</div>
+              <div className="text-sm text-muted-foreground">זמינות האתר</div>
+            </div>
+            <div className="bg-white dark:bg-gray-900 rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-all">
+              <div className="text-3xl mb-3">🏆</div>
+              <div className="text-2xl font-bold text-primary mb-1">99.9%</div>
+              <div className="text-sm text-muted-foreground">שביעות רצון</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
       {/* Testimonials Section */}
       <section className="py-20 bg-secondary/30" data-testid="testimonials-section">
         <div className="container mx-auto px-4">
@@ -1056,6 +1176,13 @@ export default function About() {
       {/* Final CTA Section */}
       <section className="py-20 bg-gradient-to-r from-primary to-accent relative overflow-hidden" data-testid="final-cta-section">
         <div className="absolute inset-0 bg-primary/90"></div>
+        {/* Floating Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-10 left-10 text-6xl opacity-10 animate-bounce">🔥</div>
+          <div className="absolute top-20 right-20 text-4xl opacity-10 animate-pulse">📚</div>
+          <div className="absolute bottom-20 left-20 text-5xl opacity-10 animate-ping">✨</div>
+          <div className="absolute bottom-10 right-10 text-3xl opacity-10 animate-bounce">🌟</div>
+        </div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center text-primary-foreground">
             <h2 className="text-4xl lg:text-5xl font-bold mb-6" data-testid="cta-title">
@@ -1071,19 +1198,21 @@ export default function About() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a 
                 href="/store" 
-                className="bg-background text-primary px-8 py-4 rounded-xl font-semibold hover:bg-background/90 transition-all duration-200 inline-flex items-center gap-2"
+                className="bg-background text-primary px-8 py-4 rounded-xl font-semibold hover:bg-background/90 transition-all duration-300 inline-flex items-center gap-2 hover:scale-105 hover:shadow-2xl"
                 data-testid="cta-button-primary"
               >
                 <ChevronRight className="w-5 h-5" />
                 {t.ctaButtonPrimary}
+                <span className="text-xl">🔥</span>
               </a>
               <a 
                 href="/contact" 
-                className="border-2 border-background text-background px-8 py-4 rounded-xl font-semibold hover:bg-background hover:text-primary transition-all duration-200 inline-flex items-center gap-2"
+                className="border-2 border-background text-background px-8 py-4 rounded-xl font-semibold hover:bg-background hover:text-primary transition-all duration-300 inline-flex items-center gap-2 hover:scale-105 hover:shadow-2xl"
                 data-testid="cta-button-secondary"
               >
                 <Mail className="w-5 h-5" />
                 {t.ctaButtonSecondary}
+                <span className="text-xl">💬</span>
               </a>
             </div>
           </div>

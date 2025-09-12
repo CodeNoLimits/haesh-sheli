@@ -41,9 +41,11 @@ const CheckoutSuccess = () => {
 import Downloads from "@/pages/downloads";
 import Product from "@/pages/product";
 import BreslovWisdom from "@/pages/breslovWisdom";
+import BreslovVideos from "@/pages/breslov-videos";
 import Subscription from "@/pages/subscription";
 import SubscriptionManagement from "@/pages/subscription-management";
 import YaakovDashboard from "@/pages/yaaakov";
+import Chat from "@/pages/chat";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -62,6 +64,8 @@ function Router() {
       <Route path="/subscription/manage" component={SubscriptionManagement} />
       <Route path="/product/:id" component={Product} />
       <Route path="/breslov-wisdom" component={BreslovWisdom} />
+      <Route path="/breslov-videos" component={BreslovVideos} />
+      <Route path="/chat" component={Chat} />
       <Route path="/yaaakov" component={YaakovDashboard} />
       <Route component={NotFound} />
     </Switch>
