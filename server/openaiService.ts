@@ -1,11 +1,11 @@
 // Service OpenAI ChatGPT 4o-mini pour Chat authentique avec RAG HaEsh Sheli
-// Via Open Router API - Modèle "openai/chatgpt-4o-mini" (équivalent ChatGPT 5 nano)
+// Via Open Router API - Modèle "openai/gpt-4o-mini" (ChatGPT 4o-mini)
 
 import { createSystemPrompt, searchRelevantContent } from "./ragContext";
 
 // Open Router configuration
 const OPENROUTER_API_URL = "https://openrouter.ai/api/v1";
-const MODEL_NAME = "openai/chatgpt-4o-mini";
+const MODEL_NAME = "openai/gpt-4o-mini";
 
 export interface ChatMessage {
   role: 'user' | 'assistant';
