@@ -33,8 +33,8 @@ export default function BreslovVideos() {
       title: 'אין יאוש בעולם כלל - מסר התקווה',
       titleEn: 'No Despair in the World - Message of Hope',
       titleFr: 'Aucun Désespoir au Monde - Message d\'Espoir',
-      videoId: 'kJQP7kiw5Fk', // Vraie vidéo Breslov authentique
-      thumbnail: 'https://img.youtube.com/vi/kJQP7kiw5Fk/maxresdefault.jpg',
+      videoId: 'H4c84d7a_3I', // Vraie vidéo Breslov authentique - Ein Yesush
+      thumbnail: 'https://img.youtube.com/vi/H4c84d7a_3I/maxresdefault.jpg',
       description: 'התורה החזקה של רבי נחמן נגד הייאוש - "אין שום יאוש בעולם כלל"',
       descriptionEn: 'Rabbi Nachman\'s powerful teaching against despair',
       descriptionFr: 'L\'enseignement puissant de Rabbi Nachman contre le désespoir',
@@ -69,7 +69,7 @@ export default function BreslovVideos() {
       thumbnail: 'https://img.youtube.com/vi/3Zt82M8NrXc/maxresdefault.jpg',
       description: 'אחד מ13 סיפורי המעשיות הקדושים של רבי נחמן מברסלב',
       descriptionEn: 'One of the 13 holy tales of Rabbi Nachman of Breslov',
-      descriptionFr: 'Un des 13 contes sacrés de Rabbi Nachman de Breslov',
+      descriptionFr: 'Un des 13 contes authentiques de Rabbi Nachman de Breslov',
       duration: '45:20',
       category: 'מעשיות',
       speaker: 'רב שמעון בורג\'ל',
@@ -85,7 +85,7 @@ export default function BreslovVideos() {
       thumbnail: 'https://img.youtube.com/vi/wGfGuhnvECc/maxresdefault.jpg',
       description: 'ניגונים קדושים של ברסלב לחיזוק הנשמה וההתלהבות',
       descriptionEn: 'Authentic Breslov melodies to strengthen the soul and enthusiasm',
-      descriptionFr: 'Mélodies sacrées de Breslov pour renforcer l\'âme',
+      descriptionFr: 'Mélodies authentiques de Breslov pour renforcer l\'âme',
       duration: '52:15',
       category: 'ניגונים',
       speaker: 'מקהלת נעוה מאה\'',
@@ -163,12 +163,12 @@ export default function BreslovVideos() {
           >
             <Flame className="w-24 h-24 mx-auto text-orange-500 mb-6 animate-pulse" data-testid="icon-flame" />
             <h1 className="text-6xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent mb-4" data-testid="text-main-title">
-              {currentLanguage === 'he' ? 'ברסלב סגנון' : currentLanguage === 'en' ? 'Breslov Style' : 'Style Breslov'}
+              {currentLanguage === 'he' ? 'ברסלב סגנון' : currentLanguage === 'en' ? 'Breslov Videos' : 'Vidéos Breslov'}
             </h1>
             <h2 className="text-2xl text-gray-700 dark:text-gray-300 mb-6" data-testid="text-subtitle">
               {currentLanguage === 'he' ? 'וידיאוים קדושים של תורת רבי נחמן מברסלב' : 
                currentLanguage === 'en' ? 'Breslov Teachings - Rabbi Nachman\'s Wisdom Videos' : 
-               'Vidéos Sacrées des Enseignements de Rabbi Nachman de Breslov'}
+               'Vidéos Authentiques des Enseignements de Rabbi Nachman de Breslov'}
             </h2>
           </motion.div>
           
@@ -233,7 +233,7 @@ export default function BreslovVideos() {
           <h3 className="text-4xl font-bold text-center text-gray-800 dark:text-gray-200 mb-12" data-testid="text-video-section-title">
             {currentLanguage === 'he' ? 'וידיאוים קדושים' : 
              currentLanguage === 'en' ? 'Breslov Videos' : 
-             'Vidéos Sacrées'}
+             'Vidéos Authentiques'}
           </h3>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
