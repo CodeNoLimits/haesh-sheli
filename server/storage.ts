@@ -17,7 +17,15 @@ import {
   type ShippingRate,
   type InsertShippingRate,
   type ProductVariant,
-  type ShippingAddress
+  type ShippingAddress,
+  users,
+  subscriptionPlans,
+  subscriptionHistory,
+  products,
+  orders,
+  orderItems,
+  paymentTransactions,
+  shippingRates
 } from "@shared/schema";
 import { randomUUID } from "crypto";
 import { db } from "./db";
@@ -84,6 +92,15 @@ export interface IStorage {
 
 // Database storage implementation using PostgreSQL - UPDATED for Replit Auth
 export class DatabaseStorage implements IStorage {
+  // In-memory Maps for fast data access (temporary storage until DB is ready)
+  private subscriptionPlans: Map<string, SubscriptionPlan> = new Map();
+  private products: Map<string, Product> = new Map();
+  private shippingRates: Map<string, ShippingRate> = new Map();
+  private subscriptionHistory: Map<string, SubscriptionHistory> = new Map();
+  private orders: Map<string, Order> = new Map();
+  private orderItems: Map<string, OrderItem> = new Map();
+  private paymentTransactions: Map<string, PaymentTransaction> = new Map();
+
   constructor() {
     // Initialize default data in database on first run
     this.initializeDefaultData();
