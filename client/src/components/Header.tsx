@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useLocation } from 'wouter';
 import { useCart } from '../contexts/CartContext';
+import { useAuth } from '../hooks/useAuth';
 import { CartWidget } from './CartWidget';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, LogIn, LogOut, User } from 'lucide-react';
 
 interface HeaderProps {
   currentLanguage?: string;
@@ -22,7 +23,10 @@ const translations = {
     breslovVideos: 'ברסלב סגנון',
     chat: '💬 צ\'אט ברסלבי',
     whatsapp: '💬 דבר איתנו',
-    fire: '🔥 האש שלי'
+    fire: '🔥 האש שלי',
+    login: 'כניסה',
+    logout: 'יציאה',
+    welcome: 'שלום'
   },
   en: {
     home: 'Home',
@@ -36,7 +40,10 @@ const translations = {
     breslovVideos: 'Breslov Style',
     chat: '💬 Breslov Chat',
     whatsapp: '💬 Talk to Us',
-    fire: '🔥 My Fire'
+    fire: '🔥 My Fire',
+    login: 'Login',
+    logout: 'Logout',
+    welcome: 'Welcome'
   },
   fr: {
     home: 'Accueil',
@@ -50,7 +57,10 @@ const translations = {
     breslovVideos: 'Style Breslov',
     chat: '💬 Chat Breslov',
     whatsapp: '💬 Parlez-nous',
-    fire: '🔥 Mon Feu'
+    fire: '🔥 Mon Feu',
+    login: 'Connexion',
+    logout: 'Déconnexion',
+    welcome: 'Bienvenue'
   },
   es: {
     home: 'Inicio',
@@ -64,7 +74,10 @@ const translations = {
     breslovVideos: 'Estilo Breslov',
     chat: '💬 Chat Breslov',
     whatsapp: '💬 Habla con Nosotros',
-    fire: '🔥 Mi Fuego'
+    fire: '🔥 Mi Fuego',
+    login: 'Iniciar Sesión',
+    logout: 'Cerrar Sesión',
+    welcome: 'Bienvenido'
   },
   ru: {
     home: 'Главная',
@@ -78,13 +91,17 @@ const translations = {
     breslovVideos: 'Брeslов Стиль',
     chat: '💬 Брeslов Чат',
     whatsapp: '💬 Поговорить с Нами',
-    fire: '🔥 Мой Огонь'
+    fire: '🔥 Мой Огонь',
+    login: 'Войти',
+    logout: 'Выйти',
+    welcome: 'Добро пожаловать'
   }
 };
 
 export function Header({ currentLanguage = 'he', onLanguageChange }: HeaderProps) {
   const [location] = useLocation();
   const { totalItems, totalPrice, setIsCartOpen } = useCart();
+  const { user, isAuthenticated, isLoading } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const t = translations[currentLanguage as keyof typeof translations] || translations.he;
   
@@ -192,6 +209,39 @@ export function Header({ currentLanguage = 'he', onLanguageChange }: HeaderProps
           >
             <span className="text-lg">{t.whatsapp}</span>
           </a>
+
+          {/* Authentication Button */}
+          <div className="auth-widget" data-testid="auth-widget" style={{marginRight: currentLanguage === 'he' ? '10px' : '0', marginLeft: currentLanguage !== 'he' ? '10px' : '0'}}>
+            {isLoading ? (
+              <div className="auth-loading flex items-center px-3 py-2 rounded-lg bg-white bg-opacity-20 text-white border border-white border-opacity-30">
+                <span className="text-sm">...</span>
+              </div>
+            ) : isAuthenticated && user ? (
+              <div className="auth-user flex items-center space-x-2" style={{direction: currentLanguage === 'he' ? 'rtl' : 'ltr'}}>
+                <div className="flex items-center px-3 py-2 rounded-lg bg-white bg-opacity-20 text-white border border-white border-opacity-30">
+                  <User size={16} className="mr-2" style={{marginRight: currentLanguage === 'he' ? '0' : '8px', marginLeft: currentLanguage === 'he' ? '8px' : '0'}} />
+                  <span className="text-sm">{t.welcome} {user.firstName || user.email}</span>
+                </div>
+                <a
+                  href="/api/logout"
+                  className="logout-btn transition-all duration-300 hover:scale-110 hover:bg-red-500 hover:text-white hover:shadow-xl hover:-translate-y-1 cursor-pointer flex items-center px-3 py-2 rounded-lg bg-white bg-opacity-20 text-white border border-white border-opacity-30"
+                  data-testid="button-logout"
+                >
+                  <LogOut size={16} className="mr-1" style={{marginRight: currentLanguage === 'he' ? '0' : '4px', marginLeft: currentLanguage === 'he' ? '4px' : '0'}} />
+                  <span className="text-sm">{t.logout}</span>
+                </a>
+              </div>
+            ) : (
+              <a
+                href="/api/login"
+                className="login-btn transition-all duration-300 hover:scale-110 hover:bg-blue-500 hover:text-white hover:shadow-xl hover:-translate-y-1 cursor-pointer flex items-center px-3 py-2 rounded-lg bg-white bg-opacity-20 text-white border border-white border-opacity-30"
+                data-testid="button-login"
+              >
+                <LogIn size={16} className="mr-1" style={{marginRight: currentLanguage === 'he' ? '0' : '4px', marginLeft: currentLanguage === 'he' ? '4px' : '0'}} />
+                <span className="text-sm">{t.login}</span>
+              </a>
+            )}
+          </div>
 
           {/* Cart Widget */}
           <div 

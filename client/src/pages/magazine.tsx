@@ -765,6 +765,205 @@ const translations = {
     ctaButtonPrimary: 'Submit Content',
     ctaButtonSecondary: 'Contact Us',
 
+    // Daily Quotes - NEW SECTION
+    dailyQuotesTitle: 'Daily Quote from Our Holy Rabbi',
+    dailyQuotesSubtitle: 'Words of encouragement and inspiration from Rabbi Nachman of Breslov\'s teachings',
+    dailyQuotes: [
+      {
+        id: 1,
+        text: 'The whole world is a very narrow bridge, but the main thing is not to fear at all',
+        source: 'Likutei Moharan II, 48',
+        author: 'Rabbi Nachman of Breslov'
+      },
+      {
+        id: 2,
+        text: 'There is no despair in the world at all',
+        source: 'Siach Sarfey Kodesh',
+        author: 'Rabbi Nachman of Breslov'
+      },
+      {
+        id: 3,
+        text: 'It is a great mitzvah to be happy always',
+        source: 'Likutei Moharan II, 24',
+        author: 'Rabbi Nachman of Breslov'
+      },
+      {
+        id: 4,
+        text: 'Prayer is above every level',
+        source: 'Likutei Moharan I, 2',
+        author: 'Rabbi Nachman of Breslov'
+      },
+      {
+        id: 5,
+        text: 'A person must cross a very narrow bridge, but the rule is not to fear at all',
+        source: 'Likutei Moharan II, 48',
+        author: 'Rabbi Nachman of Breslov'
+      }
+    ],
+
+    // Testimonials - NEW SECTION
+    testimonialsTitle: 'Reader Testimonials',
+    testimonialsSubtitle: 'How our magazine impacts readers\' lives around the world',
+    testimonials: [
+      {
+        id: 1,
+        name: 'Jacob Levy',
+        location: 'Jerusalem, Israel',
+        content: 'This magazine changed my life. Every article brings me new strength and inspiration. I especially loved the article about hitbodedut - it helped me truly connect to prayer.',
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/1-1-300x300.d110a0.webp',
+        rating: 5
+      },
+      {
+        id: 2,
+        name: 'Sarah Cohen',
+        location: 'Tel Aviv, Israel',
+        content: 'I\'ve been reading for two years and never stop being moved by the content. The Breslov stories from around the world give me strength and faith that Hashem always watches over us.',
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/2-1-300x300.d110a0.webp',
+        rating: 5
+      },
+      {
+        id: 3,
+        name: 'Abraham Goldberg',
+        location: 'New York, USA',
+        content: 'The magazine connects me to the Breslov community worldwide. The daily quotes help me start each day with inspiration, and the articles are deep and interesting.',
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/3-1-300x300.d110a0.webp',
+        rating: 5
+      },
+      {
+        id: 4,
+        name: 'Miriam Schwartz',
+        location: 'Bnei Brak, Israel',
+        content: 'Quality content truly based on the foundations of our holy Rabbi\'s teachings. The practical guides help me implement the teachings in my daily life.',
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/44-300x300.d110a0.webp',
+        rating: 5
+      }
+    ],
+
+    // Events Calendar - NEW SECTION
+    eventsTitle: 'Breslov Events Calendar',
+    eventsSubtitle: 'Events, classes and gatherings worldwide',
+    events: [
+      {
+        id: 1,
+        title: 'Likutei Moharan Class - Rabbi Yaakov Hen',
+        date: 'January 18, 2025',
+        location: 'Breslov Study Hall, Jerusalem',
+        type: 'Class',
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/1-1-300x300.d110a0.webp'
+      },
+      {
+        id: 2,
+        title: 'Breslov Hasidim Gathering - Rosh Chodesh Shvat',
+        date: 'January 30, 2025',
+        location: 'Meron, Israel',
+        type: 'Gathering',
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/2-1-300x300.d110a0.webp'
+      },
+      {
+        id: 3,
+        title: 'Trip to Uman - Rosh Hashana Preparation',
+        date: 'September 15, 2025',
+        location: 'Uman, Ukraine',
+        type: 'Trip',
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/5-1-300x300.d110a0.webp'
+      },
+      {
+        id: 4,
+        title: 'Breslov Books Distribution - Volunteer Day',
+        date: 'January 25, 2025',
+        location: 'My Fire Center, Jerusalem',
+        type: 'Volunteer',
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/02/Untitled-design-10-1024x1024.d110a0.webp'
+      }
+    ],
+
+    // Videos Section - NEW SECTION
+    videosTitle: 'Videos and Lectures',
+    videosSubtitle: 'Deep lectures, classes and practical stories',
+    videos: [
+      {
+        id: 1,
+        title: 'Joy Advice from Likutei Moharan - Rabbi Yaakov Hen',
+        description: 'Deep lecture on our holy Rabbi\'s words about joy and faith',
+        duration: '45:30',
+        views: 15420,
+        thumbnail: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/1-1-300x300.d110a0.webp'
+      },
+      {
+        id: 2,
+        title: 'Moving Story from Uman - Personal Testimony',
+        description: 'Moving testimony of a Breslov Hasid about salvation received through our holy Rabbi\'s merit',
+        duration: '22:15',
+        views: 8930,
+        thumbnail: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/2-1-300x300.d110a0.webp'
+      },
+      {
+        id: 3,
+        title: 'Guide to Daily Hitbodedut',
+        description: 'Practical guidance for performing hitbodedut according to Rabbi Nachman of Breslov\'s teachings',
+        duration: '31:45',
+        views: 12650,
+        thumbnail: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/3-1-300x300.d110a0.webp'
+      }
+    ],
+
+    // World News - NEW SECTION
+    worldNewsTitle: 'Breslov Around the World',
+    worldNewsSubtitle: 'News and updates from Breslov communities worldwide',
+    worldNews: [
+      {
+        id: 1,
+        title: 'New Breslov Center Established in Brooklyn',
+        location: 'New York, USA',
+        date: 'January 10, 2025',
+        summary: 'New center for Breslov Hasidim opened in Brooklyn with study hall and mikveh',
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/1-1-300x300.d110a0.webp'
+      },
+      {
+        id: 2,
+        title: 'Breslov Books Distribution in Paris',
+        location: 'Paris, France',
+        date: 'January 5, 2025',
+        summary: 'Extensive book distribution campaign in Jewish quarter of Paris reached 500 families',
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/2-1-300x300.d110a0.webp'
+      },
+      {
+        id: 3,
+        title: 'Young Breslov Convention in London',
+        location: 'London, England',
+        date: 'January 2, 2025',
+        summary: 'Over 300 young people participated in annual convention for spiritual strengthening and awakening',
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/3-1-300x300.d110a0.webp'
+      }
+    ],
+
+    // Interactive Features - NEW SECTION
+    interactiveTitle: 'Interactive Tools',
+    bookmarkText: 'Add to Favorites',
+    shareText: 'Share Article',
+    downloadText: 'Download PDF',
+    printText: 'Print',
+    relatedArticles: 'Related Articles',
+    popularTags: 'Popular Tags',
+
+    // Common
+    readMore: 'Read More',
+    readTime: 'read time',
+    views: 'views',
+    author: 'by',
+    searchPlaceholder: 'Search magazine...',
+    filterBy: 'Filter by',
+    allCategories: 'All Categories',
+    sortBy: 'Sort by',
+    newest: 'Newest',
+    popular: 'Most Popular',
+    watchVideo: 'Watch Video',
+    readTestimonial: 'Read Testimony',
+    viewEvent: 'Event Details',
+    subscribeNewsletter: 'Subscribe to Updates',
+    ctaButtonPrimary: 'Submit Content',
+    ctaButtonSecondary: 'Contact Us',
+
     // Common
     readMore: 'Read More',
     readTime: 'read time',
@@ -865,7 +1064,194 @@ const translations = {
     allCategories: 'Toutes les Catégories',
     sortBy: 'Trier par',
     newest: 'Plus Récent',
-    popular: 'Plus Populaire'
+    popular: 'Plus Populaire',
+
+    // Daily Quotes - NOUVELLE SECTION
+    dailyQuotesTitle: 'Citation Quotidienne de Notre Saint Rabbi',
+    dailyQuotesSubtitle: 'Paroles d\'encouragement et d\'inspiration des enseignements du Rabbi Nachman de Breslov',
+    dailyQuotes: [
+      {
+        id: 1,
+        text: 'Le monde entier est un pont très étroit, mais l\'essentiel est de ne pas avoir peur du tout',
+        source: 'Likoutei Moharan II, 48',
+        author: 'Rabbi Nachman de Breslov'
+      },
+      {
+        id: 2,
+        text: 'Il n\'y a aucun désespoir au monde du tout',
+        source: 'Siach Sarfey Kodesh',
+        author: 'Rabbi Nachman de Breslov'
+      },
+      {
+        id: 3,
+        text: 'C\'est une grande mitzvah d\'être toujours joyeux',
+        source: 'Likoutei Moharan II, 24',
+        author: 'Rabbi Nachman de Breslov'
+      },
+      {
+        id: 4,
+        text: 'La prière est au-dessus de tout niveau',
+        source: 'Likoutei Moharan I, 2',
+        author: 'Rabbi Nachman de Breslov'
+      },
+      {
+        id: 5,
+        text: 'Une personne doit traverser un pont très étroit, mais la règle est de ne pas avoir peur du tout',
+        source: 'Likoutei Moharan II, 48',
+        author: 'Rabbi Nachman de Breslov'
+      }
+    ],
+
+    // Témoignages - NOUVELLE SECTION
+    testimonialsTitle: 'Témoignages des Lecteurs',
+    testimonialsSubtitle: 'Comment notre magazine impacte la vie des lecteurs à travers le monde',
+    testimonials: [
+      {
+        id: 1,
+        name: 'Jacques Lévy',
+        location: 'Jérusalem, Israël',
+        content: 'Ce magazine a changé ma vie. Chaque article m\'apporte une nouvelle force et inspiration. J\'ai particulièrement aimé l\'article sur la hitbodedout - cela m\'a aidé à vraiment me connecter à la prière.',
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/1-1-300x300.d110a0.webp',
+        rating: 5
+      },
+      {
+        id: 2,
+        name: 'Sarah Cohen',
+        location: 'Tel Aviv, Israël',
+        content: 'Je lis depuis deux ans et ne cesse jamais d\'être émue par le contenu. Les histoires de Breslov du monde entier me donnent force et foi que Hachem veille toujours sur nous.',
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/2-1-300x300.d110a0.webp',
+        rating: 5
+      },
+      {
+        id: 3,
+        name: 'Abraham Goldberg',
+        location: 'New York, États-Unis',
+        content: 'Le magazine me connecte à la communauté Breslov mondiale. Les citations quotidiennes m\'aident à commencer chaque journée avec inspiration, et les articles sont profonds et intéressants.',
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/3-1-300x300.d110a0.webp',
+        rating: 5
+      },
+      {
+        id: 4,
+        name: 'Miriam Schwartz',
+        location: 'Bnei Brak, Israël',
+        content: 'Contenu de qualité vraiment basé sur les fondements des enseignements de notre saint Rabbi. Les guides pratiques m\'aident à mettre en œuvre les enseignements dans ma vie quotidienne.',
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/44-300x300.d110a0.webp',
+        rating: 5
+      }
+    ],
+
+    // Calendrier d\'Événements - NOUVELLE SECTION
+    eventsTitle: 'Calendrier des Événements Breslov',
+    eventsSubtitle: 'Événements, cours et rassemblements à travers le monde',
+    events: [
+      {
+        id: 1,
+        title: 'Cours Likoutei Moharan - Rabbi Yaakov Hen',
+        date: '18 janvier 2025',
+        location: 'Salle d\'Étude Breslov, Jérusalem',
+        type: 'Cours',
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/1-1-300x300.d110a0.webp'
+      },
+      {
+        id: 2,
+        title: 'Rassemblement Hassidim Breslov - Rosh Hodesh Shvat',
+        date: '30 janvier 2025',
+        location: 'Meron, Israël',
+        type: 'Rassemblement',
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/2-1-300x300.d110a0.webp'
+      },
+      {
+        id: 3,
+        title: 'Voyage à Ouman - Préparation Rosh Hashana',
+        date: '15 septembre 2025',
+        location: 'Ouman, Ukraine',
+        type: 'Voyage',
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/5-1-300x300.d110a0.webp'
+      },
+      {
+        id: 4,
+        title: 'Distribution de Livres Breslov - Journée Bénévolat',
+        date: '25 janvier 2025',
+        location: 'Centre Mon Feu, Jérusalem',
+        type: 'Bénévolat',
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/02/Untitled-design-10-1024x1024.d110a0.webp'
+      }
+    ],
+
+    // Section Vidéos - NOUVELLE SECTION
+    videosTitle: 'Vidéos et Conférences',
+    videosSubtitle: 'Conférences profondes, cours et histoires pratiques',
+    videos: [
+      {
+        id: 1,
+        title: 'Conseils de Joie du Likoutei Moharan - Rabbi Yaakov Hen',
+        description: 'Conférence profonde sur les paroles de notre saint Rabbi concernant la joie et la foi',
+        duration: '45:30',
+        views: 15420,
+        thumbnail: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/1-1-300x300.d110a0.webp'
+      },
+      {
+        id: 2,
+        title: 'Histoire Émouvante d\'Ouman - Témoignage Personnel',
+        description: 'Témoignage émouvant d\'un Hassid Breslov sur un salut reçu grâce au mérite de notre saint Rabbi',
+        duration: '22:15',
+        views: 8930,
+        thumbnail: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/2-1-300x300.d110a0.webp'
+      },
+      {
+        id: 3,
+        title: 'Guide pour la Hitbodedout Quotidienne',
+        description: 'Guidance pratique pour effectuer la hitbodedout selon les enseignements du Rabbi Nachman de Breslov',
+        duration: '31:45',
+        views: 12650,
+        thumbnail: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/3-1-300x300.d110a0.webp'
+      }
+    ],
+
+    // Nouvelles du Monde - NOUVELLE SECTION
+    worldNewsTitle: 'Breslov à Travers le Monde',
+    worldNewsSubtitle: 'Nouvelles et mises à jour des communautés Breslov mondiales',
+    worldNews: [
+      {
+        id: 1,
+        title: 'Nouveau Centre Breslov Établi à Brooklyn',
+        location: 'New York, États-Unis',
+        date: '10 janvier 2025',
+        summary: 'Nouveau centre pour les Hassidim Breslov ouvert à Brooklyn avec salle d\'étude et mikvé',
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/1-1-300x300.d110a0.webp'
+      },
+      {
+        id: 2,
+        title: 'Distribution de Livres Breslov à Paris',
+        location: 'Paris, France',
+        date: '5 janvier 2025',
+        summary: 'Vaste campagne de distribution de livres dans le quartier juif de Paris a atteint 500 familles',
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/2-1-300x300.d110a0.webp'
+      },
+      {
+        id: 3,
+        title: 'Convention de Jeunes Breslov à Londres',
+        location: 'Londres, Angleterre',
+        date: '2 janvier 2025',
+        summary: 'Plus de 300 jeunes ont participé à la convention annuelle pour renforcement et réveil spirituel',
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/3-1-300x300.d110a0.webp'
+      }
+    ],
+
+    // Fonctionnalités Interactives - NOUVELLE SECTION
+    interactiveTitle: 'Outils Interactifs',
+    bookmarkText: 'Ajouter aux Favoris',
+    shareText: 'Partager l\'Article',
+    downloadText: 'Télécharger PDF',
+    printText: 'Imprimer',
+    relatedArticles: 'Articles Connexes',
+    popularTags: 'Tags Populaires',
+
+    // Common
+    watchVideo: 'Regarder la Vidéo',
+    readTestimonial: 'Lire le Témoignage',
+    viewEvent: 'Détails de l\'Événement',
+    subscribeNewsletter: 'S\'abonner aux Mises à Jour'
   },
 
   es: {
@@ -1045,7 +1431,194 @@ const translations = {
     allCategories: 'Все Категории',
     sortBy: 'Сортировать по',
     newest: 'Новейшие',
-    popular: 'Самые Популярные'
+    popular: 'Самые Популярные',
+
+    // Ежедневные Цитаты - НОВАЯ СЕКЦИЯ
+    dailyQuotesTitle: 'Ежедневная Цитата от Нашего Святого Рабби',
+    dailyQuotesSubtitle: 'Слова ободрения и вдохновения из учений Рабби Нахмана из Бреслов',
+    dailyQuotes: [
+      {
+        id: 1,
+        text: 'Весь мир - очень узкий мост, но главное - вообще не бояться',
+        source: 'Ликутей Мохаран II, 48',
+        author: 'Рабби Нахман из Бреслов'
+      },
+      {
+        id: 2,
+        text: 'Нет никакого отчаяния в мире вообще',
+        source: 'Сиах Сарфей Кодеш',
+        author: 'Рабби Нахман из Бреслов'
+      },
+      {
+        id: 3,
+        text: 'Великая заповедь - быть всегда в радости',
+        source: 'Ликутей Мохаран II, 24',
+        author: 'Рабби Нахман из Бреслов'
+      },
+      {
+        id: 4,
+        text: 'Молитва выше любого уровня',
+        source: 'Ликутей Мохаран I, 2',
+        author: 'Рабби Нахман из Бреслов'
+      },
+      {
+        id: 5,
+        text: 'Человек должен пройти по очень узкому мосту, но правило - не бояться вообще',
+        source: 'Ликутей Мохаран II, 48',
+        author: 'Рабби Нахман из Бреслов'
+      }
+    ],
+
+    // Отзывы - НОВАЯ СЕКЦИЯ
+    testimonialsTitle: 'Отзывы Читателей',
+    testimonialsSubtitle: 'Как наш журнал влияет на жизни читателей по всему миру',
+    testimonials: [
+      {
+        id: 1,
+        name: 'Яков Леви',
+        location: 'Иерусалим, Израиль',
+        content: 'Этот журнал изменил мою жизнь. Каждая статья приносит мне новую силу и вдохновение. Особенно понравилась статья о hitbodedut - она помогла мне по-настоящему связаться с молитвой.',
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/1-1-300x300.d110a0.webp',
+        rating: 5
+      },
+      {
+        id: 2,
+        name: 'Сара Коэн',
+        location: 'Тель-Авив, Израиль',
+        content: 'Читаю уже два года и не перестаю трогаться содержанием. Истории Бреслов со всего мира дают мне силу и веру, что Всевышний всегда следит за нами.',
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/2-1-300x300.d110a0.webp',
+        rating: 5
+      },
+      {
+        id: 3,
+        name: 'Авраам Гольдберг',
+        location: 'Нью-Йорк, США',
+        content: 'Журнал соединяет меня с мировым сообществом Бреслов. Ежедневные цитаты помогают мне начинать каждый день с вдохновения, а статьи глубокие и интересные.',
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/3-1-300x300.d110a0.webp',
+        rating: 5
+      },
+      {
+        id: 4,
+        name: 'Мириам Шварц',
+        location: 'Бней-Брак, Израиль',
+        content: 'Качественное содержание, действительно основанное на основах учений нашего святого Рабби. Практические руководства помогают мне применять учения в повседневной жизни.',
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/44-300x300.d110a0.webp',
+        rating: 5
+      }
+    ],
+
+    // Календарь Событий - НОВАЯ СЕКЦИЯ
+    eventsTitle: 'Календарь Событий Бреслов',
+    eventsSubtitle: 'События, уроки и собрания по всему миру',
+    events: [
+      {
+        id: 1,
+        title: 'Урок Ликутей Мохаран - Рабби Яков Хен',
+        date: '18 января 2025',
+        location: 'Зал изучения Бреслов, Иерусалим',
+        type: 'Урок',
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/1-1-300x300.d110a0.webp'
+      },
+      {
+        id: 2,
+        title: 'Собрание Хасидов Бреслов - Рош Ходеш Шват',
+        date: '30 января 2025',
+        location: 'Мерон, Израиль',
+        type: 'Собрание',
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/2-1-300x300.d110a0.webp'
+      },
+      {
+        id: 3,
+        title: 'Поездка в Умань - Подготовка к Рош аШана',
+        date: '15 сентября 2025',
+        location: 'Умань, Украина',
+        type: 'Поездка',
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/5-1-300x300.d110a0.webp'
+      },
+      {
+        id: 4,
+        title: 'Распространение Книг Бреслов - День Волонтеров',
+        date: '25 января 2025',
+        location: 'Центр Мой Огонь, Иерусалим',
+        type: 'Волонтерство',
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/02/Untitled-design-10-1024x1024.d110a0.webp'
+      }
+    ],
+
+    // Раздел Видео - НОВАЯ СЕКЦИЯ
+    videosTitle: 'Видео и Лекции',
+    videosSubtitle: 'Глубокие лекции, уроки и практические истории',
+    videos: [
+      {
+        id: 1,
+        title: 'Советы для Радости из Ликутей Мохаран - Рабби Яков Хен',
+        description: 'Глубокая лекция о словах нашего святого Рабби о радости и вере',
+        duration: '45:30',
+        views: 15420,
+        thumbnail: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/1-1-300x300.d110a0.webp'
+      },
+      {
+        id: 2,
+        title: 'Трогательная История из Умани - Личное Свидетельство',
+        description: 'Трогательное свидетельство хасида Бреслов о спасении, полученном заслугой нашего святого Рабби',
+        duration: '22:15',
+        views: 8930,
+        thumbnail: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/2-1-300x300.d110a0.webp'
+      },
+      {
+        id: 3,
+        title: 'Руководство по Ежедневной Hitbodedut',
+        description: 'Практическое руководство по выполнению hitbodedut согласно учениям Рабби Нахмана из Бреслов',
+        duration: '31:45',
+        views: 12650,
+        thumbnail: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/3-1-300x300.d110a0.webp'
+      }
+    ],
+
+    // Мировые Новости - НОВАЯ СЕКЦИЯ
+    worldNewsTitle: 'Бреслов по Всему Миру',
+    worldNewsSubtitle: 'Новости и обновления от сообществ Бреслов по всему миру',
+    worldNews: [
+      {
+        id: 1,
+        title: 'Новый Центр Бреслов Основан в Бруклине',
+        location: 'Нью-Йорк, США',
+        date: '10 января 2025',
+        summary: 'Новый центр для хасидов Бреслов открылся в Бруклине с залом для изучения и микве',
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/1-1-300x300.d110a0.webp'
+      },
+      {
+        id: 2,
+        title: 'Распространение Книг Бреслов в Париже',
+        location: 'Париж, Франция',
+        date: '5 января 2025',
+        summary: 'Обширная кампания по распространению книг в еврейском квартале Парижа достигла 500 семей',
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/2-1-300x300.d110a0.webp'
+      },
+      {
+        id: 3,
+        title: 'Конвенция Молодых Бреслов в Лондоне',
+        location: 'Лондон, Англия',
+        date: '2 января 2025',
+        summary: 'Более 300 молодых людей приняли участие в ежегодной конвенции для духовного укрепления и пробуждения',
+        image: 'https://www.haesh-sheli.co.il/wp-content/uploads/2023/03/3-1-300x300.d110a0.webp'
+      }
+    ],
+
+    // Интерактивные Функции - НОВАЯ СЕКЦИЯ
+    interactiveTitle: 'Интерактивные Инструменты',
+    bookmarkText: 'Добавить в Избранное',
+    shareText: 'Поделиться Статьей',
+    downloadText: 'Скачать PDF',
+    printText: 'Печать',
+    relatedArticles: 'Связанные Статьи',
+    popularTags: 'Популярные Теги',
+
+    // Общие
+    watchVideo: 'Смотреть Видео',
+    readTestimonial: 'Читать Отзыв',
+    viewEvent: 'Детали События',
+    subscribeNewsletter: 'Подписаться на Обновления'
   }
 };
 

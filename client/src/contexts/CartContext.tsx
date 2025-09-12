@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import { useAuth } from '../hooks/useAuth';
 
 export interface CartItem {
   id: string;
@@ -42,42 +43,51 @@ export const useCart = () => {
   return context;
 };
 
-const CART_STORAGE_KEY = 'breslov-cart';
+const CART_STORAGE_KEY_BASE = 'breslov-cart';
 
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [items, setItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const { user, isAuthenticated } = useAuth();
+  
+  // Generate user-specific cart key or use guest key
+  const cartStorageKey = isAuthenticated && user ? `${CART_STORAGE_KEY_BASE}-${(user as any).id}` : `${CART_STORAGE_KEY_BASE}-guest`;
 
-  // Fetch user subscription status
+  // Fetch user subscription status for authenticated users only
   const { data: userSubscription } = useQuery({
     queryKey: ['/api/user/subscription'],
     retry: false,
     refetchOnWindowFocus: false,
+    enabled: isAuthenticated,
   });
 
   const isSubscriber = (userSubscription as any)?.user?.isSubscriber || false;
 
-  // Load cart from localStorage on mount
+  // Load cart from localStorage when cartStorageKey changes (user login/logout)
   useEffect(() => {
     try {
-      const savedCart = localStorage.getItem(CART_STORAGE_KEY);
+      const savedCart = localStorage.getItem(cartStorageKey);
       if (savedCart) {
         const parsedCart = JSON.parse(savedCart);
         setItems(parsedCart);
+      } else {
+        // No cart found for this user, start with empty cart
+        setItems([]);
       }
     } catch (error) {
       console.error('Error loading cart from localStorage:', error);
+      setItems([]);
     }
-  }, []);
+  }, [cartStorageKey]); // Re-load cart when storage key changes (user changes)
 
   // Save cart to localStorage whenever items change
   useEffect(() => {
     try {
-      localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
+      localStorage.setItem(cartStorageKey, JSON.stringify(items));
     } catch (error) {
       console.error('Error saving cart to localStorage:', error);
     }
-  }, [items]);
+  }, [items, cartStorageKey]);
 
   const addItem = (newItem: Omit<CartItem, 'id'>) => {
     setItems(currentItems => {

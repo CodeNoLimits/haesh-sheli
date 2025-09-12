@@ -1,6 +1,7 @@
 import { 
   type User, 
-  type InsertUser, 
+  type InsertUser,
+  type UpsertUser, 
   type Product,
   type InsertProduct,
   type SubscriptionPlan,
@@ -19,6 +20,8 @@ import {
   type ShippingAddress
 } from "@shared/schema";
 import { randomUUID } from "crypto";
+import { db } from "./db";
+import { eq } from "drizzle-orm";
 
 // modify the interface with any CRUD methods
 // you might need
@@ -30,6 +33,8 @@ export interface IStorage {
   getUserByEmail(email: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
   updateUser(id: string, updates: Partial<User>): Promise<User>;
+  // REQUIRED for Replit Auth
+  upsertUser(user: UpsertUser): Promise<User>;
   
   // Subscription user methods
   updateUserStripeInfo(id: string, stripeCustomerId: string, stripeSubscriptionId?: string): Promise<User>;
@@ -77,30 +82,26 @@ export interface IStorage {
   calculateShipping(subtotal: number, country: string, weight?: number): Promise<{ rate: ShippingRate; cost: number } | null>;
 }
 
-export class MemStorage implements IStorage {
-  private users: Map<string, User>;
-  private products: Map<string, Product>;
-  private subscriptionPlans: Map<string, SubscriptionPlan>;
-  private subscriptionHistory: Map<string, SubscriptionHistory>;
-  private orders: Map<string, Order>;
-  private orderItems: Map<string, OrderItem>;
-  private paymentTransactions: Map<string, PaymentTransaction>;
-  private shippingRates: Map<string, ShippingRate>;
-
+// Database storage implementation using PostgreSQL - UPDATED for Replit Auth
+export class DatabaseStorage implements IStorage {
   constructor() {
-    this.users = new Map();
-    this.products = new Map();
-    this.subscriptionPlans = new Map();
-    this.subscriptionHistory = new Map();
-    this.orders = new Map();
-    this.orderItems = new Map();
-    this.paymentTransactions = new Map();
-    this.shippingRates = new Map();
-    
-    // Initialize default data
-    this.initializeDefaultPlans();
-    this.initializeDefaultShippingRates();
-    this.initializeDefaultProducts();
+    // Initialize default data in database on first run
+    this.initializeDefaultData();
+  }
+
+  private async initializeDefaultData() {
+    // This will be run once to seed the database with default data
+    try {
+      // Check if data already exists, if not seed it
+      const existingPlans = await this.getAllSubscriptionPlans();
+      if (existingPlans.length === 0) {
+        await this.initializeDefaultPlans();
+        await this.initializeDefaultShippingRates();
+        await this.initializeDefaultProducts();
+      }
+    } catch (error) {
+      console.log("Database not ready yet, will initialize later");
+    }
   }
 
   private initializeDefaultPlans() {
@@ -494,49 +495,89 @@ export class MemStorage implements IStorage {
     return { product, variant };
   }
 
-  // User methods
+  // User methods - Database implementation for Replit Auth
   async getUser(id: string): Promise<User | undefined> {
-    return this.users.get(id);
+    try {
+      const result = await db.select().from(users).where(eq(users.id, id));
+      return result[0] || undefined;
+    } catch (error) {
+      console.error("Error fetching user:", error);
+      return undefined;
+    }
   }
 
   async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
-    );
+    try {
+      const result = await db.select().from(users).where(eq(users.username, username));
+      return result[0] || undefined;
+    } catch (error) {
+      console.error("Error fetching user by username:", error);
+      return undefined;
+    }
   }
 
   async getUserByEmail(email: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.email === email,
-    );
+    try {
+      const result = await db.select().from(users).where(eq(users.email, email));
+      return result[0] || undefined;
+    } catch (error) {
+      console.error("Error fetching user by email:", error);
+      return undefined;
+    }
   }
 
   async createUser(insertUser: InsertUser): Promise<User> {
-    const id = randomUUID();
-    const user: User = { 
-      ...insertUser, 
-      id,
-      email: insertUser.email || null, // Handle undefined -> null conversion
-      stripeCustomerId: null,
-      stripeSubscriptionId: null,
-      subscriptionStatus: null,
-      subscriptionStartDate: null,
-      subscriptionEndDate: null,
-      subscriptionPlanId: "horat_keva_99",
-      isSubscriber: false
-    };
-    this.users.set(id, user);
-    return user;
+    try {
+      const result = await db.insert(users).values({
+        ...insertUser,
+        email: insertUser.email || null,
+        subscriptionPlanId: "horat_keva_99",
+        isSubscriber: false,
+      }).returning();
+      return result[0];
+    } catch (error) {
+      console.error("Error creating user:", error);
+      throw error;
+    }
   }
 
   async updateUser(id: string, updates: Partial<User>): Promise<User> {
-    const user = this.users.get(id);
-    if (!user) {
-      throw new Error(`User with id ${id} not found`);
+    try {
+      const result = await db
+        .update(users)
+        .set({ ...updates, updatedAt: new Date() })
+        .where(eq(users.id, id))
+        .returning();
+      
+      if (result.length === 0) {
+        throw new Error(`User with id ${id} not found`);
+      }
+      return result[0];
+    } catch (error) {
+      console.error("Error updating user:", error);
+      throw error;
     }
-    const updatedUser = { ...user, ...updates };
-    this.users.set(id, updatedUser);
-    return updatedUser;
+  }
+
+  // REQUIRED for Replit Auth - upsertUser method
+  async upsertUser(userData: UpsertUser): Promise<User> {
+    try {
+      const result = await db
+        .insert(users)
+        .values(userData)
+        .onConflictDoUpdate({
+          target: users.id,
+          set: {
+            ...userData,
+            updatedAt: new Date(),
+          },
+        })
+        .returning();
+      return result[0];
+    } catch (error) {
+      console.error("Error upserting user:", error);
+      throw error;
+    }
   }
 
   // Subscription user methods
@@ -773,4 +814,4 @@ export class MemStorage implements IStorage {
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new DatabaseStorage();

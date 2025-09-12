@@ -8,6 +8,7 @@ import Stripe from "stripe";
 import { User } from "@shared/schema";
 import { sendOrderConfirmation } from "./emailService";
 import { chatWithGemini, chatWithGeminiStream, checkGeminiConnection, analyzeUserSentiment, type ChatRequest, type ChatMessage } from "./geminiService";
+import { setupAuth, isAuthenticated } from "./replitAuth";
 
 // Extend Request interface to include authentication properties
 declare global {
@@ -26,24 +27,19 @@ if (process.env.STRIPE_SECRET_KEY) {
 }
 
 export async function registerRoutes(app: Express): Promise<Server> {
-  // Mock authentication middleware with storage-backed user
-  app.use(async (req, res, next) => {
-    req.isAuthenticated = () => true; // Mock - always authenticated for now
-    
-    // Try to get existing user from storage, or create one if it doesn't exist
-    let user = await storage.getUser("mock-user-id");
-    if (!user) {
-      user = await storage.createUser({
-        username: "mock-user",
-        email: "mock@example.com",
-        password: "hashed-password"
-      });
-      // Update the user ID to be consistent
-      user = await storage.updateUser(user.id, { id: "mock-user-id" });
+  // Setup Replit Auth middleware
+  await setupAuth(app);
+
+  // Auth routes - required for Replit Auth
+  app.get('/api/auth/user', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const user = await storage.getUser(userId);
+      res.json(user);
+    } catch (error) {
+      console.error("Error fetching user:", error);
+      res.status(500).json({ message: "Failed to fetch user" });
     }
-    
-    req.user = user;
-    next();
   });
 
   // Serve attached_assets images directly 
