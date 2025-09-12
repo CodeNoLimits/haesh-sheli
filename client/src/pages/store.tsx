@@ -1,4 +1,5 @@
 import { useState, useMemo, useEffect } from 'react';
+import { Link } from 'wouter';
 import { realBreslovProducts } from '../data/realProducts';
 import { Header } from '../components/Header';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -7,6 +8,7 @@ import { Slider } from '@/components/ui/slider';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Search, X, Filter, ChevronDown, ChevronUp } from 'lucide-react';
+import { convertImagePath } from '../utils/imagePathHelper';
 import type { Product } from '../../../shared/schema';
 
 // Filter interfaces
@@ -402,33 +404,37 @@ export default function Store() {
                 >
                   
                   {/* Image */}
-                  {product.images && product.images.length > 0 ? (
-                    <img 
-                      src={product.images[0]}
-                      alt={product.name}
-                      className="w-full h-48 object-cover"
-                      data-testid={`img-product-${product.id}`}
-                      onError={(e) => {
-                        e.currentTarget.style.display = 'none';
-                      }}
-                    />
-                  ) : (
-                    <div 
-                      className="w-full h-48 bg-gray-100 flex items-center justify-center"
-                      data-testid={`placeholder-product-${product.id}`}
-                    >
-                      <span className="text-2xl">📖</span>
-                    </div>
-                  )}
+                  <Link href={`/product/${product.id}`}>
+                    {product.images && product.images.length > 0 ? (
+                      <img 
+                        src={convertImagePath(product.images[0])}
+                        alt={product.name}
+                        className="w-full h-48 object-cover cursor-pointer hover:opacity-90 transition-opacity"
+                        data-testid={`img-product-${product.id}`}
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none';
+                        }}
+                      />
+                    ) : (
+                      <div 
+                        className="w-full h-48 bg-gray-100 flex items-center justify-center cursor-pointer hover:bg-gray-200 transition-colors"
+                        data-testid={`placeholder-product-${product.id}`}
+                      >
+                        <span className="text-2xl">📖</span>
+                      </div>
+                    )}
+                  </Link>
                   
                   {/* Content */}
                   <div className="p-4">
-                    <h3 
-                      className="font-semibold text-lg mb-2 text-gray-900 line-clamp-2"
-                      data-testid={`text-title-${product.id}`}
-                    >
-                      {product.name}
-                    </h3>
+                    <Link href={`/product/${product.id}`}>
+                      <h3 
+                        className="font-semibold text-lg mb-2 text-gray-900 line-clamp-2 cursor-pointer hover:text-blue-600 transition-colors"
+                        data-testid={`text-title-${product.id}`}
+                      >
+                        {product.name}
+                      </h3>
+                    </Link>
                     
                     <div 
                       className="text-lg font-bold text-blue-600 mb-2"
@@ -447,12 +453,14 @@ export default function Store() {
                       {product.category}
                     </div>
                     
-                    <Button 
-                      className="w-full bg-blue-600 hover:bg-blue-700 text-white"
-                      data-testid={`button-view-details-${product.id}`}
-                    >
-                      צפייה בפרטים
-                    </Button>
+                    <Link href={`/product/${product.id}`}>
+                      <Button 
+                        className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+                        data-testid={`button-view-details-${product.id}`}
+                      >
+                        צפייה בפרטים
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               ))}
@@ -473,9 +481,11 @@ export default function Store() {
               <p className="text-lg text-gray-700 mb-4" data-testid="text-contact-message">
                 מחפשים ספר נוסף? צרו קשר ונמצא עבורכם!
               </p>
-              <Button className="bg-green-600 hover:bg-green-700 text-white" data-testid="button-contact">
-                צרו קשר לפרטים נוספים
-              </Button>
+              <Link href="/contact">
+                <Button className="bg-green-600 hover:bg-green-700 text-white" data-testid="button-contact">
+                  צרו קשר לפרטים נוספים
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
