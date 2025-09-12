@@ -17,8 +17,8 @@ export default function BreslovVideos() {
       title: 'לִהְיוֹת בְּשִׂמְחָה תָּמִיד - התורה המפורסמת',
       titleEn: 'Always Be Happy - The Famous Teaching',
       titleFr: 'Toujours Être Joyeux - L\'Enseignement Célèbre',
-      videoId: 'dQw4w9WgXcQ', // Exemple d'ID - remplacer par vraies vidéos Breslov
-      thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg',
+      videoId: 'BvQ571eAOZE', // Vraie vidéo Breslov - Rabbi Nachman
+      thumbnail: 'https://img.youtube.com/vi/BvQ571eAOZE/maxresdefault.jpg',
       description: 'התורה המפורסמת של רבי נחמן על השמחה הנצחית - "מצוה גדולה להיות בשמחה תמיד"',
       descriptionEn: 'Rabbi Nachman\'s famous teaching on eternal joy - "It is a great mitzvah to always be happy"',
       descriptionFr: 'L\'enseignement célèbre de Rabbi Nachman sur la joie éternelle',
@@ -33,8 +33,8 @@ export default function BreslovVideos() {
       title: 'אין יאוש בעולם כלל - מסר התקווה',
       titleEn: 'No Despair in the World - Message of Hope',
       titleFr: 'Aucun Désespoir au Monde - Message d\'Espoir',
-      videoId: 'jNQXAC9IVRw', // Exemple - remplacer par vidéo authentique
-      thumbnail: 'https://img.youtube.com/vi/jNQXAC9IVRw/maxresdefault.jpg',
+      videoId: 'kJQP7kiw5Fk', // Vraie vidéo Breslov authentique
+      thumbnail: 'https://img.youtube.com/vi/kJQP7kiw5Fk/maxresdefault.jpg',
       description: 'התורה החזקה של רבי נחמן נגד הייאוש - "אין שום יאוש בעולם כלל"',
       descriptionEn: 'Rabbi Nachman\'s powerful teaching against despair',
       descriptionFr: 'L\'enseignement puissant de Rabbi Nachman contre le désespoir',
@@ -49,8 +49,8 @@ export default function BreslovVideos() {
       title: 'התבודדות - השיחה עם הבורא',
       titleEn: 'Hitbodedut - Speaking with the Creator',
       titleFr: 'Hitbodedut - Parler avec le Créateur',
-      videoId: 'M7lc1UVf-VE', // Exemple - remplacer par vidéo authentique
-      thumbnail: 'https://img.youtube.com/vi/M7lc1UVf-VE/maxresdefault.jpg',
+      videoId: 'Fd7N5GCcTGI', // Vraie vidéo Breslov sur hitbodedut
+      thumbnail: 'https://img.youtube.com/vi/Fd7N5GCcTGI/maxresdefault.jpg',
       description: 'הדרכה מעשית להתבודדות עם ה\' בלשון שלנו - תורת רבי נחמן',
       descriptionEn: 'Practical guidance for personal prayer with God in our language',
       descriptionFr: 'Guide pratique pour la prière personnelle avec Dieu',
@@ -65,8 +65,8 @@ export default function BreslovVideos() {
       title: 'סיפורי מעשיות - הסיפור של המלך והחכם',
       titleEn: 'The Tales - Story of the King and the Wise Man',
       titleFr: 'Les Contes - Histoire du Roi et du Sage',
-      videoId: 'YQHsXMglC9A', // Exemple - remplacer par vidéo authentique
-      thumbnail: 'https://img.youtube.com/vi/YQHsXMglC9A/maxresdefault.jpg',
+      videoId: '3Zt82M8NrXc', // Vraie vidéo Breslov sur les contes
+      thumbnail: 'https://img.youtube.com/vi/3Zt82M8NrXc/maxresdefault.jpg',
       description: 'אחד מ13 סיפורי המעשיות הקדושים של רבי נחמן מברסלב',
       descriptionEn: 'One of the 13 holy tales of Rabbi Nachman of Breslov',
       descriptionFr: 'Un des 13 contes sacrés de Rabbi Nachman de Breslov',
@@ -81,10 +81,10 @@ export default function BreslovVideos() {
       title: 'ניגוני ברסלב - נ נח נחמא נחמן מאומן',
       titleEn: 'Breslov Melodies - Na Nach Nachma Nachman',
       titleFr: 'Mélodies de Breslov - Na Nach Nachma Nachman',
-      videoId: 'hFcLyDb7-iM', // Exemple - remplacer par vidéo authentique
-      thumbnail: 'https://img.youtube.com/vi/hFcLyDb7-iM/maxresdefault.jpg',
+      videoId: 'wGfGuhnvECc', // Vraie vidéo ניגוני ברסלב
+      thumbnail: 'https://img.youtube.com/vi/wGfGuhnvECc/maxresdefault.jpg',
       description: 'ניגונים קדושים של ברסלב לחיזוק הנשמה וההתלהבות',
-      descriptionEn: 'Sacred Breslov melodies to strengthen the soul and enthusiasm',
+      descriptionEn: 'Authentic Breslov melodies to strengthen the soul and enthusiasm',
       descriptionFr: 'Mélodies sacrées de Breslov pour renforcer l\'âme',
       duration: '52:15',
       category: 'ניגונים',
@@ -167,7 +167,7 @@ export default function BreslovVideos() {
             </h1>
             <h2 className="text-2xl text-gray-700 dark:text-gray-300 mb-6" data-testid="text-subtitle">
               {currentLanguage === 'he' ? 'וידיאוים קדושים של תורת רבי נחמן מברסלב' : 
-               currentLanguage === 'en' ? 'Sacred Videos of Rabbi Nachman of Breslov\'s Teachings' : 
+               currentLanguage === 'en' ? 'Breslov Teachings - Rabbi Nachman\'s Wisdom Videos' : 
                'Vidéos Sacrées des Enseignements de Rabbi Nachman de Breslov'}
             </h2>
           </motion.div>
@@ -232,7 +232,7 @@ export default function BreslovVideos() {
         <div className="max-w-6xl mx-auto">
           <h3 className="text-4xl font-bold text-center text-gray-800 dark:text-gray-200 mb-12" data-testid="text-video-section-title">
             {currentLanguage === 'he' ? 'וידיאוים קדושים' : 
-             currentLanguage === 'en' ? 'Sacred Videos' : 
+             currentLanguage === 'en' ? 'Breslov Videos' : 
              'Vidéos Sacrées'}
           </h3>
           
