@@ -115,7 +115,8 @@ export function Header({ currentLanguage = 'he', onLanguageChange }: HeaderProps
 
   return (
     <header className="site-header" data-testid="main-header" dir={currentLanguage === 'he' ? 'rtl' : 'ltr'}>
-      <div className="header-container">
+      {/* TOP ROW - Logo + Special Links */}
+      <div className="header-container-top">
         {/* LOGO */}
         <div className="header-logo">
           <a href="/" data-testid="link-home" className="transition-all duration-500 hover:scale-110 hover:rotate-2 hover:drop-shadow-2xl inline-block hover:-translate-y-2">
@@ -128,7 +129,42 @@ export function Header({ currentLanguage = 'he', onLanguageChange }: HeaderProps
           </a>
         </div>
 
-        {/* NAVIGATION */}
+        {/* SPECIAL NAVIGATION - TOP ROW */}
+        <nav className="header-nav-special" data-testid="nav-special">
+          <ul className="nav-menu-special">
+            <li className={location === '/chat' ? 'current-menu-item' : ''}>
+              <a href="/chat" data-testid="link-chat" style={{color: '#10B981', fontWeight: 'bold'}} className="px-3 py-1 rounded-lg transition-all duration-300 hover:scale-125 hover:text-white hover:bg-green-500 hover:shadow-xl hover:-translate-y-2 inline-block">{t.chat}</a>
+            </li>
+            <li className={location === '/subscription' ? 'current-menu-item' : ''}>
+              <a href="/subscription" data-testid="link-subscription" style={{color: '#FFD700', fontWeight: 'bold'}} className="px-3 py-1 rounded-lg transition-all duration-300 hover:scale-125 hover:text-white hover:bg-yellow-500 hover:shadow-xl hover:-translate-y-2 inline-block">👑 {t.subscription}</a>
+            </li>
+            <li className={location === '/breslov-videos' ? 'current-menu-item' : ''}>
+              <a href="/breslov-videos" data-testid="link-breslov-videos" style={{color: '#FF6B35', fontWeight: 'bold'}} className="px-3 py-1 rounded-lg transition-all duration-300 hover:scale-125 hover:text-white hover:bg-orange-500 hover:shadow-xl hover:-translate-y-2 inline-block">🎥 {t.breslovVideos}</a>
+            </li>
+            <li className={location === '/yaaakov' ? 'current-menu-item' : ''}>
+              <a href="/yaaakov" data-testid="link-yaaakov" className="px-3 py-1 rounded-lg transition-all duration-300 hover:scale-110 hover:text-yellow-300 hover:drop-shadow-lg inline-block hover:-translate-y-1">
+                {currentLanguage === 'he' ? 'יעקב' : currentLanguage === 'en' ? 'Yaaakov' : currentLanguage === 'fr' ? 'Yaaakov' : currentLanguage === 'es' ? 'Yaaakov' : currentLanguage === 'ru' ? 'Яааков' : 'יעקב'}
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        {/* MOBILE MENU TOGGLE */}
+        <button 
+          className="mobile-menu-toggle transition-all duration-300 hover:scale-125 hover:bg-white hover:text-red-600 hover:shadow-xl hover:rotate-90"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          data-testid="button-mobile-menu"
+          aria-label="Toggle mobile menu"
+        >
+          <span className="transition-all duration-300">
+            {mobileMenuOpen ? <X /> : <Menu />}
+          </span>
+        </button>
+      </div>
+
+      {/* BOTTOM ROW - Basic Navigation + User Actions */}
+      <div className="header-container-bottom">
+        {/* BASIC NAVIGATION */}
         <nav className="header-nav" data-testid="nav-main">
           <ul className="nav-menu">
             <li className={location === '/' ? 'current-menu-item' : ''}>
@@ -152,51 +188,10 @@ export function Header({ currentLanguage = 'he', onLanguageChange }: HeaderProps
             <li className={location === '/downloads' ? 'current-menu-item' : ''}>
               <a href="/downloads" data-testid="link-downloads" className="transition-all duration-300 hover:scale-110 hover:text-yellow-300 hover:drop-shadow-lg inline-block hover:-translate-y-1">{t.downloads}</a>
             </li>
-            <li className={location === '/chat' ? 'current-menu-item' : ''}>
-              <a href="/chat" data-testid="link-chat" style={{color: '#10B981', fontWeight: 'bold'}} className="px-3 py-1 rounded-lg transition-all duration-300 hover:scale-125 hover:text-white hover:bg-green-500 hover:shadow-xl hover:-translate-y-2 inline-block">{t.chat}</a>
-            </li>
-            <li className={location === '/subscription' ? 'current-menu-item' : ''}>
-              <a href="/subscription" data-testid="link-subscription" style={{color: '#FFD700', fontWeight: 'bold'}} className="px-3 py-1 rounded-lg transition-all duration-300 hover:scale-125 hover:text-white hover:bg-yellow-500 hover:shadow-xl hover:-translate-y-2 inline-block">👑 {t.subscription}</a>
-            </li>
-            <li className={location === '/breslov-videos' ? 'current-menu-item' : ''}>
-              <a href="/breslov-videos" data-testid="link-breslov-videos" style={{color: '#FF6B35', fontWeight: 'bold'}} className="px-3 py-1 rounded-lg transition-all duration-300 hover:scale-125 hover:text-white hover:bg-orange-500 hover:shadow-xl hover:-translate-y-2 inline-block">🎥 {t.breslovVideos}</a>
-            </li>
-            <li className={location === '/yaaakov' ? 'current-menu-item' : ''}>
-              <a href="/yaaakov" data-testid="link-yaaakov" className="transition-all duration-300 hover:scale-110 hover:text-yellow-300 hover:drop-shadow-lg inline-block hover:-translate-y-1">
-                {currentLanguage === 'he' ? 'יעקב' : currentLanguage === 'en' ? 'Yaaakov' : currentLanguage === 'fr' ? 'Yaaakov' : currentLanguage === 'es' ? 'Yaaakov' : currentLanguage === 'ru' ? 'Яааков' : 'יעקב'}
-              </a>
-            </li>
           </ul>
         </nav>
 
-        {/* MOBILE MENU TOGGLE */}
-        <button 
-          className="mobile-menu-toggle transition-all duration-300 hover:scale-125 hover:bg-white hover:text-red-600 hover:shadow-xl hover:rotate-90"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          data-testid="button-mobile-menu"
-          aria-label="Toggle mobile menu"
-        >
-          <span className="transition-all duration-300">
-            {mobileMenuOpen ? <X /> : <Menu />}
-          </span>
-        </button>
-
-        {/* LANGUAGE SELECTOR */}
-        <div className="language-selector" data-testid="language-selector">
-          {Object.entries(languageFlags).map(([lang, flag]) => (
-            <button
-              key={lang}
-              onClick={() => onLanguageChange?.(lang)}
-              className={`language-btn ${currentLanguage === lang ? 'active' : ''} transition-all duration-300 hover:scale-125 hover:bg-white hover:text-blue-600 hover:shadow-xl hover:-translate-y-1 hover:rotate-3`}
-              data-testid={`button-language-${lang}`}
-            >
-              <span className="transition-all duration-300 hover:scale-125">{flag}</span>
-              <span className="transition-all duration-300">{lang.toUpperCase()}</span>
-            </button>
-          ))}
-        </div>
-
-        {/* HEADER ACTIONS */}
+        {/* USER ACTIONS */}
         <div className="header-actions">
           {/* WhatsApp Button */}
           <a 
@@ -207,7 +202,7 @@ export function Header({ currentLanguage = 'he', onLanguageChange }: HeaderProps
             data-testid="button-whatsapp"
             style={{marginRight: currentLanguage === 'he' ? '10px' : '0', marginLeft: currentLanguage !== 'he' ? '10px' : '0'}}
           >
-            <span className="text-lg">{t.whatsapp}</span>
+            <span className="text-sm">{t.whatsapp}</span>
           </a>
 
           {/* Authentication Button */}
@@ -269,6 +264,21 @@ export function Header({ currentLanguage = 'he', onLanguageChange }: HeaderProps
           <h2 className="fire-logo transition-all duration-500 hover:scale-125 hover:text-orange-400 hover:drop-shadow-lg hover:-translate-y-1 hover:rotate-12" data-testid="text-fire-logo">
             {t.fire}
           </h2>
+
+          {/* LANGUAGE SELECTOR */}
+          <div className="language-selector" data-testid="language-selector">
+            {Object.entries(languageFlags).map(([lang, flag]) => (
+              <button
+                key={lang}
+                onClick={() => onLanguageChange?.(lang)}
+                className={`language-btn ${currentLanguage === lang ? 'active' : ''} transition-all duration-300 hover:scale-125 hover:bg-white hover:text-blue-600 hover:shadow-xl hover:-translate-y-1 hover:rotate-3`}
+                data-testid={`button-language-${lang}`}
+              >
+                <span className="transition-all duration-300 hover:scale-125">{flag}</span>
+                <span className="transition-all duration-300">{lang.toUpperCase()}</span>
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 

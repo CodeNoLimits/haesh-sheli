@@ -17,14 +17,14 @@ export default function BreslovVideos() {
       title: 'לִהְיוֹת בְּשִׂמְחָה תָּמִיד - התורה המפורסמת',
       titleEn: 'Always Be Happy - The Famous Teaching',
       titleFr: 'Toujours Être Joyeux - L\'Enseignement Célèbre',
-      videoId: 'BvQ571eAOZE', // Vraie vidéo Breslov - Rabbi Nachman
-      thumbnail: 'https://img.youtube.com/vi/BvQ571eAOZE/maxresdefault.jpg',
+      videoId: '3uQP06r20H8', // Vraie vidéo Breslov - Rabbi Nachman
+      thumbnail: 'https://img.youtube.com/vi/3uQP06r20H8/maxresdefault.jpg',
       description: 'התורה המפורסמת של רבי נחמן על השמחה הנצחית - "מצוה גדולה להיות בשמחה תמיד"',
       descriptionEn: 'Rabbi Nachman\'s famous teaching on eternal joy - "It is a great mitzvah to always be happy"',
       descriptionFr: 'L\'enseignement célèbre de Rabbi Nachman sur la joie éternelle',
       duration: '23:45',
       category: 'תורות עיקריות',
-      speaker: 'רב נתן מימון',
+      speaker: 'קרן רבי ישראל הקרן',
       views: '2.1M',
       icon: <Heart className="w-8 h-8 text-red-500" />
     },
@@ -33,14 +33,14 @@ export default function BreslovVideos() {
       title: 'אין יאוש בעולם כלל - מסר התקווה',
       titleEn: 'No Despair in the World - Message of Hope',
       titleFr: 'Aucun Désespoir au Monde - Message d\'Espoir',
-      videoId: 'H4c84d7a_3I', // Vraie vidéo Breslov authentique - Ein Yesush
-      thumbnail: 'https://img.youtube.com/vi/H4c84d7a_3I/maxresdefault.jpg',
+      videoId: 'RvlOCvdiUCA', // Vraie vidéo Breslov authentique - Ein Yesush
+      thumbnail: 'https://img.youtube.com/vi/RvlOCvdiUCA/maxresdefault.jpg',
       description: 'התורה החזקה של רבי נחמן נגד הייאוש - "אין שום יאוש בעולם כלל"',
       descriptionEn: 'Rabbi Nachman\'s powerful teaching against despair',
       descriptionFr: 'L\'enseignement puissant de Rabbi Nachman contre le désespoir',
       duration: '31:12',
       category: 'חיזוק והתגברות',
-      speaker: 'הרב יצחק ברנד',
+      speaker: 'קרן רבי ישראל הקרן',
       views: '1.8M',
       icon: <Mountain className="w-8 h-8 text-blue-500" />
     },
@@ -49,14 +49,14 @@ export default function BreslovVideos() {
       title: 'התבודדות - השיחה עם הבורא',
       titleEn: 'Hitbodedut - Speaking with the Creator',
       titleFr: 'Hitbodedut - Parler avec le Créateur',
-      videoId: 'Fd7N5GCcTGI', // Vraie vidéo Breslov sur hitbodedut
-      thumbnail: 'https://img.youtube.com/vi/Fd7N5GCcTGI/maxresdefault.jpg',
+      videoId: '3LFVAOXVB9Y', // Vraie vidéo Breslov sur hitbodedut
+      thumbnail: 'https://img.youtube.com/vi/3LFVAOXVB9Y/maxresdefault.jpg',
       description: 'הדרכה מעשית להתבודדות עם ה\' בלשון שלנו - תורת רבי נחמן',
       descriptionEn: 'Practical guidance for personal prayer with God in our language',
       descriptionFr: 'Guide pratique pour la prière personnelle avec Dieu',
       duration: '28:33',
       category: 'עבודת ה',
-      speaker: 'רב משה טורגמן',
+      speaker: 'קרן רבי ישראל הקרן',
       views: '1.2M',
       icon: <Quote className="w-8 h-8 text-purple-500" />
     },
@@ -72,7 +72,7 @@ export default function BreslovVideos() {
       descriptionFr: 'Un des 13 contes authentiques de Rabbi Nachman de Breslov',
       duration: '45:20',
       category: 'מעשיות',
-      speaker: 'רב שמעון בורג\'ל',
+      speaker: 'קרן רבי ישראל הקרן',
       views: '950K',
       icon: <Book className="w-8 h-8 text-green-500" />
     },
@@ -88,7 +88,7 @@ export default function BreslovVideos() {
       descriptionFr: 'Mélodies authentiques de Breslov pour renforcer l\'âme',
       duration: '52:15',
       category: 'ניגונים',
-      speaker: 'מקהלת נעוה מאה\'',
+      speaker: 'קרן רבי ישראל הקרן',
       views: '3.2M',
       icon: <Music className="w-8 h-8 text-yellow-500" />
     }
