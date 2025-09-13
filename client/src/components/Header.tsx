@@ -20,7 +20,8 @@ const translations = {
     join: 'הצטרפות',
     downloads: 'הורדות',
     subscription: 'הוראת קבע',
-    breslovVideos: 'ברסלב סגנון',
+    breslovVideos: 'קרן סגנון',
+    haeshHype: '🔥 האש הייפ',
     chat: '💬 צ\'אט ברסלבי',
     whatsapp: '💬 דבר איתנו',
     fire: '🔥 האש שלי',
@@ -37,7 +38,8 @@ const translations = {
     join: 'Join',
     downloads: 'Downloads',
     subscription: 'Subscription',
-    breslovVideos: 'Breslov Style',
+    breslovVideos: 'Keren Style',
+    haeshHype: '🔥 HaEsh Hype',
     chat: '💬 Breslov Chat',
     whatsapp: '💬 Talk to Us',
     fire: '🔥 My Fire',
@@ -54,7 +56,8 @@ const translations = {
     join: 'Rejoindre',
     downloads: 'Téléchargements',
     subscription: 'Abonnement',
-    breslovVideos: 'Style Breslov',
+    breslovVideos: 'Style Keren',
+    haeshHype: '🔥 HaEsh Hype',
     chat: '💬 Chat Breslov',
     whatsapp: '💬 Parlez-nous',
     fire: '🔥 Mon Feu',
@@ -71,7 +74,8 @@ const translations = {
     join: 'Unirse',
     downloads: 'Descargas',
     subscription: 'Suscripción',
-    breslovVideos: 'Estilo Breslov',
+    breslovVideos: 'Estilo Keren',
+    haeshHype: '🔥 HaEsh Hype',
     chat: '💬 Chat Breslov',
     whatsapp: '💬 Habla con Nosotros',
     fire: '🔥 Mi Fuego',
@@ -88,7 +92,8 @@ const translations = {
     join: 'Присоединиться',
     downloads: 'Загрузки',
     subscription: 'Подписка',
-    breslovVideos: 'Брeslов Стиль',
+    breslovVideos: 'Керен Стиль',
+    haeshHype: '🔥 ХаЭш Хайп',
     chat: '💬 Брeslов Чат',
     whatsapp: '💬 Поговорить с Нами',
     fire: '🔥 Мой Огонь',
@@ -138,8 +143,11 @@ export function Header({ currentLanguage = 'he', onLanguageChange }: HeaderProps
             <li className={location === '/subscription' ? 'current-menu-item' : ''}>
               <a href="/subscription" data-testid="link-subscription" style={{color: '#FFD700', fontWeight: 'bold'}} className="px-3 py-1 rounded-lg transition-all duration-300 hover:scale-125 hover:text-white hover:bg-yellow-500 hover:shadow-xl hover:-translate-y-2 inline-block">👑 {t.subscription}</a>
             </li>
-            <li className={location === '/breslov-videos' ? 'current-menu-item' : ''}>
-              <a href="/breslov-videos" data-testid="link-breslov-videos" style={{color: '#FF6B35', fontWeight: 'bold'}} className="px-3 py-1 rounded-lg transition-all duration-300 hover:scale-125 hover:text-white hover:bg-orange-500 hover:shadow-xl hover:-translate-y-2 inline-block">🎥 {t.breslovVideos}</a>
+            <li className={location === '/keren-style' ? 'current-menu-item' : ''}>
+              <a href="/keren-style" data-testid="link-keren-style" style={{color: '#FF6B35', fontWeight: 'bold'}} className="px-3 py-1 rounded-lg transition-all duration-300 hover:scale-125 hover:text-white hover:bg-orange-500 hover:shadow-xl hover:-translate-y-2 inline-block">🎥 {t.breslovVideos}</a>
+            </li>
+            <li className={location === '/haesh-hype' ? 'current-menu-item' : ''}>
+              <a href="/haesh-hype" data-testid="link-haesh-hype" style={{color: '#EF4444', fontWeight: 'bold'}} className="px-3 py-1 rounded-lg transition-all duration-300 hover:scale-125 hover:text-white hover:bg-red-500 hover:shadow-xl hover:-translate-y-2 inline-block">{t.haeshHype}</a>
             </li>
             <li className={location === '/yaaakov' ? 'current-menu-item' : ''}>
               <a href="/yaaakov" data-testid="link-yaaakov" className="px-3 py-1 rounded-lg transition-all duration-300 hover:scale-110 hover:text-yellow-300 hover:drop-shadow-lg inline-block hover:-translate-y-1">
@@ -321,8 +329,11 @@ export function Header({ currentLanguage = 'he', onLanguageChange }: HeaderProps
           <li className={location === '/subscription' ? 'current-menu-item' : ''}>
             <a href="/subscription" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-subscription" style={{color: '#FFD700', fontWeight: 'bold'}}>👑 {t.subscription}</a>
           </li>
-          <li className={location === '/breslov-videos' ? 'current-menu-item' : ''}>
-            <a href="/breslov-videos" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-breslov-videos" style={{color: '#FF6B35', fontWeight: 'bold'}}>🎥 {t.breslovVideos}</a>
+          <li className={location === '/keren-style' ? 'current-menu-item' : ''}>
+            <a href="/keren-style" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-keren-style" style={{color: '#FF6B35', fontWeight: 'bold'}}>🎥 {t.breslovVideos}</a>
+          </li>
+          <li className={location === '/haesh-hype' ? 'current-menu-item' : ''}>
+            <a href="/haesh-hype" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-haesh-hype" style={{color: '#EF4444', fontWeight: 'bold'}}>{t.haeshHype}</a>
           </li>
           <li className={location === '/yaaakov' ? 'current-menu-item' : ''}>
             <a href="/yaaakov" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-yaaakov">

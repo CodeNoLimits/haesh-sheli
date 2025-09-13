@@ -163,12 +163,12 @@ export default function BreslovVideos() {
           >
             <Flame className="w-24 h-24 mx-auto text-orange-500 mb-6 animate-pulse" data-testid="icon-flame" />
             <h1 className="text-6xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent mb-4" data-testid="text-main-title">
-              {currentLanguage === 'he' ? 'ברסלב סגנון' : currentLanguage === 'en' ? 'Breslov Videos' : 'Vidéos Breslov'}
+              {currentLanguage === 'he' ? 'קרן סגנון' : currentLanguage === 'en' ? 'Keren Style' : 'Style Keren'}
             </h1>
             <h2 className="text-2xl text-gray-700 dark:text-gray-300 mb-6" data-testid="text-subtitle">
               {currentLanguage === 'he' ? 'וידיאוים קדושים של תורת רבי נחמן מברסלב' : 
-               currentLanguage === 'en' ? 'Breslov Teachings - Rabbi Nachman\'s Wisdom Videos' : 
-               'Vidéos Authentiques des Enseignements de Rabbi Nachman de Breslov'}
+               currentLanguage === 'en' ? 'Keren Style - Rabbi Nachman\'s Wisdom Videos' : 
+               'Style Keren - Vidéos des Enseignements de Rabbi Nachman de Breslov'}
             </h2>
           </motion.div>
           
@@ -232,8 +232,8 @@ export default function BreslovVideos() {
         <div className="max-w-6xl mx-auto">
           <h3 className="text-4xl font-bold text-center text-gray-800 dark:text-gray-200 mb-12" data-testid="text-video-section-title">
             {currentLanguage === 'he' ? 'וידיאוים קדושים' : 
-             currentLanguage === 'en' ? 'Breslov Videos' : 
-             'Vidéos Authentiques'}
+             currentLanguage === 'en' ? 'Keren Style Videos' : 
+             'Vidéos Style Keren'}
           </h3>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

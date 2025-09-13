@@ -42,6 +42,8 @@ import Downloads from "@/pages/downloads";
 import Product from "@/pages/product";
 import BreslovWisdom from "@/pages/breslovWisdom";
 import BreslovVideos from "@/pages/breslov-videos";
+import KerenStyle from "@/pages/keren-style";
+import HaeshHype from "@/pages/haesh-hype";
 import Subscription from "@/pages/subscription";
 import SubscriptionManagement from "@/pages/subscription-management";
 import YaakovDashboard from "@/pages/yaaakov";
@@ -64,7 +66,8 @@ function Router() {
       <Route path="/subscription/manage" component={SubscriptionManagement} />
       <Route path="/product/:id" component={Product} />
       <Route path="/breslov-wisdom" component={BreslovWisdom} />
-      <Route path="/breslov-videos" component={BreslovVideos} />
+      <Route path="/keren-style" component={KerenStyle} />
+      <Route path="/haesh-hype" component={HaeshHype} />
       <Route path="/chat" component={Chat} />
       <Route path="/yaaakov" component={YaakovDashboard} />
       <Route component={NotFound} />
