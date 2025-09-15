@@ -8,6 +8,9 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { CheckCircle, Star, Download, ShoppingCart, Crown, Sparkles } from 'lucide-react';
+import { StripeNotConfiguredFallback } from '@/components/StripeNotConfiguredFallback';
+import { Header } from '@/components/Header';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 // Load Stripe (will need VITE_STRIPE_PUBLIC_KEY)
 const stripePublicKey = import.meta.env.VITE_STRIPE_PUBLIC_KEY;
@@ -89,7 +92,7 @@ const SubscriptionForm = ({ plan, clientSecret }: { plan: SubscriptionPlan; clie
       
       <Button 
         type="submit" 
-        className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white py-3 text-lg font-bold shadow-lg" 
+        className="w-full btn-breslov-primary text-white py-3 text-lg font-bold shadow-lg" 
         disabled={!stripe || !elements || isLoading}
         data-testid="button-subscribe"
       >
@@ -118,25 +121,52 @@ const SubscriptionPlanCard = ({ plan, isCurrentPlan }: { plan: SubscriptionPlan;
   const createSubscriptionMutation = useMutation({
     mutationFn: async (data: { email?: string; name?: string }) => {
       const res = await apiRequest('POST', '/api/create-subscription', data);
-      return res.json();
+      const result = await res.json();
+      
+      // Handle specific error responses from server
+      if (!res.ok) {
+        if (result.configured === false) {
+          // Stripe not configured - throw specific error for fallback handling
+          throw new Error(result.message || 'מערכת התשלומים אינה זמינה כרגע');
+        }
+        throw new Error(result.message || 'שגיאה ביצירת המנוי');
+      }
+      
+      return result;
     },
     onSuccess: (result) => {
       if (result.clientSecret) {
         setClientSecret(result.clientSecret);
         setShowPayment(true);
+        toast({
+          title: "מוכן לתשלום!",
+          description: "אנא מלא את פרטי התשלום למטה",
+        });
       } else {
         toast({
           title: "שגיאה",
-          description: "לא ניתן ליצור את המנוי כרגע",
+          description: "לא ניתן ליצור את המנוי כרגע - אנא נסה שוב",
           variant: "destructive",
         });
       }
     },
     onError: (error: any) => {
+      console.error('Subscription creation error:', error);
+      
+      // Show appropriate error message
+      let errorMessage = "נכשלנו בעיבוד הבקשה. אנא נסה שוב";
+      let errorTitle = "אופס!";
+      
+      if (error.message?.includes('מערכת התשלומים')) {
+        errorTitle = "יצירת קשר";
+        errorMessage = "נתקלנו בקושי זמני. צוות השירות שלנו יעזור לך להשלים את המנוי. אנא פנה אלינו";
+      }
+      
       toast({
-        title: "שגיאה",
-        description: error.message || "אירעה שגיאה ביצירת המנוי",
+        title: errorTitle,
+        description: errorMessage,
         variant: "destructive",
+        duration: 6000, // Show longer for contact info
       });
     },
     onSettled: () => {
@@ -147,9 +177,9 @@ const SubscriptionPlanCard = ({ plan, isCurrentPlan }: { plan: SubscriptionPlan;
   const handleSubscribe = async () => {
     if (!stripePromise) {
       toast({
-        title: "מערכת התשלום אינה זמינה",
-        description: "אנא צור קשר עם השירות לקוחות: support@haesh-sheli.co.il",
-        variant: "destructive",
+        title: "בואו נדבר!",
+        description: "נשמח לעזור לך להצטרף למשפחת 'האש שלי'. צור איתנו קשר: support@haesh-sheli.co.il או דרך הוואטסאפ",
+        duration: 8000,
       });
       return;
     }
@@ -160,10 +190,10 @@ const SubscriptionPlanCard = ({ plan, isCurrentPlan }: { plan: SubscriptionPlan;
   if (!plan.isActive) return null;
 
   return (
-    <Card className="relative overflow-hidden border-2 border-red-200 dark:border-red-800 shadow-xl">
+    <Card className="relative overflow-hidden border-2 border-primary/30 shadow-xl">
       {/* Premium badge */}
       <div className="absolute top-4 right-4">
-        <Badge className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-yellow-900 font-bold">
+        <Badge className="btn-breslov-gold text-white font-bold">
           <Star className="w-3 h-3 mr-1" />
           פרימיום
         </Badge>
@@ -171,12 +201,12 @@ const SubscriptionPlanCard = ({ plan, isCurrentPlan }: { plan: SubscriptionPlan;
 
       <CardHeader className="text-center pb-2">
         <div className="flex justify-center mb-4">
-          <div className="bg-gradient-to-r from-red-500 to-red-600 p-3 rounded-full">
+          <div className="bg-primary p-3 rounded-full">
             <Crown className="h-8 w-8 text-white" />
           </div>
         </div>
         
-        <CardTitle className="text-2xl font-bold text-red-600 dark:text-red-400">
+        <CardTitle className="text-2xl font-bold text-primary">
           {plan.nameHebrew}
         </CardTitle>
         
@@ -186,7 +216,7 @@ const SubscriptionPlanCard = ({ plan, isCurrentPlan }: { plan: SubscriptionPlan;
 
         {/* Price display */}
         <div className="text-center mt-4">
-          <div className="text-4xl font-bold text-red-600 dark:text-red-400">
+          <div className="text-4xl font-bold text-primary">
             ₪{(plan.price / 100).toFixed(0)}
           </div>
           <div className="text-sm text-gray-500 dark:text-gray-400">
@@ -199,7 +229,7 @@ const SubscriptionPlanCard = ({ plan, isCurrentPlan }: { plan: SubscriptionPlan;
         {/* Features list */}
         <div className="space-y-3">
           <h4 className="font-semibold text-gray-900 dark:text-gray-100 flex items-center">
-            <Sparkles className="w-4 h-4 mr-2 text-yellow-500" />
+            <Sparkles className="w-4 h-4 mr-2 text-gold-accent" />
             יתרונות המנוי:
           </h4>
           
@@ -212,17 +242,20 @@ const SubscriptionPlanCard = ({ plan, isCurrentPlan }: { plan: SubscriptionPlan;
         </div>
 
         {/* Value proposition */}
-        <div className="bg-gradient-to-r from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
-          <h5 className="font-semibold text-red-700 dark:text-red-300 mb-2">💰 חסכון משמעותי!</h5>
-          <p className="text-sm text-red-600 dark:text-red-300">
-            במקום לשלם על כל ספר בנפרד, קבל גישה לכל הספרים הדיגיטליים תמיד תמורת רק ₪99 לחודש!
+        <div className="section-surface-strong p-4 rounded-lg border border-primary/30">
+          <h5 className="font-semibold text-primary mb-2">💰 חסכון משמעותי!</h5>
+          <p className="text-sm text-foreground">
+            במקום לשלם על כל ספר בנפרד, קבל גישה לכל הספרים הדיגיטליים + הנחות על ספרים פיזיים!
           </p>
         </div>
 
         {/* Social proof */}
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
-          <p className="text-sm text-blue-700 dark:text-blue-300 text-center">
-            🌟 מעל 5,000 חברים כבר נהנים מהמנוי המיוחד שלנו
+        <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+          <p className="text-sm text-green-700 dark:text-green-300 text-center">
+            🌟 אלפי משפחות בישראל כבר חלק ממשפחת 'האש שלי'
+          </p>
+          <p className="text-xs text-green-600 dark:text-green-400 text-center mt-1">
+            "הספרים הדיגיטליים שינו את חיי הרוחניים" - שרה מירושלים
           </p>
         </div>
 
@@ -242,17 +275,33 @@ const SubscriptionPlanCard = ({ plan, isCurrentPlan }: { plan: SubscriptionPlan;
             <SubscriptionForm plan={plan} clientSecret={clientSecret} />
           </Elements>
         ) : showPayment && clientSecret && !stripePromise ? (
-          <div className="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
-            <h5 className="font-semibold text-red-700 dark:text-red-300 mb-2">⚠️ מערכת התשלום אינה זמינה</h5>
-            <p className="text-sm text-red-600 dark:text-red-300">
-              אנא צור קשר עם השירות לקוחות להשלמת המנוי: support@haesh-sheli.co.il
+          <div className="section-surface-strong p-4 rounded-lg border border-primary/30 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20">
+            <h5 className="font-semibold text-primary mb-2">💬 בואו נדבר אישית!</h5>
+            <p className="text-sm text-foreground mb-3">
+              נשמח לעזור לך להצטרף למשפחת 'האש שלי' בצורה הטובה ביותר
             </p>
+            <div className="flex gap-2">
+              <a 
+                href="https://wa.me/972501234567?text=שלום, אני מעוניין להצטרף למנוי הוראת קבע שלכם" 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                <Button size="sm" className="btn-breslov-primary text-white hover:bg-green-600">
+                  💬 דבר איתנו
+                </Button>
+              </a>
+              <a href="mailto:support@haesh-sheli.co.il?subject=הצטרפות למנוי הוראת קבע">
+                <Button size="sm" variant="outline">
+                  📧 שלח מייל
+                </Button>
+              </a>
+            </div>
           </div>
         ) : (
           <Button 
             onClick={handleSubscribe}
             disabled={isCreatingSubscription}
-            className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white py-3 text-lg font-bold shadow-lg"
+            className="w-full btn-breslov-primary text-white py-3 text-lg font-bold shadow-lg"
             data-testid="button-show-payment"
           >
             {isCreatingSubscription ? (
@@ -280,11 +329,12 @@ const SubscriptionPlanCard = ({ plan, isCurrentPlan }: { plan: SubscriptionPlan;
 
 export default function SubscriptionPage() {
   const { toast } = useToast();
+  const { currentLanguage, setLanguage } = useLanguage();
 
-  // Fetch the HoRaat Keva plan
-  const { data: plan, isLoading: planLoading } = useQuery({
-    queryKey: ['/api/subscription-plans/horat-keva'],
-    meta: { errorMessage: "שגיאה בטעינת תוכנית המנוי" }
+  // Fetch all subscription plans
+  const { data: plans, isLoading: planLoading } = useQuery({
+    queryKey: ['/api/subscription-plans'],
+    meta: { errorMessage: "שגיאה בטעינת תוכניות המנוי" }
   });
 
   // Check current user subscription status
@@ -294,43 +344,66 @@ export default function SubscriptionPage() {
   });
 
   const isCurrentSubscriber = (userSubscription as any)?.user?.isSubscriber || false;
+  const currentUserPlan = (userSubscription as any)?.user?.subscriptionPlanId || null;
 
   if (planLoading) {
     return (
-      <div className="container mx-auto px-4 py-8">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="animate-spin w-8 h-8 border-4 border-red-500 border-t-transparent rounded-full mx-auto" />
-          <p className="mt-4 text-gray-600 dark:text-gray-300">טוען תוכנית מנוי...</p>
+      <div 
+        className="min-h-screen hero-surface dark:from-gray-900 dark:via-gray-800 dark:to-gray-900"
+        dir={currentLanguage === 'he' ? 'rtl' : 'ltr'}
+        data-testid="subscription-page"
+      >
+        <Header currentLanguage={currentLanguage} onLanguageChange={setLanguage} />
+        <div className="container mx-auto px-4 py-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="animate-spin w-8 h-8 border-4 border-red-500 border-t-transparent rounded-full mx-auto" />
+            <p className="mt-4 text-gray-600 dark:text-gray-300">טוען תוכניות מנוי...</p>
+          </div>
         </div>
       </div>
     );
   }
 
-  if (!plan) {
+  if (!plans || !Array.isArray(plans) || plans.length === 0) {
     return (
-      <div className="container mx-auto px-4 py-8">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-2xl font-bold text-red-600 dark:text-red-400 mb-4">
-            שגיאה בטעינת תוכנית המנוי
-          </h1>
-          <p className="text-gray-600 dark:text-gray-300">
-            אנא נסה שוב מאוחר יותר או צור קשר עם השירות לקוחות
-          </p>
+      <div 
+        className="min-h-screen hero-surface dark:from-gray-900 dark:via-gray-800 dark:to-gray-900"
+        dir={currentLanguage === 'he' ? 'rtl' : 'ltr'}
+        data-testid="subscription-page"
+      >
+        <Header currentLanguage={currentLanguage} onLanguageChange={setLanguage} />
+        <div className="container mx-auto px-4 py-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="text-2xl font-bold text-primary mb-4">
+              שגיאה בטעינת תוכניות המנוי
+            </h1>
+            <p className="text-gray-600 dark:text-gray-300">
+              אנא נסה שוב מאוחר יותר או צור קשר עם השירות לקוחות
+            </p>
+          </div>
         </div>
       </div>
     );
   }
+
+  // Sort plans by price (ascending) for better display
+  const sortedPlans = [...plans].sort((a, b) => a.price - b.price);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-orange-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+    <div 
+      className="min-h-screen hero-surface dark:from-gray-900 dark:via-gray-800 dark:to-gray-900"
+      dir={currentLanguage === 'he' ? 'rtl' : 'ltr'}
+      data-testid="subscription-page"
+    >
+      <Header currentLanguage={currentLanguage} onLanguageChange={setLanguage} />
       <div className="container mx-auto px-4 py-8">
         {/* Hero section */}
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            הוראת קבע - מנוי פרימיום
+            הוראת קבע - תמכו בהפצת אור רבינו
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 mb-6 max-w-3xl mx-auto">
-            קבל גישה לכל הספרים הדיגיטליים של רבי נחמן מברסלב + הנחה על כל הקניות
+            הצטרפו למשפחת 'האש שלי' וקבלו גישה לכל הספרים הדיגיטליים והנחות מיוחדות
           </p>
           
           {/* Benefits showcase */}
@@ -341,21 +414,48 @@ export default function SubscriptionPage() {
             </div>
             <div className="flex items-center bg-white dark:bg-gray-800 px-4 py-2 rounded-full shadow-md border">
               <ShoppingCart className="w-5 h-5 text-blue-500 mr-2" />
-              <span className="text-sm font-medium">5% הנחה על קניות</span>
+              <span className="text-sm font-medium">הנחה עד 20% על קניות</span>
             </div>
             <div className="flex items-center bg-white dark:bg-gray-800 px-4 py-2 rounded-full shadow-md border">
-              <Crown className="w-5 h-5 text-yellow-500 mr-2" />
+              <Crown className="w-5 h-5 text-gold-accent mr-2" />
               <span className="text-sm font-medium">סטטוס חבר פרימיום</span>
             </div>
           </div>
         </div>
 
-        {/* Main subscription card */}
-        <div className="max-w-2xl mx-auto">
-          <SubscriptionPlanCard 
-            plan={plan as SubscriptionPlan} 
-            isCurrentPlan={isCurrentSubscriber}
-          />
+        {/* Multiple subscription plans */}
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {sortedPlans.filter(plan => plan.id !== 'horat_keva_99').map((plan) => (
+              <StripeNotConfiguredFallback key={plan.id} plan={plan as SubscriptionPlan}>
+                <SubscriptionPlanCard 
+                  plan={plan as SubscriptionPlan} 
+                  isCurrentPlan={currentUserPlan === plan.id}
+                />
+              </StripeNotConfiguredFallback>
+            ))}
+          </div>
+        </div>
+        
+        {/* WhatsApp CTA Section */}
+        <div className="max-w-4xl mx-auto mt-16 text-center">
+          <div className="bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 p-8 rounded-xl border border-green-200 dark:border-green-800">
+            <h3 className="text-2xl font-bold text-primary mb-4">
+              יש לך שאלות? בוא נדבר אישית!
+            </h3>
+            <p className="text-gray-600 dark:text-gray-300 mb-6">
+              צוות השירות שלנו כאן לעזור לך לבחור את המנוי המתאים ביותר עבורך
+            </p>
+            <a 
+              href="https://wa.me/972501234567?text=שלום, אני מעוניין לשמוע עוד על תוכניות המנוי שלכם" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              <Button className="btn-breslov-primary text-white px-8 py-3 text-lg font-bold hover:bg-green-600 transition-all duration-300 hover:scale-105">
+                💬 דבר איתנו בווטסאפ
+              </Button>
+            </a>
+          </div>
         </div>
 
         {/* FAQ or additional info */}
@@ -367,7 +467,7 @@ export default function SubscriptionPage() {
           <div className="grid md:grid-cols-2 gap-6">
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg text-red-600 dark:text-red-400">
+                <CardTitle className="text-lg text-primary">
                   מתי אני יכול לבטל את המנוי?
                 </CardTitle>
               </CardHeader>
@@ -380,7 +480,7 @@ export default function SubscriptionPage() {
 
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg text-red-600 dark:text-red-400">
+                <CardTitle className="text-lg text-primary">
                   האם יש תקופת ניסיון?
                 </CardTitle>
               </CardHeader>
@@ -393,7 +493,7 @@ export default function SubscriptionPage() {
 
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg text-red-600 dark:text-red-400">
+                <CardTitle className="text-lg text-primary">
                   כמה ספרים כלולים במנוי?
                 </CardTitle>
               </CardHeader>
@@ -406,7 +506,7 @@ export default function SubscriptionPage() {
 
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg text-red-600 dark:text-red-400">
+                <CardTitle className="text-lg text-primary">
                   האם ההנחה חלה על כל הספרים?
                 </CardTitle>
               </CardHeader>

@@ -20,7 +20,7 @@ export const CartWidget: React.FC = () => {
         dir={currentLanguage === 'he' ? 'rtl' : 'ltr'}
       >
         {/* Header */}
-        <div className="p-4 border-b border-gray-200 bg-red-600 text-white">
+        <div className="p-4 border-b border-border bg-primary text-primary-foreground">
           <div className="flex items-center justify-between">
             <h2 className="text-lg font-bold">
               {currentLanguage === 'he' ? 'סל קניות' : 'Shopping Cart'}
@@ -121,7 +121,7 @@ export const CartWidget: React.FC = () => {
             
             <a 
               href={`/checkout?fromCart=true`}
-              className="block w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-lg text-center transition-colors"
+              className="block w-full btn-breslov-primary text-white font-bold py-3 px-4 rounded-lg text-center transition-colors"
             >
               {currentLanguage === 'he' ? 'המשך לתשלום' : 'Proceed to Checkout'}
             </a>

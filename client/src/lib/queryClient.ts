@@ -49,9 +49,28 @@ export const queryClient = new QueryClient({
       refetchOnWindowFocus: false,
       staleTime: Infinity,
       retry: false,
+      // Cache subscription data for longer periods
+      gcTime: 1000 * 60 * 10, // 10 minutes
     },
     mutations: {
       retry: false,
     },
   },
+});
+
+// Pre-configure specific query defaults for subscription-related queries
+queryClient.setQueryDefaults(['/api/user/subscription'], {
+  staleTime: 1000 * 60 * 5, // 5 minutes for user subscription status
+  gcTime: 1000 * 60 * 15, // Keep in cache for 15 minutes
+  refetchOnWindowFocus: true, // Refetch subscription status when user returns
+});
+
+queryClient.setQueryDefaults(['/api/subscription-plans'], {
+  staleTime: 1000 * 60 * 60, // 1 hour for subscription plans
+  gcTime: 1000 * 60 * 60 * 2, // Keep in cache for 2 hours
+});
+
+queryClient.setQueryDefaults(['/api/stripe-status'], {
+  staleTime: 1000 * 60 * 30, // 30 minutes for Stripe status
+  gcTime: 1000 * 60 * 60, // Keep in cache for 1 hour
 });

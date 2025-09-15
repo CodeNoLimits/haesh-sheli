@@ -1,347 +1,495 @@
+import { useState, useMemo, useEffect } from 'react';
+import { Link } from 'wouter';
 import { realBreslovProducts } from '../data/realProducts';
 import { Header } from '../components/Header';
 import { useLanguage } from '../contexts/LanguageContext';
-import { getBookDisplayTitle } from '../utils/bookTitleHelper';
-import { getFirstProductImage } from '../utils/imagePathHelper';
-import { useState, useMemo } from 'react';
-import { useCart } from '../contexts/CartContext';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Slider } from '@/components/ui/slider';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Search, X, Filter, ChevronDown, ChevronUp } from 'lucide-react';
+import { convertImagePath } from '../utils/imagePathHelper';
+import type { Product } from '../../../shared/schema';
+
+// Filter interfaces
+interface Filters {
+  categories: string[];
+  formats: string[];
+  sizes: string[];
+  priceRange: [number, number];
+  searchQuery: string;
+  languages: string[];
+}
 
 export default function Store() {
-  const { currentLanguage, setLanguage, t } = useLanguage();
-  const { addItem, totalItems, setIsCartOpen } = useCart();
+  const { currentLanguage, setLanguage } = useLanguage();
+  const allProducts = Object.values(realBreslovProducts);
   
   // Filter states
-  const [selectedLanguages, setSelectedLanguages] = useState<string[]>(['עברית']); // Hebrew selected by default
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [filters, setFilters] = useState<Filters>({
+    categories: [],
+    formats: [],
+    sizes: [],
+    priceRange: [0, 1000], // Will be updated by useEffect to real range
+    searchQuery: '',
+    languages: []
+  });
   
-  // Function to detect language from book title
-  const detectLanguageFromTitle = (product: any) => {
-    const title = getBookDisplayTitle(product);
-    const titleToCheck = title || product.name || '';
+  // Sidebar visibility and collapsible sections
+  const [sidebarVisible, setSidebarVisible] = useState(true);
+  const [expandedSections, setExpandedSections] = useState({
+    categories: true,
+    languages: true,
+    sizes: true,
+    formats: true,
+    price: true
+  });
+  
+  // Extract unique filter options from products
+  const filterOptions = useMemo(() => {
+    const categories = new Set<string>();
+    const formats = new Set<string>();
+    const sizes = new Set<string>();
+    const languages = new Set<string>();
+    let minPrice = Infinity;
+    let maxPrice = 0;
     
-    // Hebrew detection - contains Hebrew characters
-    if (/[\u0590-\u05FF]/.test(titleToCheck)) {
-      return 'עברית';
+    allProducts.forEach(product => {
+      categories.add(product.category);
+      if (product.language) languages.add(product.language);
+      
+      product.variants?.forEach(variant => {
+        if (variant.format) formats.add(variant.format);
+        if (variant.size) sizes.add(variant.size);
+        if (variant.price) {
+          minPrice = Math.min(minPrice, variant.price);
+          maxPrice = Math.max(maxPrice, variant.price);
+        }
+      });
+    });
+    
+    return {
+      categories: Array.from(categories).sort(),
+      formats: Array.from(formats).sort(),
+      sizes: Array.from(sizes).sort(),
+      languages: Array.from(languages).sort(),
+      priceRange: [Math.floor(minPrice), Math.ceil(maxPrice)] as [number, number]
+    };
+  }, [allProducts]);
+  
+  // Sync initial price range with calculated filterOptions
+  useEffect(() => {
+    if (filterOptions.priceRange[0] !== Infinity) {
+      setFilters(prev => ({
+        ...prev,
+        priceRange: filterOptions.priceRange
+      }));
     }
-    
-    // Russian detection - contains Cyrillic characters
-    if (/[\u0400-\u04FF]/.test(titleToCheck)) {
-      return 'Русский';
-    }
-    
-    // French detection - French specific words or accents
-    if (/[àâäéèêëïîôùûüÿç]/.test(titleToCheck) || 
-        /\b(le|la|les|de|du|des|et|avec|pour|dans|sur|par|un|une|ce|cette|qui|que|dont|où|mais|ou|donc|or|ni|car|selon|depuis|pendant|avant|après|sous|sans|avec|contre|entre|parmi|chez|vers|jusqu|depuis|malgré|grâce|cause|suite|lors|durant|moyennant|faute|exception|travers|sein|bord|long|large|bout|sein)\b/i.test(titleToCheck)) {
-      return 'Français';
-    }
-    
-    // Spanish detection - Spanish specific words or accents
-    if (/[áéíóúüñ¿¡]/.test(titleToCheck) || 
-        /\b(el|la|los|las|de|del|y|en|que|es|se|no|te|le|da|su|por|son|con|para|al|lo|le|da|me|si|ya|todo|pero|más|hacer|go|tiempo|muy|puede|ahora|cada|así|vida|sobre|después|sin|hasta|año|contra|entre|durante|menos|tanto|casi|siempre|vez|lugar|bien|día|forma|aquí|allí|donde|cuando|mientras|antes|aunque|porque|como|qué|cuál|dónde|cuándo|cómo|por|qué)\b/i.test(titleToCheck)) {
-      return 'Español';
-    }
-    
-    // Default to English for Latin characters
-    if (/^[a-zA-Z\s\-.,;:'"()!?0-9]+$/.test(titleToCheck)) {
-      return 'English';
-    }
-    
-    // Default fallback
-    return 'עברית';
+  }, [filterOptions.priceRange]);
+  
+  // Filtered products
+  const filteredProducts = useMemo(() => {
+    return allProducts.filter(product => {
+      // Search query filter
+      if (filters.searchQuery && !product.name.toLowerCase().includes(filters.searchQuery.toLowerCase()) 
+          && !product.description?.toLowerCase().includes(filters.searchQuery.toLowerCase())) {
+        return false;
+      }
+      
+      // Category filter
+      if (filters.categories.length > 0 && !filters.categories.includes(product.category)) {
+        return false;
+      }
+      
+      // Language filter
+      if (filters.languages.length > 0 && !filters.languages.includes(product.language || '')) {
+        return false;
+      }
+      
+      // Format, size and price filters (check variants)
+      const needsVariantCheck = filters.formats.length > 0 || filters.sizes.length > 0 || 
+        (filters.priceRange[0] !== filterOptions.priceRange[0] || filters.priceRange[1] !== filterOptions.priceRange[1]);
+      
+      if (needsVariantCheck) {
+        const hasMatchingVariant = product.variants?.some(variant => {
+          const formatMatch = filters.formats.length === 0 || filters.formats.includes(variant.format || '');
+          const sizeMatch = filters.sizes.length === 0 || filters.sizes.includes(variant.size || '');
+          
+          // Price match: only apply if price range differs from full range AND variant has price
+          const priceRangeActive = filters.priceRange[0] !== filterOptions.priceRange[0] || filters.priceRange[1] !== filterOptions.priceRange[1];
+          const priceMatch = !priceRangeActive || (variant.price !== undefined && variant.price >= filters.priceRange[0] && variant.price <= filters.priceRange[1]);
+          
+          return formatMatch && sizeMatch && priceMatch;
+        });
+        
+        if (!hasMatchingVariant) return false;
+      }
+      
+      return true;
+    });
+  }, [allProducts, filters]);
+  
+  console.log('✅ STORE: Loading', allProducts.length, 'books, filtered to', filteredProducts.length);
+  
+  const toggleFilter = <T,>(key: keyof Filters, value: T) => {
+    setFilters(prev => {
+      const current = prev[key] as T[];
+      const newValue = current.includes(value) 
+        ? current.filter(item => item !== value)
+        : [...current, value];
+      return { ...prev, [key]: newValue };
+    });
+  };
+  
+  const clearAllFilters = () => {
+    setFilters({
+      categories: [],
+      formats: [],
+      sizes: [],
+      priceRange: filterOptions.priceRange,
+      searchQuery: '',
+      languages: []
+    });
+  };
+  
+  const toggleSection = (section: keyof typeof expandedSections) => {
+    setExpandedSections(prev => ({
+      ...prev,
+      [section]: !prev[section]
+    }));
   };
 
-  // Filter products based on selected criteria
-  const filteredProducts = useMemo(() => {
-    return Object.values(realBreslovProducts).filter(product => {
-      // Language filter - detect from title
-      const productLanguage = detectLanguageFromTitle(product);
-      const matchesLanguage = selectedLanguages.length === 0 || selectedLanguages.includes(productLanguage);
-      
-      // Category filter  
-      const matchesCategory = selectedCategory === 'all' || product.category === selectedCategory;
-      
-      // Search filter
-      const matchesSearch = !searchTerm || 
-        getBookDisplayTitle(product).toLowerCase().includes(searchTerm.toLowerCase()) ||
-        product.category.toLowerCase().includes(searchTerm.toLowerCase());
-        
-      return matchesLanguage && matchesCategory && matchesSearch;
-    });
-  }, [selectedLanguages, selectedCategory, searchTerm]);
-  
   return (
-    <div className="rtl home page-template-default page page-id-8 wp-custom-logo theme-hello-elementor woocommerce-js elementor-default elementor-kit-5 elementor-page elementor-page-8" style={{direction: currentLanguage === 'he' ? 'rtl' : 'ltr'}}>
-      {/* TOP BAR */}
-      <section className="elementor-section elementor-top-section elementor-element elementor-element-ba655d5 elementor-section-full_width elementor-hidden-tablet elementor-hidden-mobile elementor-section-height-default" style={{background: '#333', color: 'white', padding: '8px 0'}}>
-        <div className="elementor-container elementor-column-gap-default">
-          <div className="elementor-column elementor-col-33 elementor-top-column">
-            <div className="elementor-widget-wrap elementor-element-populated">
-              <div className="elementor-element elementor-icon-list--layout-inline elementor-align-left elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list">
-                <div className="elementor-widget-container">
-                  <ul className="elementor-icon-list-items elementor-inline-items" style={{display: 'flex', gap: '1rem', listStyle: 'none', margin: 0, padding: 0}}>
-                    <li className="elementor-icon-list-item elementor-inline-item" style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-                      <span className="elementor-icon-list-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" viewBox="0 0 100 100" style={{width: '16px', height: '16px', fill: 'white'}}>
-                          <g>
-                            <path d="m72.341 48.514h17.306l-5.266-10.126h-10.872z"></path>
-                            <path d="m85.059 62.331h3.516l.339-2.891h-3.529z"></path>
-                            <path d="m75.463 62.1c-3.448 0-6.244 2.81-6.244 6.257 0 3.448 2.796 6.244 6.244 6.244s6.257-2.796 6.257-6.244c0-3.447-2.809-6.257-6.257-6.257zm0 9.515c-1.792 0-3.257-1.466-3.257-3.257 0-1.805 1.466-3.258 3.257-3.258 1.805 0 3.258 1.452 3.258 3.258 0 1.791-1.453 3.257-3.258 3.257z"></path>
-                            <path d="m31.161 62.1c-3.448 0-6.257 2.81-6.257 6.257 0 3.448 2.81 6.244 6.257 6.244 3.448 0 6.244-2.796 6.244-6.244-.001-3.447-2.797-6.257-6.244-6.257zm0 9.515c-1.805 0-3.271-1.466-3.271-3.257 0-1.805 1.466-3.258 3.271-3.258 1.792 0 3.257 1.452 3.257 3.258 0 1.791-1.466 3.257-3.257 3.257z"></path>
-                          </g>
-                        </svg>
-                      </span>
-                      <span className="elementor-icon-list-text">משלוחים חינם החל מ- 399 ש"ח</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
+    <div style={{direction: currentLanguage === 'he' ? 'rtl' : 'ltr'}}>
+      <section style={{background: '#333', color: 'white', padding: '8px 0'}}>
+        <div style={{maxWidth: '1400px', margin: '0 auto', padding: '0 2rem'}}>
+          <span>משלוחים חינם החל מ- 399 ש"ח</span>
         </div>
       </section>
 
       <Header currentLanguage={currentLanguage} onLanguageChange={setLanguage} />
 
-      {/* MAIN CONTENT */}
-      <section style={{background: '#f8f9fa', padding: '3rem 0', minHeight: '100vh', overflowY: 'auto'}}>
-        <div className="elementor-container" style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
-          
-          <div style={{display: 'grid', gridTemplateColumns: '300px 1fr', gap: '3rem', alignItems: 'start', height: 'auto'}}>
-            
-            {/* FILTERS SIDEBAR */}
-            <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', position: 'sticky', top: '2rem'}}>
-              <h2 style={{fontSize: '1.8rem', fontWeight: 'bold', marginBottom: '2rem', color: '#333'}}>
-                {t('store')}
-              </h2>
-              
-              <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', marginBottom: '1.5rem', color: '#dc3545'}}>
-                {t('filterBy')}
-              </h3>
-              
-              {/* Search */}
-              <div style={{marginBottom: '2rem'}}>
-                <label style={{fontWeight: 'bold', marginBottom: '0.8rem', display: 'block', color: '#333'}}>{t('freeSearch')}</label>
-                <input 
-                  type="text" 
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  placeholder={t('searchPlaceholder')}
-                  style={{width: '100%', padding: '0.8rem', border: '1px solid #ddd', borderRadius: '5px', marginBottom: '0.8rem'}}
-                />
-                <button style={{background: '#dc3545', color: 'white', border: 'none', padding: '0.8rem 1.2rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
-                  {t('showResults')}
-                </button>
-              </div>
-
-              {/* Categories */}
-              <div style={{marginBottom: '2rem'}}>
-                <h4 style={{fontWeight: 'bold', marginBottom: '1rem', color: '#333'}}>{t('categories')}</h4>
-                <select 
-                  value={selectedCategory}
-                  onChange={(e) => setSelectedCategory(e.target.value)}
-                  style={{width: '100%', padding: '0.8rem', border: '1px solid #ddd', borderRadius: '5px', marginBottom: '1rem'}}
+      <div className="flex min-h-screen bg-gray-50">
+        {/* Clean Simple Sidebar */}
+        <div className={`${sidebarVisible ? 'w-80' : 'w-0'} transition-all duration-200 overflow-hidden`}>
+          <div className="h-full bg-white shadow-lg border-r border-gray-200">
+            {/* Simple Header */}
+            <div className="bg-white p-4 border-b border-gray-200">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-lg font-semibold text-gray-800" data-testid="sidebar-title">
+                  מסנני חיפוש
+                </h2>
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  onClick={clearAllFilters}
+                  className="text-sm"
+                  data-testid="button-clear-filters"
                 >
-                  <option value="all">{t('allCategories')}</option>
-                  <option value="ספרי רבנו">ספרי רבנו</option>
-                  <option value="תפילות">תפילות</option>
-                  <option value="מועדי השנה">מועדי השנה</option>
-                  <option value="ביוגרפיה">ביוגרפיה</option>
-                  <option value="סיפורים">סיפורים</option>
-                  <option value="חומשים ותנ&quot;ך">חומשים ותנ&quot;ך</option>
-                  <option value="ליקוטי הלכות">ליקוטי הלכות</option>
-                  <option value="ספרי ברסלב">ספרי ברסלב</option>
-                  <option value="רבי נתן">רבי נתן</option>
-                  <option value="מוסר">מוסר</option>
-                  <option value="קבלה וחסידות">קבלה וחסידות</option>
-                  <option value="ליקוטים">ליקוטים</option>
-                </select>
+                  <X className="h-4 w-4 mr-1" />
+                  נקה הכל
+                </Button>
               </div>
-              
-              {/* Edition Types */}
-              <div style={{marginBottom: '2rem'}}>
-                <h4 style={{fontWeight: 'bold', marginBottom: '1rem', color: '#333'}}>{t('editionType')}</h4>
-                <div style={{display: 'flex', flexDirection: 'column', gap: '0.5rem'}}>
-                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer'}}>
-                    <input type="checkbox" style={{marginLeft: '0.5rem'}} />
-                    {t('pocketEditions')}
-                  </label>
-                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer'}}>
-                    <input type="checkbox" style={{marginLeft: '0.5rem'}} />
-                    {t('luxuryEditions')}
-                  </label>
-                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer'}}>
-                    <input type="checkbox" style={{marginLeft: '0.5rem'}} />
-                    {t('completeSets')}
-                  </label>
-                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer'}}>
-                    <input type="checkbox" style={{marginLeft: '0.5rem'}} />
-                    {t('illustratedEditions')}
-                  </label>
-                  <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer'}}>
-                    <input type="checkbox" style={{marginLeft: '0.5rem'}} />
-                    {t('leatherBinding')}
-                  </label>
-                </div>
-              </div>
-
-              {/* Languages */}
-              <div style={{marginBottom: '2rem'}}>
-                <h4 style={{fontWeight: 'bold', marginBottom: '1rem', color: '#333'}}>{t('languages')}</h4>
-                <div style={{display: 'flex', flexDirection: 'column', gap: '0.5rem'}}>
-                  {[
-                    { key: 'עברית', label: t('hebrew') },
-                    { key: 'English', label: t('english') },
-                    { key: 'Français', label: t('french') },
-                    { key: 'Русский', label: t('russian') },
-                    { key: 'Español', label: t('spanish') }
-                  ].map(lang => (
-                    <label key={lang.key} style={{display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer'}}>
-                      <input 
-                        type="checkbox" 
-                        checked={selectedLanguages.includes(lang.key)}
-                        onChange={(e) => {
-                          if (e.target.checked) {
-                            setSelectedLanguages(prev => [...prev, lang.key]);
-                          } else {
-                            setSelectedLanguages(prev => prev.filter(l => l !== lang.key));
-                          }
-                        }}
-                        style={{marginLeft: '0.5rem'}} 
-                      />
-                      {lang.label}
-                    </label>
-                  ))}
-                </div>
-              </div>
-
-              {/* Price Range */}
-              <div style={{marginBottom: '2rem'}}>
-                <h4 style={{fontWeight: 'bold', marginBottom: '1rem', color: '#333'}}>{t('priceRange')}</h4>
-                <div style={{display: 'flex', gap: '0.5rem', alignItems: 'center', marginBottom: '1rem', maxWidth: '100%', overflow: 'hidden'}}>
-                  <input 
-                    type="number" 
-                    placeholder={t('minimum')}
-                    style={{width: '70px', maxWidth: '70px', padding: '0.4rem', border: '1px solid #ddd', borderRadius: '5px', textAlign: 'center', fontSize: '0.9rem'}}
-                  />
-                  <span style={{fontSize: '0.9rem', color: '#666'}}>-</span>
-                  <input 
-                    type="number" 
-                    placeholder={t('maximum')}
-                    style={{width: '70px', maxWidth: '70px', padding: '0.4rem', border: '1px solid #ddd', borderRadius: '5px', textAlign: 'center', fontSize: '0.9rem'}}
-                  />
-                </div>
-                <button style={{background: '#17a2b8', color: 'white', border: 'none', padding: '0.8rem 1.2rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
-                  {t('showResults')}
-                </button>
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                <Input 
+                  placeholder="חיפוש ספרים..."
+                  value={filters.searchQuery}
+                  onChange={(e) => setFilters(prev => ({ ...prev, searchQuery: e.target.value }))}
+                  className="pl-10 text-sm"
+                  data-testid="input-search"
+                />
               </div>
             </div>
-            
-            {/* PRODUCTS GRID */}
-            <div>
-              <div style={{marginBottom: '2rem'}}>
-                <h1 style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#333', marginBottom: '1rem'}}>
-                  {t('storeTitle')}
-                </h1>
-                <p style={{fontSize: '1.1rem', color: '#666'}}>
-                  {t('storeSubtitle')}
-                </p>
-              </div>
-              
-              <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '2rem'}}>
-                
-                {/* Filtered Products */}
-                {filteredProducts.map((product) => {
-                  const variants = product.variants || [];
-                  const minPrice = variants.length > 0 ? Math.min(...variants.map(v => v.price)) : 0;
-                  const maxPrice = variants.length > 0 ? Math.max(...variants.map(v => v.price)) : 0;
-                  const featuredVariant = variants.find(v => v.inStock) || variants[0];
-                  
-                  // Use the standardized helper to get the first product image
-                  const imagePath = getFirstProductImage(product.images);
-                  
-                  return (
-                    <div key={product.id} style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', transition: 'transform 0.3s ease'}}>
-                      <img 
-                        src={imagePath}
-                        alt={getBookDisplayTitle(product)}
-                        style={{width: '100%', height: '300px', objectFit: 'cover'}}
-                      />
-                      <div style={{padding: '1.5rem'}}>
-                        <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', marginBottom: '0.5rem', color: '#333'}}>
-                          {getBookDisplayTitle(product)}
-                        </h3>
-                        <div style={{display: 'flex', alignItems: 'center', marginBottom: '0.8rem'}}>
-                          <div style={{color: '#ffc107', fontSize: '1.1rem'}}>
-                            ★★★★★
-                          </div>
-                          <span style={{marginRight: '0.5rem', color: '#666', fontSize: '0.9rem'}}>{t('ratedOutOf')}</span>
-                        </div>
-                        <div style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '0.5rem'}}>
-                          {minPrice === maxPrice ? `${minPrice} ${t('shekel')}` : `${minPrice} ${t('shekel')} – ${maxPrice} ${t('shekel')}`}
-                        </div>
-                        <div style={{fontSize: '0.9rem', color: '#666', marginBottom: '1rem'}}>
-                          {product.category} • {variants.length} {t('options')}
-                        </div>
-                        <div style={{display: 'flex', gap: '0.5rem'}}>
-                          <a href={`/product/${product.id}`} style={{textDecoration: 'none', flex: 1}}>
-                            <button style={{background: '#007bff', color: 'white', border: 'none', padding: '0.8rem 1rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold', fontSize: '0.9rem'}}>
-                              {t('viewProduct')}
-                            </button>
-                          </a>
-                          <button 
-                            onClick={() => {
-                              if (featuredVariant) {
-                                addItem({
-                                  productId: product.id,
-                                  variantId: featuredVariant.id,
-                                  name: getBookDisplayTitle(product),
-                                  nameEnglish: product.nameEnglish || product.name,
-                                  variant: {
-                                    format: featuredVariant.format,
-                                    binding: featuredVariant.binding,
-                                    size: featuredVariant.size
-                                  },
-                                  price: featuredVariant.price,
-                                  quantity: 1,
-                                  image: product.images?.[0] || ''
-                                });
-                                
-                                // Show cart briefly to give visual feedback
-                                setIsCartOpen(true);
-                                setTimeout(() => setIsCartOpen(false), 1500);
-                              }
-                            }}
-                            style={{background: '#dc3545', color: 'white', border: 'none', padding: '0.8rem 1rem', borderRadius: '5px', cursor: 'pointer', flex: 1, fontWeight: 'bold', fontSize: '0.9rem'}}
-                          >
-                            {t('addToCart')}
-                          </button>
-                        </div>
-                        <p style={{fontSize: '0.9rem', color: '#666', marginTop: '0.5rem'}}>
-                          {t('freeShipping')}
-                        </p>
-                      </div>
-                    </div>
-                  );
-                })}
 
-                {/* More products available notice */}
-                <div style={{gridColumn: '1 / -1', textAlign: 'center', padding: '2rem', background: 'white', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
-                  <p style={{fontSize: '1.1rem', color: '#666', marginBottom: '1rem'}}>
-                    {t('moreProducts')}
-                  </p>
-                  <a href="/contact" style={{textDecoration: 'none'}}>
-                    <button style={{background: '#28a745', color: 'white', border: 'none', padding: '1rem 2rem', borderRadius: '8px', cursor: 'pointer', fontSize: '1rem', fontWeight: 'bold'}}>
-                      {t('contactForMore')}
-                    </button>
-                  </a>
+            <div className="p-4 space-y-4 max-h-screen overflow-y-auto">
+              {/* Price Filter */}
+              <div className="bg-white border border-gray-200 rounded p-4">
+                <div 
+                  className="flex items-center justify-between cursor-pointer mb-3"
+                  onClick={() => toggleSection('price')}
+                  data-testid="label-price-range"
+                >
+                  <span className="text-sm font-medium text-gray-700">טווח מחירים</span>
+                  {expandedSections.price ? <ChevronUp className="h-4 w-4 text-gray-500" /> : <ChevronDown className="h-4 w-4 text-gray-500" />}
                 </div>
-                
+                {expandedSections.price && (
+                  <div className="space-y-3">
+                    <Slider
+                      min={filterOptions.priceRange[0]}
+                      max={filterOptions.priceRange[1]}
+                      value={filters.priceRange}
+                      onValueChange={(value) => setFilters(prev => ({ ...prev, priceRange: value as [number, number] }))}
+                      className="w-full"
+                      data-testid="slider-price-range"
+                    />
+                    <div className="flex justify-between text-xs text-gray-600">
+                      <span data-testid="text-price-min">{filters.priceRange[0]} ₪</span>
+                      <span data-testid="text-price-max">{filters.priceRange[1]} ₪</span>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Languages Filter - PROMINENT POSITION */}
+              <div className="bg-blue-50 border-2 border-blue-200 rounded p-4">
+                <div 
+                  className="flex items-center justify-between cursor-pointer mb-3"
+                  onClick={() => toggleSection('languages')}
+                  data-testid="label-languages"
+                >
+                  <span className="text-sm font-semibold text-blue-800">שפות</span>
+                  {expandedSections.languages ? <ChevronUp className="h-4 w-4 text-blue-600" /> : <ChevronDown className="h-4 w-4 text-blue-600" />}
+                </div>
+                {expandedSections.languages && (
+                  <div className="space-y-2">
+                    {filterOptions.languages.map((language) => (
+                      <div key={language} className="flex items-center space-x-2 rtl:space-x-reverse">
+                        <Checkbox
+                          id={`language-${language}`}
+                          checked={filters.languages.includes(language)}
+                          onCheckedChange={() => toggleFilter('languages', language)}
+                          className="border-blue-400 text-blue-600"
+                          data-testid={`checkbox-language-${language}`}
+                        />
+                        <label 
+                          htmlFor={`language-${language}`} 
+                          className="text-sm cursor-pointer text-blue-700 font-medium"
+                          data-testid={`text-language-${language}`}
+                        >
+                          {language}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Categories Filter */}
+              <div className="bg-white border border-gray-200 rounded p-4">
+                <div 
+                  className="flex items-center justify-between cursor-pointer mb-3"
+                  onClick={() => toggleSection('categories')}
+                  data-testid="label-categories"
+                >
+                  <span className="text-sm font-medium text-gray-700">קטגוריות</span>
+                  {expandedSections.categories ? <ChevronUp className="h-4 w-4 text-gray-500" /> : <ChevronDown className="h-4 w-4 text-gray-500" />}
+                </div>
+                {expandedSections.categories && (
+                  <div className="space-y-2 max-h-48 overflow-y-auto">
+                    {filterOptions.categories.map((category) => (
+                      <div key={category} className="flex items-center space-x-2 rtl:space-x-reverse">
+                        <Checkbox
+                          id={`category-${category}`}
+                          checked={filters.categories.includes(category)}
+                          onCheckedChange={() => toggleFilter('categories', category)}
+                          data-testid={`checkbox-category-${category}`}
+                        />
+                        <label 
+                          htmlFor={`category-${category}`} 
+                          className="text-xs cursor-pointer text-gray-700"
+                          data-testid={`text-category-${category}`}
+                        >
+                          {category}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Sizes Filter */}
+              <div className="bg-white border border-gray-200 rounded p-4">
+                <div 
+                  className="flex items-center justify-between cursor-pointer mb-3"
+                  onClick={() => toggleSection('sizes')}
+                  data-testid="label-sizes"
+                >
+                  <span className="text-sm font-medium text-gray-700">גדלים</span>
+                  {expandedSections.sizes ? <ChevronUp className="h-4 w-4 text-gray-500" /> : <ChevronDown className="h-4 w-4 text-gray-500" />}
+                </div>
+                {expandedSections.sizes && (
+                  <div className="space-y-2">
+                    {filterOptions.sizes.map((size) => (
+                      <div key={size} className="flex items-center space-x-2 rtl:space-x-reverse">
+                        <Checkbox
+                          id={`size-${size}`}
+                          checked={filters.sizes.includes(size)}
+                          onCheckedChange={() => toggleFilter('sizes', size)}
+                          data-testid={`checkbox-size-${size}`}
+                        />
+                        <label 
+                          htmlFor={`size-${size}`} 
+                          className="text-xs cursor-pointer text-gray-700"
+                          data-testid={`text-size-${size}`}
+                        >
+                          {size}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Formats Filter */}
+              <div className="bg-white border border-gray-200 rounded p-4">
+                <div 
+                  className="flex items-center justify-between cursor-pointer mb-3"
+                  onClick={() => toggleSection('formats')}
+                  data-testid="label-formats"
+                >
+                  <span className="text-sm font-medium text-gray-700">כריכות</span>
+                  {expandedSections.formats ? <ChevronUp className="h-4 w-4 text-gray-500" /> : <ChevronDown className="h-4 w-4 text-gray-500" />}
+                </div>
+                {expandedSections.formats && (
+                  <div className="space-y-2 max-h-48 overflow-y-auto">
+                    {filterOptions.formats.slice(0, 12).map((format) => (
+                      <div key={format} className="flex items-center space-x-2 rtl:space-x-reverse">
+                        <Checkbox
+                          id={`format-${format}`}
+                          checked={filters.formats.includes(format)}
+                          onCheckedChange={() => toggleFilter('formats', format)}
+                          data-testid={`checkbox-format-${format}`}
+                        />
+                        <label 
+                          htmlFor={`format-${format}`} 
+                          className="text-xs cursor-pointer text-gray-700"
+                          data-testid={`text-format-${format}`}
+                        >
+                          {format}
+                        </label>
+                      </div>
+                    ))}
+                    {filterOptions.formats.length > 12 && (
+                      <div className="text-xs text-gray-500 pt-1" data-testid="text-more-formats">
+                        ועוד {filterOptions.formats.length - 12} אפשרויות...
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
           </div>
         </div>
-      </section>
+
+        {/* Main Content Area */}
+        <div className="flex-1">
+          <div className="p-6">
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center space-x-4">
+                <Button 
+                  onClick={() => setSidebarVisible(!sidebarVisible)}
+                  className="bg-blue-600 hover:bg-blue-700 text-white"
+                  data-testid="button-toggle-sidebar"
+                >
+                  <Filter className="h-5 w-5" />
+                </Button>
+                <h1 className="text-3xl font-bold text-gray-900" data-testid="text-page-title">
+                  ספרי ברסלב
+                </h1>
+              </div>
+              <div className="bg-white px-4 py-2 rounded border border-gray-200" data-testid="text-results-count">
+                <span className="text-sm text-gray-600">
+                  נמצאו <span className="font-semibold text-blue-600">{filteredProducts.length}</span> מתוך <span className="font-semibold">{allProducts.length}</span> ספרים
+                </span>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {filteredProducts.map((product) => (
+                <div 
+                  key={product.id} 
+                  className="bg-white rounded-lg overflow-hidden shadow hover:shadow-lg transition-shadow border border-gray-200"
+                  data-testid={`card-product-${product.id}`}
+                >
+                  
+                  {/* Image */}
+                  <Link href={`/product/${product.id}`}>
+                    {product.images && product.images.length > 0 ? (
+                      <img 
+                        src={convertImagePath(product.images[0])}
+                        alt={product.name}
+                        className="w-full h-48 object-cover cursor-pointer hover:opacity-90 transition-opacity"
+                        data-testid={`img-product-${product.id}`}
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none';
+                        }}
+                      />
+                    ) : (
+                      <div 
+                        className="w-full h-48 bg-gray-100 flex items-center justify-center cursor-pointer hover:bg-gray-200 transition-colors"
+                        data-testid={`placeholder-product-${product.id}`}
+                      >
+                        <span className="text-2xl">📖</span>
+                      </div>
+                    )}
+                  </Link>
+                  
+                  {/* Content */}
+                  <div className="p-4">
+                    <Link href={`/product/${product.id}`}>
+                      <h3 
+                        className="font-semibold text-lg mb-2 text-gray-900 line-clamp-2 cursor-pointer hover:text-blue-600 transition-colors"
+                        data-testid={`text-title-${product.id}`}
+                      >
+                        {product.name}
+                      </h3>
+                    </Link>
+                    
+                    <div 
+                      className="text-lg font-bold text-blue-600 mb-2"
+                      data-testid={`text-price-${product.id}`}
+                    >
+                      {product.variants && product.variants.length > 0 ? 
+                        `${Math.min(...product.variants.map(v => v.price))} ₪ – ${Math.max(...product.variants.map(v => v.price))} ₪` : 
+                        'מחיר לא זמין'
+                      }
+                    </div>
+                    
+                    <div 
+                      className="text-sm text-gray-600 mb-4"
+                      data-testid={`text-category-${product.id}`}
+                    >
+                      {product.category}
+                    </div>
+                    
+                    <Link href={`/product/${product.id}`}>
+                      <Button 
+                        className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+                        data-testid={`button-view-details-${product.id}`}
+                      >
+                        צפייה בפרטים
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            {filteredProducts.length === 0 && (
+              <div className="text-center py-12" data-testid="text-no-results">
+                <div className="text-4xl mb-4">🔍</div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">לא נמצאו תוצאות</h3>
+                <p className="text-gray-600 mb-4">נסו לשנות את מסנני החיפוש</p>
+                <Button onClick={clearAllFilters} data-testid="button-clear-filters-no-results">
+                  נקה את כל המסננים
+                </Button>
+              </div>
+            )}
+            
+            <div className="bg-white rounded-lg p-8 text-center shadow border border-gray-200 mt-12">
+              <p className="text-lg text-gray-700 mb-4" data-testid="text-contact-message">
+                מחפשים ספר נוסף? צרו קשר ונמצא עבורכם!
+              </p>
+              <Link href="/contact">
+                <Button className="bg-green-600 hover:bg-green-700 text-white" data-testid="button-contact">
+                  צרו קשר לפרטים נוספים
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

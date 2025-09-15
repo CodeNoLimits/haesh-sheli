@@ -556,7 +556,7 @@ export const realBreslovProducts: Record<string, Product> = {
     descriptionEnglish: 'Contains short and concise passages about the excellence of good character traits and the obligation to distance oneself from bad ones. Written by Rabbenu in his youth, mostly collected from the sayings of our Sages.',
     category: 'מוסר והדרכה',
     subcategory: 'מידות טובות',
-    author: 'רבי נחמן מברסלv',
+    author: 'רבי נחמן מברסלב',
     publisher: 'קרן רבי ישראל',
     language: 'עברית',
     pages: 320,
@@ -1333,7 +1333,11 @@ export const realBreslovProducts: Record<string, Product> = {
     language: 'עברית',
     pages: 250,
     isbn: '978-965-7023-26-4',
-    images: [],
+    images: [
+      '/attached_assets/אוצר היראה 1_1757275234154.jpg',
+      '/attached_assets/אוצר היראה 2_1757275234155.jpg',
+      '/attached_assets/1_1757275751755.jpg'
+    ],
     variants: [
       {
         id: 'medium-skai-2vol',
@@ -1375,7 +1379,11 @@ export const realBreslovProducts: Record<string, Product> = {
     language: 'עברית',
     pages: 300,
     isbn: '978-965-7023-27-1',
-    images: [],
+    images: [
+      '/attached_assets/כל בו 1_1757275910545.jpg',
+      '/attached_assets/כל בו 2_1757280401418.jpg',
+      '/attached_assets/2_1757275751756.jpg'
+    ],
     variants: [
       {
         id: 'medium-skai-3vol',
@@ -1840,6 +1848,940 @@ export const realBreslovProducts: Record<string, Product> = {
       'לפי רצון רבי ישראל דוב אודסר'
     ],
     tags: ['תיקון', 'מזמורים', 'ברית', 'קדושה', 'אודסר'],
+    isActive: true,
+    isFeatured: true
+  },
+
+  'yekara-deshabbata': {
+    id: 'yekara-deshabbata',
+    name: 'יקרא דשבתא',
+    nameEnglish: 'Yekara DeShabbata',
+    nameFrench: null,
+    nameSpanish: null,
+    nameRussian: null,
+    description: 'חובר על ידי רבי נחמן מטשעהרין תלמיד רבי נתן. תוכן הספר: גילוי הקשר בין מאמרי רבינו הקדוש ב"ליקוטי מוהר"ן", "סיפורי מעשיות" ו"שיחות הר"ן", ליקרת קדושת שבת. המחבר מציין: "שמעתי בשם גדולי הצדיקים קדמונים שהיו מפליגין מאוד בקדושת תורתו ומאמריו הקדושים של רבינו ואמרו עליהם בפירוש שהם בבחינת קדושת שבת"',
+    descriptionEnglish: 'Composed by Rabbi Nachman of Tchehrin, student of Rabbi Nathan. The book reveals the connection between Rabbenu\'s teachings in Likutei Moharan, Tales, and Sichos HaRan to the holiness of Shabbat.',
+    category: 'ספרי התלמידים',
+    subcategory: 'חגים ומועדים',
+    author: 'רבי נחמן מטשעהרין',
+    publisher: 'קרן רבי ישראל',
+    language: 'עברית',
+    pages: 320,
+    isbn: '978-965-7023-45-5',
+    images: [
+      '/attached_assets/יקרא דשבתא 1_1757281125909.jpg',
+      '/attached_assets/יקרא דשבתא 2_1757281003112.jpg'
+    ],
+    variants: [
+      {
+        id: 'large-skai',
+        format: 'סקאי',
+        binding: 'קשה',
+        size: 'גדול',
+        dimensions: '24*17',
+        volumes: 1,
+        price: 35,
+        inStock: true,
+        stockQuantity: 20
+      }
+    ],
+    features: [
+      'קשר תורות רבינו לשבת קודש',
+      'חידושים על קדושת שבת',
+      'מבוסס על כל ספרי רבינו',
+      'מחבר תלמיד רבי נתן',
+      'גילוי עומק התורות'
+    ],
+    tags: ['שבת', 'קדושה', 'תורות', 'חגים', 'מטשעהרין'],
+    isActive: true,
+    isFeatured: true
+  },
+
+  'yareach-haeitanim': {
+    id: 'yareach-haeitanim',
+    name: 'ירח האיתנים',
+    nameEnglish: 'Yareach HaEitanim',
+    nameFrench: null,
+    nameSpanish: null,
+    nameRussian: null,
+    description: 'חובר על ידי רבי נחמן מטשעהרין תלמיד רבי נתן. בספר הוא מראה כיצד בכל תורותיו של רבינו כלול ענין ראש השנה, יום הכיפורים, סוכות ושמיני עצרת. השם "ירח האיתנים" הוא כינוי לחודש תשרי בגמרא, על שם שהוא "איתן במצוות". הספר נדפס על ידי נכד המחבר רבי אברהם שטרנהארץ כוכב-לב.',
+    descriptionEnglish: 'Composed by Rabbi Nachman of Tchehrin. Shows how all of Rabbenu\'s teachings contain the concepts of Rosh Hashana, Yom Kippur, Sukkot and Shemini Atzeret. "Yareach HaEitanim" refers to the month of Tishrei.',
+    category: 'ספרי התלמידים',
+    subcategory: 'חגים ומועדים',
+    author: 'רבי נחמן מטשעהרין',
+    publisher: 'קרן רבי ישראל',
+    language: 'עברית',
+    pages: 280,
+    isbn: '978-965-7023-46-2',
+    images: [
+      '/attached_assets/3_1757275751756.jpg',
+      '/attached_assets/הראש השנה שלי 3_1757275239935.jpg',
+      '/attached_assets/אוירה_1757280778285.jpg'
+    ],
+    variants: [
+      {
+        id: 'medium-skai',
+        format: 'סקאי',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '17*12',
+        volumes: 1,
+        price: 30,
+        inStock: true,
+        stockQuantity: 25
+      }
+    ],
+    features: [
+      'חודש תשרי המקודש',
+      'ראש השנה ויום כיפור',
+      'סוכות ושמיני עצרת',
+      'איתן במצוות',
+      'תורות רבינו על החגים'
+    ],
+    tags: ['תשרי', 'חגים', 'ראש השנה', 'יום כיפור', 'מועדים'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'maafer-lefaar': {
+    id: 'maafer-lefaar',
+    name: 'מאפר לפאר',
+    nameEnglish: 'Me\'Afer LeFa\'ar',
+    nameFrench: null,
+    nameSpanish: null,
+    nameRussian: null,
+    description: 'ליקוט מספרי רבינו ורבי נתן על ימי בין המצרים, בהם אנו מביעים געגועינו ותשוקתנו לגאולה ולבניין בית המקדש, על שם הפסוק: "לשום לאבלי ציון, לתת להם פאר תחת אפר" (ישעיה). ספר מיוחד לימי הצום והאבלות שמחזק בתקווה ובאמונה.',
+    descriptionEnglish: 'Collection from Rabbenu and Rabbi Nathan\'s books about the Three Weeks period, expressing our longing for redemption and rebuilding the Temple, based on the verse "to give them beauty for ashes" (Isaiah).',
+    category: 'חגים ומועדים',
+    subcategory: 'בין המצרים',
+    author: 'ליקוט מספרי רבינו ורבי נתן',
+    publisher: 'קרן רבי ישראל',
+    language: 'עברית',
+    pages: 240,
+    isbn: '978-965-7023-47-9',
+    images: [
+      '/attached_assets/מאפר לפאר 1.jpg'
+    ],
+    variants: [
+      {
+        id: 'medium-skai',
+        format: 'סקאי',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '17*12',
+        volumes: 1,
+        price: 30,
+        inStock: true,
+        stockQuantity: 30
+      }
+    ],
+    features: [
+      'ימי בין המצרים',
+      'געגועים לגאולה',
+      'בניין בית המקדש',
+      'חיזוק באמונה',
+      'פאר תחת אפר'
+    ],
+    tags: ['בין המצרים', 'גאולה', 'בית המקדש', 'אבלות', 'תקווה'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'mem-tet-shaarim': {
+    id: 'mem-tet-shaarim',
+    name: 'מט\' שערים',
+    nameEnglish: 'Mem-Tet Sha\'arim',
+    nameFrench: null,
+    nameSpanish: null,
+    nameRussian: null,
+    description: 'ליקוט מספרי רבינו על קדושת ימי ספירת העומר שבין פסח לחג השבועות, ועניינים הקשורים לימים אלו. הספר מראה את העומק הרוחני של ספירת העומר כהכנה לקבלת התורה, ומבאר את מעלת כל יום ויום בספירה על פי תורות רבינו.',
+    descriptionEnglish: 'Collection from Rabbenu\'s books about the holiness of the Counting of the Omer period between Passover and Shavuot, and matters related to these days. Shows the spiritual depth of counting as preparation for receiving the Torah.',
+    category: 'חגים ומועדים',
+    subcategory: 'ספירת העומר',
+    author: 'ליקוט מספרי רבינו',
+    publisher: 'קרן רבי ישראל',
+    language: 'עברית',
+    pages: 320,
+    isbn: '978-965-7023-48-6',
+    images: [
+      '/attached_assets/מט שערים 1_1757275840464.jpg',
+      '/attached_assets/מט שערים 2_1757275840465.jpg',
+      '/attached_assets/מט שערים 3_1757275840465.jpg',
+      '/attached_assets/מט שערים 4_1757275840466.jpg'
+    ],
+    variants: [
+      {
+        id: 'medium-skai-2vol',
+        format: 'סקאי',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '17*12',
+        volumes: 2,
+        price: 60,
+        inStock: true,
+        stockQuantity: 20
+      }
+    ],
+    features: [
+      'ספירת העומר',
+      'הכנה לקבלת התורה',
+      'מ"ט שערי בינה',
+      'קדושת הימים',
+      'עומק רוחני'
+    ],
+    tags: ['ספירת העומר', 'תורה', 'קבלה', 'בינה', 'קדושה'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'sod-harashbi': {
+    id: 'sod-harashbi',
+    name: 'סוד הרשב"י',
+    nameEnglish: 'Sod HaRashbi',
+    nameFrench: null,
+    nameSpanish: null,
+    nameRussian: null,
+    description: 'ליקוט מספרי רבינו ורבי נתן, במעלת התנא האלוקי רבי שמעון בר יוחאי ובמעלת יום ההילולא שלו בל"ג בעומר. הספר מגלה את הקשר העמוק בין תורות רבינו לבין קדושתו של רשב"י, ואת מעלת יום ל"ג בעומר כיום של שמחה וחדווה.',
+    descriptionEnglish: 'Collection from Rabbenu and Rabbi Nathan\'s books about the greatness of the divine Tanna Rabbi Shimon bar Yochai and the merit of his hillula on Lag Ba\'Omer. Reveals the deep connection between Rabbenu\'s teachings and Rashbi\'s holiness.',
+    category: 'חגים ומועדים',
+    subcategory: 'לג בעומר',
+    author: 'ליקוט מספרי רבינו ורבי נתן',
+    publisher: 'קרן רבי ישראל',
+    language: 'עברית',
+    pages: 220,
+    isbn: '978-965-7023-49-3',
+    images: [
+      '/attached_assets/סוד הרשבי 1_1757275910545.jpg',
+      '/attached_assets/סוד הרשבי 1_1757278339720.jpg',
+      '/attached_assets/סוד הרשבי 2_1757280401419.jpg'
+    ],
+    variants: [
+      {
+        id: 'medium-skai',
+        format: 'סקאי',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '17*12',
+        volumes: 1,
+        price: 30,
+        inStock: true,
+        stockQuantity: 35
+      }
+    ],
+    features: [
+      'רבי שמעון בר יוחאי',
+      'לג בעומר הילולא',
+      'סודות התורה',
+      'שמחה וחדווה',
+      'קשר לתורות רבינו'
+    ],
+    tags: ['רשבי', 'לג בעומר', 'הילולא', 'קבלה', 'שמחה'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'shaar-hachamishim': {
+    id: 'shaar-hachamishim',
+    name: 'שער החמישים',
+    nameEnglish: 'Sha\'ar HaChamishim',
+    nameFrench: null,
+    nameSpanish: null,
+    nameRussian: null,
+    description: 'ליקוט מכל ספרי רבינו ורבי נתן על קדושת חג השבועות שהוא כידוע "שער החמישים" של הקדושה, כולל "תיקון ליל שבועות" המקובל מהאר"י ז"ל ומהשל"ה הקדוש. הספר מגלה את עומק קדושת חג מתן תורה ומעלת הלילה הקדוש.',
+    descriptionEnglish: 'Collection from all of Rabbenu and Rabbi Nathan\'s books about the holiness of Shavuot, known as the "Fiftieth Gate" of holiness, including "Tikkun Leil Shavuot" from the Ari and Shelah. Reveals the depth of the Torah-giving holiday.',
+    category: 'חגים ומועדים',
+    subcategory: 'שבועות',
+    author: 'ליקוט מספרי רבינו ורבי נתן',
+    publisher: 'קרן רבי ישראל',
+    language: 'עברית',
+    pages: 380,
+    isbn: '978-965-7023-50-9',
+    images: [
+      '/attached_assets/שער החמישים 1_1757281267103.jpg',
+      '/attached_assets/שער החמישים 2_1757281267104.jpg'
+    ],
+    variants: [
+      {
+        id: 'medium-skai-3vol',
+        format: 'סקאי',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '17*12',
+        volumes: 3,
+        price: 90,
+        inStock: true,
+        stockQuantity: 15
+      }
+    ],
+    features: [
+      'חג השבועות קדוש',
+      'שער החמישים',
+      'תיקון ליל שבועות',
+      'מתן תורה',
+      'האר"י והשל"ה'
+    ],
+    tags: ['שבועות', 'מתן תורה', 'תיקון לילה', 'קבלה', 'חמישים'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'nachal-novea': {
+    id: 'nachal-novea',
+    name: 'נחל נובע',
+    nameEnglish: 'Nachal Novea',
+    nameFrench: null,
+    nameSpanish: null,
+    nameRussian: null,
+    description: 'פרקים בתולדות חייו של רבינו, בצירוף שיחות וסיפורים שסופרו על ידי רבינו ותלמידיו. יצא לאור בשנת תשכ"א על ידי שריד השואה ר\' יצחק אייזיק זילברמן, תלמידו של רבי ישראל דוב אודסר. הספר מכיל חומר נדיר על חיי רבינו ומסורות אמיתיות.',
+    descriptionEnglish: 'Chapters in the life story of Rabbenu, with conversations and stories told by Rabbenu and his students. Published in 1961 by Holocaust survivor R. Yitzchak Eizik Zilberman, student of R. Yisrael Dov Odesser. Contains rare material about Rabbenu\'s life.',
+    category: 'ספרי התלמידים',
+    subcategory: 'תולדות',
+    author: 'ר\' יצחק אייזיק זילברמן',
+    publisher: 'קרן רבי ישראל',
+    language: 'עברית',
+    pages: 320,
+    isbn: '978-965-7023-51-6',
+    images: [
+      '/attached_assets/נג\'ל נובע_1757280778289.jpg'
+    ],
+    variants: [
+      {
+        id: 'large-skai',
+        format: 'סקאי',
+        binding: 'קשה',
+        size: 'גדול',
+        dimensions: '24*17',
+        volumes: 1,
+        price: 35,
+        inStock: true,
+        stockQuantity: 25
+      },
+      {
+        id: 'spanish',
+        format: 'ספרדית',
+        binding: 'קשה',
+        size: 'גדול',
+        dimensions: '24*17',
+        volumes: 1,
+        price: 35,
+        inStock: true,
+        stockQuantity: 12
+      }
+    ],
+    features: [
+      'תולדות רבינו',
+      'סיפורים נדירים',
+      'מסורות אמיתיות',
+      'שריד השואה',
+      'תלמיד אודסר'
+    ],
+    tags: ['תולדות', 'סיפורים', 'אודסר', 'זילברמן', 'נדיר'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'sichos-vehitorerut': {
+    id: 'sichos-vehitorerut',
+    name: 'שיחות והתעוררות',
+    nameEnglish: 'Sichos VeHit\'orrerut',
+    nameFrench: null,
+    nameSpanish: null,
+    nameRussian: null,
+    description: 'מכיל את השיחות והסיפורים ודברי ההתעוררות השייכים לכל מאמר ומאמר שבספר ליקוטי מוהר"ן, המובאים בספרים "חיי ושיחות מוהר"ן" "ימי מוהרנ"ת" "עלים לתרופה". נסדר ונלקט על ידי רבי שמואל הורביץ. ספר יסוד להבנת עומק התורות.',
+    descriptionEnglish: 'Contains the conversations, stories and words of awakening related to each teaching in Likutei Moharan, taken from "Chayei Moharan," "Yemei Maharanat," and "Alim LeTerufah." Compiled by Rabbi Shmuel Horowitz. Fundamental for understanding the depth of the teachings.',
+    category: 'ספרי התלמידים',
+    subcategory: 'שיחות',
+    author: 'רבי שמואל הורביץ',
+    publisher: 'קרן רבי ישראל',
+    language: 'עברית',
+    pages: 450,
+    isbn: '978-965-7023-52-3',
+    images: [
+      '/attached_assets/שיחות הרן 1_1757281125911.jpg'
+    ],
+    variants: [
+      {
+        id: 'large-skai',
+        format: 'סקאי',
+        binding: 'קשה',
+        size: 'גדול',
+        dimensions: '24*17',
+        volumes: 1,
+        price: 35,
+        inStock: true,
+        stockQuantity: 20
+      }
+    ],
+    features: [
+      'שיחות לכל תורה',
+      'סיפורים מקשרים',
+      'התעוררות רוחנית',
+      'מליקוטי מוהר"ן',
+      'הורביץ לקט'
+    ],
+    tags: ['שיחות', 'התעוררות', 'תורות', 'הורביץ', 'לקט'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'mikhtavei-rabbi-natan-tiveria': {
+    id: 'mikhtavei-rabbi-natan-tiveria',
+    name: 'מכתבי רבי נתן מטבריה',
+    nameEnglish: 'Mikhtavei Rabbi Natan MeTiveria',
+    nameFrench: null,
+    nameSpanish: null,
+    nameRussian: null,
+    description: 'ספר המכיל קרוב למאתיים מכתבים שכתב רבי נתן ב"ר יהודה מטבריה, מתלמידיו המובהקים של רבי נתן, לידידיו בארץ ובחו"ל. גדוש בשיחות ודיבורים נלהבים בגדולת רבינו ותלמידו רבי נתן, מעלת לימוד ספריהם, והתחזקות בעבודת השם.',
+    descriptionEnglish: 'Book containing nearly two hundred letters written by Rabbi Nathan bar Yehuda of Tiberias, one of Rabbi Nathan\'s distinguished students, to friends in Israel and abroad. Full of enthusiastic conversations about the greatness of Rabbenu and Rabbi Nathan.',
+    category: 'מכתבים',
+    subcategory: 'מכתבי קודש',
+    author: 'רבי נתן בר יהודה מטבריה',
+    publisher: 'קרן רבי ישראל',
+    language: 'עברית',
+    pages: 380,
+    isbn: '978-965-7023-53-0',
+    images: [
+      '/attached_assets/מכתבי ר נתן 1_1757281125910.jpg',
+      '/attached_assets/מכתבי ר נתן_1757281003113.jpg'
+    ],
+    variants: [
+      {
+        id: 'large-skai',
+        format: 'סקאי',
+        binding: 'קשה',
+        size: 'גדול',
+        dimensions: '24*17',
+        volumes: 1,
+        price: 35,
+        inStock: true,
+        stockQuantity: 18
+      }
+    ],
+    features: [
+      'מאתיים מכתבים',
+      'תלמיד רבי נתן',
+      'מטבריה הקדושה',
+      'התחזקות באמונה',
+      'לימוד ספרי רבינו'
+    ],
+    tags: ['מכתבים', 'טבריה', 'תלמיד', 'התחזקות', 'אמונה'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'parparaot-al-hashas': {
+    id: 'parparaot-al-hashas',
+    name: 'פרפראות על הש"ס',
+    nameEnglish: 'Parparaot Al HaShas',
+    nameFrench: null,
+    nameSpanish: null,
+    nameRussian: null,
+    description: 'חובר על ידי רבי נחמן מטשעהרין תלמיד רבי נתן, מכיל חידושים עמוקים ונפלאים המקשרים את דברי הגמרא ליסודות המובאים בתורותיו של רבינו שבספר "ליקוטי מוהר"ן". אליו נוסף הספר "טובות זיכרונות" מנכד המחבר, רבי אברהם שטרנהארץ - כוכב לב, המכיל סיפורים מתולדות חיו של סבו רבי נתן.',
+    descriptionEnglish: 'Composed by Rabbi Nachman of Tchehrin, student of Rabbi Nathan. Contains deep and wondrous insights connecting the words of the Talmud to the foundations in Rabbenu\'s teachings in Likutei Moharan. Includes "Tovot Zichronot" with stories about Rabbi Nathan.',
+    category: 'ספרי התלמידים',
+    subcategory: 'הלכה ותלמוד',
+    author: 'רבי נחמן מטשעהרין',
+    publisher: 'קרן רבי ישראל',
+    language: 'עברית',
+    pages: 420,
+    isbn: '978-965-7023-54-7',
+    images: [
+      '/attached_assets/4_1757275751756.jpg',
+      '/attached_assets/ליקוטי עצות בנפרד_1757280401419.jpg',
+      '/attached_assets/כל בו לבן 2_1757280401418.jpg'
+    ],
+    variants: [
+      {
+        id: 'large-skai-2vol',
+        format: 'סקאי',
+        binding: 'קשה',
+        size: 'גדול',
+        dimensions: '24*17',
+        volumes: 2,
+        price: 75,
+        inStock: true,
+        stockQuantity: 15
+      }
+    ],
+    features: [
+      'חידושים על הגמרא',
+      'קשר לליקוטי מוהר"ן',
+      'עומק רוחני',
+      'טובות זיכרונות',
+      'מטשעהרין חיבר'
+    ],
+    tags: ['גמרא', 'הלכה', 'חידושים', 'מטשעהרין', 'תלמוד'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'likutei-even': {
+    id: 'likutei-even',
+    name: 'ליקוטי אבן',
+    nameEnglish: 'Likutei Even',
+    nameFrench: null,
+    nameSpanish: null,
+    nameRussian: null,
+    description: 'ארבעה ספרים בכרך אחד: ליקוטי אבן - חיבורו של רבי אפרים בן רבי נפתלי, תלמיד רבי נתן, מיוסד על תורות רבינו ועל חלק "אורח חיים" בשולחן ערוך. תפילות הבוקר - תפילות שנכתבו על ידי רבי אפרים. אמונת עתיך - ספרו של רבי אלטר מטפליק במעלת ניצול הזמן לעבודת ה\'. עצות ישרות - הוספות לספר ליקוטי עצות.',
+    descriptionEnglish: 'Four books in one volume: Likutei Even by Rabbi Ephraim ben Rabbi Naftali based on Rabbenu\'s teachings and Orach Chaim; Morning Prayers; Emunat Itecha about utilizing time for divine service; and Etzot Yesharot - additions to Likutei Etzot.',
+    category: 'ספרי התלמידים',
+    subcategory: 'הלכה ועבודה',
+    author: 'רבי אפרים בן נפתלי וחב"ר',
+    publisher: 'קרן רבי ישראל',
+    language: 'עברית',
+    pages: 350,
+    isbn: '978-965-7023-55-4',
+    images: [
+      '/attached_assets/5_1757275751756.jpg',
+      '/attached_assets/אבי הנחל_1757281003110.jpg',
+      '/attached_assets/ליקוטי עצות_1757281003113.jpg'
+    ],
+    variants: [
+      {
+        id: 'large-skai-with-additions',
+        format: 'כולל אמונת עתיך ועצות ישרות',
+        binding: 'קשה',
+        size: 'גדול',
+        dimensions: '24*17',
+        volumes: 1,
+        price: 35,
+        inStock: true,
+        stockQuantity: 22
+      }
+    ],
+    features: [
+      'ארבעה ספרים בכרך',
+      'מיוסד על אורח חיים',
+      'תפילות הבוקר',
+      'אמונת עתיך',
+      'עצות ישרות'
+    ],
+    tags: ['הלכה', 'תפילות', 'עבודה', 'זמן', 'עצות'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'avi-hanachal': {
+    id: 'avi-hanachal',
+    name: 'אב\'י הנחל',
+    nameEnglish: 'Avi HaNachal',
+    nameFrench: null,
+    nameSpanish: null,
+    nameRussian: null,
+    description: 'מכתביו הנפלאים של רבי ישראל דוב אודסר, בעיקר אלו שנשלחו לזלמן שזר. המכתבים מכילים דיבורים קדושים, מחזקים ומעודדים, מספרי רבינו ורבי נתן, לאמץ ברכיים כושלות ולחזק ידיים רפות. להחדיר בלב הקורא אמונה בה\' יתברך ובצדיק האמת.',
+    descriptionEnglish: 'The wonderful letters of Rabbi Yisrael Dov Odesser, especially those sent to Zalman Shazar. The letters contain holy words, strengthening and encouraging, from Rabbenu and Rabbi Nathan\'s books, to strengthen weak knees and fortify drooping hands.',
+    category: 'מכתבים',
+    subcategory: 'מכתבי אודסר',
+    author: 'רבי ישראל דוב אודסר',
+    publisher: 'קרן רבי ישראל',
+    language: 'עברית',
+    pages: 280,
+    isbn: '978-965-7023-56-1',
+    images: [
+      '/attached_assets/אבי הנחל_1757281003110.jpg',
+      '/attached_assets/אבי הנחל באנגלית_1757280778284.jpg'
+    ],
+    variants: [
+      {
+        id: 'large-skai',
+        format: 'סקאי',
+        binding: 'קשה',
+        size: 'גדול',
+        dimensions: '24*17',
+        volumes: 1,
+        price: 35,
+        inStock: true,
+        stockQuantity: 25
+      },
+      {
+        id: 'large-leather-like-pearl',
+        format: 'דמוי עור לבן/פנינה',
+        binding: 'קשה',
+        size: 'גדול',
+        dimensions: '24*17',
+        volumes: 1,
+        price: 45,
+        inStock: true,
+        stockQuantity: 15
+      },
+      {
+        id: 'medium-skai',
+        format: 'סקאי',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '17*12',
+        volumes: 1,
+        price: 30,
+        inStock: true,
+        stockQuantity: 35
+      },
+      {
+        id: 'small-laminated-soft',
+        format: 'למנציה רך',
+        binding: 'רך',
+        size: 'קטן',
+        dimensions: '12*8',
+        volumes: 1,
+        price: 10,
+        inStock: true,
+        stockQuantity: 80
+      },
+      {
+        id: 'french-medium-2vol',
+        format: 'צרפתית',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '17*12',
+        volumes: 2,
+        price: 64,
+        inStock: true,
+        stockQuantity: 12
+      }
+    ],
+    features: [
+      'מכתבי אודסר הקדושים',
+      'לזלמן שזר נכתבו',
+      'חיזוק ועידוד',
+      'אמונה בצדיק',
+      'דיבורים קדושים'
+    ],
+    tags: ['אודסר', 'מכתבים', 'חיזוק', 'אמונה', 'צדיק'],
+    isActive: true,
+    isFeatured: true
+  },
+
+  'yisrael-saba': {
+    id: 'yisrael-saba',
+    name: 'ישראל סבא',
+    nameEnglish: 'Yisrael Saba',
+    nameFrench: null,
+    nameSpanish: null,
+    nameRussian: null,
+    description: 'שיחותיו היוקדות והנלהבות של רבי ישראל דוב אודסר, מתקופת חייו האחרונה. נערך על פי קלטות בהן הוקלטו דיבוריו על ידי מקורביו. השיחות מלאות בהתחזקות, יראת שמים, אהבת ה\' יתברך, אהבת הצדיק ואהבת ישראל. ודיבורים במעלת ההתקרבות לרבינו רבי נחמן, לימוד ספריו והפצתם בקרב עם ישראל.',
+    descriptionEnglish: 'The fiery and enthusiastic conversations of Rabbi Yisrael Dov Odesser from his later years. Compiled from recordings made by his close associates. Full of strengthening, fear of Heaven, love of God, love of the tzaddik and love of Israel.',
+    category: 'ספרי התלמידים',
+    subcategory: 'שיחות אודסר',
+    author: 'רבי ישראל דוב אודסר',
+    publisher: 'קרן רבי ישראל',
+    language: 'עברית',
+    pages: 320,
+    isbn: '978-965-7023-57-8',
+    images: [
+      '/attached_assets/ישראל סבא_1757281003112.jpg',
+      '/attached_assets/סבא ישראל לילדים_1757280885979.jpg'
+    ],
+    variants: [
+      {
+        id: 'large-skai',
+        format: 'סקאי',
+        binding: 'קשה',
+        size: 'גדול',
+        dimensions: '24*17',
+        volumes: 1,
+        price: 40,
+        inStock: true,
+        stockQuantity: 20
+      },
+      {
+        id: 'french-medium',
+        format: 'צרפתית',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '17*12',
+        volumes: 1,
+        price: 32,
+        inStock: true,
+        stockQuantity: 15
+      }
+    ],
+    features: [
+      'שיחות אודסר האחרונות',
+      'קלטות מקוריות',
+      'התחזקות ויראה',
+      'אהבת הצדיק',
+      'הפצת תורת רבינו'
+    ],
+    tags: ['אודסר', 'שיחות', 'התחזקות', 'אהבה', 'הפצה'],
+    isActive: true,
+    isFeatured: true
+  },
+
+  'maayen-hamitgaber': {
+    id: 'maayen-hamitgaber',
+    name: 'מעין המתגבר',
+    nameEnglish: 'Ma\'ayan HaMitgaber',
+    nameFrench: null,
+    nameSpanish: null,
+    nameRussian: null,
+    description: 'חידושים עמוקים ונפלאים על הספר הקדוש "ליקוטי מוהר"ן", שהועלו על הכתב בידי רבי עמרם יוסף הורביץ, נכדו של רבי ישראל דוב אודסר. הספר מגלה רבדים נוספים בתורות רבינו ומעמיק בהבנת הנושאים הרוחניים שבהם.',
+    descriptionEnglish: 'Deep and wondrous insights on the holy book "Likutei Moharan," written by Rabbi Amram Yosef Horowitz, grandson of Rabbi Yisrael Dov Odesser. The book reveals additional layers in Rabbenu\'s teachings and deepens understanding of spiritual matters.',
+    category: 'ספרי התלמידים',
+    subcategory: 'פירושים',
+    author: 'רבי עמרם יוסף הורביץ',
+    publisher: 'קרן רבי ישראל',
+    language: 'עברית',
+    pages: 380,
+    isbn: '978-965-7023-58-5',
+    images: [
+      '/attached_assets/מעין המתגבר 1_1757281125910.jpg',
+      '/attached_assets/מעין המתגבר_1757281003114.jpg'
+    ],
+    variants: [
+      {
+        id: 'large-skai',
+        format: 'סקאי',
+        binding: 'קשה',
+        size: 'גדול',
+        dimensions: '24*17',
+        volumes: 1,
+        price: 35,
+        inStock: true,
+        stockQuantity: 18
+      }
+    ],
+    features: [
+      'חידושים על ליקוטי מוהר"ן',
+      'נכד אודסר חיבר',
+      'רבדים נוספים',
+      'עומק רוחני',
+      'הבנה מעמיקה'
+    ],
+    tags: ['פירוש', 'ליקוטי מוהר"ן', 'אודסר', 'חידושים', 'עומק'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'shemot-hatzadikim': {
+    id: 'shemot-hatzadikim',
+    name: 'שמות הצדיקים',
+    nameEnglish: 'Shemot HaTzadikim',
+    nameFrench: null,
+    nameSpanish: null,
+    nameRussian: null,
+    description: 'שנלקט על ידי רבי נתן, שאמירתו מסוגלת לשנות את הטבע ולהמשיך ניסים, כדברי רבינו הקדוש. הספר מכיל רשימת שמות צדיקים וקדושים שאמירתם בדביקות ובכוונה יכולה להביא ישועות ורפואות.',
+    descriptionEnglish: 'Compiled by Rabbi Nathan, whose recitation is capable of changing nature and drawing miracles, according to our holy Rabbenu. Contains a list of names of tzaddikim and holy ones whose recitation with devotion can bring salvation and healing.',
+    category: 'סגולות וישועות',
+    subcategory: 'שמות קדושים',
+    author: 'רבי נתן מברסלב',
+    publisher: 'קרן רבי ישראל',
+    language: 'עברית',
+    pages: 120,
+    isbn: '978-965-7023-59-2',
+    images: [
+      '/attached_assets/שמות הצדיקים 2_1757280885981.jpg',
+      '/attached_assets/שמות הצדיקים_1757280885981.jpg'
+    ],
+    variants: [
+      {
+        id: 'medium-skai-divided-12vol',
+        format: 'מחולק',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '17*12',
+        volumes: 12,
+        price: 45,
+        inStock: true,
+        stockQuantity: 25
+      },
+      {
+        id: 'small-soft-nylon',
+        format: 'לנילון רך',
+        binding: 'רך',
+        size: 'קטן',
+        dimensions: '12*8',
+        volumes: 1,
+        price: 10,
+        inStock: true,
+        stockQuantity: 100
+      },
+      {
+        id: 'medium-french',
+        format: 'צרפתית',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '17*12',
+        volumes: 1,
+        price: 32,
+        inStock: true,
+        stockQuantity: 18
+      }
+    ],
+    features: [
+      'לקט רבי נתן',
+      'שינוי הטבע',
+      'המשכת ניסים',
+      'ישועות ורפואות',
+      'אמירה בדביקות'
+    ],
+    tags: ['צדיקים', 'ישועות', 'ניסים', 'רפואות', 'סגולות'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'shema-yisrael': {
+    id: 'shema-yisrael',
+    name: 'שמע ישראל',
+    nameEnglish: 'Shema Yisrael',
+    nameFrench: null,
+    nameSpanish: null,
+    nameRussian: null,
+    description: 'ספר קטן וחשוב המכיל את הקריאת שמע וברכותיה, עם כוונות והסברים מתורות רבינו. מיועד לנשיאה בכיס ולאמירה בכל עת ומקום, במיוחד בשעת צרה או לפני שינה.',
+    descriptionEnglish: 'Small but important book containing the Shema prayer and its blessings, with intentions and explanations from Rabbenu\'s teachings. Designed for carrying in pocket and recitation at any time and place, especially in times of trouble or before sleep.',
+    category: 'תפילות',
+    subcategory: 'תפילות יומיות',
+    author: 'קרן רבי ישראל',
+    publisher: 'קרן רבי ישראל',
+    language: 'עברית',
+    pages: 64,
+    isbn: '978-965-7023-60-8',
+    images: [
+      '/attached_assets/שמע ישראל צרפתית_1757280885982.jpg'
+    ],
+    variants: [
+      {
+        id: 'medium-skai',
+        format: 'סקאי',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '12*17',
+        volumes: 1,
+        price: 20,
+        inStock: true,
+        stockQuantity: 50
+      },
+      {
+        id: 'medium-skai-english',
+        format: 'אנגלית',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '17*12',
+        volumes: 1,
+        price: 20,
+        inStock: true,
+        stockQuantity: 30
+      },
+      {
+        id: 'medium-french',
+        format: 'צרפתית',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '17*12',
+        volumes: 1,
+        price: 32,
+        inStock: true,
+        stockQuantity: 25
+      }
+    ],
+    features: [
+      'קריאת שמע וברכותיה',
+      'כוונות מתורות רבינו',
+      'נשיאה בכיס',
+      'לכל עת ומקום',
+      'שעת צרה ושינה'
+    ],
+    tags: ['שמע ישראל', 'תפילה', 'כוונות', 'כיס', 'יומי'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'emunat-itecha': {
+    id: 'emunat-itecha',
+    name: 'אמונת עתיך',
+    nameEnglish: 'Emunat Itecha',
+    nameFrench: null,
+    nameSpanish: null,
+    nameRussian: null,
+    description: 'ספרו של רבי אלטר מטפליק במעלת ניצול הזמן לעבודת ה\'. הספר מלמד כיצד להקדיש כל רגע ורגע לעבודת הבורא, ואיך להפוך את חיי היום-יום לעבודה רוחנית מתמדת. מבוסס על תורות רבינו בענין זמן וזכירת הבורא.',
+    descriptionEnglish: 'Book by Rabbi Alter of Teplik about the virtue of utilizing time for divine service. Teaches how to dedicate every moment to serving the Creator and transform daily life into continuous spiritual work. Based on Rabbenu\'s teachings about time and remembering the Creator.',
+    category: 'ספרי התלמידים',
+    subcategory: 'עבודת השם',
+    author: 'רבי אלטר מטפליק',
+    publisher: 'קרן רבי ישראל',
+    language: 'עברית',
+    pages: 160,
+    isbn: '978-965-7023-61-5',
+    images: [
+      '/attached_assets/אמונת עיתך צרפתית_1757280778286.jpg'
+    ],
+    variants: [
+      {
+        id: 'medium-skai',
+        format: 'סקאי',
+        binding: 'קשה',
+        size: 'בינוני',
+        dimensions: '12*17',
+        volumes: 1,
+        price: 20,
+        inStock: true,
+        stockQuantity: 40
+      },
+      {
+        id: 'medium-french-booklet',
+        format: 'קונטרס צרפתית',
+        binding: 'רך',
+        size: 'בינוני',
+        dimensions: '17*12',
+        volumes: 1,
+        price: 6,
+        inStock: true,
+        stockQuantity: 60
+      }
+    ],
+    features: [
+      'ניצול הזמן הקדוש',
+      'עבודת ה\' תמידית',
+      'חיי יום-יום רוחניים',
+      'זכירת הבורא',
+      'רבי אלטר חיבר'
+    ],
+    tags: ['זמן', 'עבודה', 'רוחניות', 'טפליק', 'יום יום'],
+    isActive: true,
+    isFeatured: false
+  },
+
+  'rabbenu-hakadosh': {
+    id: 'rabbenu-hakadosh',
+    name: 'רבינו הקדוש',
+    nameEnglish: 'Rabbenu HaKadosh',
+    nameFrench: null,
+    nameSpanish: null,
+    nameRussian: null,
+    description: 'כל קורות חייו הקדושים של רבינו רבי נחמן מברסלב, הנפרשים על פני קרוב לארבעים שנות חיים, ערוכים בארבעה כרכים מושקעים - סדרה מלוקטת מספרי רבינו ותלמידיו בתוספת מסורות בעל פה שעברו מדור לדור בין זקני החסידים. סדרה מקיפה ומפורטת על חיי רבינו.',
+    descriptionEnglish: 'The complete life story of our holy Rabbenu Rabbi Nachman of Breslov, spanning nearly forty years of life, arranged in four elaborate volumes - a series collected from Rabbenu and his students\' books plus oral traditions passed down through generations of elderly Chassidim.',
+    category: 'תולדות',
+    subcategory: 'חיי רבינו',
+    author: 'ליקוט מספרי רבינו ותלמידיו',
+    publisher: 'קרן רבי ישראל',
+    language: 'עברית',
+    pages: 1200,
+    isbn: '978-965-7023-62-2',
+    images: [
+      '/attached_assets/רבינו הקדוש 1_1757281260204.jpg',
+      '/attached_assets/רבינו הקדוש 2_1757281260206.jpg',
+      '/attached_assets/רבינו הקדוש 3_1757281260206.jpg',
+      '/attached_assets/רבינו הקדוש 4_1757281260206.jpg'
+    ],
+    variants: [
+      {
+        id: 'large-laminated-4vol',
+        format: 'למנציה',
+        binding: 'קשה',
+        size: 'גדול',
+        dimensions: '24*17',
+        volumes: 4,
+        price: 150,
+        inStock: true,
+        stockQuantity: 12
+      }
+    ],
+    features: [
+      'ארבעים שנות חיים',
+      'ארבעה כרכים מושקעים',
+      'מסורות בעל פה',
+      'זקני החסידים',
+      'סדרה מקיפה ומפורטת'
+    ],
+    tags: ['תולדות', 'חיים', 'מסורת', 'חסידים', 'מקיף'],
     isActive: true,
     isFeatured: true
   }

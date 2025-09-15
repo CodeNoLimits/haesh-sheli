@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div className="rtl home page-template-default page page-id-13 wp-custom-logo theme-hello-elementor woocommerce-js elementor-default elementor-kit-5 elementor-page elementor-page-13" style={{direction: currentLanguage === 'he' ? 'rtl' : 'ltr'}}>
       {/* TOP BAR */}
-      <section className="elementor-section elementor-top-section elementor-element elementor-element-ba655d5 elementor-section-full_width elementor-hidden-tablet elementor-hidden-mobile elementor-section-height-default" style={{background: '#333', color: 'white', padding: '8px 0'}}>
+      <section className="elementor-section elementor-top-section elementor-element elementor-element-ba655d5 elementor-section-full_width elementor-hidden-tablet elementor-hidden-mobile elementor-section-height-default" style={{background: 'hsl(210, 85%, 45%)', color: 'white', padding: '8px 0'}}>
         <div className="elementor-container elementor-column-gap-default" style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
           <div className="elementor-column elementor-col-33 elementor-top-column">
             <div className="elementor-widget-wrap elementor-element-populated">
@@ -37,13 +37,13 @@ export default function Home() {
       <Header currentLanguage={currentLanguage} onLanguageChange={setLanguage} />
 
       {/* HERO SECTION */}
-      <section className="elementor-section elementor-top-section elementor-element elementor-element-1a9b8b1 elementor-section-height-full elementor-section-content-middle elementor-section-full_width elementor-section-height-default elementor-section-items-middle" 
+      <section className="hero-gradient animate-fade-in-scale" 
         style={{
-          background: `url('/images/hero-books-composition.png')`,
+          background: `linear-gradient(135deg, hsl(0, 0%, 100%, 0.95) 0%, hsl(210, 85%, 45%, 0.05) 100%), url('/images/hero-books-composition.png')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundAttachment: 'fixed',
-          color: 'white', 
+          color: 'hsl(210, 8%, 25%)', 
           padding: '8rem 0',
           minHeight: '90vh',
           display: 'flex',
@@ -53,14 +53,11 @@ export default function Home() {
           <div className="elementor-column elementor-col-100 elementor-top-column elementor-element">
             <div className="elementor-widget-wrap elementor-element-populated">
               <div className="elementor-element elementor-widget elementor-widget-heading" style={{textAlign: 'center'}}>
-                <div className="elementor-widget-container" style={{background: 'rgba(0,0,0,0.4)', padding: '3rem', borderRadius: '15px', backdropFilter: 'blur(5px)'}}>
-                  <h1 className="elementor-heading-title elementor-size-default" style={{
-                    fontSize: currentLanguage === 'he' ? '3.8rem' : '3.2rem', 
-                    fontWeight: 'bold', 
+                <div className="card-premium animate-scale-in" style={{background: 'rgba(255,255,255,0.95)', padding: '3rem', borderRadius: '15px', backdropFilter: 'blur(10px)', boxShadow: '0 25px 50px -12px hsl(210, 85%, 45%, 0.25)'}}>
+                  <h1 className="heading-oversized text-breslov-gradient" style={{
                     marginBottom: '1.5rem', 
-                    textShadow: '3px 3px 6px rgba(0,0,0,0.7)',
-                    lineHeight: '1.2',
-                    color: 'white'
+                    lineHeight: '1.1',
+                    fontFamily: currentLanguage === 'he' ? 'var(--font-hebrew)' : 'var(--font-latin)'
                   }}>
                     {currentLanguage === 'he' ? 'ספרי רבינו נחמן מברסלב זצ״ל' : 
                      currentLanguage === 'en' ? 'Books of Our Master Rabbi Nachman of Breslov' :
@@ -68,13 +65,12 @@ export default function Home() {
                      currentLanguage === 'es' ? 'Libros de Nuestro Maestro Rabino Nachman de Breslov' :
                      currentLanguage === 'ru' ? 'Книги Нашего Учителя Рабби Нахмана из Бреслов' : 'ספרי רבינו נחמן מברסלב זצ״ל'}
                   </h1>
-                  <h2 className="elementor-heading-subtitle" style={{
-                    fontSize: currentLanguage === 'he' ? '2.8rem' : '2.2rem',
+                  <h2 style={{
+                    fontSize: 'var(--heading-3)',
                     fontWeight: '300', 
                     marginBottom: '2rem', 
-                    textShadow: '2px 2px 4px rgba(0,0,0,0.6)',
-                    color: 'white',
-                    fontFamily: currentLanguage === 'he' ? 'Assistant, Rubik, serif' : 'Georgia, serif'
+                    color: 'hsl(210, 12%, 55%)',
+                    fontFamily: currentLanguage === 'he' ? 'var(--font-hebrew)' : 'var(--font-serif)'
                   }}>
                     {currentLanguage === 'he' ? 'הדרך לאוצר שלך.' :
                      currentLanguage === 'en' ? 'The Path to Your Treasure.' :
@@ -82,7 +78,7 @@ export default function Home() {
                      currentLanguage === 'es' ? 'El Camino hacia Tu Tesoro.' :
                      currentLanguage === 'ru' ? 'Путь к Вашему Сокровищу.' : 'הדרך לאוצר שלך.'}
                   </h2>
-                  <p style={{fontSize: '1.6rem', marginBottom: '2rem', textShadow: '1px 1px 3px rgba(0,0,0,0.7)', fontStyle: 'italic', color: 'white'}}>
+                  <p className="text-large" style={{marginBottom: '2rem', fontStyle: 'italic', color: 'hsl(210, 8%, 25%)', textAlign: 'center'}}>
                     {currentLanguage === 'he' ? '\'\'רק תנו לי את ליבכם ואוליך אתכם בדרך חדשה..\'\' (רבי נחמן)' :
                      currentLanguage === 'en' ? '"Just give me your hearts and I will lead you on a new path..." (Rabbi Nachman)' :
                      currentLanguage === 'fr' ? '"Donnez-moi simplement vos cœurs et je vous mènerai sur un nouveau chemin..." (Rabbi Nachman)' :
@@ -91,28 +87,7 @@ export default function Home() {
                   </p>
                   <div style={{display: 'flex', gap: '2rem', justifyContent: 'center', flexWrap: 'wrap'}}>
                     <a href="/store" style={{textDecoration: 'none'}}>
-                      <button style={{
-                        background: 'linear-gradient(135deg, #dc3545, #c82333)', 
-                        color: 'white', 
-                        border: '3px solid white', 
-                        padding: '1.2rem 2.5rem', 
-                        borderRadius: '12px', 
-                        cursor: 'pointer', 
-                        fontSize: '1.2rem', 
-                        fontWeight: 'bold', 
-                        boxShadow: '0 6px 20px rgba(220, 53, 69, 0.4)', 
-                        transition: 'all 0.3s ease',
-                        textShadow: '1px 1px 2px rgba(0,0,0,0.5)'
-                      }} 
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.transform = 'translateY(-3px)';
-                          e.currentTarget.style.boxShadow = '0 8px 25px rgba(220, 53, 69, 0.6)';
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.transform = 'translateY(0)';
-                          e.currentTarget.style.boxShadow = '0 6px 20px rgba(220, 53, 69, 0.4)';
-                        }}
-                      >
+                      <button className="btn-breslov-primary" data-testid="button-enter-store">
                         {currentLanguage === 'he' ? 'כניסה לחנות' :
                          currentLanguage === 'en' ? 'Enter Store' :
                          currentLanguage === 'fr' ? 'Entrer dans la Boutique' :
@@ -121,31 +96,7 @@ export default function Home() {
                       </button>
                     </a>
                     <a href="/join" style={{textDecoration: 'none'}}>
-                      <button style={{
-                        background: 'rgba(255, 255, 255, 0.15)', 
-                        color: 'white', 
-                        border: '3px solid white', 
-                        padding: '1.2rem 2.5rem', 
-                        borderRadius: '12px', 
-                        cursor: 'pointer', 
-                        fontSize: '1.2rem', 
-                        fontWeight: 'bold', 
-                        transition: 'all 0.3s ease',
-                        textShadow: '1px 1px 2px rgba(0,0,0,0.7)'
-                      }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.background = 'white';
-                          e.currentTarget.style.color = '#8B4513';
-                          e.currentTarget.style.transform = 'translateY(-3px)';
-                          e.currentTarget.style.textShadow = 'none';
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.background = 'rgba(255, 255, 255, 0.15)';
-                          e.currentTarget.style.color = 'white';
-                          e.currentTarget.style.transform = 'translateY(0)';
-                          e.currentTarget.style.textShadow = '1px 1px 2px rgba(0,0,0,0.7)';
-                        }}
-                      >
+                      <button className="btn-breslov-secondary" data-testid="button-discover-activities">
                         {currentLanguage === 'he' ? 'באו לגלות על הפעילות שלנו' :
                          currentLanguage === 'en' ? 'Discover Our Activities' :
                          currentLanguage === 'fr' ? 'Découvrez nos Activités' :
@@ -162,15 +113,14 @@ export default function Home() {
       </section>
 
       {/* ONLINE BOOKS SECTION */}
-      <section style={{background: 'linear-gradient(135deg, #F5F5DC 0%, #FAEBD7 50%, #F0E68C 100%)', padding: '6rem 0'}}>
+      <section className="hero-gradient animate-fade-in-up" style={{background: 'linear-gradient(135deg, hsl(0, 0%, 100%) 0%, hsl(180, 30%, 98%) 30%, hsl(210, 70%, 98%) 100%)', padding: '6rem 0'}}>
         <div style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
-          <div style={{textAlign: 'center'}}>
-            <h2 style={{
-              fontSize: '3rem', 
+          <div className="card-premium animate-scale-in" style={{textAlign: 'center', padding: '3rem', margin: '2rem 0'}}>
+            <h2 className="text-breslov-gradient" style={{
+              fontSize: 'var(--heading-2)', 
               fontWeight: 'bold', 
-              color: '#8B4513', 
               marginBottom: '1rem',
-              fontFamily: currentLanguage === 'he' ? 'Assistant, Rubik, serif' : 'Georgia, serif'
+              fontFamily: currentLanguage === 'he' ? 'var(--font-hebrew)' : 'var(--font-serif)'
             }}>
               {currentLanguage === 'he' ? 'ספרי רבנו נחמן מברסלב זצ״ל' :
                currentLanguage === 'en' ? 'Books of Our Master Rabbi Nachman of Breslov' :
@@ -178,7 +128,7 @@ export default function Home() {
                currentLanguage === 'es' ? 'Libros de Nuestro Maestro Rabino Nachman de Breslov' :
                currentLanguage === 'ru' ? 'Книги Нашего Учителя Рабби Нахмана из Бреслов' : 'ספרי רבנו נחמן מברסלב זצ״ל'}
             </h2>
-            <h3 style={{fontSize: '2rem', fontWeight: '300', color: '#654321', marginBottom: '2rem'}}>
+            <h3 style={{fontSize: 'var(--heading-4)', fontWeight: '300', color: 'hsl(210, 12%, 55%)', marginBottom: '2rem'}}>
               {currentLanguage === 'he' ? 'עכשיו אונליין' :
                currentLanguage === 'en' ? 'Now Online' :
                currentLanguage === 'fr' ? 'Maintenant en Ligne' :
@@ -194,18 +144,7 @@ export default function Home() {
             </div>
             <div style={{display: 'flex', gap: '2rem', justifyContent: 'center', flexWrap: 'wrap'}}>
               <a href="/store" style={{textDecoration: 'none'}}>
-                <button style={{
-                  background: 'linear-gradient(135deg, #dc3545, #c82333)', 
-                  color: 'white', 
-                  border: '3px solid #8B4513', 
-                  padding: '1.2rem 2.5rem', 
-                  borderRadius: '12px', 
-                  cursor: 'pointer', 
-                  fontSize: '1.2rem', 
-                  fontWeight: 'bold', 
-                  boxShadow: '0 6px 20px rgba(220, 53, 69, 0.4)', 
-                  transition: 'all 0.3s ease'
-                }}>
+                <button className="btn-breslov-primary" data-testid="button-online-store">
                   {currentLanguage === 'he' ? 'כניסה לחנות' :
                    currentLanguage === 'en' ? 'Enter Store' :
                    currentLanguage === 'fr' ? 'Entrer dans la Boutique' :
@@ -214,17 +153,7 @@ export default function Home() {
                 </button>
               </a>
               <a href="/join" style={{textDecoration: 'none'}}>
-                <button style={{
-                  background: 'rgba(139, 69, 19, 0.1)', 
-                  color: '#8B4513', 
-                  border: '3px solid #8B4513', 
-                  padding: '1.2rem 2.5rem', 
-                  borderRadius: '12px', 
-                  cursor: 'pointer', 
-                  fontSize: '1.2rem', 
-                  fontWeight: 'bold', 
-                  transition: 'all 0.3s ease'
-                }}>
+                <button className="btn-breslov-secondary" data-testid="button-online-activities">
                   {currentLanguage === 'he' ? 'באו לגלות על הפעילות שלנו' :
                    currentLanguage === 'en' ? 'Discover Our Activities' :
                    currentLanguage === 'fr' ? 'Découvrez nos Activités' :
@@ -238,25 +167,25 @@ export default function Home() {
       </section>
 
       {/* UMAN RAFFLE SECTION */}
-      <section style={{background: 'linear-gradient(135deg, #8B4513 0%, #A0522D 100%)', color: 'white', padding: '6rem 0'}}>
+      <section className="animate-fade-in-up" style={{background: 'linear-gradient(135deg, hsl(210, 85%, 45%) 0%, hsl(210, 90%, 35%) 100%)', color: 'white', padding: '6rem 0'}}>
         <div style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
           <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4rem', alignItems: 'center'}}>
-            <div>
-              <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '1rem', color: '#FFE4B5'}}>
+            <div className="card-premium animate-slide-in-left" style={{background: 'rgba(255,255,255,0.1)', padding: '3rem', borderRadius: '15px', backdropFilter: 'blur(10px)'}}>
+              <h2 style={{fontSize: 'var(--heading-3)', fontWeight: 'bold', marginBottom: '1rem', color: 'hsl(45, 100%, 85%)', fontFamily: currentLanguage === 'he' ? 'var(--font-hebrew)' : 'var(--font-latin)'}}>
                 {currentLanguage === 'he' ? 'הגרלה כרטיס לאומן מתנה' :
                  currentLanguage === 'en' ? 'Uman Flight Ticket Raffle Gift' :
                  currentLanguage === 'fr' ? 'Tirage au Sort Billet d\'Avion Uman Cadeau' :
                  currentLanguage === 'es' ? 'Sorteo Boleto de Vuelo a Uman Regalo' :
                  currentLanguage === 'ru' ? 'Розыгрыш Билета на Самолет в Умань в Подарок' : 'הגרלה כרטיס לאומן מתנה'}
               </h2>
-              <h3 style={{fontSize: '1.8rem', fontWeight: '300', marginBottom: '2rem', color: '#F0E68C'}}>
+              <h3 style={{fontSize: 'var(--heading-4)', fontWeight: '300', marginBottom: '2rem', color: 'hsl(45, 100%, 80%)', fontFamily: currentLanguage === 'he' ? 'var(--font-hebrew)' : 'var(--font-serif)'}}>
                 {currentLanguage === 'he' ? 'קח ספר... והטיסה לאומן עלינו!' :
                  currentLanguage === 'en' ? 'Take a book... and the flight to Uman is on us!' :
                  currentLanguage === 'fr' ? 'Prenez un livre... et le vol vers Uman est pour nous!' :
                  currentLanguage === 'es' ? '¡Toma un libro... y el vuelo a Uman corre por nuestra cuenta!' :
                  currentLanguage === 'ru' ? 'Возьмите книгу... а перелет в Умань за наш счет!' : 'קח ספר... והטיסה לאומן עלינו!'}
               </h3>
-              <p style={{fontSize: '1.1rem', lineHeight: '1.6', marginBottom: '2rem', color: '#F5DEB3'}}>
+              <p className="text-large" style={{lineHeight: '1.6', marginBottom: '2rem', color: 'rgba(255,255,255,0.9)'}}>
                 {currentLanguage === 'he' ? 'מזוודה יש? ספר לדרך יש? תכינו את הלב!\n\nקרן רבי ישראל מזמינה אתכם להכנס להגרלת ההגרלות, כרטיס טיסה לציונו הקדוש של רבי נחמן באומן, עיר הגעגועים\n\nחוויה רוחנית בלתי נשכחת של תעצומות וכח!' :
                  currentLanguage === 'en' ? 'Got a suitcase? Got a book for the road? Prepare your heart!\n\nRabbi Israel Foundation invites you to enter the raffle of raffles, a flight ticket to the holy tomb of Rabbi Nachman in Uman, the city of longing\n\nAn unforgettable spiritual experience of strength and power!' :
                  currentLanguage === 'fr' ? 'Vous avez une valise? Un livre pour la route? Préparez votre cœur!\n\nLa Fondation Rabbi Israel vous invite à participer au tirage des tirages, un billet d\'avion vers la tombe sainte de Rabbi Nachman à Uman, la ville de l\'aspiration\n\nUne expérience spirituelle inoubliable de force et de puissance!' :
@@ -265,7 +194,7 @@ export default function Home() {
               </p>
               
               <div style={{marginBottom: '2rem'}}>
-                <h4 style={{fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem', color: '#FFE4B5'}}>
+                <h4 style={{fontSize: 'var(--heading-4)', fontWeight: 'bold', marginBottom: '1rem', color: 'hsl(45, 100%, 85%)', fontFamily: currentLanguage === 'he' ? 'var(--font-hebrew)' : 'var(--font-latin)'}}>
                   {currentLanguage === 'he' ? 'איך משתתפים?' :
                    currentLanguage === 'en' ? 'How to participate?' :
                    currentLanguage === 'fr' ? 'Comment participer?' :
@@ -274,19 +203,20 @@ export default function Home() {
                 </h4>
                 <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem'}}>
                   {[1, 2, 3, 4].map((step) => (
-                    <div key={step} style={{background: 'rgba(255, 228, 181, 0.1)', padding: '1.5rem', borderRadius: '10px', textAlign: 'center'}}>
+                    <div key={step} className="card-premium" style={{background: 'rgba(255, 255, 255, 0.15)', padding: '1.5rem', borderRadius: '10px', textAlign: 'center', backdropFilter: 'blur(5px)'}}>
                       <div style={{
                         width: '50px', 
                         height: '50px', 
-                        background: '#FFE4B5', 
-                        color: '#8B4513', 
+                        background: 'hsl(45, 100%, 85%)', 
+                        color: 'hsl(210, 85%, 45%)', 
                         borderRadius: '50%', 
                         display: 'flex', 
                         alignItems: 'center', 
                         justifyContent: 'center', 
                         fontSize: '1.5rem', 
                         fontWeight: 'bold', 
-                        margin: '0 auto 1rem'
+                        margin: '0 auto 1rem',
+                        boxShadow: '0 4px 15px hsl(210, 85%, 45%, 0.2)'
                       }}>
                         {step}
                       </div>
@@ -328,15 +258,15 @@ export default function Home() {
               
               <a href="/raffle" style={{textDecoration: 'none'}}>
                 <button style={{
-                  background: 'linear-gradient(135deg, #dc3545, #c82333)', 
+                  background: 'linear-gradient(135deg, hsl(210, 85%, 45%), hsl(210, 90%, 35%))', 
                   color: 'white', 
-                  border: '3px solid #FFE4B5', 
+                  border: '3px solid hsl(45, 100%, 85%)', 
                   padding: '1.2rem 2.5rem', 
                   borderRadius: '12px', 
                   cursor: 'pointer', 
                   fontSize: '1.2rem', 
                   fontWeight: 'bold', 
-                  boxShadow: '0 6px 20px rgba(220, 53, 69, 0.4)', 
+                  boxShadow: '0 6px 20px hsl(210, 85%, 45%, 0.4)', 
                   transition: 'all 0.3s ease',
                   width: '100%'
                 }}>
@@ -361,24 +291,24 @@ export default function Home() {
       </section>
 
       {/* DETAILED RAFFLE SECTION */}
-      <section style={{background: 'linear-gradient(135deg, #F5F5DC 0%, #FAEBD7 100%)', padding: '6rem 0'}}>
+      <section style={{background: 'linear-gradient(135deg, hsl(180, 30%, 98%) 0%, hsl(210, 30%, 98%) 100%)', padding: '6rem 0'}}>
         <div style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
           <div style={{textAlign: 'center', marginBottom: '3rem'}}>
-            <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#8B4513', marginBottom: '1rem'}}>
+            <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', color: 'hsl(210, 85%, 45%)', marginBottom: '1rem'}}>
               {currentLanguage === 'he' ? 'הגרלה מיוחדת – הזדמנות לזכות' :
                currentLanguage === 'en' ? 'Special Raffle – Opportunity to Win' :
                currentLanguage === 'fr' ? 'Tirage Spécial – Opportunité de Gagner' :
                currentLanguage === 'es' ? 'Sorteo Especial – Oportunidad de Ganar' :
                currentLanguage === 'ru' ? 'Специальный Розыгрыш – Возможность Выиграть' : 'הגרלה מיוחדת – הזדמנות לזכות'}
             </h2>
-            <h3 style={{fontSize: '1.8rem', fontWeight: '300', color: '#654321', marginBottom: '2rem'}}>
+            <h3 style={{fontSize: '1.8rem', fontWeight: '300', color: 'hsl(180, 65%, 45%)', marginBottom: '2rem'}}>
               {currentLanguage === 'he' ? 'בטיסה חינם לאומן!' :
                currentLanguage === 'en' ? 'Free Flight to Uman!' :
                currentLanguage === 'fr' ? 'Vol Gratuit vers Uman!' :
                currentLanguage === 'es' ? '¡Vuelo Gratis a Uman!' :
                currentLanguage === 'ru' ? 'Бесплатный Перелет в Умань!' : 'בטיסה חינם לאומן!'}
             </h3>
-            <p style={{fontSize: '1.1rem', lineHeight: '1.6', color: '#654321', maxWidth: '800px', margin: '0 auto 2rem'}}>
+            <p style={{fontSize: '1.1rem', lineHeight: '1.6', color: 'hsl(180, 65%, 45%)', maxWidth: '800px', margin: '0 auto 2rem'}}>
               {currentLanguage === 'he' ? 'בואו להצטרף להגרלה הבלעדית שלנו ותוכלו לזכות בטיסה מרגשת ובלתי נשכחת לאומן, המקום הקדוש של רבי נחמן מברסלב. כל מה שעליכם לעשות הוא לרכוש באתר בסכום של 35 שקלים ומעלה, והכניסה להגרלה מובטחת!' :
                currentLanguage === 'en' ? 'Come join our exclusive raffle and you could win an exciting and unforgettable trip to Uman, the holy place of Rabbi Nachman of Breslov. All you need to do is purchase on the site for 35 shekels or more, and entry to the raffle is guaranteed!' :
                currentLanguage === 'fr' ? 'Venez rejoindre notre tirage exclusif et vous pourriez gagner un voyage passionnant et inoubliable à Uman, le lieu saint de Rabbi Nachman de Breslov. Tout ce que vous devez faire est d\'acheter sur le site pour 35 shekels ou plus, et l\'entrée au tirage est garantie!' :
@@ -386,7 +316,7 @@ export default function Home() {
                currentLanguage === 'ru' ? 'Присоединяйтесь к нашему эксклюзивному розыгрышу и вы можете выиграть захватывающую и незабываемую поездку в Умань, святое место Рабби Нахмана из Бреслов. Все, что вам нужно сделать, это купить на сайте на сумму 35 шекелей или больше, и вход в розыгрыш гарантирован!' : 'בואו להצטרף להגרלה הבלעדית שלנו ותוכלו לזכות בטיסה מרגשת ובלתי נשכחת לאומן, המקום הקדוש של רבי נחמן מברסלב. כל מה שעליכם לעשות הוא לרכוש באתר בסכום של 35 שקלים ומעלה, והכניסה להגרלה מובטחת!'}
             </p>
             
-            <h4 style={{fontSize: '1.5rem', fontWeight: 'bold', color: '#8B4513', marginBottom: '1.5rem'}}>
+            <h4 style={{fontSize: '1.5rem', fontWeight: 'bold', color: 'hsl(210, 85%, 45%)', marginBottom: '1.5rem'}}>
               {currentLanguage === 'he' ? 'למה להשתתף?' :
                currentLanguage === 'en' ? 'Why participate?' :
                currentLanguage === 'fr' ? 'Pourquoi participer?' :
@@ -397,14 +327,14 @@ export default function Home() {
             <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem', marginBottom: '3rem'}}>
               <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
                 <div style={{fontSize: '2rem', marginBottom: '1rem'}}>✈️</div>
-                <h5 style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#8B4513', marginBottom: '1rem'}}>
+                <h5 style={{fontSize: '1.2rem', fontWeight: 'bold', color: 'hsl(210, 85%, 45%)', marginBottom: '1rem'}}>
                   {currentLanguage === 'he' ? 'חווית חיים מיוחדת' :
                    currentLanguage === 'en' ? 'Special Life Experience' :
                    currentLanguage === 'fr' ? 'Expérience de Vie Spéciale' :
                    currentLanguage === 'es' ? 'Experiencia de Vida Especial' :
                    currentLanguage === 'ru' ? 'Особый Жизненный Опыт' : 'חווית חיים מיוחדת'}
                 </h5>
-                <p style={{color: '#666', fontSize: '0.9rem'}}>
+                <p style={{color: 'hsl(210, 12%, 55%)', fontSize: '0.9rem'}}>
                   {currentLanguage === 'he' ? 'טיסה ישירה לאומן הכוללת ביקור במקום הקדוש של רבי נחמן מברסלב.' :
                    currentLanguage === 'en' ? 'Direct flight to Uman including visit to the holy place of Rabbi Nachman of Breslov.' :
                    currentLanguage === 'fr' ? 'Vol direct vers Uman incluant une visite du lieu saint de Rabbi Nachman de Breslov.' :
@@ -415,14 +345,14 @@ export default function Home() {
               
               <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
                 <div style={{fontSize: '2rem', marginBottom: '1rem'}}>📚</div>
-                <h5 style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#8B4513', marginBottom: '1rem'}}>
+                <h5 style={{fontSize: '1.2rem', fontWeight: 'bold', color: 'hsl(210, 85%, 45%)', marginBottom: '1rem'}}>
                   {currentLanguage === 'he' ? 'ספרי רבנו מיוחדים ומרשימים' :
                    currentLanguage === 'en' ? 'Special and Impressive Rabbenu Books' :
                    currentLanguage === 'fr' ? 'Livres Spéciaux et Impressionnants de Rabbenu' :
                    currentLanguage === 'es' ? 'Libros Especiales e Impresionantes de Rabbenu' :
                    currentLanguage === 'ru' ? 'Особые и Впечатляющие Книги Раббену' : 'ספרי רבנו מיוחדים ומרשימים'}
                 </h5>
-                <p style={{color: '#666', fontSize: '0.9rem'}}>
+                <p style={{color: 'hsl(210, 12%, 55%)', fontSize: '0.9rem'}}>
                   {currentLanguage === 'he' ? 'אפשרות לזכות ספרי רבינו מעור אומנותי במיוחד' :
                    currentLanguage === 'en' ? 'Opportunity to win specially crafted artistic leather Rabbenu books' :
                    currentLanguage === 'fr' ? 'Opportunité de gagner des livres de Rabbenu en cuir artistique spécialement conçus' :
@@ -433,14 +363,14 @@ export default function Home() {
               
               <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
                 <div style={{fontSize: '2rem', marginBottom: '1rem'}}>💝</div>
-                <h5 style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#8B4513', marginBottom: '1rem'}}>
+                <h5 style={{fontSize: '1.2rem', fontWeight: 'bold', color: 'hsl(210, 85%, 45%)', marginBottom: '1rem'}}>
                   {currentLanguage === 'he' ? 'פשוט וקל' :
                    currentLanguage === 'en' ? 'Simple and Easy' :
                    currentLanguage === 'fr' ? 'Simple et Facile' :
                    currentLanguage === 'es' ? 'Simple y Fácil' :
                    currentLanguage === 'ru' ? 'Просто и Легко' : 'פשוט וקל'}
                 </h5>
-                <p style={{color: '#666', fontSize: '0.9rem'}}>
+                <p style={{color: 'hsl(210, 12%, 55%)', fontSize: '0.9rem'}}>
                   {currentLanguage === 'he' ? 'רכישה פשוטה בסכום סמלי של 35 שקלים ומעלה באתר.' :
                    currentLanguage === 'en' ? 'Simple purchase for a symbolic amount of 35 shekels and up on the site.' :
                    currentLanguage === 'fr' ? 'Achat simple pour un montant symbolique de 35 shekels et plus sur le site.' :
@@ -451,14 +381,14 @@ export default function Home() {
               
               <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
                 <div style={{fontSize: '2rem', marginBottom: '1rem'}}>⭐</div>
-                <h5 style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#8B4513', marginBottom: '1rem'}}>
+                <h5 style={{fontSize: '1.2rem', fontWeight: 'bold', color: 'hsl(210, 85%, 45%)', marginBottom: '1rem'}}>
                   {currentLanguage === 'he' ? 'הזדמנות חד פעמית' :
                    currentLanguage === 'en' ? 'One-time Opportunity' :
                    currentLanguage === 'fr' ? 'Opportunité Unique' :
                    currentLanguage === 'es' ? 'Oportunidad Única' :
                    currentLanguage === 'ru' ? 'Единственная Возможность' : 'הזדמנות חד פעמית'}
                 </h5>
-                <p style={{color: '#666', fontSize: '0.9rem'}}>
+                <p style={{color: 'hsl(210, 12%, 55%)', fontSize: '0.9rem'}}>
                   {currentLanguage === 'he' ? 'פרס מדהים שמגיע ישר לידיכם.' :
                    currentLanguage === 'en' ? 'Amazing prize that comes straight to your hands.' :
                    currentLanguage === 'fr' ? 'Prix incroyable qui arrive directement entre vos mains.' :
@@ -469,17 +399,9 @@ export default function Home() {
             </div>
             
             <a href="/raffle" style={{textDecoration: 'none'}}>
-              <button style={{
-                background: 'linear-gradient(135deg, #dc3545, #c82333)', 
-                color: 'white', 
-                border: '3px solid #8B4513', 
+              <button className="btn-breslov-primary" data-testid="button-detailed-raffle" style={{
                 padding: '1.5rem 3rem', 
-                borderRadius: '12px', 
-                cursor: 'pointer', 
-                fontSize: '1.3rem', 
-                fontWeight: 'bold', 
-                boxShadow: '0 6px 20px rgba(220, 53, 69, 0.4)', 
-                transition: 'all 0.3s ease'
+                fontSize: '1.3rem'
               }}>
                 {currentLanguage === 'he' ? 'לחצו כאן להצטרף להגרלה' :
                  currentLanguage === 'en' ? 'Click here to join the raffle' :
@@ -493,15 +415,14 @@ export default function Home() {
       </section>
 
       {/* LEADING BOOKS SECTION */}
-      <section style={{background: 'linear-gradient(135deg, #F5F5DC 0%, #FAEBD7 50%, #F0E68C 100%)', padding: '6rem 0'}}>
+      <section className="hero-gradient animate-fade-in-up" style={{background: 'linear-gradient(135deg, hsl(0, 0%, 100%) 0%, hsl(45, 30%, 98%) 30%, hsl(210, 70%, 98%) 100%)', padding: '6rem 0'}}>
         <div style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
-          <div style={{textAlign: 'center', marginBottom: '4rem'}}>
-            <h2 style={{
-              fontSize: '2.8rem', 
+          <div className="card-premium animate-scale-in" style={{textAlign: 'center', marginBottom: '4rem', padding: '2rem', borderRadius: '15px'}}>
+            <h2 className="text-breslov-gradient" style={{
+              fontSize: 'var(--heading-2)', 
               fontWeight: 'bold', 
-              color: '#8B4513', 
               marginBottom: '1.5rem',
-              fontFamily: currentLanguage === 'he' ? 'Assistant, Rubik, serif' : 'Georgia, serif'
+              fontFamily: currentLanguage === 'he' ? 'var(--font-hebrew)' : 'var(--font-serif)'
             }}>
               {currentLanguage === 'he' ? 'ספרי רבנו המובילים' :
                currentLanguage === 'en' ? 'Leading Books of Our Master' :
@@ -546,12 +467,10 @@ export default function Home() {
               }
             ].map((book, index) => (
               <a key={index} href="/store" style={{textDecoration: 'none', color: 'inherit'}}>
-                <div style={{
-                  background: 'white', 
-                  borderRadius: '10px', 
+                <div className="card-premium card-hover" style={{
+                  borderRadius: '15px', 
                   overflow: 'hidden', 
-                  boxShadow: '0 4px 15px rgba(0,0,0,0.1)', 
-                  transition: 'transform 0.3s ease',
+                  transition: 'all 0.3s ease',
                   cursor: 'pointer'
                 }} 
                   onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
@@ -564,7 +483,7 @@ export default function Home() {
                     />
                   </div>
                   <div style={{padding: '1.5rem', textAlign: 'center'}}>
-                    <h3 style={{fontSize: '1.2rem', fontWeight: 'bold', color: '#8B4513', marginBottom: '0.5rem'}}>
+                    <h3 style={{fontSize: '1.2rem', fontWeight: 'bold', color: 'hsl(210, 85%, 45%)', marginBottom: '0.5rem'}}>
                       {currentLanguage === 'he' ? book.title : book.titleEn}
                     </h3>
                   </div>
@@ -576,23 +495,23 @@ export default function Home() {
       </section>
 
       {/* RABBI NATHAN QUOTE SECTION */}
-      <section style={{background: 'linear-gradient(135deg, #8B4513 0%, #A0522D 100%)', color: 'white', padding: '4rem 0'}}>
+      <section style={{background: 'linear-gradient(135deg, hsl(210, 85%, 45%) 0%, hsl(210, 90%, 35%) 100%)', color: 'white', padding: '4rem 0'}}>
         <div style={{maxWidth: '800px', margin: '0 auto', padding: '0 2rem', textAlign: 'center'}}>
-          <h2 style={{fontSize: '2rem', fontWeight: 'bold', marginBottom: '1rem', color: '#FFE4B5'}}>
+          <h2 style={{fontSize: '2rem', fontWeight: 'bold', marginBottom: '1rem', color: 'hsl(45, 90%, 85%)'}}>
             {currentLanguage === 'he' ? 'דף אחד מספרי רבנו' :
              currentLanguage === 'en' ? 'One Page from Our Master\'s Books' :
              currentLanguage === 'fr' ? 'Une Page des Livres de Notre Maître' :
              currentLanguage === 'es' ? 'Una Página de los Libros de Nuestro Maestro' :
              currentLanguage === 'ru' ? 'Одна Страница из Книг Нашего Учителя' : 'דף אחד מספרי רבנו'}
           </h2>
-          <h3 style={{fontSize: '1.8rem', fontWeight: '300', marginBottom: '1rem', color: '#F0E68C'}}>
+          <h3 style={{fontSize: '1.8rem', fontWeight: '300', marginBottom: '1rem', color: 'hsl(45, 90%, 75%)'}}>
             {currentLanguage === 'he' ? 'יהיה תיקון על הכל!' :
              currentLanguage === 'en' ? 'There will be rectification for everything!' :
              currentLanguage === 'fr' ? 'Il y aura une rectification pour tout!' :
              currentLanguage === 'es' ? '¡Habrá rectificación para todo!' :
              currentLanguage === 'ru' ? 'Будет исправление для всего!' : 'יהיה תיקון על הכל!'}
           </h3>
-          <p style={{fontSize: '1.1rem', fontStyle: 'italic', color: '#F5DEB3'}}>
+          <p style={{fontSize: '1.1rem', fontStyle: 'italic', color: 'hsl(45, 85%, 90%)'}}>
             {currentLanguage === 'he' ? 'רבי נתן מברסלב' :
              currentLanguage === 'en' ? 'Rabbi Nathan of Breslov' :
              currentLanguage === 'fr' ? 'Rabbi Nathan de Breslov' :
@@ -603,19 +522,19 @@ export default function Home() {
       </section>
 
       {/* SERVICES SECTION */}
-      <section style={{background: 'linear-gradient(135deg, #F5F5DC 0%, #FAEBD7 100%)', padding: '5rem 0'}}>
+      <section style={{background: 'linear-gradient(135deg, hsl(180, 30%, 98%) 0%, hsl(210, 30%, 98%) 100%)', padding: '5rem 0'}}>
         <div style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
           <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem'}}>
             <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', textAlign: 'center'}}>
               <div style={{fontSize: '3rem', marginBottom: '1rem'}}>🚚</div>
-              <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#8B4513', marginBottom: '1rem'}}>
+              <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', color: 'hsl(210, 85%, 45%)', marginBottom: '1rem'}}>
                 {currentLanguage === 'he' ? 'משלוח מהיר עד הבית חינם' :
                  currentLanguage === 'en' ? 'Fast Free Home Delivery' :
                  currentLanguage === 'fr' ? 'Livraison Rapide Gratuite à Domicile' :
                  currentLanguage === 'es' ? 'Entrega Rápida Gratuita a Domicilio' :
                  currentLanguage === 'ru' ? 'Быстрая Бесплатная Доставка на Дом' : 'משלוח מהיר עד הבית חינם'}
               </h3>
-              <p style={{color: '#666', fontSize: '0.9rem'}}>
+              <p style={{color: 'hsl(210, 12%, 55%)', fontSize: '0.9rem'}}>
                 {currentLanguage === 'he' ? 'ברכישה מעל 299 ₪ מהחנות' :
                  currentLanguage === 'en' ? 'On purchases over 299 ₪ from the store' :
                  currentLanguage === 'fr' ? 'Sur les achats de plus de 299 ₪ du magasin' :
@@ -626,14 +545,14 @@ export default function Home() {
             
             <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', textAlign: 'center'}}>
               <div style={{fontSize: '3rem', marginBottom: '1rem'}}>🔒</div>
-              <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#8B4513', marginBottom: '1rem'}}>
+              <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', color: 'hsl(210, 85%, 45%)', marginBottom: '1rem'}}>
                 {currentLanguage === 'he' ? 'רכישה מאובטחת' :
                  currentLanguage === 'en' ? 'Secure Purchase' :
                  currentLanguage === 'fr' ? 'Achat Sécurisé' :
                  currentLanguage === 'es' ? 'Compra Segura' :
                  currentLanguage === 'ru' ? 'Безопасная Покупка' : 'רכישה מאובטחת'}
               </h3>
-              <p style={{color: '#666', fontSize: '0.9rem'}}>
+              <p style={{color: 'hsl(210, 12%, 55%)', fontSize: '0.9rem'}}>
                 {currentLanguage === 'he' ? 'באמצעות תעודת SSL ובתקנים המחמירים ביותר' :
                  currentLanguage === 'en' ? 'Using SSL certificate and the most stringent standards' :
                  currentLanguage === 'fr' ? 'En utilisant un certificat SSL et les normes les plus strictes' :
@@ -644,14 +563,14 @@ export default function Home() {
             
             <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', textAlign: 'center'}}>
               <div style={{fontSize: '3rem', marginBottom: '1rem'}}>📚</div>
-              <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#8B4513', marginBottom: '1rem'}}>
+              <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', color: 'hsl(210, 85%, 45%)', marginBottom: '1rem'}}>
                 {currentLanguage === 'he' ? 'חנות הספרים הגדולה ביותר לספרי רבנו אונליין' :
                  currentLanguage === 'en' ? 'Largest Online Bookstore for Our Master\'s Books' :
                  currentLanguage === 'fr' ? 'Plus Grande Librairie en Ligne pour les Livres de Notre Maître' :
                  currentLanguage === 'es' ? 'Librería en Línea Más Grande para los Libros de Nuestro Maestro' :
                  currentLanguage === 'ru' ? 'Крупнейший Интернет-Книжный Магазин Книг Нашего Учителя' : 'חנות הספרים הגדולה ביותר לספרי רבנו אונליין'}
               </h3>
-              <p style={{color: '#666', fontSize: '0.9rem'}}>
+              <p style={{color: 'hsl(210, 12%, 55%)', fontSize: '0.9rem'}}>
                 {currentLanguage === 'he' ? 'משלוחים לכל הארץ' :
                  currentLanguage === 'en' ? 'Shipping throughout the country' :
                  currentLanguage === 'fr' ? 'Expédition dans tout le pays' :
@@ -662,14 +581,14 @@ export default function Home() {
             
             <div style={{background: 'white', padding: '2rem', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', textAlign: 'center'}}>
               <div style={{fontSize: '3rem', marginBottom: '1rem'}}>🎧</div>
-              <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', color: '#8B4513', marginBottom: '1rem'}}>
+              <h3 style={{fontSize: '1.3rem', fontWeight: 'bold', color: 'hsl(210, 85%, 45%)', marginBottom: '1rem'}}>
                 {currentLanguage === 'he' ? 'שירות לקוחות מעולה וזמין תמיד לשירותכם' :
                  currentLanguage === 'en' ? 'Excellent Customer Service Always Available' :
                  currentLanguage === 'fr' ? 'Excellent Service Client Toujours Disponible' :
                  currentLanguage === 'es' ? 'Excelente Servicio al Cliente Siempre Disponible' :
                  currentLanguage === 'ru' ? 'Отличное Обслуживание Клиентов Всегда Доступно' : 'שירות לקוחות מעולה וזמין תמיד לשירותכם'}
               </h3>
-              <p style={{color: '#666', fontSize: '0.9rem'}}>
+              <p style={{color: 'hsl(210, 12%, 55%)', fontSize: '0.9rem'}}>
                 {currentLanguage === 'he' ? 'עד 12 תשלומים ללא ריבית' :
                  currentLanguage === 'en' ? 'Up to 12 payments without interest' :
                  currentLanguage === 'fr' ? 'Jusqu\'à 12 paiements sans intérêt' :
@@ -682,10 +601,10 @@ export default function Home() {
       </section>
 
       {/* CATEGORIES SECTION */}
-      <section style={{background: 'linear-gradient(135deg, #8B4513 0%, #A0522D 100%)', color: 'white', padding: '5rem 0'}}>
+      <section style={{background: 'linear-gradient(135deg, hsl(210, 85%, 45%) 0%, hsl(210, 90%, 35%) 100%)', color: 'white', padding: '5rem 0'}}>
         <div style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
           <div style={{textAlign: 'center', marginBottom: '3rem'}}>
-            <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '1rem', color: '#FFE4B5'}}>
+            <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '1rem', color: 'hsl(45, 90%, 85%)'}}>
               {currentLanguage === 'he' ? 'הקטגוריות בחנות' :
                currentLanguage === 'en' ? 'Store Categories' :
                currentLanguage === 'fr' ? 'Catégories du Magasin' :
@@ -696,7 +615,7 @@ export default function Home() {
           
           <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem'}}>
             <div style={{background: 'rgba(255, 228, 181, 0.1)', padding: '2rem', borderRadius: '10px', textAlign: 'center'}}>
-              <h3 style={{fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem', color: '#FFE4B5'}}>
+              <h3 style={{fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem', color: 'hsl(45, 90%, 85%)'}}>
                 {currentLanguage === 'he' ? 'כל חיבורי רבנו הקדוש' :
                  currentLanguage === 'en' ? 'All Holy Compositions of Our Master' :
                  currentLanguage === 'fr' ? 'Toutes les Compositions Saintes de Notre Maître' :
@@ -705,7 +624,7 @@ export default function Home() {
               </h3>
               <a href="/store" style={{textDecoration: 'none'}}>
                 <button style={{
-                  background: 'linear-gradient(135deg, #dc3545, #c82333)', 
+                  background: 'linear-gradient(135deg, hsl(210, 85%, 45%), hsl(210, 90%, 35%))', 
                   color: 'white', 
                   border: 'none', 
                   padding: '1rem 2rem', 
@@ -724,7 +643,7 @@ export default function Home() {
             </div>
             
             <div style={{background: 'rgba(255, 228, 181, 0.1)', padding: '2rem', borderRadius: '10px', textAlign: 'center'}}>
-              <h3 style={{fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem', color: '#FFE4B5'}}>
+              <h3 style={{fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem', color: 'hsl(45, 90%, 85%)'}}>
                 {currentLanguage === 'he' ? 'כל ספרי רבי ישראל' :
                  currentLanguage === 'en' ? 'All Books of Rabbi Israel' :
                  currentLanguage === 'fr' ? 'Tous les Livres de Rabbi Israel' :
@@ -733,7 +652,7 @@ export default function Home() {
               </h3>
               <a href="/store" style={{textDecoration: 'none'}}>
                 <button style={{
-                  background: 'linear-gradient(135deg, #dc3545, #c82333)', 
+                  background: 'linear-gradient(135deg, hsl(210, 85%, 45%), hsl(210, 90%, 35%))', 
                   color: 'white', 
                   border: 'none', 
                   padding: '1rem 2rem', 
@@ -756,8 +675,8 @@ export default function Home() {
             <a href="/store" style={{textDecoration: 'none'}}>
               <button style={{
                 background: 'rgba(255, 228, 181, 0.2)', 
-                color: '#FFE4B5', 
-                border: '2px solid #FFE4B5', 
+                color: 'hsl(45, 90%, 85%)', 
+                border: '2px solid hsl(45, 90%, 85%)', 
                 padding: '1rem 2rem', 
                 borderRadius: '8px', 
                 cursor: 'pointer', 
@@ -776,16 +695,16 @@ export default function Home() {
       </section>
 
       {/* NEWSLETTER SECTION */}
-      <section style={{background: 'linear-gradient(135deg, #F5F5DC 0%, #FAEBD7 100%)', padding: '5rem 0'}}>
+      <section style={{background: 'linear-gradient(135deg, hsl(180, 30%, 98%) 0%, hsl(210, 30%, 98%) 100%)', padding: '5rem 0'}}>
         <div style={{maxWidth: '800px', margin: '0 auto', padding: '0 2rem', textAlign: 'center'}}>
-          <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#8B4513', marginBottom: '1rem'}}>
+          <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', color: 'hsl(210, 85%, 45%)', marginBottom: '1rem'}}>
             {currentLanguage === 'he' ? 'הצטרפו עכשיו לרשימת תפוצה' :
              currentLanguage === 'en' ? 'Join Our Mailing List Now' :
              currentLanguage === 'fr' ? 'Rejoignez Notre Liste de Diffusion Maintenant' :
              currentLanguage === 'es' ? 'Únete a Nuestra Lista de Correo Ahora' :
              currentLanguage === 'ru' ? 'Присоединяйтесь к Нашему Списку Рассылки Сейчас' : 'הצטרפו עכשיו לרשימת תפוצה'}
           </h2>
-          <p style={{fontSize: '1.2rem', color: '#654321', marginBottom: '2rem'}}>
+          <p style={{fontSize: '1.2rem', color: 'hsl(180, 65%, 45%)', marginBottom: '2rem'}}>
             {currentLanguage === 'he' ? 'וקבלו 10% הנחנה ברכישה ראשונה באתר' :
              currentLanguage === 'en' ? 'And get 10% discount on your first purchase on the site' :
              currentLanguage === 'fr' ? 'Et obtenez 10% de réduction sur votre premier achat sur le site' :
@@ -800,14 +719,14 @@ export default function Home() {
               style={{
                 padding: '1rem 1.5rem', 
                 borderRadius: '8px', 
-                border: '2px solid #8B4513', 
+                border: '2px solid hsl(210, 85%, 45%)', 
                 fontSize: '1rem', 
                 minWidth: '300px',
                 textAlign: currentLanguage === 'he' ? 'right' : 'left'
               }}
             />
             <button style={{
-              background: 'linear-gradient(135deg, #dc3545, #c82333)', 
+              background: 'linear-gradient(135deg, hsl(210, 85%, 45%), hsl(210, 90%, 35%))', 
               color: 'white', 
               border: 'none', 
               padding: '1rem 2rem', 
@@ -825,14 +744,14 @@ export default function Home() {
           </div>
 
           <div style={{marginBottom: '3rem'}}>
-            <h3 style={{fontSize: '1.8rem', fontWeight: 'bold', color: '#8B4513', marginBottom: '1.5rem'}}>
+            <h3 style={{fontSize: '1.8rem', fontWeight: 'bold', color: 'hsl(210, 85%, 45%)', marginBottom: '1.5rem'}}>
               {currentLanguage === 'he' ? 'הצטרפו לקבוצות הוואטסאפ שלנו' :
                currentLanguage === 'en' ? 'Join Our WhatsApp Groups' :
                currentLanguage === 'fr' ? 'Rejoignez Nos Groupes WhatsApp' :
                currentLanguage === 'es' ? 'Únete a Nuestros Grupos de WhatsApp' :
                currentLanguage === 'ru' ? 'Присоединяйтесь к Нашим Группам WhatsApp' : 'הצטרפו לקבוצות הוואטסאפ שלנו'}
             </h3>
-            <p style={{fontSize: '1.1rem', color: '#654321', marginBottom: '2rem'}}>
+            <p style={{fontSize: '1.1rem', color: 'hsl(180, 65%, 45%)', marginBottom: '2rem'}}>
               {currentLanguage === 'he' ? 'קבלו עדכונים יומיים, חוויות מרגשות וחיזוק רוחני' :
                currentLanguage === 'en' ? 'Receive daily updates, exciting experiences and spiritual strengthening' :
                currentLanguage === 'fr' ? 'Recevez des mises à jour quotidiennes, des expériences passionnantes et un renforcement spirituel' :
@@ -850,7 +769,7 @@ export default function Home() {
               ].map((item, index) => (
                 <a key={index} href={`https://wa.me/${item.phone}`} target="_blank" rel="noopener noreferrer" style={{textDecoration: 'none'}}>
                   <button style={{
-                    background: '#25d366', 
+                    background: 'hsl(150, 60%, 45%)', 
                     color: 'white', 
                     border: 'none', 
                     padding: '0.8rem 1.5rem', 
@@ -872,16 +791,16 @@ export default function Home() {
       </section>
 
       {/* JOIN SECTION */}
-      <section style={{background: 'linear-gradient(135deg, #8B4513 0%, #A0522D 100%)', color: 'white', padding: '5rem 0'}}>
+      <section style={{background: 'linear-gradient(135deg, hsl(210, 85%, 45%) 0%, hsl(210, 90%, 35%) 100%)', color: 'white', padding: '5rem 0'}}>
         <div style={{maxWidth: '1000px', margin: '0 auto', padding: '0 2rem', textAlign: 'center'}}>
-          <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '1rem', color: '#FFE4B5'}}>
+          <h2 style={{fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '1rem', color: 'hsl(45, 90%, 85%)'}}>
             {currentLanguage === 'he' ? 'הצטרפו עכשיו לפרסום והפצת ספרי רבי נחמן בעולם' :
              currentLanguage === 'en' ? 'Join Now to Promote and Spread Rabbi Nachman\'s Books Worldwide' :
              currentLanguage === 'fr' ? 'Rejoignez Maintenant pour Promouvoir et Diffuser les Livres de Rabbi Nachman dans le Monde' :
              currentLanguage === 'es' ? 'Únete Ahora para Promover y Difundir los Libros del Rabino Nachman en el Mundo' :
              currentLanguage === 'ru' ? 'Присоединяйтесь Сейчас к Продвижению и Распространению Книг Рабби Нахмана по Всему Миру' : 'הצטרפו עכשיו לפרסום והפצת ספרי רבי נחמן בעולם'}
           </h2>
-          <h3 style={{fontSize: '1.8rem', fontWeight: '300', marginBottom: '2rem', color: '#F0E68C'}}>
+          <h3 style={{fontSize: '1.8rem', fontWeight: '300', marginBottom: '2rem', color: 'hsl(45, 90%, 75%)'}}>
             {currentLanguage === 'he' ? 'ההזדמנות שלכם לעזור ולתת יד לפרסום שם הצדיק בעולם' :
              currentLanguage === 'en' ? 'Your opportunity to help and lend a hand in spreading the name of the Tzaddik in the world' :
              currentLanguage === 'fr' ? 'Votre opportunité d\'aider et de donner un coup de main à la diffusion du nom du Tzaddik dans le monde' :
@@ -892,9 +811,9 @@ export default function Home() {
           <div style={{display: 'flex', gap: '2rem', justifyContent: 'center', flexWrap: 'wrap'}}>
             <a href="/join" style={{textDecoration: 'none'}}>
               <button style={{
-                background: 'linear-gradient(135deg, #dc3545, #c82333)', 
+                background: 'linear-gradient(135deg, hsl(210, 85%, 45%), hsl(210, 90%, 35%))', 
                 color: 'white', 
-                border: '3px solid #FFE4B5', 
+                border: '3px solid hsl(45, 90%, 85%)', 
                 padding: '1.2rem 2.5rem', 
                 borderRadius: '12px', 
                 cursor: 'pointer', 
@@ -913,8 +832,8 @@ export default function Home() {
             <a href="/contact" style={{textDecoration: 'none'}}>
               <button style={{
                 background: 'rgba(255, 228, 181, 0.15)', 
-                color: '#FFE4B5', 
-                border: '3px solid #FFE4B5', 
+                color: 'hsl(45, 90%, 85%)', 
+                border: '3px solid hsl(45, 90%, 85%)', 
                 padding: '1.2rem 2.5rem', 
                 borderRadius: '12px', 
                 cursor: 'pointer', 
@@ -934,10 +853,10 @@ export default function Home() {
       </section>
 
       {/* FOOTER */}
-      <footer className="main-footer" style={{background: '#2d3436', color: 'white', padding: '3rem 0 2rem'}}>
+      <footer className="main-footer" style={{background: 'hsl(210, 85%, 25%)', color: 'white', padding: '3rem 0 2rem'}}>
         <div className="elementor-container" style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
           <div style={{textAlign: 'center', paddingTop: '2rem'}}>
-            <div style={{color: '#999', fontSize: '0.9rem'}}>
+            <div style={{color: 'hsl(210, 12%, 65%)', fontSize: '0.9rem'}}>
               <p style={{marginBottom: '0.5rem'}}>
                 {currentLanguage === 'he' ? 'כל הזכיות שמורות 2025 © קרן רבי ישראל דב אודסר זצ"ל' :
                  currentLanguage === 'en' ? 'All rights reserved 2025 © Rabbi Israel Dov Odesser Foundation' :
