@@ -6,7 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { CartProvider } from "@/contexts/CartContext";
 import { InstallPrompt } from "@/components/InstallPrompt";
-// import { AmbientMusic } from "@/components/AmbientMusic";
+import { AmbientMusic } from "@/components/AmbientMusic";
 import Home from "@/pages/home";
 import Store from "@/pages/store";
 import About from "@/pages/about";
@@ -84,7 +84,7 @@ function App() {
           <CartProvider>
             <Toaster />
             <InstallPrompt />
-            {/* <AmbientMusic /> */}
+            <AmbientMusic />
             <Router />
           </CartProvider>
         </LanguageProvider>
