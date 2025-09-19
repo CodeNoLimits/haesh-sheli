@@ -1,4 +1,10 @@
 // VERIFIED Breslov Books Download Links - Updated from CSV with REAL working links
+// Free books (first 10) vs Premium books (rest)
+export const freeBookIds = [
+  'alim-letrufah', 'ashreinu', 'letter-from-heaven', 'azamra', 'emuna',
+  'eyshet-chayal', 'hamtakas-din', 'likutey-tefilos-1', 'likutey-tefilos-2', 'siporay-masiyos-1'
+];
+
 export const breslovDownloadBooks = [
   {
     id: 'alim-letrufah',

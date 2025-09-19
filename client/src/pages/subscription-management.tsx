@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { apiRequest, queryClient } from '@/lib/queryClient';
 import { useToast } from '@/hooks/use-toast';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { Header } from '@/components/Header';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -78,9 +80,9 @@ export default function SubscriptionManagement() {
       case 'active':
         return <Badge className="bg-green-100 text-green-800"><CheckCircle className="w-3 h-3 mr-1" /> פעיל</Badge>;
       case 'canceled':
-        return <Badge className="bg-red-100 text-red-800"><XCircle className="w-3 h-3 mr-1" /> מבוטל</Badge>;
+        return <Badge className="bg-destructive/10 text-destructive"><XCircle className="w-3 h-3 mr-1" /> מבוטל</Badge>;
       case 'past_due':
-        return <Badge className="bg-yellow-100 text-yellow-800">בעבר להתשלום</Badge>;
+        return <Badge className="badge-premium">בעבר להתשלום</Badge>;
       case 'incomplete':
         return <Badge className="bg-gray-100 text-gray-800">לא הושלם</Badge>;
       default:
@@ -109,10 +111,11 @@ export default function SubscriptionManagement() {
 
   if (subscriptionLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-orange-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+      <div className="min-h-screen hero-surface dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+        <Header />
         <div className="container mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="animate-spin w-8 h-8 border-4 border-red-500 border-t-transparent rounded-full mx-auto" />
+            <div className="animate-spin w-8 h-8 border-4 border-primary border-t-transparent rounded-full mx-auto" />
             <p className="mt-4 text-gray-600 dark:text-gray-300">טוען מידע על המנוי...</p>
           </div>
         </div>
@@ -122,10 +125,11 @@ export default function SubscriptionManagement() {
 
   if (!subscription?.user) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-orange-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+      <div className="min-h-screen hero-surface dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+        <Header />
         <div className="container mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-2xl font-bold text-red-600 dark:text-red-400 mb-4">
+            <h1 className="text-2xl font-bold text-primary mb-4">
               נדרשת התחברות
             </h1>
             <p className="text-gray-600 dark:text-gray-300 mb-6">
@@ -144,7 +148,8 @@ export default function SubscriptionManagement() {
   const isSubscriber = user.isSubscriber;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-orange-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+    <div className="min-h-screen hero-surface dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+      <Header />
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="text-center mb-12">
@@ -160,7 +165,7 @@ export default function SubscriptionManagement() {
           {/* Subscription Status Card */}
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center text-red-600 dark:text-red-400">
+              <CardTitle className="flex items-center text-primary">
                 <Crown className="w-5 h-5 mr-2" />
                 מצב המנוי
               </CardTitle>
@@ -174,7 +179,7 @@ export default function SubscriptionManagement() {
               <div className="flex justify-between items-center">
                 <span className="text-gray-600 dark:text-gray-300">חבר פרימיום:</span>
                 {isSubscriber ? (
-                  <Badge className="bg-yellow-100 text-yellow-800">
+                  <Badge className="badge-premium">
                     <Crown className="w-3 h-3 mr-1" />
                     כן
                   </Badge>
