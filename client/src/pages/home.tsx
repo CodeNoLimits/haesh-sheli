@@ -45,7 +45,7 @@ export default function Home() {
           backgroundAttachment: 'fixed',
           color: 'hsl(210, 8%, 25%)', 
           padding: '8rem 0',
-          minHeight: '90vh',
+          minHeight: '745px',
           display: 'flex',
           alignItems: 'center'
         }}>
@@ -79,7 +79,7 @@ export default function Home() {
                      currentLanguage === 'ru' ? 'Путь к Вашему Сокровищу.' : 'הדרך לאוצר שלך.'}
                   </h2>
                   <p className="text-large" style={{marginBottom: '2rem', fontStyle: 'italic', color: 'hsl(210, 8%, 25%)', textAlign: 'center'}}>
-                    {currentLanguage === 'he' ? '\'\'רק תנו לי את ליבכם ואוליך אתכם בדרך חדשה..\'\' (רבי נחמן)' :
+                    {currentLanguage === 'he' ? '\'\'רק תנו לי את ליבכם ואוליך את��ם בדרך חדשה..\'\' (רבי נחמן)' :
                      currentLanguage === 'en' ? '"Just give me your hearts and I will lead you on a new path..." (Rabbi Nachman)' :
                      currentLanguage === 'fr' ? '"Donnez-moi simplement vos cœurs et je vous mènerai sur un nouveau chemin..." (Rabbi Nachman)' :
                      currentLanguage === 'es' ? '"Solo denme sus corazones y los guiaré por un camino nuevo..." (Rabino Nachman)' :
@@ -248,7 +248,7 @@ export default function Home() {
                            'Ждать большой победы и духовных переживаний в Умани!') :
                           (step === 1 ? 'מבצעים רכישה באתר.' :
                            step === 2 ? 'שולחים את פרטים עם מספר ההזמנה' :
-                           step === 3 ? 'ונכנסים להגרלה הגדולה.' :
+                           step === 3 ? 'ונכנסים להגרלה הג��ולה.' :
                            'מחכים לזכייה הגדולה, ולחוויות הרוחניות באומן!')}
                       </p>
                     </div>
@@ -575,7 +575,7 @@ export default function Home() {
                  currentLanguage === 'en' ? 'Shipping throughout the country' :
                  currentLanguage === 'fr' ? 'Expédition dans tout le pays' :
                  currentLanguage === 'es' ? 'Envío por todo el país' :
-                 currentLanguage === 'ru' ? 'Доставка по всей стране' : 'משלוחים לכל הארץ'}
+                 currentLanguage === 'ru' ? 'Доставка по вс��й стране' : 'משלוחים לכל הארץ'}
               </p>
             </div>
             
