@@ -141,7 +141,7 @@ export function Header({ currentLanguage = 'he', onLanguageChange }: HeaderProps
               <a href="/chat" data-testid="link-chat" style={{color: '#10B981', fontWeight: 'bold'}} className="px-3 py-1 rounded-lg transition-all duration-300 hover:scale-125 hover:text-white hover:bg-green-500 hover:shadow-xl hover:-translate-y-2 inline-block">{t.chat}</a>
             </li>
             <li className={location === '/subscription' ? 'current-menu-item' : ''}>
-              <a href="/subscription" data-testid="link-subscription" style={{color: '#FFD700', fontWeight: 'bold'}} className="px-3 py-1 rounded-lg transition-all duration-300 hover:scale-125 hover:text-white hover:bg-yellow-500 hover:shadow-xl hover:-translate-y-2 inline-block">👑 {t.subscription}</a>
+              <a href="/subscription" data-testid="link-subscription" style={{color: '#FFD700', fontWeight: 'bold'}} className="px-3 py-1 rounded-lg transition-all duration-300 hover:scale-125 hover:text-white hover:bg-yellow-500 hover:shadow-xl hover:-translate-y-2 inline-block">{currentLanguage === 'he' ? '👑 -הוראת קבע -' : `👑 ${t.subscription}`}</a>
             </li>
             <li className={location === '/keren-style' ? 'current-menu-item' : ''}>
               <a href="/keren-style" data-testid="link-keren-style" style={{color: '#FF6B35', fontWeight: 'bold'}} className="px-3 py-1 rounded-lg transition-all duration-300 hover:scale-125 hover:text-white hover:bg-orange-500 hover:shadow-xl hover:-translate-y-2 inline-block">🎥 {t.breslovVideos}</a>
@@ -327,7 +327,7 @@ export function Header({ currentLanguage = 'he', onLanguageChange }: HeaderProps
             </a>
           </li>
           <li className={location === '/subscription' ? 'current-menu-item' : ''}>
-            <a href="/subscription" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-subscription" style={{color: '#FFD700', fontWeight: 'bold'}}>👑 {t.subscription}</a>
+            <a href="/subscription" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-subscription" style={{color: '#FFD700', fontWeight: 'bold'}}>{currentLanguage === 'he' ? '👑 -הוראת קבע -' : `👑 ${t.subscription}`}</a>
           </li>
           <li className={location === '/keren-style' ? 'current-menu-item' : ''}>
             <a href="/keren-style" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-keren-style" style={{color: '#FF6B35', fontWeight: 'bold'}}>🎥 {t.breslovVideos}</a>

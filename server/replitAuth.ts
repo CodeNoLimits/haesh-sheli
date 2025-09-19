@@ -6,11 +6,10 @@ import session from "express-session";
 import type { Express, RequestHandler } from "express";
 import memoize from "memoizee";
 import connectPg from "connect-pg-simple";
+import createMemoryStore from "memorystore";
 import { storage } from "./storage";
 
-if (!process.env.REPLIT_DOMAINS) {
-  throw new Error("Environment variable REPLIT_DOMAINS not provided");
-}
+const AUTH_ENABLED = Boolean(process.env.REPLIT_DOMAINS && process.env.REPL_ID);
 
 const getOidcConfig = memoize(
   async () => {
@@ -24,6 +23,24 @@ const getOidcConfig = memoize(
 
 export function getSession() {
   const sessionTtl = 7 * 24 * 60 * 60 * 1000; // 1 week
+
+  // If no DATABASE_URL, fallback to in-memory store to allow dev server to boot
+  if (!process.env.DATABASE_URL) {
+    const MemoryStore = createMemoryStore(session);
+    const store = new MemoryStore({ checkPeriod: sessionTtl });
+    return session({
+      secret: process.env.SESSION_SECRET || "dev-session-secret",
+      store,
+      resave: false,
+      saveUninitialized: false,
+      cookie: {
+        httpOnly: true,
+        secure: false,
+        maxAge: sessionTtl,
+      },
+    });
+  }
+
   const pgStore = connectPg(session);
   const sessionStore = new pgStore({
     conString: process.env.DATABASE_URL,
@@ -32,7 +49,7 @@ export function getSession() {
     tableName: "sessions",
   });
   return session({
-    secret: process.env.SESSION_SECRET!,
+    secret: process.env.SESSION_SECRET || "dev-session-secret",
     store: sessionStore,
     resave: false,
     saveUninitialized: false,
@@ -69,6 +86,17 @@ async function upsertUser(
 export async function setupAuth(app: Express) {
   app.set("trust proxy", 1);
   app.use(getSession());
+
+  if (!AUTH_ENABLED) {
+    // No-op auth: ensure req.isAuthenticated exists and always returns false
+    app.use((req, _res, next) => {
+      (req as any).isAuthenticated = () => false;
+      (req as any).user = undefined;
+      next();
+    });
+    return;
+  }
+
   app.use(passport.initialize());
   app.use(passport.session());
 
@@ -84,8 +112,7 @@ export async function setupAuth(app: Express) {
     verified(null, user);
   };
 
-  for (const domain of process.env
-    .REPLIT_DOMAINS!.split(",")) {
+  for (const domain of process.env.REPLIT_DOMAINS!.split(",")) {
     const strategy = new Strategy(
       {
         name: `replitauth:${domain}`,
@@ -128,6 +155,10 @@ export async function setupAuth(app: Express) {
 }
 
 export const isAuthenticated: RequestHandler = async (req, res, next) => {
+  if (!AUTH_ENABLED) {
+    return res.status(401).json({ message: "Authentication disabled" });
+  }
+
   const user = req.user as any;
 
   if (!req.isAuthenticated() || !user.expires_at) {
