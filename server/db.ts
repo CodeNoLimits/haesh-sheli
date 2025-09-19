@@ -5,19 +5,20 @@ import * as schema from '@shared/schema';
 
 neonConfig.webSocketConstructor = ws;
 
-// Provide a graceful fallback when no database is configured so the app can still boot
+let pool: any;
+let db: any;
+
 if (!process.env.DATABASE_URL) {
   // Do NOT crash the server if DB is missing; expose a proxy that throws on use
-  // so routes that don't require the DB can still function.
-  // When the DB is used, a clear error is thrown explaining how to fix it.
+  // so routes that don't require the DB can still function. When the DB is used,
+  // a clear error is thrown explaining how to fix it.
   // eslint-disable-next-line no-console
   console.warn(
-    'DATABASE_URL is not set. Running in degraded mode without a database. '\
-    + 'Connect a database and set DATABASE_URL to enable persistence.'
+    'DATABASE_URL is not set. Running in degraded mode without a database. Connect a database and set DATABASE_URL to enable persistence.'
   );
 
-  export const pool: any = null;
-  export const db: any = new Proxy({}, {
+  pool = null;
+  db = new Proxy({}, {
     get(_target, prop) {
       throw new Error(
         `Database not configured. Attempted to access db.${String(prop)}. Set DATABASE_URL to a valid Postgres connection string (e.g. Neon).`
@@ -25,6 +26,8 @@ if (!process.env.DATABASE_URL) {
     },
   });
 } else {
-  export const pool = new Pool({ connectionString: process.env.DATABASE_URL });
-  export const db = drizzle({ client: pool, schema });
+  pool = new Pool({ connectionString: process.env.DATABASE_URL });
+  db = drizzle({ client: pool, schema });
 }
+
+export { pool, db };
