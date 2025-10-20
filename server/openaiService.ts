@@ -3,9 +3,14 @@
 
 import { createSystemPrompt, searchRelevantContent } from "./ragContext";
 
-// Open Router configuration
+// OpenRouter configuration
 const OPENROUTER_API_URL = "https://openrouter.ai/api/v1";
-const MODEL_NAME = "openai/gpt-4o-mini";
+const MODEL_NAME = "openai/gpt-4o-mini"; // keep model configurable if needed later
+
+// Prefer dedicated OpenRouter key if provided, fallback to OPENAI_API_KEY
+const OPENROUTER_KEY = process.env.OPENROUTER_API_KEY || process.env.OPENAI_API_KEY;
+const OPENROUTER_REFERER = process.env.OPENROUTER_SITE_URL || "https://haesh-sheli.netlify.app";
+const OPENROUTER_TITLE = process.env.OPENROUTER_SITE_NAME || "HaEsh Sheli Chat System";
 
 export interface ChatMessage {
   role: 'user' | 'assistant';
@@ -30,10 +35,10 @@ export interface ChatResponse {
  */
 export async function chatWithOpenAI(request: ChatRequest): Promise<ChatResponse> {
   try {
-    if (!process.env.OPENAI_API_KEY) {
+    if (!OPENROUTER_KEY) {
       return {
         response: "מצטער, מערכת הצ'אט אינה זמינה כרגע. אנא צרו קשר עם השירות לקוחות.",
-        error: "OPENAI_API_KEY not configured"
+        error: "OpenRouter API key not configured"
       };
     }
 
@@ -78,10 +83,11 @@ export async function chatWithOpenAI(request: ChatRequest): Promise<ChatResponse
     const response = await fetch(`${OPENROUTER_API_URL}/chat/completions`, {
       method: "POST",
       headers: {
-        "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`,
+        "Authorization": `Bearer ${OPENROUTER_KEY}`,
         "Content-Type": "application/json",
-        "HTTP-Referer": "https://haesh-sheli.co.il",
-        "X-Title": "HaEsh Sheli Chat System"
+        // OpenRouter requires a valid site URL you control
+        "HTTP-Referer": OPENROUTER_REFERER,
+        "X-Title": OPENROUTER_TITLE
       },
       body: JSON.stringify({
         model: MODEL_NAME,
@@ -131,7 +137,7 @@ export async function chatWithOpenAI(request: ChatRequest): Promise<ChatResponse
  */
 export async function* chatWithOpenAIStream(request: ChatRequest): AsyncGenerator<string> {
   try {
-    if (!process.env.OPENAI_API_KEY) {
+    if (!OPENROUTER_KEY) {
       yield "מצטער, מערכת הצ'אט אינה זמינה כרגע. אנא צרו קשר עם השירות לקוחות.";
       return;
     }
@@ -174,10 +180,10 @@ export async function* chatWithOpenAIStream(request: ChatRequest): AsyncGenerato
     const response = await fetch(`${OPENROUTER_API_URL}/chat/completions`, {
       method: "POST",
       headers: {
-        "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`,
+        "Authorization": `Bearer ${OPENROUTER_KEY}`,
         "Content-Type": "application/json",
-        "HTTP-Referer": "https://haesh-sheli.co.il",
-        "X-Title": "HaEsh Sheli Chat System"
+        "HTTP-Referer": OPENROUTER_REFERER,
+        "X-Title": OPENROUTER_TITLE
       },
       body: JSON.stringify({
         model: MODEL_NAME,
@@ -249,10 +255,10 @@ export async function* chatWithOpenAIStream(request: ChatRequest): AsyncGenerato
  */
 export async function checkOpenAIConnection(): Promise<{ connected: boolean; model?: string; error?: string }> {
   try {
-    if (!process.env.OPENAI_API_KEY) {
+    if (!OPENROUTER_KEY) {
       return {
         connected: false,
-        error: "OPENAI_API_KEY not configured"
+        error: "OpenRouter API key not configured"
       };
     }
 
@@ -260,10 +266,10 @@ export async function checkOpenAIConnection(): Promise<{ connected: boolean; mod
     const response = await fetch(`${OPENROUTER_API_URL}/chat/completions`, {
       method: "POST",
       headers: {
-        "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`,
+        "Authorization": `Bearer ${OPENROUTER_KEY}`,
         "Content-Type": "application/json",
-        "HTTP-Referer": "https://haesh-sheli.co.il",
-        "X-Title": "HaEsh Sheli Chat System"
+        "HTTP-Referer": OPENROUTER_REFERER,
+        "X-Title": OPENROUTER_TITLE
       },
       body: JSON.stringify({
         model: MODEL_NAME,
@@ -320,17 +326,17 @@ function generateConversationId(): string {
  */
 export async function analyzeUserSentimentOpenAI(message: string): Promise<{ sentiment: 'positive' | 'neutral' | 'negative'; confidence: number }> {
   try {
-    if (!process.env.OPENAI_API_KEY) {
+    if (!OPENROUTER_KEY) {
       return { sentiment: 'neutral', confidence: 0 };
     }
 
     const response = await fetch(`${OPENROUTER_API_URL}/chat/completions`, {
       method: "POST",
       headers: {
-        "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`,
+        "Authorization": `Bearer ${OPENROUTER_KEY}`,
         "Content-Type": "application/json",
-        "HTTP-Referer": "https://haesh-sheli.co.il",
-        "X-Title": "HaEsh Sheli Chat System"
+        "HTTP-Referer": OPENROUTER_REFERER,
+        "X-Title": OPENROUTER_TITLE
       },
       body: JSON.stringify({
         model: MODEL_NAME,

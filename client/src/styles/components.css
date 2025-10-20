@@ -1,0 +1,470 @@
+/* ============================================
+   🎨 COMPONENTS PREMIUM - Embellissements
+   Tous les composants du design system Breslov
+   ============================================ */
+
+/* === CARDS PREMIUM === */
+
+.card-premium {
+  background: var(--gradient-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-medium);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-premium::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradient-blue-teal);
+  opacity: 0;
+  transition: opacity var(--transition-medium);
+}
+
+.card-premium:hover {
+  transform: translate3d(0, -5px, 0);
+  box-shadow: var(--shadow-breslov-lg);
+  border-color: var(--border-hover);
+}
+
+.card-premium:hover::before {
+  opacity: 1;
+}
+
+.card-hover {
+  transition: all var(--transition-medium);
+}
+
+.card-hover:hover {
+  transform: translate3d(0, -5px, 0);
+  box-shadow: var(--shadow-xl);
+}
+
+.card-glow {
+  position: relative;
+  transition: all var(--transition-medium);
+}
+
+.card-glow::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: var(--gradient-blue-teal);
+  border-radius: var(--radius-xl);
+  opacity: 0;
+  z-index: -1;
+  transition: opacity var(--transition-medium);
+  filter: blur(10px);
+}
+
+.card-glow:hover::after {
+  opacity: 0.5;
+}
+
+/* === BUTTONS BRESLOV === */
+
+.btn-breslov-primary {
+  background: var(--gradient-blue-teal);
+  color: var(--primary-foreground);
+  padding: 1rem 2rem;
+  border-radius: var(--radius-xl);
+  font-weight: 600;
+  font-size: var(--body-large);
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-base);
+}
+
+.btn-breslov-primary::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width var(--transition-slow), height var(--transition-slow);
+}
+
+.btn-breslov-primary:hover {
+  transform: translate3d(0, -2px, 0);
+  box-shadow: var(--shadow-xl);
+}
+
+.btn-breslov-primary:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.btn-breslov-primary:active {
+  transform: scale3d(0.98, 0.98, 1);
+}
+
+.btn-breslov-secondary {
+  background: var(--gradient-surface);
+  color: var(--secondary-foreground);
+  padding: 1rem 2rem;
+  border-radius: var(--radius-xl);
+  font-weight: 600;
+  font-size: var(--body-large);
+  border: 2px solid var(--border);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-base);
+}
+
+.btn-breslov-secondary:hover {
+  border-color: var(--border-hover);
+  background: linear-gradient(135deg, hsl(180, 35%, 96%) 0%, hsl(210, 35%, 96%) 100%);
+  box-shadow: var(--shadow-md);
+  transform: translate3d(0, -2px, 0);
+}
+
+.btn-breslov-secondary:active {
+  transform: scale3d(0.98, 0.98, 1);
+}
+
+.btn-breslov-gold {
+  background: linear-gradient(135deg, var(--primary-blue) 0%, var(--teal-breslov) 50%, var(--gold-breslov) 100%);
+  background-size: 200% 100%;
+  background-position: 0% 50%;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: var(--radius-xl);
+  font-weight: 700;
+  font-size: var(--body-large);
+  border: none;
+  cursor: pointer;
+  box-shadow: var(--shadow-lg);
+  transition: all var(--transition-slow);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-breslov-gold::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+  transform: scale(0);
+  transition: transform var(--transition-slow);
+}
+
+.btn-breslov-gold:hover {
+  background-position: 100% 50%;
+  box-shadow: var(--shadow-glow-gold);
+  transform: translate3d(0, -2px, 0) scale3d(1.02, 1.02, 1);
+}
+
+.btn-breslov-gold:hover::before {
+  transform: scale(1);
+}
+
+.btn-breslov-gold:active {
+  transform: scale3d(0.98, 0.98, 1);
+}
+
+/* === TYPOGRAPHY PREMIUM === */
+
+.heading-oversized {
+  font-size: var(--heading-1);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  background: linear-gradient(135deg, var(--foreground) 0%, var(--primary-blue) 50%, var(--teal-breslov) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 8s ease-in-out infinite;
+}
+
+.text-breslov-gradient {
+  background: var(--gradient-blue-teal);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}
+
+.text-gold-gradient {
+  background: linear-gradient(135deg, var(--gold-breslov-dark) 0%, var(--gold-breslov) 50%, var(--gold-breslov-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}
+
+/* === BADGES & LABELS === */
+
+.badge-premium {
+  background: var(--gold-breslov);
+  color: white;
+  border-radius: var(--radius-lg);
+  padding: 0.25rem 0.75rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  box-shadow: var(--shadow-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.badge-breslov {
+  background: var(--gradient-blue-teal);
+  color: white;
+  border-radius: var(--radius-lg);
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+}
+
+.badge-outline {
+  background: transparent;
+  color: var(--primary-blue);
+  border: 2px solid var(--primary-blue);
+  border-radius: var(--radius-lg);
+  padding: 0.25rem 0.75rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+/* === HERO SECTIONS === */
+
+.hero-gradient {
+  background: var(--gradient-hero);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-gradient::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at top right, var(--primary-blue-subtle) 0%, transparent 50%),
+              radial-gradient(circle at bottom left, var(--teal-breslov-subtle) 0%, transparent 50%);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.hero-surface {
+  background: var(--gradient-hero);
+}
+
+.hero-overlay {
+  background: var(--gradient-overlay);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* === SECTION SURFACES === */
+
+.section-surface {
+  background: var(--gradient-surface);
+}
+
+.section-surface-strong {
+  background: linear-gradient(135deg, hsl(210, 30%, 96%) 0%, hsl(180, 30%, 96%) 100%);
+}
+
+.dark .section-surface-strong {
+  background: linear-gradient(135deg, hsl(210, 25%, 14%) 0%, hsl(180, 25%, 14%) 100%);
+}
+
+/* === DIVIDERS & SEPARATORS === */
+
+.divider-gradient {
+  height: 2px;
+  background: var(--gradient-blue-teal);
+  border: none;
+  opacity: 0.3;
+}
+
+.divider-glow {
+  height: 1px;
+  background: var(--gradient-blue-teal);
+  box-shadow: 0 0 10px var(--primary-blue);
+  border: none;
+}
+
+/* === INPUTS & FORMS === */
+
+.input-breslov {
+  background: var(--background);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 0.75rem 1rem;
+  font-size: var(--body-regular);
+  transition: all var(--transition-base);
+  color: var(--foreground);
+}
+
+.input-breslov:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.input-breslov:hover:not(:focus) {
+  border-color: var(--border-hover);
+}
+
+/* === GRADIENT TEXT EFFECTS === */
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--primary-blue), var(--teal-breslov), var(--gold-breslov));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* === GLASSMORPHISM EFFECTS === */
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: var(--shadow-lg);
+}
+
+.dark .glass-card {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* === PROGRESS & LOADING === */
+
+.progress-bar-breslov {
+  height: 8px;
+  background: var(--muted);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: var(--gradient-blue-teal);
+  border-radius: var(--radius-full);
+  transition: width var(--transition-medium);
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-bar-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: shine 2s ease-in-out infinite;
+}
+
+/* === TOOLTIPS === */
+
+.tooltip-breslov {
+  background: var(--foreground);
+  color: var(--background);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+}
+
+.tooltip-breslov::before {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid var(--foreground);
+}
+
+/* === SPECIAL EFFECTS === */
+
+.shimmer-effect {
+  background: linear-gradient(90deg,
+    var(--muted) 0%,
+    var(--background) 50%,
+    var(--muted) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+.glow-on-hover {
+  position: relative;
+  transition: all var(--transition-medium);
+}
+
+.glow-on-hover::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  background: var(--gradient-blue-teal);
+  border-radius: inherit;
+  opacity: 0;
+  z-index: -1;
+  filter: blur(15px);
+  transition: opacity var(--transition-medium);
+}
+
+.glow-on-hover:hover::before {
+  opacity: 0.7;
+}
+
+/* === RESPONSIVE ADAPTATIONS === */
+
+@media (max-width: 768px) {
+  .btn-breslov-primary,
+  .btn-breslov-secondary,
+  .btn-breslov-gold {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .hero-overlay {
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+  }
+
+  .glass-card {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-overlay,
+  .glass-card {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(255, 255, 255, 0.95);
+  }
+
+  .dark .glass-card {
+    background: rgba(0, 0, 0, 0.8);
+  }
+}

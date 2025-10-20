@@ -62,6 +62,19 @@ export default function Chat() {
   // Statut actuel selon le provider sélectionné
   const currentStatus = selectedProvider === 'gemini' ? geminiStatus : openaiStatus;
 
+  // Fallback automatique sur OpenAI si Gemini indisponible
+  useEffect(() => {
+    if (selectedProvider === 'gemini' && geminiStatus && openaiStatus) {
+      if (!geminiStatus.connected && openaiStatus.connected) {
+        setSelectedProvider('openai');
+        toast({
+          title: 'מעבר אוטומטי ל-OpenAI',
+          description: 'מערכת Gemini אינה זמינה כרגע. עברנו ל-ChatGPT 4o-mini כדי להמשיך את השירות.'
+        });
+      }
+    }
+  }, [selectedProvider, geminiStatus?.connected, openaiStatus?.connected]);
+
   // Auto-scroll vers le bas
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -508,7 +521,7 @@ export default function Chat() {
                     onKeyPress={handleKeyPress}
                     placeholder="שאל שאלה על תורת רבי נחמן..."
                     className="min-h-[50px] max-h-[120px] resize-none text-right"
-                    disabled={isLoading || !chatStatus?.connected}
+                    disabled={isLoading || !currentStatus?.connected}
                     data-testid="chat-input"
                   />
                 </div>
@@ -516,7 +529,7 @@ export default function Chat() {
                 <div className="flex flex-col gap-2">
                   <Button
                     onClick={() => handleSubmit()}
-                    disabled={!inputMessage.trim() || isLoading || !chatStatus?.connected}
+                    disabled={!inputMessage.trim() || isLoading || !currentStatus?.connected}
                     className="bg-red-600 hover:bg-red-700"
                     data-testid="send-button"
                   >

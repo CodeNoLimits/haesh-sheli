@@ -28,6 +28,10 @@ if (process.env.STRIPE_SECRET_KEY) {
 }
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Basic healthcheck for preview/builder readiness probes
+  app.get('/api/health', (_req, res) => {
+    res.json({ status: 'ok', env: app.get('env') });
+  });
   // Setup Replit Auth middleware
   await setupAuth(app);
 

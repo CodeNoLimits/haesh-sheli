@@ -4,8 +4,10 @@ import path from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 
 export default defineConfig({
-  // Ensure correct asset paths when deploying to GitHub Pages under /haesh-sheli/
-  base: process.env.NODE_ENV === "production" ? "/haesh-sheli/" : "/",
+  // Base path:
+  // - Default to "/" (Netlify, normal hosting)
+  // - Use "/haesh-sheli/" ONLY when building for GitHub Pages (set GITHUB_PAGES=true)
+  base: process.env.GITHUB_PAGES === "true" ? "/haesh-sheli/" : "/",
   plugins: [
     react(),
     runtimeErrorOverlay(),

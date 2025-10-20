@@ -120,6 +120,28 @@ export function Header({ currentLanguage = 'he', onLanguageChange }: HeaderProps
 
   return (
     <header className="site-header" data-testid="main-header" dir={currentLanguage === 'he' ? 'rtl' : 'ltr'}>
+      {/* LANGUAGE BAR (top) */}
+      <div className="header-language-bar" style={{background: 'linear-gradient(90deg,#1aa3d9,#0b78c6)', padding: '6px 10px', position: 'sticky', top: 0, zIndex: 30}}>
+        <div style={{display: 'flex', justifyContent: 'center', gap: '10px', flexWrap: 'wrap'}}>
+          {Object.entries(languageFlags).map(([lang, flag]) => (
+            <button
+              key={lang}
+              onClick={() => onLanguageChange?.(lang)}
+              className={`language-btn ${currentLanguage === lang ? 'active' : ''}`}
+              style={{
+                display: 'inline-flex', alignItems: 'center', gap: '6px',
+                padding: '4px 8px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.3)',
+                background: currentLanguage === lang ? 'rgba(255,255,255,0.15)' : 'transparent',
+                color: '#fff', fontWeight: 700
+              }}
+              data-testid={`button-language-${lang}`}
+            >
+              <span>{flag}</span>
+              <span>{lang.toUpperCase()}</span>
+            </button>
+          ))}
+        </div>
+      </div>
       {/* TOP ROW - Logo + Special Links */}
       <div className="header-container-top">
         {/* LOGO */}
@@ -171,7 +193,7 @@ export function Header({ currentLanguage = 'he', onLanguageChange }: HeaderProps
       </div>
 
       {/* BOTTOM ROW - Basic Navigation + User Actions */}
-      <div className="header-container-bottom">
+      <div className="header-container-bottom" style={{position: 'sticky', top: 40, zIndex: 25}}>
         {/* BASIC NAVIGATION */}
         <nav className="header-nav" data-testid="nav-main">
           <ul className="nav-menu">
@@ -273,20 +295,7 @@ export function Header({ currentLanguage = 'he', onLanguageChange }: HeaderProps
             {t.fire}
           </h2>
 
-          {/* LANGUAGE SELECTOR */}
-          <div className="language-selector" data-testid="language-selector">
-            {Object.entries(languageFlags).map(([lang, flag]) => (
-              <button
-                key={lang}
-                onClick={() => onLanguageChange?.(lang)}
-                className={`language-btn ${currentLanguage === lang ? 'active' : ''} transition-all duration-300 hover:scale-125 hover:bg-white hover:text-blue-600 hover:shadow-xl hover:-translate-y-1 hover:rotate-3`}
-                data-testid={`button-language-${lang}`}
-              >
-                <span className="transition-all duration-300 hover:scale-125">{flag}</span>
-                <span className="transition-all duration-300">{lang.toUpperCase()}</span>
-              </button>
-            ))}
-          </div>
+          {/* Language selector moved to top bar */}
         </div>
       </div>
 
