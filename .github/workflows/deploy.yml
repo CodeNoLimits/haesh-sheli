@@ -1,0 +1,74 @@
+name: Build, Snapshot, and Deploy
+
+on:
+  push:
+    branches: [ fix/gh-pages-base ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Start server (background)
+        run: NODE_ENV=production node dist/index.js &
+
+      - name: Wait for server
+        run: |
+          for i in {1..30}; do
+            if curl -sSf http://localhost:3000 >/dev/null; then
+              echo "Server is up"; exit 0;
+            fi
+            sleep 2
+          done
+          echo "Server did not start"; exit 1
+
+      - name: Snapshots
+        env:
+          SNAPSHOT_BASE_URL: http://localhost:3000
+        run: npm run snapshots
+
+      - name: Upload snapshots artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-snapshots
+          path: snapshots/**
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

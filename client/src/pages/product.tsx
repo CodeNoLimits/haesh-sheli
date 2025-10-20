@@ -6,6 +6,8 @@ import { useToast } from '@/hooks/use-toast';
 import { getBookDisplayTitle } from '../utils/bookTitleHelper';
 import { convertImagePath } from '../utils/imagePathHelper';
 import type { Product } from '../../../shared/schema';
+import ProductRecommendations from '@/components/ProductRecommendations';
+import { getRelatedProducts, getFrequentlyBoughtTogether } from '@/utils/recommendationEngine';
 
 export default function Product() {
   const [match, params] = useRoute('/product/:id');
@@ -378,6 +380,12 @@ export default function Product() {
           </div>
         </div>
       </section>
+
+      {/* Recommendations - Related */}
+      <ProductRecommendations currentProduct={product as Product} recommendationType="related" />
+
+      {/* Recommendations - Frequently bought together */}
+      <ProductRecommendations currentProduct={product as Product} recommendationType="frequently-bought" />
     </div>
   );
 }
