@@ -6,11 +6,11 @@ import session from "express-session";
 import type { Express, RequestHandler } from "express";
 import memoize from "memoizee";
 import connectPg from "connect-pg-simple";
+import createMemoryStore from "memorystore";
+import { randomBytes } from "crypto";
 import { storage } from "./storage";
 
-if (!process.env.REPLIT_DOMAINS) {
-  throw new Error("Environment variable REPLIT_DOMAINS not provided");
-}
+const OIDC_ENABLED = !!process.env.REPLIT_DOMAINS && !!process.env.REPL_ID;
 
 const getOidcConfig = memoize(
   async () => {
@@ -24,16 +24,35 @@ const getOidcConfig = memoize(
 
 export function getSession() {
   const sessionTtl = 7 * 24 * 60 * 60 * 1000; // 1 week
-  const pgStore = connectPg(session);
-  const sessionStore = new pgStore({
-    conString: process.env.DATABASE_URL,
-    createTableIfMissing: false,
-    ttl: sessionTtl,
-    tableName: "sessions",
-  });
+
+  // Prefer Postgres-backed sessions when DATABASE_URL is available
+  if (process.env.DATABASE_URL) {
+    const pgStore = connectPg(session);
+    const sessionStore = new pgStore({
+      conString: process.env.DATABASE_URL,
+      createTableIfMissing: false,
+      ttl: sessionTtl,
+      tableName: "sessions",
+    });
+    return session({
+      secret: process.env.SESSION_SECRET || randomBytes(32).toString("hex"),
+      store: sessionStore,
+      resave: false,
+      saveUninitialized: false,
+      cookie: {
+        httpOnly: true,
+        secure: true,
+        maxAge: sessionTtl,
+      },
+    });
+  }
+
+  // Fallback to in-memory session store for development when no DB is configured
+  const MemoryStore = (createMemoryStore as any)(session);
+  const memoryStore = new MemoryStore({ checkPeriod: sessionTtl });
   return session({
-    secret: process.env.SESSION_SECRET!,
-    store: sessionStore,
+    secret: process.env.SESSION_SECRET || randomBytes(32).toString("hex"),
+    store: memoryStore,
     resave: false,
     saveUninitialized: false,
     cookie: {
@@ -69,68 +88,94 @@ async function upsertUser(
 export async function setupAuth(app: Express) {
   app.set("trust proxy", 1);
   app.use(getSession());
-  app.use(passport.initialize());
-  app.use(passport.session());
 
-  const config = await getOidcConfig();
+  if (OIDC_ENABLED) {
+    app.use(passport.initialize());
+    app.use(passport.session());
 
-  const verify: VerifyFunction = async (
-    tokens: client.TokenEndpointResponse & client.TokenEndpointResponseHelpers,
-    verified: passport.AuthenticateCallback
-  ) => {
-    const user = {};
-    updateUserSession(user, tokens);
-    await upsertUser(tokens.claims());
-    verified(null, user);
-  };
+    const config = await getOidcConfig();
 
-  for (const domain of process.env
-    .REPLIT_DOMAINS!.split(",")) {
-    const strategy = new Strategy(
-      {
-        name: `replitauth:${domain}`,
-        config,
-        scope: "openid email profile offline_access",
-        callbackURL: `https://${domain}/api/callback`,
-      },
-      verify,
-    );
-    passport.use(strategy);
-  }
+    const verify: VerifyFunction = async (
+      tokens: client.TokenEndpointResponse & client.TokenEndpointResponseHelpers,
+      verified: passport.AuthenticateCallback
+    ) => {
+      const user = {};
+      updateUserSession(user, tokens);
+      await upsertUser(tokens.claims());
+      verified(null, user);
+    };
 
-  passport.serializeUser((user: Express.User, cb) => cb(null, user));
-  passport.deserializeUser((user: Express.User, cb) => cb(null, user));
-
-  app.get("/api/login", (req, res, next) => {
-    passport.authenticate(`replitauth:${req.hostname}`, {
-      prompt: "login consent",
-      scope: ["openid", "email", "profile", "offline_access"],
-    })(req, res, next);
-  });
-
-  app.get("/api/callback", (req, res, next) => {
-    passport.authenticate(`replitauth:${req.hostname}`, {
-      successReturnToOrRedirect: "/",
-      failureRedirect: "/api/login",
-    })(req, res, next);
-  });
-
-  app.get("/api/logout", (req, res) => {
-    req.logout(() => {
-      res.redirect(
-        client.buildEndSessionUrl(config, {
-          client_id: process.env.REPL_ID!,
-          post_logout_redirect_uri: `${req.protocol}://${req.hostname}`,
-        }).href
+    for (const domain of process.env.REPLIT_DOMAINS!.split(",")) {
+      const strategy = new Strategy(
+        {
+          name: `replitauth:${domain}`,
+          config,
+          scope: "openid email profile offline_access",
+          callbackURL: `https://${domain}/api/callback`,
+        },
+        verify,
       );
+      passport.use(strategy);
+    }
+
+    passport.serializeUser((user: Express.User, cb) => cb(null, user));
+    passport.deserializeUser((user: Express.User, cb) => cb(null, user));
+
+    app.get("/api/login", (req, res, next) => {
+      passport.authenticate(`replitauth:${req.hostname}`, {
+        prompt: "login consent",
+        scope: ["openid", "email", "profile", "offline_access"],
+      })(req, res, next);
     });
-  });
+
+    app.get("/api/callback", (req, res, next) => {
+      passport.authenticate(`replitauth:${req.hostname}`, {
+        successReturnToOrRedirect: "/",
+        failureRedirect: "/api/login",
+      })(req, res, next);
+    });
+
+    app.get("/api/logout", (req, res) => {
+      req.logout(() => {
+        res.redirect(
+          client.buildEndSessionUrl(config, {
+            client_id: process.env.REPL_ID!,
+            post_logout_redirect_uri: `${req.protocol}://${req.hostname}`,
+          }).href
+        );
+      });
+    });
+  } else {
+    // Development fallback: ensure req.isAuthenticated exists and returns false
+    app.use((req, _res, next) => {
+      if (typeof (req as any).isAuthenticated !== "function") {
+        (req as any).isAuthenticated = () => false;
+      }
+      next();
+    });
+
+    app.get("/api/login", (_req, res) => {
+      res.status(503).json({ message: "Authentication not configured" });
+    });
+
+    app.get("/api/callback", (_req, res) => {
+      res.redirect("/");
+    });
+
+    app.get("/api/logout", (_req, res) => {
+      res.redirect("/");
+    });
+  }
 }
 
 export const isAuthenticated: RequestHandler = async (req, res, next) => {
   const user = req.user as any;
 
-  if (!req.isAuthenticated() || !user.expires_at) {
+  if (!OIDC_ENABLED) {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
+
+  if (!req.isAuthenticated() || !user?.expires_at) {
     return res.status(401).json({ message: "Unauthorized" });
   }
 

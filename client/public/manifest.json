@@ -2,7 +2,7 @@
   "name": "האש שלי - ספרי ברסלב",
   "short_name": "האש שלי",
   "description": "חנות ספרי ברסלב מקוונת - ספרי רבי נחמן מברסלב ואוספים אמיתיים",
-  "start_url": "/",
+  "start_url": ".",
   "display": "standalone",
   "background_color": "#FFFFFF",
   "theme_color": "#0B61B3",

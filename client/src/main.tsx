@@ -5,7 +5,8 @@ import "./index.css";
 // Register Service Worker only in production, disable in development
 if (import.meta.env.PROD && 'serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js')
+    const swUrl = new URL('sw.js', import.meta.env.BASE_URL).pathname;
+    navigator.serviceWorker.register(swUrl)
       .then((registration) => {
         console.log('SW registered: ', registration);
       })

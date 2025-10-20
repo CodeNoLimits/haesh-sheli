@@ -1,10 +1,12 @@
 // Service Worker for PWA capabilities
-const CACHE_NAME = 'haesh-sheli-v1';
+const CACHE_NAME = 'haesh-sheli-v2';
+// Derive the base path (e.g., "/haesh-sheli/") for GitHub Pages deployments
+const BASE_URL = (self.registration?.scope || self.location.pathname)
+  .replace(self.location.origin, '')
+  .replace(/[^/]+$/, '');
 const urlsToCache = [
-  '/',
-  '/static/js/bundle.js',
-  '/static/css/main.css',
-  '/manifest.json'
+  BASE_URL,
+  BASE_URL + 'manifest.json'
 ];
 
 // Install Service Worker
@@ -19,11 +21,7 @@ self.addEventListener('install', (event) => {
 // Fetch event - serve from cache when offline
 self.addEventListener('fetch', (event) => {
   event.respondWith(
-    caches.match(event.request)
-      .then((response) => {
-        // Return cached version or fetch from network
-        return response || fetch(event.request);
-      })
+    fetch(event.request).catch(() => caches.match(event.request))
   );
 });
 
