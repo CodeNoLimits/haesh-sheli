@@ -10,9 +10,14 @@ const translations = {
     subtitle: 'תיקון הכללי • התבודדות • חיזוק הלב',
     intro: 'מסורת ברסלב מדגישה את כוח התפילה האישית. כאן תמצאו את עיקרי הדרך: תיקון הכללי כפי שמסר רבי נחמן, הדרכה מעשית להתבודדות על פי תלמידו רבי נתן, ודברי חיזוק מסבא ��שראל דב אודסר.',
     tikkunTitle: 'תיקון הכללי',
-    tikkunDesc: 'רבי נחמן גילה "תיקון הכללי" — עשרה פרקי תהילים שהם תיקון כללי לנפש. מומלץ לומר בכוונה בכל עת, ובפרט בזמנים של ירידה.',
+    tikkunDesc: 'רבי נחמן גילה "תיקון הכללי" - עשרה פרקי תהילים שהם תיקון כללי לנפש. מומלץ לומר בכוונה בכל עת, ובפרט בזמנים של ירידה.',
     psalmsLabel: 'עשרת המזמורים:',
     psalms: ['טז', 'לב', 'מא', 'מב', 'נט', 'עז', 'צ', 'קה', 'קלז', 'קנ'],
+    readPdfButton: 'קרא תיקון הכללי עכשיו (PDF)',
+    prayerGeneratorTitle: 'מחולל תפילות אישיות',
+    prayerGeneratorDesc: 'ספר לנו מה בלבך, ונחבר עבורך תפילה אישית בסגנון ברסלב',
+    generateButton: 'חבר תפילה',
+    prayerPlaceholder: 'כתוב כאן את מה שבלבך... למשל: אני רוצה לבקש על פרנסה, על בריאות, על שלום בית...',
     hitbTitle: 'הדרכה קצרה להתבודדות',
     hitbSteps: [
       'מצאו מקום שקט לדבר עם ה׳ בפשטות, כפי שמדברים עם חבר טוב.',
@@ -145,6 +150,9 @@ export default function Prayers() {
   const t = translations[currentLanguage as keyof typeof translations] || translations.he;
   const isRTL = currentLanguage === 'he';
   const [copied, setCopied] = useState(false);
+  const [prayerInput, setPrayerInput] = useState('');
+  const [generatedPrayer, setGeneratedPrayer] = useState('');
+  const [isGenerating, setIsGenerating] = useState(false);
 
   useEffect(() => {
     document.title = t.seoTitle;
@@ -163,6 +171,67 @@ export default function Prayers() {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     });
+  };
+
+  const generatePrayer = async () => {
+    if (!prayerInput.trim()) return;
+
+    setIsGenerating(true);
+    setGeneratedPrayer('');
+
+    try {
+      const response = await fetch('/api/openai/stream', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          messages: [
+            {
+              role: 'system',
+              content: `You are a spiritual guide creating personal prayers in the style of Rabbi Nachman of Breslov and Rabbi Nathan. Create heartfelt, personal prayers based on the user's request. Keep it warm, hopeful, and deeply personal. Always respond in ${currentLanguage === 'he' ? 'Hebrew' : currentLanguage === 'en' ? 'English' : currentLanguage === 'fr' ? 'French' : currentLanguage === 'es' ? 'Spanish' : 'Russian'}.`
+            },
+            {
+              role: 'user',
+              content: `Create a personal prayer for: ${prayerInput}`
+            }
+          ]
+        })
+      });
+
+      if (!response.ok) throw new Error('Failed to generate prayer');
+
+      const reader = response.body?.getReader();
+      const decoder = new TextDecoder();
+      let accumulatedText = '';
+
+      while (reader) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        const chunk = decoder.decode(value);
+        const lines = chunk.split('\n');
+
+        for (const line of lines) {
+          if (line.startsWith('data: ')) {
+            const data = line.slice(6);
+            if (data === '[DONE]') break;
+
+            try {
+              const parsed = JSON.parse(data);
+              const content = parsed.choices?.[0]?.delta?.content || '';
+              accumulatedText += content;
+              setGeneratedPrayer(accumulatedText);
+            } catch (e) {
+              // Ignore parsing errors
+            }
+          }
+        }
+      }
+    } catch (error) {
+      console.error('Error generating prayer:', error);
+      setGeneratedPrayer(isRTL ? 'שגיאה ביצירת התפילה. נסה שוב.' : 'Error generating prayer. Please try again.');
+    } finally {
+      setIsGenerating(false);
+    }
   };
 
   return (
@@ -212,6 +281,37 @@ export default function Prayers() {
             </div>
           </div>
 
+          {/* Prayer Generator */}
+          <div className="card-premium p-8 mt-8 bg-gradient-to-br from-blue-50 to-purple-50 border-2 border-blue-200">
+            <h2 className="text-3xl font-bold text-primary mb-3">{t.prayerGeneratorTitle}</h2>
+            <p className="text-foreground/80 mb-6">{t.prayerGeneratorDesc}</p>
+
+            <div className="space-y-4">
+              <textarea
+                value={prayerInput}
+                onChange={(e) => setPrayerInput(e.target.value)}
+                placeholder={t.prayerPlaceholder}
+                className="w-full min-h-[120px] p-4 rounded-xl border-2 border-blue-300 focus:border-blue-500 focus:outline-none resize-none"
+                disabled={isGenerating}
+              />
+
+              <button
+                onClick={generatePrayer}
+                disabled={!prayerInput.trim() || isGenerating}
+                className="btn-breslov-primary w-full md:w-auto px-8 py-3 text-lg font-bold disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isGenerating ? (isRTL ? 'מחבר תפילה...' : 'Generating...') : t.generateButton}
+              </button>
+
+              {generatedPrayer && (
+                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 border-2 border-purple-200 mt-6">
+                  <h3 className="text-xl font-bold text-primary mb-4">{isRTL ? 'התפילה שלך:' : 'Your Prayer:'}</h3>
+                  <p className="text-foreground whitespace-pre-wrap leading-relaxed">{generatedPrayer}</p>
+                </div>
+              )}
+            </div>
+          </div>
+
           <div className="card-premium p-8 mt-8">
             <h2 className="text-2xl font-bold text-primary mb-3">{t.sourcesTitle}</h2>
             <ul className="list-disc pl-6 space-y-2 text-foreground/80">
@@ -222,7 +322,7 @@ export default function Prayers() {
           </div>
 
           <div className="text-center mt-10">
-            <a href="/downloads" className="btn-breslov-primary inline-block">{t.downloadsCta}</a>
+            <a href="/attached_assets/tikkun-haklali.pdf" target="_blank" rel="noopener noreferrer" className="btn-breslov-primary inline-block">{t.downloadsCta}</a>
             <div className="mt-3">
               <a href="/downloads" className="text-primary underline">{t.goToDownloads}</a>
             </div>

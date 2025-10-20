@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Crown, CheckCircle, ArrowRight, AlertCircle, Mail, Phone } from 'lucide-react';
+import { Crown, CheckCircle, ArrowRight, AlertCircle, Mail, Phone, Upload, X } from 'lucide-react';
 
 interface SubscriptionStatus {
   configured: boolean;
@@ -17,6 +17,96 @@ interface SubscriptionCTAProps {
   'data-testid'?: string;
 }
 
+// Pop-up Modal Component
+function SubscriptionPopupModal({ onClose }: { onClose: () => void }) {
+  return (
+    <div 
+      className="fixed inset-0 flex items-center justify-center p-4"
+      style={{ 
+        zIndex: 9999, 
+        background: 'rgba(0, 0, 0, 0.6)',
+        backdropFilter: 'blur(8px)'
+      }}
+      onClick={onClose}
+    >
+      <div 
+        className="relative bg-white rounded-3xl shadow-2xl max-w-md w-full p-8"
+        style={{
+          animation: 'fadeInScale 0.3s ease-out'
+        }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Close Button */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+          aria-label="Close"
+        >
+          <X size={24} />
+        </button>
+
+        {/* Checkmarks List */}
+        <div className="space-y-4 mb-6" dir="rtl">
+          <div className="flex items-start gap-3">
+            <div className="flex-shrink-0 w-6 h-6 rounded-full bg-green-500 flex items-center justify-center mt-1">
+              <CheckCircle size={16} className="text-white" />
+            </div>
+            <p className="text-gray-700 font-medium text-lg">גישה מהירה וקלה</p>
+          </div>
+          <div className="flex items-start gap-3">
+            <div className="flex-shrink-0 w-6 h-6 rounded-full bg-green-500 flex items-center justify-center mt-1">
+              <CheckCircle size={16} className="text-white" />
+            </div>
+            <p className="text-gray-700 font-medium text-lg">עדכונים אוטומטיים</p>
+          </div>
+          <div className="flex items-start gap-3">
+            <div className="flex-shrink-0 w-6 h-6 rounded-full bg-green-500 flex items-center justify-center mt-1">
+              <CheckCircle size={16} className="text-white" />
+            </div>
+            <p className="text-gray-700 font-medium text-lg">חוויות משתמש משופרת</p>
+          </div>
+          <div className="flex items-start gap-3">
+            <div className="flex-shrink-0 w-6 h-6 rounded-full bg-green-500 flex items-center justify-center mt-1">
+              <CheckCircle size={16} className="text-white" />
+            </div>
+            <p className="text-gray-700 font-medium text-lg">פעילה ללא אינטרנט</p>
+          </div>
+        </div>
+
+        {/* Info Text */}
+        <div className="text-center mb-6 p-4 bg-blue-50 rounded-xl" dir="rtl">
+          <p className="text-gray-600 text-sm">
+            לחץ על סמל ההתקנה בשורת הכתובות
+          </p>
+        </div>
+
+        {/* Primary Button - Gradient */}
+        <Button
+          onClick={onClose}
+          className="w-full text-lg font-bold py-6 rounded-xl mb-3"
+          style={{
+            background: 'linear-gradient(90deg, #1E90FF, #00CED1)',
+            color: 'white',
+            boxShadow: '0 4px 12px rgba(30, 144, 255, 0.4)'
+          }}
+        >
+          <Upload className="ml-2" size={20} />
+          תתקן עכשיו
+        </Button>
+
+        {/* Secondary Button */}
+        <Button
+          onClick={onClose}
+          variant="ghost"
+          className="w-full text-gray-500 hover:text-gray-700 text-sm"
+        >
+          אולי מאוחר יותר
+        </Button>
+      </div>
+    </div>
+  );
+}
+
 export function SubscriptionCTA({ 
   variant = 'primary', 
   size = 'md',
@@ -25,6 +115,23 @@ export function SubscriptionCTA({
   'data-testid': testId
 }: SubscriptionCTAProps) {
   const [showContactInfo, setShowContactInfo] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+
+  // Show popup on mount (after 2 seconds delay)
+  useEffect(() => {
+    const hasSeenPopup = localStorage.getItem('subscription-popup-seen');
+    if (!hasSeenPopup) {
+      const timer = setTimeout(() => {
+        setShowPopup(true);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
+  const handleClosePopup = () => {
+    setShowPopup(false);
+    localStorage.setItem('subscription-popup-seen', 'true');
+  };
 
   // Check Stripe configuration
   const { data: stripeStatus } = useQuery<SubscriptionStatus>({
@@ -164,15 +271,18 @@ export function SubscriptionCTA({
 
   // Default CTA - user not subscribed, Stripe is configured
   return (
-    <Button 
-      asChild
-      className={`${getVariantClasses()} ${getSizeClasses()} ${className}`}
-      data-testid={testId || 'subscription-join'}
-    >
-      <a href="/subscription">
-        <Crown className="w-4 h-4 mr-2" />
-        הצטרף למנוי הוראת קבע
-      </a>
-    </Button>
+    <>
+      {showPopup && <SubscriptionPopupModal onClose={handleClosePopup} />}
+      <Button 
+        asChild
+        className={`${getVariantClasses()} ${getSizeClasses()} ${className}`}
+        data-testid={testId || 'subscription-join'}
+      >
+        <a href="/subscription">
+          <Crown className="w-4 h-4 mr-2" />
+          הצטרף למנוי הוראת קבע
+        </a>
+      </Button>
+    </>
   );
 }

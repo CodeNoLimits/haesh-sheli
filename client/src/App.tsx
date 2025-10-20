@@ -50,6 +50,16 @@ import SubscriptionManagement from "@/pages/subscription-management";
 import YaakovDashboard from "@/pages/yaaakov";
 import Chat from "@/pages/chat";
 import NotFound from "@/pages/not-found";
+import Prayers from "@/pages/prayers";
+import Parsha from "@/pages/parasha";
+import Donate from "@/pages/donate";
+import QA from "@/pages/qa";
+import AskRabbenu from "@/pages/ask-rabbenu";
+import Hafatsa from "@/pages/hafatsa";
+import Kuntresim from "@/pages/kuntresim";
+import SabaIsrael from "@/pages/saba-israel";
+import RabbiNathan from "@/pages/rabbi-nathan";
+import RabbiKarduner from "@/pages/rabbi-karduner";
 
 function Router() {
   return (
@@ -71,6 +81,17 @@ function Router() {
       <Route path="/haesh-hype" component={HaeshHype} />
       <Route path="/chat" component={Chat} />
       <Route path="/yaaakov" component={YaakovDashboard} />
+      <Route path="/prayers" component={Prayers} />
+      <Route path="/parsha" component={Parsha} />
+      <Route path="/parasha" component={Parsha} />
+      <Route path="/donate" component={Donate} />
+      <Route path="/qa" component={QA} />
+      <Route path="/ask-rabbenu" component={AskRabbenu} />
+      <Route path="/hafatsa" component={Hafatsa} />
+      <Route path="/kuntresim" component={Kuntresim} />
+      <Route path="/saba-israel" component={SabaIsrael} />
+      <Route path="/rabbi-nathan" component={RabbiNathan} />
+      <Route path="/rabbi-karduner" component={RabbiKarduner} />
       <Route component={NotFound} />
     </Switch>
   );

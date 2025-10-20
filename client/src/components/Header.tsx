@@ -19,8 +19,12 @@ const translations = {
     magazine: 'המגזין',
     join: 'הצטרפות',
     downloads: 'הורדות',
+    prayers: 'תפילות',
+    parsha: 'פרשת השבוע',
+    donate: 'תרומות',
+    qa: 'שאלות ותשובות',
     subscription: 'הוראת קבע',
-    breslovVideos: 'קרן סגנון',
+    breslovVideos: 'סרטוני ברסלב',
     haeshHype: '🔥 האש הייפ',
     chat: '💬 צ\'אט ברסלבי',
     whatsapp: '💬 דבר איתנו',
@@ -37,8 +41,12 @@ const translations = {
     magazine: 'Magazine',
     join: 'Join',
     downloads: 'Downloads',
+    prayers: 'Prayers',
+    parsha: 'Parsha',
+    donate: 'Donate',
+    qa: 'Q&A',
     subscription: 'Subscription',
-    breslovVideos: 'Keren Style',
+    breslovVideos: 'Breslov Videos',
     haeshHype: '🔥 HaEsh Hype',
     chat: '💬 Breslov Chat',
     whatsapp: '💬 Talk to Us',
@@ -55,8 +63,12 @@ const translations = {
     magazine: 'Magazine',
     join: 'Rejoindre',
     downloads: 'Téléchargements',
+    prayers: 'Prières',
+    parsha: 'Paracha',
+    donate: 'Don',
+    qa: 'Questions & Réponses',
     subscription: 'Abonnement',
-    breslovVideos: 'Style Keren',
+    breslovVideos: 'Vidéos Breslov',
     haeshHype: '🔥 HaEsh Hype',
     chat: '💬 Chat Breslov',
     whatsapp: '💬 Parlez-nous',
@@ -73,8 +85,12 @@ const translations = {
     magazine: 'Revista',
     join: 'Unirse',
     downloads: 'Descargas',
+    prayers: 'Oraciones',
+    parsha: 'Parashá',
+    donate: 'Donar',
+    qa: 'Preguntas y Respuestas',
     subscription: 'Suscripción',
-    breslovVideos: 'Estilo Keren',
+    breslovVideos: 'Videos Breslov',
     haeshHype: '🔥 HaEsh Hype',
     chat: '💬 Chat Breslov',
     whatsapp: '💬 Habla con Nosotros',
@@ -91,8 +107,12 @@ const translations = {
     magazine: 'Журнал',
     join: 'Присоединиться',
     downloads: 'Загрузки',
+    prayers: 'Молитвы',
+    parsha: 'Параша',
+    donate: 'Пожертвовать',
+    qa: 'Вопросы и Ответы',
     subscription: 'Подписка',
-    breslovVideos: 'Керен Стиль',
+    breslovVideos: 'Видео Бреслов',
     haeshHype: '🔥 ХаЭш Хайп',
     chat: '💬 Брeslов Чат',
     whatsapp: '💬 Поговорить с Нами',
@@ -142,7 +162,7 @@ export function Header({ currentLanguage = 'he', onLanguageChange }: HeaderProps
           ))}
         </div>
       </div>
-      {/* TOP ROW - Logo + Special Links */}
+      {/* TOP ROW - Logo + User Actions */}
       <div className="header-container-top">
         {/* LOGO */}
         <div className="header-logo">
@@ -156,29 +176,6 @@ export function Header({ currentLanguage = 'he', onLanguageChange }: HeaderProps
           </a>
         </div>
 
-        {/* SPECIAL NAVIGATION - TOP ROW */}
-        <nav className="header-nav-special" data-testid="nav-special">
-          <ul className="nav-menu-special">
-            <li className={location === '/chat' ? 'current-menu-item' : ''}>
-              <a href="/chat" data-testid="link-chat" style={{color: '#10B981', fontWeight: 'bold'}} className="px-3 py-1 rounded-lg transition-all duration-300 hover:scale-125 hover:text-white hover:bg-green-500 hover:shadow-xl hover:-translate-y-2 inline-block">{t.chat}</a>
-            </li>
-            <li className={location === '/subscription' ? 'current-menu-item' : ''}>
-              <a href="/subscription" data-testid="link-subscription" style={{color: '#FFD700', fontWeight: 'bold'}} className="px-3 py-1 rounded-lg transition-all duration-300 hover:scale-125 hover:text-white hover:bg-yellow-500 hover:shadow-xl hover:-translate-y-2 inline-block">👑 {t.subscription}</a>
-            </li>
-            <li className={location === '/keren-style' ? 'current-menu-item' : ''}>
-              <a href="/keren-style" data-testid="link-keren-style" style={{color: '#FF6B35', fontWeight: 'bold'}} className="px-3 py-1 rounded-lg transition-all duration-300 hover:scale-125 hover:text-white hover:bg-orange-500 hover:shadow-xl hover:-translate-y-2 inline-block">🎥 {t.breslovVideos}</a>
-            </li>
-            <li className={location === '/haesh-hype' ? 'current-menu-item' : ''}>
-              <a href="/haesh-hype" data-testid="link-haesh-hype" style={{color: '#EF4444', fontWeight: 'bold'}} className="px-3 py-1 rounded-lg transition-all duration-300 hover:scale-125 hover:text-white hover:bg-red-500 hover:shadow-xl hover:-translate-y-2 inline-block">{t.haeshHype}</a>
-            </li>
-            <li className={location === '/yaaakov' ? 'current-menu-item' : ''}>
-              <a href="/yaaakov" data-testid="link-yaaakov" className="px-3 py-1 rounded-lg transition-all duration-300 hover:scale-110 hover:text-yellow-300 hover:drop-shadow-lg inline-block hover:-translate-y-1">
-                {currentLanguage === 'he' ? 'יעקב' : currentLanguage === 'en' ? 'Yaaakov' : currentLanguage === 'fr' ? 'Yaaakov' : currentLanguage === 'es' ? 'Yaaakov' : currentLanguage === 'ru' ? 'Яааков' : 'יעקב'}
-              </a>
-            </li>
-          </ul>
-        </nav>
-
         {/* MOBILE MENU TOGGLE */}
         <button 
           className="mobile-menu-toggle transition-all duration-300 hover:scale-125 hover:bg-white hover:text-red-600 hover:shadow-xl hover:rotate-90"
@@ -190,36 +187,6 @@ export function Header({ currentLanguage = 'he', onLanguageChange }: HeaderProps
             {mobileMenuOpen ? <X /> : <Menu />}
           </span>
         </button>
-      </div>
-
-      {/* BOTTOM ROW - Basic Navigation + User Actions */}
-      <div className="header-container-bottom" style={{position: 'sticky', top: 40, zIndex: 25}}>
-        {/* BASIC NAVIGATION */}
-        <nav className="header-nav" data-testid="nav-main">
-          <ul className="nav-menu">
-            <li className={location === '/' ? 'current-menu-item' : ''}>
-              <a href="/" data-testid="link-home" className="transition-all duration-300 hover:scale-110 hover:text-yellow-300 hover:drop-shadow-lg inline-block hover:-translate-y-1">{t.home}</a>
-            </li>
-            <li className={location === '/store' ? 'current-menu-item' : ''}>
-              <a href="/store" data-testid="link-store" className="transition-all duration-300 hover:scale-110 hover:text-yellow-300 hover:drop-shadow-lg inline-block hover:-translate-y-1">{t.store}</a>
-            </li>
-            <li className={location === '/about' ? 'current-menu-item' : ''}>
-              <a href="/about" data-testid="link-about" className="transition-all duration-300 hover:scale-110 hover:text-yellow-300 hover:drop-shadow-lg inline-block hover:-translate-y-1">{t.about}</a>
-            </li>
-            <li className={location === '/contact' ? 'current-menu-item' : ''}>
-              <a href="/contact" data-testid="link-contact" className="transition-all duration-300 hover:scale-110 hover:text-yellow-300 hover:drop-shadow-lg inline-block hover:-translate-y-1">{t.contact}</a>
-            </li>
-            <li className={location === '/magazine' ? 'current-menu-item' : ''}>
-              <a href="/magazine" data-testid="link-magazine" className="transition-all duration-300 hover:scale-110 hover:text-yellow-300 hover:drop-shadow-lg inline-block hover:-translate-y-1">{t.magazine}</a>
-            </li>
-            <li className={location === '/join' ? 'current-menu-item' : ''}>
-              <a href="/join" data-testid="link-join" className="transition-all duration-300 hover:scale-110 hover:text-yellow-300 hover:drop-shadow-lg inline-block hover:-translate-y-1">{t.join}</a>
-            </li>
-            <li className={location === '/downloads' ? 'current-menu-item' : ''}>
-              <a href="/downloads" data-testid="link-downloads" className="transition-all duration-300 hover:scale-110 hover:text-yellow-300 hover:drop-shadow-lg inline-block hover:-translate-y-1">{t.downloads}</a>
-            </li>
-          </ul>
-        </nav>
 
         {/* USER ACTIONS */}
         <div className="header-actions">
@@ -294,62 +261,110 @@ export function Header({ currentLanguage = 'he', onLanguageChange }: HeaderProps
           <h2 className="fire-logo transition-all duration-500 hover:scale-125 hover:text-orange-400 hover:drop-shadow-lg hover:-translate-y-1 hover:rotate-12" data-testid="text-fire-logo">
             {t.fire}
           </h2>
-
-          {/* Language selector moved to top bar */}
         </div>
       </div>
 
-      {/* MOBILE NAVIGATION */}
+      {/* BOTTOM ROW - ALL NAVIGATION HORIZONTAL */}
+      <div className="header-container-bottom" style={{position: 'sticky', top: 40, zIndex: 25, background: 'linear-gradient(90deg,#1aa3d9,#0b78c6)', padding: '10px 20px'}}>
+        <nav className="header-nav-all-horizontal" data-testid="nav-main">
+          <ul className="nav-menu-horizontal" style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', gap: '1rem', listStyle: 'none', margin: 0, padding: 0}}>
+            <li className={location === '/' ? 'current-menu-item' : ''}>
+              <a href="/" data-testid="link-home" className="transition-all duration-300 hover:scale-110 hover:text-yellow-300 hover:drop-shadow-lg inline-block hover:-translate-y-1" style={{color: '#fff', fontWeight: '600', padding: '0.5rem 1rem', textDecoration: 'none'}}>{t.home}</a>
+            </li>
+            <li className={location === '/store' ? 'current-menu-item' : ''}>
+              <a href="/store" data-testid="link-store" className="transition-all duration-300 hover:scale-110 hover:text-yellow-300 hover:drop-shadow-lg inline-block hover:-translate-y-1" style={{color: '#fff', fontWeight: '600', padding: '0.5rem 1rem', textDecoration: 'none'}}>{t.store}</a>
+            </li>
+            <li className={location === '/magazine' ? 'current-menu-item' : ''}>
+              <a href="/magazine" data-testid="link-magazine" className="transition-all duration-300 hover:scale-110 hover:text-yellow-300 hover:drop-shadow-lg inline-block hover:-translate-y-1" style={{color: '#fff', fontWeight: '600', padding: '0.5rem 1rem', textDecoration: 'none'}}>{t.magazine}</a>
+            </li>
+            <li className={location === '/haesh-hype' ? 'current-menu-item' : ''}>
+              <a href="/haesh-hype" data-testid="link-haesh-hype" className="transition-all duration-300 hover:scale-110 hover:text-yellow-300 hover:drop-shadow-lg inline-block hover:-translate-y-1" style={{color: '#EF4444', fontWeight: '700', padding: '0.5rem 1rem', textDecoration: 'none'}}>{t.haeshHype}</a>
+            </li>
+            <li className={location === '/downloads' ? 'current-menu-item' : ''}>
+              <a href="/downloads" data-testid="link-downloads" className="transition-all duration-300 hover:scale-110 hover:text-yellow-300 hover:drop-shadow-lg inline-block hover:-translate-y-1" style={{color: '#fff', fontWeight: '600', padding: '0.5rem 1rem', textDecoration: 'none'}}>{t.downloads}</a>
+            </li>
+            <li className={location === '/prayers' ? 'current-menu-item' : ''}>
+              <a href="/prayers" data-testid="link-prayers" className="transition-all duration-300 hover:scale-110 hover:text-yellow-300 hover:drop-shadow-lg inline-block hover:-translate-y-1" style={{color: '#fff', fontWeight: '600', padding: '0.5rem 1rem', textDecoration: 'none'}}>{t.prayers}</a>
+            </li>
+            <li className={location === '/subscription' ? 'current-menu-item' : ''}>
+              <a href="/subscription" data-testid="link-subscription" className="transition-all duration-300 hover:scale-110 hover:text-yellow-300 hover:drop-shadow-lg inline-block hover:-translate-y-1" style={{color: '#FFD700', fontWeight: '700', padding: '0.5rem 1rem', textDecoration: 'none'}}>👑 {t.subscription}</a>
+            </li>
+            <li className={location === '/keren-style' ? 'current-menu-item' : ''}>
+              <a href="/keren-style" data-testid="link-keren-style" className="transition-all duration-300 hover:scale-110 hover:text-yellow-300 hover:drop-shadow-lg inline-block hover:-translate-y-1" style={{color: '#FF6B35', fontWeight: '700', padding: '0.5rem 1rem', textDecoration: 'none'}}>🎥 {t.breslovVideos}</a>
+            </li>
+            <li className={location === '/about' ? 'current-menu-item' : ''}>
+              <a href="/about" data-testid="link-about" className="transition-all duration-300 hover:scale-110 hover:text-yellow-300 hover:drop-shadow-lg inline-block hover:-translate-y-1" style={{color: '#fff', fontWeight: '600', padding: '0.5rem 1rem', textDecoration: 'none'}}>{t.about}</a>
+            </li>
+            <li className={location === '/contact' ? 'current-menu-item' : ''}>
+              <a href="/contact" data-testid="link-contact" className="transition-all duration-300 hover:scale-110 hover:text-yellow-300 hover:drop-shadow-lg inline-block hover:-translate-y-1" style={{color: '#fff', fontWeight: '600', padding: '0.5rem 1rem', textDecoration: 'none'}}>{t.contact}</a>
+            </li>
+            <li className={location === '/join' ? 'current-menu-item' : ''}>
+              <a href="/join" data-testid="link-join" className="transition-all duration-300 hover:scale-110 hover:text-yellow-300 hover:drop-shadow-lg inline-block hover:-translate-y-1" style={{color: '#fff', fontWeight: '600', padding: '0.5rem 1rem', textDecoration: 'none'}}>{t.join}</a>
+            </li>
+            <li className={location === '/chat' ? 'current-menu-item' : ''}>
+              <a href="/chat" data-testid="link-chat" className="transition-all duration-300 hover:scale-110 hover:text-yellow-300 hover:drop-shadow-lg inline-block hover:-translate-y-1" style={{color: '#10B981', fontWeight: '700', padding: '0.5rem 1rem', textDecoration: 'none'}}>{t.chat}</a>
+            </li>
+            <li className={location === '/yaaakov' ? 'current-menu-item' : ''}>
+              <a href="/yaaakov" data-testid="link-yaaakov" className="transition-all duration-300 hover:scale-110 hover:text-yellow-300 hover:drop-shadow-lg inline-block hover:-translate-y-1" style={{color: '#fff', fontWeight: '600', padding: '0.5rem 1rem', textDecoration: 'none'}}>
+                {currentLanguage === 'he' ? 'יעקב' : currentLanguage === 'en' ? 'Yaaakov' : currentLanguage === 'fr' ? 'Yaaakov' : currentLanguage === 'es' ? 'Yaaakov' : currentLanguage === 'ru' ? 'Яааков' : 'יעקב'}
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      {/* MOBILE NAVIGATION - GRID 4x4 HARMONIEUX */}
       <nav className={`mobile-nav ${mobileMenuOpen ? 'open' : ''}`} data-testid="nav-mobile">
-        <ul className="nav-menu">
-          <li className={location === '/' ? 'current-menu-item' : ''}>
-            <a href="/" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-home">{t.home}</a>
-          </li>
-          <li className={location === '/store' ? 'current-menu-item' : ''}>
-            <a href="/store" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-store">{t.store}</a>
-          </li>
-          <li className={location === '/about' ? 'current-menu-item' : ''}>
-            <a href="/about" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-about">{t.about}</a>
-          </li>
-          <li className={location === '/contact' ? 'current-menu-item' : ''}>
-            <a href="/contact" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-contact">{t.contact}</a>
-          </li>
-          <li className={location === '/magazine' ? 'current-menu-item' : ''}>
-            <a href="/magazine" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-magazine">{t.magazine}</a>
-          </li>
-          <li className={location === '/join' ? 'current-menu-item' : ''}>
-            <a href="/join" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-join">{t.join}</a>
-          </li>
-          <li className={location === '/downloads' ? 'current-menu-item' : ''}>
-            <a href="/downloads" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-downloads">{t.downloads}</a>
-          </li>
-          <li>
-            <a 
-              href="https://wa.me/972501234567?text=שלום, אני מעוניין לשמוע עוד על הספרים והמנויים שלכם" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              onClick={() => setMobileMenuOpen(false)} 
-              data-testid="mobile-link-whatsapp" 
-              style={{color: '#25D366', fontWeight: 'bold'}}
-            >
-              {t.whatsapp}
-            </a>
-          </li>
-          <li className={location === '/subscription' ? 'current-menu-item' : ''}>
-            <a href="/subscription" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-subscription" style={{color: '#FFD700', fontWeight: 'bold'}}>👑 {t.subscription}</a>
-          </li>
-          <li className={location === '/keren-style' ? 'current-menu-item' : ''}>
-            <a href="/keren-style" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-keren-style" style={{color: '#FF6B35', fontWeight: 'bold'}}>🎥 {t.breslovVideos}</a>
-          </li>
-          <li className={location === '/haesh-hype' ? 'current-menu-item' : ''}>
-            <a href="/haesh-hype" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-haesh-hype" style={{color: '#EF4444', fontWeight: 'bold'}}>{t.haeshHype}</a>
-          </li>
-          <li className={location === '/yaaakov' ? 'current-menu-item' : ''}>
-            <a href="/yaaakov" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-yaaakov">
-              {currentLanguage === 'he' ? 'יעקב' : currentLanguage === 'en' ? 'Yaaakov' : currentLanguage === 'fr' ? 'Yaaakov' : currentLanguage === 'es' ? 'Yaaakov' : currentLanguage === 'ru' ? 'Яааков' : 'יעקב'}
-            </a>
-          </li>
-        </ul>
+        <div className="mobile-menu-panel">
+          <a href="/" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-home" className={location === '/' ? 'current-menu-item' : ''}>
+            🏠<br/>{t.home}
+          </a>
+          <a href="/store" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-store" className={location === '/store' ? 'current-menu-item' : ''}>
+            🛍️<br/>{t.store}
+          </a>
+          <a href="/magazine" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-magazine" className={location === '/magazine' ? 'current-menu-item' : ''}>
+            📖<br/>{t.magazine}
+          </a>
+          <a href="/haesh-hype" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-haesh-hype" className={location === '/haesh-hype' ? 'current-menu-item' : ''} style={{background: 'linear-gradient(135deg, #FF6B35, #FF8C42)'}}>
+            🔥<br/>{t.haeshHype.replace('🔥 ', '')}
+          </a>
+          <a href="/downloads" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-downloads" className={location === '/downloads' ? 'current-menu-item' : ''}>
+            📥<br/>{t.downloads}
+          </a>
+          <a href="/prayers" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-prayers" className={location === '/prayers' ? 'current-menu-item' : ''}>
+            🙏<br/>{t.prayers}
+          </a>
+          <a href="/parsha" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-parsha" className={location === '/parsha' ? 'current-menu-item' : ''}>
+            📜<br/>{t.parsha}
+          </a>
+          <a href="/subscription" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-subscription" className={location === '/subscription' ? 'current-menu-item' : ''} style={{background: 'linear-gradient(135deg, #FFD700, #FFA500)'}}>
+            👑<br/>{t.subscription}
+          </a>
+          <a href="/keren-style" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-keren-style" className={location === '/keren-style' ? 'current-menu-item' : ''}>
+            🎥<br/>{t.breslovVideos}
+          </a>
+          <a href="/chat" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-chat" className={location === '/chat' ? 'current-menu-item' : ''} style={{background: 'linear-gradient(135deg, #10B981, #059669)'}}>
+            💬<br/>{t.chat.replace('💬 ', '')}
+          </a>
+          <a href="/about" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-about" className={location === '/about' ? 'current-menu-item' : ''}>
+            ℹ️<br/>{t.about}
+          </a>
+          <a href="/contact" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-contact" className={location === '/contact' ? 'current-menu-item' : ''}>
+            ✉️<br/>{t.contact}
+          </a>
+          <a href="/join" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-join" className={location === '/join' ? 'current-menu-item' : ''}>
+            ➕<br/>{t.join}
+          </a>
+          <a href="/donate" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-donate" className={location === '/donate' ? 'current-menu-item' : ''}>
+            💝<br/>{t.donate}
+          </a>
+          <a href="/qa" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-qa" className={location === '/qa' ? 'current-menu-item' : ''}>
+            ❓<br/>{t.qa}
+          </a>
+          <a href="/yaaakov" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-yaaakov" className={location === '/yaaakov' ? 'current-menu-item' : ''}>
+            👤<br/>{currentLanguage === 'he' ? 'יעקב' : 'Yaaakov'}
+          </a>
+        </div>
       </nav>
 
       <CartWidget />

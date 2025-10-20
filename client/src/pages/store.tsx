@@ -10,6 +10,7 @@ import { Input } from '@/components/ui/input';
 import { Search, X, Filter, ChevronDown, ChevronUp } from 'lucide-react';
 import { convertImagePath } from '../utils/imagePathHelper';
 import type { Product } from '../../../shared/schema';
+import { useCart } from '@/contexts/CartContext';
 
 // Filter interfaces
 interface Filters {
@@ -24,6 +25,7 @@ interface Filters {
 export default function Store() {
   const { currentLanguage, setLanguage } = useLanguage();
   const allProducts = Object.values(realBreslovProducts);
+  const { addItem } = useCart();
   
   // Filter states
   const [filters, setFilters] = useState<Filters>({
@@ -395,75 +397,171 @@ export default function Store() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {filteredProducts.map((product) => (
-                <div 
-                  key={product.id} 
-                  className="bg-white rounded-lg overflow-hidden shadow hover:shadow-lg transition-shadow border border-gray-200"
-                  data-testid={`card-product-${product.id}`}
-                >
-                  
-                  {/* Image */}
-                  <Link href={`/product/${product.id}`}>
-                    {product.images && product.images.length > 0 ? (
-                      <img 
-                        src={convertImagePath(product.images[0])}
-                        alt={product.name}
-                        className="w-full h-48 object-cover cursor-pointer hover:opacity-90 transition-opacity"
-                        data-testid={`img-product-${product.id}`}
-                        onError={(e) => {
-                          e.currentTarget.style.display = 'none';
-                        }}
-                      />
-                    ) : (
-                      <div 
-                        className="w-full h-48 bg-gray-100 flex items-center justify-center cursor-pointer hover:bg-gray-200 transition-colors"
-                        data-testid={`placeholder-product-${product.id}`}
-                      >
-                        <span className="text-2xl">📖</span>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-8">
+              {filteredProducts.map((product) => {
+                const minPrice = product.variants && product.variants.length > 0 
+                  ? Math.min(...product.variants.map(v => v.price))
+                  : 0;
+                const maxPrice = product.variants && product.variants.length > 0 
+                  ? Math.max(...product.variants.map(v => v.price))
+                  : 0;
+                const hasMultiplePrices = minPrice !== maxPrice;
+                
+                return (
+                  <div 
+                    key={product.id} 
+                    className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 border border-gray-100 group relative"
+                    style={{
+                      transformStyle: 'preserve-3d',
+                      transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)'
+                    }}
+                    data-testid={`card-product-${product.id}`}
+                  >
+                    {/* Badge - Bestseller/Nouveau */}
+                    {product.variants && product.variants.some(v => v.inStock && v.stockQuantity && v.stockQuantity < 10) && (
+                      <div className="absolute top-3 left-3 z-10 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                        כמעט אזל!
                       </div>
                     )}
-                  </Link>
-                  
-                  {/* Content */}
-                  <div className="p-4">
+                    
+                    {/* Image Container with 1:1 ratio */}
                     <Link href={`/product/${product.id}`}>
-                      <h3 
-                        className="font-semibold text-lg mb-2 text-gray-900 line-clamp-2 cursor-pointer hover:text-blue-600 transition-colors"
-                        data-testid={`text-title-${product.id}`}
-                      >
-                        {product.name}
-                      </h3>
+                      <div className="relative w-full aspect-square overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
+                        {product.images && product.images.length > 0 ? (
+                          <img 
+                            src={product.images[0].startsWith('http') ? product.images[0] : `/attached_assets/${product.images[0].split('/').pop()}`}
+                            alt={product.name}
+                            className="w-full h-full object-contain cursor-pointer transition-all duration-700 group-hover:scale-110 group-hover:rotate-1 bg-white p-4"
+                            data-testid={`img-product-${product.id}`}
+                            loading="lazy"
+                            onError={(e) => {
+                              const target = e.currentTarget;
+                              target.style.display = 'none';
+                              const placeholder = target.nextElementSibling as HTMLElement;
+                              if (placeholder) placeholder.style.display = 'flex';
+                            }}
+                          />
+                        ) : null}
+                        <div 
+                          className="absolute inset-0 flex-col items-center justify-center cursor-pointer"
+                          style={{ display: product.images && product.images.length > 0 ? 'none' : 'flex' }}
+                          data-testid={`placeholder-product-${product.id}`}
+                        >
+                          <span className="text-6xl mb-2">📖</span>
+                          <span className="text-sm text-gray-500 font-medium">אין תמונה</span>
+                        </div>
+                        
+                        {/* Hover Overlay with Quick Actions */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end justify-center p-6">
+                          <div className="transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 space-y-2 w-full">
+                            <Button 
+                              onClick={(e) => {
+                                e.preventDefault();
+                                window.location.href = `/product/${product.id}`;
+                              }}
+                              className="w-full bg-white/95 text-gray-900 hover:bg-white font-bold shadow-lg backdrop-blur-sm"
+                            >
+                              👁️ צפה מהיר
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
                     </Link>
                     
-                    <div 
-                      className="text-lg font-bold text-blue-600 mb-2"
-                      data-testid={`text-price-${product.id}`}
-                    >
-                      {product.variants && product.variants.length > 0 ? 
-                        `${Math.min(...product.variants.map(v => v.price))} ₪ – ${Math.max(...product.variants.map(v => v.price))} ₪` : 
-                        'מחיר לא זמין'
-                      }
+                    {/* Content with Premium Spacing */}
+                    <div className="p-6 space-y-4">
+                      {/* Category & Language Tags */}
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="text-xs px-3 py-1 rounded-full bg-gradient-to-r from-blue-50 to-blue-100 text-blue-700 border border-blue-200 font-semibold">
+                          {product.category}
+                        </span>
+                        {product.language && (
+                          <span className="text-xs px-3 py-1 rounded-full bg-gray-100 text-gray-700 border border-gray-200 font-medium">
+                            {product.language}
+                          </span>
+                        )}
+                      </div>
+                      
+                      {/* Title with elegant typography */}
+                      <Link href={`/product/${product.id}`}>
+                        <h3 
+                          className="font-bold text-xl leading-snug text-gray-900 line-clamp-2 cursor-pointer hover:text-blue-600 transition-colors duration-300"
+                          style={{ fontFamily: 'Assistant, sans-serif', minHeight: '3.5rem' }}
+                          data-testid={`text-title-${product.id}`}
+                        >
+                          {product.name}
+                        </h3>
+                      </Link>
+                      
+                      {/* Author if available */}
+                      {product.author && (
+                        <p className="text-sm text-gray-500 font-medium">
+                          {product.author}
+                        </p>
+                      )}
+                      
+                      {/* Price with elegant display */}
+                      <div className="flex items-baseline justify-between pt-2 border-t border-gray-100">
+                        <div>
+                          <div 
+                            className="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-800"
+                            data-testid={`text-price-${product.id}`}
+                          >
+                            {hasMultiplePrices ? (
+                              <span className="flex items-baseline gap-1">
+                                <span className="text-2xl">{minPrice}</span>
+                                <span className="text-lg text-gray-400">-</span>
+                                <span className="text-2xl">{maxPrice}</span>
+                                <span className="text-lg">₪</span>
+                              </span>
+                            ) : (
+                              <span className="flex items-baseline gap-1">
+                                <span>{minPrice}</span>
+                                <span className="text-lg">₪</span>
+                              </span>
+                            )}
+                          </div>
+                          <div className="text-xs text-gray-500 mt-1">
+                            {product.variants?.length || 0} גרסאות זמינות
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Action Buttons - Modern minimal */}
+                      <div className="grid grid-cols-2 gap-3 pt-2">
+                        <Link href={`/product/${product.id}`}>
+                          <Button 
+                            className="w-full bg-white text-blue-600 border-2 border-blue-200 hover:border-blue-400 hover:bg-blue-50 font-bold transition-all duration-300 shadow-sm hover:shadow-md"
+                            data-testid={`button-view-details-${product.id}`}
+                          >
+                            פרטים מלאים
+                          </Button>
+                        </Link>
+                        <Button 
+                          onClick={() => {
+                            const v = product.variants?.[0];
+                            if (!v) return;
+                            addItem({
+                              productId: product.id,
+                              variantId: v.id,
+                              name: product.name,
+                              nameEnglish: product.nameEnglish || product.name,
+                              image: product.images?.[0] || '',
+                              price: v.price,
+                              quantity: 1,
+                              variant: { format: v.format, binding: v.binding, size: v.size }
+                            });
+                          }}
+                          className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+                          data-testid={`button-add-${product.id}`}
+                        >
+                          🛒 הוסף
+                        </Button>
+                      </div>
                     </div>
-                    
-                    <div 
-                      className="text-sm text-gray-600 mb-4"
-                      data-testid={`text-category-${product.id}`}
-                    >
-                      {product.category}
-                    </div>
-                    
-                    <Link href={`/product/${product.id}`}>
-                      <Button 
-                        className="w-full bg-blue-600 hover:bg-blue-700 text-white"
-                        data-testid={`button-view-details-${product.id}`}
-                      >
-                        צפייה בפרטים
-                      </Button>
-                    </Link>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
             
             {filteredProducts.length === 0 && (
