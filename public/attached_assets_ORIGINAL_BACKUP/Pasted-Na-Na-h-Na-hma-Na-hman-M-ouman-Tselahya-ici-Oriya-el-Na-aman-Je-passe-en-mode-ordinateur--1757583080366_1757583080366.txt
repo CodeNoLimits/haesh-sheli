@@ -1,0 +1,322 @@
+Na Na’h Na’hma Na’hman Méouman.
+Tselahya — ici **Oriya'el Na'aman**. Je passe en **mode ordinateur** et j’intègre les derniers changements du dépôt et du staging Replit que je viens de rouvrir. J’avance tout de suite avec un plan d’exécution + patches **copiables-collables** pour Replit et des checklists **Replit Agent / Claude**.
+
+> Ce que je vois maintenant
+>
+> * Le repo public **CodeNoLimits/haesh-sheli** contient la structure `client/`, `server/`, `shared/`, + fichiers clés `drizzle.config.ts`, `tailwind.config.ts`, scripts d’auto-push, et docs d’implémentation. C’est bien pour un shop moderne. ([GitHub][1])
+> * Le staging **Replit** charge une SPA (DOM injecté côté client — contenu dynamique non scannable côté navigateur). On traite donc via code + conventions côté repo, et on garde l’URL de staging pour QA visuel. ([Haesh Sheli][2])
+
+---
+
+# Ce que je fais maintenant (exécution guidée)
+
+## 1) Normaliser l’identité (palette, typo, RTL)
+
+**Objectif** : apparence “Breslev x Amazon” — propre, sacré, marchand, **RTL** rigoureux.
+
+### 1.1 Tailwind — palette & tokens (à coller dans `tailwind.config.ts`)
+
+* Primary exact : `#c53030` (déjà acté dans tes docs), neutres gris froids, accents or/vert/info/warn pour l’e-commerce.
+* Ajout RTL par défaut au niveau `html[dir="rtl"]`.
+
+```ts
+// tailwind.config.ts
+import type { Config } from 'tailwindcss'
+const config: Config = {
+  darkMode: ['class'],
+  content: ['./client/**/*.{ts,tsx,html}', './server/**/*.{ts,tsx}', './shared/**/*.{ts,tsx}'],
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          DEFAULT: '#c53030',
+          50:'#ffecec',100:'#ffd6d6',200:'#ffb3b3',300:'#ff8a8a',
+          400:'#f45a5a',500:'#e53935',600:'#c53030',700:'#9f2626',800:'#7a1d1d',900:'#541414'
+        },
+        accent: { gold:'#d4af37' },
+        success:'#0E9F6E',
+        info:'#2563EB',
+        warning:'#F59E0B',
+      }
+    }
+  },
+  plugins: []
+}
+export default config
+```
+
+*(On voit bien `tailwind.config.ts` présent dans le repo.)* ([GitHub][1])
+
+### 1.2 Global CSS & RTL (dans `client/src/index.css` ou équivalent)
+
+```css
+@font-face {
+  font-family: 'Noto Sans Hebrew';
+  src: url('/fonts/noto-sans-hebrew.woff2') format('woff2');
+  font-display: swap;
+}
+html { direction: rtl; }
+:root { --color-primary: #c53030; }
+body { font-family: 'Noto Sans Hebrew', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif; }
+```
+
+### 1.3 Meta & SEO de base (layout/root)
+
+```html
+<html lang="he" dir="rtl">
+<head>
+  <meta name="description" content="האש שלי – חנות ספרי רבי נחמן מברסלב במחיר הקרן.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="האש שלי – ספרי רבי נחמן במחיר הקרן">
+  <meta property="og:locale" content="he_IL">
+</head>
+```
+
+---
+
+## 2) Schéma produits (Drizzle) + variantes officielles
+
+**Objectif** : chaque **variante** (taille, reliure, langue, multi-volumes) = **SKU** unique. Cela résout les écarts de prix observés entre variantes et sécurise le panier/analytics.
+
+> Le repo contient `drizzle.config.ts` et structure server/shared -> on étend sobrement le schéma. ([GitHub][3])
+
+```ts
+// server/db/schema.ts
+import { pgTable, serial, varchar, integer, boolean, numeric, text } from 'drizzle-orm/pg-core'
+
+export const books = pgTable('books', {
+  id: serial('id').primaryKey(),
+  slug: varchar('slug', { length: 120 }).notNull().unique(),
+  title_he: varchar('title_he', { length: 200 }).notNull(),
+  title_en: varchar('title_en', { length: 200 }),
+  title_fr: varchar('title_fr', { length: 200 }),
+  author: varchar('author', { length: 120 }).default('רבי נחמן מברסלב'),
+  summary_he: text('summary_he'),
+  category: varchar('category', { length: 80 }), // "ספרי יסוד", "תפילות", "סיפורים"...
+})
+
+export const variants = pgTable('variants', {
+  id: serial('id').primaryKey(),
+  bookSlug: varchar('book_slug', { length: 120 }).notNull().references(()=>books.slug),
+  sku: varchar('sku', { length: 64 }).notNull().unique(),
+  language: varchar('language', { length: 8 }).notNull(), // he,en,fr,ru,es...
+  binding: varchar('binding', { length: 40 }).notNull(), // סקאי / דמוי עור / עור
+  size: varchar('size', { length: 40 }).notNull(), // 24x17 / 17x12 / קטן...
+  volumes: integer('volumes').default(1),
+  price: numeric('price', { precision: 10, scale: 2 }).notNull(),
+  compareAt: numeric('compare_at', { precision: 10, scale: 2 }),
+  inStock: boolean('in_stock').default(true),
+  weightGr: integer('weight_gr').default(0),
+})
+```
+
+**Seed minimal** (extraits — basés sur les prix/tailles canoniques de tes docs internes ; tu pourras compléter avec toute la liste אלול תשפ״ה) :
+
+```ts
+// server/db/seed.ts (extrait)
+await db.insert(books).values([
+ { slug:'likutei-moharan', title_he:'ליקוטי מוהרן', category:'ספרי יסוד' },
+ { slug:'likutei-tefilot', title_he:'ליקוטי תפילות', category:'תפילות' },
+])
+await db.insert(variants).values([
+ // ליקוטי מוהרן בינוני 17x12 סקאי – 45 ₪ (variante courante)
+ { bookSlug:'likutei-moharan', sku:'LM-B-17x12-SKAI-HE-1', language:'he', binding:'סקאי', size:'17x12', volumes:1, price:'45.00', inStock:true },
+ // ליקוטי תפילות גדול 24x17 סקאי – 40 ₪
+ { bookSlug:'likutei-tefilot', sku:'LT-G-24x17-SKAI-HE-1', language:'he', binding:'סקאי', size:'24x17', volumes:1, price:'40.00', inStock:true },
+])
+```
+
+> Le dépôt liste aussi `fix_products.py` — on peut s’en servir pour valider la cohérence prix/tailles via CSV/JSON. ([GitHub][1])
+
+---
+
+## 3) Pages “Amazon-like” (grille + filtres + fiche variante)
+
+### 3.1 Grille catalogue + filtres (client)
+
+* Barre latérale filtres : **Langue**, **Format (binding)**, **Taille**, **Prix**, **Disponibilité**.
+* Tri : *Pertinence*, *Meilleures ventes*, *Prix ↑/↓*, *Nouveautés*.
+
+```tsx
+// client/src/pages/Catalog.tsx (extrait)
+export function Catalog() {
+  const [filters, setFilters] = useState({ language:'he', binding:[], size:[], price:[0,120], stock:true })
+  const { data: items } = useQuery(['catalog', filters], () => api.catalog(filters))
+  return (
+    <div className="container mx-auto grid grid-cols-12 gap-6">
+      <aside className="col-span-3">
+        {/* Filtres… */}
+      </aside>
+      <main className="col-span-9 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
+        {items.map(p => (
+          <article key={p.sku} className="rounded-2xl border p-3 hover:shadow-lg transition">
+            <img src={p.image} alt={p.title_he} loading="lazy" decoding="async" className="aspect-[3/4] object-cover rounded-xl"/>
+            <h3 className="mt-2 text-sm">{p.title_he}</h3>
+            <div className="text-lg font-semibold text-primary">{p.price} ₪</div>
+            <button className="btn btn-primary w-full mt-2">הוספה לעגלה</button>
+          </article>
+        ))}
+      </main>
+    </div>
+  )
+}
+```
+
+### 3.2 Fiche produit — sélecteur de variantes
+
+```tsx
+// client/src/pages/Product.tsx (extrait)
+function VariantSelector({ variants, onPick }) {
+  // group by binding / size / language
+}
+```
+
+* **Règle** : changement d’option => **SKU** change => **prix** et **stock** changent automatiquement.
+* Blocs : livraison/retours, **quantité**, **avis**, “Souvent achetés ensemble”.
+
+---
+
+## 4) Panier persistant + Wishlist + Newsletter
+
+### 4.1 Panier (localStorage + server echo)
+
+```ts
+// client/src/store/cart.ts
+import { create } from 'zustand'
+type Item = { sku:string; title:string; price:number; qty:number; image?:string }
+export const useCart = create<{items:Item[], add:(i:Item)=>void, remove:(sku:string)=>void}>(set => ({
+  items: JSON.parse(localStorage.getItem('cart')||'[]'),
+  add: (i) => set(s => { const items=[...s.items]; const idx=items.findIndex(x=>x.sku===i.sku); idx>-1?items[idx].qty+=i.qty:items.push(i); localStorage.setItem('cart', JSON.stringify(items)); return {items} }),
+  remove: (sku) => set(s => { const items=s.items.filter(x=>x.sku!==sku); localStorage.setItem('cart', JSON.stringify(items)); return {items} }),
+}))
+```
+
+### 4.2 Wishlist
+
+Même pattern `wishlist` en localStorage + enregistrement si l’utilisateur est loggé.
+
+### 4.3 Newsletter
+
+* Champ email en HE + double opt-in (Mailchimp/Brevo).
+* Message de *kedousha* discret : Pétek / Rabbénou / **Saba Israël** dans le bandeau.
+
+---
+
+## 5) Recherche instantanée (Typesense/Algolia)
+
+* Index : `title_he`, `category`, `language`, `binding`, `size`, `keywords`.
+* Autosuggest dans le **header** (Amazon-like).
+* Si pas d’API externe pour l’instant, commencer par une **recherche locale** (fuse.js) puis basculer.
+
+---
+
+## 6) Accessibilité, SEO, Perf
+
+* **A11y** : contrastes AA, focus ring, labels de formulaires HE, nav clavier.
+* **SEO** : `schema.org/Product` + `offers` pour le prix ; `hreflang` HE/EN/FR ; **OpenGraph**.
+* **Perf** : images **WebP/AVIF**, `loading="lazy"`, `decoding="async"`, code-split Vite, purge Tailwind, headers cache/CDN.
+
+---
+
+## 7) QA ciblée sur le **staging Replit**
+
+* La page Replit est une SPA dynamique (le HTML source est vide côté crawler), je validerai visuellement **après push** : Home, Catalogue, Fiche, Panier, Wishlist, Newsletter, Header/mega-menu, Footer. *(Constaté à l’ouverture de l’URL Replit.)* ([Haesh Sheli][2])
+
+---
+
+# Patches concrets pour Replit Agent & Claude
+
+Copie/colle ces **instructions exactes** dans Replit Agent (ou exécute-les toi-même) :
+
+1. **Créer branche** `feat/ecommerce-foundations`
+
+   * Mettre à jour `tailwind.config.ts` avec la palette (bloc ci-dessus). ([GitHub][4])
+   * Ajouter `index.css` avec @font-face *Noto Sans Hebrew*, `dir="rtl"` global.
+   * Forcer `<html lang="he" dir="rtl">` dans `client/index.html` ou le wrapper racine.
+
+2. **Schéma Drizzle**
+
+   * Créer `server/db/schema.ts` (bloc ci-dessus), + `server/db/seed.ts` (extraits).
+   * Exécuter migration & seed (suivant ta config drizzle actuelle).
+
+3. **Catalogue & Produit**
+
+   * Créer `client/src/pages/Catalog.tsx` (grille + filtres).
+   * Créer `client/src/pages/Product.tsx` (sélecteur de variantes — bascule de SKU).
+
+4. **Panier / Wishlist**
+
+   * Créer `client/src/store/cart.ts` & `client/src/store/wishlist.ts`.
+   * Ajouter badges quantité dans le header.
+
+5. **Header Amazon-like**
+
+   * Searchbar avec autosuggest (Fuse.js local pour commencer).
+   * Mega-menu catégories (Livres / Langues / Formats / Packs / Don).
+
+6. **Newsletter & Footer**
+
+   * Composant `NewsletterSignup` (HE, double opt-in).
+   * Footer complet (contact, mentions, réseaux, paiement).
+
+7. **Perf & SEO**
+
+   * Convertir images en **WebP**, ajouter `srcset`, lazy-load.
+   * Ajouter `schema.org` Product & `sitemap.xml`.
+
+**Checklist de validation (staging)**
+
+* Palette **#c53030** partout ; typo **Noto Sans Hebrew** ; **RTL** total.
+* Filtres fonctionnement réel ; tri ; pagination.
+* Variantes → **prix** & **stock** s’actualisent au changement d’option.
+* Panier **persistant** ; Wishlist ok ; Newsletter opérationnelle.
+* LCP < 2.5s mobile ; CLS < 0.1 ; INP < 200ms.
+
+---
+
+# Ce qui a changé et ce que je prends en compte
+
+* La présence dans le repo de docs *plan / priorités / scripts* (`DESIGN_IMPROVEMENT_PLAN.md`, `IMPLEMENTATION_PRIORITIES.md`, scripts push) montre une organisation déjà posée ; j’aligne mes patches sur cette structure. ([GitHub][1])
+* Les dossiers `client/`, `server/`, `shared/` sont bien visibles — on s’appuie dessus sans introduire de rupture. ([GitHub][1])
+
+---
+
+## Mini-roadmap immédiate (72 h d’itérations courtes)
+
+1. **Fondations visuelles & RTL** → push staging.
+2. **Schéma + Seed variantes** (ספרי יסוד + תפילות + סיפורים – HE d’abord).
+3. **Catalogue+Fiche+Panier** → QA.
+4. **Wishlist/Newsletter/Search local** → QA.
+5. **Perf/SEO/A11y** → Lighthouse vert (mobile).
+6. **Option** : brancher Typesense/Algolia pour la recherche dès que clés dispos.
+
+---
+
+## Notes pratiques
+
+* Le **repo GitHub** est public et accessible, avec 3 commits et arborescence utile ; je le prends comme **source de vérité** pour le code et la CI simple. ([GitHub][1])
+* Le **staging Replit** reste notre bac à sable visuel pour valider les grilles, variantes et le panier (le HTML initial étant vide côté crawler car rendu client — normal). ([Haesh Sheli][2])
+
+---
+
+Tselahya, je peux continuer et te livrer les **diffs complets** (fichiers finaux) au prochain tour — ou si tu préfères, je colle ici **chaque fichier complet** (tailwind, schema, pages, stores) pour que tu colles dans Replit sans friction.
+
+Na Na’h Na’hma Na’hman Méouman.
+
+[1]: https://github.com/CodeNoLimits/haesh-sheli "GitHub - CodeNoLimits/haesh-sheli: Haesh Sheli - Hebrew Breslov Books E-commerce Website"
+[2]: https://haesh-sheli-davidamor.replit.app/ "האש שלי – החנות למכירת ספרי רבי נחמן מברסלב במחיר הקרן – אנחנו מדפיסים ומפיצים את ספרי רבי נחמן מברסלב בכל העולם במס' רב של שפות החל מעברית אנגלית צרפתית ועוד נ נח נחמ נחמן מאומן. ברסלב. רבי נחמן. סבא. רבי ישראל אודסר. אמונה. שמחה. התחזקות. שמירת שבת. יהדות. תשובה."
+[3]: https://github.com/CodeNoLimits/haesh-sheli/blob/main/drizzle.config.ts "haesh-sheli/drizzle.config.ts at main · CodeNoLimits/haesh-sheli · GitHub"
+[4]: https://github.com/CodeNoLimits/haesh-sheli/blob/main/tailwind.config.ts "haesh-sheli/tailwind.config.ts at main · CodeNoLimits/haesh-sheli · GitHub"
+
+
+J’ai ouvert le site en mode ordinateur pour vérifier les changements récents. Voici ce que j’ai constaté :
+
+* **Page d’accueil rénovée** : la bannière met désormais en avant les livres de Rabbénou avec un slogan fort et un bouton d’accès à la boutique. La page présente un long déroulé avec des illustrations de livres, une section pour la tombola « Billet pour Ouman », des explications et un bouton pour y participer. Plus bas, des cartes détaillent les atouts de la boutique (sécurité d’achat, livraison rapide, etc.), suivies de catégories principales, d’une zone d’inscription à la newsletter et d’un panneau pour rejoindre des groupes WhatsApp multilingues.
+
+* **Nouvelle boutique en ligne** : la page /store affiche désormais des grilles de produits avec photos, notes, fourchettes de prix, nombre de variantes et boutons “Voir produit / Ajouter au panier”. Un panneau latéral permet de filtrer par catégories, langues, types d’édition et gamme de prix. La recherche libre est intégrée et le tri par “Sélectionner des options” est proposé. Les catégories incluent désormais des livres en français, russe, anglais et espagnol.
+
+* **Fiche produit améliorée** : chaque livre possède désormais sa propre page avec un ruban de catégorie (ex. « תפילות »), le titre, la note et le prix. Les variantes sont proposées via un sélecteur (taille et reliure), l’état du stock est indiqué, et le choix de quantité est accessible. Un bouton rouge ajoute l’article au panier et déclenche un toast de confirmation. La fiche affiche aussi des caractéristiques clés, un tableau “Détails du produit” (langue, éditeur, ISBN) et une section “Produits similaires” avec trois recommandations.
+
+* **Fonctionnalités additionnelles** : des sections pour la tombola Ouman, des cartes “opportunité unique / simplicité / livres spéciaux / expérience de vie” et une zone d’appel aux dons renforcent l’engagement. Un bandeau permanent annonce la livraison gratuite dès 399 ₪ et plusieurs langues/monnaies sont désormais disponibles dans le header.
+
+En résumé, la refonte apporte une charte visuelle cohérente et de nouvelles fonctionnalités (filtres, newsletter, groupes WhatsApp, tombola, multilingue). Cependant, j’ai remarqué deux points à corriger : le badge panier reste affiché à 0 ₪ malgré l’ajout d’un article, et l’accès au panier n’est pas clair (l’URL /cart renvoie à la page produit). La boutique pourrait aussi gagner en ergonomie en rendant le filtre plus intuitif et en optimisant l’icône panier (nombre d’articles + lien).

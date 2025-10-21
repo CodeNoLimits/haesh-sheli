@@ -22,8 +22,87 @@ interface Filters {
   languages: string[];
 }
 
+const storeTranslations = {
+  he: {
+    search: 'חיפוש...',
+    priceRange: 'טווח מחירים',
+    languages: 'שפות',
+    categories: 'קטגוריות',
+    sizes: 'גדלים',
+    formats: 'פורמטים',
+    clearFilters: 'נקה סינון',
+    showingResults: 'מציג {count} תוצאות',
+    noResults: 'לא נמצאו תוצאות',
+    viewDetails: 'פרטים מלאים',
+    addToCart: 'הוסף לסל',
+    quickView: 'צפה מהיר',
+    almostSoldOut: 'כמעט אזל!'
+  },
+  en: {
+    search: 'Search...',
+    priceRange: 'Price Range',
+    languages: 'Languages',
+    categories: 'Categories',
+    sizes: 'Sizes',
+    formats: 'Formats',
+    clearFilters: 'Clear Filters',
+    showingResults: 'Showing {count} results',
+    noResults: 'No results found',
+    viewDetails: 'Full Details',
+    addToCart: 'Add to Cart',
+    quickView: 'Quick View',
+    almostSoldOut: 'Almost Sold Out!'
+  },
+  fr: {
+    search: 'Rechercher...',
+    priceRange: 'Gamme de Prix',
+    languages: 'Langues',
+    categories: 'Catégories',
+    sizes: 'Tailles',
+    formats: 'Formats',
+    clearFilters: 'Effacer les Filtres',
+    showingResults: 'Affichage de {count} résultats',
+    noResults: 'Aucun résultat',
+    viewDetails: 'Détails Complets',
+    addToCart: 'Ajouter au Panier',
+    quickView: 'Vue Rapide',
+    almostSoldOut: 'Presque Épuisé!'
+  },
+  es: {
+    search: 'Buscar...',
+    priceRange: 'Rango de Precios',
+    languages: 'Idiomas',
+    categories: 'Categorías',
+    sizes: 'Tamaños',
+    formats: 'Formatos',
+    clearFilters: 'Limpiar Filtros',
+    showingResults: 'Mostrando {count} resultados',
+    noResults: 'No se encontraron resultados',
+    viewDetails: 'Detalles Completos',
+    addToCart: 'Añadir al Carrito',
+    quickView: 'Vista Rápida',
+    almostSoldOut: '¡Casi Agotado!'
+  },
+  ru: {
+    search: 'Поиск...',
+    priceRange: 'Диапазон Цен',
+    languages: 'Языки',
+    categories: 'Категории',
+    sizes: 'Размеры',
+    formats: 'Форматы',
+    clearFilters: 'Очистить Фильтры',
+    showingResults: 'Показано {count} результатов',
+    noResults: 'Результаты не найдены',
+    viewDetails: 'Полная Информация',
+    addToCart: 'Добавить в Корзину',
+    quickView: 'Быстрый Просмотр',
+    almostSoldOut: 'Почти Распродано!'
+  }
+};
+
 export default function Store() {
   const { currentLanguage, setLanguage } = useLanguage();
+  const t = storeTranslations[currentLanguage as keyof typeof storeTranslations] || storeTranslations.he;
   const allProducts = Object.values(realBreslovProducts);
   const { addItem } = useCart();
   
@@ -212,7 +291,7 @@ export default function Store() {
                   onClick={() => toggleSection('price')}
                   data-testid="label-price-range"
                 >
-                  <span className="text-sm font-medium text-gray-700">טווח מחירים</span>
+                  <span className="text-sm font-medium text-gray-700">{t.priceRange}</span>
                   {expandedSections.price ? <ChevronUp className="h-4 w-4 text-gray-500" /> : <ChevronDown className="h-4 w-4 text-gray-500" />}
                 </div>
                 {expandedSections.price && (
@@ -240,7 +319,7 @@ export default function Store() {
                   onClick={() => toggleSection('languages')}
                   data-testid="label-languages"
                 >
-                  <span className="text-sm font-semibold text-blue-800">שפות</span>
+                  <span className="text-sm font-semibold text-blue-800">{t.languages}</span>
                   {expandedSections.languages ? <ChevronUp className="h-4 w-4 text-blue-600" /> : <ChevronDown className="h-4 w-4 text-blue-600" />}
                 </div>
                 {expandedSections.languages && (
@@ -274,7 +353,7 @@ export default function Store() {
                   onClick={() => toggleSection('categories')}
                   data-testid="label-categories"
                 >
-                  <span className="text-sm font-medium text-gray-700">קטגוריות</span>
+                  <span className="text-sm font-medium text-gray-700">{t.categories}</span>
                   {expandedSections.categories ? <ChevronUp className="h-4 w-4 text-gray-500" /> : <ChevronDown className="h-4 w-4 text-gray-500" />}
                 </div>
                 {expandedSections.categories && (
@@ -307,7 +386,7 @@ export default function Store() {
                   onClick={() => toggleSection('sizes')}
                   data-testid="label-sizes"
                 >
-                  <span className="text-sm font-medium text-gray-700">גדלים</span>
+                  <span className="text-sm font-medium text-gray-700">{t.sizes}</span>
                   {expandedSections.sizes ? <ChevronUp className="h-4 w-4 text-gray-500" /> : <ChevronDown className="h-4 w-4 text-gray-500" />}
                 </div>
                 {expandedSections.sizes && (
@@ -399,6 +478,18 @@ export default function Store() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-8">
               {filteredProducts.map((product) => {
+                // Get translated name based on current language
+                const getProductName = () => {
+                  switch(currentLanguage) {
+                    case 'en': return product.nameEnglish || product.name;
+                    case 'fr': return product.nameFrench || product.name;
+                    case 'es': return product.nameSpanish || product.name;
+                    case 'ru': return product.nameRussian || product.name;
+                    default: return product.name;
+                  }
+                };
+                const displayName = getProductName();
+                
                 const minPrice = product.variants && product.variants.length > 0 
                   ? Math.min(...product.variants.map(v => v.price))
                   : 0;
@@ -420,7 +511,7 @@ export default function Store() {
                     {/* Badge - Bestseller/Nouveau */}
                     {product.variants && product.variants.some(v => v.inStock && v.stockQuantity && v.stockQuantity < 10) && (
                       <div className="absolute top-3 left-3 z-10 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
-                        כמעט אזל!
+                        {t.almostSoldOut}
                       </div>
                     )}
                     
@@ -461,7 +552,7 @@ export default function Store() {
                               }}
                               className="w-full bg-white/95 text-gray-900 hover:bg-white font-bold shadow-lg backdrop-blur-sm"
                             >
-                              👁️ צפה מהיר
+                              👁️ {t.quickView}
                             </Button>
                           </div>
                         </div>
@@ -489,7 +580,7 @@ export default function Store() {
                           style={{ fontFamily: 'Assistant, sans-serif', minHeight: '3.5rem' }}
                           data-testid={`text-title-${product.id}`}
                         >
-                          {product.name}
+                          {displayName}
                         </h3>
                       </Link>
                       
@@ -534,7 +625,7 @@ export default function Store() {
                             className="w-full bg-white text-blue-600 border-2 border-blue-200 hover:border-blue-400 hover:bg-blue-50 font-bold transition-all duration-300 shadow-sm hover:shadow-md"
                             data-testid={`button-view-details-${product.id}`}
                           >
-                            פרטים מלאים
+                            {t.viewDetails}
                           </Button>
                         </Link>
                         <Button 

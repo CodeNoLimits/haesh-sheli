@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useRoute } from 'wouter';
 import { realBreslovProducts } from '../data/realProducts';
 import { useCart } from '../contexts/CartContext';
+import { useLanguage } from '../contexts/LanguageContext';
+import { Header } from '../components/Header';
 import { useToast } from '@/hooks/use-toast';
 import { getBookDisplayTitle } from '../utils/bookTitleHelper';
 import { convertImagePath } from '../utils/imagePathHelper';
@@ -9,100 +11,158 @@ import type { Product } from '../../../shared/schema';
 import ProductRecommendations from '@/components/ProductRecommendations';
 import { getRelatedProducts, getFrequentlyBoughtTogether } from '@/utils/recommendationEngine';
 
+const productTranslations = {
+  he: {
+    notFound: 'מוצר לא נמצא',
+    error: 'שגיאה: לא נמצאו גרסאות למוצר',
+    freeShipping: 'משלוחים חינם החל מ- 399 ש"ח',
+    addToCart: 'הוסף לסל',
+    quantity: 'כמות',
+    chooseVariant: 'בחר גרסה',
+    price: 'מחיר',
+    inStock: 'במלאי',
+    outOfStock: 'אזל מהמלאי',
+    description: 'תיאור',
+    details: 'פרטים',
+    author: 'מחבר',
+    publisher: 'הוצאה',
+    pages: 'עמודים',
+    language: 'שפה',
+    category: 'קטגוריה'
+  },
+  en: {
+    notFound: 'Product not found',
+    error: 'Error: No variants found for product',
+    freeShipping: 'Free shipping from ₪399',
+    addToCart: 'Add to Cart',
+    quantity: 'Quantity',
+    chooseVariant: 'Choose variant',
+    price: 'Price',
+    inStock: 'In Stock',
+    outOfStock: 'Out of Stock',
+    description: 'Description',
+    details: 'Details',
+    author: 'Author',
+    publisher: 'Publisher',
+    pages: 'Pages',
+    language: 'Language',
+    category: 'Category'
+  },
+  fr: {
+    notFound: 'Produit non trouvé',
+    error: 'Erreur: Aucune variante trouvée pour le produit',
+    freeShipping: 'Livraison gratuite à partir de ₪399',
+    addToCart: 'Ajouter au Panier',
+    quantity: 'Quantité',
+    chooseVariant: 'Choisir une variante',
+    price: 'Prix',
+    inStock: 'En Stock',
+    outOfStock: 'Rupture de Stock',
+    description: 'Description',
+    details: 'Détails',
+    author: 'Auteur',
+    publisher: 'Éditeur',
+    pages: 'Pages',
+    language: 'Langue',
+    category: 'Catégorie'
+  },
+  es: {
+    notFound: 'Producto no encontrado',
+    error: 'Error: No se encontraron variantes para el producto',
+    freeShipping: 'Envío gratis desde ₪399',
+    addToCart: 'Añadir al Carrito',
+    quantity: 'Cantidad',
+    chooseVariant: 'Elegir variante',
+    price: 'Precio',
+    inStock: 'En Stock',
+    outOfStock: 'Agotado',
+    description: 'Descripción',
+    details: 'Detalles',
+    author: 'Autor',
+    publisher: 'Editorial',
+    pages: 'Páginas',
+    language: 'Idioma',
+    category: 'Categoría'
+  },
+  ru: {
+    notFound: 'Товар не найден',
+    error: 'Ошибка: Варианты товара не найдены',
+    freeShipping: 'Бесплатная доставка от ₪399',
+    addToCart: 'Добавить в Корзину',
+    quantity: 'Количество',
+    chooseVariant: 'Выбрать вариант',
+    price: 'Цена',
+    inStock: 'В Наличии',
+    outOfStock: 'Нет в Наличии',
+    description: 'Описание',
+    details: 'Детали',
+    author: 'Автор',
+    publisher: 'Издательство',
+    pages: 'Страниц',
+    language: 'Язык',
+    category: 'Категория'
+  }
+};
+
 export default function Product() {
   const [match, params] = useRoute('/product/:id');
   const [selectedVariant, setSelectedVariant] = useState<string>('');
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
   const { addItem } = useCart();
+  const { currentLanguage, setLanguage } = useLanguage();
+  const t = productTranslations[currentLanguage as keyof typeof productTranslations] || productTranslations.he;
   const { toast } = useToast();
+  
+  const getProductName = (product: Product) => {
+    switch(currentLanguage) {
+      case 'en': return product.nameEnglish || product.name;
+      case 'fr': return product.nameFrench || product.name;
+      case 'es': return product.nameSpanish || product.name;
+      case 'ru': return product.nameRussian || product.name;
+      default: return product.name;
+    }
+  };
 
   if (!match || !params?.id) {
-    return <div>מוצר לא נמצא</div>;
+    return (
+      <div className="min-h-screen" dir={currentLanguage === 'he' ? 'rtl' : 'ltr'}>
+        <Header currentLanguage={currentLanguage} onLanguageChange={setLanguage} />
+        <div className="container mx-auto px-4 py-8 text-center">{t.notFound}</div>
+      </div>
+    );
   }
 
   const product = realBreslovProducts[params.id];
   
   if (!product) {
-    return <div>מוצר לא נמצא</div>;
+    return (
+      <div className="min-h-screen" dir={currentLanguage === 'he' ? 'rtl' : 'ltr'}>
+        <Header currentLanguage={currentLanguage} onLanguageChange={setLanguage} />
+        <div className="container mx-auto px-4 py-8 text-center">{t.notFound}</div>
+      </div>
+    );
   }
 
   const variants = product.variants || [];
   const currentVariant = variants.find(v => v.id === selectedVariant) || variants[0];
   
   if (!currentVariant) {
-    return <div>שגיאה: לא נמצאו גרסאות למוצר</div>;
+    return (
+      <div className="min-h-screen" dir={currentLanguage === 'he' ? 'rtl' : 'ltr'}>
+        <Header currentLanguage={currentLanguage} onLanguageChange={setLanguage} />
+        <div className="container mx-auto px-4 py-8 text-center">{t.error}</div>
+      </div>
+    );
   }
+  
+  const displayName = getProductName(product);
 
   return (
-    <div className="rtl product-page page-template-default">
-      {/* TOP BAR */}
-      <section className="elementor-section elementor-top-section elementor-element elementor-element-ba655d5 elementor-section-full_width elementor-hidden-tablet elementor-hidden-mobile elementor-section-height-default" style={{background: '#333', color: 'white', padding: '8px 0'}}>
-        <div className="elementor-container elementor-column-gap-default">
-          <div className="elementor-column elementor-col-33 elementor-top-column">
-            <div className="elementor-widget-wrap elementor-element-populated">
-              <div className="elementor-element elementor-icon-list--layout-inline elementor-align-left elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list">
-                <div className="elementor-widget-container">
-                  <ul className="elementor-icon-list-items elementor-inline-items" style={{display: 'flex', gap: '1rem', listStyle: 'none', margin: 0, padding: 0}}>
-                    <li className="elementor-icon-list-item elementor-inline-item" style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-                      <span className="elementor-icon-list-text">משלוחים חינם החל מ- 399 ש"ח</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* HEADER */}
-      <section className="elementor-section elementor-top-section elementor-element elementor-element-ba655d5 elementor-section-full_width elementor-hidden-tablet elementor-hidden-mobile" style={{background: '#dc3545', padding: '1rem 0'}}>
-        <div className="elementor-container elementor-column-gap-default" style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-          <div className="elementor-column elementor-col-25 elementor-top-column elementor-element elementor-element-8cf799f">
-            <div className="elementor-widget-wrap elementor-element-populated">
-              <div className="elementor-element elementor-widget elementor-widget-theme-site-logo elementor-widget-image">
-                <div className="elementor-widget-container">
-                  <a href="/">
-                    <img 
-                      width="185" 
-                      height="300"
-                      src="https://www.haesh-sheli.co.il/wp-content/uploads/2021/12/cropped-%D7%A7%D7%A8%D7%95-%D7%A8%D7%91%D7%99-%D7%99%D7%A9%D7%A8%D7%90%D7%9C-%D7%91%D7%A8-%D7%90%D7%95%D7%93%D7%A1%D7%A8.d110a0.webp" 
-                      className="attachment-full size-full wp-image-27" 
-                      alt="האש שלי תוקף עד ביאת המשיח"
-                      style={{height: '80px', width: 'auto'}}
-                    />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="elementor-column elementor-col-33 elementor-top-column">
-            <nav aria-label="תפריט" style={{textAlign: 'center'}}>
-              <ul style={{display: 'flex', gap: '1.5rem', listStyle: 'none', margin: 0, padding: 0, flexWrap: 'wrap'}}>
-                <li><a href="/" style={{color: 'white', textDecoration: 'none', fontSize: '0.9rem'}}>דף הבית</a></li>
-                <li><a href="/store" style={{color: 'white', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 'bold'}}>חנות</a></li>
-                <li><a href="/about" style={{color: 'white', textDecoration: 'none', fontSize: '0.9rem'}}>עלינו</a></li>
-                <li><a href="/downloads" style={{color: 'white', textDecoration: 'none', fontSize: '0.9rem'}}>הורדות</a></li>
-                <li><a href="/contact" style={{color: 'white', textDecoration: 'none', fontSize: '0.9rem'}}>צור קשר</a></li>
-              </ul>
-            </nav>
-          </div>
-
-          <div className="elementor-column elementor-col-16" style={{maxWidth: '120px'}}>
-            <div style={{textAlign: 'left'}}>
-              <a href="#" style={{background: 'white', color: '#dc3545', padding: '0.3rem 0.6rem', borderRadius: '4px', textDecoration: 'none', fontSize: '0.8rem', display: 'flex', alignItems: 'center', gap: '0.3rem'}}>
-                <span>0.00 ₪</span>
-                <span>0</span>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style={{width: '14px', height: '14px', fill: 'currentColor'}}>
-                  <path d="M7 4V2C7 1.45 7.45 1 8 1H16C16.55 1 17 1.45 17 2V4H20C20.55 4 21 4.45 21 5S20.55 6 20 6H19V19C19 20.1 18.1 21 17 21H7C5.9 21 5 20.1 5 19V6H4C3.45 6 3 5.55 3 5S3.45 4 4 4H7ZM9 3V4H15V3H9ZM7 6V19H17V6H7Z"/>
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
+    <div className="min-h-screen bg-gray-50" dir={currentLanguage === 'he' ? 'rtl' : 'ltr'}>
+      <Header currentLanguage={currentLanguage} onLanguageChange={setLanguage} />
+      
+      <div className="container mx-auto px-4 py-8">
       {/* BREADCRUMBS */}
       <section style={{background: '#f8f9fa', padding: '1rem 0', borderBottom: '1px solid #ddd'}}>
         <div className="container" style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
@@ -127,7 +187,7 @@ export default function Product() {
                 <img 
                   src={convertImagePath(product.images && product.images[selectedImage] || '')} 
                   alt={getBookDisplayTitle(product)}
-                  style={{width: '100%', height: '500px', objectFit: 'cover', borderRadius: '10px', border: '1px solid #ddd'}}
+                  style={{width: '100%', height: '500px', objectFit: 'contain', borderRadius: '10px', border: '1px solid #ddd', backgroundColor: '#f9f9f9'}}
                 />
               </div>
               
@@ -187,7 +247,11 @@ export default function Product() {
               </div>
 
               <p style={{fontSize: '1.1rem', color: '#666', lineHeight: '1.6', marginBottom: '2rem'}}>
-                {product.description}
+                {currentLanguage === 'en' ? (product.descriptionEnglish || product.description) :
+                 currentLanguage === 'fr' ? (product.descriptionFrench || product.description) :
+                 currentLanguage === 'es' ? (product.descriptionSpanish || product.description) :
+                 currentLanguage === 'ru' ? (product.descriptionRussian || product.description) :
+                 product.description}
               </p>
 
               {/* VARIANT SELECTION */}
@@ -381,11 +445,12 @@ export default function Product() {
         </div>
       </section>
 
-      {/* Recommendations - Related */}
-      <ProductRecommendations currentProduct={product as Product} recommendationType="related" />
+        {/* Recommendations - Related */}
+        <ProductRecommendations currentProduct={product as Product} recommendationType="related" />
 
-      {/* Recommendations - Frequently bought together */}
-      <ProductRecommendations currentProduct={product as Product} recommendationType="frequently-bought" />
+        {/* Recommendations - Frequently bought together */}
+        <ProductRecommendations currentProduct={product as Product} recommendationType="frequently-bought" />
+      </div>
     </div>
   );
 }

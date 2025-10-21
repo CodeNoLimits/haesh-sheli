@@ -1,0 +1,95 @@
+# Références de Design - Sites Breslev et E-commerce
+
+## Site Breslev.com - Référence Moderne
+
+### Design et Interface
+- **Couleurs** : Palette moderne avec bleu, blanc, touches de couleurs vives
+- **Layout** : Design propre, moderne, bien structuré
+- **Navigation** : Menu horizontal clair avec sections bien définies
+- **Typographie** : Police moderne, hiérarchie claire
+- **Images** : Photos haute qualité, visuels professionnels
+
+### Fonctionnalités Observées
+- **Multilingue** : Support anglais/hébreu
+- **Recherche** : Barre de recherche proéminente
+- **Boutique intégrée** : "Store" dans le menu principal
+- **Contenu riche** : Articles, vidéos, radio
+- **Social media** : Intégration réseaux sociaux
+- **Responsive** : Design adaptatif
+
+### Points Forts vs Haesh Sheli
+✅ **Breslev.com** :
+- Design moderne et professionnel
+- Couleurs attrayantes et commerciales
+- Images haute qualité
+- Interface utilisateur intuitive
+- Contenu bien organisé
+- Intégration multimédia
+
+❌ **Haesh Sheli** :
+- Design daté (années 2010)
+- Couleurs sombres peu commerciales
+- Images de qualité variable
+- Interface rigide
+- Manque de modernité
+
+### Éléments à Adopter pour Haesh Sheli
+1. **Palette de couleurs moderne** : Bleu/blanc au lieu de rouge/bordeaux
+2. **Layout propre** : Espacement, grilles modernes
+3. **Typographie moderne** : Polices plus lisibles et attrayantes
+4. **Images professionnelles** : Photos haute qualité des produits
+5. **Navigation intuitive** : Menu plus clair et accessible
+6. **Intégration multimédia** : Vidéos, contenu riche
+
+## Comparaison avec les Standards E-commerce
+
+### Ce qui manque à Haesh Sheli pour être moderne
+1. **Design System cohérent**
+2. **Micro-interactions** 
+3. **Animations subtiles**
+4. **Interface mobile-first**
+5. **Optimisation UX/UI**
+6. **Personnalisation utilisateur**
+
+
+## Tendances Couleurs E-commerce 2024-2025
+
+### Palettes Recommandées pour E-commerce
+1. **Minimalist Moderne** : Blanc, gris clair, bleu doux, accents noirs
+2. **Fresh & Organic** : Verts naturels, beiges, blancs cassés
+3. **Tech Savvy** : Bleus profonds, blancs, gris, accents cyan
+4. **Elegant Luxury** : Noirs, blancs, or/bronze, gris foncés
+
+### Couleurs Tendance 2025
+- **Bleus éthérés** : Optimisme et confiance
+- **Jaunes chauds** : Énergie et positivité  
+- **Tons terreux** : Naturel et authentique
+- **Contrastes audacieux** : Bleu foncé + orange néon
+
+### Analyse Amazon
+- **Couleurs principales** : Orange Amazon + Noir
+- **Style** : Minimaliste, propre, focus sur les produits
+- **Blanc dominant** : Facilite la lecture et met en valeur les produits
+- **Accents colorés** : Utilisés avec parcimonie pour les CTA
+
+### Recommandations pour Haesh Sheli
+
+**Palette Principale Recommandée** :
+- **Blanc** : Arrière-plan principal (comme Amazon)
+- **Bleu profond** : Navigation et éléments principaux
+- **Or/Bronze** : Accents spirituels (connexion Breslev)
+- **Gris clair** : Éléments secondaires
+- **Vert doux** : Boutons d'action positifs
+
+**À Éviter** :
+- Rouge/bordeaux dominant (trop agressif pour e-commerce)
+- Arrière-plans sombres (réduisent la lisibilité)
+- Trop de couleurs simultanées (confusion visuelle)
+
+**Avantages de cette palette** :
+1. **Moderne et professionnelle**
+2. **Facilite la lecture**
+3. **Met en valeur les produits**
+4. **Inspire confiance**
+5. **Respecte l'identité spirituelle**
+

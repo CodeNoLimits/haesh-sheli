@@ -12,6 +12,129 @@ import { StripeNotConfiguredFallback } from '@/components/StripeNotConfiguredFal
 import { Header } from '@/components/Header';
 import { useLanguage } from '@/contexts/LanguageContext';
 
+const subscriptionTranslations = {
+  he: {
+    error: 'שגיאה',
+    paymentError: 'שגיאה בתשלום',
+    processing: 'מעבד...',
+    joinSubscription: 'הצטרף להוראת קבע',
+    activeSubscription: 'מנוי פעיל',
+    paymentSystemUnavailable: 'מערכת התשלום אינה זמינה כרגע',
+    paymentProcessingError: 'אירעה שגיאה בעיבוד התשלום',
+    subscriptionCreationError: 'שגיאה ביצירת המנוי',
+    contactUs: 'נשמח לעזור לך להצטרף למשפחת \'האש שלי\'',
+    talkToUs: 'דבר איתנו',
+    sendEmail: 'שלח מייל',
+    joinNow: 'הצטרף עכשיו',
+    perMonth: 'לחודש',
+    loadingPlansError: 'שגיאה בטעינת תוכניות המנוי',
+    loadingSubscriptionError: 'שגיאה בטעינת מצב המנוי',
+    payWithPayPal: 'שלם עם PayPal',
+    or: 'או',
+    premium: 'פרימיום',
+    benefits: 'יתרונות המנוי:',
+    significantSavings: 'חסכון משמעותי!',
+    savingsDesc: 'במקום לשלם על כל ספר בנפרד, קבל גישה לכל הספרים הדיגיטליים + הנחות על ספרים פיזיים!',
+    guarantee: 'ניתן לבטל בכל עת • ללא התחייבות'
+  },
+  en: {
+    error: 'Error',
+    paymentError: 'Payment Error',
+    processing: 'Processing...',
+    joinSubscription: 'Join Subscription',
+    activeSubscription: 'Active Subscription',
+    paymentSystemUnavailable: 'Payment system is currently unavailable',
+    paymentProcessingError: 'An error occurred processing the payment',
+    subscriptionCreationError: 'Error creating subscription',
+    contactUs: 'We\'d love to help you join the HaEsh Sheli family',
+    talkToUs: 'Talk to Us',
+    sendEmail: 'Send Email',
+    joinNow: 'Join Now',
+    perMonth: 'per month',
+    loadingPlansError: 'Error loading subscription plans',
+    loadingSubscriptionError: 'Error loading subscription status',
+    payWithPayPal: 'Pay with PayPal',
+    or: 'or',
+    premium: 'Premium',
+    benefits: 'Subscription Benefits:',
+    significantSavings: 'Significant Savings!',
+    savingsDesc: 'Instead of paying for each book separately, get access to all digital books + discounts on physical books!',
+    guarantee: 'Cancel anytime • No commitment'
+  },
+  fr: {
+    error: 'Erreur',
+    paymentError: 'Erreur de Paiement',
+    processing: 'Traitement...',
+    joinSubscription: 'Rejoindre l\'Abonnement',
+    activeSubscription: 'Abonnement Actif',
+    paymentSystemUnavailable: 'Le système de paiement est actuellement indisponible',
+    paymentProcessingError: 'Une erreur s\'est produite lors du traitement du paiement',
+    subscriptionCreationError: 'Erreur lors de la création de l\'abonnement',
+    contactUs: 'Nous serions ravis de vous aider à rejoindre la famille HaEsh Sheli',
+    talkToUs: 'Parlez-nous',
+    sendEmail: 'Envoyer un Email',
+    joinNow: 'Rejoindre Maintenant',
+    perMonth: 'par mois',
+    loadingPlansError: 'Erreur de chargement des plans d\'abonnement',
+    loadingSubscriptionError: 'Erreur de chargement du statut d\'abonnement',
+    payWithPayPal: 'Payer avec PayPal',
+    or: 'ou',
+    premium: 'Premium',
+    benefits: 'Avantages de l\'Abonnement:',
+    significantSavings: 'Économies Importantes!',
+    savingsDesc: 'Au lieu de payer chaque livre séparément, accédez à tous les livres numériques + réductions sur les livres physiques!',
+    guarantee: 'Annuler à tout moment • Sans engagement'
+  },
+  es: {
+    error: 'Error',
+    paymentError: 'Error de Pago',
+    processing: 'Procesando...',
+    joinSubscription: 'Unirse a la Suscripción',
+    activeSubscription: 'Suscripción Activa',
+    paymentSystemUnavailable: 'El sistema de pago no está disponible actualmente',
+    paymentProcessingError: 'Ocurrió un error al procesar el pago',
+    subscriptionCreationError: 'Error al crear la suscripción',
+    contactUs: 'Nos encantaría ayudarte a unirte a la familia HaEsh Sheli',
+    talkToUs: 'Habla con Nosotros',
+    sendEmail: 'Enviar Email',
+    joinNow: 'Unirse Ahora',
+    perMonth: 'por mes',
+    loadingPlansError: 'Error al cargar los planes de suscripción',
+    loadingSubscriptionError: 'Error al cargar el estado de suscripción',
+    payWithPayPal: 'Pagar con PayPal',
+    or: 'o',
+    premium: 'Premium',
+    benefits: 'Beneficios de la Suscripción:',
+    significantSavings: '¡Ahorros Significativos!',
+    savingsDesc: 'En lugar de pagar por cada libro por separado, ¡obtenga acceso a todos los libros digitales + descuentos en libros físicos!',
+    guarantee: 'Cancelar en cualquier momento • Sin compromiso'
+  },
+  ru: {
+    error: 'Ошибка',
+    paymentError: 'Ошибка Платежа',
+    processing: 'Обработка...',
+    joinSubscription: 'Присоединиться к Подписке',
+    activeSubscription: 'Активная Подписка',
+    paymentSystemUnavailable: 'Платежная система в настоящее время недоступна',
+    paymentProcessingError: 'Произошла ошибка при обработке платежа',
+    subscriptionCreationError: 'Ошибка создания подписки',
+    contactUs: 'Мы будем рады помочь вам присоединиться к семье HaEsh Sheli',
+    talkToUs: 'Поговорите с Нами',
+    sendEmail: 'Отправить Email',
+    joinNow: 'Присоединиться Сейчас',
+    perMonth: 'в месяц',
+    loadingPlansError: 'Ошибка загрузки планов подписки',
+    loadingSubscriptionError: 'Ошибка загрузки статуса подписки',
+    payWithPayPal: 'Оплатить через PayPal',
+    or: 'или',
+    premium: 'Премиум',
+    benefits: 'Преимущества Подписки:',
+    significantSavings: 'Значительная Экономия!',
+    savingsDesc: 'Вместо оплаты каждой книги отдельно, получите доступ ко всем цифровым книгам + скидки на физические книги!',
+    guarantee: 'Отменить в любое время • Без обязательств'
+  }
+};
+
 // Load Stripe (will need VITE_STRIPE_PUBLIC_KEY)
 const stripePublicKey = import.meta.env.VITE_STRIPE_PUBLIC_KEY;
 const stripePromise = stripePublicKey ? loadStripe(stripePublicKey) : null;
@@ -33,6 +156,8 @@ const SubscriptionForm = ({ plan, clientSecret }: { plan: SubscriptionPlan; clie
   const stripe = useStripe();
   const elements = useElements();
   const { toast } = useToast();
+  const { currentLanguage } = useLanguage();
+  const t = subscriptionTranslations[currentLanguage as keyof typeof subscriptionTranslations] || subscriptionTranslations.he;
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -41,8 +166,8 @@ const SubscriptionForm = ({ plan, clientSecret }: { plan: SubscriptionPlan; clie
 
     if (!stripe || !elements) {
       toast({
-        title: "שגיאה",
-        description: "מערכת התשלום אינה זמינה כרגע",
+        title: t.error,
+        description: t.paymentSystemUnavailable,
         variant: "destructive",
       });
       setIsLoading(false);
@@ -60,7 +185,7 @@ const SubscriptionForm = ({ plan, clientSecret }: { plan: SubscriptionPlan; clie
 
       if (error) {
         toast({
-          title: "שגיאה בתשלום",
+          title: t.paymentError,
           description: error.message,
           variant: "destructive",
         });
@@ -75,8 +200,8 @@ const SubscriptionForm = ({ plan, clientSecret }: { plan: SubscriptionPlan; clie
     } catch (error: any) {
       console.error('Subscription error:', error);
       toast({
-        title: "שגיאה",
-        description: "אירעה שגיאה בעיבוד התשלום",
+        title: t.error,
+        description: t.paymentProcessingError,
         variant: "destructive",
       });
     } finally {
@@ -104,7 +229,7 @@ const SubscriptionForm = ({ plan, clientSecret }: { plan: SubscriptionPlan; clie
         ) : (
           <>
             <Crown className="mr-2 h-5 w-5" />
-            הצטרף להוראת קבע - ₪{(plan.price / 100).toFixed(0)} לחודש
+            {t.joinSubscription} - ₪{(plan.price / 100).toFixed(0)} {t.perMonth}
           </>
         )}
       </Button>
@@ -117,6 +242,8 @@ const SubscriptionPlanCard = ({ plan, isCurrentPlan }: { plan: SubscriptionPlan;
   const [showPayment, setShowPayment] = useState(false);
   const [isCreatingSubscription, setIsCreatingSubscription] = useState(false);
   const { toast } = useToast();
+  const { currentLanguage } = useLanguage();
+  const t = subscriptionTranslations[currentLanguage as keyof typeof subscriptionTranslations] || subscriptionTranslations.he;
 
   const createSubscriptionMutation = useMutation({
     mutationFn: async (data: { email?: string; name?: string }) => {

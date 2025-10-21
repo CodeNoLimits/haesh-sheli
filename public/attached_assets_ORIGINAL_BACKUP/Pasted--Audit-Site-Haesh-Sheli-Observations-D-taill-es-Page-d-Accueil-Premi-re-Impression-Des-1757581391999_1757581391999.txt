@@ -1,0 +1,161 @@
+# Audit Site Haesh Sheli - Observations Détaillées
+
+## Page d'Accueil - Première Impression
+
+### Design et Interface
+- **Couleurs principales** : Rouge/bordeaux dominant, design assez sombre
+- **Direction** : RTL (Right-to-Left) pour l'hébreu - correct
+- **Logo** : "האש שלי" avec une flamme - cohérent avec l'identité
+- **Navigation** : Menu horizontal avec sections claires
+
+### Navigation Principale
+1. דף הבית (Accueil)
+2. חנות (Boutique) 
+3. אודות (À propos)
+4. צור קשר (Contact)
+5. המגזין (Magazine)
+6. הצטרפות (Adhésion)
+7. הורדות (Téléchargements)
+8. יעקב (Yaaakov)
+
+### Langues Disponibles
+- 🇮🇱 Hébreu (HE)
+- 🇺🇸 Anglais (EN) 
+- 🇫🇷 Français (FR)
+- 🇪🇸 Espagnol (ES)
+- 🇷🇺 Russe (RU)
+
+### Contenu Principal Visible
+- **Titre principal** : "ספרי רבינו נחמן מברסלב זצ״ל" (Livres de Rabbi Nachman de Breslov)
+- **Sous-titre** : "הדרך לאוצר שלך" (Le chemin vers votre trésor)
+- **Citation** : Citation de Rabbi Nachman
+- **CTA principal** : "כניסה לחנות" (Entrer dans la boutique)
+
+### Problèmes Identifiés - Page d'Accueil
+1. **Design daté** : L'apparence générale semble ancienne, pas moderne
+2. **Couleurs sombres** : Dominance du rouge/bordeaux peut être oppressante
+3. **Manque de modernité** : Ne ressemble pas aux standards e-commerce actuels
+4. **Image de fond** : Qualité et style pourraient être améliorés
+5. **Popup d'installation** : Apparaît immédiatement, peut être intrusive
+
+### Points Positifs
+1. **Multilingue** : Support de 5 langues
+2. **RTL correct** : Bon support de l'hébreu
+3. **Navigation claire** : Structure logique du menu
+4. **Identité cohérente** : Logo et thème en accord avec la mission
+
+## Prochaines Étapes d'Audit
+- [ ] Explorer la boutique et les produits
+- [ ] Vérifier les prix par rapport à la liste fournie
+- [ ] Tester le processus d'achat
+- [ ] Analyser la responsivité mobile
+- [ ] Examiner les autres pages
+
+
+
+## Page Boutique - Analyse Détaillée
+
+### Interface E-commerce
+- **Layout** : Grille de produits avec images
+- **Filtres disponibles** :
+  - Recherche libre
+  - Catégories (13 catégories)
+  - Type d'édition (poche, luxe, sets complets, illustrées, cuir)
+  - Langues (hébreu, anglais, français, russe, espagnol)
+  - Gamme de prix
+
+### Produits Visibles et Prix
+1. **ראש השנה שלי** (Rosh Hashana Sheli) : 35₪ - 107₪
+2. **אוצר היראה** (Otsar HaYira) : 107₪ - 267₪
+3. **התגלות הדעת** (Hitgalut HaDaat) : 45₪ - 243₪
+4. **התחלת ההתחלות** (Hatchalat HaHatchalot) : 29₪ - 150₪
+5. **ליקוטי מוהר"ן** (Likutei Moharan) : 23₪ - 95₪
+6. **ליקוטי תפילות** (Likutei Tefilot) : 23₪ - 120₪
+
+### Comparaison avec la Liste de Prix Fournie
+**Problèmes identifiés** :
+- Les prix sur le site ne correspondent pas exactement à la liste fournie
+- Exemple : Likutei Moharan dans la liste va de 25₪ à 165₪, sur le site 23₪ à 95₪
+- Manque de cohérence dans les prix affichés
+
+### Fonctionnalités E-commerce
+✅ **Présentes** :
+- Système de notation (5 étoiles)
+- Boutons "Ajouter au panier"
+- Boutons "Voir le produit"
+- Filtres multiples
+- Recherche
+- Affichage des variantes (X options)
+
+❌ **Manquantes ou Problématiques** :
+- Pas de vue rapide des produits
+- Images de produits de qualité variable
+- Pas de comparaison de produits
+- Interface pas moderne (style daté)
+- Pas de recommandations "Vous pourriez aussi aimer"
+
+### Design et UX - Boutique
+**Problèmes majeurs** :
+1. **Design daté** : L'interface ressemble aux sites e-commerce des années 2010
+2. **Couleurs peu attrayantes** : Rouge/bordeaux dominant peu commercial
+3. **Images produits** : Qualité et style inconsistants
+4. **Layout rigide** : Manque de fluidité moderne
+5. **Typographie** : Police et tailles peu optimisées pour l'e-commerce
+
+**Comparaison avec Amazon** :
+- Amazon : Interface claire, blanche, moderne, images haute qualité
+- Haesh Sheli : Interface sombre, rouge, datée, images variables
+- Manque cruellement de modernité et de professionnalisme e-commerce
+
+
+## Page Produit - Analyse Détaillée
+
+### Produit Analysé : "ראש השנה שלי" (Rosh Hashana Sheli)
+
+### Fonctionnalités Présentes
+✅ **Éléments positifs** :
+- Galerie d'images (3 images)
+- Système de notation (5 étoiles, 23 avis)
+- Sélection de variantes (taille et reliure)
+- Description détaillée du produit
+- Caractéristiques spéciales listées
+- Détails techniques (pages, ISBN, langue)
+- Section "Produits similaires"
+- Sélecteur de quantité
+- Bouton "Ajouter au panier" clair
+
+### Variantes Disponibles
+1. **Skaï dur - Moyen** (17*12) : 35₪
+2. **Skaï dur - Grand** (24*17) : 45₪  
+3. **Cuir dur - Grand** (24*17, 4 volumes) : 107₪ (prix barré 200₪)
+
+### Problèmes Identifiés - Page Produit
+
+**Design et UX** :
+1. **Interface datée** : Design qui semble des années 2010
+2. **Couleurs peu commerciales** : Rouge/bordeaux dominant
+3. **Images de qualité variable** : Photos produits pas optimisées
+4. **Layout rigide** : Manque de fluidité moderne
+5. **Typographie** : Police et hiérarchie peu optimisées
+
+**Fonctionnalités manquantes** :
+1. **Zoom sur images** : Pas de fonction zoom/lightbox
+2. **Avis clients détaillés** : Juste le nombre, pas les commentaires
+3. **Questions/Réponses** : Pas de section Q&A
+4. **Partage social** : Pas de boutons de partage
+5. **Wishlist** : Pas de fonction "liste de souhaits"
+6. **Comparaison** : Pas de fonction de comparaison
+7. **Livraison** : Informations de livraison peu visibles
+8. **Stock** : Indication "en stock" basique
+
+**Comparaison avec Amazon** :
+- Amazon : Images HD avec zoom, avis détaillés, recommandations IA
+- Haesh Sheli : Images basiques, avis simples, recommandations statiques
+- Manque de sophistication e-commerce moderne
+
+### Informations Produit
+- **Description** : Bien détaillée et spirituellement appropriée
+- **Prix** : Cohérents avec certains éléments de la liste fournie
+- **Variantes** : Bonne gestion des options de reliure et taille
+- **Stock** : Indiqué pour chaque variante
+

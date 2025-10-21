@@ -7,9 +7,6 @@ import { Card } from '@/components/ui/card';
 import { Send, Loader2, Book, Heart, Star } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
-const OPENROUTER_API_KEY = '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';
-const OPENROUTER_API_URL = 'https://openrouter.ai/api/v1/chat/completions';
-
 interface Message {
   role: 'user' | 'assistant';
   content: string;

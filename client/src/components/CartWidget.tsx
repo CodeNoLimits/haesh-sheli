@@ -51,20 +51,26 @@ export const CartWidget: React.FC = () => {
               {items.map((item) => (
                 <div key={item.id} className="border border-gray-200 rounded-lg p-4">
                   <div className="flex gap-3">
-                    {/* Product Image */}
-                    <div className="w-16 h-16 bg-gray-100 rounded overflow-hidden flex-shrink-0">
+                    {/* Product Image - Clickable */}
+                    <a 
+                      href={`/product/${item.productId}`}
+                      className="w-16 h-16 bg-gray-100 rounded overflow-hidden flex-shrink-0 hover:opacity-80 transition-opacity"
+                    >
                       <img 
                         src={item.image || '/placeholder-book.jpg'} 
                         alt={item.name}
                         className="w-full h-full object-cover"
                       />
-                    </div>
+                    </a>
 
                     {/* Product Details */}
                     <div className="flex-1 min-w-0">
-                      <h4 className="font-medium text-sm text-gray-900 truncate">
-                        {currentLanguage === 'he' ? item.name : item.nameEnglish}
-                      </h4>
+                      <a 
+                        href={`/product/${item.productId}`}
+                        className="font-medium text-sm text-gray-900 truncate hover:text-primary block"
+                      >
+                        {currentLanguage === 'he' ? item.name : (item.nameEnglish || item.name)}
+                      </a>
                       {item.variant && (
                         <p className="text-xs text-gray-600 mt-1">
                           {item.variant.format} • {item.variant.binding} • {item.variant.size}
@@ -109,9 +115,9 @@ export const CartWidget: React.FC = () => {
           )}
         </div>
 
-        {/* Footer with Checkout Button */}
+        {/* Footer with Payment Buttons */}
         {items.length > 0 && (
-          <div className="border-t border-gray-200 p-4 bg-gray-50">
+          <div className="border-t border-gray-200 p-4 bg-gray-50 space-y-3">
             <div className="mb-4">
               <div className="flex justify-between items-center text-lg font-bold">
                 <span>{currentLanguage === 'he' ? 'סה"כ:' : 'Total:'}</span>
@@ -119,11 +125,39 @@ export const CartWidget: React.FC = () => {
               </div>
             </div>
             
+            {/* PayPal Direct Payment */}
+            <a 
+              href={`https://www.paypal.com/paypalme/hashsheliclone/${totalPrice.toFixed(2)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full bg-[#0070BA] hover:bg-[#005EA6] text-white font-bold py-3 px-4 rounded-lg text-center transition-colors"
+              onClick={() => setIsCartOpen(false)}
+            >
+              <div className="flex items-center justify-center gap-2">
+                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M20.067 8.478c.492.88.556 2.014.3 3.327-.74 3.806-3.276 5.12-6.514 5.12h-.5a.805.805 0 0 0-.794.68l-.04.22-.63 3.993-.032.17a.804.804 0 0 1-.794.679H7.72a.483.483 0 0 1-.477-.558L7.418 21l1.263-8.01.032-.22a.805.805 0 0 1 .794-.679h1.645c3.287 0 5.857-1.337 6.61-5.207.037-.188.068-.37.093-.547a4.45 4.45 0 0 1 2.212 2.141z"/>
+                  <path d="M6.956 8.925c.088-.47.43-.813.898-.858l7.096-.003c.84 0 1.607.095 2.282.295a5.98 5.98 0 0 1 .913.362c.315.15.603.33.862.538.094-.535.088-1.095-.09-1.652-.375-1.176-1.387-2.292-3.41-2.292H8.14a1.195 1.195 0 0 0-1.18 1.006L4.16 18.285a.718.718 0 0 0 .71.832h4.345l1.09-6.915.65-4.127z"/>
+                </svg>
+                <span>
+                  {currentLanguage === 'he' ? 'תשלום' : 
+                   currentLanguage === 'fr' ? 'Paiement' :
+                   currentLanguage === 'es' ? 'Pago' :
+                   currentLanguage === 'ru' ? 'Оплата' :
+                   'Payment'} - PayPal
+                </span>
+              </div>
+            </a>
+
+            {/* Alternative: Full Checkout */}
             <a 
               href={`/checkout?fromCart=true`}
-              className="block w-full btn-breslov-primary text-white font-bold py-3 px-4 rounded-lg text-center transition-colors"
+              className="block w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-lg text-center transition-colors text-sm"
             >
-              {currentLanguage === 'he' ? 'המשך לתשלום' : 'Proceed to Checkout'}
+              {currentLanguage === 'he' ? 'או מלא פרטי משלוח' : 
+               currentLanguage === 'fr' ? 'Ou remplir les détails' :
+               currentLanguage === 'es' ? 'O completar detalles' :
+               currentLanguage === 'ru' ? 'Или заполнить детали' :
+               'Or fill shipping details'}
             </a>
           </div>
         )}

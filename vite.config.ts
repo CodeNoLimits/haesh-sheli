@@ -38,7 +38,7 @@ export default defineConfig({
         {
           name: 'copy-attached-assets',
           closeBundle() {
-            const srcDir = path.resolve(import.meta.dirname, "attached_assets");
+            const srcDir = path.resolve(import.meta.dirname, "public/attached_assets");
             const destDir = path.resolve(import.meta.dirname, "dist/public/attached_assets");
             
             try {

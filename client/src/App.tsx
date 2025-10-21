@@ -7,6 +7,7 @@ import { LanguageProvider } from "@/contexts/LanguageContext";
 import { CartProvider } from "@/contexts/CartContext";
 import { InstallPrompt } from "@/components/InstallPrompt";
 import { AmbientMusic } from "@/components/AmbientMusic";
+import { WhatsAppButton } from "@/components/WhatsAppButton";
 import Home from "@/pages/home";
 import Store from "@/pages/store";
 import About from "@/pages/about";
@@ -106,6 +107,7 @@ function App() {
             <Toaster />
             <InstallPrompt />
             <AmbientMusic />
+            <WhatsAppButton />
             <Router />
           </CartProvider>
         </LanguageProvider>
