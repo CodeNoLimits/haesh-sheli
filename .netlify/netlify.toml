@@ -1,38 +1,84 @@
+headersOrigin = "config"
 redirectsOrigin = "config"
 plugins = []
-headers = []
 
 [functions]
 
 [functions."*"]
 
 [build]
-publish = "/Users/codenolimits-dreamai-nanach/Desktop/SITE KEREN 2/HaeshSheliClone/dist"
+publish = "/Users/codenolimits-dreamai-nanach/Desktop/SITE KEREN 2/HaeshSheliClone/dist/public"
 publishOrigin = "config"
 commandOrigin = "config"
 command = "npm run build"
 
 [build.environment]
 NODE_VERSION = "18"
-NPM_VERSION = "9"
 
 [build.processing]
-skip_processing = false
 
 [build.processing.css]
-bundle = true
-minify = true
 
 [build.processing.html]
-pretty_urls = true
 
 [build.processing.images]
 
 [build.processing.js]
-bundle = true
-minify = true
 
 [build.services]
+
+[[headers]]
+for = "/assets/*"
+
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "/*.js"
+
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "/*.css"
+
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "/*.png"
+
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "/*.jpg"
+
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "/*.webp"
+
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "/*"
+
+[headers.values]
+X-Frame-Options = "DENY"
+X-XSS-Protection = "1; mode=block"
+X-Content-Type-Options = "nosniff"
+Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+for = "/api/*"
+
+[headers.values]
+Access-Control-Allow-Origin = "*"
+Access-Control-Allow-Methods = "GET, POST, PUT, DELETE, OPTIONS"
+Access-Control-Allow-Headers = "Content-Type, Authorization"
 
 [[redirects]]
 from = "/*"
