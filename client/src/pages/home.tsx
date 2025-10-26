@@ -246,6 +246,168 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ARTICLES SECTION - Inspired by breslov.co.il */}
+        <section className="py-20 bg-white">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                {currentLanguage === 'he' ? 'מאמרים פופולריים' : 'Popular Articles'}
+              </h2>
+              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+                {currentLanguage === 'he' ? 
+                  'החכמה של רבי נחמן מברסלב תשנה לכם את החיים' :
+                  'The wisdom of Rabbi Nachman of Breslov will change your life'
+                }
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {/* Article 1 */}
+              <article className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden border border-gray-100">
+                <div className="aspect-[16/9] bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center">
+                  <div className="text-center p-6">
+                    <div className="text-4xl mb-4">📖</div>
+                    <h3 className="text-lg font-bold text-gray-900 mb-2">התרופה לכל המחלות</h3>
+                    <p className="text-gray-600 text-sm">השמחה היא התרופה</p>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-sm text-gray-500">רבי נחמן מברסלב</span>
+                    <span className="text-sm text-gray-500">21 אוגוסט 2025</span>
+                  </div>
+                  <p className="text-gray-600 text-sm mb-4">
+                    {currentLanguage === 'he' ? 
+                      'השמחה היא התרופה לכל המחלות. כאשר אדם שמח, הוא יכול להתגבר על כל קושי...' :
+                      'Joy is the remedy for all diseases. When a person is joyful, they can overcome any difficulty...'
+                    }
+                  </p>
+                  <a 
+                    href="/articles/simcha-remedy" 
+                    className="text-blue-600 hover:text-blue-700 font-semibold text-sm"
+                  >
+                    {currentLanguage === 'he' ? 'קרא עוד' : 'Read More'} →
+                  </a>
+                </div>
+              </article>
+
+              {/* Article 2 */}
+              <article className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden border border-gray-100">
+                <div className="aspect-[16/9] bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center">
+                  <div className="text-center p-6">
+                    <div className="text-4xl mb-4">🌱</div>
+                    <h3 className="text-lg font-bold text-gray-900 mb-2">התחלה חדשה</h3>
+                    <p className="text-gray-600 text-sm">פרשת בראשית</p>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-sm text-gray-500">רבי נחמן מברסלב</span>
+                    <span className="text-sm text-gray-500">16 אוקטובר 2025</span>
+                  </div>
+                  <p className="text-gray-600 text-sm mb-4">
+                    {currentLanguage === 'he' ? 
+                      'למה היה צורך בבריאה? השבוע אנו נקרא את פרשת בראשית, שהיא ההתחלה של הכל...' :
+                      'Why was creation necessary? This week we read Parashat Bereshit, which is the beginning of everything...'
+                    }
+                  </p>
+                  <a 
+                    href="/articles/bereshit-new-beginning" 
+                    className="text-blue-600 hover:text-blue-700 font-semibold text-sm"
+                  >
+                    {currentLanguage === 'he' ? 'קרא עוד' : 'Read More'} →
+                  </a>
+                </div>
+              </article>
+
+              {/* Article 3 */}
+              <article className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden border border-gray-100">
+                <div className="aspect-[16/9] bg-gradient-to-br from-purple-50 to-purple-100 flex items-center justify-center">
+                  <div className="text-center p-6">
+                    <div className="text-4xl mb-4">💎</div>
+                    <h3 className="text-lg font-bold text-gray-900 mb-2">גן עדן בעולם הזה</h3>
+                    <p className="text-gray-600 text-sm">לחיות בגן עדן</p>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-sm text-gray-500">רבי נחמן מברסלב</span>
+                    <span className="text-sm text-gray-500">16 אוקטובר 2025</span>
+                  </div>
+                  <p className="text-gray-600 text-sm mb-4">
+                    {currentLanguage === 'he' ? 
+                      'רבנו ז״ל אומר שאדם צריך להשתדל להתרגל לחיות בעולם הבא, בגן־עדן...' :
+                      'Our Rabbi z"l says that a person should strive to get used to living in the next world, in paradise...'
+                    }
+                  </p>
+                  <a 
+                    href="/articles/paradise-this-world" 
+                    className="text-blue-600 hover:text-blue-700 font-semibold text-sm"
+                  >
+                    {currentLanguage === 'he' ? 'קרא עוד' : 'Read More'} →
+                  </a>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        {/* NEWSLETTER SECTION - Inspired by breslov.co.il */}
+        <section className="py-20 bg-gradient-to-br from-blue-50 to-indigo-100">
+          <div className="max-w-4xl mx-auto text-center px-4">
+            <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                {currentLanguage === 'he' ? 'החכמה של רבי נחמן מברסלב תשנה לכם את החיים!' : 'The wisdom of Rabbi Nachman of Breslov will change your life!'}
+              </h2>
+              <p className="text-xl text-gray-600 mb-8">
+                {currentLanguage === 'he' ? 'קבלו אותה ישירות לתיבת המייל!' : 'Get it directly to your email!'}
+              </p>
+              
+              <div className="max-w-md mx-auto">
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <input 
+                    type="email" 
+                    placeholder={currentLanguage === 'he' ? 'כתובת אימייל' : 'Email address'}
+                    className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  />
+                  <button className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl">
+                    {currentLanguage === 'he' ? 'הירשם' : 'Subscribe'}
+                  </button>
+                </div>
+                <p className="text-sm text-gray-500 mt-4">
+                  {currentLanguage === 'he' ? 'נשלח לכם מאמרים חדשים כל שבוע' : 'We send you new articles every week'}
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SOCIAL MEDIA SECTION */}
+        <section className="py-16 bg-gray-900">
+          <div className="max-w-7xl mx-auto px-4 text-center">
+            <h3 className="text-2xl font-bold text-white mb-8">
+              {currentLanguage === 'he' ? 'רשתות חברתיות' : 'Social Networks'}
+            </h3>
+            <div className="flex justify-center gap-6">
+              <a href="#" className="w-12 h-12 bg-blue-600 hover:bg-blue-700 rounded-full flex items-center justify-center text-white transition-colors duration-200">
+                <span className="text-xl">📘</span>
+              </a>
+              <a href="#" className="w-12 h-12 bg-gray-800 hover:bg-gray-700 rounded-full flex items-center justify-center text-white transition-colors duration-200">
+                <span className="text-xl">🐦</span>
+              </a>
+              <a href="#" className="w-12 h-12 bg-red-600 hover:bg-red-700 rounded-full flex items-center justify-center text-white transition-colors duration-200">
+                <span className="text-xl">📺</span>
+              </a>
+              <a href="#" className="w-12 h-12 bg-green-600 hover:bg-green-700 rounded-full flex items-center justify-center text-white transition-colors duration-200">
+                <span className="text-xl">📱</span>
+              </a>
+              <a href="#" className="w-12 h-12 bg-orange-600 hover:bg-orange-700 rounded-full flex items-center justify-center text-white transition-colors duration-200">
+                <span className="text-xl">🎵</span>
+              </a>
+            </div>
+          </div>
+        </section>
+
         {/* CTA SECTION */}
         <section className="py-20 bg-gradient-to-r from-blue-600 to-blue-700">
           <div className="max-w-4xl mx-auto text-center px-4">

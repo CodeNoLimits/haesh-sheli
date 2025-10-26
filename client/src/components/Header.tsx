@@ -24,6 +24,10 @@ const translations = {
     haeshHype: '🔥 האש הייפ',
     chat: '💬 צ\'אט ברסלבי',
     whatsapp: '💬 דבר איתנו',
+    articles: 'מאמרים',
+    shiurim: 'שיעורים',
+    donate: 'תרומות',
+    affiliation: 'שותפות',
     fire: '🔥 האש שלי',
     login: 'כניסה',
     logout: 'יציאה',
@@ -42,6 +46,10 @@ const translations = {
     haeshHype: '🔥 HaEsh Hype',
     chat: '💬 Breslov Chat',
     whatsapp: '💬 Talk to Us',
+    articles: 'Articles',
+    shiurim: 'Shiurim',
+    donate: 'Donate',
+    affiliation: 'Affiliation',
     fire: '🔥 My Fire',
     login: 'Login',
     logout: 'Logout',
@@ -193,8 +201,17 @@ export function Header({ currentLanguage = 'he', onLanguageChange }: HeaderProps
             <li className={location === '/join' ? 'current-menu-item' : ''}>
               <a href="/join" data-testid="link-join" className="transition-all duration-300 hover:scale-110 hover:text-yellow-300 hover:drop-shadow-lg inline-block hover:-translate-y-1">{t.join}</a>
             </li>
-            <li className={location === '/downloads' ? 'current-menu-item' : ''}>
-              <a href="/downloads" data-testid="link-downloads" className="transition-all duration-300 hover:scale-110 hover:text-yellow-300 hover:drop-shadow-lg inline-block hover:-translate-y-1">{t.downloads}</a>
+            <li className={location === '/articles' ? 'current-menu-item' : ''}>
+              <a href="/articles" data-testid="link-articles" className="transition-all duration-300 hover:scale-110 hover:text-yellow-300 hover:drop-shadow-lg inline-block hover:-translate-y-1">{t.articles}</a>
+            </li>
+            <li className={location === '/shiurim' ? 'current-menu-item' : ''}>
+              <a href="/shiurim" data-testid="link-shiurim" className="transition-all duration-300 hover:scale-110 hover:text-yellow-300 hover:drop-shadow-lg inline-block hover:-translate-y-1">{t.shiurim}</a>
+            </li>
+            <li className={location === '/donate' ? 'current-menu-item' : ''}>
+              <a href="/donate" data-testid="link-donate" className="transition-all duration-300 hover:scale-110 hover:text-yellow-300 hover:drop-shadow-lg inline-block hover:-translate-y-1">{t.donate}</a>
+            </li>
+            <li className={location === '/affiliation' ? 'current-menu-item' : ''}>
+              <a href="/affiliation" data-testid="link-affiliation" className="transition-all duration-300 hover:scale-110 hover:text-yellow-300 hover:drop-shadow-lg inline-block hover:-translate-y-1">{t.affiliation}</a>
             </li>
           </ul>
         </nav>
@@ -311,8 +328,17 @@ export function Header({ currentLanguage = 'he', onLanguageChange }: HeaderProps
           <li className={location === '/join' ? 'current-menu-item' : ''}>
             <a href="/join" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-join">{t.join}</a>
           </li>
-          <li className={location === '/downloads' ? 'current-menu-item' : ''}>
-            <a href="/downloads" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-downloads">{t.downloads}</a>
+          <li className={location === '/articles' ? 'current-menu-item' : ''}>
+            <a href="/articles" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-articles">{t.articles}</a>
+          </li>
+          <li className={location === '/shiurim' ? 'current-menu-item' : ''}>
+            <a href="/shiurim" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-shiurim">{t.shiurim}</a>
+          </li>
+          <li className={location === '/donate' ? 'current-menu-item' : ''}>
+            <a href="/donate" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-donate">{t.donate}</a>
+          </li>
+          <li className={location === '/affiliation' ? 'current-menu-item' : ''}>
+            <a href="/affiliation" onClick={() => setMobileMenuOpen(false)} data-testid="mobile-link-affiliation">{t.affiliation}</a>
           </li>
           <li>
             <a 

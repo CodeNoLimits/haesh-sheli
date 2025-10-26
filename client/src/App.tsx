@@ -52,6 +52,7 @@ import Chat from "@/pages/chat";
 import Shiurim from "@/pages/shiurim";
 import Donate from "@/pages/donate";
 import Affiliation from "@/pages/affiliation";
+import Articles from "@/pages/articles";
 import NotFound from "@/pages/not-found";
 import BuilderPreview from "@/pages/builder-preview";
 
@@ -75,9 +76,10 @@ function Router() {
       <Route path="/haesh-hype" component={HaeshHype} />
       <Route path="/chat" component={Chat} />
       <Route path="/yaaakov" component={YaakovDashboard} />
-      <Route path="/shiurim" component={Shiurim} />
-      <Route path="/donate" component={Donate} />
-      <Route path="/affiliation" component={Affiliation} />
+        <Route path="/shiurim" component={Shiurim} />
+        <Route path="/donate" component={Donate} />
+        <Route path="/affiliation" component={Affiliation} />
+        <Route path="/articles" component={Articles} />
       <Route path="/builder-preview" component={BuilderPreview} />
       <Route component={NotFound} />
     </Switch>
