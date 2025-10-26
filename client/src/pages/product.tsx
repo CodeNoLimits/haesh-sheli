@@ -5,6 +5,7 @@ import { useCart } from '../contexts/CartContext';
 import { useToast } from '@/hooks/use-toast';
 import { getBookDisplayTitle } from '../utils/bookTitleHelper';
 import { convertImagePath } from '../utils/imagePathHelper';
+import { ProductRecommendations } from '../components/ProductRecommendations';
 import type { Product } from '../../../shared/schema';
 
 export default function Product() {
@@ -349,33 +350,7 @@ export default function Product() {
       {/* RELATED PRODUCTS */}
       <section style={{background: '#f8f9fa', padding: '3rem 0'}}>
         <div className="container" style={{maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'}}>
-          <h2 style={{fontSize: '2rem', fontWeight: 'bold', color: '#333', marginBottom: '2rem', textAlign: 'center'}}>
-            מוצרים דומים
-          </h2>
-          <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem'}}>
-            {Object.values(realBreslovProducts).filter(p => p.id !== product.id).slice(0, 3).map((relatedProduct) => (
-              <div key={relatedProduct.id} style={{background: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)'}}>
-                <img 
-                  src={(relatedProduct.images && relatedProduct.images[0] || '').replace('@assets/', '/attached_assets/')} 
-                  alt={relatedProduct.name}
-                  style={{width: '100%', height: '200px', objectFit: 'cover'}}
-                />
-                <div style={{padding: '1.5rem'}}>
-                  <h3 style={{fontSize: '1.2rem', fontWeight: 'bold', marginBottom: '0.5rem', color: '#333'}}>
-                    {relatedProduct.name}
-                  </h3>
-                  <div style={{fontSize: '1.1rem', fontWeight: 'bold', color: '#dc3545', marginBottom: '1rem'}}>
-                    {(relatedProduct.variants && relatedProduct.variants[0] || {price: 0}).price} ₪
-                  </div>
-                  <a href={`/product/${relatedProduct.id}`} style={{textDecoration: 'none'}}>
-                    <button style={{background: '#dc3545', color: 'white', border: 'none', padding: '0.8rem 1rem', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold'}}>
-                      צפה במוצר
-                    </button>
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
+          <ProductRecommendations currentProductId={product.id} maxResults={6} />
         </div>
       </section>
     </div>

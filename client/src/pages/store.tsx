@@ -19,6 +19,7 @@ interface Filters {
   priceRange: [number, number];
   searchQuery: string;
   languages: string[];
+  hasCommentary: boolean | null; // null = tous, true = avec commentaires, false = sans commentaires
 }
 
 export default function Store() {
@@ -32,7 +33,8 @@ export default function Store() {
     sizes: [],
     priceRange: [0, 1000], // Will be updated by useEffect to real range
     searchQuery: '',
-    languages: []
+    languages: [],
+    hasCommentary: null
   });
   
   // Sidebar visibility and collapsible sections
@@ -106,9 +108,10 @@ export default function Store() {
         return false;
       }
       
-      // Format, size and price filters (check variants)
+      // Format, size, price and commentary filters (check variants)
       const needsVariantCheck = filters.formats.length > 0 || filters.sizes.length > 0 || 
-        (filters.priceRange[0] !== filterOptions.priceRange[0] || filters.priceRange[1] !== filterOptions.priceRange[1]);
+        (filters.priceRange[0] !== filterOptions.priceRange[0] || filters.priceRange[1] !== filterOptions.priceRange[1]) ||
+        filters.hasCommentary !== null;
       
       if (needsVariantCheck) {
         const hasMatchingVariant = product.variants?.some(variant => {
@@ -119,7 +122,12 @@ export default function Store() {
           const priceRangeActive = filters.priceRange[0] !== filterOptions.priceRange[0] || filters.priceRange[1] !== filterOptions.priceRange[1];
           const priceMatch = !priceRangeActive || (variant.price !== undefined && variant.price >= filters.priceRange[0] && variant.price <= filters.priceRange[1]);
           
-          return formatMatch && sizeMatch && priceMatch;
+          // Commentary filter: check if format contains "מפרשים" (commentaries)
+          const commentaryMatch = filters.hasCommentary === null || 
+            (filters.hasCommentary === true && variant.format?.includes('מפרשים')) ||
+            (filters.hasCommentary === false && !variant.format?.includes('מפרשים'));
+          
+          return formatMatch && sizeMatch && priceMatch && commentaryMatch;
         });
         
         if (!hasMatchingVariant) return false;
@@ -148,7 +156,8 @@ export default function Store() {
       sizes: [],
       priceRange: filterOptions.priceRange,
       searchQuery: '',
-      languages: []
+      languages: [],
+      hasCommentary: null
     });
   };
   
@@ -367,6 +376,45 @@ export default function Store() {
                     )}
                   </div>
                 )}
+              </div>
+
+              {/* Commentary Filter */}
+              <div className="bg-white border border-gray-200 rounded p-4">
+                <div className="mb-3">
+                  <span className="text-sm font-medium text-gray-700">מפרשים</span>
+                </div>
+                <div className="space-y-2">
+                  <div className="flex items-center space-x-2 rtl:space-x-reverse">
+                    <Checkbox
+                      id="commentary-all"
+                      checked={filters.hasCommentary === null}
+                      onCheckedChange={() => setFilters(prev => ({ ...prev, hasCommentary: null }))}
+                    />
+                    <label htmlFor="commentary-all" className="text-xs cursor-pointer text-gray-700">
+                      הכל
+                    </label>
+                  </div>
+                  <div className="flex items-center space-x-2 rtl:space-x-reverse">
+                    <Checkbox
+                      id="commentary-with"
+                      checked={filters.hasCommentary === true}
+                      onCheckedChange={() => setFilters(prev => ({ ...prev, hasCommentary: true }))}
+                    />
+                    <label htmlFor="commentary-with" className="text-xs cursor-pointer text-gray-700">
+                      עם מפרשים
+                    </label>
+                  </div>
+                  <div className="flex items-center space-x-2 rtl:space-x-reverse">
+                    <Checkbox
+                      id="commentary-without"
+                      checked={filters.hasCommentary === false}
+                      onCheckedChange={() => setFilters(prev => ({ ...prev, hasCommentary: false }))}
+                    />
+                    <label htmlFor="commentary-without" className="text-xs cursor-pointer text-gray-700">
+                      ללא מפרשים
+                    </label>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

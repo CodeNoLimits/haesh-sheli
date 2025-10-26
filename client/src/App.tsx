@@ -49,6 +49,7 @@ import Subscription from "@/pages/subscription";
 import SubscriptionManagement from "@/pages/subscription-management";
 import YaakovDashboard from "@/pages/yaaakov";
 import Chat from "@/pages/chat";
+import Shiurim from "@/pages/shiurim";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -71,6 +72,7 @@ function Router() {
       <Route path="/haesh-hype" component={HaeshHype} />
       <Route path="/chat" component={Chat} />
       <Route path="/yaaakov" component={YaakovDashboard} />
+      <Route path="/shiurim" component={Shiurim} />
       <Route component={NotFound} />
     </Switch>
   );
