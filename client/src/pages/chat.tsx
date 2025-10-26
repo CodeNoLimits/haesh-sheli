@@ -47,7 +47,32 @@ export default function Chat() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  // Vérification du statut de Gemini
+  // Messages d'accueil par défaut
+  const welcomeMessages: ChatMessage[] = [
+    {
+      id: 'welcome-1',
+      role: 'assistant',
+      content: currentLanguage === 'he' 
+        ? 'שלום! אני כאן לעזור לך עם שאלות על רבי נחמן מברסלב ותורתו. איך אני יכול לעזור לך היום?'
+        : 'Hello! I\'m here to help you with questions about Rabbi Nachman of Breslov and his teachings. How can I help you today?',
+      timestamp: new Date()
+    },
+    {
+      id: 'welcome-2', 
+      role: 'assistant',
+      content: currentLanguage === 'he'
+        ? 'אני יכול לעזור לך עם:\n• הסברים על תורת רבי נחמן\n• פרשנות על סיפורי מעשיות\n• הדרכה רוחנית\n• שאלות על ספרי ברסלב'
+        : 'I can help you with:\n• Explanations of Rabbi Nachman\'s teachings\n• Commentary on Sipurei Maasiot\n• Spiritual guidance\n• Questions about Breslov books',
+      timestamp: new Date()
+    }
+  ];
+
+  // Initialiser avec les messages d'accueil
+  useEffect(() => {
+    if (messages.length === 0) {
+      setMessages(welcomeMessages);
+    }
+  }, []);
   const { data: geminiStatus } = useQuery<ChatStatus>({
     queryKey: ['/api/chat/status'],
     refetchInterval: 30000, // Vérification toutes les 30 secondes
@@ -508,15 +533,15 @@ export default function Chat() {
                     onKeyPress={handleKeyPress}
                     placeholder="שאל שאלה על תורת רבי נחמן..."
                     className="min-h-[50px] max-h-[120px] resize-none text-right"
-                    disabled={isLoading || !chatStatus?.connected}
+                    disabled={isLoading || !currentStatus?.connected}
                     data-testid="chat-input"
                   />
                 </div>
-                
+
                 <div className="flex flex-col gap-2">
                   <Button
                     onClick={() => handleSubmit()}
-                    disabled={!inputMessage.trim() || isLoading || !chatStatus?.connected}
+                    disabled={!inputMessage.trim() || isLoading || !currentStatus?.connected}
                     className="bg-red-600 hover:bg-red-700"
                     data-testid="send-button"
                   >
