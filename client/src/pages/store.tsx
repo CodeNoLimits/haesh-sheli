@@ -30,6 +30,24 @@ export default function Store() {
   const { currentLanguage, setLanguage } = useLanguage();
   const allProducts = Object.values(realBreslovProducts);
   
+  // Fallback si pas de produits
+  if (!allProducts || allProducts.length === 0) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-red-50" style={{direction: currentLanguage === 'he' ? 'rtl' : 'ltr'}}>
+        <Header currentLanguage={currentLanguage} onLanguageChange={setLanguage} />
+        <div className="max-w-7xl mx-auto px-4 py-20 text-center">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+            {currentLanguage === 'he' ? 'חנות ספרי ברסלב' : 'Breslov Books Store'}
+          </h1>
+          <p className="text-xl text-gray-600 mb-8">
+            {currentLanguage === 'he' ? 'טוען את המוצרים...' : 'Loading products...'}
+          </p>
+          <div className="animate-spin w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full mx-auto"></div>
+        </div>
+      </div>
+    );
+  }
+  
   // Filter states
   const [filters, setFilters] = useState<Filters>({
     categories: [],

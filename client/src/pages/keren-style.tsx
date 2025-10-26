@@ -30,8 +30,8 @@ const translations = {
     navWisdom: 'חכמת הדורות',
     
     // Main Teachings
-    teachingsTitle: 'התורות היסודיות של רבי נחמן',
-    teachingsSubtitle: 'אבני היסוד לחיים רוחניים מעמיקים',
+    teachingsTitle: 'התורות היסודיות של רבי נחמן מברסלב',
+    teachingsSubtitle: 'אבני היסוד לחיים רוחניים מעמיקים - תורה שתשנה את חייכם',
     
     // Articles
     articlesTitle: 'מאמרים ומקורות לעיון',

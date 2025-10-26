@@ -1,20 +1,11 @@
-import { useState, useEffect } from 'react';
-import { useQuery, useMutation } from '@tanstack/react-query';
-import { useStripe, useElements, Elements, PaymentElement } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
-import { apiRequest, queryClient } from '@/lib/queryClient';
-import { useToast } from '@/hooks/use-toast';
+import { useState } from 'react';
+import { Header } from '@/components/Header';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { CheckCircle, Star, Download, ShoppingCart, Crown, Sparkles } from 'lucide-react';
-import { StripeNotConfiguredFallback } from '@/components/StripeNotConfiguredFallback';
-import { Header } from '@/components/Header';
-import { useLanguage } from '@/contexts/LanguageContext';
-
-// Load Stripe (will need VITE_STRIPE_PUBLIC_KEY)
-const stripePublicKey = import.meta.env.VITE_STRIPE_PUBLIC_KEY;
-const stripePromise = stripePublicKey ? loadStripe(stripePublicKey) : null;
+import { CheckCircle, Star, Crown, Sparkles, Heart, BookOpen, Users, MessageCircle } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
 
 interface SubscriptionPlan {
   id: string;
@@ -22,503 +13,294 @@ interface SubscriptionPlan {
   nameHebrew: string;
   description: string;
   descriptionHebrew: string;
-  price: number; // in agorot
+  price: number;
   currency: string;
   features: string[];
   featuresHebrew: string[];
   isActive: boolean;
+  popular?: boolean;
 }
 
-const SubscriptionForm = ({ plan, clientSecret }: { plan: SubscriptionPlan; clientSecret: string }) => {
-  const stripe = useStripe();
-  const elements = useElements();
-  const { toast } = useToast();
-  const [isLoading, setIsLoading] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-
-    if (!stripe || !elements) {
-      toast({
-        title: "שגיאה",
-        description: "מערכת התשלום אינה זמינה כרגע",
-        variant: "destructive",
-      });
-      setIsLoading(false);
-      return;
-    }
-
-    try {
-      // Confirm the payment with the existing clientSecret
-      const { error } = await stripe.confirmPayment({
-        elements,
-        confirmParams: {
-          return_url: `${window.location.origin}/subscription/success`,
-        },
-      });
-
-      if (error) {
-        toast({
-          title: "שגיאה בתשלום",
-          description: error.message,
-          variant: "destructive",
-        });
-      } else {
-        // Payment succeeded
-        toast({
-          title: "הצלחה!",
-          description: "המנוי שלך הופעל בהצלחה",
-        });
-        queryClient.invalidateQueries({ queryKey: ['/api/user/subscription'] });
-      }
-    } catch (error: any) {
-      console.error('Subscription error:', error);
-      toast({
-        title: "שגיאה",
-        description: "אירעה שגיאה בעיבוד התשלום",
-        variant: "destructive",
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg border">
-        <PaymentElement />
-      </div>
-      
-      <Button 
-        type="submit" 
-        className="w-full btn-breslov-primary text-white py-3 text-lg font-bold shadow-lg" 
-        disabled={!stripe || !elements || isLoading}
-        data-testid="button-subscribe"
-      >
-        {isLoading ? (
-          <div className="flex items-center gap-2">
-            <div className="animate-spin w-4 h-4 border-2 border-white border-t-transparent rounded-full" />
-            מעבד...
-          </div>
-        ) : (
-          <>
-            <Crown className="mr-2 h-5 w-5" />
-            הצטרף להוראת קבע - ₪{(plan.price / 100).toFixed(0)} לחודש
-          </>
-        )}
-      </Button>
-    </form>
-  );
-};
-
-const SubscriptionPlanCard = ({ plan, isCurrentPlan }: { plan: SubscriptionPlan; isCurrentPlan?: boolean }) => {
-  const [clientSecret, setClientSecret] = useState<string | null>(null);
-  const [showPayment, setShowPayment] = useState(false);
-  const [isCreatingSubscription, setIsCreatingSubscription] = useState(false);
-  const { toast } = useToast();
-
-  const createSubscriptionMutation = useMutation({
-    mutationFn: async (data: { email?: string; name?: string }) => {
-      const res = await apiRequest('POST', '/api/create-subscription', data);
-      const result = await res.json();
-      
-      // Handle specific error responses from server
-      if (!res.ok) {
-        if (result.configured === false) {
-          // Stripe not configured - throw specific error for fallback handling
-          throw new Error(result.message || 'מערכת התשלומים אינה זמינה כרגע');
-        }
-        throw new Error(result.message || 'שגיאה ביצירת המנוי');
-      }
-      
-      return result;
-    },
-    onSuccess: (result) => {
-      if (result.clientSecret) {
-        setClientSecret(result.clientSecret);
-        setShowPayment(true);
-        toast({
-          title: "מוכן לתשלום!",
-          description: "אנא מלא את פרטי התשלום למטה",
-        });
-      } else {
-        toast({
-          title: "שגיאה",
-          description: "לא ניתן ליצור את המנוי כרגע - אנא נסה שוב",
-          variant: "destructive",
-        });
-      }
-    },
-    onError: (error: any) => {
-      console.error('Subscription creation error:', error);
-      
-      // Show appropriate error message
-      let errorMessage = "נכשלנו בעיבוד הבקשה. אנא נסה שוב";
-      let errorTitle = "אופס!";
-      
-      if (error.message?.includes('מערכת התשלומים')) {
-        errorTitle = "יצירת קשר";
-        errorMessage = "נתקלנו בקושי זמני. צוות השירות שלנו יעזור לך להשלים את המנוי. אנא פנה אלינו";
-      }
-      
-      toast({
-        title: errorTitle,
-        description: errorMessage,
-        variant: "destructive",
-        duration: 6000, // Show longer for contact info
-      });
-    },
-    onSettled: () => {
-      setIsCreatingSubscription(false);
-    }
-  });
-
-  const handleSubscribe = async () => {
-    if (!stripePromise) {
-      toast({
-        title: "בואו נדבר!",
-        description: "נשמח לעזור לך להצטרף למשפחת 'האש שלי'. צור איתנו קשר: support@haesh-sheli.co.il או דרך הוואטסאפ",
-        duration: 8000,
-      });
-      return;
-    }
-    setIsCreatingSubscription(true);
-    await createSubscriptionMutation.mutateAsync({});
-  };
-
-  if (!plan.isActive) return null;
-
-  return (
-    <Card className="relative overflow-hidden border-2 border-primary/30 shadow-xl">
-      {/* Premium badge */}
-      <div className="absolute top-4 right-4">
-        <Badge className="btn-breslov-gold text-white font-bold">
-          <Star className="w-3 h-3 mr-1" />
-          פרימיום
-        </Badge>
-      </div>
-
-      <CardHeader className="text-center pb-2">
-        <div className="flex justify-center mb-4">
-          <div className="bg-primary p-3 rounded-full">
-            <Crown className="h-8 w-8 text-white" />
-          </div>
-        </div>
-        
-        <CardTitle className="text-2xl font-bold text-primary">
-          {plan.nameHebrew}
-        </CardTitle>
-        
-        <CardDescription className="text-center text-gray-600 dark:text-gray-300 mt-2">
-          {plan.descriptionHebrew}
-        </CardDescription>
-
-        {/* Price display */}
-        <div className="text-center mt-4">
-          <div className="text-4xl font-bold text-primary">
-            ₪{(plan.price / 100).toFixed(0)}
-          </div>
-          <div className="text-sm text-gray-500 dark:text-gray-400">
-            לחודש • תשלום חוזר
-          </div>
-        </div>
-      </CardHeader>
-
-      <CardContent className="space-y-6">
-        {/* Features list */}
-        <div className="space-y-3">
-          <h4 className="font-semibold text-gray-900 dark:text-gray-100 flex items-center">
-            <Sparkles className="w-4 h-4 mr-2 text-gold-accent" />
-            יתרונות המנוי:
-          </h4>
-          
-          {plan.featuresHebrew.map((feature, index) => (
-            <div key={index} className="flex items-start space-x-reverse space-x-3">
-              <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-              <span className="text-gray-700 dark:text-gray-300">{feature}</span>
-            </div>
-          ))}
-        </div>
-
-        {/* Value proposition */}
-        <div className="section-surface-strong p-4 rounded-lg border border-primary/30">
-          <h5 className="font-semibold text-primary mb-2">💰 חסכון משמעותי!</h5>
-          <p className="text-sm text-foreground">
-            במקום לשלם על כל ספר בנפרד, קבל גישה לכל הספרים הדיגיטליים + הנחות על ספרים פיזיים!
-          </p>
-        </div>
-
-        {/* Social proof */}
-        <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
-          <p className="text-sm text-green-700 dark:text-green-300 text-center">
-            🌟 אלפי משפחות בישראל כבר חלק ממשפחת 'האש שלי'
-          </p>
-          <p className="text-xs text-green-600 dark:text-green-400 text-center mt-1">
-            "הספרים הדיגיטליים שינו את חיי הרוחניים" - שרה מירושלים
-          </p>
-        </div>
-
-        {/* Action button */}
-        {isCurrentPlan ? (
-          <Button className="w-full" disabled>
-            <CheckCircle className="mr-2 h-5 w-5" />
-            מנוי פעיל
-          </Button>
-        ) : showPayment && clientSecret && stripePromise ? (
-          <Elements stripe={stripePromise} options={{ 
-            clientSecret: clientSecret,
-            appearance: {
-              theme: 'stripe'
-            }
-          }}>
-            <SubscriptionForm plan={plan} clientSecret={clientSecret} />
-          </Elements>
-        ) : showPayment && clientSecret && !stripePromise ? (
-          <div className="section-surface-strong p-4 rounded-lg border border-primary/30 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20">
-            <h5 className="font-semibold text-primary mb-2">💬 בואו נדבר אישית!</h5>
-            <p className="text-sm text-foreground mb-3">
-              נשמח לעזור לך להצטרף למשפחת 'האש שלי' בצורה הטובה ביותר
-            </p>
-            <div className="flex gap-2">
-              <a 
-                href="https://wa.me/972501234567?text=שלום, אני מעוניין להצטרף למנוי הוראת קבע שלכם" 
-                target="_blank" 
-                rel="noopener noreferrer"
-              >
-                <Button size="sm" className="btn-breslov-primary text-white hover:bg-green-600">
-                  💬 דבר איתנו
-                </Button>
-              </a>
-              <a href="mailto:support@haesh-sheli.co.il?subject=הצטרפות למנוי הוראת קבע">
-                <Button size="sm" variant="outline">
-                  📧 שלח מייל
-                </Button>
-              </a>
-            </div>
-          </div>
-        ) : (
-          <Button 
-            onClick={handleSubscribe}
-            disabled={isCreatingSubscription}
-            className="w-full btn-breslov-primary text-white py-3 text-lg font-bold shadow-lg"
-            data-testid="button-show-payment"
-          >
-            {isCreatingSubscription ? (
-              <div className="flex items-center gap-2">
-                <div className="animate-spin w-4 h-4 border-2 border-white border-t-transparent rounded-full" />
-                יוצר מנוי...
-              </div>
-            ) : (
-              <>
-                <Crown className="mr-2 h-5 w-5" />
-                הצטרף עכשיו - ₪{(plan.price / 100).toFixed(0)} לחודש
-              </>
-            )}
-          </Button>
-        )}
-
-        {/* Guarantee */}
-        <p className="text-xs text-center text-gray-500 dark:text-gray-400">
-          💯 ניתן לבטל בכל עת • ללא התחייבות
-        </p>
-      </CardContent>
-    </Card>
-  );
-};
-
-export default function SubscriptionPage() {
-  const { toast } = useToast();
+export default function Subscription() {
   const { currentLanguage, setLanguage } = useLanguage();
+  const { toast } = useToast();
+  
+  // Plans d'abonnement simplifiés
+  const plans: SubscriptionPlan[] = [
+    {
+      id: 'basic',
+      name: 'Basic Plan',
+      nameHebrew: 'תוכנית בסיסית',
+      description: 'Perfect for beginners in Breslov',
+      descriptionHebrew: 'מושלם למתחילים בברסלב',
+      price: 18,
+      currency: '₪',
+      features: [
+        'Weekly Torah insights',
+        'Community access',
+        'Basic audio content',
+        'Email support'
+      ],
+      featuresHebrew: [
+        'תובנות שבועיות מהתורה',
+        'גישה לקהילה',
+        'תוכן אודיו בסיסי',
+        'תמיכה במייל'
+      ],
+      isActive: true
+    },
+    {
+      id: 'premium',
+      name: 'Premium Plan',
+      nameHebrew: 'תוכנית פרימיום',
+      description: 'Complete Breslov experience',
+      descriptionHebrew: 'חוויה מלאה בברסלב',
+      price: 36,
+      currency: '₪',
+      features: [
+        'All Basic features',
+        'Premium audio shiurim',
+        'Live Q&A with rabbis',
+        'Priority support',
+        'Exclusive articles',
+        'Mobile app access'
+      ],
+      featuresHebrew: [
+        'כל הפיצ\'רים הבסיסיים',
+        'שיעורים פרימיום',
+        'שאלות ותשובות חיים עם רבנים',
+        'תמיכה עדיפות',
+        'מאמרים בלעדיים',
+        'גישה לאפליקציה'
+      ],
+      isActive: true,
+      popular: true
+    },
+    {
+      id: 'vip',
+      name: 'VIP Plan',
+      nameHebrew: 'תוכנית VIP',
+      description: 'Ultimate spiritual journey',
+      descriptionHebrew: 'מסע רוחני אולטימטיבי',
+      price: 72,
+      currency: '₪',
+      features: [
+        'All Premium features',
+        'Personal spiritual guidance',
+        'One-on-one sessions',
+        'Custom content creation',
+        'Early access to new features',
+        'VIP community access',
+        'Special events invitation'
+      ],
+      featuresHebrew: [
+        'כל הפיצ\'רים הפרימיום',
+        'הדרכה רוחנית אישית',
+        'מפגשים אחד על אחד',
+        'יצירת תוכן מותאם',
+        'גישה מוקדמת לפיצ\'רים',
+        'גישה לקהילת VIP',
+        'הזמנה לאירועים מיוחדים'
+      ],
+      isActive: true
+    }
+  ];
 
-  // Fetch all subscription plans
-  const { data: plans, isLoading: planLoading } = useQuery({
-    queryKey: ['/api/subscription-plans'],
-    meta: { errorMessage: "שגיאה בטעינת תוכניות המנוי" }
-  });
-
-  // Check current user subscription status
-  const { data: userSubscription } = useQuery({
-    queryKey: ['/api/user/subscription'],
-    meta: { errorMessage: "שגיאה בטעינת מצב המנוי" }
-  });
-
-  const isCurrentSubscriber = (userSubscription as any)?.user?.isSubscriber || false;
-  const currentUserPlan = (userSubscription as any)?.user?.subscriptionPlanId || null;
-
-  if (planLoading) {
-    return (
-      <div 
-        className="min-h-screen hero-surface dark:from-gray-900 dark:via-gray-800 dark:to-gray-900"
-        dir={currentLanguage === 'he' ? 'rtl' : 'ltr'}
-        data-testid="subscription-page"
-      >
-        <Header currentLanguage={currentLanguage} onLanguageChange={setLanguage} />
-        <div className="container mx-auto px-4 py-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="animate-spin w-8 h-8 border-4 border-red-500 border-t-transparent rounded-full mx-auto" />
-            <p className="mt-4 text-gray-600 dark:text-gray-300">טוען תוכניות מנוי...</p>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  if (!plans || !Array.isArray(plans) || plans.length === 0) {
-    return (
-      <div 
-        className="min-h-screen hero-surface dark:from-gray-900 dark:via-gray-800 dark:to-gray-900"
-        dir={currentLanguage === 'he' ? 'rtl' : 'ltr'}
-        data-testid="subscription-page"
-      >
-        <Header currentLanguage={currentLanguage} onLanguageChange={setLanguage} />
-        <div className="container mx-auto px-4 py-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-2xl font-bold text-primary mb-4">
-              שגיאה בטעינת תוכניות המנוי
-            </h1>
-            <p className="text-gray-600 dark:text-gray-300">
-              אנא נסה שוב מאוחר יותר או צור קשר עם השירות לקוחות
-            </p>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  // Sort plans by price (ascending) for better display
-  const sortedPlans = [...plans].sort((a, b) => a.price - b.price);
+  const handleSubscribe = (plan: SubscriptionPlan) => {
+    toast({
+      title: currentLanguage === 'he' ? 'הצטרפות לתוכנית' : 'Joining Plan',
+      description: currentLanguage === 'he' 
+        ? `אתם מצטרפים לתוכנית ${plan.nameHebrew}. נחזור אליכם בקרוב עם פרטי התשלום.`
+        : `You are joining the ${plan.name} plan. We will contact you soon with payment details.`,
+    });
+  };
 
   return (
-    <div 
-      className="min-h-screen hero-surface dark:from-gray-900 dark:via-gray-800 dark:to-gray-900"
-      dir={currentLanguage === 'he' ? 'rtl' : 'ltr'}
-      data-testid="subscription-page"
-    >
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-red-50" style={{direction: currentLanguage === 'he' ? 'rtl' : 'ltr'}}>
       <Header currentLanguage={currentLanguage} onLanguageChange={setLanguage} />
-      <div className="container mx-auto px-4 py-8">
-        {/* Hero section */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            הוראת קבע - תמכו בהפצת אור רבינו
+      
+      {/* Hero Section */}
+      <section className="py-20 bg-gradient-to-r from-blue-600 to-blue-700">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+            {currentLanguage === 'he' ? 'הוראת קבע - האש שלי' : 'Subscription - Haesh Sheli'}
           </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 mb-6 max-w-3xl mx-auto">
-            הצטרפו למשפחת 'האש שלי' וקבלו גישה לכל הספרים הדיגיטליים והנחות מיוחדות
+          <p className="text-xl text-blue-100 max-w-3xl mx-auto">
+            {currentLanguage === 'he' ? 
+              'הצטרפו לקהילה הגדולה של לומדי תורת רבי נחמן מברסלב. קבלו תוכן ייחודי, הדרכה רוחנית וחיבור לקהילה' :
+              'Join the largest community of Rabbi Nachman of Breslov learners. Get unique content, spiritual guidance and community connection'
+            }
           </p>
-          
-          {/* Benefits showcase */}
-          <div className="flex flex-wrap justify-center gap-4 mb-8">
-            <div className="flex items-center bg-white dark:bg-gray-800 px-4 py-2 rounded-full shadow-md border">
-              <Download className="w-5 h-5 text-green-500 mr-2" />
-              <span className="text-sm font-medium">הורדות ללא הגבלה</span>
-            </div>
-            <div className="flex items-center bg-white dark:bg-gray-800 px-4 py-2 rounded-full shadow-md border">
-              <ShoppingCart className="w-5 h-5 text-blue-500 mr-2" />
-              <span className="text-sm font-medium">הנחה עד 20% על קניות</span>
-            </div>
-            <div className="flex items-center bg-white dark:bg-gray-800 px-4 py-2 rounded-full shadow-md border">
-              <Crown className="w-5 h-5 text-gold-accent mr-2" />
-              <span className="text-sm font-medium">סטטוס חבר פרימיום</span>
-            </div>
-          </div>
         </div>
+      </section>
 
-        {/* Multiple subscription plans */}
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {sortedPlans.filter(plan => plan.id !== 'horat_keva_99').map((plan) => (
-              <StripeNotConfiguredFallback key={plan.id} plan={plan as SubscriptionPlan}>
-                <SubscriptionPlanCard 
-                  plan={plan as SubscriptionPlan} 
-                  isCurrentPlan={currentUserPlan === plan.id}
-                />
-              </StripeNotConfiguredFallback>
+      {/* Plans Section */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              {currentLanguage === 'he' ? 'בחרו את התוכנית המתאימה לכם' : 'Choose the plan that suits you'}
+            </h2>
+            <p className="text-xl text-gray-600">
+              {currentLanguage === 'he' ? 
+                'כל התוכניות כוללות גישה מלאה לתוכן הרב נחמן מברסלב' :
+                'All plans include full access to Rabbi Nachman of Breslov content'
+              }
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {plans.map((plan) => (
+              <Card key={plan.id} className={`relative overflow-hidden border-2 shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 ${
+                plan.popular ? 'border-blue-500 ring-2 ring-blue-200' : 'border-gray-200'
+              }`}>
+                {plan.popular && (
+                  <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-blue-500 to-blue-600 text-white text-center py-2 text-sm font-bold">
+                    {currentLanguage === 'he' ? 'הכי פופולרי' : 'Most Popular'}
+                  </div>
+                )}
+                
+                <CardHeader className={`text-center ${plan.popular ? 'pt-12' : 'pt-6'}`}>
+                  <div className="flex justify-center mb-4">
+                    {plan.id === 'basic' && <BookOpen className="w-12 h-12 text-blue-600" />}
+                    {plan.id === 'premium' && <Star className="w-12 h-12 text-yellow-500" />}
+                    {plan.id === 'vip' && <Crown className="w-12 h-12 text-purple-600" />}
+                  </div>
+                  
+                  <CardTitle className="text-2xl font-bold text-gray-900">
+                    {currentLanguage === 'he' ? plan.nameHebrew : plan.name}
+                  </CardTitle>
+                  
+                  <CardDescription className="text-gray-600">
+                    {currentLanguage === 'he' ? plan.descriptionHebrew : plan.description}
+                  </CardDescription>
+                  
+                  <div className="mt-4">
+                    <span className="text-4xl font-bold text-blue-600">
+                      {plan.currency}{plan.price}
+                    </span>
+                    <span className="text-gray-500 ml-2">
+                      {currentLanguage === 'he' ? '/חודש' : '/month'}
+                    </span>
+                  </div>
+                </CardHeader>
+                
+                <CardContent className="space-y-6">
+                  <div className="space-y-3">
+                    {(currentLanguage === 'he' ? plan.featuresHebrew : plan.features).map((feature, index) => (
+                      <div key={index} className="flex items-center gap-3">
+                        <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
+                        <span className="text-gray-700">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  <Button 
+                    onClick={() => handleSubscribe(plan)}
+                    className={`w-full py-3 text-lg font-semibold ${
+                      plan.popular 
+                        ? 'bg-blue-600 hover:bg-blue-700 text-white' 
+                        : 'bg-gray-800 hover:bg-gray-900 text-white'
+                    }`}
+                  >
+                    {currentLanguage === 'he' ? 'הצטרף עכשיו' : 'Join Now'}
+                  </Button>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
-        
-        {/* WhatsApp CTA Section */}
-        <div className="max-w-4xl mx-auto mt-16 text-center">
-          <div className="bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 p-8 rounded-xl border border-green-200 dark:border-green-800">
-            <h3 className="text-2xl font-bold text-primary mb-4">
-              יש לך שאלות? בוא נדבר אישית!
-            </h3>
-            <p className="text-gray-600 dark:text-gray-300 mb-6">
-              צוות השירות שלנו כאן לעזור לך לבחור את המנוי המתאים ביותר עבורך
-            </p>
-            <a 
-              href="https://wa.me/972501234567?text=שלום, אני מעוניין לשמוע עוד על תוכניות המנוי שלכם" 
-              target="_blank" 
-              rel="noopener noreferrer"
-            >
-              <Button className="btn-breslov-primary text-white px-8 py-3 text-lg font-bold hover:bg-green-600 transition-all duration-300 hover:scale-105">
-                💬 דבר איתנו בווטסאפ
-              </Button>
-            </a>
-          </div>
-        </div>
+      </section>
 
-        {/* FAQ or additional info */}
-        <div className="max-w-4xl mx-auto mt-16">
-          <h2 className="text-2xl font-bold text-center text-gray-900 dark:text-white mb-8">
-            שאלות נפוצות
-          </h2>
+      {/* Features Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              {currentLanguage === 'he' ? 'מה תקבלו במנוי?' : 'What do you get with subscription?'}
+            </h2>
+          </div>
           
-          <div className="grid md:grid-cols-2 gap-6">
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg text-primary">
-                  מתי אני יכול לבטל את המנוי?
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 dark:text-gray-300">
-                  ניתן לבטל את המנוי בכל עת ללא עמלות ביטול. המנוי יישאר פעיל עד לסוף התקופה ששולמה.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg text-primary">
-                  האם יש תקופת ניסיון?
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 dark:text-gray-300">
-                  כל חברי המנוי נהנים מאחריות מלאה של 30 יום - אם לא מרוצה, נחזיר את כספך במלואו.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg text-primary">
-                  כמה ספרים כלולים במנוי?
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 dark:text-gray-300">
-                  המנוי כולל גישה לכל הספרים הדיגיטליים בספריה שלנו - מעל 100 ספרים של רבי נחמן מברסלב.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg text-primary">
-                  האם ההנחה חלה על כל הספרים?
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 dark:text-gray-300">
-                  כן! חברי המנוי מקבלים 5% הנחה על כל הספרים הפיזיים והמוצרים בחנות שלנו.
-                </p>
-              </CardContent>
-            </Card>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <BookOpen className="w-8 h-8 text-blue-600" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                {currentLanguage === 'he' ? 'תוכן ייחודי' : 'Unique Content'}
+              </h3>
+              <p className="text-gray-600">
+                {currentLanguage === 'he' ? 'מאמרים ושיעורים בלעדיים על תורת רבי נחמן' : 'Exclusive articles and lessons on Rabbi Nachman\'s teachings'}
+              </p>
+            </div>
+            
+            <div className="text-center">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Users className="w-8 h-8 text-green-600" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                {currentLanguage === 'he' ? 'קהילה פעילה' : 'Active Community'}
+              </h3>
+              <p className="text-gray-600">
+                {currentLanguage === 'he' ? 'הצטרפו לקהילה של אלפי לומדים' : 'Join a community of thousands of learners'}
+              </p>
+            </div>
+            
+            <div className="text-center">
+              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <MessageCircle className="w-8 h-8 text-purple-600" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                {currentLanguage === 'he' ? 'תמיכה אישית' : 'Personal Support'}
+              </h3>
+              <p className="text-gray-600">
+                {currentLanguage === 'he' ? 'הדרכה ותמיכה אישית מהצוות' : 'Personal guidance and support from our team'}
+              </p>
+            </div>
+            
+            <div className="text-center">
+              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Sparkles className="w-8 h-8 text-orange-600" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                {currentLanguage === 'he' ? 'חוויה מיוחדת' : 'Special Experience'}
+              </h3>
+              <p className="text-gray-600">
+                {currentLanguage === 'he' ? 'חוויה רוחנית מעשירה ומעצימה' : 'Enriching and empowering spiritual experience'}
+              </p>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-gradient-to-r from-blue-600 to-blue-700">
+        <div className="max-w-4xl mx-auto text-center px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            {currentLanguage === 'he' ? 'מוכנים להתחיל את המסע הרוחני?' : 'Ready to start your spiritual journey?'}
+          </h2>
+          <p className="text-xl text-blue-100 mb-8">
+            {currentLanguage === 'he' ? 
+              'הצטרפו לאלפי אנשים שכבר התחילו את המסע שלהם עם תורת רבי נחמן מברסלב' :
+              'Join thousands of people who have already started their journey with Rabbi Nachman of Breslov\'s teachings'
+            }
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button 
+              onClick={() => handleSubscribe(plans[1])} // Premium plan
+              className="px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white font-semibold text-lg"
+            >
+              {currentLanguage === 'he' ? 'התחל עכשיו' : 'Start Now'}
+            </Button>
+            <Button 
+              variant="outline"
+              className="px-8 py-4 bg-white/20 hover:bg-white/30 text-white font-semibold text-lg border-white/30"
+            >
+              {currentLanguage === 'he' ? 'למד עוד' : 'Learn More'}
+            </Button>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
