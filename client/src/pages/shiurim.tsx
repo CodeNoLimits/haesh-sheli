@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
 import { Link } from 'wouter';
 import { breslovShiurim, getShiurimByCategory, type Shiur } from '../data/shiurim';
-import { AudioPlayer } from '../components/AudioPlayer';
+import { SimpleAudioPlayer } from '../components/SimpleAudioPlayer';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Search, Play, Download, Clock, User } from 'lucide-react';
 import { Input } from '@/components/ui/input';
@@ -83,7 +83,7 @@ export default function ShiurimPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50" style={{direction: currentLanguage === 'he' ? 'rtl' : 'ltr'}}>
+    <div className={`min-h-screen bg-gray-50 ${currentLanguage === 'he' ? 'rtl' : 'ltr'}`}>
       {/* Header */}
       <div className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 py-6">
@@ -152,11 +152,10 @@ export default function ShiurimPage() {
             {/* Player */}
             {selectedShiur && (
               <div className="mb-8">
-                <AudioPlayer
+                <SimpleAudioPlayer
                   audioUrl={selectedShiur.audioUrl}
                   title={getShiurTitle(selectedShiur)}
                   author={selectedShiur.author}
-                  duration={selectedShiur.duration}
                 />
               </div>
             )}

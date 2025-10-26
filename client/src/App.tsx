@@ -50,6 +50,7 @@ import SubscriptionManagement from "@/pages/subscription-management";
 import YaakovDashboard from "@/pages/yaaakov";
 import Chat from "@/pages/chat";
 import Shiurim from "@/pages/shiurim";
+import Donate from "@/pages/donate";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -73,6 +74,7 @@ function Router() {
       <Route path="/chat" component={Chat} />
       <Route path="/yaaakov" component={YaakovDashboard} />
       <Route path="/shiurim" component={Shiurim} />
+      <Route path="/donate" component={Donate} />
       <Route component={NotFound} />
     </Switch>
   );

@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Search, X, Filter, ChevronDown, ChevronUp } from 'lucide-react';
 import { convertImagePath } from '../utils/imagePathHelper';
+import { LazyImage } from '../components/LazyImage';
 import type { Product } from '../../../shared/schema';
 
 // Filter interfaces
@@ -16,6 +17,7 @@ interface Filters {
   categories: string[];
   formats: string[];
   sizes: string[];
+  bindings: string[];
   priceRange: [number, number];
   searchQuery: string;
   languages: string[];
@@ -31,6 +33,7 @@ export default function Store() {
     categories: [],
     formats: [],
     sizes: [],
+    bindings: [],
     priceRange: [0, 1000], // Will be updated by useEffect to real range
     searchQuery: '',
     languages: [],
@@ -44,6 +47,7 @@ export default function Store() {
     languages: true,
     sizes: true,
     formats: true,
+    bindings: true,
     price: true
   });
   
@@ -52,6 +56,7 @@ export default function Store() {
     const categories = new Set<string>();
     const formats = new Set<string>();
     const sizes = new Set<string>();
+    const bindings = new Set<string>();
     const languages = new Set<string>();
     let minPrice = Infinity;
     let maxPrice = 0;
@@ -63,6 +68,7 @@ export default function Store() {
       product.variants?.forEach(variant => {
         if (variant.format) formats.add(variant.format);
         if (variant.size) sizes.add(variant.size);
+        if (variant.binding) bindings.add(variant.binding);
         if (variant.price) {
           minPrice = Math.min(minPrice, variant.price);
           maxPrice = Math.max(maxPrice, variant.price);
@@ -74,6 +80,7 @@ export default function Store() {
       categories: Array.from(categories).sort(),
       formats: Array.from(formats).sort(),
       sizes: Array.from(sizes).sort(),
+      bindings: Array.from(bindings).sort(),
       languages: Array.from(languages).sort(),
       priceRange: [Math.floor(minPrice), Math.ceil(maxPrice)] as [number, number]
     };
@@ -108,8 +115,8 @@ export default function Store() {
         return false;
       }
       
-      // Format, size, price and commentary filters (check variants)
-      const needsVariantCheck = filters.formats.length > 0 || filters.sizes.length > 0 || 
+      // Format, size, binding, price and commentary filters (check variants)
+      const needsVariantCheck = filters.formats.length > 0 || filters.sizes.length > 0 || filters.bindings.length > 0 ||
         (filters.priceRange[0] !== filterOptions.priceRange[0] || filters.priceRange[1] !== filterOptions.priceRange[1]) ||
         filters.hasCommentary !== null;
       
@@ -117,6 +124,7 @@ export default function Store() {
         const hasMatchingVariant = product.variants?.some(variant => {
           const formatMatch = filters.formats.length === 0 || filters.formats.includes(variant.format || '');
           const sizeMatch = filters.sizes.length === 0 || filters.sizes.includes(variant.size || '');
+          const bindingMatch = filters.bindings.length === 0 || filters.bindings.includes(variant.binding || '');
           
           // Price match: only apply if price range differs from full range AND variant has price
           const priceRangeActive = filters.priceRange[0] !== filterOptions.priceRange[0] || filters.priceRange[1] !== filterOptions.priceRange[1];
@@ -127,7 +135,7 @@ export default function Store() {
             (filters.hasCommentary === true && variant.format?.includes('מפרשים')) ||
             (filters.hasCommentary === false && !variant.format?.includes('מפרשים'));
           
-          return formatMatch && sizeMatch && priceMatch && commentaryMatch;
+          return formatMatch && sizeMatch && bindingMatch && priceMatch && commentaryMatch;
         });
         
         if (!hasMatchingVariant) return false;
@@ -154,6 +162,7 @@ export default function Store() {
       categories: [],
       formats: [],
       sizes: [],
+      bindings: [],
       priceRange: filterOptions.priceRange,
       searchQuery: '',
       languages: [],
@@ -378,6 +387,39 @@ export default function Store() {
                 )}
               </div>
 
+              {/* Bindings Filter */}
+              <div className="bg-white border border-gray-200 rounded p-4">
+                <div 
+                  className="flex items-center justify-between cursor-pointer mb-3"
+                  onClick={() => toggleSection('bindings')}
+                  data-testid="label-bindings"
+                >
+                  <span className="text-sm font-medium text-gray-700">כריכות</span>
+                  {expandedSections.bindings ? <ChevronUp className="h-4 w-4 text-gray-500" /> : <ChevronDown className="h-4 w-4 text-gray-500" />}
+                </div>
+                {expandedSections.bindings && (
+                  <div className="space-y-2">
+                    {filterOptions.bindings.map((binding) => (
+                      <div key={binding} className="flex items-center space-x-2 rtl:space-x-reverse">
+                        <Checkbox
+                          id={`binding-${binding}`}
+                          checked={filters.bindings.includes(binding)}
+                          onCheckedChange={() => toggleFilter('bindings', binding)}
+                          data-testid={`checkbox-binding-${binding}`}
+                        />
+                        <label 
+                          htmlFor={`binding-${binding}`} 
+                          className="text-xs cursor-pointer text-gray-700"
+                          data-testid={`text-binding-${binding}`}
+                        >
+                          {binding}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
               {/* Commentary Filter */}
               <div className="bg-white border border-gray-200 rounded p-4">
                 <div className="mb-3">
@@ -453,24 +495,13 @@ export default function Store() {
                   
                   {/* Image */}
                   <Link href={`/product/${product.id}`}>
-                    {product.images && product.images.length > 0 ? (
-                      <img 
-                        src={convertImagePath(product.images[0])}
-                        alt={product.name}
-                        className="w-full h-48 object-cover cursor-pointer hover:opacity-90 transition-opacity"
-                        data-testid={`img-product-${product.id}`}
-                        onError={(e) => {
-                          e.currentTarget.style.display = 'none';
-                        }}
-                      />
-                    ) : (
-                      <div 
-                        className="w-full h-48 bg-gray-100 flex items-center justify-center cursor-pointer hover:bg-gray-200 transition-colors"
-                        data-testid={`placeholder-product-${product.id}`}
-                      >
-                        <span className="text-2xl">📖</span>
-                      </div>
-                    )}
+                    <LazyImage
+                      src={convertImagePath(product.images[0])}
+                      alt={product.name}
+                      className="w-full h-48 cursor-pointer hover:opacity-90 transition-opacity"
+                      placeholder="/images/placeholder-book.jpg"
+                      fallback="/images/book-fallback.jpg"
+                    />
                   </Link>
                   
                   {/* Content */}
