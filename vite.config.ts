@@ -4,8 +4,8 @@ import path from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 
 export default defineConfig({
-  // Base path: use root for Render.com, /haesh-sheli/ for GitHub Pages
-  base: process.env.RENDER ? "/" : (process.env.NODE_ENV === "production" ? "/haesh-sheli/" : "/"),
+  // Base path: use root for Netlify and Render.com
+  base: "/",
   plugins: [
     react(),
     runtimeErrorOverlay(),
