@@ -7,6 +7,7 @@ import { useToast } from '@/hooks/use-toast';
 import { useCart } from '@/contexts/CartContext';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Header } from '@/components/Header';
+import { PaymentMethodSelector } from '@/components/PaymentMethodSelector';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -92,8 +93,36 @@ const CheckoutForm = ({ clientSecret, orderSummary }: {
   const formatPrice = (amount: number) => `₪${(amount / 100).toFixed(2)}`;
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg border">
+    <div className="space-y-6">
+      {/* Payment Method Selection */}
+      <PaymentMethodSelector
+        totalAmount={orderSummary.totalAmount / 100} // Convert from cents to shekels
+        orderDescription={`הזמנה מקרן רבי ישראל - ${orderSummary.items?.length || 0} פריטים`}
+        customerInfo={{
+          name: orderSummary.customerName,
+          email: orderSummary.customerEmail
+        }}
+        onStripePayment={handleSubmit}
+        onPayPalSuccess={(transactionId) => {
+          toast({
+            title: "תשלום PayPal בוצע בהצלחה!",
+            description: `Transaction ID: ${transactionId}`,
+          });
+          clearCart();
+          queryClient.invalidateQueries({ queryKey: ['/api/user/subscription'] });
+          window.location.href = '/checkout/success';
+        }}
+        onPayPalError={(error) => {
+          toast({
+            title: "שגיאה בתשלום PayPal",
+            description: error,
+            variant: "destructive",
+          });
+        }}
+      />
+      
+      {/* Stripe Payment Element (hidden by default) */}
+      <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg border" style={{ display: 'none' }}>
         <PaymentElement />
       </div>
       
@@ -133,26 +162,7 @@ const CheckoutForm = ({ clientSecret, orderSummary }: {
           </div>
         </CardContent>
       </Card>
-
-      <Button 
-        type="submit" 
-        className="w-full btn-breslov-primary text-white py-3 text-lg font-bold shadow-lg" 
-        disabled={!stripe || !elements || isLoading}
-        data-testid="button-complete-payment"
-      >
-        {isLoading ? (
-          <div className="flex items-center gap-2">
-            <div className="animate-spin w-4 h-4 border-2 border-white border-t-transparent rounded-full" />
-            מעבד תשלום...
-          </div>
-        ) : (
-          <>
-            <CreditCard className="mr-2 h-5 w-5" />
-            השלם תשלום - {formatPrice(orderSummary.totalAmount)}
-          </>
-        )}
-      </Button>
-    </form>
+    </div>
   );
 };
 

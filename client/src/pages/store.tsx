@@ -10,6 +10,8 @@ import { Input } from '@/components/ui/input';
 import { Search, X, Filter, ChevronDown, ChevronUp } from 'lucide-react';
 import { convertImagePath } from '../utils/imagePathHelper';
 import { LazyImage } from '../components/LazyImage';
+import { MobileOptimizedCard } from '../components/MobileOptimizedCard';
+import { SEO } from '../components/SEO';
 import type { Product } from '../../../shared/schema';
 
 // Filter interfaces
@@ -41,7 +43,7 @@ export default function Store() {
   });
   
   // Sidebar visibility and collapsible sections
-  const [sidebarVisible, setSidebarVisible] = useState(true);
+  const [sidebarVisible, setSidebarVisible] = useState(false); // Hidden by default on mobile
   const [expandedSections, setExpandedSections] = useState({
     categories: true,
     languages: true,
@@ -179,6 +181,13 @@ export default function Store() {
 
   return (
     <div style={{direction: currentLanguage === 'he' ? 'rtl' : 'ltr'}}>
+      <SEO
+        title="חנות ספרי ברסלב"
+        description="חנות מקוונת לספרי ברסלב, ליקוטי מוהרן, שיעורים מוקלטים ועוד. מחירים מעולים ומשלוחים חינם."
+        keywords={['חנות ברסלב', 'ספרי ברסלב', 'ליקוטי מוהרן', 'שיעורים']}
+        url="/store"
+        type="website"
+      />
       <section style={{background: '#333', color: 'white', padding: '8px 0'}}>
         <div style={{maxWidth: '1400px', margin: '0 auto', padding: '0 2rem'}}>
           <span>משלוחים חינם החל מ- 399 ש"ח</span>
@@ -188,9 +197,18 @@ export default function Store() {
       <Header currentLanguage={currentLanguage} onLanguageChange={setLanguage} />
 
       <div className="flex min-h-screen bg-gray-50">
-        {/* Clean Simple Sidebar */}
-        <div className={`${sidebarVisible ? 'w-80' : 'w-0'} transition-all duration-200 overflow-hidden`}>
-          <div className="h-full bg-white shadow-lg border-r border-gray-200">
+        {/* Mobile-First Sidebar */}
+        <div className={`${sidebarVisible ? 'fixed inset-0 z-50 lg:relative lg:inset-auto' : 'hidden lg:block'} lg:w-80 transition-all duration-200`}>
+          {/* Mobile Overlay */}
+          {sidebarVisible && (
+            <div 
+              className="fixed inset-0 bg-black bg-opacity-50 lg:hidden"
+              onClick={() => setSidebarVisible(false)}
+            />
+          )}
+          
+          {/* Sidebar Content */}
+          <div className="h-full bg-white shadow-lg border-r border-gray-200 lg:relative lg:z-auto">
             {/* Simple Header */}
             <div className="bg-white p-4 border-b border-gray-200">
               <div className="flex items-center justify-between mb-4">
@@ -464,7 +482,18 @@ export default function Store() {
 
         {/* Main Content Area */}
         <div className="flex-1">
-          <div className="p-6">
+          <div className="p-4 lg:p-6">
+            {/* Mobile Filter Toggle */}
+            <div className="lg:hidden mb-4">
+              <Button
+                onClick={() => setSidebarVisible(true)}
+                className="w-full flex items-center justify-center"
+                variant="outline"
+              >
+                <Filter className="h-4 w-4 mr-2" />
+                מסננים ({Object.values(filters).flat().length + (filters.hasCommentary !== null ? 1 : 0)})
+              </Button>
+            </div>
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center space-x-4">
                 <Button 
@@ -485,63 +514,9 @@ export default function Store() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-6">
               {filteredProducts.map((product) => (
-                <div 
-                  key={product.id} 
-                  className="bg-white rounded-lg overflow-hidden shadow hover:shadow-lg transition-shadow border border-gray-200"
-                  data-testid={`card-product-${product.id}`}
-                >
-                  
-                  {/* Image */}
-                  <Link href={`/product/${product.id}`}>
-                    <LazyImage
-                      src={convertImagePath(product.images[0])}
-                      alt={product.name}
-                      className="w-full h-48 cursor-pointer hover:opacity-90 transition-opacity"
-                      placeholder="/images/placeholder-book.jpg"
-                      fallback="/images/book-fallback.jpg"
-                    />
-                  </Link>
-                  
-                  {/* Content */}
-                  <div className="p-4">
-                    <Link href={`/product/${product.id}`}>
-                      <h3 
-                        className="font-semibold text-lg mb-2 text-gray-900 line-clamp-2 cursor-pointer hover:text-blue-600 transition-colors"
-                        data-testid={`text-title-${product.id}`}
-                      >
-                        {product.name}
-                      </h3>
-                    </Link>
-                    
-                    <div 
-                      className="text-lg font-bold text-blue-600 mb-2"
-                      data-testid={`text-price-${product.id}`}
-                    >
-                      {product.variants && product.variants.length > 0 ? 
-                        `${Math.min(...product.variants.map(v => v.price))} ₪ – ${Math.max(...product.variants.map(v => v.price))} ₪` : 
-                        'מחיר לא זמין'
-                      }
-                    </div>
-                    
-                    <div 
-                      className="text-sm text-gray-600 mb-4"
-                      data-testid={`text-category-${product.id}`}
-                    >
-                      {product.category}
-                    </div>
-                    
-                    <Link href={`/product/${product.id}`}>
-                      <Button 
-                        className="w-full bg-blue-600 hover:bg-blue-700 text-white"
-                        data-testid={`button-view-details-${product.id}`}
-                      >
-                        צפייה בפרטים
-                      </Button>
-                    </Link>
-                  </div>
-                </div>
+                <MobileOptimizedCard key={product.id} product={product} />
               ))}
             </div>
             

@@ -51,6 +51,7 @@ import YaakovDashboard from "@/pages/yaaakov";
 import Chat from "@/pages/chat";
 import Shiurim from "@/pages/shiurim";
 import Donate from "@/pages/donate";
+import Affiliation from "@/pages/affiliation";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -75,6 +76,7 @@ function Router() {
       <Route path="/yaaakov" component={YaakovDashboard} />
       <Route path="/shiurim" component={Shiurim} />
       <Route path="/donate" component={Donate} />
+      <Route path="/affiliation" component={Affiliation} />
       <Route component={NotFound} />
     </Switch>
   );

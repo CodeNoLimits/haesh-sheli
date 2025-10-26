@@ -6,6 +6,7 @@ import { useToast } from '@/hooks/use-toast';
 import { getBookDisplayTitle } from '../utils/bookTitleHelper';
 import { convertImagePath } from '../utils/imagePathHelper';
 import { ProductRecommendations } from '../components/ProductRecommendations';
+import { ShareButtons } from '../components/ShareButtons';
 import type { Product } from '../../../shared/schema';
 
 export default function Product() {
@@ -341,6 +342,16 @@ export default function Product() {
                   {product.pages && <div><strong>עמודים:</strong> {product.pages}</div>}
                   {product.isbn && <div><strong>ISBN:</strong> {product.isbn}</div>}
                 </div>
+              </div>
+
+              {/* SHARE BUTTONS */}
+              <div style={{marginTop: '2rem'}}>
+                <ShareButtons
+                  url={`${window.location.origin}/product/${product.id}`}
+                  title={product.name}
+                  description={product.description || ''}
+                  hashtags={['ברסלב', 'ספרים', 'קרןרביישראל']}
+                />
               </div>
             </div>
           </div>
