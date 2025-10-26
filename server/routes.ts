@@ -1086,7 +1086,146 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // ========================================
+  // Claude Code Integration API Routes
+  // ========================================
+
+  // Status check pour Claude Code
+  app.get('/api/claude-code/status', (req, res) => {
+    res.json({
+      connected: true,
+      version: '1.0.0',
+      features: [
+        'Real-time session monitoring',
+        'Cursor synchronization',
+        'Activity tracking',
+        'Token usage analytics',
+        'WebSocket support'
+      ],
+      websocketUrl: '/ws/claude-code',
+      timestamp: new Date().toISOString()
+    });
+  });
+
+  // Récupérer toutes les sessions actives
+  app.get('/api/claude-code/sessions', (req, res) => {
+    try {
+      const { claudeCodeMonitoring } = require('./claudeCodeService');
+      const sessions = claudeCodeMonitoring.getActiveSessions();
+      res.json({
+        sessions,
+        count: sessions.length,
+        timestamp: new Date().toISOString()
+      });
+    } catch (error: any) {
+      console.error('Error fetching Claude Code sessions:', error);
+      res.status(500).json({ error: 'Failed to fetch sessions' });
+    }
+  });
+
+  // Récupérer les métriques d'une session
+  app.get('/api/claude-code/sessions/:sessionId/metrics', (req, res) => {
+    try {
+      const { claudeCodeMonitoring } = require('./claudeCodeService');
+      const { sessionId } = req.params;
+      const metrics = claudeCodeMonitoring.getSessionMetrics(sessionId);
+
+      if (!metrics) {
+        return res.status(404).json({ error: 'Session not found' });
+      }
+
+      res.json(metrics);
+    } catch (error: any) {
+      console.error('Error fetching session metrics:', error);
+      res.status(500).json({ error: 'Failed to fetch metrics' });
+    }
+  });
+
+  // Récupérer l'historique des activités d'une session
+  app.get('/api/claude-code/sessions/:sessionId/activities', (req, res) => {
+    try {
+      const { claudeCodeMonitoring } = require('./claudeCodeService');
+      const { sessionId } = req.params;
+      const activities = claudeCodeMonitoring.getSessionActivities(sessionId);
+
+      res.json({
+        activities,
+        count: activities.length,
+        sessionId,
+        timestamp: new Date().toISOString()
+      });
+    } catch (error: any) {
+      console.error('Error fetching session activities:', error);
+      res.status(500).json({ error: 'Failed to fetch activities' });
+    }
+  });
+
+  // Démarrer une nouvelle session (API REST alternative au WebSocket)
+  app.post('/api/claude-code/sessions', (req, res) => {
+    try {
+      const { claudeCodeMonitoring } = require('./claudeCodeService');
+      const { userId, model } = req.body;
+
+      if (!userId) {
+        return res.status(400).json({ error: 'userId is required' });
+      }
+
+      const session = claudeCodeMonitoring.startSession(userId, model);
+      res.json(session);
+    } catch (error: any) {
+      console.error('Error starting Claude Code session:', error);
+      res.status(500).json({ error: 'Failed to start session' });
+    }
+  });
+
+  // Terminer une session
+  app.post('/api/claude-code/sessions/:sessionId/end', (req, res) => {
+    try {
+      const { claudeCodeMonitoring } = require('./claudeCodeService');
+      const { sessionId } = req.params;
+
+      claudeCodeMonitoring.endSession(sessionId);
+      res.json({
+        success: true,
+        sessionId,
+        message: 'Session ended successfully'
+      });
+    } catch (error: any) {
+      console.error('Error ending Claude Code session:', error);
+      res.status(500).json({ error: 'Failed to end session' });
+    }
+  });
+
+  // Simuler une session de développement (pour tests/demo)
+  app.post('/api/claude-code/simulate', (req, res) => {
+    try {
+      const { claudeCodeMonitoring } = require('./claudeCodeService');
+      const userId = req.body.userId || 'demo_user';
+
+      claudeCodeMonitoring.simulateDevelopmentSession(userId);
+
+      res.json({
+        success: true,
+        message: 'Development session simulation started',
+        userId,
+        tip: 'Connect to WebSocket at /ws/claude-code to see real-time updates'
+      });
+    } catch (error: any) {
+      console.error('Error simulating Claude Code session:', error);
+      res.status(500).json({ error: 'Failed to simulate session' });
+    }
+  });
+
   const httpServer = createServer(app);
+
+  // Initialiser le WebSocket server pour Claude Code
+  try {
+    const { initializeClaudeCodeWebSocket } = require('./claudeCodeWebSocket');
+    initializeClaudeCodeWebSocket(httpServer);
+    console.log('✅ Claude Code WebSocket initialized');
+  } catch (error) {
+    console.error('❌ Failed to initialize Claude Code WebSocket:', error);
+  }
 
   return httpServer;
 }
