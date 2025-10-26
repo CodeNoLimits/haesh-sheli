@@ -1,0 +1,66 @@
+# ========================================
+# HAESH SHELI - RENDER.COM CONFIGURATION
+# ========================================
+# Render API Key: rnd_GwMEgbHJZiKVi58jcKhx4FpDWprs
+
+services:
+  # Web Service (Full-stack Node.js + React)
+  - type: web
+    name: haesh-sheli
+    env: node
+    region: oregon # Change to your preferred region
+    plan: starter # or 'free' tier
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+
+    # Environment Variables
+    envVars:
+      - key: NODE_ENV
+        value: production
+
+      - key: VITE_PUBLIC_BUILDER_KEY
+        value: 03781aef3e954725b18e9139cb9e6001
+
+      # Database (add your Neon or Render PostgreSQL URL)
+      - key: DATABASE_URL
+        sync: false # Set manually in Render Dashboard
+
+      # Stripe
+      - key: STRIPE_SECRET_KEY
+        sync: false # Set manually in Render Dashboard (secret)
+
+      # Gemini AI
+      - key: GEMINI_API_KEY
+        sync: false # Set manually in Render Dashboard (secret)
+
+      # SendGrid
+      - key: SENDGRID_API_KEY
+        sync: false # Set manually in Render Dashboard (secret)
+
+      # Session Secret (generate a random string)
+      - key: SESSION_SECRET
+        generateValue: true # Render will auto-generate
+
+    # Health Check (optional but recommended)
+    healthCheckPath: /api/health
+
+    # Auto-deploy from Git
+    autoDeploy: true
+
+    # Custom Domains (add your domain if you have one)
+    # domains:
+    #   - www.haesh-sheli.com
+    #   - haesh-sheli.com
+
+# Optional: PostgreSQL Database (if not using Neon)
+# databases:
+#   - name: haesh-sheli-db
+#     databaseName: haesh_sheli
+#     user: haesh_sheli_user
+#     plan: starter
+
+# Optional: Redis (for sessions/cache)
+# - type: redis
+#   name: haesh-sheli-redis
+#   plan: starter
+#   maxmemoryPolicy: allkeys-lru

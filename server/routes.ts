@@ -31,6 +31,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Setup Replit Auth middleware
   await setupAuth(app);
 
+  // Health check endpoint for Render.com and monitoring
+  app.get('/api/health', (req, res) => {
+    res.status(200).json({
+      status: 'healthy',
+      timestamp: new Date().toISOString(),
+      service: 'haesh-sheli',
+      version: '1.0.0'
+    });
+  });
+
   // Auth routes - required for Replit Auth
   app.get('/api/auth/user', isAuthenticated, async (req: any, res) => {
     try {
