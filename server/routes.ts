@@ -1216,6 +1216,157 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // ========================================
+  // Claude Code CLI Hooks (Local - Sans API)
+  // ========================================
+
+  // Hook pour les appels d'outils
+  app.post('/api/claude-code/hook/tool', (req, res) => {
+    try {
+      const { claudeCodeCLI } = require('./claudeCodeCLI');
+      const { tool, args, sessionId } = req.body;
+
+      if (!claudeCodeCLI.isActive()) {
+        return res.json({ warning: 'No active session, call ignored' });
+      }
+
+      claudeCodeCLI.logToolCall(tool, { args });
+
+      res.json({ success: true, tool, sessionId: claudeCodeCLI.getSessionId() });
+    } catch (error: any) {
+      console.error('Error in tool hook:', error);
+      res.status(500).json({ error: 'Failed to log tool call' });
+    }
+  });
+
+  // Hook pour les éditions de fichiers
+  app.post('/api/claude-code/hook/edit', (req, res) => {
+    try {
+      const { claudeCodeCLI } = require('./claudeCodeCLI');
+      const { file, lines, linesAdded, linesDeleted } = req.body;
+
+      if (!claudeCodeCLI.isActive()) {
+        return res.json({ warning: 'No active session, call ignored' });
+      }
+
+      claudeCodeCLI.logFileActivity(file, 'edit', {
+        linesChanged: lines || (linesAdded + linesDeleted),
+        linesAdded: linesAdded || 0,
+        linesDeleted: linesDeleted || 0
+      });
+
+      res.json({ success: true, file, sessionId: claudeCodeCLI.getSessionId() });
+    } catch (error: any) {
+      console.error('Error in edit hook:', error);
+      res.status(500).json({ error: 'Failed to log file edit' });
+    }
+  });
+
+  // Hook pour les commandes bash
+  app.post('/api/claude-code/hook/bash', (req, res) => {
+    try {
+      const { claudeCodeCLI } = require('./claudeCodeCLI');
+      const { command, exitCode, output } = req.body;
+
+      if (!claudeCodeCLI.isActive()) {
+        return res.json({ warning: 'No active session, call ignored' });
+      }
+
+      claudeCodeCLI.logCommand(command, exitCode || 0, output);
+
+      res.json({ success: true, command, sessionId: claudeCodeCLI.getSessionId() });
+    } catch (error: any) {
+      console.error('Error in bash hook:', error);
+      res.status(500).json({ error: 'Failed to log command' });
+    }
+  });
+
+  // Hook pour la position du curseur
+  app.post('/api/claude-code/hook/cursor', (req, res) => {
+    try {
+      const { claudeCodeCLI } = require('./claudeCodeCLI');
+      const { file, line, column } = req.body;
+
+      if (!claudeCodeCLI.isActive()) {
+        return res.json({ warning: 'No active session, call ignored' });
+      }
+
+      claudeCodeCLI.updateCursorPosition(file, line || 0, column || 0);
+
+      res.json({ success: true, file, line, column, sessionId: claudeCodeCLI.getSessionId() });
+    } catch (error: any) {
+      console.error('Error in cursor hook:', error);
+      res.status(500).json({ error: 'Failed to update cursor position' });
+    }
+  });
+
+  // Démarrer le monitoring CLI local
+  app.post('/api/claude-code/cli/start', (req, res) => {
+    try {
+      const { claudeCodeCLI } = require('./claudeCodeCLI');
+      const { userId } = req.body;
+
+      if (claudeCodeCLI.isActive()) {
+        return res.status(400).json({
+          error: 'Session already active',
+          sessionId: claudeCodeCLI.getSessionId()
+        });
+      }
+
+      claudeCodeCLI.startMonitoring(userId || 'local_user');
+
+      res.json({
+        success: true,
+        sessionId: claudeCodeCLI.getSessionId(),
+        message: 'Local monitoring started - No API costs!',
+        dashboardUrl: 'http://localhost:5000/claude-code'
+      });
+    } catch (error: any) {
+      console.error('Error starting CLI monitoring:', error);
+      res.status(500).json({ error: 'Failed to start monitoring' });
+    }
+  });
+
+  // Arrêter le monitoring CLI local
+  app.post('/api/claude-code/cli/stop', (req, res) => {
+    try {
+      const { claudeCodeCLI } = require('./claudeCodeCLI');
+
+      if (!claudeCodeCLI.isActive()) {
+        return res.status(400).json({ error: 'No active session' });
+      }
+
+      const sessionId = claudeCodeCLI.getSessionId();
+      claudeCodeCLI.stopMonitoring();
+
+      res.json({
+        success: true,
+        message: 'Monitoring stopped',
+        sessionId
+      });
+    } catch (error: any) {
+      console.error('Error stopping CLI monitoring:', error);
+      res.status(500).json({ error: 'Failed to stop monitoring' });
+    }
+  });
+
+  // Obtenir le statut du monitoring CLI
+  app.get('/api/claude-code/cli/status', (req, res) => {
+    try {
+      const { claudeCodeCLI } = require('./claudeCodeCLI');
+
+      res.json({
+        active: claudeCodeCLI.isActive(),
+        sessionId: claudeCodeCLI.getSessionId(),
+        metrics: claudeCodeCLI.getCurrentMetrics(),
+        message: 'Local monitoring - No API costs with Claude Code Max!'
+      });
+    } catch (error: any) {
+      console.error('Error getting CLI status:', error);
+      res.status(500).json({ error: 'Failed to get status' });
+    }
+  });
+
   const httpServer = createServer(app);
 
   // Initialiser le WebSocket server pour Claude Code
