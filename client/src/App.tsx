@@ -53,6 +53,7 @@ import Shiurim from "@/pages/shiurim";
 import Donate from "@/pages/donate";
 import Affiliation from "@/pages/affiliation";
 import NotFound from "@/pages/not-found";
+import BuilderPreview from "@/pages/builder-preview";
 
 function Router() {
   return (
@@ -77,6 +78,7 @@ function Router() {
       <Route path="/shiurim" component={Shiurim} />
       <Route path="/donate" component={Donate} />
       <Route path="/affiliation" component={Affiliation} />
+      <Route path="/builder-preview" component={BuilderPreview} />
       <Route component={NotFound} />
     </Switch>
   );
